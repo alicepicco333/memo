@@ -240,134 +240,133 @@
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/093/626/d2c.jpg"
     },
     {
-        "photoId":  "2093625",
+        "photoId":  "1945179",
         "variantIndex":  4,
         "memeName":  "Me Gusta",
         "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#me-gusta",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2093625",
-        "variantTitle":  "May Oswald, the original creator of Me Gusta",
+        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_1945179",
+        "variantTitle":  "Boo!",
         "variantUploader":  "Unknown",
-        "captionText":  "So SI",
+        "captionText":  "Boo!",
         "canonicalImageType":  "Drawing",
-        "variantImageType":  "Photograph",
+        "variantImageType":  "Drawing",
         "transformationDimension":  [
-                                        "MediumShift",
-                                        "VisualSubstrate"
+                                        "CaptionChange"
                                     ],
-        "transformationExtent":  "Substantial",
-        "notes":  "Photograph of the human creator behind the meme; medium shifts from drawing to photograph of a real person",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/093/625/999.jpg"
+        "transformationExtent":  "Moderate",
+        "notes":  "Me Gusta variant using a simple captioned reaction framing",
+        "imageURL":  "https://i.kym-cdn.com/photos/images/original/001/945/179/ae2.jpeg"
     },
     {
-        "photoId":  "2076357",
+        "photoId":  "1941912",
         "variantIndex":  5,
         "memeName":  "Me Gusta",
         "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#me-gusta",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2076357",
-        "variantTitle":  "Me Gusta NFT Fake",
+        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_1941912",
+        "variantTitle":  "Helicopter! Helicopter!",
         "variantUploader":  "Unknown",
-        "captionText":  "@insert .. Me Gusta",
+        "captionText":  "I have become the helicopter",
         "canonicalImageType":  "Drawing",
         "variantImageType":  "Drawing",
         "transformationDimension":  [
-                                        "CompositionShift"
+                                        "CaptionChange"
                                     ],
-        "transformationExtent":  "Substantial",
-        "notes":  "Screenshot of NFT marketplace listing featuring the meme; template enters blockchain commodification context",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/076/357/7bc.png"
+        "transformationExtent":  "Moderate",
+        "notes":  "Humorous caption variant in the classic exploitable style",
+        "imageURL":  "https://i.kym-cdn.com/photos/images/original/001/941/912/504.png"
     },
     {
-        "photoId":  "2076356",
+        "photoId":  "1484749",
         "variantIndex":  6,
         "memeName":  "Me Gusta",
         "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#me-gusta",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2076356",
-        "variantTitle":  "Me Gusta NFT Foundation Description",
+        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_1484749",
+        "variantTitle":  "Me Gusta Face Stag",
         "variantUploader":  "Unknown",
-        "captionText":  "The original Me Gusta face, Artwork information Description",
+        "captionText":  "Stag with me gusta face",
         "canonicalImageType":  "Drawing",
         "variantImageType":  "Drawing",
         "transformationDimension":  [
-                                        "CompositionShift"
+                                        "CrossoverMerge",
+                                        "VisualSubstrate"
                                     ],
         "transformationExtent":  "Substantial",
-        "notes":  "Documents the absurdity of the meme being listed as an NFT; the template comments on its own commodification",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/076/356/2ba.png"
+        "notes":  "Animal-face crossover that transfers the Me Gusta face to a different visual substrate",
+        "imageURL":  "https://i.kym-cdn.com/photos/images/original/001/484/749/a83.jpg"
     },
     {
-        "photoId":  "2076355",
+        "photoId":  "1265435",
         "variantIndex":  7,
         "memeName":  "Me Gusta",
         "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#me-gusta",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2076355",
-        "variantTitle":  "Me Gusta Fake NFT",
+        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_1265435",
+        "variantTitle":  "G-Dragon Me Gusta",
         "variantUploader":  "Unknown",
-        "captionText":  "Me Gusta Fake NFT",
-        "canonicalImageType":  "Drawing",
-        "variantImageType":  "Drawing",
-        "transformationDimension":  [
-                                        "CompositionShift"
-                                    ],
-        "transformationExtent":  "Substantial",
-        "notes":  "Another NFT-context documentary image; cluster of NFT-related variants forms a meta-commentary on meme commodification",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/076/355/eb8.png"
-    },
-    {
-        "photoId":  "2076354",
-        "variantIndex":  8,
-        "memeName":  "Me Gusta",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#me-gusta",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2076354",
-        "variantTitle":  "Me Gusta NFT Matt Oswald Imposter Account",
-        "variantUploader":  "Unknown",
-        "captionText":  "Follow Matt Oswald (aka Insert) @MattOswald_ Old forgotten meme master, illustra...",
-        "canonicalImageType":  "Drawing",
-        "variantImageType":  "Photograph",
-        "transformationDimension":  [
-                                        "MediumShift",
-                                        "CompositionShift"
-                                    ],
-        "transformationExtent":  "Substantial",
-        "notes":  "Screenshot of a Twitter profile impersonating the original creator; medium shift to screenshot/photograph format",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/076/354/e6b.png"
-    },
-    {
-        "photoId":  "2076353",
-        "variantIndex":  9,
-        "memeName":  "Me Gusta",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#me-gusta",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2076353",
-        "variantTitle":  "Me Gusta NFT Matt Oswald Fake Tweet",
-        "variantUploader":  "Unknown",
-        "captionText":  "The time has come! As an 11th birthday celebration...",
-        "canonicalImageType":  "Drawing",
-        "variantImageType":  "Photograph",
-        "transformationDimension":  [
-                                        "MediumShift",
-                                        "CompositionShift"
-                                    ],
-        "transformationExtent":  "Substantial",
-        "notes":  "Screenshot of fake tweet; same pattern as previous â€” medium shift to social media screenshot format",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/076/353/6e3.png"
-    },
-    {
-        "photoId":  "2076351",
-        "variantIndex":  10,
-        "memeName":  "Me Gusta",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#me-gusta",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2076351",
-        "variantTitle":  "Me Gusta Original vs. Fake NFT",
-        "variantUploader":  "Unknown",
-        "captionText":  "ORIGINAL / FAKE",
+        "captionText":  "IL MEGUSTA",
         "canonicalImageType":  "Drawing",
         "variantImageType":  "Drawing",
         "transformationDimension":  [
                                         "CaptionChange",
-                                        "CompositionShift"
+                                        "Localization"
+                                    ],
+        "transformationExtent":  "Moderate",
+        "notes":  "Language-localized caption variant",
+        "imageURL":  "https://i.kym-cdn.com/photos/images/original/001/265/435/b74.gif"
+    },
+    {
+        "photoId":  "1209248",
+        "variantIndex":  8,
+        "memeName":  "Me Gusta",
+        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#me-gusta",
+        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_1209248",
+        "variantTitle":  "What can save us from this?",
+        "variantUploader":  "Unknown",
+        "captionText":  "U GUSTA?",
+        "canonicalImageType":  "Drawing",
+        "variantImageType":  "Drawing",
+        "transformationDimension":  [
+                                        "CaptionChange"
+                                    ],
+        "transformationExtent":  "Moderate",
+        "notes":  "Caption variant with altered phrasing and layout",
+        "imageURL":  "https://i.kym-cdn.com/photos/images/original/001/209/248/432.gif"
+    },
+    {
+        "photoId":  "1111309",
+        "variantIndex":  9,
+        "memeName":  "Me Gusta",
+        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#me-gusta",
+        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_1111309",
+        "variantTitle":  "No Me Gusta",
+        "variantUploader":  "Unknown",
+        "captionText":  "GUSTA",
+        "canonicalImageType":  "Drawing",
+        "variantImageType":  "Drawing",
+        "transformationDimension":  [
+                                        "CaptionChange"
+                                    ],
+        "transformationExtent":  "Minimal",
+        "notes":  "Minimal caption and framing change in a standard Me Gusta image macro",
+        "imageURL":  "https://i.kym-cdn.com/photos/images/original/001/111/309/d02.png"
+    },
+    {
+        "photoId":  "931673",
+        "variantIndex":  10,
+        "memeName":  "Me Gusta",
+        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#me-gusta",
+        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_931673",
+        "variantTitle":  "Furry Me Gusta",
+        "variantUploader":  "Unknown",
+        "captionText":  "Furry Me Gusta",
+        "canonicalImageType":  "Drawing",
+        "variantImageType":  "Drawing",
+        "transformationDimension":  [
+                                        "StyleShift",
+                                        "CrossoverMerge"
                                     ],
         "transformationExtent":  "Substantial",
-        "notes":  "Side-by-side comparison of original and fake NFT versions; template used to comment on its own reproduction and authenticity",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/076/351/55c.jpg"
+        "notes":  "Furry-themed reinterpretation of the Me Gusta face with a clear style crossover",
+        "imageURL":  "https://i.kym-cdn.com/photos/images/original/000/931/673/96f.png"
     },
     {
         "photoId":  "3223636",
@@ -784,22 +783,22 @@
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/216/536/710.jpg"
     },
     {
-        "photoId":  "3194015",
+        "photoId":  "2956566",
         "variantIndex":  3,
         "memeName":  "Surprised Pikachu",
         "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#surprised-pikachu",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_3194015",
-        "variantTitle":  "Alone and sad",
+        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2956566",
+        "variantTitle":  "Felt like drawing a surprised Pikachu",
         "variantUploader":  "Unknown",
-        "captionText":  "Me: Can I have friends over? Parents: No / Me: Can I go to my friend\u0027s party? Parents: No",
+        "captionText":  "KRAZY-Ch:6:",
         "canonicalImageType":  "Drawing",
         "variantImageType":  "Drawing",
         "transformationDimension":  [
-                                        "CaptionChange"
+                                        "StyleShift"
                                     ],
-        "transformationExtent":  "Minimal",
-        "notes":  "Same caption as variant 1 from different uploader; evidences caption recycling across the variant pool",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/194/015/541.jpeg"
+        "transformationExtent":  "Moderate",
+        "notes":  "Hand-drawn fan rendition of the Surprised Pikachu reaction image",
+        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/956/566/c79.png"
     },
     {
         "photoId":  "3175479",
@@ -820,76 +819,78 @@
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/175/479/b56.png"
     },
     {
-        "photoId":  "3157255",
+        "photoId":  "2943637",
         "variantIndex":  5,
         "memeName":  "Surprised Pikachu",
         "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#surprised-pikachu",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_3157255",
-        "variantTitle":  "Isn\u0027t that your whole job?",
+        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2943637",
+        "variantTitle":  "Shocked Pumpkachu",
         "variantUploader":  "Unknown",
-        "captionText":  "insurance companies when they have to insure something",
+        "captionText":  "Shocked Pumpkachu",
         "canonicalImageType":  "Drawing",
         "variantImageType":  "Drawing",
         "transformationDimension":  [
-                                        "CaptionChange"
+                                        "CrossoverMerge",
+                                        "StyleShift"
                                     ],
-        "transformationExtent":  "Minimal",
-        "notes":  "Identical caption to variant 4 from different uploader; confirms caption cluster around insurance critique",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/157/255/566.jpeg"
+        "transformationExtent":  "Substantial",
+        "notes":  "Pumpkin-themed remix replacing Pikachu with a Halloween visual parody",
+        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/943/637/064.jpeg"
     },
     {
-        "photoId":  "3118321",
+        "photoId":  "2921812",
         "variantIndex":  6,
         "memeName":  "Surprised Pikachu",
         "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#surprised-pikachu",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_3118321",
-        "variantTitle":  "How did that happen?",
+        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2921812",
+        "variantTitle":  "Realize",
         "variantUploader":  "Unknown",
-        "captionText":  "Me: Can I have friends over? Parents: No / Me: Can I go to my friend\u0027s party? Parents: No",
+        "captionText":  "Do you ever realize suddenly, and with awful clarity...",
         "canonicalImageType":  "Drawing",
         "variantImageType":  "Drawing",
         "transformationDimension":  [
                                         "CaptionChange"
                                     ],
-        "transformationExtent":  "Minimal",
-        "notes":  "Same caption cluster as variants 1 and 3; confirms high caption reuse rate in Surprised Pikachu variants",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/118/321/f82.jpeg"
+        "transformationExtent":  "Moderate",
+        "notes":  "Long-form existential caption reframing the template away from repeated short caption clusters",
+        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/921/812/dae.png"
     },
     {
-        "photoId":  "3099494",
+        "photoId":  "2914754",
         "variantIndex":  7,
         "memeName":  "Surprised Pikachu",
         "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#surprised-pikachu",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_3099494",
-        "variantTitle":  "On the first day of school...",
+        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2914754",
+        "variantTitle":  "It doesn\u0027t even work",
         "variantUploader":  "Unknown",
-        "captionText":  "DO YOUR HOMEWORK Student: doesn\u0027t do homework / Student: fails required class",
+        "captionText":  "AI detector contradiction in school assignment checking",
         "canonicalImageType":  "Drawing",
         "variantImageType":  "Drawing",
         "transformationDimension":  [
-                                        "CaptionChange"
+                                        "CaptionChange",
+                                        "Localization"
                                     ],
-        "transformationExtent":  "Minimal",
-        "notes":  "Same academic consequences caption cluster as variant 2",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/099/494/8c6.jpg"
+        "transformationExtent":  "Moderate",
+        "notes":  "Contemporary school-tech scenario with a distinct caption concept",
+        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/914/754/d36.jpeg"
     },
     {
-        "photoId":  "3037094",
+        "photoId":  "2880832",
         "variantIndex":  8,
         "memeName":  "Surprised Pikachu",
         "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#surprised-pikachu",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_3037094",
-        "variantTitle":  "Gasp...",
+        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2880832",
+        "variantTitle":  "It looks ghastly from the side, I\u0027ll tell you",
         "variantUploader":  "Unknown",
-        "captionText":  "Me: Can I have friends over? Parents: No / Me: Can I go to my friend\u0027s party? Parents: No",
+        "captionText":  "TCM Internet says the meme is dead; toy industry proves otherwise",
         "canonicalImageType":  "Drawing",
         "variantImageType":  "Drawing",
         "transformationDimension":  [
                                         "CaptionChange"
                                     ],
-        "transformationExtent":  "Minimal",
-        "notes":  "Fourth occurrence of the same parenting caption; strong caption clustering observed in this template",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/037/094/098.jpeg"
+        "transformationExtent":  "Moderate",
+        "notes":  "Meta-commentary caption about meme lifecycle and commercialization",
+        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/880/832/f4c.jpeg"
     },
     {
         "photoId":  "3023384",
@@ -911,22 +912,21 @@
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/023/384/9b9.jpeg"
     },
     {
-        "photoId":  "2970115",
+        "photoId":  "2660720",
         "variantIndex":  10,
         "memeName":  "Surprised Pikachu",
         "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#surprised-pikachu",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2970115",
-        "variantTitle":  "Cyberpunk 2077 mods",
+        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2660720",
+        "variantTitle":  "Either that or stick them in a filthy nursing home",
         "variantUploader":  "Unknown",
-        "captionText":  "Inspired by [image link]",
+        "captionText":  "Abusive parents when their kids no longer want contact",
         "canonicalImageType":  "Drawing",
-        "variantImageType":  "Photograph",
+        "variantImageType":  "Drawing",
         "transformationDimension":  [
-                                        "MediumShift",
-                                        "CrossoverMerge"
+                                        "CaptionChange"
                                     ],
-        "transformationExtent":  "Substantial",
-        "notes":  "Screenshot from Cyberpunk 2077 game recreating the Surprised Pikachu pose; medium shift from anime screenshot to 3D game screenshot, crossover with gaming",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/970/115/01d.jpg"
+        "transformationExtent":  "Moderate",
+        "notes":  "Distinct family-relationship caption replacing duplicate caption clusters",
+        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/660/720/5d7.jpg"
     }
 ]

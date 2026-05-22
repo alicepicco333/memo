@@ -13,6 +13,28 @@ let dsVariantMode = 'annotated';
 const PAGE_SIZE = 30;
 const DS_PER_PAGE = 60;
 
+function slugToName(slug) {
+  return String(slug || '').split('-').map(function(w) {
+    return w.charAt(0).toUpperCase() + w.slice(1);
+  }).join(' ');
+}
+
+function hasBlockedKeyword(text) {
+  return /\bnft\b/i.test(String(text || ''));
+}
+
+function isBlockedAnnotation(a) {
+  if (!a) return false;
+  return hasBlockedKeyword(a.variantTitle) ||
+         hasBlockedKeyword(a.captionText);
+}
+
+function isBlockedVariantMeta(v) {
+  if (!v) return false;
+  return hasBlockedKeyword(v.title) ||
+         hasBlockedKeyword(v.img_alt);
+}
+
 /* ── Boot ──────────────────────────────────────────────────────────────────── */
 function fetchJson(path) {
   return fetch(path).then(function(r) {
@@ -59,6 +81,7 @@ Promise.all([
 
     TRANSFORM_MAP = {};
     transformAnnots.forEach(function(a) {
+      if (isBlockedAnnotation(a)) return;
       TRANSFORM_MAP[a.photoId] = a;
     });
 
@@ -286,12 +309,12 @@ function memeRemoteSrc(meme) {
 function setMemeImageWithFallback(img, meme) {
   var local = memeLocalSrc(meme);
   var remote = memeRemoteSrc(meme);
-  img.src = remote || local || '';
+  img.src = local || remote || '';
   if (local && remote) {
     img.addEventListener('error', function() {
       if (img.dataset.fallbackTried) return;
       img.dataset.fallbackTried = '1';
-      img.src = local;
+      img.src = remote;
     });
   }
 }
@@ -299,9 +322,9 @@ function setMemeImageWithFallback(img, meme) {
 function memeImgTag(meme, altText) {
   var local = escHtml(memeLocalSrc(meme));
   var remote = escHtml(memeRemoteSrc(meme));
-  var src = remote || local;
+  var src = local || remote;
   var onerr = (local && remote)
-    ? ' onerror="if(!this.dataset.fallbackTried){this.dataset.fallbackTried=\'1\';this.src=\'' + local + '\';}"'
+    ? ' onerror="if(!this.dataset.fallbackTried){this.dataset.fallbackTried=\'1\';this.src=\'' + remote + '\';}"'
     : '';
   return '<img src="' + src + '" alt="' + escHtml(altText || '') + '" loading="lazy"' + onerr + '/>';
 }
@@ -521,15 +544,6 @@ function buildTimeline() {
       openPanel(`${d.fmt} · ${d.year}`, filtered.length ? filtered : fmtSlugs, 'time', d.fmt);
     });
 
-  g.selectAll('text.blabel')
-    .data(bubbles.filter(d => rScale(d.count) > 10)).join('text')
-    .attr('x', d => xScale(d.year) + xScale.bandwidth() / 2)
-    .attr('y', d => yScale(d.fmt)  + yScale.bandwidth() / 2 + 4)
-    .attr('text-anchor', 'middle')
-    .attr('font-size', 10).attr('font-weight', '700')
-    .attr('fill', 'white').attr('pointer-events', 'none')
-    .text(d => d.count);
-
   g.append('g').attr('transform', `translate(0,${iH})`)
     .call(d3.axisBottom(xScale).tickFormat(d3.format('d')))
     .selectAll('text')
@@ -561,7 +575,8 @@ function buildPlatformTimeStacked() {
   const platforms = [];
   periods.forEach(p => {
     (p.segments || []).forEach(s => {
-      if (!platforms.includes(s.platform)) platforms.push(s.platform);
+      if (!platforms.includes(s.platform))
+        platforms.push(s.platform);
     });
   });
 
@@ -587,14 +602,15 @@ function buildPlatformTimeStacked() {
     .range([0, iW])
     .padding(0.22);
 
-  const y = d3.scaleLinear().domain([0, 1]).range([iH, 0]);
-
   const color = d3.scaleOrdinal()
     .domain(platforms)
     .range(d3.schemeTableau10.concat(d3.schemeSet3));
 
   const stack = d3.stack().keys(platforms);
   const stacked = stack(rows);
+
+  const yMax = d3.max(stacked[stacked.length - 1] || [[0, 1]], d => d[1]) || 1;
+  const y = d3.scaleLinear().domain([0, yMax]).range([iH, 0]);
 
   wrap.innerHTML = '';
   const svgEl = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -627,7 +643,24 @@ function buildPlatformTimeStacked() {
     .on('mouseout', hideTip)
     .on('click', (e, d) => {
       const key = `${d.data.period}||${d.key}`;
-      openPanel(`${d.data.period} · ${d.key}`, comboToMemes[key] || [], 'platformTime', 'segment');
+      let slugs = comboToMemes[key] || [];
+      if (!slugs.length && DATA && DATA.memes) {
+        const PERIOD_MAP = {
+          'Pre2010':      'Pre2010',
+          '2010-2015':    'Period2010to2015',
+          '2016-2020':    'Period2016to2020',
+          '2021-present': 'Period2021toPresent'
+        };
+        const storedPeriod = PERIOD_MAP[d.data.period] || d.data.period;
+        const namedPlatforms = new Set(platforms.filter(p => p !== 'Other'));
+        slugs = Object.keys(DATA.memes).filter(slug => {
+          const m = DATA.memes[slug];
+          if (m.hasTimePeriod !== storedPeriod) return false;
+          if (d.key === 'Other') return !m.hasOriginPlatform || !namedPlatforms.has(m.hasOriginPlatform);
+          return m.hasOriginPlatform === d.key;
+        });
+      }
+      openPanel(`${d.data.period} · ${d.key}`, slugs, 'platformTime', 'segment');
     });
 
   g.append('g')
@@ -697,6 +730,7 @@ function buildVariantGallery() {
   // Group annotations by meme name
   var memeGroups = {};
   Object.values(TRANSFORM_MAP).forEach(function(a) {
+    if (isBlockedAnnotation(a)) return;
     if (!memeGroups[a.memeName]) {
       memeGroups[a.memeName] = { canonical: a.canonicalImageType, variants: [] };
     }
@@ -800,135 +834,110 @@ function buildVariantBubble() {
   var wrap = document.getElementById('graph-variant-bubble');
   if (!wrap || !DATA || !D0_DATA) return;
 
-  var CANON_COLOR = { Photograph: '#4a9eff', Drawing: '#f5a623', Cartoon: '#7ed321' };
-
-  // Convert meme name to URL slug for DATA.memes lookup
-  function toSlug(name) {
-    return name.toLowerCase()
-      .replace(/\u2019/g, '').replace(/'/g, '')
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-|-$/g, '');
-  }
-
-  // Deterministic jitter so points at same X don't overlap
-  function jitter(name) {
-    var h = 0;
-    for (var i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) | 0;
-    return ((h % 1000) / 1000 - 0.5) * 0.7;
-  }
-
-  // Get canonical image types from TRANSFORM_MAP (annotated 5 memes)
-  var canonByMeme = {};
-  var canonBySlug = {};
-  Object.values(TRANSFORM_MAP).forEach(function(a) {
-    var annSlug = (a.memeConceptIRI || '').split('#')[1] || toSlug(a.memeName);
-    canonByMeme[a.memeName] = a.canonicalImageType;
-    canonBySlug[annSlug] = a.canonicalImageType;
-  });
-
-  // Build one data point for every sampled dataset entry (not just variant memes).
+  // One data point per sampled dataset entry (all 50)
   var points = D0_DATA.map(function(d0) {
-    var slug = (d0.meme_url || '').split('/').pop() || toSlug(d0.title || '');
-    var name = d0.title || slug;
+    var slug = (d0.meme_url || '').split('/').pop();
+    var name = slug ? slugToName(slug) : (d0.title || slug || '');
     return {
-      id: d0.id,
-      name: name,
-      slug: slug,
+      id:     d0.id,
+      name:   name,
       photos: d0.photos || 0,
       views:  d0.views  || 0,
-      canon:  canonBySlug[slug] || canonByMeme[name] || null
+      imgSrc: d0.image_path || d0.image_url || ''
     };
   });
 
-  points.sort(function(a, b) {
-    if (b.views !== a.views) return b.views - a.views;
-    return a.name.localeCompare(b.name);
-  });
-  points.forEach(function(p, idx) { p.rank = idx + 1; });
-
   if (!points.length) {
-    wrap.innerHTML = '<p style="padding:24px;color:var(--muted)">No view data available.</p>';
+    wrap.innerHTML = '<p style="padding:24px;color:var(--muted)">No data available.</p>';
     return;
   }
 
+  // Render largest images first so smaller ones appear on top
+  points.sort(function(a, b) { return b.views - a.views; });
+
   var W = wrap.getBoundingClientRect().width || 900;
-  var H = 420;
-  var M = { top: 24, right: 164, bottom: 56, left: 68 };
+  var H = 500;
+  var M = { top: 24, right: 40, bottom: 60, left: 82 };
   var w = W - M.left - M.right;
   var h = H - M.top - M.bottom;
 
   wrap.innerHTML = '';
 
-  var svg = d3.select(wrap).append('svg')
-    .attr('width', W).attr('height', H);
+  var svg = d3.select(wrap).append('svg').attr('width', W).attr('height', H);
+
+  // Clip images to chart bounds
+  svg.append('defs').append('clipPath').attr('id', 'bubble-clip')
+    .append('rect').attr('width', w).attr('height', h);
 
   var g = svg.append('g').attr('transform', 'translate(' + M.left + ',' + M.top + ')');
 
-  var xScale = d3.scaleLinear()
-    .domain([1, points.length])
-    .range([0, w]);
+  // Image size proportional to views (popularity)
+  var sScale = d3.scaleSqrt()
+    .domain([0, d3.max(points, function(p) { return p.views; }) || 1])
+    .range([12, 60]);
 
-  var yMid = h / 2;
+  // Pad scale ranges by half the max image size so no image is clipped at the edges
+  var PAD = 32;
 
-  var rScale = d3.scaleSqrt()
-    .domain([0, d3.max(points, function(p) { return p.photos; }) || 1])
-    .range([4, 18]);
+  // X = Cultural Prominence (views), log scale
+  var xScale = d3.scaleLog()
+    .domain([d3.min(points, function(p) { return Math.max(1, p.views); }),
+             d3.max(points, function(p) { return p.views; })])
+    .range([PAD, w - PAD]).nice();
 
-  g.append('line')
-    .attr('x1', 0).attr('x2', w)
-    .attr('y1', yMid).attr('y2', yMid)
-    .attr('stroke', 'rgba(255,255,255,.18)')
-    .attr('stroke-width', 1);
+  // Y = Creative Productivity (photos), log scale; photos=0 → y=1
+  var yScale = d3.scaleLog()
+    .domain([1, d3.max(points, function(p) { return Math.max(1, p.photos); })])
+    .range([h - PAD, PAD]).nice();
 
-  // Axes
+  // Gridlines
+  g.append('g')
+    .call(d3.axisLeft(yScale).ticks(5, '.0s').tickSize(-w).tickFormat(''))
+    .call(function(sel) {
+      sel.selectAll('line').attr('stroke', 'rgba(0,0,0,.07)').attr('stroke-width', 0.6);
+      sel.select('.domain').remove();
+    });
   g.append('g').attr('transform', 'translate(0,' + h + ')')
-    .call(d3.axisBottom(xScale).ticks(10).tickFormat(d3.format('d')))
-    .attr('color', '#888');
-
-  // Axis labels
-  g.append('text').attr('x', w / 2).attr('y', h + 44)
-    .attr('text-anchor', 'middle').attr('fill', '#888').attr('font-size', 11)
-    .text('Popularity rank (1 = most viewed in sampled dataset)');
-
-  // Circles
-  g.selectAll('circle').data(points).join('circle')
-    .attr('cx', function(p) { return xScale(p.rank); })
-    .attr('cy', function(p) { return yMid + jitter(p.name) * 42; })
-    .attr('r', function(p) { return rScale(p.photos); })
-    .attr('fill', function(p) { return p.canon ? (CANON_COLOR[p.canon] + 'cc') : 'rgba(255,255,255,.18)'; })
-    .attr('stroke', function(p) { return p.canon ? CANON_COLOR[p.canon] : 'rgba(255,255,255,.3)'; })
-    .attr('stroke-width', function(p) { return p.canon ? 2 : 1; })
-    .style('cursor', 'pointer')
-    .on('mouseover', function(evt, p) {
-      showTip('<strong>#' + p.rank + ' — ' + escHtml(p.name) + '</strong><br/>' + p.views.toLocaleString() + ' views · ' + p.photos.toLocaleString() + ' photos' + (p.canon ? '<br/>' + escHtml(p.canon) : ''), evt);
-    })
-    .on('mousemove', moveTip)
-    .on('mouseout', hideTip)
-    .on('click', function(evt, p) {
-      if (p.id != null) location.hash = '#d0/' + encodeURIComponent(String(p.id));
+    .call(d3.axisBottom(xScale).ticks(6, '.0s').tickSize(-h).tickFormat(''))
+    .call(function(sel) {
+      sel.selectAll('line').attr('stroke', 'rgba(0,0,0,.07)').attr('stroke-width', 0.6);
+      sel.select('.domain').remove();
     });
 
-  // Labels for the 5 annotated memes only
-  g.selectAll('.bubble-lbl').data(points.filter(function(p) { return !!p.canon; })).join('text')
-    .attr('class', 'bubble-lbl')
-    .attr('x', function(p) { return xScale(p.rank) + 12; })
-    .attr('y', function(p) { return yMid + jitter(p.name) * 42 + 4; })
-    .attr('fill', function(p) { return CANON_COLOR[p.canon]; })
-    .attr('font-size', 10).attr('font-weight', 600)
-    .text(function(p) { return p.name; });
+  // Axes
+  g.append('g').call(d3.axisLeft(yScale).ticks(5, '.0s')).attr('color', '#888');
+  g.append('g').attr('transform', 'translate(0,' + h + ')')
+    .call(d3.axisBottom(xScale).ticks(6, '.0s')).attr('color', '#888');
 
-  // Legend
-  var legEntries = Object.entries(CANON_COLOR).concat([['Other', null]]);
-  var leg = svg.append('g').attr('transform', 'translate(' + (W - M.right + 20) + ',' + M.top + ')');
-  legEntries.forEach(function(pair, i) {
-    var lbl = pair[0], col = pair[1];
-    leg.append('circle').attr('cx', 7).attr('cy', i * 22 + 7)
-      .attr('r', 7)
-      .attr('fill', col ? col + 'cc' : 'rgba(255,255,255,.18)')
-      .attr('stroke', col || 'rgba(255,255,255,.3)').attr('stroke-width', col ? 2 : 1);
-    leg.append('text').attr('x', 18).attr('y', i * 22 + 11)
-      .attr('fill', '#888').attr('font-size', 10).text(lbl);
-  });
+  // Axis labels
+  g.append('text').attr('x', w / 2).attr('y', h + 48)
+    .attr('text-anchor', 'middle').attr('fill', '#888').attr('font-size', 11)
+    .text('Number of Views');
+  g.append('text')
+    .attr('transform', 'rotate(-90)')
+    .attr('x', -(h / 2)).attr('y', -62)
+    .attr('text-anchor', 'middle').attr('fill', '#888').attr('font-size', 11)
+    .text('Number of Variants');
+
+  // Meme images — all 50 entries, sized by views
+  g.append('g').attr('clip-path', 'url(#bubble-clip)')
+    .selectAll('image').data(points).join('image')
+      .attr('x', function(p) { var s = sScale(p.views); return xScale(Math.max(1, p.views)) - s / 2; })
+      .attr('y', function(p) { var s = sScale(p.views); return yScale(Math.max(1, p.photos)) - s / 2; })
+      .attr('width',  function(p) { return sScale(p.views); })
+      .attr('height', function(p) { return sScale(p.views); })
+      .attr('href', function(p) { return p.imgSrc; })
+      .attr('preserveAspectRatio', 'xMidYMid slice')
+      .style('cursor', 'pointer')
+      .on('mouseover', function(evt, p) {
+        showTip('<strong>' + escHtml(p.name) + '</strong><br/>' +
+          p.views.toLocaleString() + ' views · ' + p.photos.toLocaleString() + ' photos', evt);
+      })
+      .on('mousemove', moveTip)
+      .on('mouseout', hideTip)
+      .on('click', function(evt, p) {
+        if (p.id != null) location.hash = '#d0/' + encodeURIComponent(String(p.id));
+      });
 }
 
 /* ── MediumShift Matrix (Viz D) ──────────────────────────────────────────── */
@@ -947,6 +956,7 @@ function buildMediumShiftMatrix() {
   // Group annotations by meme
   var memeGroups = {};
   Object.values(TRANSFORM_MAP).forEach(function(a) {
+    if (isBlockedAnnotation(a)) return;
     if (!memeGroups[a.memeName]) {
       memeGroups[a.memeName] = { canonical: a.canonicalImageType, variants: [] };
     }
@@ -1063,7 +1073,7 @@ function appendThumbnails(grid, slugs, from, count) {
 
     const name       = document.createElement('div');
     name.className   = 'meme-thumb-name';
-    name.textContent = slug.replace(/_/g, ' ');
+    name.textContent = slugToName(slug);
 
     card.appendChild(imgWrap);
     card.appendChild(name);
@@ -1103,7 +1113,7 @@ function showMemePage(slug) {
   const m = DATA?.memes[slug];
   if (!m) { showViz(); return; }
 
-  const title = (m.title && m.title !== slug) ? m.title : slug.replace(/_/g, ' ');
+  const title = slugToName(slug);
   const fmts  = (m.hasFormat || []).filter(f => f && f !== 'Unknown').join(', ') || '—';
 
   document.getElementById('meme-page-content').innerHTML = `
@@ -1170,8 +1180,8 @@ function showD0Page(id) {
   const m = D0_DATA.find(x => String(x.id) === String(id));
   if (!m) { location.hash = '#dataset'; return; }
 
-  const title   = m.title || String(m.id);
   const slug    = (m.meme_url || '').split('/').pop() || '';
+  const title   = slug ? slugToName(slug) : String(m.id);
   const fmts    = (m.hasFormat && m.hasFormat.length)
     ? m.hasFormat.join(', ')
     : (m.type || []).join(', ') || '—';
@@ -1435,7 +1445,7 @@ function buildGlobalSection() {
     const plat = platSel.value;
     dsFiltered = slugs.filter(s => {
       const m = DATA.memes[s];
-      if (q   && !s.toLowerCase().includes(q) && !(m.title||'').toLowerCase().includes(q)) return false;
+      if (q   && !s.toLowerCase().includes(q) && !slugToName(s).toLowerCase().includes(q)) return false;
       if (fmt  && !(m.hasFormat||[]).includes(fmt))   return false;
       if (plat && m.hasOriginPlatform !== plat)        return false;
       return true;
@@ -1456,15 +1466,20 @@ function buildD0Section() {
   if (!D0_DATA) return;
   const grid = document.getElementById('ds-d0-grid');
   grid.innerHTML = D0_DATA.map(m => {
-    const label   = m.title || String(m.id);
+    const slug    = (m.meme_url || '').split('/').pop() || '';
+    const label   = slug ? slugToName(slug) : String(m.id);
     const fmtList = Array.isArray(m.hasFormat) ? m.hasFormat : (Array.isArray(m.type) ? m.type : []);
     const fmt     = fmtList.slice(0, 2).join(', ');
     const views   = m.views ? Number(m.views).toLocaleString() : null;
     const desc    = m.description ? m.description.slice(0, 100) + (m.description.length > 100 ? '…' : '') : '';
-    const img     = m.image_url || m.image_path || '';
+    const localImg  = m.image_path ? escHtml(m.image_path) : '';
+    const remoteImg = m.image_url  ? escHtml(m.image_url)  : '';
+    const imgSrc    = localImg || remoteImg;
+    const onerr     = (localImg && remoteImg)
+      ? ` onerror="if(!this.dataset.fallbackTried){this.dataset.fallbackTried='1';this.src='${remoteImg}';}"` : '';
     const href    = `#d0/${encodeURIComponent(String(m.id))}`;
     return `<a class="ds-card ds-d0-card" href="${href}">
-      <div class="ds-card-img"><img src="${escHtml(img)}" alt="${escHtml(label)}" loading="lazy"/></div>
+      <div class="ds-card-img"><img src="${imgSrc}" alt="${escHtml(label)}" loading="lazy"${onerr}/></div>
       <span class="ds-card-name">${escHtml(label)}</span>
       ${fmt   ? `<span class="ds-d0-meta">${escHtml(fmt)}</span>` : ''}
       ${views ? `<span class="ds-d0-meta ds-d0-views">&#128065; ${views}</span>` : ''}
@@ -1486,8 +1501,8 @@ function buildVariantsSection(mode) {
   }
 
   const items = (mode === 'annotated')
-    ? VARIANTS_DATA.filter(v => TRANSFORM_MAP[v.photo_id])
-    : VARIANTS_DATA;
+    ? VARIANTS_DATA.filter(v => TRANSFORM_MAP[v.photo_id] && !isBlockedVariantMeta(v) && !isBlockedAnnotation(TRANSFORM_MAP[v.photo_id]))
+    : VARIANTS_DATA.filter(v => !isBlockedVariantMeta(v));
 
   grid.innerHTML = items.map(v => {
     const annot  = TRANSFORM_MAP[v.photo_id];
@@ -1527,7 +1542,7 @@ function renderDsPage() {
   const grid = document.getElementById('ds-grid');
   grid.innerHTML = slice.map(slug => {
     const m = DATA.memes[slug];
-    const label = (m.title && m.title !== slug) ? m.title : slug.replace(/_/g,' ');
+    const label = slugToName(slug);
     return `<a class="ds-card" href="#meme/${encodeURIComponent(slug)}">
       <div class="ds-card-img">${memeImgTag(m, label)}</div>
       <span class="ds-card-name">${escHtml(label)}</span>

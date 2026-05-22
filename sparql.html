@@ -428,11 +428,11 @@
       >PREFIX memo: &lt;http://www.semanticweb.org/meme-ontology#&gt;
 PREFIX rdfs:  &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
 
-SELECT ?format (COUNT(?m) AS ?count)
+SELECT ?format (COUNT(DISTINCT ?m) AS ?count)
 WHERE {
   ?m a memo:MemeConcept ;
      memo:hasFormat ?fmt .
-  BIND(STRAFTER(STR(?fmt), "#") AS ?format)
+  BIND(LOCALNAME(?fmt) AS ?format)
 }
 GROUP BY ?format
 ORDER BY DESC(?count)</textarea>
@@ -471,11 +471,11 @@ ORDER BY DESC(?count)</textarea>
       'count-format': [
         'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
         '',
-        'SELECT ?format (COUNT(?m) AS ?count)',
+        'SELECT ?format (COUNT(DISTINCT ?m) AS ?count)',
         'WHERE {',
         '  ?m a memo:MemeConcept ;',
         '     memo:hasFormat ?fmt .',
-        '  BIND(STRAFTER(STR(?fmt), "#") AS ?format)',
+        '  BIND(LOCALNAME(?fmt) AS ?format)',
         '}',
         'GROUP BY ?format',
         'ORDER BY DESC(?count)'
@@ -484,11 +484,11 @@ ORDER BY DESC(?count)</textarea>
       'count-period': [
         'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
         '',
-        'SELECT ?period (COUNT(?m) AS ?count)',
+        'SELECT ?period (COUNT(DISTINCT ?m) AS ?count)',
         'WHERE {',
         '  ?m a memo:MemeConcept ;',
         '     memo:hasTimePeriod ?tp .',
-        '  BIND(STRAFTER(STR(?tp), "#") AS ?period)',
+        '  BIND(LOCALNAME(?tp) AS ?period)',
         '}',
         'GROUP BY ?period',
         'ORDER BY ?period'
@@ -504,7 +504,7 @@ ORDER BY DESC(?count)</textarea>
         '     rdfs:label ?label ;',
         '     memo:hasAnimationStatus memo:Animated ;',
         '     memo:hasFormat ?fmt .',
-        '  BIND(STRAFTER(STR(?fmt), "#") AS ?format)',
+        '  BIND(LOCALNAME(?fmt) AS ?format)',
         '}',
         'ORDER BY ?label',
         'LIMIT 100'
@@ -535,8 +535,8 @@ ORDER BY DESC(?count)</textarea>
         '     memo:hasOriginWork memo:TwitterX ;',
         '     memo:hasFormat ?fmt ;',
         '     memo:hasTimePeriod ?tp .',
-        '  BIND(STRAFTER(STR(?fmt), "#") AS ?format)',
-        '  BIND(STRAFTER(STR(?tp),  "#") AS ?period)',
+        '  BIND(LOCALNAME(?fmt) AS ?format)',
+        '  BIND(LOCALNAME(?tp) AS ?period)',
         '}',
         'ORDER BY ?label',
         'LIMIT 50'
@@ -564,7 +564,7 @@ ORDER BY DESC(?count)</textarea>
         '     rdfs:label ?label ;',
         '     memo:hasTextPresence memo:NoText ;',
         '     memo:hasImageType ?it .',
-        '  BIND(STRAFTER(STR(?it), "#") AS ?imageType)',
+        '  BIND(LOCALNAME(?it) AS ?imageType)',
         '}',
         'ORDER BY ?label',
         'LIMIT 100'
@@ -582,7 +582,7 @@ ORDER BY DESC(?count)</textarea>
         '  ?ref rdfs:label ?refLabel .',
         '  OPTIONAL {',
         '    ?ref a ?refType .',
-        '    BIND(STRAFTER(STR(?refType), "#") AS ?refClass)',
+        '    BIND(LOCALNAME(?refType) AS ?refClass)',
         '  }',
         '}',
         'ORDER BY ?memeName ?refLabel',
@@ -616,8 +616,8 @@ ORDER BY DESC(?count)</textarea>
         '     memo:hasTransformationDimension ?dim ;',
         '     memo:hasTransformationExtent ?ext .',
         '  ?m rdfs:label ?memeName .',
-        '  BIND(STRAFTER(STR(?dim), "#") AS ?dimension)',
-        '  BIND(STRAFTER(STR(?ext), "#") AS ?extent)',
+        '  BIND(LOCALNAME(?dim) AS ?dimension)',
+        '  BIND(LOCALNAME(?ext) AS ?extent)',
         '  OPTIONAL { ?v memo:transformationNote ?note }',
         '}',
         'ORDER BY ?memeName ?variantLabel'

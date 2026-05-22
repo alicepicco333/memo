@@ -18,8 +18,8 @@
           <a class="topnav-dropdown-item" href="#sec-time">Temporal Distribution of Format</a>
           <a class="topnav-dropdown-item" href="#sec-popularity">Popularity × Format</a>
           <a class="topnav-dropdown-item" href="#sec-platform-time">Platform Origin × TimePeriod</a>
-          <a class="topnav-dropdown-item topnav-dropdown-divider" href="#sec-variant-gallery">B — Variant Gallery</a>
-          <a class="topnav-dropdown-item" href="#sec-variant-bubble">C — Template Productivity</a>
+          <a class="topnav-dropdown-item topnav-dropdown-divider" href="#sec-variant-bubble">Creative Productivity × Cultural Prominence</a>
+          <a class="topnav-dropdown-item" href="#sec-variant-gallery">Variant Gallery</a>
         </div>
       </div>
       <a class="topnav-link" href="#about"    data-page="about">About</a>
@@ -32,12 +32,12 @@
 
   <!-- Side navigation (viz only) -->
   <nav class="dot-nav" id="dot-nav">
-    <a class="dot active" href="#sec-hero"     data-label="Overview"></a>
-    <a class="dot"        href="#sec-time"      data-label="Temporal Format Distribution"></a>
-    <a class="dot"        href="#sec-popularity" data-label="Popularity × Format"></a>
-    <a class="dot"        href="#sec-platform-time" data-label="Platform × TimePeriod"></a>
-    <a class="dot"        href="#sec-variant-gallery" data-label="B — Variant Gallery"></a>
-    <a class="dot"        href="#sec-variant-bubble"  data-label="C — Template Productivity"></a>
+    <a class="dot active" href="#sec-hero"          data-label="Overview"></a>
+    <a class="dot"        href="#sec-time"           data-label="Temporal Format Distribution"></a>
+    <a class="dot"        href="#sec-popularity"     data-label="Popularity × Format"></a>
+    <a class="dot"        href="#sec-platform-time"  data-label="Platform × TimePeriod"></a>
+    <a class="dot"        href="#sec-variant-bubble" data-label="Creative Productivity × Cultural Prominence"></a>
+    <a class="dot"        href="#sec-variant-gallery" data-label="Variant Gallery"></a>
   </nav>
 
   <!-- Main scrollable viz page -->
@@ -51,6 +51,7 @@
     </section>
 
     <section class="viz-section" id="sec-time">
+      <div class="viz-group-label">Global Dataset Visualizations</div>
       <header class="sec-header">
         <h2>Temporal Distribution of Format</h2>
         <p>Year on X, meme format on Y, bubble size = entries. Click a bubble to browse matching memes.</p>
@@ -74,22 +75,22 @@
       <div class="graph-wrap" id="graph-platform-time"></div>
     </section>
 
-    <!-- ══ VARIANT-BASED VISUALIZATIONS ══ -->
+    <section class="viz-section" id="sec-variant-bubble">
+      <div class="viz-group-label">D0 Visualization</div>
+      <header class="sec-header">
+        <h2>Creative Productivity × Cultural Prominence</h2>
+        <p>Each of the 50 sampled memes is shown as its image, sized by popularity. X = Number of Views, Y = Number of Variants.</p>
+      </header>
+      <div class="graph-wrap" id="graph-variant-bubble"></div>
+    </section>
 
     <section class="viz-section" id="sec-variant-gallery">
+      <div class="viz-group-label">Variant Visualization</div>
       <header class="sec-header">
-        <h2>B — Variant Gallery by Transformation Extent</h2>
+        <h2>Variant Gallery by Transformation Extent</h2>
         <p>50 annotated variants across 5 memes, sorted left→right from Minimal to Parody. Each row shows how a template's visual identity changes under transformation.</p>
       </header>
       <div class="graph-wrap" id="graph-variant-gallery"></div>
-    </section>
-
-    <section class="viz-section" id="sec-variant-bubble">
-      <header class="sec-header">
-        <h2>C — Creative Productivity × Cultural Prominence</h2>
-        <p>Each point is one sampled meme entry. X = popularity rank by KYM views (1 = highest), bubble size = KYM photo count (photos).</p>
-      </header>
-      <div class="graph-wrap" id="graph-variant-bubble"></div>
     </section>
 
   </main>
