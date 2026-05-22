@@ -309,12 +309,12 @@ function memeRemoteSrc(meme) {
 function setMemeImageWithFallback(img, meme) {
   var local = memeLocalSrc(meme);
   var remote = memeRemoteSrc(meme);
-  img.src = local || remote || '';
+  img.src = remote || local || '';
   if (local && remote) {
     img.addEventListener('error', function() {
       if (img.dataset.fallbackTried) return;
       img.dataset.fallbackTried = '1';
-      img.src = remote;
+      img.src = local;
     });
   }
 }
@@ -322,9 +322,9 @@ function setMemeImageWithFallback(img, meme) {
 function memeImgTag(meme, altText) {
   var local = escHtml(memeLocalSrc(meme));
   var remote = escHtml(memeRemoteSrc(meme));
-  var src = local || remote;
+  var src = remote || local;
   var onerr = (local && remote)
-    ? ' onerror="if(!this.dataset.fallbackTried){this.dataset.fallbackTried=\'1\';this.src=\'' + remote + '\';}"'
+    ? ' onerror="if(!this.dataset.fallbackTried){this.dataset.fallbackTried=\'1\';this.src=\'' + local + '\';}"'
     : '';
   return '<img src="' + src + '" alt="' + escHtml(altText || '') + '" loading="lazy"' + onerr + '/>';
 }
@@ -843,7 +843,7 @@ function buildVariantBubble() {
       name:   name,
       photos: d0.photos || 0,
       views:  d0.views  || 0,
-      imgSrc: d0.image_path || d0.image_url || ''
+      imgSrc: d0.image_url || d0.image_path || ''
     };
   });
 
@@ -1472,11 +1472,11 @@ function buildD0Section() {
     const fmt     = fmtList.slice(0, 2).join(', ');
     const views   = m.views ? Number(m.views).toLocaleString() : null;
     const desc    = m.description ? m.description.slice(0, 100) + (m.description.length > 100 ? '…' : '') : '';
-    const localImg  = m.image_path ? escHtml(m.image_path) : '';
     const remoteImg = m.image_url  ? escHtml(m.image_url)  : '';
-    const imgSrc    = localImg || remoteImg;
-    const onerr     = (localImg && remoteImg)
-      ? ` onerror="if(!this.dataset.fallbackTried){this.dataset.fallbackTried='1';this.src='${remoteImg}';}"` : '';
+    const localImg  = m.image_path ? escHtml(m.image_path) : '';
+    const imgSrc    = remoteImg || localImg;
+    const onerr     = (remoteImg && localImg)
+      ? ` onerror="if(!this.dataset.fallbackTried){this.dataset.fallbackTried='1';this.src='${localImg}';}"` : '';
     const href    = `#d0/${encodeURIComponent(String(m.id))}`;
     return `<a class="ds-card ds-d0-card" href="${href}">
       <div class="ds-card-img"><img src="${imgSrc}" alt="${escHtml(label)}" loading="lazy"${onerr}/></div>
