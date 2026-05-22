@@ -10,7 +10,6 @@ metadata_merged.json
 classifications.json
 gif_check_progress.json
 variants_progress.json
-meme_ontology.owl
 
 # Python scripts & artifacts
 __pycache__/

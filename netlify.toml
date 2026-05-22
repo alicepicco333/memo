@@ -1,6 +1,16 @@
 [build]
   publish = "."
 
+[[redirects]]
+  from = "/ontology"
+  to = "/meme_ontology.owl"
+  status = 200
+
+[[redirects]]
+  from = "/ontology.ttl"
+  to = "/meme_ontology.ttl"
+  status = 200
+
 [[headers]]
   for = "/*"
   [headers.values]
@@ -20,6 +30,7 @@
   [headers.values]
     Cache-Control = "public, max-age=86400"
     Content-Type = "text/turtle; charset=utf-8"
+    Access-Control-Allow-Origin = "*"
 
 [[headers]]
   for = "/meme_data.json"

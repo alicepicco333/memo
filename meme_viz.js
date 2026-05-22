@@ -266,7 +266,7 @@ function hideTip() { tip.style.display = 'none'; }
 
 function memeLocalSrc(meme) {
   if (!meme || !meme.imageFilename) return '';
-  return 'images_flat/' + encodeURIComponent(String(meme.imageFilename));
+  return 'images_flat/' + String(meme.imageFilename);
 }
 
 function memeRemoteSrc(meme) {
@@ -276,12 +276,12 @@ function memeRemoteSrc(meme) {
 function setMemeImageWithFallback(img, meme) {
   var local = memeLocalSrc(meme);
   var remote = memeRemoteSrc(meme);
-  img.src = local || remote || '';
+  img.src = remote || local || '';
   if (local && remote) {
     img.addEventListener('error', function() {
       if (img.dataset.fallbackTried) return;
       img.dataset.fallbackTried = '1';
-      img.src = remote;
+      img.src = local;
     });
   }
 }
@@ -289,9 +289,9 @@ function setMemeImageWithFallback(img, meme) {
 function memeImgTag(meme, altText) {
   var local = escHtml(memeLocalSrc(meme));
   var remote = escHtml(memeRemoteSrc(meme));
-  var src = local || remote;
+  var src = remote || local;
   var onerr = (local && remote)
-    ? ' onerror="if(!this.dataset.fallbackTried){this.dataset.fallbackTried=\'1\';this.src=\'' + remote + '\';}"'
+    ? ' onerror="if(!this.dataset.fallbackTried){this.dataset.fallbackTried=\'1\';this.src=\'' + local + '\';}"'
     : '';
   return '<img src="' + src + '" alt="' + escHtml(altText || '') + '" loading="lazy"' + onerr + '/>';
 }
@@ -718,9 +718,11 @@ function buildVariantGallery() {
 
     g.variants.forEach(function(a) {
       var v = varByPhotoId[String(a.photoId)];
-      var img = (v && v.folder && v.filename)
+      var localImg = (v && v.folder && v.filename)
         ? 'sampled_variants/' + v.folder + '/' + v.filename
         : '';
+      var remoteImg = (v && v.image_url) ? String(v.image_url) : '';
+      var img = remoteImg || localImg;
       var extColor = EXTENT_COLOR[a.transformationExtent] || '#888';
       var dims = Array.isArray(a.transformationDimension)
         ? a.transformationDimension.join(', ')
@@ -729,7 +731,11 @@ function buildVariantGallery() {
 
       html += '<div class="vg-thumb" title="' + escHtml(tipText) + '">';
       if (img) {
-        html += '<img src="' + escHtml(img) + '" alt="' + escHtml(a.variantTitle || '') + '" loading="lazy" style="border:2px solid ' + extColor + '">';
+        html += '<img src="' + escHtml(img) + '" alt="' + escHtml(a.variantTitle || '') + '" loading="lazy" style="border:2px solid ' + extColor + '"';
+        if (remoteImg && localImg) {
+          html += ' onerror="if(!this.dataset.fallbackTried){this.dataset.fallbackTried=\'1\';this.src=\'' + escHtml(localImg) + '\';}"';
+        }
+        html += '>';
       } else {
         html += '<div class="vg-thumb-missing">?</div>';
       }
@@ -950,9 +956,11 @@ function buildMediumShiftMatrix() {
 
     g.variants.forEach(function(a) {
       var v = varByPhotoId[String(a.photoId)];
-      var img = (v && v.folder && v.filename)
+      var localImg = (v && v.folder && v.filename)
         ? 'sampled_variants/' + v.folder + '/' + v.filename
         : '';
+      var remoteImg = (v && v.image_url) ? String(v.image_url) : '';
+      var img = remoteImg || localImg;
       var isShift = a.variantImageType !== g.canonical;
       var varColor = CANON_COLOR[a.variantImageType] || '#888';
       var borderStyle = isShift
@@ -962,7 +970,11 @@ function buildMediumShiftMatrix() {
 
       html += '<div class="ms-cell ' + (isShift ? 'ms-shift' : 'ms-match') + '" title="' + escHtml(tipText) + '">';
       if (img) {
-        html += '<img src="' + escHtml(img) + '" alt="" loading="lazy" style="border:' + borderStyle + '">';
+        html += '<img src="' + escHtml(img) + '" alt="" loading="lazy" style="border:' + borderStyle + '"';
+        if (remoteImg && localImg) {
+          html += ' onerror="if(!this.dataset.fallbackTried){this.dataset.fallbackTried=\'1\';this.src=\'' + escHtml(localImg) + '\';}"';
+        }
+        html += '>';
       } else {
         html += '<div class="ms-cell-missing" style="border:' + borderStyle + '">?</div>';
       }
@@ -1136,7 +1148,7 @@ function showD0Page(id) {
   const photos  = m.photos  != null ? Number(m.photos).toLocaleString()  : null;
   const comments = m.comments != null ? Number(m.comments).toLocaleString() : null;
   const crAnnot = CULTURAL_MAP[slug];
-  const img     = m.image_path || m.image_url || '';
+  const img     = m.image_url || m.image_path || '';
 
   document.getElementById('d0-page-content').innerHTML = `
     <button class="meme-page-back" onclick="history.back()">&#8592; Back to Datasets</button>
@@ -1225,15 +1237,20 @@ function showVariantPage(photoId) {
   const memeSlug = annot ? (annot.memeConceptIRI || '').split('#')[1] : '';
   const crAnnot  = memeSlug ? CULTURAL_MAP[memeSlug] : null;
   const title    = v.title || v.meme_name || '';
-  const img      = (v.folder && v.filename)
+  const localImg = (v.folder && v.filename)
     ? `sampled_variants/${escHtml(v.folder)}/${escHtml(v.filename)}`
-    : escHtml(v.image_url || '');
+    : '';
+  const remoteImg = escHtml(v.image_url || '');
+  const img = remoteImg || localImg;
+  const onError = (remoteImg && localImg)
+    ? ` onerror="if(!this.dataset.fallbackTried){this.dataset.fallbackTried='1';this.src='${localImg}';}"`
+    : '';
 
   document.getElementById('variant-page-content').innerHTML = `
     <button class="meme-page-back" onclick="history.back()">&#8592; Back to Datasets</button>
     <div class="meme-page-layout">
       <div class="meme-page-img-col">
-        <img src="${img}" alt="${escHtml(title)}"/>
+        <img src="${img}" alt="${escHtml(title)}"${onError}/>
         ${v.photo_url ? `<a href="${escHtml(v.photo_url)}" target="_blank" rel="noopener">View on Know Your Meme ↗</a>` : ''}
       </div>
       <div class="meme-page-info">
@@ -1412,7 +1429,7 @@ function buildD0Section() {
     const fmt     = fmtList.slice(0, 2).join(', ');
     const views   = m.views ? Number(m.views).toLocaleString() : null;
     const desc    = m.description ? m.description.slice(0, 100) + (m.description.length > 100 ? '…' : '') : '';
-    const img     = m.image_path || m.image_url || '';
+    const img     = m.image_url || m.image_path || '';
     const href    = `#d0/${encodeURIComponent(String(m.id))}`;
     return `<a class="ds-card ds-d0-card" href="${href}">
       <div class="ds-card-img"><img src="${escHtml(img)}" alt="${escHtml(label)}" loading="lazy"/></div>
@@ -1442,14 +1459,19 @@ function buildVariantsSection(mode) {
 
   grid.innerHTML = items.map(v => {
     const annot  = TRANSFORM_MAP[v.photo_id];
-    const img    = (v.folder && v.filename)
+    const localImg = (v.folder && v.filename)
       ? `sampled_variants/${escHtml(v.folder)}/${escHtml(v.filename)}`
-      : escHtml(v.image_url || '');
+      : '';
+    const remoteImg = escHtml(v.image_url || '');
+    const img = remoteImg || localImg;
+    const onError = (remoteImg && localImg)
+      ? ` onerror="if(!this.dataset.fallbackTried){this.dataset.fallbackTried='1';this.src='${localImg}';}"`
+      : '';
     const dim    = annot ? annot.transformationDimension : null;
     const ext    = annot ? annot.transformationExtent   : null;
     const title  = v.title || v.meme_name || '';
     return `<a class="ds-card ds-var-card" href="#variant/${encodeURIComponent(v.photo_id)}">
-      <div class="ds-card-img"><img src="${img}" alt="${escHtml(title)}" loading="lazy"/></div>
+      <div class="ds-card-img"><img src="${img}" alt="${escHtml(title)}" loading="lazy"${onError}/></div>
       <span class="ds-card-name">${escHtml(title)}</span>
       <span class="ds-d0-meta">${escHtml(v.meme_name || '')}</span>
       ${dim ? `<span class="ds-d0-meta ds-d0-annot">${escHtml(dim)}${ext ? ' · ' + escHtml(ext) : ''}</span>` : ''}
