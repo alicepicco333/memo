@@ -14,19 +14,59 @@ const PAGE_SIZE = 30;
 const DS_PER_PAGE = 60;
 
 /* ── Boot ──────────────────────────────────────────────────────────────────── */
+function fetchJson(path) {
+  return fetch(path).then(function(r) {
+    if (!r.ok) throw new Error('HTTP ' + r.status + ' for ' + path);
+    return r.json();
+  });
+}
+
+function fetchJsonWithFallback(paths) {
+  var i = 0;
+  function tryNext() {
+    if (i >= paths.length) {
+      throw new Error('All paths failed: ' + paths.join(', '));
+    }
+    var path = paths[i++];
+    return fetchJson(path).catch(function() {
+      return tryNext();
+    });
+  }
+  return tryNext();
+}
+
 Promise.all([
-  fetch('meme_data.json').then(r => r.json()),
-  fetch('sampled_dataset.json').then(r => r.json()),
-  fetch('variants_metadata.json').then(r => r.json()),
-  fetch('transformation_annotations.json').then(r => r.json()),
-  fetch('cultural_reference_annotations(1).json').then(r => r.json())
+  fetchJson('meme_data.json'),
+  fetchJson('sampled_dataset.json').catch(function() { return []; }),
+  fetchJson('variants_metadata.json').catch(function() { return []; }),
+  fetchJson('transformation_annotations.json').catch(function() { return []; }),
+  fetchJsonWithFallback([
+    'cultural_reference_annotations.json',
+    'cultural_reference_annotations(1).json',
+    'cultural_reference_annotations%281%29.json'
+  ]).catch(function() { return []; })
 ])
-  .then(([memeData, d0Data, variantsData, transformAnnots, culturalAnnots]) => {
+  .then(function(result) {
+    var memeData = result[0];
+    var d0Data = result[1];
+    var variantsData = result[2];
+    var transformAnnots = result[3];
+    var culturalAnnots = result[4];
+
     DATA          = memeData;
     D0_DATA       = d0Data;
     VARIANTS_DATA = variantsData;
-    transformAnnots.forEach(a => { TRANSFORM_MAP[a.photoId] = a; });
-    culturalAnnots.forEach(a  => { CULTURAL_MAP[a.slug]     = a; });
+
+    TRANSFORM_MAP = {};
+    transformAnnots.forEach(function(a) {
+      TRANSFORM_MAP[a.photoId] = a;
+    });
+
+    CULTURAL_MAP = {};
+    culturalAnnots.forEach(function(a) {
+      CULTURAL_MAP[a.slug] = a;
+    });
+
     document.getElementById('loader').classList.add('done');
     buildTooltip();
     buildHero();
@@ -35,9 +75,9 @@ Promise.all([
     route();
     startLiveReload();
   })
-  .catch(() => {
+  .catch(function() {
     document.querySelector('.loader-text').textContent =
-      'Error loading data. Run: python -m http.server 8080';
+      'Critical dataset missing (meme_data.json).';
   });
 
 /* ── Live reload (polls while scraper runs) ──────────────────────────────── */
@@ -133,12 +173,20 @@ function initOntoPage() {
 
   // Pre-fill the URL input
   var input = document.getElementById('onto-url-input');
+  var status = document.getElementById('onto-vowl-status');
+
   if (!isLocal) {
-    // On a deployed domain: auto-fill and auto-load
+    // On deployed domains we prefill URL, but we do not auto-open a popup.
+    // Auto-open is often blocked by the browser if not user-triggered.
     var owlUrl = window.location.origin + '/meme_ontology.owl';
     input.value = owlUrl;
     updateLiveLodeLink(owlUrl);
-    _loadWebVOWLUrl(owlUrl);
+
+    if (status) {
+      var vowlUrl = 'https://service.tib.eu/webvowl/#file=' + encodeURIComponent(owlUrl);
+      status.style.display = 'block';
+      status.innerHTML = 'Ready to open WebVOWL. Click <b>Load</b> or <a href="' + vowlUrl + '" target="_blank" rel="noopener">open directly</a>.';
+    }
   } else {
     updateLiveLodeLink('');
   }
@@ -158,13 +206,21 @@ function _loadWebVOWLUrl(owlUrl) {
   var status = document.getElementById('onto-vowl-status');
   var hint  = document.getElementById('onto-vowl-hint');
   var frame = document.getElementById('webvowl-frame');
+
   if (hint)  { hint.style.display  = 'none'; }
   if (frame) { frame.style.display = 'none'; frame.src = 'about:blank'; }
+
+  var popup = window.open(vowlUrl, '_blank', 'noopener');
+  var opened = !!popup;
+
   if (status) {
     status.style.display = 'block';
-    status.innerHTML = 'Opening WebVOWL in a new tab. If it does not open, <a href="' + vowlUrl + '" target="_blank" rel="noopener">click here</a>.';
+    if (opened) {
+      status.innerHTML = 'Opened WebVOWL in a new tab. If needed, <a href="' + vowlUrl + '" target="_blank" rel="noopener">open again</a>.';
+    } else {
+      status.innerHTML = 'Popup blocked by browser. Please <a href="' + vowlUrl + '" target="_blank" rel="noopener">click here to open WebVOWL</a>.';
+    }
   }
-  window.open(vowlUrl, '_blank', 'noopener');
 }
 
 function switchOntoTab(tab) {
