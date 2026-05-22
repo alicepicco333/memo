@@ -1,0 +1,30 @@
+[build]
+  publish = "."
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/meme_ontology.ttl"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+    Content-Type = "text/turtle; charset=utf-8"
+
+[[headers]]
+  for = "/meme_data.json"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/color_data.json"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[redirects]]
+  from = "/"
+  to = "/meme_viz.html"
+  status = 302

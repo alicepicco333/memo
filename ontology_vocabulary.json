@@ -1,0 +1,188 @@
+{
+  "ImageType": [
+    "Photograph",
+    "Drawing",
+    "Illustration",
+    "Cartoon",
+    "Painting"
+  ],
+  "TextPresence": [
+    "ContainsText",
+    "NoText"
+  ],
+  "ColorMode": [
+    "Color",
+    "Monochrome"
+  ],
+  "SubjectMatter": [
+    "PersonPresent",
+    "AnimalPresent",
+    "CharacterPresent",
+    "ObjectOnly",
+    "TextOnly",
+    "MultipleSubjects",
+    "Unknown"
+  ],
+  "MemeFormat": [
+    "ImageMacro",
+    "Exploitable",
+    "Catchphrase",
+    "ViralVideo",
+    "Reaction",
+    "PopCultureReference",
+    "Character",
+    "Parody",
+    "ParticipatoryMedia",
+    "Slang",
+    "Song",
+    "Photoshop",
+    "Snowclone",
+    "Copypasta",
+    "Remix",
+    "FanArt",
+    "ViralDebate",
+    "Cliche",
+    "Animal",
+    "SoundEffect",
+    "Meme",
+    "Event",
+    "VideoGame",
+    "Subculture",
+    "Person",
+    "Trend",
+    "Clothing",
+    "Website",
+    "Hashtag",
+    "Unknown"
+  ],
+  "OriginPlatform": [
+    "TwitterX",
+    "TikTok",
+    "YouTube",
+    "Reddit",
+    "Instagram",
+    "Facebook",
+    "Tumblr",
+    "4chan",
+    "iFunny",
+    "Twitch",
+    "Vine",
+    "Imgur",
+    "DeviantArt",
+    "Discord",
+    "Snapchat",
+    "KnowYourMeme",
+    "9gag",
+    "MySpace",
+    "eBaumsWorld",
+    "SomethingAwful",
+    "FunnyJunk",
+    "Unknown"
+  ],
+  "_OriginWork_note": "All OriginWork subclasses are free-text — individuals are named from the KYM 'origin' field after platform names have been resolved. The classifier auto-assigns the specific subclass using keyword matching on KYM's standard parenthetical annotations (e.g. '(Television Series)', '(Film)'). hasOriginPerson must be assigned manually in Protégé — person names cannot be reliably detected automatically.",
+  "OriginWork": {
+    "_note": "Catch-all for origin values that don't match any specific subclass. All subclasses below are subClassOf OriginWork.",
+    "_subclasses": {
+      "OriginTVShow": "TV shows, animated series, anime (matched by: 'Television Series', 'Animated Series', 'TV Show', etc.)",
+      "OriginFilm": "Films and movies (matched by: '(Film)', '(Movie)', 'Animated Film', etc.)",
+      "OriginVideoGame": "Video games (matched by: 'Video Game', '(Game)', 'Arcade Game', etc.)",
+      "OriginComic": "Comics, manga, webcomics (matched by: 'Comic Strip', 'Webcomic', '(Manga)', etc.)",
+      "OriginMusic": "Songs and music (matched by: '(Song)', 'Music Video', '(Album)', etc.)",
+      "OriginBook": "Books and novels (matched by: '(Novel)', '(Book)', '(Short Story)', etc.)",
+      "OriginBoard": "Imageboards and forum boards (matched by: /b/, /pol/, /v/ regex pattern)",
+      "OriginPerson": "Individual creators or public figures — assigned manually in Protégé"
+    }
+  },
+  "GeographicRegion": [
+    "UnitedStates",
+    "Japan",
+    "UnitedKingdom",
+    "Worldwide",
+    "China",
+    "Brazil",
+    "India",
+    "France",
+    "Canada",
+    "Australia",
+    "Germany",
+    "SouthKorea",
+    "Russia",
+    "Spain",
+    "Italy",
+    "Mexico",
+    "Netherlands",
+    "Sweden",
+    "Finland",
+    "Poland",
+    "Philippines",
+    "Indonesia",
+    "Thailand",
+    "Turkey",
+    "Argentina",
+    "Israel",
+    "Singapore",
+    "Ireland",
+    "Ukraine",
+    "Romania",
+    "Serbia",
+    "Belgium",
+    "Switzerland",
+    "Vietnam",
+    "CzechRepublic",
+    "Chile",
+    "Colombia",
+    "Pakistan",
+    "Unknown"
+  ],
+  "TimePeriod": [
+    "Pre2010",
+    "Period2010to2015",
+    "Period2016to2020",
+    "Period2021toPresent",
+    "Unknown"
+  ],
+  "FileFormat": [
+    "JPEG",
+    "PNG",
+    "GIF",
+    "WebP",
+    "BMP",
+    "Unknown"
+  ],
+  "AnimationStatus": [
+    "Static",
+    "Animated"
+  ],
+  "CulturalReference": {
+    "_note": "Free-text string — the name of the cultural entity being referenced. Not a controlled vocabulary; assigned manually in Protégé or via future extension.",
+    "_examples": [
+      "Michael Jordan",
+      "Shrek",
+      "Bernie Sanders",
+      "The Matrix (Film)",
+      "Among Us (Video Game)"
+    ]
+  },
+  "FRBRLevel": {
+    "_note": "FRBR (Functional Requirements for Bibliographic Records) entity level. All current Meme individuals in the OWL file are assigned hasFRBRLevel: Manifestation — they represent specific image files. The Work (abstract concept), Expression (a variant), and Item (a single copy) levels are defined in the schema for future use.",
+    "_hierarchy": "Work → Expression → Manifestation → Item  (each is rdfs:subClassOf the one above)",
+    "_meme_mapping": {
+      "Work": "The meme concept or template (e.g. 'Distracted Boyfriend' as an idea)",
+      "Expression": "A specific language/variant version of the meme",
+      "Manifestation": "A specific digital image file — this is what all current Meme individuals represent",
+      "Item": "A single exemplar / copy of that image"
+    },
+    "_values": [
+      "Work",
+      "Expression",
+      "Manifestation",
+      "Item"
+    ],
+    "_properties": {
+      "hasFRBRLevel": "Meme → FRBRLevel  (marks which FRBR level the individual occupies)",
+      "hasFRBRExpression": "FRBRWork → FRBRExpression",
+      "hasFRBRManifestation": "FRBRExpression → FRBRManifestation",
+      "hasFRBRItem": "FRBRManifestation → FRBRItem"
+    }
+  }
+}

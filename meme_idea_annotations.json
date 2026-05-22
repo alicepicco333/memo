@@ -1,0 +1,352 @@
+[
+  {
+    "slug": "me-gusta",
+    "individual": "me-gusta-idea",
+    "label": "Me Gusta Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#me-gusta",
+    "conceptDescription": "The guilty acknowledgment of enjoying something transgressive, uncomfortable or socially unacceptable."
+  },
+  {
+    "slug": "big-chungus",
+    "individual": "big-chungus-idea",
+    "label": "Big Chungus Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#big-chungus",
+    "conceptDescription": "The humorous exaggeration of a character's size or mass as a form of visual absurdity detached from narrative context."
+  },
+  {
+    "slug": "woman-yelling-at-a-cat",
+    "individual": "woman-yelling-at-a-cat-idea",
+    "label": "Woman Yelling at a Cat Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#woman-yelling-at-a-cat",
+    "conceptDescription": "The juxtaposition of an emotional accusation and an indifferent or oblivious deflection."
+  },
+  {
+    "slug": "brazzers",
+    "individual": "brazzers-idea",
+    "label": "Brazzers Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#brazzers",
+    "conceptDescription": "The recontextualization of innocent imagery through the addition of a logo associated with explicit content, imposing a sexual interpretation on a neutral scene."
+  },
+  {
+    "slug": "stonks",
+    "individual": "stonks-idea",
+    "label": "Stonks Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#stonks",
+    "conceptDescription": "The ironic celebration of financial logic that is self-evidently absurd, counterproductive or entirely detached from economic reality."
+  },
+  {
+    "slug": "lord-marquaad-e",
+    "individual": "lord-marquaad-e-idea",
+    "label": "Lord Marquaad E Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#lord-marquaad-e",
+    "conceptDescription": "The comic displacement of a corporate brand identity onto the villain archetype of a popular animated media property through visual juxtaposition."
+  },
+  {
+    "slug": "surprised-pikachu",
+    "individual": "surprised-pikachu-idea",
+    "label": "Surprised Pikachu Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#surprised-pikachu",
+    "conceptDescription": "The gap between a deliberately taken action and performative surprise at its entirely predictable consequence."
+  },
+  {
+    "slug": "ankha-zone",
+    "individual": "ankha-zone-idea",
+    "label": "Ankha Zone Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#ankha-zone",
+    "conceptDescription": "The viral spread of explicit fan-produced content involving a canonically non-sexualized fictional character from a family-oriented franchise."
+  },
+  {
+    "slug": "crazy-i-was-crazy-once-they-locked-me-in-a-room-a-rubber-room-a-rubber-room-with-rats-and-rats-make-me-crazy",
+    "individual": "crazy-i-was-crazy-once-idea",
+    "label": "Crazy I Was Crazy Once Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#crazy-i-was-crazy-once-they-locked-me-in-a-room-a-rubber-room-a-rubber-room-with-rats-and-rats-make-me-crazy",
+    "conceptDescription": "The self-reinforcing logic of a circular or recursive statement that perpetuates itself indefinitely through repetition, preventing escape from its own loop."
+  },
+  {
+    "slug": "karen",
+    "individual": "karen-idea",
+    "label": "Karen Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#karen",
+    "conceptDescription": "The social archetype of entitlement, unreasonable complaint and demands for managerial escalation directed at service workers or public authorities."
+  },
+  {
+    "slug": "logan-pauls-suicide-forest-video",
+    "individual": "logan-pauls-suicide-forest-video-idea",
+    "label": "Logan Paul's Suicide Forest Video Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#logan-pauls-suicide-forest-video",
+    "conceptDescription": "The public accountability moment in which a content creator's pursuit of virality produces a severe ethical violation and subsequent communal judgment."
+  },
+  {
+    "slug": "weird-flex-but-ok",
+    "individual": "weird-flex-but-ok-idea",
+    "label": "Weird Flex But Ok Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#weird-flex-but-ok",
+    "conceptDescription": "The acknowledgment of an unusual or misguided boast through resigned acceptance rather than direct confrontation or engagement."
+  },
+  {
+    "slug": "me-and-the-boys",
+    "individual": "me-and-the-boys-idea",
+    "label": "Me and the Boys Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#me-and-the-boys",
+    "conceptDescription": "The celebration of male peer group solidarity through absurd, transgressive or ritualistically mundane late-night collective activities."
+  },
+  {
+    "slug": "this-is-so-sad-alexa-play-despacito",
+    "individual": "this-is-so-sad-alexa-play-despacito-idea",
+    "label": "This Is So Sad Alexa Play Despacito Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#this-is-so-sad-alexa-play-despacito",
+    "conceptDescription": "The ironic juxtaposition of a sincere emotional statement about a sad situation with a trivial or bathetic musical request to a voice assistant."
+  },
+  {
+    "slug": "bowsette",
+    "individual": "bowsette-idea",
+    "label": "Bowsette Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#bowsette",
+    "conceptDescription": "The fan-driven gender transformation of a canonically male video game villain into an idealized feminine form through imaginative creative reinterpretation of a game mechanic."
+  },
+  {
+    "slug": "steven-crowders-change-my-mind-campus-sign",
+    "individual": "steven-crowders-change-my-mind-campus-sign-idea",
+    "label": "Steven Crowder's Change My Mind Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#steven-crowders-change-my-mind-campus-sign",
+    "conceptDescription": "The performative assertion of a provocative or controversial position as an open challenge to public debate, framing the burden of persuasion on the audience."
+  },
+  {
+    "slug": "the-backrooms",
+    "individual": "the-backrooms-idea",
+    "label": "The Backrooms Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#the-backrooms",
+    "conceptDescription": "The liminal dread of an interior space that exists behind the visible world — a non-place without origin, exit or human presence, reached by accidentally clipping through reality."
+  },
+  {
+    "slug": "30-year-old-boomer",
+    "individual": "30-year-old-boomer-idea",
+    "label": "30-Year-Old Boomer Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#30-year-old-boomer",
+    "conceptDescription": "The generational mismatch in which a young adult experiences nostalgia for a cultural moment they are too young to have authentically lived."
+  },
+  {
+    "slug": "burger-king-foot-lettuce",
+    "individual": "burger-king-foot-lettuce-idea",
+    "label": "Burger King Foot Lettuce Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#burger-king-foot-lettuce",
+    "conceptDescription": "The viral revelation of a food service hygiene violation framed as a deadpan public service announcement delivered in the register of a news broadcast."
+  },
+  {
+    "slug": "saddam-husseins-hiding-place",
+    "individual": "saddam-husseins-hiding-place-idea",
+    "label": "Saddam Hussein's Hiding Place Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#saddam-husseins-hiding-place",
+    "conceptDescription": "The bathetic reduction of a globally significant manhunt to a domestic hiding spot, puncturing the myth of fugitive cunning through the banality of the actual concealment."
+  },
+  {
+    "slug": "t-pose",
+    "individual": "t-pose-idea",
+    "label": "T-Pose Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#t-pose",
+    "conceptDescription": "The assertion of dominance or control through the default rest pose of an unrigged 3D character model, repurposed as a gesture of territorial or hierarchical authority."
+  },
+  {
+    "slug": "hawk-tuah-girl",
+    "individual": "hawk-tuah-girl-idea",
+    "label": "Hawk Tuah Girl Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#hawk-tuah-girl",
+    "conceptDescription": "The viral elevation of an unscripted vernacular expression into a cultural phenomenon entirely detached from the biographical context of its original speaker."
+  },
+  {
+    "slug": "im-already-tracer",
+    "individual": "im-already-tracer-idea",
+    "label": "I'm Already Tracer Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#im-already-tracer",
+    "conceptDescription": "The tension between a fanbase's attachment to a familiar character and a developer's decision about representation, expressed as pre-emptive personal identification."
+  },
+  {
+    "slug": "let-him-cook-let-that-boy-cook",
+    "individual": "let-him-cook-idea",
+    "label": "Let Him Cook Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#let-him-cook-let-that-boy-cook",
+    "conceptDescription": "The instruction to withhold premature judgment and allow a process, plan or person to develop fully before evaluating its outcome."
+  },
+  {
+    "slug": "npc-wojak",
+    "individual": "npc-wojak-idea",
+    "label": "NPC Wojak Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#npc-wojak",
+    "conceptDescription": "The dehumanization of ideological conformity and uncritical repetition of mainstream positions through the metaphor of a non-player character incapable of independent thought."
+  },
+  {
+    "slug": "technoviking",
+    "individual": "technoviking-idea",
+    "label": "Technoviking Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#technoviking",
+    "conceptDescription": "The unexpected inversion of authority in a public space, in which a bystander assumes command of a situation through sheer physical presence and force of personality."
+  },
+  {
+    "slug": "48293",
+    "individual": "48293-idea",
+    "label": "48÷2(9+3) = ? Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#48293",
+    "conceptDescription": "The viral exposure of genuine ambiguity in mathematical notation as a proxy for debates about educational conventions, intellectual authority and social belonging."
+  },
+  {
+    "slug": "money-printer-go-brrr",
+    "individual": "money-printer-go-brrr-idea",
+    "label": "Money Printer Go Brrr Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#money-printer-go-brrr",
+    "conceptDescription": "The satirical reduction of macroeconomic monetary policy to the mechanical sound of currency production, dismissing expert reassurance as complicity in inflationary excess."
+  },
+  {
+    "slug": "whyididntreport",
+    "individual": "whyididntreport-idea",
+    "label": "#WhyIDidntReport Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#whyididntreport",
+    "conceptDescription": "The collective documentation of the systemic, social and personal barriers that prevent survivors of sexual violence from formally reporting their experiences."
+  },
+  {
+    "slug": "wash-the-fucking-dishes",
+    "individual": "wash-the-fucking-dishes-idea",
+    "label": "Wash the Fucking Dishes Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#wash-the-fucking-dishes",
+    "conceptDescription": "The domestic frustration of a basic household responsibility that is persistently and inexplicably ignored by a cohabiting partner or flatmate."
+  },
+  {
+    "slug": "we-not-making-it-out-the-hood",
+    "individual": "we-not-making-it-out-the-hood-idea",
+    "label": "We Not Making It Out The Hood Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#we-not-making-it-out-the-hood",
+    "conceptDescription": "The resigned collective acknowledgment that a group's shared behavior or circumstance is fundamentally incompatible with social mobility or escape from present conditions."
+  },
+  {
+    "slug": "sears-air-conditioning-commercial",
+    "individual": "sears-air-conditioning-commercial-idea",
+    "label": "Sears Air Conditioning Commercial Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#sears-air-conditioning-commercial",
+    "conceptDescription": "The nostalgic appreciation of a retro commercial aesthetic as an inadvertent artifact of a lost consumer culture and production style."
+  },
+  {
+    "slug": "she-looks-so-lovable",
+    "individual": "she-looks-so-lovable-idea",
+    "label": "She Looks So Lovable Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#she-looks-so-lovable",
+    "conceptDescription": "The intense and disproportionate affective response to an image of an aesthetically appealing or endearing subject, experienced as overwhelming tenderness."
+  },
+  {
+    "slug": "do-you-know-you-have-30-minutes",
+    "individual": "do-you-know-you-have-30-minutes-idea",
+    "label": "Do You Know You Have 30 Minutes Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#do-you-know-you-have-30-minutes",
+    "conceptDescription": "The abrupt intrusion of institutional time pressure into a situation of apparent leisure, procrastination or oblivious enjoyment."
+  },
+  {
+    "slug": "gets-criticized-once-fucking-dies",
+    "individual": "gets-criticized-once-fucking-dies-idea",
+    "label": "Gets Criticized Once Fucking Dies Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#gets-criticized-once-fucking-dies",
+    "conceptDescription": "The disproportionate and total collapse of a person or entity in response to even the mildest form of public criticism or negative feedback."
+  },
+  {
+    "slug": "daeodon-at-the-door",
+    "individual": "daeodon-at-the-door-idea",
+    "label": "Daeodon at the Door Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#daeodon-at-the-door",
+    "conceptDescription": "The intrusion of a large prehistoric predator into a mundane domestic scenario as a source of absurdist dread rooted in temporal and environmental displacement."
+  },
+  {
+    "slug": "oh-shit-a-rat",
+    "individual": "oh-shit-a-rat-idea",
+    "label": "Oh Shit, a Rat Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#oh-shit-a-rat",
+    "conceptDescription": "The sudden visceral reaction to an unexpected and unwanted creature encountered in an ordinary domestic or urban environment."
+  },
+  {
+    "slug": "is-die-hard-a-christmas-movie",
+    "individual": "is-die-hard-a-christmas-movie-idea",
+    "label": "Is Die Hard a Christmas Movie Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#is-die-hard-a-christmas-movie",
+    "conceptDescription": "The deliberately unresolvable debate about genre classification as a vehicle for social bonding through argument, where the correct answer is less important than the performance of having a position."
+  },
+  {
+    "slug": "setethsays",
+    "individual": "setethsays-idea",
+    "label": "#SetethSays Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#setethsays",
+    "conceptDescription": "The application of a fictional authority figure's stern didactic pronouncements to real-world situations as ironic unsolicited advice or moral instruction."
+  },
+  {
+    "slug": "i-became-very-nonchalant",
+    "individual": "i-became-very-nonchalant-idea",
+    "label": "I Became Very Nonchalant Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#i-became-very-nonchalant",
+    "conceptDescription": "The performative cultivation of emotional detachment and indifference as a coping mechanism, aesthetic identity or response to prior emotional investment."
+  },
+  {
+    "slug": "ben-shapiro-joker-laugh",
+    "individual": "ben-shapiro-joker-laugh-idea",
+    "label": "Ben Shapiro Joker Laugh Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#ben-shapiro-joker-laugh",
+    "conceptDescription": "The mapping of a political commentator's rhetorical affect and social position onto the aesthetic register and character archetype of a cinematic villain."
+  },
+  {
+    "slug": "i-need-a-therian-girlfriend",
+    "individual": "i-need-a-therian-girlfriend-idea",
+    "label": "I Need a Therian Girlfriend Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#i-need-a-therian-girlfriend",
+    "conceptDescription": "The expression of romantic desire for a partner who shares an alternative identity rooted in affiliation with a non-human animal species."
+  },
+  {
+    "slug": "talking-to-brick-wall",
+    "individual": "talking-to-brick-wall-idea",
+    "label": "Talking to Brick Wall Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#talking-to-brick-wall",
+    "conceptDescription": "The futility of attempting rational communication with a party that is fundamentally unreceptive to any argument, evidence or perspective."
+  },
+  {
+    "slug": "tiny-tiktok-im-so-small-and-petite",
+    "individual": "tiny-tiktok-idea",
+    "label": "Tiny TikTok Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#tiny-tiktok-im-so-small-and-petite",
+    "conceptDescription": "The performance of diminutive physical self-description as a humorous aesthetic identity or self-presentation strategy on short-form video platforms."
+  },
+  {
+    "slug": "always-go-for-this-only-villains-do-that",
+    "individual": "always-go-for-this-only-villains-do-that-idea",
+    "label": "Always Go For This / Only Villains Do That Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#always-go-for-this-only-villains-do-that",
+    "conceptDescription": "The moral binary in which a heroic character's prescribed course of action is directly contrasted with the equivalent action performed by an antagonist, rendering identical behaviors as opposites through framing."
+  },
+  {
+    "slug": "jollibot",
+    "individual": "jollibot-idea",
+    "label": "Jollibot Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#jollibot",
+    "conceptDescription": "The uncanny juxtaposition of a recognizable fast food brand mascot with the visual and conceptual register of dystopian robotics or mechanized service labor."
+  },
+  {
+    "slug": "willem-dafoe-hes-gay-but-he-has-a-special-connection-to-classical-music",
+    "individual": "willem-dafoe-idea",
+    "label": "Willem Dafoe Classical Music Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#willem-dafoe-hes-gay-but-he-has-a-special-connection-to-classical-music",
+    "conceptDescription": "The absurdist elaboration of a fictional attribute assigned to a celebrity, used as a vehicle for community world-building and shared imaginative projection."
+  },
+  {
+    "slug": "kylie-jenner-rise-and-shine",
+    "individual": "kylie-jenner-rise-and-shine-idea",
+    "label": "Kylie Jenner Rise and Shine Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#kylie-jenner-rise-and-shine",
+    "conceptDescription": "The viral elevation of an offhand parental moment into a commodity through the self-aware logic of celebrity culture, where even the most mundane act becomes marketable content."
+  },
+  {
+    "slug": "i-got-a-brand-new-saxophone",
+    "individual": "i-got-a-brand-new-saxophone-idea",
+    "label": "I Got a Brand New Saxophone Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#i-got-a-brand-new-saxophone",
+    "conceptDescription": "The infectious enthusiasm of a simple declarative statement about a new possession, used as a vehicle for collective participatory celebration detached from the original context."
+  },
+  {
+    "slug": "im-this-clingy",
+    "individual": "im-this-clingy-idea",
+    "label": "I'm This Clingy Idea",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#im-this-clingy",
+    "conceptDescription": "The self-aware performance of excessive emotional attachment in a romantic context, simultaneously functioning as confession, humorous self-deprecation and invitation to reciprocate."
+  }
+]

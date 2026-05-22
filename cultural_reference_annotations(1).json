@@ -1,0 +1,425 @@
+[
+  {
+    "slug": "me-gusta",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#me-gusta",
+    "references": [
+      {"class": "WebCulture", "individual": "4chan-imageboard-culture", "label": "4chan imageboard culture", "note": "Originated on 4chan; embodies imageboard humor conventions around transgressive enjoyment"}
+    ]
+  },
+  {
+    "slug": "big-chungus",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#big-chungus",
+    "references": [
+      {"class": "MediaProperty", "individual": "looney-tunes", "label": "Looney Tunes", "note": "Derived from Bugs Bunny character in a 1941 Looney Tunes short"},
+      {"class": "WebCulture", "individual": "reddit-meme-culture", "label": "Reddit meme culture", "note": "Spread through Reddit gaming communities in 2018"}
+    ]
+  },
+  {
+    "slug": "woman-yelling-at-a-cat",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#woman-yelling-at-a-cat",
+    "references": [
+      {"class": "MediaProperty", "individual": "the-real-housewives-of-beverly-hills", "label": "The Real Housewives of Beverly Hills", "note": "Left panel features Taylor Armstrong and Kyle Richards from RHOBH Season 2"},
+      {"class": "PublicFigure", "individual": "taylor-armstrong", "label": "Taylor Armstrong", "note": "Reality TV personality whose emotional confrontation scene formed the left panel"},
+      {"class": "WebCulture", "individual": "smudge-the-cat", "label": "Smudge the Cat", "note": "The cat in the right panel became independently famous as Smudge Lord"}
+    ]
+  },
+  {
+    "slug": "brazzers",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#brazzers",
+    "references": [
+      {"class": "MediaProperty", "individual": "brazzers-entertainment", "label": "Brazzers Entertainment", "note": "References the adult entertainment company's logo as the recontextualizing signifier"},
+      {"class": "WebCulture", "individual": "funnyjunk-photoshop-culture", "label": "FunnyJunk photoshop culture", "note": "Originated on FunnyJunk as a photoshop challenge format"}
+    ]
+  },
+  {
+    "slug": "stonks",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#stonks",
+    "references": [
+      {"class": "SocialPhenomenon", "individual": "retail-investing-culture", "label": "Retail investing culture", "note": "Satirizes amateur retail investor logic and stock market speculation"},
+      {"class": "WebCulture", "individual": "meme-man-character", "label": "Meme Man character", "note": "Features the Meme Man 3D character from surreal meme communities"}
+    ]
+  },
+  {
+    "slug": "lord-marquaad-e",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#lord-marquaad-e",
+    "references": [
+      {"class": "MediaProperty", "individual": "shrek-film", "label": "Shrek (Film)", "note": "References Lord Farquaad, the villain of the DreamWorks Shrek franchise"},
+      {"class": "MediaProperty", "individual": "minecraft-video-game", "label": "Minecraft (Video Game)", "note": "Involves the E skin from Minecraft used in conjunction with Farquaad imagery"},
+      {"class": "WebCulture", "individual": "shrek-internet-fandom", "label": "Shrek internet fandom", "note": "Part of the broader ironic Shrek worship culture on Tumblr and Reddit"}
+    ]
+  },
+  {
+    "slug": "surprised-pikachu",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#surprised-pikachu",
+    "references": [
+      {"class": "MediaProperty", "individual": "pokemon-anime-series", "label": "Pokemon (Anime Series)", "note": "Screenshot from the Pokemon anime episode The Punchy Pokemon (Season 1)"},
+      {"class": "PublicFigure", "individual": "pikachu", "label": "Pikachu", "note": "The iconic Pokemon mascot whose expression became the template"}
+    ]
+  },
+  {
+    "slug": "ankha-zone",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#ankha-zone",
+    "references": [
+      {"class": "MediaProperty", "individual": "animal-crossing-video-game", "label": "Animal Crossing (Video Game)", "note": "Features Ankha, an Egyptian-themed cat villager from Nintendo's Animal Crossing franchise"},
+      {"class": "WebCulture", "individual": "zone-sama-flash-animations", "label": "Zone-sama flash animations", "note": "Created by adult animator Zone-sama, known for rule 34 content of video game characters"},
+      {"class": "SocialPhenomenon", "individual": "rule-34-internet-culture", "label": "Rule 34 internet culture", "note": "Exemplifies the rule 34 phenomenon: explicit content exists for every media property"}
+    ]
+  },
+  {
+    "slug": "crazy-i-was-crazy-once-they-locked-me-in-a-room-a-rubber-room-a-rubber-room-with-rats-and-rats-make-me-crazy",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#crazy-i-was-crazy-once-they-locked-me-in-a-room-a-rubber-room-a-rubber-room-with-rats-and-rats-make-me-crazy",
+    "references": [
+      {"class": "WebCulture", "individual": "everything2-nostalgia-database", "label": "Everything2", "note": "Originated as a nostalgia-format entry on the Everything2 knowledge database"},
+      {"class": "WebCulture", "individual": "copypasta-culture", "label": "Copypasta culture", "note": "Circulates as a classic copypasta, one of the earliest self-referential recursive texts"}
+    ]
+  },
+  {
+    "slug": "karen",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#karen",
+    "references": [
+      {"class": "SocialPhenomenon", "individual": "white-privilege-discourse", "label": "White privilege discourse", "note": "The archetype emerged from discussions of entitled behavior as a racially coded social phenomenon"},
+      {"class": "SocialPhenomenon", "individual": "service-industry-labor", "label": "Service industry labor", "note": "Embodies the dynamic of customer entitlement directed at low-wage service workers"},
+      {"class": "WebCulture", "individual": "black-twitter", "label": "Black Twitter", "note": "Popularized through Black Twitter as a vehicle for documenting specific patterns of racial entitlement"}
+    ]
+  },
+  {
+    "slug": "logan-pauls-suicide-forest-video",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#logan-pauls-suicide-forest-video",
+    "references": [
+      {"class": "PublicFigure", "individual": "logan-paul", "label": "Logan Paul", "note": "Centers on YouTuber Logan Paul's January 2018 video filmed in Aokigahara forest"},
+      {"class": "HistoricalEvent", "individual": "aokigahara-forest-incident-2018", "label": "Aokigahara Forest Incident 2018", "note": "The specific event: Logan Paul filming a suicide victim's body in Japan's Aokigahara forest"},
+      {"class": "SocialPhenomenon", "individual": "youtube-creator-accountability", "label": "YouTube creator accountability", "note": "Became a defining moment in discourse about content creator ethics and platform responsibility"}
+    ]
+  },
+  {
+    "slug": "weird-flex-but-ok",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#weird-flex-but-ok",
+    "references": [
+      {"class": "WebCulture", "individual": "twitter-slang-2017", "label": "Twitter slang 2017", "note": "Emerged from Twitter slang culture as a response format to humble-brag statements"}
+    ]
+  },
+  {
+    "slug": "me-and-the-boys",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#me-and-the-boys",
+    "references": [
+      {"class": "MediaProperty", "individual": "spider-man-1967-animated-series", "label": "Spider-Man 1967 (Animated Series)", "note": "The canonical image features Spider-Man pointing at himself from the 1967 animated series"},
+      {"class": "WebCulture", "individual": "reddit-meme-culture", "label": "Reddit meme culture", "note": "Popularized on Reddit through r/me_irl and related subreddits"}
+    ]
+  },
+  {
+    "slug": "this-is-so-sad-alexa-play-despacito",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#this-is-so-sad-alexa-play-despacito",
+    "references": [
+      {"class": "MediaProperty", "individual": "despacito-song", "label": "Despacito (Song)", "note": "References Luis Fonsi's 2017 hit Despacito, the most-streamed song of 2017"},
+      {"class": "MediaProperty", "individual": "amazon-alexa", "label": "Amazon Alexa", "note": "References Amazon's voice assistant Alexa as the vehicle for the musical request"},
+      {"class": "WebCulture", "individual": "tumblr-irony-culture", "label": "Tumblr irony culture", "note": "Originated on Tumblr as a format for ironic emotional deflection"}
+    ]
+  },
+  {
+    "slug": "bowsette",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#bowsette",
+    "references": [
+      {"class": "MediaProperty", "individual": "super-mario-video-game", "label": "Super Mario (Video Game)", "note": "Derives from Bowser, the primary antagonist of Nintendo's Super Mario franchise"},
+      {"class": "MediaProperty", "individual": "new-super-mario-bros-u-deluxe", "label": "New Super Mario Bros. U Deluxe", "note": "Inspired by the Toadette/Peachette transformation mechanic announced for this game"},
+      {"class": "WebCulture", "individual": "twitter-fan-art-culture", "label": "Twitter fan art culture", "note": "Created by artist ayyk92 on Twitter in September 2018 and spread globally within days"}
+    ]
+  },
+  {
+    "slug": "steven-crowders-change-my-mind-campus-sign",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#steven-crowders-change-my-mind-campus-sign",
+    "references": [
+      {"class": "PublicFigure", "individual": "steven-crowder", "label": "Steven Crowder", "note": "Features conservative commentator Steven Crowder's campus debate setup"},
+      {"class": "PoliticalEvent", "individual": "campus-free-speech-debates-2018", "label": "Campus free speech debates 2018", "note": "Emerged during heightened discourse around free speech and political debate on university campuses"},
+      {"class": "WebCulture", "individual": "political-meme-culture", "label": "Political meme culture", "note": "Became a template for asserting any controversial position as a debate challenge"}
+    ]
+  },
+  {
+    "slug": "the-backrooms",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#the-backrooms",
+    "references": [
+      {"class": "WebCulture", "individual": "4chan-paranormal-board", "label": "4chan /x/ paranormal board", "note": "Originated on 4chan's /x/ paranormal board as a creepypasta image post in 2019"},
+      {"class": "WebCulture", "individual": "liminal-space-aesthetic", "label": "Liminal space aesthetic", "note": "Became the defining artifact of the liminal space internet aesthetic genre"},
+      {"class": "SocialPhenomenon", "individual": "nostalgia-and-uncanny-dread", "label": "Nostalgia and uncanny dread", "note": "Taps into collective anxiety about the familiar rendered strange and inescapable"}
+    ]
+  },
+  {
+    "slug": "30-year-old-boomer",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#30-year-old-boomer",
+    "references": [
+      {"class": "WebCulture", "individual": "wojak-meme-family", "label": "Wojak meme family", "note": "Part of the Wojak/feels guy family of character-based meme templates from 4chan"},
+      {"class": "SocialPhenomenon", "individual": "millennial-generational-identity", "label": "Millennial generational identity", "note": "Satirizes millennials who adopted boomer nostalgia for an era they did not fully experience"},
+      {"class": "WebCulture", "individual": "4chan-imageboard-culture", "label": "4chan imageboard culture", "note": "Originated on 4chan as a character template for generational humor"}
+    ]
+  },
+  {
+    "slug": "burger-king-foot-lettuce",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#burger-king-foot-lettuce",
+    "references": [
+      {"class": "MediaProperty", "individual": "burger-king-corporation", "label": "Burger King", "note": "Directly references the Burger King fast food corporation as the site of the hygiene violation"},
+      {"class": "WebCulture", "individual": "4chan-imageboard-culture", "label": "4chan imageboard culture", "note": "Posted on 4chan in 2012 with the iconic opening line 'Number 15'"},
+      {"class": "WebCulture", "individual": "creepypasta-narration-format", "label": "Creepypasta narration format", "note": "Later adapted into YouTube narration videos by channels like Suggestive Gaming"}
+    ]
+  },
+  {
+    "slug": "saddam-husseins-hiding-place",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#saddam-husseins-hiding-place",
+    "references": [
+      {"class": "PublicFigure", "individual": "saddam-hussein", "label": "Saddam Hussein", "note": "Features the former Iraqi president captured hiding in a spider hole"},
+      {"class": "HistoricalEvent", "individual": "capture-of-saddam-hussein-2003", "label": "Capture of Saddam Hussein 2003", "note": "References Operation Red Dawn, December 13 2003, when US forces captured Hussein"},
+      {"class": "PoliticalEvent", "individual": "iraq-war", "label": "Iraq War", "note": "Situated within the broader context of the 2003 US-led invasion of Iraq"}
+    ]
+  },
+  {
+    "slug": "t-pose",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#t-pose",
+    "references": [
+      {"class": "WebCulture", "individual": "3d-animation-culture", "label": "3D animation culture", "note": "References the default rest pose of unrigged 3D character models in game development"},
+      {"class": "MediaProperty", "individual": "glitchy-video-game-aesthetics", "label": "Glitchy video game aesthetics", "note": "Derived from glitch culture in which characters assume the T-pose due to animation errors"}
+    ]
+  },
+  {
+    "slug": "hawk-tuah-girl",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#hawk-tuah-girl",
+    "references": [
+      {"class": "PublicFigure", "individual": "hailey-welch", "label": "Hailey Welch", "note": "Features Hailey Welch whose viral street interview moment launched the meme in 2024"},
+      {"class": "SocialPhenomenon", "individual": "street-interview-viral-culture", "label": "Street interview viral culture", "note": "Part of the broader genre of viral street interview moments that generate detached catchphrases"},
+      {"class": "WebCulture", "individual": "tiktok-viral-catchphrases", "label": "TikTok viral catchphrases", "note": "Spread primarily through TikTok as an audio meme and catchphrase"}
+    ]
+  },
+  {
+    "slug": "im-already-tracer",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#im-already-tracer",
+    "references": [
+      {"class": "MediaProperty", "individual": "overwatch-video-game", "label": "Overwatch (Video Game)", "note": "References Tracer, a character from Blizzard's Overwatch, and debates about her sexualized appearance"},
+      {"class": "PoliticalEvent", "individual": "overwatch-tracer-pose-controversy-2016", "label": "Overwatch Tracer Pose Controversy 2016", "note": "Blizzard removed a victory pose deemed too sexualized, prompting community debate"},
+      {"class": "SocialPhenomenon", "individual": "gamer-culture-representation-debates", "label": "Gamer culture representation debates", "note": "Part of ongoing discourse about female character design and representation in games"}
+    ]
+  },
+  {
+    "slug": "let-him-cook-let-that-boy-cook",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#let-him-cook-let-that-boy-cook",
+    "references": [
+      {"class": "MediaProperty", "individual": "breaking-bad-television-series", "label": "Breaking Bad (Television Series)", "note": "The cooking metaphor references Walter White's methamphetamine production in Breaking Bad"},
+      {"class": "WebCulture", "individual": "aave-slang-adoption", "label": "AAVE slang adoption", "note": "The phrase entered mainstream internet slang from African American Vernacular English"}
+    ]
+  },
+  {
+    "slug": "npc-wojak",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#npc-wojak",
+    "references": [
+      {"class": "WebCulture", "individual": "wojak-meme-family", "label": "Wojak meme family", "note": "Part of the Wojak character family originating on 4chan"},
+      {"class": "SocialPhenomenon", "individual": "political-polarization-discourse", "label": "Political polarization discourse", "note": "Used to dehumanize political opponents as uncritical followers of mainstream narratives"},
+      {"class": "WebCulture", "individual": "4chan-pol-board-culture", "label": "4chan /pol/ board culture", "note": "Originated on 4chan's /pol/ board in 2018 as a political satire template"}
+    ]
+  },
+  {
+    "slug": "technoviking",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#technoviking",
+    "references": [
+      {"class": "HistoricalEvent", "individual": "fuckparade-berlin-2000", "label": "Fuckparade Berlin 2000", "note": "Filmed at the Fuckparade techno street festival in Berlin in 2000 by artist Matthias Fritsch"},
+      {"class": "PublicFigure", "individual": "technoviking-anonymous", "label": "Technoviking (anonymous)", "note": "The unidentified man sued Fritsch over the video in 2013 and won, briefly removing it from the internet"},
+      {"class": "WebCulture", "individual": "early-youtube-viral-culture", "label": "Early YouTube viral culture", "note": "One of the earliest YouTube viral videos, circulating from 2006 onward"}
+    ]
+  },
+  {
+    "slug": "48293",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#48293",
+    "references": [
+      {"class": "SocialPhenomenon", "individual": "mathematical-notation-ambiguity", "label": "Mathematical notation ambiguity", "note": "The meme exploits genuine ambiguity in PEMDAS/BODMAS conventions for implicit multiplication"},
+      {"class": "WebCulture", "individual": "facebook-viral-math-problems", "label": "Facebook viral math problems", "note": "Part of the genre of viral math problems designed to generate argument through ambiguous notation"}
+    ]
+  },
+  {
+    "slug": "money-printer-go-brrr",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#money-printer-go-brrr",
+    "references": [
+      {"class": "PoliticalEvent", "individual": "covid-19-stimulus-packages-2020", "label": "COVID-19 Stimulus Packages 2020", "note": "Emerged in response to US Federal Reserve quantitative easing during the COVID-19 pandemic"},
+      {"class": "SocialPhenomenon", "individual": "cryptocurrency-and-inflation-discourse", "label": "Cryptocurrency and inflation discourse", "note": "Widely adopted in Bitcoin and cryptocurrency communities as anti-fiat monetary argument"},
+      {"class": "WebCulture", "individual": "wojak-meme-family", "label": "Wojak meme family", "note": "Features Wojak and Chad variants in the canonical two-character format"}
+    ]
+  },
+  {
+    "slug": "whyididntreport",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#whyididntreport",
+    "references": [
+      {"class": "PoliticalEvent", "individual": "brett-kavanaugh-hearings-2018", "label": "Brett Kavanaugh Hearings 2018", "note": "Emerged directly in response to Donald Trump's tweet questioning why Christine Blasey Ford had not reported her alleged assault sooner"},
+      {"class": "SocialPhenomenon", "individual": "metoo-movement", "label": "#MeToo Movement", "note": "Part of the broader #MeToo movement's documentation of systemic barriers to reporting sexual violence"},
+      {"class": "PublicFigure", "individual": "christine-blasey-ford", "label": "Christine Blasey Ford", "note": "The hashtag emerged in solidarity with Ford's testimony against Brett Kavanaugh"}
+    ]
+  },
+  {
+    "slug": "wash-the-fucking-dishes",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#wash-the-fucking-dishes",
+    "references": [
+      {"class": "MediaProperty", "individual": "waiting-film", "label": "Waiting... (Film)", "note": "Originated from the 2005 film Waiting... set in a restaurant kitchen"},
+      {"class": "SocialPhenomenon", "individual": "domestic-labor-division", "label": "Domestic labor division", "note": "Resonates with widespread discourse about unequal division of household labor in cohabiting relationships"},
+      {"class": "WebCulture", "individual": "tiktok-lip-dub-culture", "label": "TikTok lip-dub culture", "note": "Became a TikTok lip-dub trend with creators mouthing the audio while doing unrelated activities"}
+    ]
+  },
+  {
+    "slug": "we-not-making-it-out-the-hood",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#we-not-making-it-out-the-hood",
+    "references": [
+      {"class": "SocialPhenomenon", "individual": "urban-community-identity", "label": "Urban community identity", "note": "Draws on the concept of hood loyalty and the tension between community belonging and individual mobility"},
+      {"class": "WebCulture", "individual": "tiktok-participatory-trends", "label": "TikTok participatory trends", "note": "Spread through TikTok as a participatory sound meme applied to absurd or trivial group behaviors"}
+    ]
+  },
+  {
+    "slug": "sears-air-conditioning-commercial",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#sears-air-conditioning-commercial",
+    "references": [
+      {"class": "MediaProperty", "individual": "sears-department-stores", "label": "Sears Department Stores", "note": "References the defunct American department store chain Sears, which closed most locations by 2018"},
+      {"class": "SocialPhenomenon", "individual": "retail-nostalgia-culture", "label": "Retail nostalgia culture", "note": "Part of broader nostalgia for the pre-internet consumer era and its now-defunct retail institutions"},
+      {"class": "WebCulture", "individual": "retro-commercial-appreciation", "label": "Retro commercial appreciation", "note": "Belongs to the genre of ironic appreciation for low-production-value vintage advertising"}
+    ]
+  },
+  {
+    "slug": "she-looks-so-lovable",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#she-looks-so-lovable",
+    "references": [
+      {"class": "WebCulture", "individual": "wholesome-meme-culture", "label": "Wholesome meme culture", "note": "Part of the wholesome/uwu meme tradition emphasizing affective response to endearing content"}
+    ]
+  },
+  {
+    "slug": "do-you-know-you-have-30-minutes",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#do-you-know-you-have-30-minutes",
+    "references": [
+      {"class": "WebCulture", "individual": "tiktok-sound-meme-culture", "label": "TikTok sound meme culture", "note": "Spread as a TikTok audio meme applied to moments of sudden deadline awareness"},
+      {"class": "SocialPhenomenon", "individual": "academic-deadline-anxiety", "label": "Academic deadline anxiety", "note": "Resonates particularly with student culture and the panic of imminent submission deadlines"}
+    ]
+  },
+  {
+    "slug": "gets-criticized-once-fucking-dies",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#gets-criticized-once-fucking-dies",
+    "references": [
+      {"class": "WebCulture", "individual": "wojak-meme-family", "label": "Wojak meme family", "note": "Uses the NPC Wojak and related character formats from the 4chan meme ecosystem"},
+      {"class": "SocialPhenomenon", "individual": "online-cancel-culture-discourse", "label": "Online cancel culture discourse", "note": "Satirizes the perceived fragility of public figures or online personas under critical scrutiny"}
+    ]
+  },
+  {
+    "slug": "daeodon-at-the-door",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#daeodon-at-the-door",
+    "references": [
+      {"class": "WebCulture", "individual": "cursed-image-meme-format", "label": "Cursed image meme format", "note": "Belongs to the cursed/liminal image tradition of placing incongruous prehistoric creatures in domestic settings"},
+      {"class": "SocialPhenomenon", "individual": "paleontology-popular-culture", "label": "Paleontology popular culture", "note": "Part of renewed popular interest in prehistoric megafauna driven by social media and paleoart communities"}
+    ]
+  },
+  {
+    "slug": "oh-shit-a-rat",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#oh-shit-a-rat",
+    "references": [
+      {"class": "WebCulture", "individual": "instagram-viral-reaction-videos", "label": "Instagram viral reaction videos", "note": "Originated as an Instagram video of a genuine panicked reaction to a rat in an urban environment"},
+      {"class": "SocialPhenomenon", "individual": "urban-pest-anxiety", "label": "Urban pest anxiety", "note": "Taps into widespread urban anxiety about rodent encounters in domestic and public spaces"}
+    ]
+  },
+  {
+    "slug": "is-die-hard-a-christmas-movie",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#is-die-hard-a-christmas-movie",
+    "references": [
+      {"class": "MediaProperty", "individual": "die-hard-film", "label": "Die Hard (Film)", "note": "Centers on whether the 1988 Bruce Willis action film qualifies as a Christmas movie"},
+      {"class": "PublicFigure", "individual": "bruce-willis", "label": "Bruce Willis", "note": "Bruce Willis's own oscillating statements on the question became part of the meme's cultural life"},
+      {"class": "SocialPhenomenon", "individual": "genre-classification-debates", "label": "Genre classification debates", "note": "Emblematic of Christmas-season debates about the boundaries of genre categories"}
+    ]
+  },
+  {
+    "slug": "setethsays",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#setethsays",
+    "references": [
+      {"class": "MediaProperty", "individual": "fire-emblem-three-houses-video-game", "label": "Fire Emblem: Three Houses (Video Game)", "note": "Features Seteth, a character from Nintendo's Fire Emblem: Three Houses (2019) known for stern directives"},
+      {"class": "WebCulture", "individual": "twitter-gaming-fan-communities", "label": "Twitter gaming fan communities", "note": "Spread through Fire Emblem fan communities on Twitter as a format for ironic advice"}
+    ]
+  },
+  {
+    "slug": "i-became-very-nonchalant",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#i-became-very-nonchalant",
+    "references": [
+      {"class": "WebCulture", "individual": "tiktok-emotional-detachment-trend", "label": "TikTok emotional detachment trend", "note": "Part of TikTok's broader genre of performative emotional detachment as self-improvement narrative"},
+      {"class": "SocialPhenomenon", "individual": "gen-z-emotional-irony", "label": "Gen Z emotional irony", "note": "Reflects Gen Z's ironic relationship with emotional vulnerability, performing detachment as a coping strategy"}
+    ]
+  },
+  {
+    "slug": "ben-shapiro-joker-laugh",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#ben-shapiro-joker-laugh",
+    "references": [
+      {"class": "PublicFigure", "individual": "ben-shapiro", "label": "Ben Shapiro", "note": "Features conservative political commentator Ben Shapiro's laugh edited into the Joker film"},
+      {"class": "MediaProperty", "individual": "joker-film-2019", "label": "Joker (Film 2019)", "note": "Uses the iconic staircase dance scene from Todd Phillips' 2019 Joker film"},
+      {"class": "PoliticalEvent", "individual": "conservative-media-culture-wars", "label": "Conservative media culture wars", "note": "Part of the broader genre of memes mapping right-wing commentators onto villain archetypes"}
+    ]
+  },
+  {
+    "slug": "i-need-a-therian-girlfriend",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#i-need-a-therian-girlfriend",
+    "references": [
+      {"class": "SocialPhenomenon", "individual": "therian-community", "label": "Therian community", "note": "References the therian subculture of individuals who identify psychologically or spiritually as non-human animals"},
+      {"class": "WebCulture", "individual": "tiktok-identity-subcultures", "label": "TikTok identity subcultures", "note": "Therian identity gained mainstream visibility through TikTok in 2022-2024"},
+      {"class": "WebCulture", "individual": "copypasta-romantic-longing-format", "label": "Copypasta romantic longing format", "note": "Follows the template of 'I need a girlfriend who...' copypastas expressing niche romantic desires"}
+    ]
+  },
+  {
+    "slug": "talking-to-brick-wall",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#talking-to-brick-wall",
+    "references": [
+      {"class": "WebCulture", "individual": "early-youtube-meme-era", "label": "Early YouTube meme era", "note": "Originated from early YouTube comment culture and emoticon-based image macros circa 2010"},
+      {"class": "SocialPhenomenon", "individual": "online-debate-culture", "label": "Online debate culture", "note": "Resonates with the experience of fruitless online argumentation across political and social forums"}
+    ]
+  },
+  {
+    "slug": "tiny-tiktok-im-so-small-and-petite",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#tiny-tiktok-im-so-small-and-petite",
+    "references": [
+      {"class": "WebCulture", "individual": "tiktok-body-image-trends", "label": "TikTok body image trends", "note": "Part of TikTok's genre of self-presentation trends around physical self-description as aesthetic identity"},
+      {"class": "SocialPhenomenon", "individual": "uwu-kawaii-internet-culture", "label": "Uwu/kawaii internet culture", "note": "Draws on the uwu/kawaii aesthetic tradition of performing cuteness and diminutiveness"}
+    ]
+  },
+  {
+    "slug": "always-go-for-this-only-villains-do-that",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#always-go-for-this-only-villains-do-that",
+    "references": [
+      {"class": "WebCulture", "individual": "twitter-two-panel-exploitable-format", "label": "Twitter two-panel exploitable format", "note": "Part of the genre of two-panel hero/villain exploitables popular on Twitter from 2017 onward"},
+      {"class": "SocialPhenomenon", "individual": "moral-framing-in-political-discourse", "label": "Moral framing in political discourse", "note": "Used extensively to frame political positions as heroic or villainous through identical action framing"}
+    ]
+  },
+  {
+    "slug": "jollibot",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#jollibot",
+    "references": [
+      {"class": "MediaProperty", "individual": "jollibee-fast-food", "label": "Jollibee", "note": "Features the mascot of Jollibee, the dominant fast food chain in the Philippines"},
+      {"class": "WebCulture", "individual": "twitter-fan-art-culture", "label": "Twitter fan art culture", "note": "Created as dystopian fan art reimagining the Jollibee mascot as a mechanized robot"},
+      {"class": "SocialPhenomenon", "individual": "philippine-internet-culture", "label": "Philippine internet culture", "note": "Reflects the strong presence of Filipino internet culture and Jollibee fandom online"}
+    ]
+  },
+  {
+    "slug": "willem-dafoe-hes-gay-but-he-has-a-special-connection-to-classical-music",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#willem-dafoe-hes-gay-but-he-has-a-special-connection-to-classical-music",
+    "references": [
+      {"class": "PublicFigure", "individual": "willem-dafoe", "label": "Willem Dafoe", "note": "Features actor Willem Dafoe as the subject of absurdist fictional character elaboration"},
+      {"class": "WebCulture", "individual": "youtube-absurdist-lore-videos", "label": "YouTube absurdist lore videos", "note": "Part of the genre of YouTube videos building elaborate fictional lore around real celebrities"},
+      {"class": "WebCulture", "individual": "classical-music-meme-culture", "label": "Classical music meme culture", "note": "Engages with the online tradition of applying classical music associations to unexpected subjects"}
+    ]
+  },
+  {
+    "slug": "kylie-jenner-rise-and-shine",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#kylie-jenner-rise-and-shine",
+    "references": [
+      {"class": "PublicFigure", "individual": "kylie-jenner", "label": "Kylie Jenner", "note": "Features beauty mogul and reality TV personality Kylie Jenner waking her daughter Stormi"},
+      {"class": "MediaProperty", "individual": "keeping-up-with-the-kardashians", "label": "Keeping Up With The Kardashians", "note": "Emerged from the cultural ecosystem of the Kardashian-Jenner media empire"},
+      {"class": "SocialPhenomenon", "individual": "influencer-culture-commodification", "label": "Influencer culture commodification", "note": "Exemplifies the commodification of domestic moments by celebrity influencer culture"}
+    ]
+  },
+  {
+    "slug": "i-got-a-brand-new-saxophone",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#i-got-a-brand-new-saxophone",
+    "references": [
+      {"class": "WebCulture", "individual": "tiktok-audio-participatory-trend", "label": "TikTok audio participatory trend", "note": "Spread as a TikTok audio trend in 2025 with creators replacing saxophone with their own new purchases"},
+      {"class": "SocialPhenomenon", "individual": "consumerism-and-acquisition-joy", "label": "Consumerism and acquisition joy", "note": "Taps into the universal experience of excitement about a new purchase as a relatable emotional hook"}
+    ]
+  },
+  {
+    "slug": "im-this-clingy",
+    "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#im-this-clingy",
+    "references": [
+      {"class": "WebCulture", "individual": "twitter-relationship-meme-format", "label": "Twitter relationship meme format", "note": "Part of Twitter/X's genre of self-deprecating relationship confession exploitables in 2025"},
+      {"class": "SocialPhenomenon", "individual": "anxious-attachment-discourse", "label": "Anxious attachment discourse", "note": "Reflects widespread online discourse around attachment styles and anxious attachment in romantic relationships"}
+    ]
+  }
+]

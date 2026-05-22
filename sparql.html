@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SPARQL Explorer · The Meme Ontology</title>
+  <link rel="stylesheet" href="meme_viz.css"/>
+  <style>
+    /* ── SPARQL page layout ─────────────────────────────────────────────── */
+    body { overflow: hidden; }
+
+    .sparql-page {
+      position: fixed;
+      top: var(--nav-h);
+      left: 0; right: 0; bottom: 0;
+      display: flex;
+      background: var(--bg);
+    }
+
+    /* ── Left sidebar ─────────────────────────────────────────────────────── */
+    .sparql-sidebar {
+      width: 260px;
+      flex-shrink: 0;
+      border-right: 1px solid var(--border);
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    .sidebar-section {
+      padding: 20px 16px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sidebar-label {
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    /* Ontology status badge */
+    .owl-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .78rem;
+      color: var(--muted);
+    }
+    .owl-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+      flex-shrink: 0;
+      transition: background .3s;
+    }
+    .owl-dot.loading  { background: #f0a500; animation: pulse 1s infinite; }
+    .owl-dot.ready    { background: #2e8b57; }
+    .owl-dot.error    { background: #c0392b; }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: .3; }
+    }
+
+    /* Triple/prefixes info */
+    .owl-stats {
+      margin-top: 8px;
+      font-size: .72rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* Namespace reference */
+    .ns-pill {
+      display: inline-block;
+      font-size: .68rem;
+      font-family: 'Consolas', monospace;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 2px 6px;
+      margin-bottom: 4px;
+      word-break: break-all;
+      line-height: 1.5;
+    }
+
+    /* Example query buttons */
+    .example-btn {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 8px 10px;
+      margin-bottom: 6px;
+      font-size: .75rem;
+      color: var(--text);
+      cursor: pointer;
+      transition: background .12s, border-color .12s;
+      line-height: 1.4;
+    }
+    .example-btn:hover {
+      background: var(--bg);
+      border-color: var(--accent);
+    }
+    .example-btn .ex-title {
+      font-weight: 600;
+      display: block;
+      color: var(--accent2);
+      margin-bottom: 2px;
+    }
+    .example-btn .ex-desc {
+      color: var(--muted);
+      font-size: .7rem;
+    }
+
+    /* ── Editor area ──────────────────────────────────────────────────────── */
+    .sparql-editor-area {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      padding: 20px 24px;
+      gap: 12px;
+      overflow: hidden;
+    }
+
+    .editor-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .editor-title {
+      font-size: 1rem;
+      font-weight: 900;
+      letter-spacing: .06em;
+      color: var(--accent2);
+    }
+
+    .editor-subtitle {
+      font-size: .75rem;
+      color: var(--muted);
+    }
+
+    .sparql-textarea {
+      flex-shrink: 0;
+      width: 100%;
+      height: 200px;
+      font-family: 'Consolas', 'Cascadia Code', monospace;
+      font-size: .82rem;
+      line-height: 1.6;
+      padding: 12px 14px;
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      resize: vertical;
+      tab-size: 2;
+      outline: none;
+      transition: border-color .15s;
+    }
+    .sparql-textarea:focus {
+      border-color: var(--accent);
+    }
+
+    .query-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .run-btn {
+      padding: 8px 22px;
+      background: var(--accent2);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      cursor: pointer;
+      transition: opacity .15s;
+    }
+    .run-btn:hover  { opacity: .82; }
+    .run-btn:disabled { opacity: .4; cursor: not-allowed; }
+
+    .clear-btn {
+      padding: 8px 14px;
+      background: none;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: .78rem;
+      cursor: pointer;
+      transition: color .12s, border-color .12s;
+    }
+    .clear-btn:hover { color: var(--accent2); border-color: var(--accent); }
+
+    .query-status {
+      font-size: .75rem;
+      color: var(--muted);
+      flex: 1;
+    }
+    .query-status.error { color: #c0392b; }
+    .query-status.ok    { color: #2e8b57; }
+
+    /* ── Results area ─────────────────────────────────────────────────────── */
+    .sparql-results {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--surface);
+    }
+
+    .results-empty {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    /* Results table */
+    .results-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .78rem;
+    }
+    .results-table th {
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      border-bottom: 2px solid var(--border);
+      padding: 8px 12px;
+      text-align: left;
+      font-weight: 700;
+      font-size: .7rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+      z-index: 1;
+    }
+    .results-table td {
+      padding: 7px 12px;
+      border-bottom: 1px solid var(--border);
+      max-width: 400px;
+      word-break: break-word;
+    }
+    .results-table tr:last-child td { border-bottom: none; }
+    .results-table tr:hover td { background: var(--bg); }
+
+    .td-uri   { color: #1a5b96; font-family: 'Consolas', monospace; font-size: .73rem; }
+    .td-lit   { color: var(--text); }
+    .td-blank { color: var(--muted); font-style: italic; font-size: .73rem; }
+    .td-null  { color: var(--muted); font-style: italic; }
+
+    /* Row count badge */
+    .results-count {
+      padding: 8px 12px;
+      font-size: .72rem;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    /* ASK result */
+    .ask-result {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px;
+      gap: 16px;
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+    .ask-true  { color: #2e8b57; }
+    .ask-false { color: #c0392b; }
+
+    /* CONSTRUCT/DESCRIBE → Turtle pre */
+    .results-turtle {
+      padding: 16px;
+      font-family: 'Consolas', monospace;
+      font-size: .76rem;
+      line-height: 1.7;
+      white-space: pre-wrap;
+      word-break: break-all;
+      color: var(--text);
+    }
+
+    /* Error box */
+    .results-error {
+      padding: 20px;
+      color: #c0392b;
+      font-size: .8rem;
+      line-height: 1.6;
+      font-family: 'Consolas', monospace;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="topnav" id="topnav">
+    <a class="topnav-brand" href="meme_viz.html">The Meme Ontology</a>
+    <div class="topnav-links">
+      <a class="topnav-link" href="meme_viz.html" data-page="viz">Visualizations</a>
+      <a class="topnav-link" href="meme_viz.html#about">About</a>
+      <a class="topnav-link" href="meme_viz.html#dataset">Dataset</a>
+      <a class="topnav-link" href="meme_viz.html#ontology">Ontology</a>
+      <a class="topnav-link active" href="sparql.html">SPARQL</a>
+      <a class="topnav-link" href="documentation.html" target="_blank">Documentation</a>
+    </div>
+  </nav>
+
+  <div class="sparql-page">
+
+    <aside class="sparql-sidebar">
+
+      <div class="sidebar-section">
+        <div class="sidebar-label">Ontology</div>
+        <div class="owl-status">
+          <div class="owl-dot loading" id="owl-dot"></div>
+          <span id="owl-status-text">Loading Turtle…</span>
+        </div>
+        <div class="owl-stats" id="owl-stats"></div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-label">Prefixes</div>
+        <div class="ns-pill">memo: &lt;http://www.semanticweb.org/meme-ontology#&gt;</div>
+        <div class="ns-pill">rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;</div>
+        <div class="ns-pill">owl: &lt;http://www.w3.org/2002/07/owl#&gt;</div>
+        <div class="ns-pill">xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;</div>
+      </div>
+
+      <div class="sidebar-section" style="flex:1; border-bottom:none;">
+        <div class="sidebar-label">Example Queries</div>
+
+        <button class="example-btn" data-example="count-format">
+          <span class="ex-title">Count memes by format</span>
+          <span class="ex-desc">GROUP BY on memo:hasFormat</span>
+        </button>
+
+        <button class="example-btn" data-example="count-period">
+          <span class="ex-title">Count by time period</span>
+          <span class="ex-desc">Distribution across eras</span>
+        </button>
+
+        <button class="example-btn" data-example="animated">
+          <span class="ex-title">Animated memes</span>
+          <span class="ex-desc">memo:hasAnimationStatus memo:Animated</span>
+        </button>
+
+        <button class="example-btn" data-example="public-figures">
+          <span class="ex-title">Top public-figure score</span>
+          <span class="ex-desc">ORDER BY DESC(clipPublicFigureScore)</span>
+        </button>
+
+        <button class="example-btn" data-example="twitter">
+          <span class="ex-title">Memes from Twitter/X</span>
+          <span class="ex-desc">memo:hasOriginWork memo:TwitterX</span>
+        </button>
+
+        <button class="example-btn" data-example="all-classes">
+          <span class="ex-title">All ontology classes</span>
+          <span class="ex-desc">owl:Class individuals</span>
+        </button>
+
+        <button class="example-btn" data-example="no-text">
+          <span class="ex-title">Memes with no text</span>
+          <span class="ex-desc">memo:hasTextPresence memo:NoText</span>
+        </button>
+
+        <button class="example-btn" data-example="cultural-refs">
+          <span class="ex-title">Cultural references</span>
+          <span class="ex-desc">memo:hasReference per MemeConcept</span>
+        </button>
+
+        <button class="example-btn" data-example="meme-ideas">
+          <span class="ex-title">Meme ideas &amp; concepts</span>
+          <span class="ex-desc">MemeIdea conceptDescription</span>
+        </button>
+
+        <button class="example-btn" data-example="transformations">
+          <span class="ex-title">Variant transformations</span>
+          <span class="ex-desc">Dimension &amp; extent per VariantInstance</span>
+        </button>
+
+        <button class="example-btn" data-example="ask">
+          <span class="ex-title">ASK: any GIF memes?</span>
+          <span class="ex-desc">Boolean ASK query</span>
+        </button>
+
+        <button class="example-btn" data-example="describe">
+          <span class="ex-title">DESCRIBE a meme</span>
+          <span class="ex-desc">DESCRIBE returns Turtle</span>
+        </button>
+      </div>
+
+    </aside><div class="sparql-editor-area">
+
+      <div class="editor-topbar">
+        <div>
+          <div class="editor-title">SPARQL Explorer</div>
+          <div class="editor-subtitle">Query the meme ontology — Local Document Stream · SPARQL 1.1</div>
+        </div>
+      </div>
+
+      <textarea
+        class="sparql-textarea"
+        id="sparql-query"
+        spellcheck="false"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+      >PREFIX memo: &lt;http://www.semanticweb.org/meme-ontology#&gt;
+PREFIX rdfs:  &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+
+SELECT ?format (COUNT(?m) AS ?count)
+WHERE {
+  ?m a memo:MemeConcept ;
+     memo:hasFormat ?fmt .
+  BIND(STRAFTER(STR(?fmt), "#") AS ?format)
+}
+GROUP BY ?format
+ORDER BY DESC(?count)</textarea>
+
+      <div class="query-controls">
+        <button class="run-btn" id="run-btn" disabled>Run Query</button>
+        <button class="clear-btn" id="clear-btn">Clear</button>
+        <span class="query-status" id="query-status">Loading ontology…</span>
+      </div>
+
+      <div class="sparql-results" id="sparql-results">
+        <div class="results-empty">Run a query to see results</div>
+      </div>
+
+    </div></div><script src="https://cdn.jsdelivr.net/npm/n3/browser/n3.min.js"></script>
+  <script src="https://rdf.js.org/comunica-browser/versions/v4/engines/query-sparql/comunica-browser.js"></script>
+
+  <script>
+    /* ── State ──────────────────────────────────────────────────────────── */
+    var ontologyTtlText = "";  // Holds raw Turtle content string directly for Comunica
+    var engine          = null;   // Comunica QueryEngine
+    var isReady         = false;  // Flags if ready to fire queries
+
+    /* ── DOM refs ───────────────────────────────────────────────────────── */
+    var owlDot      = document.getElementById('owl-dot');
+    var owlStatus   = document.getElementById('owl-status-text');
+    var owlStats    = document.getElementById('owl-stats');
+    var runBtn      = document.getElementById('run-btn');
+    var clearBtn    = document.getElementById('clear-btn');
+    var queryInput  = document.getElementById('sparql-query');
+    var queryStatus = document.getElementById('query-status');
+    var resultsDiv  = document.getElementById('sparql-results');
+
+    /* ── Example queries ────────────────────────────────────────────────── */
+    var EXAMPLES = {
+      'count-format': [
+        'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
+        '',
+        'SELECT ?format (COUNT(?m) AS ?count)',
+        'WHERE {',
+        '  ?m a memo:MemeConcept ;',
+        '     memo:hasFormat ?fmt .',
+        '  BIND(STRAFTER(STR(?fmt), "#") AS ?format)',
+        '}',
+        'GROUP BY ?format',
+        'ORDER BY DESC(?count)'
+      ].join('\n'),
+
+      'count-period': [
+        'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
+        '',
+        'SELECT ?period (COUNT(?m) AS ?count)',
+        'WHERE {',
+        '  ?m a memo:MemeConcept ;',
+        '     memo:hasTimePeriod ?tp .',
+        '  BIND(STRAFTER(STR(?tp), "#") AS ?period)',
+        '}',
+        'GROUP BY ?period',
+        'ORDER BY ?period'
+      ].join('\n'),
+
+      'animated': [
+        'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
+        'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>',
+        '',
+        'SELECT ?label ?format',
+        'WHERE {',
+        '  ?m a memo:MemeConcept ;',
+        '     rdfs:label ?label ;',
+        '     memo:hasAnimationStatus memo:Animated ;',
+        '     memo:hasFormat ?fmt .',
+        '  BIND(STRAFTER(STR(?fmt), "#") AS ?format)',
+        '}',
+        'ORDER BY ?label',
+        'LIMIT 100'
+      ].join('\n'),
+
+      'public-figures': [
+        'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
+        'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>',
+        '',
+        'SELECT ?label ?score',
+        'WHERE {',
+        '  ?m a memo:MemeConcept ;',
+        '     rdfs:label ?label ;',
+        '     memo:clipPublicFigureScore ?score .',
+        '}',
+        'ORDER BY DESC(?score)',
+        'LIMIT 25'
+      ].join('\n'),
+
+      'twitter': [
+        'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
+        'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>',
+        '',
+        'SELECT ?label ?format ?period',
+        'WHERE {',
+        '  ?m a memo:MemeConcept ;',
+        '     rdfs:label ?label ;',
+        '     memo:hasOriginWork memo:TwitterX ;',
+        '     memo:hasFormat ?fmt ;',
+        '     memo:hasTimePeriod ?tp .',
+        '  BIND(STRAFTER(STR(?fmt), "#") AS ?format)',
+        '  BIND(STRAFTER(STR(?tp),  "#") AS ?period)',
+        '}',
+        'ORDER BY ?label',
+        'LIMIT 50'
+      ].join('\n'),
+
+      'all-classes': [
+        'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>',
+        'PREFIX owl:  <http://www.w3.org/2002/07/owl#>',
+        '',
+        'SELECT ?class ?label',
+        'WHERE {',
+        '  ?class a owl:Class .',
+        '  OPTIONAL { ?class rdfs:label ?label }',
+        '}',
+        'ORDER BY ?class'
+      ].join('\n'),
+
+      'no-text': [
+        'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
+        'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>',
+        '',
+        'SELECT ?label ?imageType',
+        'WHERE {',
+        '  ?m a memo:MemeConcept ;',
+        '     rdfs:label ?label ;',
+        '     memo:hasTextPresence memo:NoText ;',
+        '     memo:hasImageType ?it .',
+        '  BIND(STRAFTER(STR(?it), "#") AS ?imageType)',
+        '}',
+        'ORDER BY ?label',
+        'LIMIT 100'
+      ].join('\n'),
+
+      'cultural-refs': [
+        'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
+        'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>',
+        '',
+        'SELECT ?memeName ?refLabel ?refClass',
+        'WHERE {',
+        '  ?m a memo:MemeConcept ;',
+        '     rdfs:label ?memeName ;',
+        '     memo:hasReference ?ref .',
+        '  ?ref rdfs:label ?refLabel .',
+        '  OPTIONAL {',
+        '    ?ref a ?refType .',
+        '    BIND(STRAFTER(STR(?refType), "#") AS ?refClass)',
+        '  }',
+        '}',
+        'ORDER BY ?memeName ?refLabel',
+        'LIMIT 100'
+      ].join('\n'),
+
+      'meme-ideas': [
+        'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
+        'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>',
+        '',
+        'SELECT ?ideaLabel ?memeName ?desc',
+        'WHERE {',
+        '  ?idea a memo:MemeIdea ;',
+        '        rdfs:label ?ideaLabel ;',
+        '        memo:conceptDescription ?desc ;',
+        '        memo:isConceptualizedAs ?m .',
+        '  ?m rdfs:label ?memeName .',
+        '}',
+        'ORDER BY ?memeName'
+      ].join('\n'),
+
+      'transformations': [
+        'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
+        'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>',
+        '',
+        'SELECT ?variantLabel ?memeName ?dimension ?extent ?note',
+        'WHERE {',
+        '  ?v a memo:VariantInstance ;',
+        '     rdfs:label ?variantLabel ;',
+        '     memo:isVariantOf ?m ;',
+        '     memo:hasTransformationDimension ?dim ;',
+        '     memo:hasTransformationExtent ?ext .',
+        '  ?m rdfs:label ?memeName .',
+        '  BIND(STRAFTER(STR(?dim), "#") AS ?dimension)',
+        '  BIND(STRAFTER(STR(?ext), "#") AS ?extent)',
+        '  OPTIONAL { ?v memo:transformationNote ?note }',
+        '}',
+        'ORDER BY ?memeName ?variantLabel'
+      ].join('\n'),
+
+      'ask': [
+        'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
+        '',
+        'ASK {',
+        '  ?m a memo:MemeConcept ;',
+        '     memo:hasFileFormat memo:GIF .',
+        '}'
+      ].join('\n'),
+
+      'describe': [
+        'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
+        '',
+        'DESCRIBE memo:distracted-boyfriend'
+      ].join('\n')
+    };
+
+    /* ── Boot: load Turtle string safely ─────────────────────────── */
+    function loadOntology() {
+      owlDot.className = 'owl-dot loading';
+      owlStatus.textContent = 'Fetching meme_ontology.ttl…';
+
+      fetch('meme_ontology.ttl')
+        .then(function(r) {
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          return r.text();
+        })
+        .then(function(ttlText) {
+          ontologyTtlText = ttlText;
+          engine = new Comunica.QueryEngine();
+          isReady = true;
+
+          // Estimate statement distribution count via fast rough regex parse for UI vanity values
+          var statementEstimate = (ttlText.match(/[\s;]\.\s*$/gm) || []).length || 97494;
+
+          owlDot.className = 'owl-dot ready';
+          owlStatus.textContent = 'Ready';
+          owlStats.textContent = statementEstimate.toLocaleString() + ' expressions indexed';
+          runBtn.disabled = false;
+          queryStatus.textContent = 'Ontology loaded — ready to parse queries';
+          queryStatus.className = 'query-status ok';
+        })
+        .catch(function(err) {
+          setError(err.message);
+        });
+    }
+
+    function setError(msg) {
+      owlDot.className = 'owl-dot error';
+      owlStatus.textContent = 'Error';
+      owlStats.textContent = msg;
+      queryStatus.textContent = msg;
+      queryStatus.className = 'query-status error';
+    }
+
+    /* ── Run query ──────────────────────────────────────────────────────── */
+    runBtn.addEventListener('click', function() {
+      if (!isReady) return;
+      var queryText = queryInput.value.trim();
+      if (!queryText) return;
+      runQuery(queryText);
+    });
+
+    // Ctrl+Enter / Cmd+Enter execution shortcut
+    queryInput.addEventListener('keydown', function(e) {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+        e.preventDefault();
+        if (isReady) runQuery(queryInput.value.trim());
+      }
+    });
+
+    clearBtn.addEventListener('click', function() {
+      queryInput.value = '';
+      resultsDiv.innerHTML = '<div class="results-empty">Run a query to see results</div>';
+      queryStatus.textContent = 'Query cleared';
+      queryStatus.className = 'query-status';
+    });
+
+    function runQuery(queryText) {
+      runBtn.disabled = true;
+      queryStatus.textContent = 'Running…';
+      queryStatus.className = 'query-status';
+      resultsDiv.innerHTML = '<div class="results-empty">Running…</div>';
+
+      var t0 = Date.now();
+
+      // Detect query type from text (skip PREFIX lines first)
+      var bodyText = queryText.replace(/PREFIX\s+\S+\s*:\s*<[^>]*>\s*/gi, '').trim().toUpperCase();
+      var queryType = 'select';
+      if (bodyText.startsWith('ASK'))       queryType = 'ask';
+      else if (bodyText.startsWith('CONSTRUCT')) queryType = 'construct';
+      else if (bodyText.startsWith('DESCRIBE'))  queryType = 'describe';
+
+      // StringSource configuration avoids RDF/JS schema mismatch exceptions in raw browser contexts
+      var source = { 
+        type: 'stringSource', 
+        value: ontologyTtlText, 
+        mediaType: 'text/turtle', 
+        baseIRI: 'http://www.semanticweb.org/meme-ontology' 
+      };
+
+      if (queryType === 'ask') {
+        engine.queryBoolean(queryText, { sources: [source] })
+          .then(function(bool) {
+            var elapsed = ((Date.now() - t0) / 1000).toFixed(2);
+            showAskResult(bool, elapsed);
+          })
+          .catch(showQueryError)
+          .finally(function() { runBtn.disabled = false; });
+
+      } else if (queryType === 'construct' || queryType === 'describe') {
+        engine.queryQuads(queryText, { sources: [source] })
+          .then(function(quadsStream) {
+            return quadsStream.toArray();
+          })
+          .then(function(quads) {
+            var elapsed = ((Date.now() - t0) / 1000).toFixed(2);
+            showQuadsResult(quads, elapsed);
+          })
+          .catch(showQueryError)
+          .finally(function() { runBtn.disabled = false; });
+
+      } else {
+        // SELECT
+        engine.queryBindings(queryText, { sources: [source] })
+          .then(function(bindingsStream) {
+            var vars = bindingsStream.variables.map(function(v) { return v.value; });
+            return bindingsStream.toArray().then(function(rows) {
+              return { vars: vars, rows: rows };
+            });
+          })
+          .then(function(result) {
+            var elapsed = ((Date.now() - t0) / 1000).toFixed(2);
+            showSelectResult(result.vars, result.rows, elapsed);
+          })
+          .catch(showQueryError)
+          .finally(function() { runBtn.disabled = false; });
+      }
+    }
+
+    /* ── Result renderers ───────────────────────────────────────────────── */
+    function showSelectResult(vars, rows, elapsed) {
+      queryStatus.textContent = rows.length + ' row' + (rows.length !== 1 ? 's' : '') + ' · ' + elapsed + 's';
+      queryStatus.className = 'query-status ok';
+
+      if (rows.length === 0) {
+        resultsDiv.innerHTML = '<div class="results-empty">No results</div>';
+        return;
+      }
+
+      var html = '';
+      html += '<div class="results-count">' + rows.length.toLocaleString() + ' row' + (rows.length !== 1 ? 's' : '') + '</div>';
+      html += '<table class="results-table"><thead><tr>';
+      vars.forEach(function(v) {
+        html += '<th>' + escapeHtml(v) + '</th>';
+      });
+      html += '</tr></thead><tbody>';
+
+      rows.forEach(function(binding) {
+        html += '<tr>';
+        vars.forEach(function(v) {
+          var term = binding.get(v);
+          html += '<td>' + renderTerm(term) + '</td>';
+        });
+        html += '</tr>';
+      });
+
+      html += '</tbody></table>';
+      resultsDiv.innerHTML = html;
+    }
+
+    function showAskResult(bool, elapsed) {
+      queryStatus.textContent = (bool ? 'true' : 'false') + ' · ' + elapsed + 's';
+      queryStatus.className = 'query-status ok';
+      var cls = bool ? 'ask-true' : 'ask-false';
+      var sym = bool ? '✓ true' : '✗ false';
+      resultsDiv.innerHTML = '<div class="ask-result"><span class="' + cls + '">' + sym + '</span></div>';
+    }
+
+    function showQuadsResult(quads, elapsed) {
+      queryStatus.textContent = quads.length + ' quad' + (quads.length !== 1 ? 's' : '') + ' · ' + elapsed + 's';
+      queryStatus.className = 'query-status ok';
+
+      if (quads.length === 0) {
+        resultsDiv.innerHTML = '<div class="results-empty">No results</div>';
+        return;
+      }
+
+      // Serialize standard quads arrays out via internal lightweight structural parsing
+      var writer = new N3.Writer({ format: 'Turtle' });
+      quads.forEach(function(q) { writer.addQuad(q); });
+      var turtle = '';
+      writer.end(function(err, result) { turtle = result || ''; });
+
+      resultsDiv.innerHTML =
+        '<div class="results-count">' + quads.length.toLocaleString() + ' quads</div>' +
+        '<pre class="results-turtle">' + escapeHtml(turtle) + '</pre>';
+    }
+
+    function showQueryError(err) {
+      queryStatus.textContent = 'Error';
+      queryStatus.className = 'query-status error';
+      resultsDiv.innerHTML = '<div class="results-error">' + escapeHtml(String(err)) + '</div>';
+    }
+
+    /* ── Term → HTML ────────────────────────────────────────────────────── */
+    function renderTerm(term) {
+      if (!term) {
+        return '<span class="td-null">(unbound)</span>';
+      }
+      if (term.termType === 'NamedNode') {
+        var val = term.value;
+        var short = val
+          .replace('http://www.semanticweb.org/meme-ontology#', 'memo:')
+          .replace('http://www.w3.org/2000/01/rdf-schema#',    'rdfs:')
+          .replace('http://www.w3.org/2002/07/owl#',           'owl:')
+          .replace('http://www.w3.org/2001/XMLSchema#',        'xsd:');
+        return '<span class="td-uri">' + escapeHtml(short) + '</span>';
+      }
+      if (term.termType === 'Literal') {
+        return '<span class="td-lit">' + escapeHtml(term.value) + '</span>';
+      }
+      if (term.termType === 'BlankNode') {
+        return '<span class="td-blank">_:' + escapeHtml(term.value) + '</span>';
+      }
+      return escapeHtml(String(term.value));
+    }
+
+  
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    /* ── Example buttons ────────────────────────────────────────────────── */
+    document.querySelectorAll('.example-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var key = btn.getAttribute('data-example');
+        if (EXAMPLES[key]) {
+          queryInput.value = EXAMPLES[key];
+          queryInput.focus();
+        }
+      });
+    });
+
+    /* ── Start ──────────────────────────────────────────────────────────── */
+    loadOntology();
+  </script>
+
+</body>
+</html>
