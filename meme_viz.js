@@ -157,7 +157,7 @@ function normalizeHttpUrl(raw) {
 function updateLiveLodeLink(owlUrl) {
   var lodeA = document.getElementById('onto-lode-live-link');
   var vowlA = document.getElementById('onto-vowl-live-link');
-  var lodeUrl = 'https://essepuntato.it/lode/';
+  var lodeUrl = 'https://w3id.org/lode/';
   var vowlUrl = 'https://service.tib.eu/webvowl/';
 
   if (!owlUrl) {
@@ -166,7 +166,8 @@ function updateLiveLodeLink(owlUrl) {
     return;
   }
 
-  lodeUrl = 'https://essepuntato.it/lode/extract?url=' + encodeURIComponent(owlUrl) + '&lang=en';
+  // Current LODE service endpoint pattern documented at https://essepuntato.it/lode/
+  lodeUrl = 'https://w3id.org/lode/owlapi/' + owlUrl;
   vowlUrl = 'https://service.tib.eu/webvowl/#file=' + encodeURIComponent(owlUrl);
 
   if (lodeA) lodeA.href = lodeUrl;
