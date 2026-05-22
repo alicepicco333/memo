@@ -106,6 +106,24 @@ function showPage(name, navPage) {
 
 /* ── Ontology page: WebVOWL + local docs ─────────────────────────────────── */
 var ontoInited = false;
+function normalizeHttpUrl(raw) {
+  var s = (raw || '').trim();
+  if (!s) return '';
+  if (/^https?:\/\//i.test(s)) return s;
+  if (/^[\w.-]+\.[a-z]{2,}(\/.*)?$/i.test(s)) return 'https://' + s;
+  return s;
+}
+
+function updateLiveLodeLink(owlUrl) {
+  var a = document.getElementById('onto-lode-live-link');
+  if (!a) return;
+  if (!owlUrl) {
+    a.href = 'https://essepuntato.it/lode/';
+    return;
+  }
+  a.href = 'https://essepuntato.it/lode/extract?url=' + encodeURIComponent(owlUrl) + '&lang=en';
+}
+
 function initOntoPage() {
   if (ontoInited) return;
   ontoInited = true;
@@ -119,14 +137,19 @@ function initOntoPage() {
     // On a deployed domain: auto-fill and auto-load
     var owlUrl = window.location.origin + '/meme_ontology.owl';
     input.value = owlUrl;
+    updateLiveLodeLink(owlUrl);
     _loadWebVOWLUrl(owlUrl);
+  } else {
+    updateLiveLodeLink('');
   }
   // On localhost: show the hint overlay, leave input empty for user to fill
 }
 
 function loadWebVOWL() {
-  var url = (document.getElementById('onto-url-input').value || '').trim();
+  var url = normalizeHttpUrl(document.getElementById('onto-url-input').value || '');
   if (!url) return;
+  document.getElementById('onto-url-input').value = url;
+  updateLiveLodeLink(url);
   _loadWebVOWLUrl(url);
 }
 
@@ -148,7 +171,7 @@ function switchOntoTab(tab) {
 }
 
 function showViz() {
-  ['about', 'dataset', 'ontology', 'meme'].forEach(p =>
+  ['about', 'dataset', 'ontology', 'meme', 'd0', 'variant'].forEach(p =>
     document.getElementById('page-' + p).classList.add('hidden'));
   document.getElementById('app').classList.remove('hidden');
   document.getElementById('dot-nav').classList.remove('hidden');

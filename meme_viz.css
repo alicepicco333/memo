@@ -601,6 +601,96 @@ body {
   line-height: 1.6;
 }
 
+/* ── Ontology docs bar ────────────────────────────────────────────────────── */
+.onto-docs-bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 14px;
+  background: #fafafa;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.onto-docs-bar a {
+  font-size: .78rem;
+  color: var(--accent2);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  background: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+.onto-docs-bar a:hover {
+  background: var(--bg);
+}
+
+/* ── Home landing page ────────────────────────────────────────────────────── */
+.landing-main {
+  min-height: 100vh;
+  padding-top: var(--nav-h);
+}
+
+.landing-hero {
+  position: relative;
+  min-height: calc(100vh - var(--nav-h));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.landing-overlay {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid #fff;
+  backdrop-filter: blur(5px);
+  padding: 18px 22px;
+  border-radius: 8px;
+}
+
+.landing-title {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: clamp(3rem, 8vw, 7.2rem);
+  letter-spacing: .12em;
+  color: #111;
+  margin-bottom: 8px;
+}
+
+.landing-sub {
+  font-size: .86rem;
+  color: #222;
+  letter-spacing: .05em;
+  margin-bottom: 14px;
+}
+
+.landing-cta-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.landing-cta {
+  display: inline-block;
+  text-decoration: none;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  border: 1px solid #111;
+  color: #111;
+  padding: 8px 12px;
+  background: #fff;
+}
+
+.landing-cta:hover {
+  background: #111;
+  color: #fff;
+}
+
 /* ── About page ───────────────────────────────────────────────────────────── */
 .about-section {
   margin-bottom: 36px;

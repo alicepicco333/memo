@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Meme Ontology</title>
+  <link rel="stylesheet" href="meme_viz.css"/>
+  <style>
+    /* index-specific overrides */
+    body { overflow: hidden; }
+
+    .index-hero {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* reuse .hero-images from meme_viz.css — position absolute fills .index-hero */
+    .index-hero .hero-images {
+      position: absolute;
+      inset: 0;
+    }
+
+    .index-hero .hero-content {
+      pointer-events: all;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding: 40px 48px 36px;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 6px;
+      max-width: 720px;
+      width: calc(100% - 48px);
+    }
+
+    .index-hero .hero-title {
+      line-height: 1;
+      margin: 0;
+    }
+
+    .hero-tagline {
+      font-size: .9rem;
+      color: rgba(255,255,255,.72);
+      letter-spacing: .1em;
+      text-align: center;
+      margin-top: -6px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .hero-stat {
+      text-align: center;
+    }
+    .hero-stat-num {
+      display: block;
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: #fff;
+    }
+    .hero-stat-lbl {
+      font-size: .65rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+    }
+
+    .hero-divider {
+      width: 100%;
+      border: none;
+      border-top: 1px solid rgba(255,255,255,.15);
+    }
+
+    .hero-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .hero-nav-btn {
+      padding: 9px 22px;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #fff;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background .15s, border-color .15s;
+      white-space: nowrap;
+    }
+    .hero-nav-btn:hover {
+      background: rgba(255,255,255,.22);
+      border-color: rgba(255,255,255,.55);
+    }
+    .hero-nav-btn.primary {
+      background: #fff;
+      color: #111;
+      border-color: #fff;
+    }
+    .hero-nav-btn.primary:hover {
+      background: #eee;
+    }
+
+    .hero-links {
+      display: flex;
+      gap: 20px;
+      font-size: .72rem;
+    }
+    .hero-links a {
+      color: rgba(255,255,255,.5);
+      text-decoration: none;
+      transition: color .15s;
+    }
+    .hero-links a:hover { color: rgba(255,255,255,.85); }
+  </style>
+</head>
+<body>
+
+  <section class="index-hero">
+    <div id="hero-images" class="hero-images"></div>
+
+    <div class="hero-content">
+      <h1 class="hero-title">THE MEME ONTOLOGY</h1>
+
+      <p class="hero-tagline">OWL 2 DL &middot; FRBR &times; Panofsky &middot; 5,000 internet memes</p>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-num">5,000</span>
+          <span class="hero-stat-lbl">Meme templates</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">391</span>
+          <span class="hero-stat-lbl">Variant instances</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">97,591</span>
+          <span class="hero-stat-lbl">Total triples</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">40</span>
+          <span class="hero-stat-lbl">OWL classes</span>
+        </div>
+      </div>
+
+      <hr class="hero-divider"/>
+
+      <nav class="hero-nav">
+        <a class="hero-nav-btn primary" href="visualizations.html">Visualizations</a>
+        <a class="hero-nav-btn" href="visualizations.html#dataset">Dataset</a>
+        <a class="hero-nav-btn" href="visualizations.html#ontology">Ontology</a>
+        <a class="hero-nav-btn" href="sparql.html" target="_blank">SPARQL</a>
+        <a class="hero-nav-btn" href="documentation.html" target="_blank">Documentation</a>
+      </nav>
+
+      <div class="hero-links">
+        <a href="meme_ontology.owl" download>&#x2B07; Download OWL</a>
+        <a href="meme_ontology.ttl" download>&#x2B07; Download Turtle</a>
+        <a href="https://github.com/meme-ontology/meme-ontology" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (async () => {
+      try {
+        const resp = await fetch('meme_data.json');
+        const data = await resp.json();
+        const memes = Object.values(data.memes).filter(m => m.imageFilename);
+        for (let i = memes.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [memes[i], memes[j]] = [memes[j], memes[i]];
+        }
+        const container = document.getElementById('hero-images');
+        memes.slice(0, 200).forEach(m => {
+          const img = document.createElement('img');
+          img.src     = m.imageURL || `images_flat/${m.imageFilename}`;
+          img.alt     = '';
+          img.loading = 'lazy';
+          container.appendChild(img);
+        });
+      } catch (_) {}
+    })();
+  </script>
+</body>
+</html>
