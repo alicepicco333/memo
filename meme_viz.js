@@ -155,10 +155,16 @@ function loadWebVOWL() {
 
 function _loadWebVOWLUrl(owlUrl) {
   var vowlUrl = 'https://service.tib.eu/webvowl/#file=' + encodeURIComponent(owlUrl);
+  var status = document.getElementById('onto-vowl-status');
   var hint  = document.getElementById('onto-vowl-hint');
   var frame = document.getElementById('webvowl-frame');
   if (hint)  { hint.style.display  = 'none'; }
-  if (frame) { frame.style.display = 'block'; frame.src = vowlUrl; }
+  if (frame) { frame.style.display = 'none'; frame.src = 'about:blank'; }
+  if (status) {
+    status.style.display = 'block';
+    status.innerHTML = 'Opening WebVOWL in a new tab. If it does not open, <a href="' + vowlUrl + '" target="_blank" rel="noopener">click here</a>.';
+  }
+  window.open(vowlUrl, '_blank', 'noopener');
 }
 
 function switchOntoTab(tab) {
@@ -202,6 +208,38 @@ function moveTip(e) {
 }
 function hideTip() { tip.style.display = 'none'; }
 
+function memeLocalSrc(meme) {
+  if (!meme || !meme.imageFilename) return '';
+  return 'images_flat/' + encodeURIComponent(String(meme.imageFilename));
+}
+
+function memeRemoteSrc(meme) {
+  return (meme && meme.imageURL) ? String(meme.imageURL) : '';
+}
+
+function setMemeImageWithFallback(img, meme) {
+  var local = memeLocalSrc(meme);
+  var remote = memeRemoteSrc(meme);
+  img.src = local || remote || '';
+  if (local && remote) {
+    img.addEventListener('error', function() {
+      if (img.dataset.fallbackTried) return;
+      img.dataset.fallbackTried = '1';
+      img.src = remote;
+    });
+  }
+}
+
+function memeImgTag(meme, altText) {
+  var local = escHtml(memeLocalSrc(meme));
+  var remote = escHtml(memeRemoteSrc(meme));
+  var src = local || remote;
+  var onerr = (local && remote)
+    ? ' onerror="if(!this.dataset.fallbackTried){this.dataset.fallbackTried=\'1\';this.src=\'' + remote + '\';}"'
+    : '';
+  return '<img src="' + src + '" alt="' + escHtml(altText || '') + '" loading="lazy"' + onerr + '/>';
+}
+
 /* ── Hero image collage ────────────────────────────────────────────────────── */
 function shuffle(arr) {
   const a = [...arr];
@@ -219,7 +257,7 @@ function buildHero() {
     const meme = DATA.memes[slug];
     if (!meme?.imageFilename) return;
     const img     = document.createElement('img');
-    img.src       = meme.imageURL || `images_flat/${meme.imageFilename}`;
+    setMemeImageWithFallback(img, meme);
     img.alt       = slug;
     img.title     = slug.replace(/_/g, ' ');
     img.loading   = 'lazy';
@@ -915,7 +953,7 @@ function appendThumbnails(grid, slugs, from, count) {
     card.className = 'meme-thumb';
 
     const img     = document.createElement('img');
-    img.src       = meme.imageURL || `images_flat/${meme.imageFilename}`;
+    setMemeImageWithFallback(img, meme);
     img.alt       = slug;
     img.loading   = 'lazy';
 
@@ -972,7 +1010,7 @@ function showMemePage(slug) {
     <button class="meme-page-back" onclick="history.back()">&#8592; Back</button>
     <div class="meme-page-layout">
       <div class="meme-page-img-col">
-        <img src="${m.imageURL || `images_flat/${escHtml(m.imageFilename)}`}" alt="${escHtml(title)}"/>
+        ${memeImgTag(m, title)}
         ${m.memeUrl ? `<a href="${escHtml(m.memeUrl)}" target="_blank" rel="noopener">Open on Know Your Meme ↗</a>` : ''}
       </div>
       <div class="meme-page-info">
@@ -1381,7 +1419,7 @@ function renderDsPage() {
     const m = DATA.memes[slug];
     const label = (m.title && m.title !== slug) ? m.title : slug.replace(/_/g,' ');
     return `<a class="ds-card" href="#meme/${encodeURIComponent(slug)}">
-      <div class="ds-card-img"><img src="${m.imageURL || `images_flat/${escHtml(m.imageFilename)}`}" alt="${escHtml(label)}" loading="lazy"/></div>
+      <div class="ds-card-img">${memeImgTag(m, label)}</div>
       <span class="ds-card-name">${escHtml(label)}</span>
     </a>`;
   }).join('');

@@ -624,6 +624,21 @@ body {
   background: var(--bg);
 }
 
+.onto-vowl-status {
+  margin: 16px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #fff;
+  font-size: .82rem;
+  color: var(--text);
+}
+
+.onto-vowl-status a {
+  color: var(--accent2);
+  font-weight: 700;
+}
+
 /* ── Home landing page ────────────────────────────────────────────────────── */
 .landing-main {
   min-height: 100vh;
