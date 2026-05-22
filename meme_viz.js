@@ -672,7 +672,6 @@ function buildGraphs() {
   buildPlatformTimeStacked();
   buildVariantGallery();
   buildVariantBubble();
-  buildMediumShiftMatrix();
 }
 
 /* ── Variant Gallery (Viz B) ─────────────────────────────────────────────── */
@@ -683,6 +682,13 @@ function buildVariantGallery() {
   var EXTENT_ORDER = ['Minimal', 'Moderate', 'Substantial', 'Parody'];
   var EXTENT_COLOR = { Minimal: '#4caf50', Moderate: '#ff9800', Substantial: '#f44336', Parody: '#9c27b0' };
   var CANON_COLOR  = { Photograph: '#4a9eff', Drawing: '#f5a623', Cartoon: '#7ed321' };
+
+  function toSlug(name) {
+    return String(name || '').toLowerCase()
+      .replace(/\u2019/g, '').replace(/'/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '');
+  }
 
   // Build lookup: photo_id → variant entry
   var varByPhotoId = {};
@@ -717,31 +723,60 @@ function buildVariantGallery() {
   // One row per meme
   Object.keys(memeGroups).forEach(function(memeName) {
     var g = memeGroups[memeName];
-    var canonColor = CANON_COLOR[g.canonical] || '#888';
+    var seenVariant = {};
+    var uniqueVariants = [];
+    g.variants.forEach(function(a) {
+      var normCaption = String(a.captionText || '').toLowerCase().replace(/\s+/g, ' ').trim();
+      var key = normCaption || String(a.imageURL || '') || String(a.photoId || '');
+      if (seenVariant[key]) return;
+      seenVariant[key] = true;
+      uniqueVariants.push(a);
+    });
+
+    var slug = ((uniqueVariants[0] && uniqueVariants[0].memeConceptIRI) || '').split('#')[1] || toSlug(memeName);
+    var d0Entry = (D0_DATA || []).find(function(entry) {
+      return ((entry.meme_url || '').split('/').pop() || '') === slug;
+    });
+    var originalType = (d0Entry && d0Entry.hasImageType) ? String(d0Entry.hasImageType) : String(g.canonical || 'Unknown');
+    var canonColor = CANON_COLOR[originalType] || CANON_COLOR[g.canonical] || '#888';
+    var originalHref = d0Entry ? ('#d0/' + encodeURIComponent(String(d0Entry.id))) : ('#meme/' + encodeURIComponent(slug));
 
     html += '<div class="vg-row">';
     html += '<div class="vg-label">';
     html += '<span class="vg-meme-name">' + escHtml(memeName) + '</span>';
-    html += '<span class="vg-canon-badge" style="color:' + canonColor + '">' + escHtml(g.canonical) + '</span>';
+    html += '<span class="vg-canon-badge" style="color:' + canonColor + '">Original: ' + escHtml(originalType) + '</span>';
     html += '</div>';
     html += '<div class="vg-thumbs">';
 
-    g.variants.forEach(function(a) {
+    // Add original/template image first, next to the variants.
+    var originalMeme = DATA && DATA.memes ? DATA.memes[slug] : null;
+    var originalImg = originalMeme ? (memeRemoteSrc(originalMeme) || memeLocalSrc(originalMeme)) : '';
+    html += '<a class="vg-thumb vg-thumb-original" href="' + escHtml(originalHref) + '" title="Original template · ' + escHtml(originalType) + '">';
+    if (originalImg) {
+      html += '<img src="' + escHtml(originalImg) + '" alt="' + escHtml(memeName + ' original') + '" loading="lazy" style="border:2px solid ' + canonColor + '">';
+    } else {
+      html += '<div class="vg-thumb-missing">?</div>';
+    }
+    html += '<span class="vg-ext-label" style="color:' + canonColor + '">ORIGINAL</span>';
+    html += '</a>';
+
+    uniqueVariants.forEach(function(a) {
       var v = varByPhotoId[String(a.photoId)];
       var localImg = (v && v.folder && v.filename)
         ? 'sampled_variants/' + v.folder + '/' + v.filename
         : '';
-      var remoteImg = (v && v.image_url) ? String(v.image_url) : '';
+      var remoteImg = (a && a.imageURL) ? String(a.imageURL) : ((v && v.image_url) ? String(v.image_url) : '');
       var img = remoteImg || localImg;
       var extColor = EXTENT_COLOR[a.transformationExtent] || '#888';
+      var variantType = String(a.variantImageType || 'Unknown');
       var dims = Array.isArray(a.transformationDimension)
         ? a.transformationDimension.join(', ')
         : String(a.transformationDimension || '');
-      var tipText = a.transformationExtent + ' · ' + a.variantImageType + (dims ? ' · ' + dims : '');
+      var tipText = 'Variant: ' + variantType + ' · ' + a.transformationExtent + (dims ? ' · ' + dims : '');
 
-      html += '<div class="vg-thumb" title="' + escHtml(tipText) + '">';
+      html += '<a class="vg-thumb" href="#variant/' + encodeURIComponent(String(a.photoId)) + '" title="' + escHtml(tipText) + '">';
       if (img) {
-        html += '<img src="' + escHtml(img) + '" alt="' + escHtml(a.variantTitle || '') + '" loading="lazy" style="border:2px solid ' + extColor + '"';
+        html += '<img src="' + escHtml(img) + '" alt="' + escHtml((a.variantTitle || (v && v.title) || '')) + '" loading="lazy" style="border:2px solid ' + extColor + '"';
         if (remoteImg && localImg) {
           html += ' onerror="if(!this.dataset.fallbackTried){this.dataset.fallbackTried=\'1\';this.src=\'' + escHtml(localImg) + '\';}"';
         }
@@ -750,7 +785,7 @@ function buildVariantGallery() {
         html += '<div class="vg-thumb-missing">?</div>';
       }
       html += '<span class="vg-ext-label" style="color:' + extColor + '">' + escHtml(a.transformationExtent) + '</span>';
-      html += '</div>';
+      html += '</a>';
     });
 
     html += '</div></div>';
@@ -763,7 +798,7 @@ function buildVariantGallery() {
 /* ── Bubble Chart (Viz C) ─────────────────────────────────────────────────── */
 function buildVariantBubble() {
   var wrap = document.getElementById('graph-variant-bubble');
-  if (!wrap || !DATA || !VARIANTS_DATA) return;
+  if (!wrap || !DATA || !D0_DATA) return;
 
   var CANON_COLOR = { Photograph: '#4a9eff', Drawing: '#f5a623', Cartoon: '#7ed321' };
 
@@ -782,38 +817,34 @@ function buildVariantBubble() {
     return ((h % 1000) / 1000 - 0.5) * 0.7;
   }
 
-  // Build lookup from D0_DATA: slug → { photos, views, title }
-  var d0BySlug = {};
-  D0_DATA.forEach(function(entry) {
-    var slug = (entry.meme_url || '').split('/').pop();
-    if (slug) d0BySlug[slug] = entry;
-  });
-
   // Get canonical image types from TRANSFORM_MAP (annotated 5 memes)
   var canonByMeme = {};
-  var slugByMeme = {};
+  var canonBySlug = {};
   Object.values(TRANSFORM_MAP).forEach(function(a) {
-    if (!canonByMeme[a.memeName]) {
-      canonByMeme[a.memeName] = a.canonicalImageType;
-      slugByMeme[a.memeName] = (a.memeConceptIRI || '').split('#')[1] || toSlug(a.memeName);
-    }
+    var annSlug = (a.memeConceptIRI || '').split('#')[1] || toSlug(a.memeName);
+    canonByMeme[a.memeName] = a.canonicalImageType;
+    canonBySlug[annSlug] = a.canonicalImageType;
   });
 
-  // Build one data point per unique meme in variants, joined to D0_DATA
-  var seenNames = {};
-  VARIANTS_DATA.forEach(function(v) { seenNames[v.meme_name] = true; });
-
-  var points = Object.keys(seenNames).map(function(name) {
-    var slug = slugByMeme[name] || toSlug(name);
-    var d0   = d0BySlug[slug] || null;
+  // Build one data point for every sampled dataset entry (not just variant memes).
+  var points = D0_DATA.map(function(d0) {
+    var slug = (d0.meme_url || '').split('/').pop() || toSlug(d0.title || '');
+    var name = d0.title || slug;
     return {
+      id: d0.id,
       name: name,
       slug: slug,
-      photos: d0 ? (d0.photos || 0) : 0,
-      views:  d0 ? (d0.views  || 0) : 0,
-      canon:  canonByMeme[name] || null
+      photos: d0.photos || 0,
+      views:  d0.views  || 0,
+      canon:  canonBySlug[slug] || canonByMeme[name] || null
     };
-  }).filter(function(p) { return p.views > 0; });
+  });
+
+  points.sort(function(a, b) {
+    if (b.views !== a.views) return b.views - a.views;
+    return a.name.localeCompare(b.name);
+  });
+  points.forEach(function(p, idx) { p.rank = idx + 1; });
 
   if (!points.length) {
     wrap.innerHTML = '<p style="padding:24px;color:var(--muted)">No view data available.</p>';
@@ -822,7 +853,7 @@ function buildVariantBubble() {
 
   var W = wrap.getBoundingClientRect().width || 900;
   var H = 420;
-  var M = { top: 24, right: 164, bottom: 56, left: 84 };
+  var M = { top: 24, right: 164, bottom: 56, left: 68 };
   var w = W - M.left - M.right;
   var h = H - M.top - M.bottom;
 
@@ -833,64 +864,55 @@ function buildVariantBubble() {
 
   var g = svg.append('g').attr('transform', 'translate(' + M.left + ',' + M.top + ')');
 
-  var minV = d3.min(points, function(p) { return p.photos; });
-  var maxV = d3.max(points, function(p) { return p.photos; });
-
   var xScale = d3.scaleLinear()
-    .domain([Math.max(0, minV - 20), maxV + 20])
+    .domain([1, points.length])
     .range([0, w]);
 
-  var yScale = d3.scaleLog()
-    .domain([
-      Math.max(1, d3.min(points, function(p) { return p.views; }) * 0.7),
-      d3.max(points, function(p) { return p.views; }) * 1.3
-    ])
-    .range([h, 0]).nice();
+  var yMid = h / 2;
 
-  // Light grid lines on Y axis
-  g.append('g')
-    .call(d3.axisLeft(yScale).ticks(5, '~s').tickSize(-w).tickFormat(''))
-    .attr('opacity', 0.12)
-    .call(function(sel) { sel.select('.domain').remove(); });
+  var rScale = d3.scaleSqrt()
+    .domain([0, d3.max(points, function(p) { return p.photos; }) || 1])
+    .range([4, 18]);
+
+  g.append('line')
+    .attr('x1', 0).attr('x2', w)
+    .attr('y1', yMid).attr('y2', yMid)
+    .attr('stroke', 'rgba(255,255,255,.18)')
+    .attr('stroke-width', 1);
 
   // Axes
   g.append('g').attr('transform', 'translate(0,' + h + ')')
-    .call(d3.axisBottom(xScale).ticks(6).tickFormat(d3.format('d')))
-    .attr('color', '#888');
-
-  g.append('g')
-    .call(d3.axisLeft(yScale).ticks(5, '~s'))
+    .call(d3.axisBottom(xScale).ticks(10).tickFormat(d3.format('d')))
     .attr('color', '#888');
 
   // Axis labels
   g.append('text').attr('x', w / 2).attr('y', h + 44)
     .attr('text-anchor', 'middle').attr('fill', '#888').attr('font-size', 11)
-    .text('Photos on KYM (D0 dataset)');
-
-  g.append('text').attr('transform', 'rotate(-90)').attr('y', -68).attr('x', -h / 2)
-    .attr('text-anchor', 'middle').attr('fill', '#888').attr('font-size', 11)
-    .text('KYM view count (log scale)');
+    .text('Popularity rank (1 = most viewed in sampled dataset)');
 
   // Circles
   g.selectAll('circle').data(points).join('circle')
-    .attr('cx', function(p) { return xScale(p.photos + jitter(p.name) * 10); })
-    .attr('cy', function(p) { return yScale(p.views); })
-    .attr('r', function(p) { return p.canon ? 9 : 6; })
+    .attr('cx', function(p) { return xScale(p.rank); })
+    .attr('cy', function(p) { return yMid + jitter(p.name) * 42; })
+    .attr('r', function(p) { return rScale(p.photos); })
     .attr('fill', function(p) { return p.canon ? (CANON_COLOR[p.canon] + 'cc') : 'rgba(255,255,255,.18)'; })
     .attr('stroke', function(p) { return p.canon ? CANON_COLOR[p.canon] : 'rgba(255,255,255,.3)'; })
     .attr('stroke-width', function(p) { return p.canon ? 2 : 1; })
     .style('cursor', 'pointer')
     .on('mouseover', function(evt, p) {
-      showTip('<strong>' + escHtml(p.name) + '</strong><br/>' + p.photos.toLocaleString() + ' photos · ' + p.views.toLocaleString() + ' views' + (p.canon ? '<br/>' + escHtml(p.canon) : ''), evt);
+      showTip('<strong>#' + p.rank + ' — ' + escHtml(p.name) + '</strong><br/>' + p.views.toLocaleString() + ' views · ' + p.photos.toLocaleString() + ' photos' + (p.canon ? '<br/>' + escHtml(p.canon) : ''), evt);
     })
     .on('mousemove', moveTip)
-    .on('mouseout', hideTip);
+    .on('mouseout', hideTip)
+    .on('click', function(evt, p) {
+      if (p.id != null) location.hash = '#d0/' + encodeURIComponent(String(p.id));
+    });
 
   // Labels for the 5 annotated memes only
   g.selectAll('.bubble-lbl').data(points.filter(function(p) { return !!p.canon; })).join('text')
     .attr('class', 'bubble-lbl')
-    .attr('x', function(p) { return xScale(p.photos + jitter(p.name) * 10) + 12; })
-    .attr('y', function(p) { return yScale(p.views) + 4; })
+    .attr('x', function(p) { return xScale(p.rank) + 12; })
+    .attr('y', function(p) { return yMid + jitter(p.name) * 42 + 4; })
     .attr('fill', function(p) { return CANON_COLOR[p.canon]; })
     .attr('font-size', 10).attr('font-weight', 600)
     .text(function(p) { return p.name; });
@@ -1280,7 +1302,7 @@ function showVariantPage(photoId) {
           ${row('meme',                    annot.memeName,                'accent')}
           ${row('transformationDimension', annot.transformationDimension, 'accent')}
           ${row('transformationExtent',    annot.transformationExtent)}
-          ${row('canonicalImageType',      annot.canonicalImageType)}
+          ${row('originalImageType',       annot.canonicalImageType)}
           ${row('variantImageType',        annot.variantImageType)}
           ${annot.captionText ? row('captionText', annot.captionText) : ''}
           ${annot.notes       ? row('notes',       annot.notes)       : ''}

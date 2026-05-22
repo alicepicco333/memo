@@ -51,8 +51,8 @@
                                         "CaptionChange",
                                         "CrossoverMerge"
                                     ],
-        "transformationExtent":  "Moderate",
-        "notes":  "Caption draws from Puella Magi Madoka Magica dialogue; template crossed with anime media property",
+        "transformationExtent":  "Substantial",
+        "notes":  "Caption draws from Puella Magi Madoka Magica dialogue and reframes the template with explicit anime crossover context",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/225/851/742.jpeg"
     },
     {
@@ -162,7 +162,7 @@
         "transformationDimension":  [
                                         "CaptionChange"
                                     ],
-        "transformationExtent":  "Parody",
+        "transformationExtent":  "Moderate",
         "notes":  "Caption is a self-aware pun on the word Healthy that comments on the absurdity of meme caption logic itself",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/050/678/5a3.jpg"
     },
@@ -181,8 +181,8 @@
                                         "CaptionChange",
                                         "CrossoverMerge"
                                     ],
-        "transformationExtent":  "Moderate",
-        "notes":  "References Dragon Ball Z character Krillin; minimal caption but title indicates crossover with anime media property",
+        "transformationExtent":  "Substantial",
+        "notes":  "References Dragon Ball Z character Krillin and substantially reframes the template through anime crossover semantics",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/032/720/5cf"
     },
     {
@@ -272,7 +272,7 @@
         "transformationDimension":  [
                                         "CompositionShift"
                                     ],
-        "transformationExtent":  "Moderate",
+        "transformationExtent":  "Substantial",
         "notes":  "Screenshot of NFT marketplace listing featuring the meme; template enters blockchain commodification context",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/076/357/7bc.png"
     },
@@ -290,7 +290,7 @@
         "transformationDimension":  [
                                         "CompositionShift"
                                     ],
-        "transformationExtent":  "Parody",
+        "transformationExtent":  "Substantial",
         "notes":  "Documents the absurdity of the meme being listed as an NFT; the template comments on its own commodification",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/076/356/2ba.png"
     },
@@ -308,7 +308,7 @@
         "transformationDimension":  [
                                         "CompositionShift"
                                     ],
-        "transformationExtent":  "Parody",
+        "transformationExtent":  "Substantial",
         "notes":  "Another NFT-context documentary image; cluster of NFT-related variants forms a meta-commentary on meme commodification",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/076/355/eb8.png"
     },
@@ -365,7 +365,7 @@
                                         "CaptionChange",
                                         "CompositionShift"
                                     ],
-        "transformationExtent":  "Parody",
+        "transformationExtent":  "Substantial",
         "notes":  "Side-by-side comparison of original and fake NFT versions; template used to comment on its own reproduction and authenticity",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/076/351/55c.jpg"
     },
@@ -460,7 +460,7 @@
                                         "CrossoverMerge"
                                     ],
         "transformationExtent":  "Moderate",
-        "notes":  "Big Chungus inserted into the Super Seducer video game context; crossover with gaming media property",
+        "notes":  "Big Chungus variant framed through Pokemon-style reference language rather than the previously assumed Super Seducer context",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/318/040/19b.jpg"
     },
     {
@@ -475,7 +475,7 @@
         "canonicalImageType":  "Cartoon",
         "variantImageType":  "Cartoon",
         "transformationDimension":  [
-                                        "MediumShift",
+                                        "StyleShift",
                                         "CrossoverMerge"
                                     ],
         "transformationExtent":  "Substantial",
@@ -497,7 +497,7 @@
                                         "CaptionChange",
                                         "CompositionShift"
                                     ],
-        "transformationExtent":  "Parody",
+        "transformationExtent":  "Substantial",
         "notes":  "Caption draws attention to the proliferation of Big Chungus crossovers; self-referential commentary on the meme\u0027s spread",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/232/636/ec2.jpg"
     },
@@ -536,7 +536,7 @@
                                         "CrossoverMerge"
                                     ],
         "transformationExtent":  "Moderate",
-        "notes":  "Big Chungus rendered in a jungle/nature setting with style adaptation; portmanteau of Big Chungus and Jungle",
+        "notes":  "Wordplay-driven crossover variant interpreted as a Pokemon-adjacent reference rather than a jungle-themed style shift",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/159/829/94f"
     },
     {
@@ -591,8 +591,8 @@
         "transformationDimension":  [
                                         "StyleShift"
                                     ],
-        "transformationExtent":  "Minimal",
-        "notes":  "Minor visual variation with different stock ticker numbers; essentially canonical format with slight numerical variation",
+        "transformationExtent":  "Moderate",
+        "notes":  "Character-level visual change (Animal Crossing style stonks variant) beyond a purely minimal numeric tweak",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/039/073/6b4.jpg"
     },
     {
@@ -629,7 +629,7 @@
                                         "CaptionChange",
                                         "Localization"
                                     ],
-        "transformationExtent":  "Minimal",
+        "transformationExtent":  "Moderate",
         "notes":  "Caption localized to US regional economic context",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/694/210/156.jpeg"
     },
@@ -705,7 +705,7 @@
                                         "MediumShift",
                                         "VisualSubstrate"
                                     ],
-        "transformationExtent":  "Substantial",
+        "transformationExtent":  "Moderate",
         "notes":  "Meme Man replaced with a photograph of a fox; medium shift from cartoon to photograph, visual substrate entirely replaced",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/163/672/88d.png"
     },
@@ -756,8 +756,8 @@
         "variantTitle":  "Gasp",
         "variantUploader":  "Unknown",
         "captionText":  "Me: Can I have friends over? Parents: No / Me: Can I go to my friend\u0027s party? Parents: No",
-        "canonicalImageType":  "Cartoon",
-        "variantImageType":  "Cartoon",
+        "canonicalImageType":  "Drawing",
+        "variantImageType":  "Drawing",
         "transformationDimension":  [
                                         "CaptionChange"
                                     ],
@@ -774,8 +774,8 @@
         "variantTitle":  "Gasp",
         "variantUploader":  "Unknown",
         "captionText":  "EPSON DO YOUR HOMEWORK Student: doesn\u0027t do homework / Student: fails required class",
-        "canonicalImageType":  "Cartoon",
-        "variantImageType":  "Cartoon",
+        "canonicalImageType":  "Drawing",
+        "variantImageType":  "Drawing",
         "transformationDimension":  [
                                         "CaptionChange"
                                     ],
@@ -792,8 +792,8 @@
         "variantTitle":  "Alone and sad",
         "variantUploader":  "Unknown",
         "captionText":  "Me: Can I have friends over? Parents: No / Me: Can I go to my friend\u0027s party? Parents: No",
-        "canonicalImageType":  "Cartoon",
-        "variantImageType":  "Cartoon",
+        "canonicalImageType":  "Drawing",
+        "variantImageType":  "Drawing",
         "transformationDimension":  [
                                         "CaptionChange"
                                     ],
@@ -810,8 +810,8 @@
         "variantTitle":  "Like it\u0027s not their job",
         "variantUploader":  "Unknown",
         "captionText":  "insurance companies when they have to insure something",
-        "canonicalImageType":  "Cartoon",
-        "variantImageType":  "Cartoon",
+        "canonicalImageType":  "Drawing",
+        "variantImageType":  "Drawing",
         "transformationDimension":  [
                                         "CaptionChange"
                                     ],
@@ -828,8 +828,8 @@
         "variantTitle":  "Isn\u0027t that your whole job?",
         "variantUploader":  "Unknown",
         "captionText":  "insurance companies when they have to insure something",
-        "canonicalImageType":  "Cartoon",
-        "variantImageType":  "Cartoon",
+        "canonicalImageType":  "Drawing",
+        "variantImageType":  "Drawing",
         "transformationDimension":  [
                                         "CaptionChange"
                                     ],
@@ -846,8 +846,8 @@
         "variantTitle":  "How did that happen?",
         "variantUploader":  "Unknown",
         "captionText":  "Me: Can I have friends over? Parents: No / Me: Can I go to my friend\u0027s party? Parents: No",
-        "canonicalImageType":  "Cartoon",
-        "variantImageType":  "Cartoon",
+        "canonicalImageType":  "Drawing",
+        "variantImageType":  "Drawing",
         "transformationDimension":  [
                                         "CaptionChange"
                                     ],
@@ -864,8 +864,8 @@
         "variantTitle":  "On the first day of school...",
         "variantUploader":  "Unknown",
         "captionText":  "DO YOUR HOMEWORK Student: doesn\u0027t do homework / Student: fails required class",
-        "canonicalImageType":  "Cartoon",
-        "variantImageType":  "Cartoon",
+        "canonicalImageType":  "Drawing",
+        "variantImageType":  "Drawing",
         "transformationDimension":  [
                                         "CaptionChange"
                                     ],
@@ -882,8 +882,8 @@
         "variantTitle":  "Gasp...",
         "variantUploader":  "Unknown",
         "captionText":  "Me: Can I have friends over? Parents: No / Me: Can I go to my friend\u0027s party? Parents: No",
-        "canonicalImageType":  "Cartoon",
-        "variantImageType":  "Cartoon",
+        "canonicalImageType":  "Drawing",
+        "variantImageType":  "Drawing",
         "transformationDimension":  [
                                         "CaptionChange"
                                     ],
@@ -900,8 +900,8 @@
         "variantTitle":  "WWII Japan when it gets what it asked for",
         "variantUploader":  "Unknown",
         "captionText":  "Japan: *Wants decisive naval battle with the USA* / USA: *Decisively defeats Japan*",
-        "canonicalImageType":  "Cartoon",
-        "variantImageType":  "Cartoon",
+        "canonicalImageType":  "Drawing",
+        "variantImageType":  "Drawing",
         "transformationDimension":  [
                                         "CaptionChange",
                                         "Localization"
@@ -919,7 +919,7 @@
         "variantTitle":  "Cyberpunk 2077 mods",
         "variantUploader":  "Unknown",
         "captionText":  "Inspired by [image link]",
-        "canonicalImageType":  "Cartoon",
+        "canonicalImageType":  "Drawing",
         "variantImageType":  "Photograph",
         "transformationDimension":  [
                                         "MediumShift",

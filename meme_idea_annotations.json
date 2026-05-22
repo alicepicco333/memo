@@ -11,7 +11,7 @@
     "individual": "big-chungus-idea",
     "label": "Big Chungus Idea",
     "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#big-chungus",
-    "conceptDescription": "The humorous exaggeration of a character's size or mass as a form of visual absurdity detached from narrative context."
+    "conceptDescription": "The humorous exaggeration of a character's size or mass as a form of absurdity detached from narrative context."
   },
   {
     "slug": "woman-yelling-at-a-cat",
@@ -39,7 +39,7 @@
     "individual": "lord-marquaad-e-idea",
     "label": "Lord Marquaad E Idea",
     "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#lord-marquaad-e",
-    "conceptDescription": "The comic displacement of a corporate brand identity onto the villain archetype of a popular animated media property through visual juxtaposition."
+    "conceptDescription": "The comic displacement of a corporate brand identity onto the villain archetype of a popular animated media property through juxtaposition."
   },
   {
     "slug": "surprised-pikachu",
@@ -319,7 +319,7 @@
     "individual": "jollibot-idea",
     "label": "Jollibot Idea",
     "memeConceptIRI": "http://www.semanticweb.org/meme-ontology#jollibot",
-    "conceptDescription": "The uncanny juxtaposition of a recognizable fast food brand mascot with the visual and conceptual register of dystopian robotics or mechanized service labor."
+    "conceptDescription": "The uncanny juxtaposition of a recognizable fast food brand mascot with the conceptual register of dystopian robotics or mechanized service labor."
   },
   {
     "slug": "willem-dafoe-hes-gay-but-he-has-a-special-connection-to-classical-music",

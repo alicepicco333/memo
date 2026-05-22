@@ -1693,6 +1693,14 @@ body {
   color: var(--muted);
   font-size: 1.2rem;
 }
+.vg-thumb-original {
+  width: 84px;
+}
+.vg-thumb-original img,
+.vg-thumb-original .vg-thumb-missing {
+  width: 84px;
+  height: 84px;
+}
 .vg-ext-label {
   display: block;
   font-size: .5rem;
