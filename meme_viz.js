@@ -879,8 +879,8 @@ function buildVariantBubble() {
   // Pad scale ranges by half the max image size so no image is clipped at the edges
   var PAD = 32;
 
-  // X = Cultural Prominence (views), log scale
-  var xScale = d3.scaleLog()
+  // X = Number of Views (linear scale)
+  var xScale = d3.scaleLinear()
     .domain([d3.min(points, function(p) { return Math.max(1, p.views); }),
              d3.max(points, function(p) { return p.views; })])
     .range([PAD, w - PAD]).nice();
