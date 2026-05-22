@@ -18,9 +18,9 @@
           <a class="topnav-dropdown-item" href="#sec-time">Temporal Distribution of Format</a>
           <a class="topnav-dropdown-item" href="#sec-popularity">Popularity × Format</a>
           <a class="topnav-dropdown-item" href="#sec-platform-time">Platform Origin × TimePeriod</a>
-          <a class="topnav-dropdown-item topnav-dropdown-divider" href="#sec-imageplot">A — Visual Landscape (Sat × Brightness)</a>
-          <a class="topnav-dropdown-item" href="#sec-chrono">B — Chronological Strip</a>
-          <a class="topnav-dropdown-item" href="#sec-powerlaw">C — Power-Law Montage</a>
+          <a class="topnav-dropdown-item topnav-dropdown-divider" href="#sec-variant-gallery">B — Variant Gallery</a>
+          <a class="topnav-dropdown-item" href="#sec-variant-bubble">C — Template Productivity</a>
+          <a class="topnav-dropdown-item" href="#sec-mediumshift">D — MediumShift Matrix</a>
         </div>
       </div>
       <a class="topnav-link" href="#about"    data-page="about">About</a>
@@ -37,9 +37,9 @@
     <a class="dot"        href="#sec-time"      data-label="Temporal Format Distribution"></a>
     <a class="dot"        href="#sec-popularity" data-label="Popularity × Format"></a>
     <a class="dot"        href="#sec-platform-time" data-label="Platform × TimePeriod"></a>
-    <a class="dot"        href="#sec-imageplot"    data-label="A — Visual Landscape"></a>
-    <a class="dot"        href="#sec-chrono"       data-label="B — Chronological Strip"></a>
-    <a class="dot"        href="#sec-powerlaw"     data-label="C — Power-Law Montage"></a>
+    <a class="dot"        href="#sec-variant-gallery" data-label="B — Variant Gallery"></a>
+    <a class="dot"        href="#sec-variant-bubble"  data-label="C — Template Productivity"></a>
+    <a class="dot"        href="#sec-mediumshift"     data-label="D — MediumShift Matrix"></a>
   </nav>
 
   <!-- Main scrollable viz page -->
@@ -76,30 +76,30 @@
       <div class="graph-wrap" id="graph-platform-time"></div>
     </section>
 
-    <!-- ══ MANOVICH-STYLE VISUALIZATIONS ══ -->
+    <!-- ══ VARIANT-BASED VISUALIZATIONS ══ -->
 
-    <section class="viz-section manovich-section" id="sec-imageplot">
+    <section class="viz-section" id="sec-variant-gallery">
       <header class="sec-header">
-        <h2>A — Visual Landscape</h2>
-        <p>5,000 thumbnails arranged by saturation (X) × brightness (Y). Hover for title, click to open meme page. Color data loads on first visit.</p>
+        <h2>B — Variant Gallery by Transformation Extent</h2>
+        <p>50 annotated variants across 5 memes, sorted left→right from Minimal to Parody. Each row shows how a template's visual identity changes under transformation.</p>
       </header>
-      <div class="manovich-wrap" id="wrap-imageplot"></div>
+      <div class="graph-wrap" id="graph-variant-gallery"></div>
     </section>
 
-    <section class="viz-section manovich-section" id="sec-chrono">
+    <section class="viz-section" id="sec-variant-bubble">
       <header class="sec-header">
-        <h2>B — Chronological Strip</h2>
-        <p>Thumbnails arranged left→right by year of origin. Scroll horizontally. Click any image to open its meme page.</p>
+        <h2>C — Creative Productivity × Cultural Prominence</h2>
+        <p>Each point is a meme template with scraped variants. X = variant count, Y = KYM view count (log scale). Color = canonical image type for annotated memes.</p>
       </header>
-      <div class="manovich-wrap manovich-scroll-x" id="wrap-chrono"></div>
+      <div class="graph-wrap" id="graph-variant-bubble"></div>
     </section>
 
-    <section class="viz-section manovich-section" id="sec-powerlaw">
+    <section class="viz-section" id="sec-mediumshift">
       <header class="sec-header">
-        <h2>C — Power-Law Montage</h2>
-        <p>Top 200 most-viewed memes large · next 500 medium · remaining 4,300 tiny. Demonstrates preferential attachment. Click any image.</p>
+        <h2>D — MediumShift Detection Matrix</h2>
+        <p>Each cell is an annotated variant sorted by transformation extent. Subtle border = image type preserved. Bold border = MediumShift detected (≠).</p>
       </header>
-      <div class="manovich-wrap" id="wrap-powerlaw"></div>
+      <div class="graph-wrap" id="graph-mediumshift"></div>
     </section>
 
   </main>
@@ -124,24 +124,124 @@
   <div id="page-about"    class="page hidden"><div class="page-inner" id="about-content"></div></div>
   <div id="page-dataset"  class="page hidden">
     <div class="page-inner">
-      <h1>Dataset</h1>
-      <p class="page-sub">Browse all 5,000 memes. Search by name or filter by format and platform.</p>
-      <div class="dataset-toolbar">
-        <input  class="dataset-search" id="ds-search"      type="text" placeholder="Search memes…" autocomplete="off"/>
-        <select class="dataset-select"  id="ds-filter-fmt"><option value="">All formats</option></select>
-        <select class="dataset-select"  id="ds-filter-plat"><option value="">All platforms</option></select>
-        <span   class="dataset-count"   id="ds-count"></span>
+      <h1>Datasets</h1>
+      <p class="page-sub">Three interrelated datasets used in the Meme Ontology project.</p>
+
+      <!-- Jump bar -->
+      <div class="ds-jump-bar">
+        <button class="ds-jump-btn" onclick="dsScrollTo('ds-sec-global')">Global Dataset <span>5,000</span></button>
+        <button class="ds-jump-btn" onclick="dsScrollTo('ds-sec-d0')">D0 Sample <span>50</span></button>
+        <button class="ds-jump-btn" onclick="dsScrollTo('ds-sec-variants')">Variants <span>391</span></button>
       </div>
-      <div class="dataset-grid" id="ds-grid"></div>
-      <div class="ds-pagination" id="ds-pagination"></div>
+
+      <!-- Overview stats row -->
+      <div class="ds-overview-row">
+        <div class="ds-overview-card">
+          <span class="ds-ov-num">5,000</span>
+          <span class="ds-ov-label">Global Dataset</span>
+          <span class="ds-ov-sub">Full meme collection · KYM</span>
+        </div>
+        <div class="ds-overview-card">
+          <span class="ds-ov-num">50</span>
+          <span class="ds-ov-label">D0 Sample</span>
+          <span class="ds-ov-sub">Richly annotated subset</span>
+        </div>
+        <div class="ds-overview-card">
+          <span class="ds-ov-num">391</span>
+          <span class="ds-ov-label">Variant Dataset</span>
+          <span class="ds-ov-sub">50 with full annotations</span>
+        </div>
+      </div>
+
+      <!-- ── Section 1: Global Dataset ── -->
+      <section class="ds-section" id="ds-sec-global">
+        <div class="ds-sec-hd">
+          <div class="ds-sec-hd-left">
+            <h2 class="ds-sec-title">Global Dataset</h2>
+            <p class="ds-sec-desc">5,000 memes sourced from Know Your Meme, enriched with CLIP-based image classification and structured using the Meme Ontology OWL ontology.</p>
+          </div>
+          <span class="ds-badge">5,000 memes</span>
+        </div>
+        <div class="dataset-toolbar">
+          <input  class="dataset-search" id="ds-search"      type="text" placeholder="Search memes…" autocomplete="off"/>
+          <select class="dataset-select"  id="ds-filter-fmt"><option value="">All formats</option></select>
+          <select class="dataset-select"  id="ds-filter-plat"><option value="">All platforms</option></select>
+          <span   class="dataset-count"   id="ds-count"></span>
+        </div>
+        <div class="dataset-grid" id="ds-grid"></div>
+        <div class="ds-pagination" id="ds-pagination"></div>
+      </section>
+
+      <!-- ── Section 2: D0 Annotated Sample ── -->
+      <section class="ds-section" id="ds-sec-d0">
+        <div class="ds-sec-hd">
+          <div class="ds-sec-hd-left">
+            <h2 class="ds-sec-title">D0 — Annotated Sample</h2>
+            <p class="ds-sec-desc">50 memes sampled from the global dataset with enriched metadata: descriptions, view counts, tags, and full ontology property annotations including image type, format, platform, region and time period.</p>
+          </div>
+          <span class="ds-badge">50 memes</span>
+        </div>
+        <div class="dataset-grid ds-d0-grid" id="ds-d0-grid"></div>
+      </section>
+
+      <!-- ── Section 3: Variant Dataset ── -->
+      <section class="ds-section" id="ds-sec-variants">
+        <div class="ds-sec-hd">
+          <div class="ds-sec-hd-left">
+            <h2 class="ds-sec-title">Variant Dataset</h2>
+            <p class="ds-sec-desc">Meme variants scraped from Know Your Meme. A subset of 50 variants is annotated with transformation dimensions, extents, captions, and cultural references.</p>
+          </div>
+          <div class="ds-vtoggle-bar">
+            <button class="ds-vtoggle active" data-v="annotated" onclick="showVariants('annotated')">Annotated <span>50</span></button>
+            <button class="ds-vtoggle" data-v="all" onclick="showVariants('all')">All variants <span>391</span></button>
+          </div>
+        </div>
+        <div class="dataset-grid" id="ds-variants-grid"></div>
+      </section>
+
     </div>
   </div>
-  <div id="page-ontology" class="page hidden" style="height:calc(100vh - 54px);overflow:hidden;">
-    <iframe src="documentation.html" style="width:100%;height:100%;border:none;display:block;"></iframe>
+  <div id="page-ontology" class="page hidden" style="height:calc(100vh - 54px);overflow:hidden;display:flex;flex-direction:column;">
+    <!-- Tab bar -->
+    <div class="onto-tab-bar">
+      <button class="onto-tab active" id="onto-tab-vowl" onclick="switchOntoTab('vowl')">&#x1F50D; WebVOWL Visualization</button>
+      <button class="onto-tab"        id="onto-tab-lode" onclick="switchOntoTab('lode')">&#x1F4C4; Documentation</button>
+      <!-- URL input for WebVOWL (only visible on vowl tab) -->
+      <div class="onto-url-row" id="onto-url-row">
+        <span class="onto-url-label">OWL URL:</span>
+        <input id="onto-url-input" class="onto-url-input" type="url" placeholder="https://your-site.netlify.app/meme_ontology.owl" />
+        <button class="onto-url-btn" onclick="loadWebVOWL()">Load</button>
+        <a id="onto-owl-dl" class="onto-owl-dl" href="meme_ontology.owl" download>&#x2B07; Download OWL</a>
+      </div>
+    </div>
+    <!-- WebVOWL pane -->
+    <div class="onto-pane" id="onto-pane-vowl">
+      <div class="onto-vowl-hint" id="onto-vowl-hint">
+        <div class="onto-hint-box">
+          <strong>WebVOWL requires a publicly accessible URL</strong>
+          <p>Paste your deployed site URL above and click <em>Load</em> to visualize the ontology graph.<br>
+          Or <a href="meme_ontology.owl" download>download the OWL file</a> and open it at
+          <a href="https://service.tib.eu/webvowl/" target="_blank" rel="noopener">service.tib.eu/webvowl</a> manually.</p>
+        </div>
+      </div>
+      <iframe id="webvowl-frame" src="about:blank" style="width:100%;height:100%;border:none;display:none;" loading="lazy"></iframe>
+    </div>
+    <!-- Documentation pane (always loads local documentation.html) -->
+    <div class="onto-pane hidden" id="onto-pane-lode">
+      <iframe src="documentation.html" style="width:100%;height:100%;border:none;display:block;"></iframe>
+    </div>
   </div>
 
   <div id="page-meme" class="page hidden">
     <div class="page-inner" id="meme-page-content"></div>
+  </div>
+
+  <div id="page-d0" class="page hidden">
+    <div class="page-inner" id="d0-page-content"></div>
+  </div>
+
+  <div id="page-variant" class="page hidden">
+    <div class="page-inner" id="variant-page-content"></div>
   </div>
 
   <!-- Loading indicator -->

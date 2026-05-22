@@ -1,17 +1,32 @@
 /* ── State ─────────────────────────────────────────────────────────────────── */
 let DATA        = null;
+let D0_DATA     = null;
+let VARIANTS_DATA = null;
+let TRANSFORM_MAP = {};   /* photoId  → transformation annotation */
+let CULTURAL_MAP  = {};   /* slug     → cultural reference annotation */
 let panelSlugs  = [];
 let panelShown  = 0;
 let dsPage      = 0;
 let dsFiltered  = [];
+let dsBuilt     = false;
+let dsVariantMode = 'annotated';
 const PAGE_SIZE = 30;
 const DS_PER_PAGE = 60;
 
 /* ── Boot ──────────────────────────────────────────────────────────────────── */
-fetch('meme_data.json')
-  .then(r => r.json())
-  .then(d => {
-    DATA = d;
+Promise.all([
+  fetch('meme_data.json').then(r => r.json()),
+  fetch('sampled_dataset.json').then(r => r.json()),
+  fetch('variants_metadata.json').then(r => r.json()),
+  fetch('transformation_annotations.json').then(r => r.json()),
+  fetch('cultural_reference_annotations(1).json').then(r => r.json())
+])
+  .then(([memeData, d0Data, variantsData, transformAnnots, culturalAnnots]) => {
+    DATA          = memeData;
+    D0_DATA       = d0Data;
+    VARIANTS_DATA = variantsData;
+    transformAnnots.forEach(a => { TRANSFORM_MAP[a.photoId] = a; });
+    culturalAnnots.forEach(a  => { CULTURAL_MAP[a.slug]     = a; });
     document.getElementById('loader').classList.add('done');
     buildTooltip();
     buildHero();
@@ -45,13 +60,6 @@ function startLiveReload() {
         buildTimeline();
         buildPopularityByFormat();
         buildPlatformTimeStacked();
-        // reset manovich flags so they rebuild on next scroll-into-view
-        _imagePlotBuilt = false;
-        _chronoBuilt    = false;
-        _powerlawBuilt  = false;
-        document.getElementById('wrap-imageplot').innerHTML = '';
-        document.getElementById('wrap-chrono').innerHTML    = '';
-        document.getElementById('wrap-powerlaw').innerHTML  = '';
         console.log('[live] meme_data.json updated — visualizations refreshed');
       })
       .catch(() => {});
@@ -66,29 +74,77 @@ function route() {
   if (!DATA) return;
   if (hash.startsWith('meme/')) {
     showMemePage(decodeURIComponent(hash.slice(5)));
+  } else if (hash.startsWith('d0/')) {
+    showD0Page(decodeURIComponent(hash.slice(3)));
+  } else if (hash.startsWith('variant/')) {
+    showVariantPage(decodeURIComponent(hash.slice(8)));
   } else if (hash === 'about') {
     showPage('about');
     if (!document.getElementById('about-content').hasChildNodes()) buildAboutPage();
   } else if (hash === 'dataset') {
     showPage('dataset');
-    if (!dsFiltered.length) buildDatasetPage();
+    if (!dsBuilt) buildDatasetPage();
   } else if (hash === 'ontology') {
     showPage('ontology');
+    initOntoPage();
   } else {
     showViz();
   }
 }
 window.addEventListener('hashchange', route);
 
-function showPage(name) {
+function showPage(name, navPage) {
   document.getElementById('app').classList.add('hidden');
   document.getElementById('dot-nav').classList.add('hidden');
   document.getElementById('node-panel').classList.add('hidden');
   document.getElementById('app').classList.remove('panel-open');
-  ['about', 'dataset', 'ontology', 'meme'].forEach(p =>
+  ['about', 'dataset', 'ontology', 'meme', 'd0', 'variant'].forEach(p =>
     document.getElementById('page-' + p).classList.add('hidden'));
   document.getElementById('page-' + name).classList.remove('hidden');
-  setActiveNav(name);
+  setActiveNav(navPage || name);
+}
+
+/* ── Ontology page: WebVOWL + local docs ─────────────────────────────────── */
+var ontoInited = false;
+function initOntoPage() {
+  if (ontoInited) return;
+  ontoInited = true;
+
+  var host = window.location.hostname;
+  var isLocal = !host || host === 'localhost' || host === '127.0.0.1' || host.endsWith('.local');
+
+  // Pre-fill the URL input
+  var input = document.getElementById('onto-url-input');
+  if (!isLocal) {
+    // On a deployed domain: auto-fill and auto-load
+    var owlUrl = window.location.origin + '/meme_ontology.owl';
+    input.value = owlUrl;
+    _loadWebVOWLUrl(owlUrl);
+  }
+  // On localhost: show the hint overlay, leave input empty for user to fill
+}
+
+function loadWebVOWL() {
+  var url = (document.getElementById('onto-url-input').value || '').trim();
+  if (!url) return;
+  _loadWebVOWLUrl(url);
+}
+
+function _loadWebVOWLUrl(owlUrl) {
+  var vowlUrl = 'https://service.tib.eu/webvowl/#file=' + encodeURIComponent(owlUrl);
+  var hint  = document.getElementById('onto-vowl-hint');
+  var frame = document.getElementById('webvowl-frame');
+  if (hint)  { hint.style.display  = 'none'; }
+  if (frame) { frame.style.display = 'block'; frame.src = vowlUrl; }
+}
+
+function switchOntoTab(tab) {
+  document.getElementById('onto-pane-vowl').classList.toggle('hidden', tab !== 'vowl');
+  document.getElementById('onto-pane-lode').classList.toggle('hidden', tab !== 'lode');
+  document.getElementById('onto-tab-vowl').classList.toggle('active', tab === 'vowl');
+  document.getElementById('onto-tab-lode').classList.toggle('active', tab === 'lode');
+  var urlRow = document.getElementById('onto-url-row');
+  if (urlRow) urlRow.style.display = tab === 'vowl' ? '' : 'none';
 }
 
 function showViz() {
@@ -481,314 +537,330 @@ function buildPlatformTimeStacked() {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   MANOVICH A — Visual Landscape  (saturation × brightness image grid)
-   All 5,000 thumbs placed by sat (X) × lightness (Y) after loading
-   color_data.json.  Uses absolute positioning on a pre-sized canvas so
-   the browser never has to reflow 5 k elements.
-   ═══════════════════════════════════════════════════════════════════════════ */
-let _imagePlotBuilt = false;
-
-function buildImagePlot() {
-  if (_imagePlotBuilt) return;
-  const wrap = document.getElementById('wrap-imageplot');
-  if (!wrap || !DATA) return;
-
-  wrap.innerHTML = '<div style="padding:24px;color:#888;font-size:.85rem">Loading colour data…</div>';
-
-  fetch('color_data.json')
-    .then(r => r.json())
-    .then(colorData => {
-      _imagePlotBuilt = true;
-      _renderImagePlot(wrap, colorData);
-    })
-    .catch(() => {
-      wrap.innerHTML = '<div style="padding:24px;color:#888">colour data unavailable — run compute_colors.py first</div>';
-    });
-}
-
-function _renderImagePlot(wrap, colorData) {
-  const slugs = Object.keys(DATA.memes).filter(s => {
-    const m = DATA.memes[s];
-    return m && m.imageFilename && colorData[s];
-  });
-
-  /* Grid geometry: 100 cols × rows-to-fit  */
-  const COLS    = 100;
-  const THUMB   = 24;   // px per cell (square)
-  const GAP     = 1;
-  const CELL    = THUMB + GAP;
-  const ROWS    = Math.ceil(slugs.length / COLS);
-  const W       = COLS * CELL;
-  const H       = ROWS * CELL + 32; // extra for axis labels
-
-  /* Sort: X = saturation (left dark/grey → right vivid),
-           Y = lightness  (top dark → bottom bright)
-     We bin into discrete grid positions so it looks like ImagePlot.     */
-  const maxS = 100, maxL = 100;
-  slugs.sort((a, b) => {
-    const ca = colorData[a], cb = colorData[b];
-    const sa = ca.s || 0, sb = cb.s || 0;
-    const la = ca.l || 0, lb = cb.l || 0;
-    // primary: saturation bin; secondary: lightness
-    const binSa = Math.round(sa / maxS * (COLS - 1));
-    const binSb = Math.round(sb / maxS * (COLS - 1));
-    if (binSa !== binSb) return binSa - binSb;
-    return la - lb;
-  });
-
-  wrap.style.height = H + 'px';
-  wrap.style.position = 'relative';
-  wrap.innerHTML = '';
-
-  /* Axis labels */
-  const axX = document.createElement('div');
-  axX.style.cssText = 'position:absolute;bottom:4px;left:0;right:0;text-align:center;font-size:10px;color:rgba(255,255,255,.35);letter-spacing:.1em;pointer-events:none';
-  axX.textContent = '← less saturated   SATURATION   more saturated →';
-  wrap.appendChild(axX);
-
-  const axY = document.createElement('div');
-  axY.style.cssText = 'position:absolute;top:50%;left:4px;font-size:10px;color:rgba(255,255,255,.35);letter-spacing:.1em;pointer-events:none;transform:rotate(-90deg) translateX(-50%);transform-origin:left center;white-space:nowrap';
-  axY.textContent = '← darker   BRIGHTNESS   brighter →';
-  wrap.appendChild(axY);
-
-  /* Build a col→array map so items in each col stack top-to-bottom by lightness */
-  const cols = Array.from({ length: COLS }, () => []);
-  slugs.forEach(slug => {
-    const c = colorData[slug];
-    const col = Math.min(COLS - 1, Math.round((c.s || 0) / maxS * (COLS - 1)));
-    cols[col].push(slug);
-  });
-  /* Sort each column by lightness ascending (dark top → bright bottom) */
-  cols.forEach(col => col.sort((a, b) => (colorData[a]?.l || 0) - (colorData[b]?.l || 0)));
-
-  /* Place images */
-  const frag = document.createDocumentFragment();
-  cols.forEach((col, ci) => {
-    col.forEach((slug, ri) => {
-      const m = DATA.memes[slug];
-      if (!m || !m.imageFilename) return;
-
-      const div = document.createElement('div');
-      div.className = 'mv-img';
-      div.style.cssText = `width:${THUMB}px;height:${THUMB}px;left:${ci * CELL}px;top:${ri * CELL}px`;
-      div.title = (m.title || slug).replace(/_/g, ' ');
-
-      const img = document.createElement('img');
-      img.src = m.imageURL || `images_flat/${m.imageFilename}`;
-      img.alt = slug;
-      img.loading = 'lazy';
-      div.appendChild(img);
-
-      div.addEventListener('click', () => openDetail(slug));
-      div.addEventListener('mouseenter', e => {
-        const c = colorData[slug] || {};
-        showTip(`<b>${(m.title || slug).replace(/_/g,' ')}</b><br>sat: ${(c.s||0).toFixed(1)}  light: ${(c.l||0).toFixed(1)}<br><small>click to open</small>`, e);
-      });
-      div.addEventListener('mousemove', moveTip);
-      div.addEventListener('mouseleave', hideTip);
-
-      frag.appendChild(div);
-    });
-  });
-  wrap.appendChild(frag);
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   MANOVICH B — Chronological Strip
-   Thumbs arranged in columns by year, stacked vertically within each year.
-   Horizontally scrollable.
-   ═══════════════════════════════════════════════════════════════════════════ */
-let _chronoBuilt = false;
-
-function buildChronoStrip() {
-  if (_chronoBuilt) return;
-  const wrap = document.getElementById('wrap-chrono');
-  if (!wrap || !DATA) return;
-  _chronoBuilt = true;
-
-  const THUMB = 26;
-  const GAP   = 1;
-  const CELL  = THUMB + GAP;
-
-  /* Group slugs by year */
-  const byYear = {};
-  Object.keys(DATA.memes).forEach(slug => {
-    const m = DATA.memes[slug];
-    if (!m || !m.imageFilename) return;
-    const yr = parseInt(m.year, 10);
-    if (!yr || yr < 1995 || yr > 2026) return;
-    if (!byYear[yr]) byYear[yr] = [];
-    byYear[yr].push(slug);
-  });
-
-  const years = Object.keys(byYear).map(Number).sort((a, b) => a - b);
-  const maxCount = Math.max(...years.map(y => byYear[y].length));
-  const ROWS = Math.min(maxCount, 80); // cap row count so it stays readable
-  const H    = ROWS * CELL + 32;      // 32 for year label at bottom
-
-  wrap.style.height = H + 'px';
-  wrap.style.position = 'relative';
-  wrap.style.whiteSpace = 'nowrap';
-  wrap.innerHTML = '';
-
-  let xCursor = 32; // left padding
-
-  const frag = document.createDocumentFragment();
-
-  years.forEach(yr => {
-    const slugsForYear = byYear[yr];
-    const cols = Math.ceil(slugsForYear.length / ROWS);
-
-    /* Year label */
-    const lbl = document.createElement('div');
-    lbl.className = 'chrono-label';
-    const lblW = cols * CELL;
-    lbl.style.cssText = `left:${xCursor}px;bottom:4px;width:${lblW}px;text-align:center`;
-    lbl.textContent = yr;
-    frag.appendChild(lbl);
-
-    /* Thumbnails: fill columns top-down, then next column */
-    slugsForYear.forEach((slug, idx) => {
-      const m = DATA.memes[slug];
-      if (!m || !m.imageFilename) return;
-
-      const col = Math.floor(idx / ROWS);
-      const row = idx % ROWS;
-
-      const div = document.createElement('div');
-      div.className = 'mv-img';
-      div.style.cssText = `width:${THUMB}px;height:${THUMB}px;left:${xCursor + col * CELL}px;top:${row * CELL}px`;
-      div.title = (m.title || slug).replace(/_/g, ' ');
-
-      const img = document.createElement('img');
-      img.src = m.imageURL || `images_flat/${m.imageFilename}`;
-      img.alt = slug;
-      img.loading = 'lazy';
-      div.appendChild(img);
-
-      div.addEventListener('click', () => openDetail(slug));
-      div.addEventListener('mouseenter', e => showTip(`<b>${(m.title || slug).replace(/_/g,' ')}</b><br>${yr}<br><small>click to open</small>`, e));
-      div.addEventListener('mousemove', moveTip);
-      div.addEventListener('mouseleave', hideTip);
-
-      frag.appendChild(div);
-    });
-
-    xCursor += cols * CELL + 8; // 8px gap between years
-  });
-
-  /* Set canvas width so the scroll container knows the real extent */
-  const canvas = document.createElement('div');
-  canvas.style.cssText = `position:relative;width:${xCursor}px;height:${H}px;display:inline-block`;
-  canvas.appendChild(frag);
-  wrap.appendChild(canvas);
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   MANOVICH C — Power-Law Montage
-   Top 200 most-viewed = large thumb, next 500 = medium, rest = tiny.
-   Packed left-to-right in rows by tier, demonstrating preferential attachment.
-   ═══════════════════════════════════════════════════════════════════════════ */
-let _powerlawBuilt = false;
-
-function buildPowerLawMontage() {
-  if (_powerlawBuilt) return;
-  const wrap = document.getElementById('wrap-powerlaw');
-  if (!wrap || !DATA) return;
-  _powerlawBuilt = true;
-
-  /* Sort all slugs by views descending, unknowns last */
-  const slugs = Object.keys(DATA.memes)
-    .filter(s => DATA.memes[s]?.imageFilename)
-    .sort((a, b) => {
-      const va = DATA.memes[a].popularityViews ?? -1;
-      const vb = DATA.memes[b].popularityViews ?? -1;
-      return vb - va;
-    });
-
-  /* Tier definitions */
-  const TIERS = [
-    { label: 'TOP 200',  count: 200,  size: 56,  badge: '' },
-    { label: 'NEXT 500', count: 500,  size: 22,  badge: '' },
-    { label: 'REST',     count: Infinity, size: 9, badge: '' },
-  ];
-
-  const wrapW = wrap.getBoundingClientRect().width || (window.innerWidth - 164);
-  let yOffset  = 0;
-  let tierIdx  = 0;
-  let remaining = slugs.length;
-  let slugIdx   = 0;
-
-  const frag = document.createDocumentFragment();
-
-  TIERS.forEach(tier => {
-    const take  = Math.min(tier.count, remaining);
-    if (take <= 0) return;
-
-    const sz    = tier.size;
-    const GAP   = sz <= 18 ? 1 : 2;
-    const CELL  = sz + GAP;
-
-    /* Section header label */
-    const hdr = document.createElement('div');
-    hdr.style.cssText = `position:absolute;left:0;top:${yOffset}px;padding:4px 12px;font-size:9px;font-weight:700;letter-spacing:.15em;color:rgba(255,255,255,.35);pointer-events:none`;
-    hdr.textContent = tier.label;
-    frag.appendChild(hdr);
-    yOffset += 18;
-
-    /* Pack rows */
-    const cols = Math.floor(wrapW / CELL);
-    const rows = Math.ceil(take / cols);
-
-    for (let i = 0; i < take; i++) {
-      const slug = slugs[slugIdx++];
-      const m    = DATA.memes[slug];
-      if (!m || !m.imageFilename) continue;
-
-      const col = i % cols;
-      const row = Math.floor(i / cols);
-
-      const div = document.createElement('div');
-      div.className = 'mv-img';
-      div.style.cssText = `width:${sz}px;height:${sz}px;left:${col * CELL}px;top:${yOffset + row * CELL}px`;
-
-      const img = document.createElement('img');
-      img.src = m.imageURL || `images_flat/${m.imageFilename}`;
-      img.alt = slug;
-      img.loading = 'lazy';
-      div.appendChild(img);
-
-      if (sz >= 22) {
-        div.addEventListener('mouseenter', e => {
-          const views = m.popularityViews != null ? m.popularityViews.toLocaleString() + ' views' : 'views unknown';
-          showTip(`<b>${(m.title || slug).replace(/_/g,' ')}</b><br>${views}<br><small>click to open</small>`, e);
-        });
-        div.addEventListener('mousemove', moveTip);
-        div.addEventListener('mouseleave', hideTip);
-      }
-      div.addEventListener('click', () => openDetail(slug));
-
-      frag.appendChild(div);
-    }
-
-    yOffset += rows * CELL + 16;
-    remaining -= take;
-  });
-
-  const canvas = document.createElement('div');
-  canvas.style.cssText = `position:relative;width:100%;height:${yOffset}px`;
-  canvas.appendChild(frag);
-  wrap.style.height = yOffset + 'px';
-  wrap.appendChild(canvas);
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
    Build all graphs
    ═══════════════════════════════════════════════════════════════════════════ */
 function buildGraphs() {
   buildTimeline();
   buildPopularityByFormat();
   buildPlatformTimeStacked();
+  buildVariantGallery();
+  buildVariantBubble();
+  buildMediumShiftMatrix();
+}
+
+/* ── Variant Gallery (Viz B) ─────────────────────────────────────────────── */
+function buildVariantGallery() {
+  var wrap = document.getElementById('graph-variant-gallery');
+  if (!wrap || !Object.keys(TRANSFORM_MAP).length || !VARIANTS_DATA) return;
+
+  var EXTENT_ORDER = ['Minimal', 'Moderate', 'Substantial', 'Parody'];
+  var EXTENT_COLOR = { Minimal: '#4caf50', Moderate: '#ff9800', Substantial: '#f44336', Parody: '#9c27b0' };
+  var CANON_COLOR  = { Photograph: '#4a9eff', Drawing: '#f5a623', Cartoon: '#7ed321' };
+
+  // Build lookup: photo_id → variant entry
+  var varByPhotoId = {};
+  VARIANTS_DATA.forEach(function(v) { varByPhotoId[String(v.photo_id)] = v; });
+
+  // Group annotations by meme name
+  var memeGroups = {};
+  Object.values(TRANSFORM_MAP).forEach(function(a) {
+    if (!memeGroups[a.memeName]) {
+      memeGroups[a.memeName] = { canonical: a.canonicalImageType, variants: [] };
+    }
+    memeGroups[a.memeName].variants.push(a);
+  });
+
+  // Sort each meme's variants by transformation extent
+  Object.values(memeGroups).forEach(function(g) {
+    g.variants.sort(function(a, b) {
+      return EXTENT_ORDER.indexOf(a.transformationExtent) - EXTENT_ORDER.indexOf(b.transformationExtent);
+    });
+  });
+
+  var html = '<div class="vg-container">';
+
+  // Legend
+  html += '<div class="vg-legend">';
+  html += '<span class="vg-legend-title">Transformation extent:</span>';
+  EXTENT_ORDER.forEach(function(ext) {
+    html += '<span class="vg-legend-item"><span class="vg-legend-dot" style="background:' + EXTENT_COLOR[ext] + '"></span>' + ext + '</span>';
+  });
+  html += '</div>';
+
+  // One row per meme
+  Object.keys(memeGroups).forEach(function(memeName) {
+    var g = memeGroups[memeName];
+    var canonColor = CANON_COLOR[g.canonical] || '#888';
+
+    html += '<div class="vg-row">';
+    html += '<div class="vg-label">';
+    html += '<span class="vg-meme-name">' + escHtml(memeName) + '</span>';
+    html += '<span class="vg-canon-badge" style="color:' + canonColor + '">' + escHtml(g.canonical) + '</span>';
+    html += '</div>';
+    html += '<div class="vg-thumbs">';
+
+    g.variants.forEach(function(a) {
+      var v = varByPhotoId[String(a.photoId)];
+      var img = (v && v.folder && v.filename)
+        ? 'sampled_variants/' + v.folder + '/' + v.filename
+        : '';
+      var extColor = EXTENT_COLOR[a.transformationExtent] || '#888';
+      var dims = Array.isArray(a.transformationDimension)
+        ? a.transformationDimension.join(', ')
+        : String(a.transformationDimension || '');
+      var tipText = a.transformationExtent + ' · ' + a.variantImageType + (dims ? ' · ' + dims : '');
+
+      html += '<div class="vg-thumb" title="' + escHtml(tipText) + '">';
+      if (img) {
+        html += '<img src="' + escHtml(img) + '" alt="' + escHtml(a.variantTitle || '') + '" loading="lazy" style="border:2px solid ' + extColor + '">';
+      } else {
+        html += '<div class="vg-thumb-missing">?</div>';
+      }
+      html += '<span class="vg-ext-label" style="color:' + extColor + '">' + escHtml(a.transformationExtent) + '</span>';
+      html += '</div>';
+    });
+
+    html += '</div></div>';
+  });
+
+  html += '</div>';
+  wrap.innerHTML = html;
+}
+
+/* ── Bubble Chart (Viz C) ─────────────────────────────────────────────────── */
+function buildVariantBubble() {
+  var wrap = document.getElementById('graph-variant-bubble');
+  if (!wrap || !DATA || !VARIANTS_DATA) return;
+
+  var CANON_COLOR = { Photograph: '#4a9eff', Drawing: '#f5a623', Cartoon: '#7ed321' };
+
+  // Convert meme name to URL slug for DATA.memes lookup
+  function toSlug(name) {
+    return name.toLowerCase()
+      .replace(/\u2019/g, '').replace(/'/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '');
+  }
+
+  // Deterministic jitter so points at same X don't overlap
+  function jitter(name) {
+    var h = 0;
+    for (var i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) | 0;
+    return ((h % 1000) / 1000 - 0.5) * 0.7;
+  }
+
+  // Build lookup from D0_DATA: slug → { photos, views, title }
+  var d0BySlug = {};
+  D0_DATA.forEach(function(entry) {
+    var slug = (entry.meme_url || '').split('/').pop();
+    if (slug) d0BySlug[slug] = entry;
+  });
+
+  // Get canonical image types from TRANSFORM_MAP (annotated 5 memes)
+  var canonByMeme = {};
+  var slugByMeme = {};
+  Object.values(TRANSFORM_MAP).forEach(function(a) {
+    if (!canonByMeme[a.memeName]) {
+      canonByMeme[a.memeName] = a.canonicalImageType;
+      slugByMeme[a.memeName] = (a.memeConceptIRI || '').split('#')[1] || toSlug(a.memeName);
+    }
+  });
+
+  // Build one data point per unique meme in variants, joined to D0_DATA
+  var seenNames = {};
+  VARIANTS_DATA.forEach(function(v) { seenNames[v.meme_name] = true; });
+
+  var points = Object.keys(seenNames).map(function(name) {
+    var slug = slugByMeme[name] || toSlug(name);
+    var d0   = d0BySlug[slug] || null;
+    return {
+      name: name,
+      slug: slug,
+      photos: d0 ? (d0.photos || 0) : 0,
+      views:  d0 ? (d0.views  || 0) : 0,
+      canon:  canonByMeme[name] || null
+    };
+  }).filter(function(p) { return p.views > 0; });
+
+  if (!points.length) {
+    wrap.innerHTML = '<p style="padding:24px;color:var(--muted)">No view data available.</p>';
+    return;
+  }
+
+  var W = wrap.getBoundingClientRect().width || 900;
+  var H = 420;
+  var M = { top: 24, right: 164, bottom: 56, left: 84 };
+  var w = W - M.left - M.right;
+  var h = H - M.top - M.bottom;
+
+  wrap.innerHTML = '';
+
+  var svg = d3.select(wrap).append('svg')
+    .attr('width', W).attr('height', H);
+
+  var g = svg.append('g').attr('transform', 'translate(' + M.left + ',' + M.top + ')');
+
+  var minV = d3.min(points, function(p) { return p.photos; });
+  var maxV = d3.max(points, function(p) { return p.photos; });
+
+  var xScale = d3.scaleLinear()
+    .domain([Math.max(0, minV - 20), maxV + 20])
+    .range([0, w]);
+
+  var yScale = d3.scaleLog()
+    .domain([
+      Math.max(1, d3.min(points, function(p) { return p.views; }) * 0.7),
+      d3.max(points, function(p) { return p.views; }) * 1.3
+    ])
+    .range([h, 0]).nice();
+
+  // Light grid lines on Y axis
+  g.append('g')
+    .call(d3.axisLeft(yScale).ticks(5, '~s').tickSize(-w).tickFormat(''))
+    .attr('opacity', 0.12)
+    .call(function(sel) { sel.select('.domain').remove(); });
+
+  // Axes
+  g.append('g').attr('transform', 'translate(0,' + h + ')')
+    .call(d3.axisBottom(xScale).ticks(6).tickFormat(d3.format('d')))
+    .attr('color', '#888');
+
+  g.append('g')
+    .call(d3.axisLeft(yScale).ticks(5, '~s'))
+    .attr('color', '#888');
+
+  // Axis labels
+  g.append('text').attr('x', w / 2).attr('y', h + 44)
+    .attr('text-anchor', 'middle').attr('fill', '#888').attr('font-size', 11)
+    .text('Photos on KYM (D0 dataset)');
+
+  g.append('text').attr('transform', 'rotate(-90)').attr('y', -68).attr('x', -h / 2)
+    .attr('text-anchor', 'middle').attr('fill', '#888').attr('font-size', 11)
+    .text('KYM view count (log scale)');
+
+  // Circles
+  g.selectAll('circle').data(points).join('circle')
+    .attr('cx', function(p) { return xScale(p.photos + jitter(p.name) * 10); })
+    .attr('cy', function(p) { return yScale(p.views); })
+    .attr('r', function(p) { return p.canon ? 9 : 6; })
+    .attr('fill', function(p) { return p.canon ? (CANON_COLOR[p.canon] + 'cc') : 'rgba(255,255,255,.18)'; })
+    .attr('stroke', function(p) { return p.canon ? CANON_COLOR[p.canon] : 'rgba(255,255,255,.3)'; })
+    .attr('stroke-width', function(p) { return p.canon ? 2 : 1; })
+    .style('cursor', 'pointer')
+    .on('mouseover', function(evt, p) {
+      showTip('<strong>' + escHtml(p.name) + '</strong><br/>' + p.photos.toLocaleString() + ' photos · ' + p.views.toLocaleString() + ' views' + (p.canon ? '<br/>' + escHtml(p.canon) : ''), evt);
+    })
+    .on('mousemove', moveTip)
+    .on('mouseout', hideTip);
+
+  // Labels for the 5 annotated memes only
+  g.selectAll('.bubble-lbl').data(points.filter(function(p) { return !!p.canon; })).join('text')
+    .attr('class', 'bubble-lbl')
+    .attr('x', function(p) { return xScale(p.photos + jitter(p.name) * 10) + 12; })
+    .attr('y', function(p) { return yScale(p.views) + 4; })
+    .attr('fill', function(p) { return CANON_COLOR[p.canon]; })
+    .attr('font-size', 10).attr('font-weight', 600)
+    .text(function(p) { return p.name; });
+
+  // Legend
+  var legEntries = Object.entries(CANON_COLOR).concat([['Other', null]]);
+  var leg = svg.append('g').attr('transform', 'translate(' + (W - M.right + 20) + ',' + M.top + ')');
+  legEntries.forEach(function(pair, i) {
+    var lbl = pair[0], col = pair[1];
+    leg.append('circle').attr('cx', 7).attr('cy', i * 22 + 7)
+      .attr('r', 7)
+      .attr('fill', col ? col + 'cc' : 'rgba(255,255,255,.18)')
+      .attr('stroke', col || 'rgba(255,255,255,.3)').attr('stroke-width', col ? 2 : 1);
+    leg.append('text').attr('x', 18).attr('y', i * 22 + 11)
+      .attr('fill', '#888').attr('font-size', 10).text(lbl);
+  });
+}
+
+/* ── MediumShift Matrix (Viz D) ──────────────────────────────────────────── */
+function buildMediumShiftMatrix() {
+  var wrap = document.getElementById('graph-mediumshift');
+  if (!wrap || !Object.keys(TRANSFORM_MAP).length || !VARIANTS_DATA) return;
+
+  var EXTENT_ORDER = ['Minimal', 'Moderate', 'Substantial', 'Parody'];
+  var CANON_COLOR  = { Photograph: '#4a9eff', Drawing: '#f5a623', Cartoon: '#7ed321' };
+  var TYPE_ORDER   = ['Photograph', 'Drawing', 'Cartoon'];
+
+  // Build lookup: photo_id → variant entry
+  var varByPhotoId = {};
+  VARIANTS_DATA.forEach(function(v) { varByPhotoId[String(v.photo_id)] = v; });
+
+  // Group annotations by meme
+  var memeGroups = {};
+  Object.values(TRANSFORM_MAP).forEach(function(a) {
+    if (!memeGroups[a.memeName]) {
+      memeGroups[a.memeName] = { canonical: a.canonicalImageType, variants: [] };
+    }
+    memeGroups[a.memeName].variants.push(a);
+  });
+
+  // Sort memes by canonical image type, then sort each meme's variants by extent
+  var memeNames = Object.keys(memeGroups).sort(function(a, b) {
+    return TYPE_ORDER.indexOf(memeGroups[a].canonical) - TYPE_ORDER.indexOf(memeGroups[b].canonical);
+  });
+  memeNames.forEach(function(name) {
+    memeGroups[name].variants.sort(function(a, b) {
+      return EXTENT_ORDER.indexOf(a.transformationExtent) - EXTENT_ORDER.indexOf(b.transformationExtent);
+    });
+  });
+
+  var html = '<div class="ms-matrix">';
+
+  // Header row showing extent direction
+  html += '<div class="ms-header-row">';
+  html += '<div class="ms-row-label"></div>';
+  html += '<div class="ms-header-cells"><span class="ms-header-dir">\u2190 Minimal \u00b7\u00b7\u00b7 Parody \u2192</span></div>';
+  html += '</div>';
+
+  memeNames.forEach(function(memeName) {
+    var g = memeGroups[memeName];
+    var canonColor = CANON_COLOR[g.canonical] || '#888';
+    var shiftCount = g.variants.filter(function(a) { return a.variantImageType !== g.canonical; }).length;
+
+    html += '<div class="ms-row">';
+    html += '<div class="ms-row-label">';
+    html += '<span class="ms-meme-name">' + escHtml(memeName) + '</span>';
+    html += '<span class="ms-canon-badge" style="background:' + canonColor + '22;color:' + canonColor + ';border:1px solid ' + canonColor + '55">' + escHtml(g.canonical) + '</span>';
+    if (shiftCount > 0) {
+      html += '<span class="ms-shift-count">' + shiftCount + ' \u2260</span>';
+    }
+    html += '</div>';
+    html += '<div class="ms-cells">';
+
+    g.variants.forEach(function(a) {
+      var v = varByPhotoId[String(a.photoId)];
+      var img = (v && v.folder && v.filename)
+        ? 'sampled_variants/' + v.folder + '/' + v.filename
+        : '';
+      var isShift = a.variantImageType !== g.canonical;
+      var varColor = CANON_COLOR[a.variantImageType] || '#888';
+      var borderStyle = isShift
+        ? '3px solid ' + varColor
+        : '2px solid rgba(255,255,255,.12)';
+      var tipText = a.transformationExtent + ' \u00b7 ' + a.variantImageType + (isShift ? ' \u2190 MEDIUM SHIFT' : '');
+
+      html += '<div class="ms-cell ' + (isShift ? 'ms-shift' : 'ms-match') + '" title="' + escHtml(tipText) + '">';
+      if (img) {
+        html += '<img src="' + escHtml(img) + '" alt="" loading="lazy" style="border:' + borderStyle + '">';
+      } else {
+        html += '<div class="ms-cell-missing" style="border:' + borderStyle + '">?</div>';
+      }
+      if (isShift) {
+        html += '<span class="ms-shift-badge" style="color:' + varColor + '">\u2260</span>';
+      }
+      html += '<span class="ms-ext-label">' + escHtml(a.transformationExtent.slice(0, 3).toUpperCase()) + '</span>';
+      html += '</div>';
+    });
+
+    html += '</div></div>';
+  });
+
+  html += '</div>';
+  wrap.innerHTML = html;
 }
 
 /* ── Node panel ────────────────────────────────────────────────────────────── */
@@ -931,6 +1003,168 @@ function showMemePage(slug) {
   showPage('meme');
 }
 
+/* ── D0 detail page ────────────────────────────────────────────────────────── */
+function showD0Page(id) {
+  if (!D0_DATA) { location.hash = '#dataset'; return; }
+  const m = D0_DATA.find(x => String(x.id) === String(id));
+  if (!m) { location.hash = '#dataset'; return; }
+
+  const title   = m.title || String(m.id);
+  const slug    = (m.meme_url || '').split('/').pop() || '';
+  const fmts    = (m.hasFormat && m.hasFormat.length)
+    ? m.hasFormat.join(', ')
+    : (m.type || []).join(', ') || '—';
+  const views   = m.views   != null ? Number(m.views).toLocaleString()   : null;
+  const videos  = m.videos  != null ? Number(m.videos).toLocaleString()  : null;
+  const photos  = m.photos  != null ? Number(m.photos).toLocaleString()  : null;
+  const comments = m.comments != null ? Number(m.comments).toLocaleString() : null;
+  const crAnnot = CULTURAL_MAP[slug];
+  const img     = m.image_path || m.image_url || '';
+
+  document.getElementById('d0-page-content').innerHTML = `
+    <button class="meme-page-back" onclick="history.back()">&#8592; Back to Datasets</button>
+    <div class="meme-page-layout">
+      <div class="meme-page-img-col">
+        <img src="${escHtml(img)}" alt="${escHtml(title)}"/>
+        ${m.meme_url ? `<a href="${escHtml(m.meme_url)}" target="_blank" rel="noopener">Open on Know Your Meme ↗</a>` : ''}
+        <div class="ds-detail-stats">
+          ${views    ? `<div class="ds-stat-item"><span class="ds-stat-num">${views}</span><span class="ds-stat-lbl">views</span></div>` : ''}
+          ${videos   ? `<div class="ds-stat-item"><span class="ds-stat-num">${videos}</span><span class="ds-stat-lbl">videos</span></div>` : ''}
+          ${photos   ? `<div class="ds-stat-item"><span class="ds-stat-num">${photos}</span><span class="ds-stat-lbl">photos</span></div>` : ''}
+          ${comments ? `<div class="ds-stat-item"><span class="ds-stat-num">${comments}</span><span class="ds-stat-lbl">comments</span></div>` : ''}
+        </div>
+      </div>
+      <div class="meme-page-info">
+        <h1>${escHtml(title)}</h1>
+        <div class="meme-page-id">D0 Sample · id: ${String(m.id).padStart(4,'0')} · ${escHtml(m.image_filename || '')}</div>
+
+        ${m.description ? `
+        <div class="detail-section">
+          <div class="detail-section-title">Description</div>
+          <p style="font-size:.84rem;color:var(--text);line-height:1.65;margin:0">${escHtml(m.description)}</p>
+        </div>` : ''}
+
+        <div class="detail-section">
+          <div class="detail-section-title">Visual Analysis — CLIP</div>
+          ${row('hasImageType',          m.hasImageType,                  'accent')}
+          ${row('clipImageTypeScore',    fmt2(m.clipImageTypeScore),       'score')}
+          ${row('hasSubjectMatter',      m.hasSubjectMatter,              'accent')}
+          ${row('hasTextPresence',       m.hasTextPresence)}
+          ${row('clipTextScore',         fmt2(m.clipTextScore),            'score')}
+          ${row('hasColorMode',          m.hasColorMode)}
+          ${row('clipPublicFigureScore', fmt2(m.clipPublicFigureScore),    'score')}
+          ${m.ocrSnippet ? row('ocrSnippet', '"' + m.ocrSnippet + '"') : ''}
+        </div>
+
+        <div class="detail-section">
+          <div class="detail-section-title">Origin &amp; Distribution</div>
+          ${row('hasOriginPlatform', m.hasOriginPlatform || m.origin, 'accent')}
+          ${row('hasOriginWork',     m.hasOriginWork)}
+          ${row('hasRegion',         m.hasRegion || m.region)}
+          ${row('hasTimePeriod',     m.hasTimePeriod)}
+          ${row('yearOfOrigin',      m.year)}
+        </div>
+
+        <div class="detail-section">
+          <div class="detail-section-title">Meme Format</div>
+          ${row('hasFormat',          fmts)}
+          ${row('hasFileFormat',      m.hasFileFormat)}
+          ${row('hasAnimationStatus', m.hasAnimationStatus)}
+          ${row('hasFRBRLevel',       'Manifestation')}
+        </div>
+
+        ${crAnnot && crAnnot.references && crAnnot.references.length ? `
+        <div class="detail-section">
+          <div class="detail-section-title">Cultural References</div>
+          ${crAnnot.references.map(ref =>
+            `<div class="detail-row">
+               <span class="detail-key">${escHtml(ref.class || '')}</span>
+               <span class="detail-val accent">${escHtml(ref.label || ref.individual || '')}</span>
+             </div>`
+          ).join('')}
+        </div>` : ''}
+
+        <div class="detail-section">
+          <div class="detail-section-title">Tags</div>
+          <div style="padding-top:4px">
+            ${(m.tags || []).map(t => `<span class="tag-pill">#${escHtml(t)}</span>`).join('')
+              || '<span style="color:var(--muted);font-size:.8rem">no tags</span>'}
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  showPage('d0', 'dataset');
+}
+
+/* ── Variant detail page ────────────────────────────────────────────────────── */
+function showVariantPage(photoId) {
+  if (!VARIANTS_DATA) { location.hash = '#dataset'; return; }
+  const v = VARIANTS_DATA.find(x => x.photo_id === photoId);
+  if (!v) { location.hash = '#dataset'; return; }
+
+  const annot    = TRANSFORM_MAP[photoId];
+  const memeSlug = annot ? (annot.memeConceptIRI || '').split('#')[1] : '';
+  const crAnnot  = memeSlug ? CULTURAL_MAP[memeSlug] : null;
+  const title    = v.title || v.meme_name || '';
+  const img      = (v.folder && v.filename)
+    ? `sampled_variants/${escHtml(v.folder)}/${escHtml(v.filename)}`
+    : escHtml(v.image_url || '');
+
+  document.getElementById('variant-page-content').innerHTML = `
+    <button class="meme-page-back" onclick="history.back()">&#8592; Back to Datasets</button>
+    <div class="meme-page-layout">
+      <div class="meme-page-img-col">
+        <img src="${img}" alt="${escHtml(title)}"/>
+        ${v.photo_url ? `<a href="${escHtml(v.photo_url)}" target="_blank" rel="noopener">View on Know Your Meme ↗</a>` : ''}
+      </div>
+      <div class="meme-page-info">
+        <h1>${escHtml(title)}</h1>
+        <div class="meme-page-id">Variant · photo_id: ${escHtml(photoId)} · ${escHtml(v.meme_name || '')}</div>
+
+        <div class="detail-section">
+          <div class="detail-section-title">Variant Metadata</div>
+          ${row('uploader',    v.author)}
+          ${row('variantIndex', annot ? String(annot.variantIndex) : null)}
+          ${v.img_alt ? row('caption / alt text', v.img_alt) : ''}
+        </div>
+
+        ${annot ? `
+        <div class="detail-section">
+          <div class="detail-section-title">Transformation Annotation</div>
+          ${row('meme',                    annot.memeName,                'accent')}
+          ${row('transformationDimension', annot.transformationDimension, 'accent')}
+          ${row('transformationExtent',    annot.transformationExtent)}
+          ${row('canonicalImageType',      annot.canonicalImageType)}
+          ${row('variantImageType',        annot.variantImageType)}
+          ${annot.captionText ? row('captionText', annot.captionText) : ''}
+          ${annot.notes       ? row('notes',       annot.notes)       : ''}
+        </div>` : ''}
+
+        ${crAnnot && crAnnot.references && crAnnot.references.length ? `
+        <div class="detail-section">
+          <div class="detail-section-title">Cultural References (parent meme)</div>
+          ${crAnnot.references.map(ref =>
+            `<div class="detail-row">
+               <span class="detail-key">${escHtml(ref.class || '')}</span>
+               <span class="detail-val accent">${escHtml(ref.label || ref.individual || '')}</span>
+             </div>`
+          ).join('')}
+        </div>` : ''}
+      </div>
+    </div>
+  `;
+
+  showPage('variant', 'dataset');
+}
+
+/* ── Dataset scroll helper ──────────────────────────────────────────────────── */
+function dsScrollTo(sectionId) {
+  const section = document.getElementById(sectionId);
+  if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 function row(key, val, cls = '') {
   if (val == null || val === '' || val === 'Unknown') return '';
   return `<div class="detail-row">
@@ -1003,6 +1237,13 @@ function buildAboutPage() {
 
 /* ── Dataset page ──────────────────────────────────────────────────────────── */
 function buildDatasetPage() {
+  dsBuilt = true;
+  buildGlobalSection();
+  buildD0Section();
+  buildVariantsSection('annotated');
+}
+
+function buildGlobalSection() {
   const slugs = Object.keys(DATA.memes);
 
   /* Populate filter dropdowns */
@@ -1043,6 +1284,64 @@ function buildDatasetPage() {
 
   dsFiltered = slugs;
   renderDsPage();
+}
+
+function buildD0Section() {
+  if (!D0_DATA) return;
+  const grid = document.getElementById('ds-d0-grid');
+  grid.innerHTML = D0_DATA.map(m => {
+    const label   = m.title || String(m.id);
+    const fmtList = Array.isArray(m.hasFormat) ? m.hasFormat : (Array.isArray(m.type) ? m.type : []);
+    const fmt     = fmtList.slice(0, 2).join(', ');
+    const views   = m.views ? Number(m.views).toLocaleString() : null;
+    const desc    = m.description ? m.description.slice(0, 100) + (m.description.length > 100 ? '…' : '') : '';
+    const img     = m.image_path || m.image_url || '';
+    const href    = `#d0/${encodeURIComponent(String(m.id))}`;
+    return `<a class="ds-card ds-d0-card" href="${href}">
+      <div class="ds-card-img"><img src="${escHtml(img)}" alt="${escHtml(label)}" loading="lazy"/></div>
+      <span class="ds-card-name">${escHtml(label)}</span>
+      ${fmt   ? `<span class="ds-d0-meta">${escHtml(fmt)}</span>` : ''}
+      ${views ? `<span class="ds-d0-meta ds-d0-views">&#128065; ${views}</span>` : ''}
+      ${desc  ? `<span class="ds-d0-desc">${escHtml(desc)}</span>` : ''}
+    </a>`;
+  }).join('');
+}
+
+function buildVariantsSection(mode) {
+  dsVariantMode = mode;
+  document.querySelectorAll('.ds-vtoggle').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.v === mode);
+  });
+
+  const grid = document.getElementById('ds-variants-grid');
+  if (!VARIANTS_DATA) {
+    grid.innerHTML = '<p style="color:var(--muted);padding:16px 0">Variants data not loaded.</p>';
+    return;
+  }
+
+  const items = (mode === 'annotated')
+    ? VARIANTS_DATA.filter(v => TRANSFORM_MAP[v.photo_id])
+    : VARIANTS_DATA;
+
+  grid.innerHTML = items.map(v => {
+    const annot  = TRANSFORM_MAP[v.photo_id];
+    const img    = (v.folder && v.filename)
+      ? `sampled_variants/${escHtml(v.folder)}/${escHtml(v.filename)}`
+      : escHtml(v.image_url || '');
+    const dim    = annot ? annot.transformationDimension : null;
+    const ext    = annot ? annot.transformationExtent   : null;
+    const title  = v.title || v.meme_name || '';
+    return `<a class="ds-card ds-var-card" href="#variant/${encodeURIComponent(v.photo_id)}">
+      <div class="ds-card-img"><img src="${img}" alt="${escHtml(title)}" loading="lazy"/></div>
+      <span class="ds-card-name">${escHtml(title)}</span>
+      <span class="ds-d0-meta">${escHtml(v.meme_name || '')}</span>
+      ${dim ? `<span class="ds-d0-meta ds-d0-annot">${escHtml(dim)}${ext ? ' · ' + escHtml(ext) : ''}</span>` : ''}
+    </a>`;
+  }).join('');
+}
+
+function showVariants(mode) {
+  buildVariantsSection(mode);
 }
 
 function renderDsPage() {
@@ -1104,20 +1403,4 @@ function buildNav() {
     e.preventDefault();
     document.querySelector(dot.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
   }));
-
-  /* Lazy-build Manovich visualizations when their section enters viewport */
-  const lazyObs = new IntersectionObserver(entries => {
-    entries.forEach(en => {
-      if (!en.isIntersecting) return;
-      const id = en.target.id;
-      if (id === 'sec-imageplot') buildImagePlot();
-      if (id === 'sec-chrono')    buildChronoStrip();
-      if (id === 'sec-powerlaw')  buildPowerLawMontage();
-    });
-  }, { rootMargin: '200px', threshold: 0 });
-
-  ['sec-imageplot', 'sec-chrono', 'sec-powerlaw'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) lazyObs.observe(el);
-  });
 }

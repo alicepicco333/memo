@@ -452,7 +452,7 @@ ORDER BY DESC(?count)</textarea>
 
   <script>
     /* ── State ──────────────────────────────────────────────────────────── */
-    var ontologyTtlText = "";  // Holds raw Turtle content string directly for Comunica
+    var ontologyStore   = null;  // N3.Store — populated after parse
     var engine          = null;   // Comunica QueryEngine
     var isReady         = false;  // Flags if ready to fire queries
 
@@ -635,7 +635,7 @@ ORDER BY DESC(?count)</textarea>
       'describe': [
         'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
         '',
-        'DESCRIBE memo:distracted-boyfriend'
+        'DESCRIBE memo:woman-yelling-at-a-cat'
       ].join('\n')
     };
 
@@ -650,19 +650,36 @@ ORDER BY DESC(?count)</textarea>
           return r.text();
         })
         .then(function(ttlText) {
-          ontologyTtlText = ttlText;
-          engine = new Comunica.QueryEngine();
-          isReady = true;
+          owlStatus.textContent = 'Parsing…';
+          owlStats.textContent = 'Building triple store…';
 
-          // Estimate statement distribution count via fast rough regex parse for UI vanity values
-          var statementEstimate = (ttlText.match(/[\s;]\.\s*$/gm) || []).length || 97494;
+          var store  = new N3.Store();
+          var parser = new N3.Parser({
+            baseIRI: 'http://www.semanticweb.org/meme-ontology#',
+            format:  'Turtle'
+          });
 
-          owlDot.className = 'owl-dot ready';
-          owlStatus.textContent = 'Ready';
-          owlStats.textContent = statementEstimate.toLocaleString() + ' expressions indexed';
-          runBtn.disabled = false;
-          queryStatus.textContent = 'Ontology loaded — ready to parse queries';
-          queryStatus.className = 'query-status ok';
+          parser.parse(ttlText, function(error, quad) {
+            if (error) {
+              setError('Parse error: ' + error.message);
+              return;
+            }
+            if (quad) {
+              store.addQuad(quad);
+            } else {
+              // null quad = parsing complete
+              ontologyStore = store;
+              engine  = new Comunica.QueryEngine();
+              isReady = true;
+
+              owlDot.className    = 'owl-dot ready';
+              owlStatus.textContent = 'Ready';
+              owlStats.textContent  = store.size.toLocaleString() + ' triples indexed';
+              runBtn.disabled = false;
+              queryStatus.textContent = 'Ontology loaded — ready to parse queries';
+              queryStatus.className   = 'query-status ok';
+            }
+          });
         })
         .catch(function(err) {
           setError(err.message);
@@ -715,13 +732,8 @@ ORDER BY DESC(?count)</textarea>
       else if (bodyText.startsWith('CONSTRUCT')) queryType = 'construct';
       else if (bodyText.startsWith('DESCRIBE'))  queryType = 'describe';
 
-      // StringSource configuration avoids RDF/JS schema mismatch exceptions in raw browser contexts
-      var source = { 
-        type: 'stringSource', 
-        value: ontologyTtlText, 
-        mediaType: 'text/turtle', 
-        baseIRI: 'http://www.semanticweb.org/meme-ontology' 
-      };
+      // N3.Store implements RDF.JS Source — Comunica queries it directly
+      var source = ontologyStore;
 
       if (queryType === 'ask') {
         engine.queryBoolean(queryText, { sources: [source] })
@@ -748,9 +760,19 @@ ORDER BY DESC(?count)</textarea>
         // SELECT
         engine.queryBindings(queryText, { sources: [source] })
           .then(function(bindingsStream) {
-            var vars = bindingsStream.variables.map(function(v) { return v.value; });
-            return bindingsStream.toArray().then(function(rows) {
-              return { vars: vars, rows: rows };
+            // Comunica v4: variables live on metadata() (async), not bindingsStream.variables
+            var metaP = typeof bindingsStream.metadata === 'function'
+              ? bindingsStream.metadata().catch(function() { return {}; })
+              : Promise.resolve({ variables: bindingsStream.variables || [] });
+            return metaP.then(function(meta) {
+              var vars = (meta.variables || bindingsStream.variables || [])
+                .map(function(v) { return (v && v.value) ? v.value : String(v); });
+              return bindingsStream.toArray().then(function(rows) {
+                if (!vars.length && rows.length > 0) {
+                  vars = [...rows[0].keys()].map(function(v) { return (v && v.value) ? v.value : String(v); });
+                }
+                return { vars: vars, rows: rows };
+              });
             });
           })
           .then(function(result) {

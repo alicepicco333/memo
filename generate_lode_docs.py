@@ -1,14 +1,55 @@
 """
-Generate LODE-style HTML documentation from meme_ontology.ttl using rdflib.
-Writes output to documentation.html.
+Generate LODE documentation from the meme ontology.
+
+Usage:
+  python generate_lode_docs.py                     # custom LODE-style HTML (offline, uses TTL)
+  python generate_lode_docs.py --url https://...   # real LODE service output (needs public OWL URL)
+
+When --url is given the script sends the OWL file URL to the real LODE service
+at https://essepuntato.it/lode and saves the returned HTML as documentation.html.
 """
+import sys
 import re
 from pathlib import Path
+
+BASE = Path(__file__).parent
+OUT  = BASE / "documentation.html"
+
+# ── Real LODE mode ────────────────────────────────────────────────────────────
+if '--url' in sys.argv:
+    import urllib.request
+    import urllib.parse
+    idx      = sys.argv.index('--url')
+    owl_url  = sys.argv[idx + 1]
+    lode_api = 'https://essepuntato.it/lode/extract'
+    full_url = lode_api + '?url=' + urllib.parse.quote(owl_url, safe='') + '&lang=en'
+    print(f"Calling real LODE service…")
+    print(f"  {full_url}")
+    req = urllib.request.Request(full_url, headers={'User-Agent': 'meme-ontology/1.0'})
+    try:
+        with urllib.request.urlopen(req, timeout=120) as resp:
+            html_bytes = resp.read()
+        html = html_bytes.decode('utf-8', errors='replace')
+        # Patch back-link into LODE output so users can return to the viz
+        back = '<a href="meme_viz.html" style="position:fixed;top:10px;right:12px;' \
+               'z-index:9999;padding:6px 14px;background:#1a3d6b;color:#fff;' \
+               'border-radius:4px;text-decoration:none;font-size:.78rem;font-family:sans-serif;">' \
+               '&#x2190; Back to Meme Ontology</a>'
+        html = html.replace('<body>', '<body>' + back, 1)
+        OUT.write_text(html, encoding='utf-8')
+        print(f"Wrote {OUT.name} ({len(html)//1024} KB, real LODE output)")
+    except Exception as e:
+        print(f"ERROR calling LODE service: {e}")
+        print("Tip: the OWL file URL must be publicly accessible.")
+        sys.exit(1)
+    sys.exit(0)
+
+# ── Custom LODE-style mode (offline) ─────────────────────────────────────────
 from rdflib import Graph, Namespace, RDF, RDFS, OWL, XSD, URIRef, Literal
 
-BASE   = Path(__file__).parent
+
 TTL    = BASE / "meme_ontology.ttl"
-OUT    = BASE / "documentation.html"
+OUT_CUSTOM = BASE / "documentation.html"  # reuse same output file
 
 MEME = Namespace("http://www.semanticweb.org/meme-ontology#")
 
@@ -378,8 +419,8 @@ page = f"""<!DOCTYPE html>
 </html>
 """
 
-OUT.write_text(page, encoding="utf-8")
-print(f"\nWrote {OUT.name} ({len(page)//1024} KB)")
+OUT_CUSTOM.write_text(page, encoding="utf-8")
+print(f"\nWrote {OUT_CUSTOM.name} ({len(page)//1024} KB)")
 print(f"  Classes:             {len(classes)}")
 print(f"  Object properties:   {len(obj_props)}")
 print(f"  Datatype properties: {len(data_props)}")

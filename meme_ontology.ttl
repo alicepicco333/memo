@@ -102254,7 +102254,7 @@ memo:Creepypasta a memo:MemeFormat,
     rdfs:label "Creepypasta" .
 
 memo:OriginWork a owl:Class ;
-    rdfs:label "OriginPlatform" ;
+    rdfs:label "OriginWork" ;
     rdfs:subClassOf memo:DocumentaryLevel,
         memo:Expression .
 
