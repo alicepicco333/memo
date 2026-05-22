@@ -155,13 +155,22 @@ function normalizeHttpUrl(raw) {
 }
 
 function updateLiveLodeLink(owlUrl) {
-  var a = document.getElementById('onto-lode-live-link');
-  if (!a) return;
+  var lodeA = document.getElementById('onto-lode-live-link');
+  var vowlA = document.getElementById('onto-vowl-live-link');
+  var lodeUrl = 'https://essepuntato.it/lode/';
+  var vowlUrl = 'https://service.tib.eu/webvowl/';
+
   if (!owlUrl) {
-    a.href = 'https://essepuntato.it/lode/';
+    if (lodeA) lodeA.href = lodeUrl;
+    if (vowlA) vowlA.href = vowlUrl;
     return;
   }
-  a.href = 'https://essepuntato.it/lode/extract?url=' + encodeURIComponent(owlUrl) + '&lang=en';
+
+  lodeUrl = 'https://essepuntato.it/lode/extract?url=' + encodeURIComponent(owlUrl) + '&lang=en';
+  vowlUrl = 'https://service.tib.eu/webvowl/#file=' + encodeURIComponent(owlUrl);
+
+  if (lodeA) lodeA.href = lodeUrl;
+  if (vowlA) vowlA.href = vowlUrl;
 }
 
 function initOntoPage() {
@@ -178,7 +187,7 @@ function initOntoPage() {
   if (!isLocal) {
     // On deployed domains we prefill URL, but we do not auto-open a popup.
     // Auto-open is often blocked by the browser if not user-triggered.
-    var owlUrl = window.location.origin + '/meme_ontology.owl';
+    var owlUrl = window.location.origin + '/ontology';
     input.value = owlUrl;
     updateLiveLodeLink(owlUrl);
 
