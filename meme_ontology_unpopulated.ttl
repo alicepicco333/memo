@@ -311,13 +311,13 @@ memo:Mexico a memo:GeographicRegion,
         owl:NamedIndividual ;
     rdfs:label "Mexico" .
 
-memo:Minimal a owl:Class ;
-    rdfs:label "Minimal" ;
-    rdfs:subClassOf memo:TransformationExtent .
+memo:Minimal a memo:TransformationExtent,
+        owl:NamedIndividual ;
+    rdfs:label "Minimal" .
 
-memo:Moderate a owl:Class ;
-    rdfs:label "Moderate" ;
-    rdfs:subClassOf memo:TransformationExtent .
+memo:Moderate a memo:TransformationExtent,
+        owl:NamedIndividual ;
+    rdfs:label "Moderate" .
 
 memo:Monochrome a memo:CanonicalColorMode,
         owl:NamedIndividual ;
@@ -496,9 +496,9 @@ memo:Subculture a memo:MemeFormat,
         owl:NamedIndividual ;
     rdfs:label "Subculture" .
 
-memo:Substantial a owl:Class ;
-    rdfs:label "Substantial" ;
-    rdfs:subClassOf memo:TransformationExtent .
+memo:Substantial a memo:TransformationExtent,
+        owl:NamedIndividual ;
+    rdfs:label "Substantial" .
 
 memo:Sweden a memo:GeographicRegion,
         owl:NamedIndividual ;
@@ -570,21 +570,21 @@ memo:Unknown a memo:CanonicalSubjectMatter,
         owl:NamedIndividual ;
     rdfs:label "Unknown" .
 
-memo:UnknownFormat a owl:Class ;
-    rdfs:label "Unknown Format" ;
-    rdfs:subClassOf memo:FileFormat .
+memo:UnknownFormat a memo:FileFormat,
+        owl:NamedIndividual ;
+    rdfs:label "Unknown Format" .
 
-memo:UnknownPeriod a owl:Class ;
-    rdfs:label "Unknown Period" ;
-    rdfs:subClassOf memo:TimePeriod .
+memo:UnknownPeriod a memo:TimePeriod,
+        owl:NamedIndividual ;
+    rdfs:label "Unknown Period" .
 
-memo:UnknownPlatform a owl:Class ;
-    rdfs:label "Unknown Platform" ;
-    rdfs:subClassOf memo:OriginPlatform .
+memo:UnknownPlatform a memo:OriginPlatform,
+        owl:NamedIndividual ;
+    rdfs:label "Unknown Platform" .
 
-memo:UnknownRegion a owl:Class ;
-    rdfs:label "Unknown Region" ;
-    rdfs:subClassOf memo:GeographicRegion .
+memo:UnknownRegion a memo:GeographicRegion,
+        owl:NamedIndividual ;
+    rdfs:label "Unknown Region" .
 
 memo:Vatican a memo:GeographicRegion,
         owl:NamedIndividual ;

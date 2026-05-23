@@ -41306,9 +41306,9 @@ memo:MiniKeanuReeves a memo:MemeConcept,
     memo:hasRegion memo:Unknown ;
     memo:hasTimePeriod memo:Period2016to2020 .
 
-memo:Minimal a owl:Class ;
-    rdfs:label "Minimal" ;
-    rdfs:subClassOf memo:TransformationExtent .
+memo:Minimal a memo:TransformationExtent,
+        owl:NamedIndividual ;
+    rdfs:label "Minimal" .
 
 memo:MinionCultHectorCult a memo:MemeConcept,
         owl:NamedIndividual ;
@@ -41556,9 +41556,9 @@ memo:MitchMcconnellFreezeAtPressConference a memo:MemeConcept,
     memo:hasRegion memo:UnitedStates ;
     memo:hasTimePeriod memo:Period2021toPresent .
 
-memo:Moderate a owl:Class ;
-    rdfs:label "Moderate" ;
-    rdfs:subClassOf memo:TransformationExtent .
+memo:Moderate a memo:TransformationExtent,
+        owl:NamedIndividual ;
+    rdfs:label "Moderate" .
 
 memo:ModernProblemsRequireModernSolutions a memo:MemeConcept,
         owl:NamedIndividual ;
@@ -58111,9 +58111,9 @@ memo:SubmissiveAndBreedable a memo:MemeConcept,
     memo:hasRegion memo:Unknown ;
     memo:hasTimePeriod memo:Period2021toPresent .
 
-memo:Substantial a owl:Class ;
-    rdfs:label "Substantial" ;
-    rdfs:subClassOf memo:TransformationExtent .
+memo:Substantial a memo:TransformationExtent,
+        owl:NamedIndividual ;
+    rdfs:label "Substantial" .
 
 memo:SubtleFacialTwitches a memo:MemeConcept,
         owl:NamedIndividual ;
@@ -65713,21 +65713,21 @@ memo:UniversityOfWaterlooStudentId a memo:MemeConcept,
     memo:hasRegion memo:Canada ;
     memo:hasTimePeriod memo:Period2021toPresent .
 
-memo:UnknownFormat a owl:Class ;
-    rdfs:label "Unknown Format" ;
-    rdfs:subClassOf memo:FileFormat .
+memo:UnknownFormat a memo:FileFormat,
+        owl:NamedIndividual ;
+    rdfs:label "Unknown Format" .
 
-memo:UnknownPeriod a owl:Class ;
-    rdfs:label "Unknown Period" ;
-    rdfs:subClassOf memo:TimePeriod .
+memo:UnknownPeriod a memo:TimePeriod,
+        owl:NamedIndividual ;
+    rdfs:label "Unknown Period" .
 
-memo:UnknownPlatform a owl:Class ;
-    rdfs:label "Unknown Platform" ;
-    rdfs:subClassOf memo:OriginPlatform .
+memo:UnknownPlatform a memo:OriginPlatform,
+        owl:NamedIndividual ;
+    rdfs:label "Unknown Platform" .
 
-memo:UnknownRegion a owl:Class ;
-    rdfs:label "Unknown Region" ;
-    rdfs:subClassOf memo:GeographicRegion .
+memo:UnknownRegion a memo:GeographicRegion,
+        owl:NamedIndividual ;
+    rdfs:label "Unknown Region" .
 
 memo:UnovansBeLike a memo:MemeConcept,
         owl:NamedIndividual ;
