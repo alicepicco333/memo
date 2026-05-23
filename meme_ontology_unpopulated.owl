@@ -601,7 +601,7 @@ origin.</rdfs:comment>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#isCanonicalSubjectMatterOf">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:label>isCanonicalSubjectMatterOf</rdfs:label>
-    <rdfs:domain rdf:resource="http://www.semanticweb.org/meme-ontology#CanonicalSubjectMatter"/>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/meme-ontology#SubjectMatter"/>
     <rdfs:range rdf:resource="http://www.semanticweb.org/meme-ontology#MemeConcept"/>
     <owl:inverseOf rdf:resource="http://www.semanticweb.org/meme-ontology#hasCanonicalSubjectMatter"/>
   </rdf:Description>

@@ -903,7 +903,7 @@ memo:isCanonicalImageTypeOf a owl:ObjectProperty ;
 
 memo:isCanonicalSubjectMatterOf a owl:ObjectProperty ;
     rdfs:label "isCanonicalSubjectMatterOf" ;
-    rdfs:domain memo:CanonicalSubjectMatter ;
+    rdfs:domain memo:SubjectMatter ;
     rdfs:range memo:MemeConcept ;
     owl:inverseOf memo:hasCanonicalSubjectMatter .
 
