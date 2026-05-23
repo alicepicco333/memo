@@ -83495,7 +83495,7 @@ memo:Gs9RowdyRebelBobbyShmurda a memo:OriginWork,
 memo:Guatelama a memo:GeographicRegion,
         owl:NamedIndividual ;
     rdfs:label "Guatelama" ;
-    rdfs:seeAlso <https://www.wikidata.org/wiki/Q guatem> .
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q315> .
 
 memo:GénesisInsurance a memo:OriginWork,
         owl:NamedIndividual ;

@@ -980,7 +980,7 @@ primary circulation.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Guatelama</rdfs:label>
-      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q guatem"/>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q315"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#hasOriginBoard">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
