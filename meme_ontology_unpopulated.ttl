@@ -1019,153 +1019,6 @@ image type, format, platform, region and time period."""@en ;
 [] rdf:first memo:Photograph ;
     rdf:rest ( memo:Cartoon ) .
 
-[] rdf:first memo:UnknownPerson ;
-    rdf:rest ( memo:NoPerson ) .
-
-[] rdf:first memo:Illustration ;
-    rdf:rest ( memo:Painting ) .
-
-[] rdf:first memo:MultipleSubjects ;
-    rdf:rest ( memo:UnknownPerson ) .
-
-[] rdf:first memo:Substantial ;
-    rdf:rest ( memo:Parody ) .
-
-[] rdf:first memo:GIF ;
-    rdf:rest ( memo:WebP ) .
-
-[] rdf:first memo:TextOnly ;
-    rdf:rest ( memo:PublicFigure ) .
-
-[] rdf:first memo:Moderate ;
-    rdf:rest ( memo:Substantial ) .
-
-[] rdf:first memo:Illustration ;
-    rdf:rest ( memo:Cartoon ) .
-
-[] rdf:first memo:Minimal ;
-    rdf:rest ( memo:Parody ) .
-
-[] rdf:first memo:PersonPresent ;
-    rdf:rest ( memo:CharacterPresent ) .
-
-[] rdf:first memo:PreIconographical ;
-    rdf:rest ( memo:Iconological ) .
-
-[] rdf:first memo:ObjectOnly ;
-    rdf:rest ( memo:MultipleSubjects ) .
-
-[] rdf:first memo:AnimalPresent ;
-    rdf:rest ( memo:ObjectOnly ) .
-
-[] rdf:first memo:Drawing ;
-    rdf:rest ( memo:Illustration ) .
-
-[] rdf:first memo:CharacterPresent ;
-    rdf:rest ( memo:NoPerson ) .
-
-[] rdf:first memo:PersonPresent ;
-    rdf:rest ( memo:MultipleSubjects ) .
-
-[] rdf:first memo:MultipleSubjects ;
-    rdf:rest ( memo:NoPerson ) .
-
-[] rdf:first memo:PersonPresent ;
-    rdf:rest ( memo:PublicFigure ) .
-
-[] rdf:first memo:CharacterPresent ;
-    rdf:rest ( memo:TextOnly ) .
-
-[] rdf:first memo:AnimalPresent ;
-    rdf:rest ( memo:UnknownPerson ) .
-
-[] rdf:first memo:CharacterPresent ;
-    rdf:rest ( memo:UnknownPerson ) .
-
-[] rdf:first memo:PreIconographical ;
-    rdf:rest ( memo:Iconographical ) .
-
-[] rdf:first memo:AnimalPresent ;
-    rdf:rest ( memo:NoPerson ) .
-
-[] rdf:first memo:CharacterPresent ;
-    rdf:rest ( memo:MultipleSubjects ) .
-
-[] rdf:first memo:AnimalPresent ;
-    rdf:rest ( memo:TextOnly ) .
-
-[] rdf:first memo:TextOnly ;
-    rdf:rest ( memo:UnknownPerson ) .
-
-[] rdf:first memo:CharacterPresent ;
-    rdf:rest ( memo:PublicFigure ) .
-
-[] rdf:first memo:PNG ;
-    rdf:rest ( memo:GIF ) .
-
-[] rdf:first memo:PublicFigure ;
-    rdf:rest ( memo:NoPerson ) .
-
-[] rdf:first memo:Manifestation ;
-    rdf:rest ( memo:Item ) .
-
-[] rdf:first memo:TextOnly ;
-    rdf:rest ( memo:MultipleSubjects ) .
-
-[] rdf:first memo:Color ;
-    rdf:rest ( memo:Monochrome ) .
-
-[] rdf:first memo:ContainsText ;
-    rdf:rest ( memo:NoText ) .
-
-[] rdf:first memo:MultipleSubjects ;
-    rdf:rest ( memo:PublicFigure ) .
-
-[] rdf:first memo:Cartoon ;
-    rdf:rest ( memo:Painting ) .
-
-[] rdf:first memo:PersonPresent ;
-    rdf:rest ( memo:NoPerson ) .
-
-[] rdf:first memo:JPEG ;
-    rdf:rest ( memo:WebP ) .
-
-[] rdf:first memo:PNG ;
-    rdf:rest ( memo:WebP ) .
-
-[] rdf:first memo:PersonPresent ;
-    rdf:rest ( memo:AnimalPresent ) .
-
-[] rdf:first memo:Photograph ;
-    rdf:rest ( memo:Painting ) .
-
-[] rdf:first memo:JPEG ;
-    rdf:rest ( memo:GIF ) .
-
-[] rdf:first memo:TextOnly ;
-    rdf:rest ( memo:NoPerson ) .
-
-[] rdf:first memo:Expression ;
-    rdf:rest ( memo:Item ) .
-
-[] rdf:first memo:ObjectOnly ;
-    rdf:rest ( memo:PublicFigure ) .
-
-[] rdf:first memo:Drawing ;
-    rdf:rest ( memo:Cartoon ) .
-
-[] rdf:first memo:Work ;
-    rdf:rest ( memo:Expression ) .
-
-[] rdf:first memo:Static ;
-    rdf:rest ( memo:Animated ) .
-
-[] rdf:first memo:CharacterPresent ;
-    rdf:rest ( memo:ObjectOnly ) .
-
-[] rdf:first memo:ObjectOnly ;
-    rdf:rest ( memo:UnknownPerson ) .
-
 [] rdf:first memo:ObjectOnly ;
     rdf:rest ( memo:TextOnly ) .
 
@@ -1180,6 +1033,9 @@ image type, format, platform, region and time period."""@en ;
 
 [] rdf:first memo:AnimalPresent ;
     rdf:rest ( memo:MultipleSubjects ) .
+
+[] rdf:first memo:GIF ;
+    rdf:rest ( memo:WebP ) .
 
 [] rdf:first memo:AnimalPresent ;
     rdf:rest ( memo:PublicFigure ) .
@@ -1211,6 +1067,9 @@ image type, format, platform, region and time period."""@en ;
 [] rdf:first memo:Photograph ;
     rdf:rest ( memo:Illustration ) .
 
+[] rdf:first memo:TextOnly ;
+    rdf:rest ( memo:PublicFigure ) .
+
 [] rdf:first memo:Work ;
     rdf:rest ( memo:Item ) .
 
@@ -1225,4 +1084,145 @@ image type, format, platform, region and time period."""@en ;
 
 [] rdf:first memo:Photograph ;
     rdf:rest ( memo:Drawing ) .
+
+[] rdf:first memo:Moderate ;
+    rdf:rest ( memo:Substantial ) .
+
+[] rdf:first memo:Illustration ;
+    rdf:rest ( memo:Cartoon ) .
+
+[] rdf:first memo:Minimal ;
+    rdf:rest ( memo:Parody ) .
+
+[] rdf:first memo:PersonPresent ;
+    rdf:rest ( memo:CharacterPresent ) .
+
+[] rdf:first memo:PreIconographical ;
+    rdf:rest ( memo:Iconological ) .
+
+[] rdf:first memo:ObjectOnly ;
+    rdf:rest ( memo:MultipleSubjects ) .
+
+[] rdf:first memo:AnimalPresent ;
+    rdf:rest ( memo:ObjectOnly ) .
+
+[] rdf:first memo:Drawing ;
+    rdf:rest ( memo:Illustration ) .
+
+[] rdf:first memo:UnknownPerson ;
+    rdf:rest ( memo:NoPerson ) .
+
+[] rdf:first memo:CharacterPresent ;
+    rdf:rest ( memo:NoPerson ) .
+
+[] rdf:first memo:PersonPresent ;
+    rdf:rest ( memo:MultipleSubjects ) .
+
+[] rdf:first memo:MultipleSubjects ;
+    rdf:rest ( memo:NoPerson ) .
+
+[] rdf:first memo:PersonPresent ;
+    rdf:rest ( memo:PublicFigure ) .
+
+[] rdf:first memo:CharacterPresent ;
+    rdf:rest ( memo:TextOnly ) .
+
+[] rdf:first memo:AnimalPresent ;
+    rdf:rest ( memo:UnknownPerson ) .
+
+[] rdf:first memo:CharacterPresent ;
+    rdf:rest ( memo:UnknownPerson ) .
+
+[] rdf:first memo:PreIconographical ;
+    rdf:rest ( memo:Iconographical ) .
+
+[] rdf:first memo:AnimalPresent ;
+    rdf:rest ( memo:NoPerson ) .
+
+[] rdf:first memo:CharacterPresent ;
+    rdf:rest ( memo:MultipleSubjects ) .
+
+[] rdf:first memo:Illustration ;
+    rdf:rest ( memo:Painting ) .
+
+[] rdf:first memo:AnimalPresent ;
+    rdf:rest ( memo:TextOnly ) .
+
+[] rdf:first memo:TextOnly ;
+    rdf:rest ( memo:UnknownPerson ) .
+
+[] rdf:first memo:CharacterPresent ;
+    rdf:rest ( memo:PublicFigure ) .
+
+[] rdf:first memo:PNG ;
+    rdf:rest ( memo:GIF ) .
+
+[] rdf:first memo:PublicFigure ;
+    rdf:rest ( memo:NoPerson ) .
+
+[] rdf:first memo:Manifestation ;
+    rdf:rest ( memo:Item ) .
+
+[] rdf:first memo:TextOnly ;
+    rdf:rest ( memo:MultipleSubjects ) .
+
+[] rdf:first memo:Color ;
+    rdf:rest ( memo:Monochrome ) .
+
+[] rdf:first memo:ContainsText ;
+    rdf:rest ( memo:NoText ) .
+
+[] rdf:first memo:MultipleSubjects ;
+    rdf:rest ( memo:PublicFigure ) .
+
+[] rdf:first memo:MultipleSubjects ;
+    rdf:rest ( memo:UnknownPerson ) .
+
+[] rdf:first memo:Cartoon ;
+    rdf:rest ( memo:Painting ) .
+
+[] rdf:first memo:PersonPresent ;
+    rdf:rest ( memo:NoPerson ) .
+
+[] rdf:first memo:JPEG ;
+    rdf:rest ( memo:WebP ) .
+
+[] rdf:first memo:PNG ;
+    rdf:rest ( memo:WebP ) .
+
+[] rdf:first memo:PersonPresent ;
+    rdf:rest ( memo:AnimalPresent ) .
+
+[] rdf:first memo:Photograph ;
+    rdf:rest ( memo:Painting ) .
+
+[] rdf:first memo:JPEG ;
+    rdf:rest ( memo:GIF ) .
+
+[] rdf:first memo:TextOnly ;
+    rdf:rest ( memo:NoPerson ) .
+
+[] rdf:first memo:Expression ;
+    rdf:rest ( memo:Item ) .
+
+[] rdf:first memo:ObjectOnly ;
+    rdf:rest ( memo:PublicFigure ) .
+
+[] rdf:first memo:Substantial ;
+    rdf:rest ( memo:Parody ) .
+
+[] rdf:first memo:Drawing ;
+    rdf:rest ( memo:Cartoon ) .
+
+[] rdf:first memo:Work ;
+    rdf:rest ( memo:Expression ) .
+
+[] rdf:first memo:Static ;
+    rdf:rest ( memo:Animated ) .
+
+[] rdf:first memo:CharacterPresent ;
+    rdf:rest ( memo:ObjectOnly ) .
+
+[] rdf:first memo:ObjectOnly ;
+    rdf:rest ( memo:UnknownPerson ) .
 
