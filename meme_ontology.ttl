@@ -86861,12 +86861,6 @@ memo:ScpFoundation a memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "SCP Foundation" .
 
-memo:SubjectMatter a owl:Class ;
-    rdfs:label "SubjectMatter" ;
-    memo:frbrLevel "Manifestation" ;
-    memo:semanticLevel "PreIconographical" ;
-    rdfs:subClassOf owl:Thing .
-
 memo:douyin a memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "Douyin" .
@@ -87003,15 +86997,6 @@ memo:TimePeriod a owl:Class ;
 memo:9gag a memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "9gag" .
-
-memo:CanonicalSubjectMatter a owl:Class ;
-    rdfs:label "Canonical Subject Matter"@en ;
-    memo:frbrLevel "Expression" ;
-    memo:semanticLevel "PreIconographical" ;
-    rdfs:comment """The category of subjects depicted in the\r\r\r\r\r\r
-canonical image (PersonPresent, AnimalPresent, ObjectOnly, TextOnly,\r\r\r\r\r\r
-MultipleSubjects, etc.)."""@en ;
-    rdfs:subClassOf owl:Thing .
 
 memo:CulturalReference a owl:Class ;
     rdfs:label "Cultural Reference"@en ;
@@ -87648,6 +87633,12 @@ memo:France a memo:GeographicRegion,
         owl:NamedIndividual ;
     rdfs:label "France" .
 
+memo:SubjectMatter a owl:Class ;
+    rdfs:label "SubjectMatter" ;
+    memo:frbrLevel "Manifestation" ;
+    memo:semanticLevel "PreIconographical" ;
+    rdfs:subClassOf owl:Thing .
+
 memo:soundcloud a memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "SoundCloud" .
@@ -87824,7 +87815,7 @@ memo:LipDub a memo:MemeFormat,
     rdfs:comment "Deprecated. Use LipDub instead." ;
     owl:deprecated true .
 
-memo:ObjectOnly a memo:CanonicalSubjectMatter,
+memo:ObjectOnly a memo:SubjectMatter,
         owl:NamedIndividual ;
     rdfs:label "ObjectOnly" .
 
@@ -87876,7 +87867,7 @@ memo:Copypasta a memo:MemeFormat,
         owl:NamedIndividual ;
     rdfs:label "Copypasta" .
 
-memo:AnimalPresent a memo:CanonicalSubjectMatter,
+memo:AnimalPresent a memo:SubjectMatter,
         owl:NamedIndividual ;
     rdfs:label "AnimalPresent" .
 
@@ -87928,7 +87919,7 @@ memo:Parody a memo:MemeFormat,
         owl:NamedIndividual ;
     rdfs:label "Parody" .
 
-memo:TextOnly a memo:CanonicalSubjectMatter,
+memo:TextOnly a memo:SubjectMatter,
         owl:NamedIndividual ;
     rdfs:label "TextOnly" ;
     rdfs:comment "SubjectMatter: TextOnly — image whose primary visible content is text with no person, character or animal present. Distinct from CaptionChange TransformationDimension." .
@@ -87965,7 +87956,7 @@ memo:PNG a memo:FileFormat,
         owl:NamedIndividual ;
     rdfs:label "PNG" .
 
-memo:PersonPresent a memo:CanonicalSubjectMatter,
+memo:PersonPresent a memo:SubjectMatter,
         owl:NamedIndividual ;
     rdfs:label "PersonPresent" .
 
@@ -87981,7 +87972,7 @@ memo:OriginWork a owl:Class ;
 game, book, song, etc.) from which a meme derives its source material."""@en ;
     rdfs:subClassOf owl:Thing .
 
-memo:CharacterPresent a memo:CanonicalSubjectMatter,
+memo:CharacterPresent a memo:SubjectMatter,
         owl:NamedIndividual ;
     rdfs:label "CharacterPresent" .
 
@@ -87993,7 +87984,7 @@ memo:ImageMacro a memo:MemeFormat,
         owl:NamedIndividual ;
     rdfs:label "ImageMacro" .
 
-memo:MultipleSubjects a memo:CanonicalSubjectMatter,
+memo:MultipleSubjects a memo:SubjectMatter,
         owl:NamedIndividual ;
     rdfs:label "MultipleSubjects" .
 
@@ -88054,8 +88045,8 @@ on Know Your Meme. Represents the stable, Expression-level identity of a meme\r\
 across all its variants. 5,000 named individuals are included, classified by\r\r\r\r\r\r
 image type, format, platform, region and time period."""@en .
 
-memo:Unknown a memo:CanonicalSubjectMatter,
-        memo:MemeFormat,
+memo:Unknown a memo:MemeFormat,
+        memo:SubjectMatter,
         owl:NamedIndividual ;
     rdfs:label "Unknown" .
 
