@@ -144,6 +144,9 @@ function route() {
   } else if (hash === 'about') {
     showPage('about');
     if (!document.getElementById('about-content').hasChildNodes()) buildAboutPage();
+  } else if (hash === 'disclaimer') {
+    showPage('disclaimer');
+    if (!document.getElementById('disclaimer-content').hasChildNodes()) buildDisclaimerPage();
   } else if (hash === 'dataset') {
     showPage('dataset');
     if (!dsBuilt) buildDatasetPage();
@@ -160,7 +163,7 @@ function showPage(name, navPage) {
   document.getElementById('dot-nav').classList.add('hidden');
   document.getElementById('node-panel').classList.add('hidden');
   document.getElementById('app').classList.remove('panel-open');
-  ['about', 'dataset', 'meme', 'd0', 'variant'].forEach(p =>
+  ['about', 'disclaimer', 'dataset', 'meme', 'd0', 'variant'].forEach(p =>
     document.getElementById('page-' + p).classList.add('hidden'));
   document.getElementById('page-' + name).classList.remove('hidden');
   setActiveNav(navPage || name);
@@ -265,7 +268,7 @@ function switchOntoTab(tab) {
 }
 
 function showViz() {
-  ['about', 'dataset', 'meme', 'd0', 'variant'].forEach(p =>
+  ['about', 'disclaimer', 'dataset', 'meme', 'd0', 'variant'].forEach(p =>
     document.getElementById('page-' + p).classList.add('hidden'));
   document.getElementById('app').classList.remove('hidden');
   document.getElementById('dot-nav').classList.remove('hidden');
@@ -1406,6 +1409,39 @@ function buildAboutPage() {
     <div class="about-section">
       <h2>Ontology Structure</h2>
       <p>The ontology uses the MEME namespace and defines properties including <code style="font-family:monospace;color:var(--accent2)">hasImageType</code>, <code style="font-family:monospace;color:var(--accent2)">hasSubjectMatter</code>, <code style="font-family:monospace;color:var(--accent2)">hasFormat</code>, <code style="font-family:monospace;color:var(--accent2)">hasOriginPlatform</code>, <code style="font-family:monospace;color:var(--accent2)">hasRegion</code>, and <code style="font-family:monospace;color:var(--accent2)">hasTimePeriod</code>. FRBR levels (Work → Expression → Manifestation → Item) are used to model the abstraction hierarchy of meme instances.</p>
+    </div>
+  `;
+}
+
+/* ── Disclaimer page ───────────────────────────────────────────────────────────── */
+function buildDisclaimerPage() {
+  document.getElementById('disclaimer-content').innerHTML = `
+    <h1>Legal and Ethical Disclaimer</h1>
+    <p class="page-sub">A note on the status of this data collection.</p>
+
+    <div class="about-section">
+      <h2>Data Collection Practices</h2>
+      <p>KnowYourMeme's Terms of Service, maintained by Literally Media Ltd., prohibit automated access that sends more requests to its servers than a human user could reasonably produce in the same period. This research respects the spirit of this restriction through a polite crawl delay of 0.5 to 2 seconds between requests, keeping the total request rate well within what a human user could produce.</p>
+    </div>
+
+    <div class="about-section">
+      <h2>Data Access</h2>
+      <p>All data collected is publicly accessible without authentication, login or subscription as KnowYourMeme's confirmed entry pages are indexed by search engines and freely readable by any browser without account registration. The scraping targets no private, user-specific or authenticated content.</p>
+    </div>
+
+    <div class="about-section">
+      <h2>Research Purpose</h2>
+      <p>The dataset is collected exclusively for non-commercial academic research purposes under academic supervision at the University of Bologna and is not redistributed commercially. No personal data about KnowYourMeme contributors or users was collected at any stage.</p>
+    </div>
+
+    <div class="about-section">
+      <h2>Academic Precedent</h2>
+      <p>This practice follows established precedent in digital humanities and internet studies scholarship, where KnowYourMeme has been treated as a legitimate primary source for meme research and used as a data source for computational analysis (Zannettou et al. 2018, 2; Shifman 2014, 89).</p>
+    </div>
+
+    <div class="about-section">
+      <h2>Legal Position</h2>
+      <p>Academic research scraping of publicly accessible web content occupies a legally and ethically defensible position, particularly where the research is non-commercial, rate-limited and does not target personal data—conditions this research satisfies in full.</p>
     </div>
   `;
 }
