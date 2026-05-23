@@ -429,7 +429,6 @@ memo:SoundEffect a memo:MemeFormat,
     rdfs:label "SoundEffect" .
 
 memo:SouthKorea a memo:GeographicRegion,
-        memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "SouthKorea" .
 
@@ -722,15 +721,6 @@ assigned by CLIP-based classification."""@en ;
     rdfs:range memo:ImageType ;
     owl:inverseOf memo:isCanonicalImageTypeOf .
 
-memo:hasCanonicalSubjectMatter a owl:ObjectProperty ;
-    rdfs:label "hasCanonicalSubjectMatter" ;
-    memo:frbrLevel "Manifestation" ;
-    memo:semanticLevel "PreIconographical" ;
-    rdfs:comment "What is inherently built into the base meme template (Expression level)." ;
-    rdfs:domain memo:MemeConcept ;
-    rdfs:range memo:SubjectMatter ;
-    owl:inverseOf memo:isCanonicalSubjectMatterOf .
-
 memo:hasCanonicalTextPresence a owl:ObjectProperty ;
     rdfs:label "hasCanonicalTextPresence"@en ;
     memo:frbrLevel "Manifestation" ;
@@ -900,12 +890,6 @@ memo:isCanonicalImageTypeOf a owl:ObjectProperty ;
     rdfs:domain memo:ImageType ;
     rdfs:range memo:MemeConcept ;
     owl:inverseOf memo:hasCanonicalImageType .
-
-memo:isCanonicalSubjectMatterOf a owl:ObjectProperty ;
-    rdfs:label "isCanonicalSubjectMatterOf" ;
-    rdfs:domain memo:CanonicalSubjectMatter ;
-    rdfs:range memo:MemeConcept ;
-    owl:inverseOf memo:hasCanonicalSubjectMatter .
 
 memo:isCanonicalTextPresenceOf a owl:ObjectProperty ;
     rdfs:label "isCanonicalTextPresenceOf" ;
