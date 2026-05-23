@@ -1394,7 +1394,7 @@ function buildAboutPage() {
       <h2>At a Glance</h2>
       <div class="about-stats">
         <div class="stat-card"><span class="stat-num">${memeCount.toLocaleString()}</span><span class="stat-label">Memes</span></div>
-        <div class="stat-card"><span class="stat-num">OWL</span><span class="stat-label">Ontology format</span></div>
+        <div class="stat-card"><span class="stat-num">OWL 2 DL</span><span class="stat-label">Ontology format</span></div>
         <div class="stat-card"><span class="stat-num">CLIP</span><span class="stat-label">Image classifier</span></div>
         <div class="stat-card"><span class="stat-num">KYM</span><span class="stat-label">Data source</span></div>
       </div>
@@ -1402,8 +1402,8 @@ function buildAboutPage() {
 
     <div class="about-section">
       <h2>Project</h2>
-      <p>The Meme Ontology is a research project that applies formal knowledge representation to internet culture. Each meme in the dataset is represented as an OWL individual with properties covering its visual content, cultural context, origin, and format classification.</p>
-      <p>The dataset is sourced from <a href="https://knowyourmeme.com" target="_blank" rel="noopener" style="color:var(--accent2)">Know Your Meme</a>, enriched with automated CLIP-based image classification and structured using a custom OWL ontology with classes for image type, subject matter, meme format, origin platform, geographic region, and temporal period.</p>
+      <p>The Meme Ontology is a research project that applies formal knowledge representation to internet culture. Each meme in the dataset is represented as an OWL 2 DL individual with properties covering its visual content, cultural context, origin, and format classification.</p>
+      <p>The dataset is sourced from <a href="https://knowyourmeme.com" target="_blank" rel="noopener" style="color:var(--accent2)">Know Your Meme</a>, enriched with automated CLIP-based image classification and structured using a custom OWL 2 DL ontology with classes for image type, subject matter, meme format, origin platform, geographic region, and temporal period.</p>
     </div>
 
     <div class="about-section">
@@ -1412,7 +1412,7 @@ function buildAboutPage() {
         <div class="pipeline-step">
           <div class="pipeline-num">01</div>
           <div class="pipeline-label">Data Collection</div>
-          <div class="pipeline-desc">Metadata and images scraped from Know Your Meme via the public API and image archives.</div>
+          <div class="pipeline-desc">Metadata and images scraped from Know Your Meme via the public API and image archives with rate-limiting compliance.</div>
         </div>
         <div class="pipeline-step">
           <div class="pipeline-num">02</div>
@@ -1422,12 +1422,12 @@ function buildAboutPage() {
         <div class="pipeline-step">
           <div class="pipeline-num">03</div>
           <div class="pipeline-label">OWL Generation</div>
-          <div class="pipeline-desc">Classifications are serialised into an OWL/RDF ontology using rdflib and a custom vocabulary.</div>
+          <div class="pipeline-desc">Classifications are serialised into an OWL 2 DL/RDF ontology using rdflib with FRBR-aligned hierarchy.</div>
         </div>
         <div class="pipeline-step">
           <div class="pipeline-num">04</div>
           <div class="pipeline-label">Visualisation</div>
-          <div class="pipeline-desc">Interactive D3.js visualisations expose co-occurrence patterns across tags, formats, and platforms.</div>
+          <div class="pipeline-desc">Interactive D3.js visualisations expose co-occurrence patterns across tags, formats, and platforms on mobile and desktop.</div>
         </div>
       </div>
     </div>
@@ -1435,6 +1435,31 @@ function buildAboutPage() {
     <div class="about-section">
       <h2>Ontology Structure</h2>
       <p>The ontology uses the MEME namespace and defines properties including <code style="font-family:monospace;color:var(--accent2)">hasImageType</code>, <code style="font-family:monospace;color:var(--accent2)">hasSubjectMatter</code>, <code style="font-family:monospace;color:var(--accent2)">hasFormat</code>, <code style="font-family:monospace;color:var(--accent2)">hasOriginPlatform</code>, <code style="font-family:monospace;color:var(--accent2)">hasRegion</code>, and <code style="font-family:monospace;color:var(--accent2)">hasTimePeriod</code>. FRBR levels (Work → Expression → Manifestation → Item) are used to model the abstraction hierarchy of meme instances.</p>
+    </div>
+
+    <div class="about-section">
+      <h2>Semantic Interoperability</h2>
+      <p>The ontology aligns with established external vocabularies to improve data interoperability and semantic clarity:</p>
+      <ul style="margin-left:20px;color:var(--text-alt)">
+        <li><code style="color:var(--accent2)">hasOriginWork</code> → <code>schema:isBasedOn</code> (schema.org)</li>
+        <li><code style="color:var(--accent2)">yearOfOrigin</code> → <code>dcterms:created</code> (Dublin Core Terms)</li>
+        <li><code style="color:var(--accent2)">hasRegion</code> → <code>dcterms:spatial</code> (Dublin Core Terms)</li>
+        <li><code style="color:var(--accent2)">memeURL</code> → <code>schema:url</code> (schema.org)</li>
+        <li><code style="color:var(--accent2)">description</code> → <code>dcterms:description</code> (Dublin Core Terms)</li>
+        <li><code style="color:var(--accent2)">tags</code> → <code>schema:keywords</code> (schema.org)</li>
+        <li><code style="color:var(--accent2)">views</code> → <code>schema:interactionCount</code> (schema.org)</li>
+      </ul>
+    </div>
+
+    <div class="about-section">
+      <h2>Design Principles</h2>
+      <ul style="margin-left:20px;color:var(--text-alt)">
+        <li><strong>FRBR-Aligned Hierarchy:</strong> Properties are annotated with FRBR levels to distinguish between abstract works, expressions, physical manifestations, and item-level variants.</li>
+        <li><strong>Panofsky Framework:</strong> Semantic levels (PreIconographical, Iconographical, Iconological) applied to properties capturing visual form, cultural meaning, and ideological context.</li>
+        <li><strong>OWL 2 DL Compliance:</strong> The ontology is designed to be decidable and reasonably expressible within OWL 2 DL semantics, enabling computational reasoning and validation.</li>
+        <li><strong>Responsive Design:</strong> Interactive visualisations adapt dynamically to mobile, tablet, and desktop viewports through CSS media queries and JavaScript event handlers.</li>
+        <li><strong>Property Symmetry:</strong> Canonical and variant properties maintain inverse declarations (e.g., <code>hasVariantSubjectMatter</code> ↔ <code>isVariantSubjectMatterOf</code>) to ensure complete bidirectional traversal.</li>
+      </ul>
     </div>
   `;
 }
