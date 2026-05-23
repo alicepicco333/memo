@@ -86964,6 +86964,14 @@ memo:EldenRing a memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "Elden Ring" .
 
+memo:FileFormat a owl:Class ;
+    rdfs:label "File Format"@en ;
+    memo:documentaryLevel "true" ;
+    memo:frbrLevel "Item" ;
+    rdfs:comment """The digital file format of the meme image (JPEG,\r\r\r\r\r\r
+PNG, GIF, WebP, BMP)."""@en ;
+    rdfs:subClassOf owl:Thing .
+
 memo:FunnyJunk a memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "FunnyJunk" .
@@ -86975,6 +86983,14 @@ memo:Mexico a memo:GeographicRegion,
 memo:OriginBoard a owl:Class ;
     rdfs:label "OriginBoard" ;
     rdfs:subClassOf memo:OriginWork .
+
+memo:TimePeriod a owl:Class ;
+    rdfs:label "Time Period"@en ;
+    memo:documentaryLevel "true" ;
+    memo:frbrLevel "Expression" ;
+    rdfs:comment """The era in which a meme originated or peaked\r\r\r\r\r\r
+(Pre2010, Period2010to2015, Period2016to2020, Period2021toPresent)."""@en ;
+    rdfs:subClassOf owl:Thing .
 
 memo:9gag a memo:OriginWork,
         owl:NamedIndividual ;
@@ -86991,14 +87007,6 @@ culture artefact. Subclasses: HistoricalEvent, MediaProperty, PoliticalEvent,\r\
 PublicFigure, SocialPhenomenon, WebCulture."""@en ;
     rdfs:subClassOf owl:Thing .
 
-memo:FileFormat a owl:Class ;
-    rdfs:label "File Format"@en ;
-    memo:documentaryLevel "true" ;
-    memo:frbrLevel "Item" ;
-    rdfs:comment """The digital file format of the meme image (JPEG,\r\r\r\r\r\r
-PNG, GIF, WebP, BMP)."""@en ;
-    rdfs:subClassOf owl:Thing .
-
 memo:JojoSBizarreAdventure a memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "JoJo's Bizarre Adventure" .
@@ -87006,14 +87014,6 @@ memo:JojoSBizarreAdventure a memo:OriginWork,
 memo:Russia a memo:GeographicRegion,
         owl:NamedIndividual ;
     rdfs:label "Russia" .
-
-memo:TimePeriod a owl:Class ;
-    rdfs:label "Time Period"@en ;
-    memo:documentaryLevel "true" ;
-    memo:frbrLevel "Expression" ;
-    rdfs:comment """The era in which a meme originated or peaked\r\r\r\r\r\r
-(Pre2010, Period2010to2015, Period2016to2020, Period2021toPresent)."""@en ;
-    rdfs:subClassOf owl:Thing .
 
 memo:CanonicalSubjectMatter a owl:Class ;
     rdfs:label "Canonical Subject Matter"@en ;
@@ -87795,7 +87795,6 @@ memo:Hoax a memo:MemeFormat,
     rdfs:label "Hoax" .
 
 memo:FanLabor a memo:MemeFormat,
-        owl:Class,
         owl:NamedIndividual ;
     rdfs:label "Fan Labor" ;
     rdfs:comment "Deprecated. Use FanLabor instead." ;
@@ -87807,7 +87806,6 @@ memo:iFunny a memo:OriginPlatform,
     rdfs:label "iFunny" .
 
 memo:ConspiracyTheory a memo:MemeFormat,
-        owl:Class,
         owl:NamedIndividual ;
     rdfs:label "Conspiracy Theory" ;
     rdfs:comment "Deprecated. Use ConspiracyTheory instead." ;
@@ -87815,7 +87813,6 @@ memo:ConspiracyTheory a memo:MemeFormat,
     owl:deprecated true .
 
 memo:LipDub a memo:MemeFormat,
-        owl:Class,
         owl:NamedIndividual ;
     rdfs:label "Lip Dub" ;
     rdfs:comment "Deprecated. Use LipDub instead." ;
@@ -88053,11 +88050,7 @@ across all its variants. 5,000 named individuals are included, classified by\r\r
 image type, format, platform, region and time period."""@en .
 
 memo:Unknown a memo:CanonicalSubjectMatter,
-        memo:FileFormat,
-        memo:GeographicRegion,
         memo:MemeFormat,
-        memo:OriginWork,
-        memo:TimePeriod,
         owl:NamedIndividual ;
     rdfs:label "Unknown" .
 

@@ -112,7 +112,6 @@ memo:CompositionShift a owl:Class ;
     rdfs:subClassOf memo:TransformationDimension .
 
 memo:ConspiracyTheory a memo:MemeFormat,
-        owl:Class,
         owl:NamedIndividual ;
     rdfs:label "Conspiracy Theory" ;
     rdfs:comment "Deprecated. Use ConspiracyTheory instead." ;
@@ -180,7 +179,6 @@ memo:FanArt a memo:MemeFormat,
     rdfs:label "FanArt" .
 
 memo:FanLabor a memo:MemeFormat,
-        owl:Class,
         owl:NamedIndividual ;
     rdfs:label "Fan Labor" ;
     rdfs:comment "Deprecated. Use FanLabor instead." ;
@@ -280,7 +278,6 @@ memo:LanguageShift a owl:Class ;
     rdfs:subClassOf memo:TransformationDimension .
 
 memo:LipDub a memo:MemeFormat,
-        owl:Class,
         owl:NamedIndividual ;
     rdfs:label "Lip Dub" ;
     rdfs:comment "Deprecated. Use LipDub instead." ;
@@ -562,11 +559,7 @@ memo:UnitedStatesNetherlands a memo:GeographicRegion,
     rdfs:label "United States, Netherlands" .
 
 memo:Unknown a memo:CanonicalSubjectMatter,
-        memo:FileFormat,
-        memo:GeographicRegion,
         memo:MemeFormat,
-        memo:OriginWork,
-        memo:TimePeriod,
         owl:NamedIndividual ;
     rdfs:label "Unknown" .
 
@@ -1238,17 +1231,6 @@ memo:CanonicalImageType a owl:Class ;
 classification at the Manifestation level, assigned via CLIP-based scoring."""@en ;
     rdfs:subClassOf owl:Thing .
 
-memo:CulturalReference a owl:Class ;
-    rdfs:label "Cultural Reference"@en ;
-    memo:frbrLevel "Expression Manifestation",
-        "Expression, Manifestation" ;
-    memo:semanticLevel "Iconological" ;
-    rdfs:comment """A cultural entity referenced by a meme — a historical\r\r\r\r\r\r
-event, media property, political event, public figure, social phenomenon, or web\r\r\r\r\r\r
-culture artefact. Subclasses: HistoricalEvent, MediaProperty, PoliticalEvent,\r\r\r\r\r\r
-PublicFigure, SocialPhenomenon, WebCulture."""@en ;
-    rdfs:subClassOf owl:Thing .
-
 memo:FileFormat a owl:Class ;
     rdfs:label "File Format"@en ;
     memo:documentaryLevel "true" ;
@@ -1263,6 +1245,17 @@ memo:TimePeriod a owl:Class ;
     memo:frbrLevel "Expression" ;
     rdfs:comment """The era in which a meme originated or peaked\r\r\r\r\r\r
 (Pre2010, Period2010to2015, Period2016to2020, Period2021toPresent)."""@en ;
+    rdfs:subClassOf owl:Thing .
+
+memo:CulturalReference a owl:Class ;
+    rdfs:label "Cultural Reference"@en ;
+    memo:frbrLevel "Expression Manifestation",
+        "Expression, Manifestation" ;
+    memo:semanticLevel "Iconological" ;
+    rdfs:comment """A cultural entity referenced by a meme — a historical\r\r\r\r\r\r
+event, media property, political event, public figure, social phenomenon, or web\r\r\r\r\r\r
+culture artefact. Subclasses: HistoricalEvent, MediaProperty, PoliticalEvent,\r\r\r\r\r\r
+PublicFigure, SocialPhenomenon, WebCulture."""@en ;
     rdfs:subClassOf owl:Thing .
 
 memo:CanonicalSubjectMatter a owl:Class ;
@@ -1317,6 +1310,14 @@ memo:MemeFormat a owl:Class ;
 memes at the Expression level with Iconographical analysis."""@en ;
     rdfs:subClassOf owl:Thing .
 
+memo:GeographicRegion a owl:Class ;
+    rdfs:label "Geographic Region"@en ;
+    memo:documentaryLevel "true" ;
+    memo:frbrLevel "Expression" ;
+    rdfs:comment """The country or geographic region of a meme's\r\r\r\r\r\r
+origin."""@en ;
+    rdfs:subClassOf owl:Thing .
+
 memo:MemeConcept a memo:MemeFormat,
         owl:NamedIndividual ;
     rdfs:label "Meme Concept"@en ;
@@ -1325,12 +1326,4 @@ memo:MemeConcept a memo:MemeFormat,
 on Know Your Meme. Represents the stable, Expression-level identity of a meme\r\r\r\r\r\r
 across all its variants. 5,000 named individuals are included, classified by\r\r\r\r\r\r
 image type, format, platform, region and time period."""@en .
-
-memo:GeographicRegion a owl:Class ;
-    rdfs:label "Geographic Region"@en ;
-    memo:documentaryLevel "true" ;
-    memo:frbrLevel "Expression" ;
-    rdfs:comment """The country or geographic region of a meme's\r\r\r\r\r\r
-origin."""@en ;
-    rdfs:subClassOf owl:Thing .
 
