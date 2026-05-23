@@ -189,7 +189,7 @@ PNG, GIF, WebP, BMP).</rdfs:comment>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#hasCanonicalSubjectMatter">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:label>hasCanonicalSubjectMatter</rdfs:label>
-    <rdfs:label xml:lang="en">has canonical subject matter</rdfs:label>
+    <rdfs:label>hasCanonicalSubjectMatter</rdfs:label>
     <memo:frbrLevel>Manifestation</memo:frbrLevel>
     <memo:semanticLevel>PreIconographical</memo:semanticLevel>
     <rdfs:comment>What is inherently built into the base meme template (Expression level).</rdfs:comment>
@@ -532,7 +532,7 @@ game, book, song, etc.) from which a meme derives its source material.</rdfs:com
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#hasFormat">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label xml:lang="en">has format</rdfs:label>
+    <rdfs:label>hasFormat</rdfs:label>
     <memo:frbrLevel>Expression</memo:frbrLevel>
     <memo:semanticLevel>Iconographical</memo:semanticLevel>
     <rdfs:comment xml:lang="en">Links a MemeConcept to one or more MemeFormat&#13;&#13;&#13;&#13;&#13;&#13;
