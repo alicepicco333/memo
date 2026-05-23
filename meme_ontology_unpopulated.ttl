@@ -611,7 +611,8 @@ memo:hasVariantSubjectMatter a owl:ObjectProperty ;
     rdfs:label "hasVariantSubjectMatter" ;
     rdfs:comment "What a specific user added or changed when they created their individual variation (Manifestation/Item level)." ;
     rdfs:domain memo:VariantInstance ;
-    rdfs:range memo:SubjectMatter .
+    rdfs:range memo:SubjectMatter ;
+    owl:inverseOf memo:isVariantSubjectMatterOf .
 
 memo:hasVariantTextPresence a owl:ObjectProperty ;
     rdfs:label "hasVariantTextPresence" ;
@@ -1049,6 +1050,12 @@ memo:isVariantImageTypeOf a owl:ObjectProperty ;
     rdfs:domain memo:ImageType ;
     rdfs:range memo:VariantInstance ;
     owl:inverseOf memo:hasVariantImageType .
+
+memo:isVariantSubjectMatterOf a owl:ObjectProperty ;
+    rdfs:label "isVariantSubjectMatterOf" ;
+    rdfs:domain memo:SubjectMatter ;
+    rdfs:range memo:VariantInstance ;
+    owl:inverseOf memo:hasVariantSubjectMatter .
 
 memo:isVariantOf a owl:ObjectProperty ;
     rdfs:label "isVariantOf" ;

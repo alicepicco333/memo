@@ -19733,7 +19733,8 @@ memo:FinishLineFaceplant a memo:MemeConcept,
 
 memo:Finland a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Finland" .
+    rdfs:label "Finland" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q33> .
 
 memo:FinnWolfhardPunchingJoshOvalle a memo:MemeConcept,
         owl:NamedIndividual ;
@@ -20628,7 +20629,8 @@ memo:FotosintesisPhotosynthesis a memo:MemeConcept,
 
 memo:FourChan a memo:OriginPlatform,
         owl:NamedIndividual ;
-    rdfs:label "FourChan" .
+    rdfs:label "FourChan" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q674637> .
 
 memo:FourLadsInJeans a memo:MemeConcept,
         owl:NamedIndividual ;
@@ -79817,7 +79819,8 @@ memo:hasVariantSubjectMatter a owl:ObjectProperty ;
     rdfs:label "hasVariantSubjectMatter" ;
     rdfs:comment "What a specific user added or changed when they created their individual variation (Manifestation/Item level)." ;
     rdfs:domain memo:VariantInstance ;
-    rdfs:range memo:SubjectMatter .
+    rdfs:range memo:SubjectMatter ;
+    owl:inverseOf memo:isVariantSubjectMatterOf .
 
 memo:hasVariantTextPresence a owl:ObjectProperty ;
     rdfs:label "hasVariantTextPresence" ;
@@ -82753,7 +82756,8 @@ memo:AquamarineFilm a memo:OriginFilm,
 
 memo:Arabic a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Arabic" .
+    rdfs:label "Arabic" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q1205> .
 
 memo:ArcaLive a memo:OriginWork,
         owl:NamedIndividual ;
@@ -82793,7 +82797,8 @@ memo:AvengersEndgameFilmTrailer a memo:OriginWork,
 
 memo:Babylon a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Babylon" .
+    rdfs:label "Babylon" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q11287> .
 
 memo:BajiraoMastaniFilm a memo:OriginFilm,
         owl:NamedIndividual ;
@@ -82821,7 +82826,8 @@ memo:BeingTheElite a memo:OriginWork,
 
 memo:Belgium a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Belgium" .
+    rdfs:label "Belgium" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q213> .
 
 memo:BertholdWoltze a memo:OriginWork,
         owl:NamedIndividual ;
@@ -82973,7 +82979,8 @@ memo:ChickenThoughts a memo:OriginWork,
 
 memo:Chile a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Chile" .
+    rdfs:label "Chile" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q298> .
 
 memo:ChrisMaggio a memo:OriginWork,
         owl:NamedIndividual ;
@@ -83009,7 +83016,8 @@ memo:CollateralDamageStudios a memo:OriginWork,
 
 memo:Colombia a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Colombia" .
+    rdfs:label "Colombia" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q739> .
 
 memo:ColoradoUnitedStates a memo:OriginWork,
         owl:NamedIndividual ;
@@ -83065,7 +83073,8 @@ memo:Cyberpunk1988Ttrpg a memo:OriginWork,
 
 memo:CzechRepublic a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "CzechRepublic" .
+    rdfs:label "CzechRepublic" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q213> .
 
 memo:DAngeloRussellNbaPlayer a memo:OriginWork,
         owl:NamedIndividual ;
@@ -83213,7 +83222,8 @@ memo:EbooksOnline a memo:OriginWork,
 
 memo:Ecuador a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Ecuador" .
+    rdfs:label "Ecuador" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q736> .
 
 memo:EdEddNEddy a memo:OriginWork,
         owl:NamedIndividual ;
@@ -83241,7 +83251,8 @@ memo:ElPais a memo:OriginWork,
 
 memo:ElSalvador a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "ElSalvador" .
+    rdfs:label "ElSalvador" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q792> .
 
 memo:ElderScrollsMorrowind a memo:OriginWork,
         owl:NamedIndividual ;
@@ -83409,7 +83420,8 @@ memo:GenshinImpactGame a memo:OriginVideoGame,
 
 memo:Germany a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Germany" .
+    rdfs:label "Germany" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q183> .
 
 memo:GezaSzollosi a memo:OriginWork,
         owl:NamedIndividual ;
@@ -83417,7 +83429,8 @@ memo:GezaSzollosi a memo:OriginWork,
 
 memo:Ghana a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Ghana" .
+    rdfs:label "Ghana" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q117> .
 
 memo:GhostInTheShell a memo:OriginWork,
         owl:NamedIndividual ;
@@ -83481,7 +83494,8 @@ memo:Gs9RowdyRebelBobbyShmurda a memo:OriginWork,
 
 memo:Guatelama a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Guatelama" .
+    rdfs:label "Guatelama" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q guatem> .
 
 memo:GénesisInsurance a memo:OriginWork,
         owl:NamedIndividual ;
@@ -83617,7 +83631,8 @@ memo:InugamiKorone a memo:OriginWork,
 
 memo:Ireland a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Ireland" .
+    rdfs:label "Ireland" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q27> .
 
 memo:IronGiant a memo:OriginWork,
         owl:NamedIndividual ;
@@ -83785,7 +83800,8 @@ memo:LinhaDoTremWebcomic a memo:OriginComic,
 
 memo:LittleItaly a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "LittleItaly" .
+    rdfs:label "LittleItaly" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q513848> .
 
 memo:LnktvCity a memo:OriginWork,
         owl:NamedIndividual ;
@@ -83869,7 +83885,8 @@ memo:MalcolmInTheMiddle a memo:OriginWork,
 
 memo:Mali a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Mali" .
+    rdfs:label "Mali" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q912> .
 
 memo:ManhuntTheSearchForAmericaSMostGorgeousMaleModel a memo:OriginWork,
         owl:NamedIndividual ;
@@ -84137,11 +84154,13 @@ memo:PacManAndTheGhostlyAdventures a memo:OriginWork,
 
 memo:Pakistan a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Pakistan" .
+    rdfs:label "Pakistan" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q843> .
 
 memo:Palestine a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Palestine" .
+    rdfs:label "Palestine" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q23882> .
 
 memo:PaperMarioTheThousandYearDoor a memo:OriginWork,
         owl:NamedIndividual ;
@@ -84341,7 +84360,8 @@ memo:RickMckee a memo:OriginWork,
 
 memo:Romania a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Romania" .
+    rdfs:label "Romania" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q218> .
 
 memo:Rule34Forum a memo:OriginWork,
         owl:NamedIndividual ;
@@ -84393,7 +84413,8 @@ memo:SekiroShadowsDieTwice a memo:OriginWork,
 
 memo:Serbia a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Serbia" .
+    rdfs:label "Serbia" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q403> .
 
 memo:ShadowOfWar a memo:OriginWork,
         owl:NamedIndividual ;
@@ -84669,7 +84690,8 @@ memo:SupermanBatmanApocalypseFilm a memo:OriginFilm,
 
 memo:Switzerland a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Switzerland" .
+    rdfs:label "Switzerland" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q39> .
 
 memo:SykoArtist a memo:OriginWork,
         owl:NamedIndividual ;
@@ -85045,11 +85067,13 @@ memo:TwistedSifter a memo:OriginWork,
 
 memo:Uganda a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Uganda" .
+    rdfs:label "Uganda" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q1036> .
 
 memo:Ukraine a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Ukraine" .
+    rdfs:label "Ukraine" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q212> .
 
 memo:UndertaleHalloweenHack a memo:OriginWork,
         owl:NamedIndividual ;
@@ -85081,7 +85105,8 @@ memo:VanEyckBrothers a memo:OriginWork,
 
 memo:Vatican a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Vatican" .
+    rdfs:label "Vatican" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q237> .
 
 memo:VaticanCity a memo:GeographicRegion,
         owl:NamedIndividual ;
@@ -85097,7 +85122,8 @@ memo:VideoMusicAwards a memo:OriginWork,
 
 memo:Vietnam a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Vietnam" .
+    rdfs:label "Vietnam" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q881> .
 
 memo:VladimirBrestParanoiaAlbum a memo:OriginWork,
         owl:NamedIndividual ;
@@ -85883,6 +85909,12 @@ memo:isVariantImageTypeOf a owl:ObjectProperty ;
     rdfs:range memo:VariantInstance ;
     owl:inverseOf memo:hasVariantImageType .
 
+memo:isVariantSubjectMatterOf a owl:ObjectProperty ;
+    rdfs:label "isVariantSubjectMatterOf" ;
+    rdfs:domain memo:SubjectMatter ;
+    rdfs:range memo:VariantInstance ;
+    owl:inverseOf memo:hasVariantSubjectMatter .
+
 memo:isVariantOf a owl:ObjectProperty ;
     rdfs:label "isVariantOf" ;
     rdfs:domain memo:VariantInstance ;
@@ -86289,7 +86321,8 @@ memo:AquaTeenHungerForce a memo:OriginWork,
 
 memo:Argentina a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Argentina" .
+    rdfs:label "Argentina" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q414> .
 
 memo:AttackOnTitan a memo:OriginWork,
         owl:NamedIndividual ;
@@ -86368,7 +86401,8 @@ memo:KingOfTheHill a memo:OriginWork,
 
 memo:KnowYourMeme a memo:OriginPlatform,
         owl:NamedIndividual ;
-    rdfs:label "KnowYourMeme" .
+    rdfs:label "KnowYourMeme" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q1066184> .
 
 memo:KylieJennerRiseAndShine a memo:MemeConcept,
         owl:NamedIndividual ;
@@ -86407,7 +86441,8 @@ memo:MrLovenstein a memo:OriginWork,
 
 memo:Netherlands a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Netherlands" .
+    rdfs:label "Netherlands" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q55> .
 
 memo:NewYorkCity a memo:OriginWork,
         owl:NamedIndividual ;
@@ -86455,7 +86490,8 @@ memo:ShrekFilm a memo:OriginFilm,
 
 memo:Singapore a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Singapore" .
+    rdfs:label "Singapore" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q334> .
 
 memo:SomethingAwful a memo:OriginWork,
         owl:NamedIndividual ;
@@ -86467,7 +86503,8 @@ memo:SoyjakParty a memo:OriginWork,
 
 memo:Spain a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Spain" .
+    rdfs:label "Spain" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q29> .
 
 memo:SpiderMan3Film a memo:OriginFilm,
         owl:NamedIndividual ;
@@ -86487,7 +86524,8 @@ memo:StarWarsTheCloneWars a memo:OriginWork,
 
 memo:Sweden a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Sweden" .
+    rdfs:label "Sweden" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q34> .
 
 memo:TeamFortress2 a memo:OriginWork,
         owl:NamedIndividual ;
@@ -86495,7 +86533,8 @@ memo:TeamFortress2 a memo:OriginWork,
 
 memo:Thailand a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Thailand" .
+    rdfs:label "Thailand" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q869> .
 
 memo:TheDailyMail a memo:OriginWork,
         owl:NamedIndividual ;
@@ -86524,7 +86563,8 @@ CompositionShift, CrossoverMerge, LanguageShift, Localization."""@en ;
 
 memo:Turkey a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Turkey" .
+    rdfs:label "Turkey" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q43> .
 
 memo:TvShow a memo:OriginTVShow,
         owl:NamedIndividual ;
@@ -86685,7 +86725,8 @@ memo:NewYorkTimes a memo:OriginWork,
 
 memo:Philippines a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Philippines" .
+    rdfs:label "Philippines" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q928> .
 
 memo:SpiderManIntoTheSpiderVerse a memo:OriginWork,
         owl:NamedIndividual ;
@@ -86769,7 +86810,8 @@ memo:AnimationStatus a owl:Class ;
 
 memo:Australia a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Australia" .
+    rdfs:label "Australia" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q408> .
 
 memo:FiveNightsAtFreddySSecurityBreach a memo:OriginWork,
         owl:NamedIndividual ;
@@ -86777,7 +86819,8 @@ memo:FiveNightsAtFreddySSecurityBreach a memo:OriginWork,
 
 memo:Israel a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Israel" .
+    rdfs:label "Israel" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q801> .
 
 memo:NintendoDirect a memo:OriginWork,
         owl:NamedIndividual ;
@@ -86801,11 +86844,13 @@ memo:steam a memo:OriginWork,
 
 memo:Canada a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Canada" .
+    rdfs:label "Canada" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q16> .
 
 memo:Italy a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Italy" .
+    rdfs:label "Italy" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q38> .
 
 memo:OriginMusic a owl:Class ;
     rdfs:label "OriginMusic" ;
@@ -86817,7 +86862,8 @@ memo:PokémonSwordAndShield a memo:OriginWork,
 
 memo:Poland a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Poland" .
+    rdfs:label "Poland" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q36> .
 
 memo:TheSimpsons a memo:OriginWork,
         owl:NamedIndividual ;
@@ -86846,11 +86892,13 @@ memo:GameOfThrones a memo:OriginWork,
 
 memo:Indonesia a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Indonesia" .
+    rdfs:label "Indonesia" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q252> .
 
 memo:Snapchat a memo:OriginPlatform,
         owl:NamedIndividual ;
-    rdfs:label "Snapchat" .
+    rdfs:label "Snapchat" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q989863> .
 
 memo:nintendo a memo:OriginWork,
         owl:NamedIndividual ;
@@ -86897,7 +86945,8 @@ memo:FunnyJunk a memo:OriginWork,
 
 memo:Mexico a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Mexico" .
+    rdfs:label "Mexico" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q96> .
 
 memo:OriginBoard a owl:Class ;
     rdfs:label "OriginBoard" ;
@@ -86927,7 +86976,8 @@ memo:JojoSBizarreAdventure a memo:OriginWork,
 
 memo:Russia a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Russia" .
+    rdfs:label "Russia" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q159> .
 
 memo:TextPresence a owl:Class ;
     rdfs:label "TextPresence" ;
@@ -86953,7 +87003,8 @@ memo:OhShitARat a memo:MemeConcept,
 
 memo:SouthKorea a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "SouthKorea" .
+    rdfs:label "SouthKorea" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q884> .
 
 memo:SubjectMatter a owl:Class ;
     rdfs:label "SubjectMatter" ;
@@ -87545,7 +87596,8 @@ memo:whyididntreport a memo:MemeConcept,
 
 memo:France a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "France" .
+    rdfs:label "France" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q142> .
 
 memo:ImageType a owl:Class ;
     rdfs:label "ImageType"@en ;
@@ -87562,11 +87614,13 @@ memo:soundcloud a memo:OriginWork,
 
 memo:India a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "India" .
+    rdfs:label "India" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q668> .
 
 memo:Brazil a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Brazil" .
+    rdfs:label "Brazil" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q155> .
 
 memo:OpticalIllusion a memo:MemeFormat,
         owl:NamedIndividual ;
@@ -87578,7 +87632,8 @@ memo:OriginComic a owl:Class ;
 
 memo:Discord a memo:OriginPlatform,
         owl:NamedIndividual ;
-    rdfs:label "Discord" .
+    rdfs:label "Discord" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q61056> .
 
 memo:OriginVideoGame a owl:Class ;
     rdfs:label "OriginVideoGame" ;
@@ -87590,7 +87645,8 @@ memo:ShockMedia a memo:MemeFormat,
 
 memo:China a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "China" .
+    rdfs:label "China" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q148> .
 
 memo:SpongebobSquarepants a memo:OriginWork,
         owl:NamedIndividual ;
@@ -87598,7 +87654,8 @@ memo:SpongebobSquarepants a memo:OriginWork,
 
 memo:DeviantArt a memo:OriginPlatform,
         owl:NamedIndividual ;
-    rdfs:label "DeviantArt" .
+    rdfs:label "DeviantArt" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q23941> .
 
 memo:OriginPlatform a owl:Class ;
     rdfs:label "OriginPlatform"@en ;
@@ -87623,7 +87680,8 @@ memo:GIF a memo:FileFormat,
 
 memo:Imgur a memo:OriginPlatform,
         owl:NamedIndividual ;
-    rdfs:label "Imgur" .
+    rdfs:label "Imgur" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q14645> .
 
 memo:Worldwide a memo:GeographicRegion,
         owl:NamedIndividual ;
@@ -87631,15 +87689,18 @@ memo:Worldwide a memo:GeographicRegion,
 
 memo:Vine a memo:OriginPlatform,
         owl:NamedIndividual ;
-    rdfs:label "Vine" .
+    rdfs:label "Vine" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q5754076> .
 
 memo:Twitch a memo:OriginPlatform,
         owl:NamedIndividual ;
-    rdfs:label "Twitch" .
+    rdfs:label "Twitch" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q16664813> .
 
 memo:UnitedKingdom a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "UnitedKingdom" .
+    rdfs:label "UnitedKingdom" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q145> .
 
 memo:Axiom a memo:MemeFormat,
         owl:NamedIndividual ;
@@ -87659,7 +87720,8 @@ memo:UrbanDictionary a memo:OriginWork,
 
 memo:Japan a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "Japan" .
+    rdfs:label "Japan" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q17> .
 
 memo:OriginTVShow a owl:Class ;
     rdfs:label "OriginTVShow" ;
@@ -87718,7 +87780,8 @@ memo:FanLabor a memo:MemeFormat,
 
 memo:iFunny a memo:OriginPlatform,
         owl:NamedIndividual ;
-    rdfs:label "iFunny" .
+    rdfs:label "iFunny" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q3565466> .
 
 memo:ConspiracyTheory a memo:MemeFormat,
         owl:NamedIndividual ;
@@ -87765,11 +87828,13 @@ memo:FanArt a memo:MemeFormat,
 
 memo:Tumblr a memo:OriginPlatform,
         owl:NamedIndividual ;
-    rdfs:label "Tumblr" .
+    rdfs:label "Tumblr" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q21687> .
 
 memo:Facebook a memo:OriginPlatform,
         owl:NamedIndividual ;
-    rdfs:label "Facebook" .
+    rdfs:label "Facebook" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q355> .
 
 memo:Illustration a memo:ImageType,
         owl:NamedIndividual ;
@@ -87793,7 +87858,8 @@ memo:Snowclone a memo:MemeFormat,
 
 memo:Instagram a memo:OriginPlatform,
         owl:NamedIndividual ;
-    rdfs:label "Instagram" .
+    rdfs:label "Instagram" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q23523> .
 
 memo:Photoshop a memo:MemeFormat,
         owl:NamedIndividual ;
@@ -87813,7 +87879,8 @@ memo:Slang a memo:MemeFormat,
 
 memo:Reddit a memo:OriginPlatform,
         owl:NamedIndividual ;
-    rdfs:label "Reddit" .
+    rdfs:label "Reddit" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q28811> .
 
 memo:Pre2010 a memo:TimePeriod,
         owl:NamedIndividual ;
@@ -87846,7 +87913,8 @@ memo:Character a memo:MemeFormat,
 
 memo:YouTube a memo:OriginPlatform,
         owl:NamedIndividual ;
-    rdfs:label "YouTube" .
+    rdfs:label "YouTube" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q866> .
 
 memo:Monochrome a memo:ColorMode,
         owl:NamedIndividual ;
@@ -87866,7 +87934,8 @@ memo:Period2010to2015 a memo:TimePeriod,
 
 memo:TikTok a memo:OriginPlatform,
         owl:NamedIndividual ;
-    rdfs:label "TikTok" .
+    rdfs:label "TikTok" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q53464657> .
 
 memo:PNG a memo:FileFormat,
         owl:NamedIndividual ;
@@ -87910,11 +87979,13 @@ memo:Exploitable a memo:MemeFormat,
 
 memo:TwitterX a memo:OriginPlatform,
         owl:NamedIndividual ;
-    rdfs:label "TwitterX" .
+    rdfs:label "TwitterX" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q918> .
 
 memo:UnitedStates a memo:GeographicRegion,
         owl:NamedIndividual ;
-    rdfs:label "UnitedStates" .
+    rdfs:label "UnitedStates" ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q30> .
 
 memo:Period2021toPresent a memo:TimePeriod,
         owl:NamedIndividual ;

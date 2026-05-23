@@ -11,6 +11,7 @@
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Mexico</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q96"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#hasAnimationStatus">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
@@ -69,6 +70,7 @@ image type, format, platform, region and time period.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>CzechRepublic</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q213"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
@@ -94,16 +96,19 @@ Know Your Meme under fair use.</dc:rights>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Switzerland</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q39"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Ukraine">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Ukraine</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q212"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#UnitedKingdom">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>UnitedKingdom</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q145"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#hasCanonicalTextPresence">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
@@ -118,6 +123,7 @@ Know Your Meme under fair use.</dc:rights>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Netherlands</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q55"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#FileFormat">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -161,6 +167,7 @@ PNG, GIF, WebP, BMP).</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Brazil</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q155"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Illustration">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#ImageType"/>
@@ -285,11 +292,13 @@ assigned by CLIP-based classification.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#OriginPlatform"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Snapchat</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q989863"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Colombia">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Colombia</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q739"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#hasVariantImageType">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
@@ -328,16 +337,19 @@ assigned by CLIP-based classification.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#OriginPlatform"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>FourChan</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q674637"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#France">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>France</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q142"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#SouthKorea">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>SouthKorea</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q884"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#scrapedAt">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
@@ -354,6 +366,7 @@ assigned by CLIP-based classification.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#OriginPlatform"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Reddit</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q28811"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#TextOnly">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#SubjectMatter"/>
@@ -371,6 +384,7 @@ assigned by CLIP-based classification.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#OriginPlatform"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Tumblr</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q21687"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#hasTransformationDimension">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
@@ -411,11 +425,13 @@ assigned by CLIP-based classification.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>LittleItaly</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q513848"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Serbia">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Serbia</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q403"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Exploitable">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#MemeFormat"/>
@@ -433,6 +449,7 @@ assigned by CLIP-based classification.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Ecuador</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q736"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#isOriginPersonOf">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
@@ -445,6 +462,7 @@ assigned by CLIP-based classification.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Spain</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q29"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#JPEG">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#FileFormat"/>
@@ -480,6 +498,7 @@ game, book, song, etc.) from which a meme derives its source material.</rdfs:com
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#OriginPlatform"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>DeviantArt</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q23941"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Pre2010">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#TimePeriod"/>
@@ -495,6 +514,7 @@ game, book, song, etc.) from which a meme derives its source material.</rdfs:com
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#OriginPlatform"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>YouTube</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q866"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#ObjectOnly">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#SubjectMatter"/>
@@ -528,11 +548,13 @@ values describing its rhetorical structure.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#OriginPlatform"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>TwitterX</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q918"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Finland">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Finland</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q33"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#isRegionOf">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
@@ -559,6 +581,7 @@ values describing its rhetorical structure.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Belgium</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q213"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#GeographicRegion">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -599,6 +622,7 @@ origin.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Ghana</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q117"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#ViralVideo">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#MemeFormat"/>
@@ -616,6 +640,7 @@ origin.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Turkey</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q43"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#SubjectMatter">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -678,6 +703,7 @@ PublicFigure, SocialPhenomenon, WebCulture.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Italy</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q38"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#NoText">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#TextPresence"/>
@@ -710,6 +736,7 @@ canonical template: Minimal (close copy), Moderate, Substantial, or Parody&#13;&
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Vietnam</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q881"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Painting">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#ImageType"/>
@@ -751,16 +778,19 @@ derives from or references.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Palestine</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q23882"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Uganda">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Uganda</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q1036"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#iFunny">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#OriginPlatform"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>iFunny</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q3565466"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#ImageMacro">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#MemeFormat"/>
@@ -771,11 +801,13 @@ derives from or references.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#OriginPlatform"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>KnowYourMeme</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q1066184"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Facebook">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#OriginPlatform"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Facebook</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q355"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#variantIndex">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
@@ -787,6 +819,7 @@ derives from or references.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#OriginPlatform"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Discord</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q61056"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#isOriginTVShowOf">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
@@ -799,6 +832,7 @@ derives from or references.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Singapore</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q334"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#ColorMode">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -820,6 +854,7 @@ dimension annotations for 5 fully annotated meme templates.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Indonesia</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q252"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Remix">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#MemeFormat"/>
@@ -830,11 +865,13 @@ dimension annotations for 5 fully annotated meme templates.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Canada</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q16"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Babylon">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Babylon</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q11287"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Slang">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#MemeFormat"/>
@@ -857,6 +894,7 @@ dimension annotations for 5 fully annotated meme templates.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Chile</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q298"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#captionText">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
@@ -868,6 +906,7 @@ dimension annotations for 5 fully annotated meme templates.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Sweden</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q34"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Animal">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#MemeFormat"/>
@@ -919,6 +958,7 @@ primary circulation.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>India</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q668"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#VideoGame">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#MemeFormat"/>
@@ -944,6 +984,7 @@ primary circulation.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Guatelama</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q guatem"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#hasOriginBoard">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
@@ -1033,6 +1074,7 @@ in the scraped dataset (1–5000).</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#OriginPlatform"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Instagram</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q23523"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#isCanonicalImageTypeOf">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
@@ -1054,6 +1096,7 @@ in the scraped dataset (1–5000).</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Pakistan</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q843"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Copypasta">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#MemeFormat"/>
@@ -1085,11 +1128,13 @@ D0 sample, with descriptions and cultural reference annotations.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>ElSalvador</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q792"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Twitch">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#OriginPlatform"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Twitch</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q16664813"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#GIF">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#FileFormat"/>
@@ -1126,6 +1171,7 @@ memes at the Expression level with Iconographical analysis.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Russia</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q159"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#SoundEffect">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#MemeFormat"/>
@@ -1145,11 +1191,13 @@ memes at the Expression level with Iconographical analysis.</rdfs:comment>
     <rdfs:comment>What a specific user added or changed when they created their individual variation (Manifestation/Item level).</rdfs:comment>
     <rdfs:domain rdf:resource="http://www.semanticweb.org/meme-ontology#VariantInstance"/>
     <rdfs:range rdf:resource="http://www.semanticweb.org/meme-ontology#SubjectMatter"/>
+    <owl:inverseOf rdf:resource="http://www.semanticweb.org/meme-ontology#isVariantSubjectMatterOf"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Arabic">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Arabic</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q1205"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Substantial">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#TransformationExtent"/>
@@ -1185,16 +1233,19 @@ memes at the Expression level with Iconographical analysis.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Ireland</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q27"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Mali">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Mali</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q912"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Argentina">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Argentina</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q414"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#TextPresence">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -1207,6 +1258,7 @@ memes at the Expression level with Iconographical analysis.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#OriginPlatform"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Imgur</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q14645"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#isOriginFilmOf">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
@@ -1251,36 +1303,43 @@ memes at the Expression level with Iconographical analysis.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Thailand</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q869"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#China">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>China</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q148"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Australia">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Australia</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q408"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Israel">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Israel</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q801"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Romania">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Romania</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q218"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Germany">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Germany</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q183"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#TikTok">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#OriginPlatform"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>TikTok</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q53464657"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#isTransformationExtentOf">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
@@ -1298,6 +1357,7 @@ memes at the Expression level with Iconographical analysis.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Japan</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q17"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Monochrome">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#ColorMode"/>
@@ -1338,6 +1398,7 @@ memes at the Expression level with Iconographical analysis.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#OriginPlatform"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Vine</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q5754076"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Subculture">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#MemeFormat"/>
@@ -1348,6 +1409,7 @@ memes at the Expression level with Iconographical analysis.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Vatican</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q237"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#OriginComic">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -1373,6 +1435,7 @@ memes at the Expression level with Iconographical analysis.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>UnitedStates</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q30"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Emoticon">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#MemeFormat"/>
@@ -1383,6 +1446,7 @@ memes at the Expression level with Iconographical analysis.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Philippines</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q928"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#isVariantImageTypeOf">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
@@ -1390,6 +1454,13 @@ memes at the Expression level with Iconographical analysis.</rdfs:comment>
     <rdfs:domain rdf:resource="http://www.semanticweb.org/meme-ontology#ImageType"/>
     <rdfs:range rdf:resource="http://www.semanticweb.org/meme-ontology#VariantInstance"/>
     <owl:inverseOf rdf:resource="http://www.semanticweb.org/meme-ontology#hasVariantImageType"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#isVariantSubjectMatterOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>isVariantSubjectMatterOf</rdfs:label>
+    <rdfs:domain rdf:resource="http://www.semanticweb.org/meme-ontology#SubjectMatter"/>
+    <rdfs:range rdf:resource="http://www.semanticweb.org/meme-ontology#VariantInstance"/>
+    <owl:inverseOf rdf:resource="http://www.semanticweb.org/meme-ontology#hasVariantSubjectMatter"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#variantFilename">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
@@ -1408,6 +1479,7 @@ memes at the Expression level with Iconographical analysis.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Poland</rdfs:label>
+      <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q36"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#OriginMusic">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
