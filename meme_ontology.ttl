@@ -85872,10 +85872,16 @@ memo:isTransformationExtentOf a owl:ObjectProperty ;
     owl:inverseOf memo:hasTransformationExtent .
 
 memo:isVariantColorModeOf a owl:ObjectProperty ;
-    rdfs:label "isVariantColorModeOf" ; rdfs:domain memo:ColorMode .
+    rdfs:label "isVariantColorModeOf" ;
+    rdfs:domain memo:ColorMode ;
+    rdfs:range memo:VariantInstance ;
+    owl:inverseOf memo:hasVariantColorMode .
 
 memo:isVariantImageTypeOf a owl:ObjectProperty ;
-    rdfs:label "isVariantImageTypeOf" ; rdfs:domain memo:ImageType .
+    rdfs:label "isVariantImageTypeOf" ;
+    rdfs:domain memo:ImageType ;
+    rdfs:range memo:VariantInstance ;
+    owl:inverseOf memo:hasVariantImageType .
 
 memo:isVariantOf a owl:ObjectProperty ;
     rdfs:label "isVariantOf" ;
@@ -85884,7 +85890,10 @@ memo:isVariantOf a owl:ObjectProperty ;
     owl:inverseOf memo:hasVariant .
 
 memo:isVariantTextPresenceOf a owl:ObjectProperty ;
-    rdfs:label "isVariantTextPresenceOf" ; rdfs:domain memo:TextPresence .
+    rdfs:label "isVariantTextPresenceOf" ;
+    rdfs:domain memo:TextPresence ;
+    rdfs:range memo:VariantInstance ;
+    owl:inverseOf memo:hasVariantTextPresence .
 
 memo:isorrowproduction a memo:OriginWork,
         owl:NamedIndividual ;
