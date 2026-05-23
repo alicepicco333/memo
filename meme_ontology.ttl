@@ -86952,7 +86952,6 @@ memo:OhShitARat a memo:MemeConcept,
     memo:hasTimePeriod memo:Period2016to2020 .
 
 memo:SouthKorea a memo:GeographicRegion,
-        memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "SouthKorea" .
 

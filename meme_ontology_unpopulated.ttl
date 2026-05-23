@@ -429,7 +429,6 @@ memo:SoundEffect a memo:MemeFormat,
     rdfs:label "SoundEffect" .
 
 memo:SouthKorea a memo:GeographicRegion,
-        memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "SouthKorea" .
 
