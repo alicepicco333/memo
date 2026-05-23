@@ -136,13 +136,6 @@ PNG, GIF, WebP, BMP).</rdfs:comment>
     <rdfs:range rdf:resource="http://www.semanticweb.org/meme-ontology#TextPresence"/>
     <owl:inverseOf rdf:resource="http://www.semanticweb.org/meme-ontology#isVariantTextPresenceOf"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#hasTextPresence">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>hasTextPresence</rdfs:label>
-    <rdfs:domain rdf:resource="http://www.semanticweb.org/meme-ontology#VariantInstance"/>
-    <rdfs:range rdf:resource="http://www.semanticweb.org/meme-ontology#TextPresence"/>
-    <owl:inverseOf rdf:resource="http://www.semanticweb.org/meme-ontology#isTextPresenceOf"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#isOriginBoardOf">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:label>isOriginBoardOf</rdfs:label>
@@ -273,13 +266,6 @@ assigned by CLIP-based classification.</rdfs:comment>
     <rdfs:label>OriginBook</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/meme-ontology#OriginWork"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#isImageTypeOf">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>isImageTypeOf</rdfs:label>
-    <rdfs:domain rdf:resource="http://www.semanticweb.org/meme-ontology#ImageType"/>
-    <rdfs:range rdf:resource="http://www.semanticweb.org/meme-ontology#VariantInstance"/>
-    <owl:inverseOf rdf:resource="http://www.semanticweb.org/meme-ontology#hasImageType"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#TimePeriod">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>TimePeriod</rdfs:label>
@@ -299,13 +285,6 @@ assigned by CLIP-based classification.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#OriginPlatform"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>Snapchat</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#hasImageType">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>hasImageType</rdfs:label>
-    <rdfs:domain rdf:resource="http://www.semanticweb.org/meme-ontology#VariantInstance"/>
-    <rdfs:range rdf:resource="http://www.semanticweb.org/meme-ontology#ImageType"/>
-    <owl:inverseOf rdf:resource="http://www.semanticweb.org/meme-ontology#isImageTypeOf"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Colombia">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
@@ -357,16 +336,8 @@ assigned by CLIP-based classification.</rdfs:comment>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#SouthKorea">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
-    <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#OriginWork"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>SouthKorea</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#isColorModeOf">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>isColorModeOf</rdfs:label>
-    <rdfs:domain rdf:resource="http://www.semanticweb.org/meme-ontology#ColorMode"/>
-    <rdfs:range rdf:resource="http://www.semanticweb.org/meme-ontology#VariantInstance"/>
-    <owl:inverseOf rdf:resource="http://www.semanticweb.org/meme-ontology#hasColorMode"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#scrapedAt">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
@@ -1104,13 +1075,6 @@ D0 sample, with descriptions and cultural reference annotations.</rdfs:comment>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>MultipleSubjects</rdfs:label>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#isTextPresenceOf">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>isTextPresenceOf</rdfs:label>
-    <rdfs:domain rdf:resource="http://www.semanticweb.org/meme-ontology#TextPresence"/>
-    <rdfs:range rdf:resource="http://www.semanticweb.org/meme-ontology#VariantInstance"/>
-    <owl:inverseOf rdf:resource="http://www.semanticweb.org/meme-ontology#hasTextPresence"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#views">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
     <rdfs:label>views</rdfs:label>
@@ -1121,13 +1085,6 @@ D0 sample, with descriptions and cultural reference annotations.</rdfs:comment>
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#GeographicRegion"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdfs:label>ElSalvador</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#hasColorMode">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>hasColorMode</rdfs:label>
-    <rdfs:domain rdf:resource="http://www.semanticweb.org/meme-ontology#VariantInstance"/>
-    <rdfs:range rdf:resource="http://www.semanticweb.org/meme-ontology#ColorMode"/>
-    <owl:inverseOf rdf:resource="http://www.semanticweb.org/meme-ontology#isColorModeOf"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Twitch">
     <rdf:type rdf:resource="http://www.semanticweb.org/meme-ontology#OriginPlatform"/>
