@@ -1,0 +1,5463 @@
+@prefix memo: <http://www.semanticweb.org/meme-ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.semanticweb.org/meme-ontology> a owl:Ontology .
+
+memo:BMP a memo:FileFormat,
+owl:NamedIndividual ;
+rdfs:label "BMP" .
+
+memo:Clothing a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "Clothing" .
+
+memo:Event a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "Event" .
+
+memo:Finland a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Finland" .
+
+memo:HistoricalEvent a owl:Class ;
+rdfs:label "HistoricalEvent" ;
+rdfs:subClassOf memo:CulturalReference .
+
+memo:MediaProperty a owl:Class ;
+rdfs:label "MediaProperty" ;
+rdfs:subClassOf memo:CulturalReference .
+
+memo:MySpace a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "MySpace" .
+
+memo:Person a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "Person" .
+
+memo:PoliticalEvent a owl:Class ;
+rdfs:label "PoliticalEvent" ;
+rdfs:subClassOf memo:CulturalReference .
+
+memo:PublicFigure a owl:Class ;
+rdfs:label "PublicFigure" ;
+rdfs:subClassOf memo:CulturalReference .
+
+memo:SocialPhenomenon a owl:Class ;
+rdfs:label "SocialPhenomenon" ;
+rdfs:subClassOf memo:CulturalReference .
+
+memo:Subculture a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "Subculture" .
+
+memo:Trend a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "Trend" .
+
+memo:VideoGame a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "VideoGame" .
+
+memo:WebCulture a owl:Class ;
+rdfs:label "WebCulture" ;
+rdfs:subClassOf memo:CulturalReference .
+
+memo:WebP a memo:FileFormat,
+owl:NamedIndividual ;
+rdfs:label "WebP" .
+
+memo:Website a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "Website" .
+
+memo:clipImageTypeScore a owl:DatatypeProperty ;
+rdfs:label "clipImageTypeScore" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range xsd:float .
+
+memo:clipPublicFigureScore a owl:DatatypeProperty ;
+rdfs:label "clipPublicFigureScore" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range xsd:float .
+
+memo:clipTextScore a owl:DatatypeProperty ;
+rdfs:label "clipTextScore" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range xsd:float .
+
+memo:description a owl:DatatypeProperty ;
+rdfs:label "description" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range xsd:string .
+
+memo:eBaumsWorld a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "eBaumsWorld" .
+
+memo:hasAnimationStatus a owl:ObjectProperty ;
+rdfs:label "hasAnimationStatus" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range memo:AnimationStatus .
+
+memo:hasColorMode a owl:ObjectProperty ;
+rdfs:label "hasColorMode" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range memo:ColorMode .
+
+memo:hasFileFormat a owl:ObjectProperty ;
+rdfs:label "hasFileFormat" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range memo:FileFormat .
+
+memo:hasFormat a owl:ObjectProperty ;
+rdfs:label "hasFormat" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range memo:MemeFormat .
+
+memo:hasId a owl:DatatypeProperty ;
+rdfs:label "hasId" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range xsd:integer .
+
+memo:hasImageType a owl:ObjectProperty ;
+rdfs:label "hasImageType" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range memo:ImageType .
+
+memo:hasOriginBoard a owl:ObjectProperty ;
+rdfs:label "hasOriginBoard" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range memo:OriginBoard .
+
+memo:hasOriginBook a owl:ObjectProperty ;
+rdfs:label "hasOriginBook" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range memo:OriginBook .
+
+memo:hasOriginComic a owl:ObjectProperty ;
+rdfs:label "hasOriginComic" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range memo:OriginComic .
+
+memo:hasOriginFilm a owl:ObjectProperty ;
+rdfs:label "hasOriginFilm" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range memo:OriginFilm .
+
+memo:hasOriginWork a owl:ObjectProperty ;
+rdfs:label "hasOriginWork" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range memo:OriginWork .
+
+memo:hasOriginMusic a owl:ObjectProperty ;
+rdfs:label "hasOriginMusic" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range memo:OriginMusic .
+
+memo:hasOriginPerson a owl:ObjectProperty ;
+rdfs:label "hasOriginPerson" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range memo:OriginPerson .
+
+memo:hasOriginPlatform a owl:ObjectProperty ;
+rdfs:label "hasOriginPlatform" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range memo:OriginPlatform .
+
+memo:hasOriginTVShow a owl:ObjectProperty ;
+rdfs:label "hasOriginTVShow" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range memo:OriginTVShow .
+
+memo:hasOriginVideoGame a owl:ObjectProperty ;
+rdfs:label "hasOriginVideoGame" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range memo:OriginVideoGame .
+
+memo:hasOriginWork a owl:ObjectProperty ;
+rdfs:label "hasOriginWork" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range memo:OriginWork .
+
+memo:hasReference a owl:ObjectProperty ;
+rdfs:label "hasReference" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range memo:CulturalReference .
+
+memo:hasRegion a owl:ObjectProperty ;
+rdfs:label "hasRegion" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range memo:GeographicRegion .
+
+memo:hasSubjectMatter a owl:ObjectProperty ;
+rdfs:label "hasSubjectMatter" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range memo:SubjectMatter .
+
+memo:hasTextPresence a owl:ObjectProperty ;
+rdfs:label "hasTextPresence" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range memo:TextPresence .
+
+memo:hasTimePeriod a owl:ObjectProperty ;
+rdfs:label "hasTimePeriod" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range memo:TimePeriod .
+
+memo:imageFilePath a owl:DatatypeProperty ;
+rdfs:label "imageFilePath" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range xsd:string .
+
+memo:imageFilename a owl:DatatypeProperty ;
+rdfs:label "imageFilename" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range xsd:string .
+
+memo:imageURL a owl:DatatypeProperty ;
+rdfs:label "imageURL" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range xsd:string .
+
+memo:isConceptualizedAs a owl:ObjectProperty ;
+rdfs:label "isConceptualizedAs" ;
+rdfs:domain memo:MemeIdea ;
+rdfs:range memo:MemeConcept .
+
+memo:isVariantOf a owl:ObjectProperty ;
+rdfs:label "isVariantOf" ;
+rdfs:domain memo:VariantInstance ;
+rdfs:range memo:MemeConcept .
+
+memo:memeURL a owl:DatatypeProperty ;
+rdfs:label "memeURL" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range xsd:string .
+
+memo:photoId a owl:DatatypeProperty ;
+rdfs:label "photoId" ;
+rdfs:domain memo:VariantInstance ;
+rdfs:range xsd:string .
+
+memo:photoURL a owl:DatatypeProperty ;
+rdfs:label "photoURL" ;
+rdfs:domain memo:VariantInstance ;
+rdfs:range xsd:string .
+
+memo:scrapedAt a owl:DatatypeProperty ;
+rdfs:label "scrapedAt" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range xsd:string .
+
+memo:tags a owl:DatatypeProperty ;
+rdfs:label "tags" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range xsd:string .
+
+memo:variantUploader a owl:DatatypeProperty ;
+rdfs:label "variantUploader" ;
+rdfs:domain memo:VariantInstance ;
+rdfs:range xsd:string .
+
+memo:views a owl:DatatypeProperty ;
+rdfs:label "views" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range xsd:integer .
+
+memo:yearOfOrigin a owl:DatatypeProperty ;
+rdfs:label "yearOfOrigin" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range xsd:integer .
+
+memo:Arabic a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Arabic" .
+
+memo:Babylon a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Babylon" .
+
+memo:Belgium a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Belgium" .
+
+memo:Chile a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Chile" .
+
+memo:Colombia a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Colombia" .
+
+memo:CzechRepublic a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "CzechRepublic" .
+
+memo:Ecuador a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Ecuador" .
+
+memo:El_Salvador a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "El Salvador" .
+
+memo:Germany a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Germany" .
+
+memo:Ghana a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Ghana" .
+
+memo:Guatelama a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Guatelama" .
+
+memo:Iconographical a owl:Class ;
+rdfs:label "Iconographical" ;
+rdfs:subClassOf memo:SemanticLevel .
+
+memo:Iconological a owl:Class ;
+rdfs:label "Iconological" ;
+rdfs:subClassOf memo:SemanticLevel .
+
+memo:Ireland a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Ireland" .
+
+memo:Little_Italy a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Little Italy" .
+
+memo:Mali a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Mali" .
+
+memo:MemeIdea a owl:Class ;
+rdfs:label "Meme Idea" ;
+rdfs:subClassOf memo:Work .
+
+memo:OriginBook a owl:Class ;
+rdfs:label "OriginBook" ;
+rdfs:subClassOf memo:OriginWork .
+
+memo:OriginPerson a owl:Class ;
+rdfs:label "OriginPerson" ;
+rdfs:subClassOf memo:OriginWork .
+
+memo:Pakistan a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Pakistan" .
+
+memo:Palestine a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Palestine" .
+
+memo:Romania a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Romania" .
+
+memo:Serbia a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Serbia" .
+
+memo:Switzerland a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Switzerland" .
+
+memo:Uganda a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Uganda" .
+
+memo:Ukraine a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Ukraine" .
+
+memo:United_States_Netherlands a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "United States, Netherlands" .
+
+memo:Vatican a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Vatican" .
+
+memo:Vatican_City a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Vatican City" .
+
+memo:Vietnam a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Vietnam" .
+
+memo:Work a owl:Class ;
+rdfs:label "Work" ;
+rdfs:subClassOf memo:FRBRLevel .
+
+memo:_2006 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "2006" .
+
+memo:_2018_nato_summit a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "2018 NATO Summit" .
+
+memo:_2018_russian_presidential_elections a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "2018 Russian Presidential Elections" .
+
+memo:_2018_world_cup a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "2018 World Cup" .
+
+memo:_2020_nintendo_source_code_leaks a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "2020 Nintendo Source Code Leaks" .
+
+memo:_2022_oscars a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "2022 Oscars" .
+
+memo:_2023 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "2023" .
+
+memo:_2hannel a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "2hannel" .
+
+memo:_2nd_2020_u_s_presidential_debate a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "2nd 2020 U.S. Presidential Debate" .
+
+memo:_3_8_2018_nintendo_direct a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "3/8/2018 Nintendo Direct" .
+
+memo:_3palec_artist a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "3palec (Artist)" .
+
+memo:a_french_documentary_c_est_pas_sorcier_-_sel_de_la_mer_à_la_terre_at_1_min_17 a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "A French documentary : \"C'est pas sorcier - Sel de la mer à la terre\" at 1 min 17." .
+
+memo:a_promised_land a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "A Promised Land" .
+
+memo:aaron_smith a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Aaron Smith" .
+
+memo:ace_combat_7_skies_unknown a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Ace Combat 7: Skies Unknown" .
+
+memo:acm a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "ACM" .
+
+memo:adam_butcher a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Adam Butcher" .
+
+memo:adam_ellis_comics a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Adam Ellis Comics" .
+
+memo:adam_simpson a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Adam Simpson" .
+
+memo:adme a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Adme" .
+
+memo:adobe a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Adobe" .
+
+memo:adventure_time a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Adventure Time" .
+
+memo:alan_mackey a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Alan Mackey" .
+
+memo:ali-a_s_channel a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Ali-A's Channel" .
+
+memo:altrendo_images a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Altrendo Images" .
+
+memo:amc a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "AMC" .
+
+memo:american_choppers a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "American Choppers" .
+
+memo:american_football_band a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "American Football (Band)" .
+
+memo:american_psycho a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "American Psycho" .
+
+memo:american_psycho_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "American Psycho (Film)" .
+
+memo:amino_apps a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Amino Apps" .
+
+memo:among_us_game a memo:OriginVideoGame,
+owl:NamedIndividual ;
+rdfs:label "Among Us (Game)" .
+
+memo:animal_crossing a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Animal Crossing" .
+
+memo:animal_crossing_happy_home_designer a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Animal Crossing: Happy Home Designer" .
+
+memo:animal_crossing_new_horizons a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Animal Crossing: New Horizons" .
+
+memo:animal_crossing_pocket_camp a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Animal Crossing: Pocket Camp" .
+
+memo:ant-man_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Ant-Man (Film)" .
+
+memo:anthemro a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "AnthemRO" .
+
+memo:apple_ios a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Apple iOS" .
+
+memo:apple_store a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Apple Store" .
+
+memo:apple_worldwide_developers_conference a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Apple Worldwide Developers Conference" .
+
+memo:appliance_direct a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Appliance Direct" .
+
+memo:aqua_teen_hunger_force_tv_show a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "Aqua Teen Hunger Force (TV Show)" .
+
+memo:aquamarine_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Aquamarine (Film)" .
+
+memo:arca_live a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Arca.live" .
+
+memo:archer_television_series a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "Archer (Television Series)" .
+
+memo:artifact_studios a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Artifact Studios" .
+
+memo:artstation a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "ArtStation" .
+
+memo:austin_police_department a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Austin Police Department" .
+
+memo:austin_powers_in_goldmember a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Austin Powers in Goldmember" .
+
+memo:avegers_age_of_ultron_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Avegers: Age of Ultron (Film)" .
+
+memo:aven_forums a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "AVEN forums" .
+
+memo:avengers a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Avengers" .
+
+memo:avengers_age_of_ultron_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Avengers: Age of Ultron (Film)" .
+
+memo:avengers_endgame_film_trailer a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Avengers: Endgame (Film Trailer)" .
+
+memo:awolnation a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Awolnation" .
+
+memo:backgrid a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Backgrid" .
+
+memo:bajirao_mastani_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Bajirao Mastani (Film)" .
+
+memo:baki_hanma a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Baki Hanma" .
+
+memo:baleia_rosa a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Baleia Rosa" .
+
+memo:batman_vs_superman_dawn_of_justice a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Batman vs Superman: Dawn of Justice" .
+
+memo:baton_rouge_louisiana a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Baton Rouge, Louisiana" .
+
+memo:battlebots a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Battlebots" .
+
+memo:bbc a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "BBC" .
+
+memo:being_the_elite a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Being the Elite" .
+
+memo:berthold_woltze a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Berthold Woltze" .
+
+memo:big_bang_theory a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Big Bang Theory" .
+
+memo:billy_joel a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Billy Joel" .
+
+memo:bitconnect a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "BitConnect" .
+
+memo:black_panther a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Black Panther" .
+
+memo:blazblue_cross_tag_battle a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "BlazBlue Cross Tag Battle" .
+
+memo:blogspot a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Blogspot" .
+
+memo:bluesky_social a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Bluesky Social" .
+
+memo:bo_burnham_s_inside_comedy_special a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Bo Burnham's \"Inside\" (Comedy Special)" .
+
+memo:bojack_horseman a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "BoJack Horseman" .
+
+memo:boom_beach a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Boom Beach" .
+
+memo:borat_2006_film a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Borat (2006 film)" .
+
+memo:boston_globe a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Boston Globe" .
+
+memo:botanicsage_triple_q a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "BotanicSage; Triple Q" .
+
+memo:breaking_bad a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Breaking Bad" .
+
+memo:breaking_bad_tv_show a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "Breaking Bad (TV Show)" .
+
+memo:bring_me_the_horizon a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Bring Me the Horizon" .
+
+memo:bronze_age_mindset a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Bronze Age Mindset" .
+
+memo:brooklyn_nine-nine_new_girl a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Brooklyn Nine-Nine / New Girl" .
+
+memo:bud_light_seltzer_sessions_new_years_eve_2021 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Bud Light Seltzer Sessions New Years Eve 2021" .
+
+memo:buzzfeed a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Buzzfeed" .
+
+memo:buzzfeed_unsolved a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Buzzfeed Unsolved" .
+
+memo:caio_slikta a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Caio Slikta" .
+
+memo:call_her_daddy a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Call Her Daddy" .
+
+memo:call_of_duty_4_modern_warfare a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Call of Duty 4: Modern Warfare" .
+
+memo:call_of_duty_black_ops_2 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Call of Duty: Black Ops 2" .
+
+memo:call_of_duty_modern_warfare a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Call of Duty: Modern Warfare" .
+
+memo:call_of_duty_modern_warfare_3 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Call of Duty: Modern Warfare 3" .
+
+memo:cannabis_slang a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Cannabis Slang" .
+
+memo:captain_america_winter_soldier_and_avengers_endgame_films a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Captain America: Winter Soldier and Avengers: Endgame (Films)" .
+
+memo:captain_marvel_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Captain Marvel (Film)" .
+
+memo:cardi_b_and_megan_thee_stallion a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Cardi B and Megan Thee Stallion" .
+
+memo:cartoon_network a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Cartoon Network" .
+
+memo:casey_frey a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Casey Frey" .
+
+memo:cbbc a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "CBBC" .
+
+memo:cbs a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "CBS" .
+
+memo:cdc a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "CDC" .
+
+memo:chappelle_s_show a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Chappelle's Show" .
+
+memo:charlie_brooker_s_weekly a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Charlie Brooker's Weekly" .
+
+memo:charlotte a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Charlotte" .
+
+memo:cheddar a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Cheddar" .
+
+memo:cheddar_gorge_england a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Cheddar Gorge, England" .
+
+memo:chess_com a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Chess.com" .
+
+memo:chewin_the_fat a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Chewin' the Fat" .
+
+memo:chicken_thoughts a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Chicken Thoughts" .
+
+memo:chris_maggio a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Chris Maggio" .
+
+memo:cinemassacre_com a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Cinemassacre.com" .
+
+memo:citizen_kane_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Citizen Kane (Film)" .
+
+memo:clash_royale a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Clash Royale" .
+
+memo:classic_fable a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Classic Fable" .
+
+memo:clickhole a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Clickhole" .
+
+memo:club_dance_class a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Club Dance Class" .
+
+memo:club_penguin a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Club Penguin" .
+
+memo:cnews a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "CNEWS" .
+
+memo:cnn a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "CNN" .
+
+memo:collateral_damage_studios a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Collateral Damage Studios" .
+
+memo:colorado_united_states a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Colorado, United States" .
+
+memo:coming_to_america_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Coming to America (Film)" .
+
+memo:community a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Community" .
+
+memo:competitive_gaming a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Competitive Gaming" .
+
+memo:conservative_daily_post a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Conservative Daily Post" .
+
+memo:consumer_reports a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Consumer Reports" .
+
+memo:courage_the_cowardly_dog a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Courage the Cowardly Dog" .
+
+memo:creased_comics a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Creased Comics" .
+
+memo:creator_set a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Creator Set" .
+
+memo:ctrl_alt_del a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Ctrl+Alt+Del" .
+
+memo:cuphead a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Cuphead" .
+
+memo:cuphead_the_delicious_last_course a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Cuphead: The Delicious Last Course" .
+
+memo:curb_your_enthusiasm a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Curb Your Enthusiasm" .
+
+memo:cyanide_and_happiness a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Cyanide and Happiness" .
+
+memo:cyberpunk_1988_ttrpg a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Cyberpunk (1988 TTRPG)" .
+
+memo:d_angelo_russell_nba_player a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "D'Angelo Russell (NBA Player)" .
+
+memo:daily_motion a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Daily Motion" .
+
+memo:dairy_queen a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Dairy Queen" .
+
+memo:dark_souls a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Dark Souls" .
+
+memo:darkest_dungeon a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Darkest Dungeon" .
+
+memo:daz3d a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Daz3D" .
+
+memo:daði_freyr_pétursson_and_gagnamagnið a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Daði Freyr Pétursson and Gagnamagnið" .
+
+memo:deadlock a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Deadlock" .
+
+memo:dean_martin a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Dean Martin" .
+
+memo:death_on_the_nile a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Death on the Nile" .
+
+memo:deltarune a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Deltarune" .
+
+memo:deltarune_chapter_2_game a memo:OriginVideoGame,
+owl:NamedIndividual ;
+rdfs:label "Deltarune: Chapter 2 (Game)" .
+
+memo:democratic_presidential_primary_debates a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Democratic Presidential Primary Debates" .
+
+memo:department_of_justice a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Department of Justice" .
+
+memo:destiny a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Destiny" .
+
+memo:detroit_become_human a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Detroit: Become Human" .
+
+memo:devian_art a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Devian Art" .
+
+memo:deviant_art a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Deviant Art" .
+
+memo:devil_may_cry a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Devil May Cry" .
+
+memo:devil_may_cry_5 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Devil May Cry 5" .
+
+memo:digg_researching a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Digg (Researching)" .
+
+memo:digimon_tamers a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Digimon Tamers" .
+
+memo:disillusion_st a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Disillusion ST" .
+
+memo:dispatch a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Dispatch" .
+
+memo:django_unchained_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Django Unchained (Film)" .
+
+memo:doctor_strange_in_the_multiverse_of_madness a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Doctor Strange in the Multiverse of Madness" .
+
+memo:doctor_who_television_series a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "Doctor Who (Television Series)" .
+
+memo:dogmo a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Dogmo" .
+
+memo:doja_cat_recording_artist a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Doja Cat (Recording Artist)" .
+
+memo:doki_doki_literature_club a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Doki Doki Literature Club" .
+
+memo:dokibird a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Dokibird" .
+
+memo:donald_win a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Donald.win" .
+
+memo:dopel3r a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Dopel3r" .
+
+memo:dr_phil_show a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Dr. Phil Show" .
+
+memo:dragon_ball_z_kai_anime a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Dragon Ball Z Kai (Anime)" .
+
+memo:dragonball_super a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Dragonball Super" .
+
+memo:dream_english a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Dream English" .
+
+memo:drive_2021 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Drive (2021)" .
+
+memo:dropout_tv a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Dropout TV" .
+
+memo:ducks_eatery a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Ducks Eatery" .
+
+memo:dumb_and_dumber_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Dumb and Dumber (Film)" .
+
+memo:dune a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Dune" .
+
+memo:dune_2021_film a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Dune (2021 Film)" .
+
+memo:e3_2018 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "E3 2018" .
+
+memo:ea a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "EA" .
+
+memo:early_1980_s_christian_music_video a memo:OriginMusic,
+owl:NamedIndividual ;
+rdfs:label "Early 1980's Christian Music Video" .
+
+memo:eastenders a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "EastEnders" .
+
+memo:ebooks_online a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "eBooks Online" .
+
+memo:ed_edd_n_eddy a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Ed Edd n Eddy" .
+
+memo:ed_sheeran a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Ed Sheeran" .
+
+memo:eddsworld a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Eddsworld" .
+
+memo:edward_burtynsky a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Edward Burtynsky" .
+
+memo:edward_maya_vika_jigulina a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Edward Maya, Vika Jigulina" .
+
+memo:einstein_s_mama_webcomic a memo:OriginComic,
+owl:NamedIndividual ;
+rdfs:label "Einstein's Mama webcomic" .
+
+memo:el_pais a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "El Pais" .
+
+memo:elder_scrolls_morrowind a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Elder Scrolls: Morrowind" .
+
+memo:elizabeth_betita_martínez a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Elizabeth \"Betita\" Martínez" .
+
+memo:eminem_featuring_juice_wrld_godzilla_music_video a memo:OriginMusic,
+owl:NamedIndividual ;
+rdfs:label "Eminem featuring Juice Wrld \"Godzilla\" (Music Video)" .
+
+memo:empire a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Empire" .
+
+memo:endo_pharmaceuticals_inc a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Endo Pharmaceuticals Inc." .
+
+memo:envato_elements a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Envato Elements" .
+
+memo:epic_store a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Epic Store" .
+
+memo:ernest_hemingway a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Ernest Hemingway" .
+
+memo:ethereality a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Ethereality" .
+
+memo:ethnic_stereotype a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Ethnic Stereotype" .
+
+memo:etsy a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Etsy" .
+
+memo:everything_2 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Everything 2" .
+
+memo:f1 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "F1" .
+
+memo:f1lthy a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "F1lthy" .
+
+memo:fabio_coala a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Fabio Coala" .
+
+memo:facepunch a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Facepunch" .
+
+memo:faking_news a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Faking News" .
+
+memo:fall_guys a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Fall Guys" .
+
+memo:fallen_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Fallen (Film)" .
+
+memo:fallout_new_vegas a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Fallout New Vegas" .
+
+memo:false_knees a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "False Knees" .
+
+memo:fameflynet_pictures a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "FameFlynet Pictures" .
+
+memo:family_dinner_project a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Family Dinner Project" .
+
+memo:family_guy_tv_series a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "Family Guy (TV Series)" .
+
+memo:fandom a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Fandom" .
+
+memo:fantastic_four_comic_book a memo:OriginComic,
+owl:NamedIndividual ;
+rdfs:label "Fantastic Four (Comic Book)" .
+
+memo:fate_grand_order a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Fate/Grand Order" .
+
+memo:fate_kaleid_liner_prisma_illya a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Fate/Kaleid Liner Prisma Illya" .
+
+memo:feelin_good_tees a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Feelin Good Tees" .
+
+memo:fifa_video_game a memo:OriginVideoGame,
+owl:NamedIndividual ;
+rdfs:label "FIFA (video game)" .
+
+memo:filthy_frank a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Filthy Frank" .
+
+memo:final_fantasy_vii_remake a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Final Fantasy VII Remake" .
+
+memo:fire_emblem_three_houses a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Fire Emblem: Three Houses" .
+
+memo:fire_punch a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Fire Punch" .
+
+memo:firebringer a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Firebringer" .
+
+memo:first_person_shooters a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "First Person Shooters" .
+
+memo:fit a memo:OriginBoard,
+owl:NamedIndividual ;
+rdfs:label "/fit/" .
+
+memo:five_nights_at_freddy_s a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Five Nights At Freddy's" .
+
+memo:flatearthsociety_org a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "FlatEarthSociety.org" .
+
+memo:flork_of_cows a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Flork of Cows" .
+
+memo:food_insider a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Food Insider" .
+
+memo:forgehub a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Forgehub" .
+
+memo:frank_loesser a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Frank Loesser" .
+
+memo:fresh_prince_of_bel-air a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Fresh Prince of Bel-Air" .
+
+memo:friday_night_funkin_week_7_update a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Friday Night Funkin' (Week 7 Update)" .
+
+memo:friends a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Friends" .
+
+memo:funvizeo a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Funvizeo" .
+
+memo:gail_simone_comic_book_writer a memo:OriginComic,
+owl:NamedIndividual ;
+rdfs:label "Gail Simone (comic book writer)" .
+
+memo:game_grumps a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Game Grumps" .
+
+memo:gamebanana a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Gamebanana" .
+
+memo:gamepro_magazine a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "GamePro Magazine" .
+
+memo:garry_s_mod_steam a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Garry's Mod / Steam" .
+
+memo:genildo a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Genildo" .
+
+memo:genius a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Genius" .
+
+memo:genshin_impact a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Genshin Impact" .
+
+memo:genshin_impact_game a memo:OriginVideoGame,
+owl:NamedIndividual ;
+rdfs:label "Genshin Impact (Game)" .
+
+memo:germany a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Germany" .
+
+memo:geza_szollosi a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Geza Szollosi" .
+
+memo:ghost_in_the_shell a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Ghost In the Shell" .
+
+memo:giphy a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Giphy" .
+
+memo:girls_tv_series a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "Girls (TV Series)" .
+
+memo:glee a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Glee" .
+
+memo:glengarry_glen_ross a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Glengarry Glen Ross" .
+
+memo:goat_story a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Goat Story" .
+
+memo:goblin_slayer_episode_4 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Goblin Slayer episode 4" .
+
+memo:god_of_war_2018 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "God of War (2018)" .
+
+memo:godzilla_king_of_the_monsters a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Godzilla: King of the Monsters" .
+
+memo:golden_globe_awards_2019 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Golden Globe Awards 2019" .
+
+memo:good_bear_comics a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Good Bear Comics" .
+
+memo:good_for_you_podcast a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Good For You Podcast" .
+
+memo:gorillaz a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Gorillaz" .
+
+memo:grand_theft_auto_online a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Grand Theft Auto Online" .
+
+memo:gravity_falls_animated_tv_series a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "Gravity Falls (animated TV series)" .
+
+memo:great_british_bake-off a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Great British Bake-off" .
+
+memo:grigory_grabovoi a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Grigory Grabovoi" .
+
+memo:gs9_rowdy_rebel_bobby_shmurda a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "GS9, Rowdy Rebel, Bobby Shmurda" .
+
+memo:gtplanet a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "gtplanet" .
+
+memo:génesis_insurance a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Génesis Insurance" .
+
+memo:halo_combat_evolved_video_game a memo:OriginVideoGame,
+owl:NamedIndividual ;
+rdfs:label "Halo: Combat Evolved (Video Game)" .
+
+memo:hamburg a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Hamburg" .
+
+memo:handforth_england a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Handforth, England" .
+
+memo:harry_potter_and_the_chamber_of_secrets_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Harry Potter and the Chamber of Secrets (Film)" .
+
+memo:harry_potter_and_the_half-blood_prince_book_and_film a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Harry Potter and the Half-Blood Prince (Book and Film)" .
+
+memo:harry_potter_and_the_sorcerer_s_stone_ps1 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Harry Potter and the Sorcerer's Stone (PS1)" .
+
+memo:harry_potter_hogwarts_mystery a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Harry Potter: Hogwarts Mystery" .
+
+memo:hasbro a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Hasbro" .
+
+memo:hatsune_miku_colorful_stage a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Hatsune Miku: Colorful Stage" .
+
+memo:he-man_and_the_masters_of_the_universe_animated_tv_series a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "He-Man and the Masters of the Universe (Animated TV Series)" .
+
+memo:hercules a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Hercules" .
+
+memo:hermitcraft_season_5 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Hermitcraft Season 5" .
+
+memo:hero_images a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Hero Images" .
+
+memo:hey_buddy_comics a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Hey Buddy Comics" .
+
+memo:hhgregg a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "hhgregg" .
+
+memo:hollywood_pipeline a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Hollywood Pipeline" .
+
+memo:home_depot a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Home Depot" .
+
+memo:homestuck a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Homestuck" .
+
+memo:horrible_histories_tv_series a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "Horrible Histories (TV Series)" .
+
+memo:hot_pursuit_forums a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Hot Pursuit forums" .
+
+memo:houseki_no_kuni a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Houseki no Kuni" .
+
+memo:huffpost a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "HuffPost" .
+
+memo:huge_lol a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Huge LOL" .
+
+memo:hugelol a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "HugeLOL" .
+
+memo:human_events a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Human Events" .
+
+memo:humo_be a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Humo.be" .
+
+memo:humon a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Humon" .
+
+memo:hustler a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Hustler" .
+
+memo:i_my_rumination a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "I, My Rumination" .
+
+memo:i_robot_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "I, Robot (Film)" .
+
+memo:icarly a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "iCarly" .
+
+memo:identity_thief_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Identity Thief (Film)" .
+
+memo:ign a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "IGN" .
+
+memo:inauguration_of_joe_biden a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Inauguration of Joe Biden" .
+
+memo:incels_co_-_involuntary_celibates a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Incels.co - Involuntary Celibates" .
+
+memo:infowars a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Infowars" .
+
+memo:inky_rickshaw_webcomic a memo:OriginComic,
+owl:NamedIndividual ;
+rdfs:label "Inky Rickshaw (Webcomic)" .
+
+memo:inside_out_2 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Inside Out 2" .
+
+memo:insidious a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Insidious" .
+
+memo:int a memo:OriginBoard,
+owl:NamedIndividual ;
+rdfs:label "/int/" .
+
+memo:interstellar_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Interstellar (Film)" .
+
+memo:inugami_korone a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Inugami Korone" .
+
+memo:ireland a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Ireland" .
+
+memo:iron_giant a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Iron Giant" .
+
+memo:isorrowproduction a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "iSorrowproduction" .
+
+memo:istock a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "iStock" .
+
+memo:japan a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Japan" .
+
+memo:jeff_dunham_comedian a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Jeff Dunham (Comedian)" .
+
+memo:jennifer_s_body a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Jennifer's Body" .
+
+memo:jeremiah_johnson_film a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Jeremiah Johnson film" .
+
+memo:jersey_shore_reality_television_series a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "Jersey Shore (Reality Television Series)" .
+
+memo:jimmy_neutron_boy_genius a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Jimmy Neutron: Boy Genius" .
+
+memo:joan_cornellà a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Joan Cornellà" .
+
+memo:joanne_the_scammer a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Joanne the Scammer" .
+
+memo:joe_biden_presidential_candidate a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Joe Biden (Presidential Candidate" .
+
+memo:john_bercow a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "John Bercow" .
+
+memo:john_denver a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "John Denver" .
+
+memo:johnnie_taylor_singer a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Johnnie Taylor (Singer)" .
+
+memo:johnny_craig a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Johnny Craig" .
+
+memo:joker_2019 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Joker (2019)" .
+
+memo:jon_mcnaughton_artist a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Jon McNaughton (Artist)" .
+
+memo:jontron a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "JonTron" .
+
+memo:jose_correa a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Jose Correa" .
+
+memo:jujutsu_kaisen a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Jujutsu Kaisen" .
+
+memo:jurassic_park a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Jurassic Park" .
+
+memo:jurassic_park_builder_video_game a memo:OriginVideoGame,
+owl:NamedIndividual ;
+rdfs:label "Jurassic Park Builder (Video Game)" .
+
+memo:kakuho_fujii_artist a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Kakuho Fujii (Artist)" .
+
+memo:kanye_west a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Kanye West" .
+
+memo:kate_bush a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Kate Bush" .
+
+memo:kazanfirst_ru a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Kazanfirst.ru" .
+
+memo:keak_da_sneak_rapper a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Keak da Sneak (Rapper)" .
+
+memo:keep_your_hands_off_eizouken a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Keep Your Hands Off Eizouken!" .
+
+memo:kendrick_lamar_jay_rock_future_james_blake_-_king_s_dead a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Kendrick Lamar, Jay Rock, Future, James Blake - \"King's Dead\"" .
+
+memo:kevin_freshwater a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Kevin Freshwater" .
+
+memo:key_and_peele_television_series a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "Key and Peele (Television Series)" .
+
+memo:kick a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Kick" .
+
+memo:king_of_the_hill_tv_show a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "King of the Hill (TV Show)" .
+
+memo:kingdom_hearts_3 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Kingdom Hearts 3" .
+
+memo:kino_5 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Kino 5" .
+
+memo:kirby_super_star a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Kirby Super Star" .
+
+memo:kiwi_farms a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Kiwi Farms" .
+
+memo:konosuba a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "KonoSuba" .
+
+memo:la_toys a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "LA Toys" .
+
+memo:lady_gaga_house_of_gucci_premiere a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Lady Gaga (House Of Gucci Premiere)" .
+
+memo:lainey_monar a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Lainey Monar" .
+
+memo:lancet a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Lancet" .
+
+memo:leadbelly a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Leadbelly" .
+
+memo:lego a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Lego" .
+
+memo:lemon_sandwich a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Lemon Sandwich" .
+
+memo:lesswrong a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "LessWrong" .
+
+memo:life_is_a_joke a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Life Is a Joke" .
+
+memo:lightfarm a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Lightfarm" .
+
+memo:lilo_and_stitch a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Lilo and Stitch" .
+
+memo:lilo_stitch a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Lilo & Stitch" .
+
+memo:linha_do_trem_webcomic a memo:OriginComic,
+owl:NamedIndividual ;
+rdfs:label "Linha Do Trem Webcomic" .
+
+memo:linkedin a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Linkedin" .
+
+memo:lmfao a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "LMFAO" .
+
+memo:lnktv_city a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "LNKTV City" .
+
+memo:lob_shots a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Lob Shots" .
+
+memo:loiter_squad_tv_show a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "Loiter Squad (TV Show)" .
+
+memo:looney_toons a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Looney Toons" .
+
+memo:looney_tunes a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Looney Tunes" .
+
+memo:lord_of_the_rings_the_fellowship_of_the_ring_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Lord of the Rings: The Fellowship of the Ring (Film)" .
+
+memo:los_angeles a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Los Angeles" .
+
+memo:lost_horizon a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Lost Horizon" .
+
+memo:love_letter a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Love Letter" .
+
+memo:love_live a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Love Live" .
+
+memo:luigi_s_mansion_3ds a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Luigi's Mansion 3DS" .
+
+memo:lute a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Lute" .
+
+memo:lynyrd_skynyrd a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Lynyrd Skynyrd" .
+
+memo:m_nicr_t a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "M!NiCR!T" .
+
+memo:mad_men a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Mad Men" .
+
+memo:madagascar_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Madagascar (Film)" .
+
+memo:mahalo_com a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Mahalo.com" .
+
+memo:mahou_sentai_magiranger_television a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Mahou Sentai Magiranger (Television)" .
+
+memo:maia_crimew_gay a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "maia.crimew.gay" .
+
+memo:makassar_indonesia a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Makassar, Indonesia" .
+
+memo:maktooblog a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Maktooblog" .
+
+memo:malcolm_in_the_middle a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Malcolm in the Middle" .
+
+memo:manhunt_the_search_for_america_s_most_gorgeous_male_model a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Manhunt: The Search For America's Most Gorgeous Male Model" .
+
+memo:marca_y_presión a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Marca y Presión" .
+
+memo:marco_grob a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Marco Grob" .
+
+memo:mario_luigi_superstar_saga_video_game a memo:OriginVideoGame,
+owl:NamedIndividual ;
+rdfs:label "Mario & Luigi: Superstar Saga (Video Game)" .
+
+memo:marjorie_taylor_greene a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Marjorie Taylor Greene" .
+
+memo:marketwatch_com a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "MarketWatch.com" .
+
+memo:marriage_story_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Marriage Story (Film)" .
+
+memo:martha_speaks a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Martha Speaks" .
+
+memo:marvel a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Marvel" .
+
+memo:marvel_comics_star_wars_darth_vader_dark_lord_of_the_sith_1 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Marvel Comics \"Star Wars: Darth Vader: Dark Lord of the Sith 1\"" .
+
+memo:marvel_rivals a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Marvel Rivals" .
+
+memo:marvel_s_spider-man a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Marvel's Spider-Man" .
+
+memo:marvel_s_star_wars_27_comic_book a memo:OriginComic,
+owl:NamedIndividual ;
+rdfs:label "Marvel's Star Wars #27 (Comic Book)" .
+
+memo:mary_harron a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Mary Harron" .
+
+memo:masahiro_sakurai a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Masahiro Sakurai" .
+
+memo:matt_adrian_the_mincing_mockingbird a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Matt Adrian (The Mincing Mockingbird)" .
+
+memo:matt_bors a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Matt Bors" .
+
+memo:mcdonald_s a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "McDonald's" .
+
+memo:megadeth_peace_sells_but_who_s_buying a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Megadeth (Peace Sells... but Who's Buying?)" .
+
+memo:megamind a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Megamind" .
+
+memo:megamind_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Megamind (Film)" .
+
+memo:melee_hell a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Melee Hell" .
+
+memo:memecreator_org a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "MemeCreator.org" .
+
+memo:memegenerator a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "MemeGenerator" .
+
+memo:memri_tv a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "MEMRI TV" .
+
+memo:metafilter a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "MetaFilter" .
+
+memo:mgmt a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "MGMT" .
+
+memo:michael_jackson a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Michael Jackson" .
+
+memo:microsoft a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Microsoft" .
+
+memo:miiverse a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Miiverse" .
+
+memo:mike_organisciak a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Mike Organisciak" .
+
+memo:mike_sacks a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Mike Sacks" .
+
+memo:mike_tomlin_steelers_coach a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Mike Tomlin (Steelers Coach)" .
+
+memo:miki_matsubara a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Miki Matsubara" .
+
+memo:miley_cyrus a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Miley Cyrus" .
+
+memo:mississippi_abstinence_rally a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Mississippi Abstinence Rally" .
+
+memo:mlpforums a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "MLPForums" .
+
+memo:mobile_suit_gundam_iron-blooded_orphans_nico_nico_douga a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Mobile Suit Gundam: Iron-Blooded Orphans, Nico Nico Douga" .
+
+memo:moddb a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "ModDB" .
+
+memo:monday_night_raw a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Monday Night Raw" .
+
+memo:mossis_animal_refuge a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Mossis Animal Refuge" .
+
+memo:mr_rogers_neighborhood_television_series a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "Mr. Rogers' Neighborhood (Television Series)" .
+
+memo:mrchipperchopper_artist a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "MrChipperChopper (Artist)" .
+
+memo:mtv a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "MTV" .
+
+memo:mtv_tokyo_fried_rice_guys a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "MTV Tokyo Fried Rice Guys" .
+
+memo:mudvayne a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Mudvayne" .
+
+memo:my_first_girlfriend_is_a_ga a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "My First Girlfriend Is a Ga" .
+
+memo:my_mental_age a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "My Mental Age" .
+
+memo:n_w_a_straight_outta_compton_song a memo:OriginMusic,
+owl:NamedIndividual ;
+rdfs:label "N.W.A. \"Straight Outta Compton\" (song)" .
+
+memo:nancy_comic_strip a memo:OriginComic,
+owl:NamedIndividual ;
+rdfs:label "Nancy (Comic Strip)" .
+
+memo:naruto_shippuden_anime a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Naruto Shippuden (Anime)" .
+
+memo:nation_of_islam a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Nation of Islam" .
+
+memo:national_science_foundation a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "National Science Foundation" .
+
+memo:ncaa a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "NCAA" .
+
+memo:neogaf a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "NeoGAF" .
+
+memo:netanyahu_s_cartoon_bomb a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Netanyahu's Cartoon Bomb" .
+
+memo:new_england a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "New England" .
+
+memo:new_jack_city_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "New Jack City (Film)" .
+
+memo:new_york_city_department_of_parks_recreation a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "New York City Department of Parks & Recreation" .
+
+memo:newswire a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Newswire" .
+
+memo:nick_bostrom a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Nick Bostrom" .
+
+memo:nico_nico a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Nico Nico" .
+
+memo:night_at_the_museum_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Night at the Museum (Film)" .
+
+memo:nikola_tesla a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Nikola Tesla" .
+
+memo:ninja_sentai_kakuranger a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Ninja Sentai Kakuranger" .
+
+memo:nintendo_direct_e3 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Nintendo Direct E3" .
+
+memo:nme a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "NME" .
+
+memo:no_doubt a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "No Doubt" .
+
+memo:nostalgia_critic a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Nostalgia Critic" .
+
+memo:nutty_putty_cave_utah a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Nutty Putty Cave, Utah" .
+
+memo:nyt a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "NYT" .
+
+memo:oasis a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Oasis" .
+
+memo:obiaris_artist a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Obiaris (artist)" .
+
+memo:ohiolink a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "OhioLink" .
+
+memo:omocat_artist a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Omocat (Artist)" .
+
+memo:one_giant_hand a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "One Giant Hand" .
+
+memo:one_more_thing_podcast a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "One More Thing Podcast" .
+
+memo:one_piece a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "One Piece" .
+
+memo:onehallyu a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "onehallyu" .
+
+memo:onlinecasion_ca a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "OnlineCasion.ca" .
+
+memo:openai a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "OpenAI" .
+
+memo:oprah_s_prince_harry_meghan_markle_interview a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Oprah's Prince Harry Meghan Markle Interview" .
+
+memo:oscars a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Oscars" .
+
+memo:oshi_no_ko a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Oshi no Ko" .
+
+memo:overwatch a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Overwatch" .
+
+memo:owlturd_comics a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Owlturd Comics" .
+
+memo:ozark a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Ozark" .
+
+memo:ozark_television_series a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "Ozark (Television Series)" .
+
+memo:pac-man_and_the_ghostly_adventures a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Pac-man And The Ghostly Adventures" .
+
+memo:pandyland a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Pandyland" .
+
+memo:paper_mario_the_thousand_year_door a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Paper Mario: The Thousand Year Door" .
+
+memo:paripi_koumei a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Paripi Koumei" .
+
+memo:paris_court_of_appeals a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Paris Court of Appeals" .
+
+memo:parks_and_recreation_television_series a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "Parks and Recreation (Television Series)" .
+
+memo:pat_cross a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Pat Cross" .
+
+memo:patriots_win a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Patriots.win" .
+
+memo:pawn_stars_tv_show a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "Pawn Stars (TV Show)" .
+
+memo:payday_2 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "PayDay 2" .
+
+memo:pbs_kids a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "PBS Kids" .
+
+memo:person_of_interest a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Person of Interest" .
+
+memo:persona_5 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Persona 5" .
+
+memo:philadelphia_flyers a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Philadelphia Flyers" .
+
+memo:philadelphia_inquirer a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Philadelphia Inquirer" .
+
+memo:picssr a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Picssr" .
+
+memo:pikabu a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Pikabu" .
+
+memo:pirates_of_the_caribbean_dead_man_s_chest a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Pirates of the Caribbean: Dead Man's Chest" .
+
+memo:pluralistic a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Pluralistic" .
+
+memo:pokelawls a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Pokelawls" .
+
+memo:pokemon a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Pokemon" .
+
+memo:pokemon_scarlet_and_violet a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Pokemon: Scarlet and Violet" .
+
+memo:pokémon a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Pokémon" .
+
+memo:pokémon_legends_arceus a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Pokémon Legends: Arceus" .
+
+memo:pokémon_shield a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Pokémon Shield" .
+
+memo:pokémon_sun_and_moon a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Pokémon Sun and Moon" .
+
+memo:pop_smoke a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Pop Smoke" .
+
+memo:poppy_playtime a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Poppy Playtime" .
+
+memo:pornhub a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Pornhub" .
+
+memo:portal a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Portal" .
+
+memo:portal_2_beta a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Portal 2 Beta" .
+
+memo:post_to_be_by_omarion_jhene_aiko_chris_brown a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "\"Post To Be\" by Omarion, Jhene Aiko, Chris Brown" .
+
+memo:postal_2 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Postal 2" .
+
+memo:pre_internet a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Pre Internet" .
+
+memo:princeton_new_jersey a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Princeton, New Jersey" .
+
+memo:prodbyzaqq a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Prodbyzaqq" .
+
+memo:programa_do_jô_brazilian_talk_show a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Programa do Jô (Brazilian Talk Show)" .
+
+memo:project_runway_reality_tv_show a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "Project Runway (Reality TV Show)" .
+
+memo:pulp_fiction_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Pulp Fiction (Film)" .
+
+memo:pyeongchang_south_korea a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Pyeongchang, South Korea" .
+
+memo:qa a memo:OriginBoard,
+owl:NamedIndividual ;
+rdfs:label "/qa/" .
+
+memo:r_comedycemetery a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "/r/ComedyCemetery" .
+
+memo:r_comics a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "/r/comics" .
+
+memo:r_memeeconomy a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "/r/MemeEconomy" .
+
+memo:r_surrealmemes a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "/r/surrealmemes" .
+
+memo:r_teenagers a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "/r/Teenagers" .
+
+memo:rainbow_bunny_webcomic a memo:OriginComic,
+owl:NamedIndividual ;
+rdfs:label "Rainbow Bunny Webcomic" .
+
+memo:rap a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Rap" .
+
+memo:rapper_chief_keef a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Rapper Chief Keef" .
+
+memo:ratatouille a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Ratatouille" .
+
+memo:real_bros_of_simi_valley a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Real Bros of Simi Valley" .
+
+memo:reality_check a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Reality Check" .
+
+memo:recettear_an_item_shop_s_tale a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Recettear: An Item Shop's Tale" .
+
+memo:red_dead_redemption a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Red Dead Redemption" .
+
+memo:red_letter_media a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Red Letter Media" .
+
+memo:red_vs_blue a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Red Vs. Blue" .
+
+memo:reductress a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Reductress" .
+
+memo:remembrancer_for_lord_s_day_evenings a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Remembrancer For Lord's Day Evenings" .
+
+memo:resident_evil_2_2019 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Resident Evil 2 (2019)" .
+
+memo:resident_evil_village a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Resident Evil Village" .
+
+memo:rick_and_morty_television_series a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "Rick and Morty (Television Series)" .
+
+memo:rick_and_morty_tv_show a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "Rick and Morty (TV Show)" .
+
+memo:rick_astley_singer a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Rick Astley (Singer)" .
+
+memo:rick_mckee a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Rick McKee" .
+
+memo:roku a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Roku" .
+
+memo:rule_34_forum a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Rule 34 Forum" .
+
+memo:rupaul_s_drag_race_superstar_mobile_game a memo:OriginVideoGame,
+owl:NamedIndividual ;
+rdfs:label "RuPaul's Drag Race Superstar (Mobile Game)" .
+
+memo:rupaul_s_drag_race_television_series a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "Rupaul's Drag Race Television Series" .
+
+memo:ryoko_shintani a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Ryoko Shintani" .
+
+memo:sadgirlpop a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "SadGirlPop" .
+
+memo:safely_endangered a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Safely Endangered" .
+
+memo:safely_endangered_webcomic a memo:OriginComic,
+owl:NamedIndividual ;
+rdfs:label "Safely Endangered (Webcomic)" .
+
+memo:sam_hyde a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Sam Hyde" .
+
+memo:sandia_report a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Sandia Report" .
+
+memo:sauce_walka a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Sauce Walka" .
+
+memo:scoob a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Scoob!" .
+
+memo:scooby-doo_2002 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Scooby-Doo (2002)" .
+
+memo:scooby-doo_live-action_movie a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Scooby-Doo (Live-Action Movie)" .
+
+memo:sears a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Sears" .
+
+memo:seebangnow a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Seebangnow" .
+
+memo:seinfeld a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Seinfeld" .
+
+memo:sekiro_shadows_die_twice a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Sekiro: Shadows Die Twice" .
+
+memo:shadow_of_war a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Shadow of War" .
+
+memo:sherlock_holmes_2009 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Sherlock Holmes (2009)" .
+
+memo:shin_megami_tensei_iii_nocturne a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Shin Megami Tensei III: Nocturne" .
+
+memo:shindan_maker a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Shindan Maker" .
+
+memo:shirley_temple_little_darling_collection a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Shirley Temple Little Darling Collection" .
+
+memo:shout_out_uk a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Shout Out UK" .
+
+memo:shrek a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Shrek" .
+
+memo:shrek_2 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Shrek 2" .
+
+memo:shrek_forever_after_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Shrek Forever After (FIlm)" .
+
+memo:shrek_the_third_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Shrek The Third (Film)" .
+
+memo:sidetalk a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Sidetalk" .
+
+memo:slate a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Slate" .
+
+memo:smiley_central a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Smiley Central" .
+
+memo:social_media a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Social Media" .
+
+memo:soldf a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Soldf" .
+
+memo:solo_leveling a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Solo Leveling" .
+
+memo:sonic_advance_2 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Sonic Advance 2" .
+
+memo:sonic_forces a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Sonic Forces" .
+
+memo:sonic_the_hedgehog_2_2022 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Sonic the Hedgehog 2 (2022)" .
+
+memo:sonic_the_hedgehog_3 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Sonic the Hedgehog 3" .
+
+memo:sonic_the_hedgehog_3_1994 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Sonic the Hedgehog 3 (1994)" .
+
+memo:sonic_the_hedgehog_51_idw a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Sonic the Hedgehog #51 (IDW)" .
+
+memo:sonic_the_hedgehog_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Sonic the Hedgehog (Film)" .
+
+memo:sonic_the_hedgehog_the_movie a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Sonic the Hedgehog: The Movie" .
+
+memo:sonic_the_hedgehog_trailer a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Sonic the Hedgehog Trailer" .
+
+memo:sophia_amoruso a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Sophia Amoruso" .
+
+memo:soranews24 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "SoraNews24" .
+
+memo:soul_of_neko a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Soul of Neko" .
+
+memo:soulcalibur_vi a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "SoulCalibur VI" .
+
+memo:south_korea a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "South Korea" .
+
+memo:spider-man_annual a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Spider-Man Annual" .
+
+memo:spider-man_into_the_spider-verse_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Spider-Man: Into the Spider-Verse (Film)" .
+
+memo:spider-man_no_way_home_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Spider-Man: No Way Home (Film)" .
+
+memo:spidey_super_stories a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Spidey Super Stories" .
+
+memo:spirited_away a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Spirited Away" .
+
+memo:spiritofradio_ca a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "spiritofradio.ca" .
+
+memo:split_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Split (Film)" .
+
+memo:spotify a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Spotify" .
+
+memo:spy_kids_2 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Spy Kids 2" .
+
+memo:stable_diffusion a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Stable Diffusion" .
+
+memo:star_wars_battlefront_ii_2017_video_game a memo:OriginVideoGame,
+owl:NamedIndividual ;
+rdfs:label "Star Wars Battlefront II (2017 Video Game)" .
+
+memo:star_wars_episode_iii a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Star Wars Episode III" .
+
+memo:star_wars_episode_iii_-_revenge_of_the_sith a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Star Wars: Episode III - Revenge of the Sith" .
+
+memo:star_wars_episode_iii_revenge_of_the_sith_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Star Wars: Episode III Revenge of the Sith (film)" .
+
+memo:star_wars_episode_iv_a_new_hope_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Star Wars: Episode IV — A New Hope (Film)" .
+
+memo:star_wars_republic_commando_video_game a memo:OriginVideoGame,
+owl:NamedIndividual ;
+rdfs:label "Star Wars: Republic Commando (Video Game)" .
+
+memo:star_wars_revenge_of_the_sith a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Star Wars: Revenge of the Sith" .
+
+memo:star_wars_the_last_jedi_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Star Wars: The Last Jedi (Film)" .
+
+memo:star_wars_the_rise_of_skywalker a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Star Wars: The Rise of Skywalker" .
+
+memo:star_wars_the_rise_of_skywalker_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Star Wars: The Rise of Skywalker (Film)" .
+
+memo:star_wars_the_rise_of_skywalker_movie_trailer a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Star Wars: The Rise of Skywalker (Movie Trailer)" .
+
+memo:stardew_valley a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Stardew Valley" .
+
+memo:starship_troopers a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Starship Troopers" .
+
+memo:state_of_the_union_2019 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "State of the Union 2019" .
+
+memo:steam_workshop a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Steam Workshop" .
+
+memo:steve_sack_political_cartoon a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Steve Sack Political Cartoon" .
+
+memo:steven_reinhold_uco a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Steven Reinhold / UCO" .
+
+memo:still_game a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Still Game" .
+
+memo:stock_sites a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Stock Sites" .
+
+memo:stranger_things a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Stranger Things" .
+
+memo:street_fighter_6 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Street Fighter 6" .
+
+memo:stuart_little_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Stuart Little (film)" .
+
+memo:sun_sentinel a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Sun Sentinel" .
+
+memo:sunny_street_comics a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Sunny Street Comics" .
+
+memo:sunny_street_webcomics a memo:OriginComic,
+owl:NamedIndividual ;
+rdfs:label "Sunny Street Webcomics" .
+
+memo:super_bowl_lvi a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Super Bowl LVI" .
+
+memo:super_mario_bros_2 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Super Mario Bros. 2" .
+
+memo:super_mario_bros_super_show_television_series a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "Super Mario Bros. Super Show (Television Series)" .
+
+memo:super_mario_rpg_legend_of_the_seven_stars a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Super Mario RPG: Legend of the Seven Stars" .
+
+memo:super_mario_sunshine a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Super Mario Sunshine" .
+
+memo:super_smash_brothers a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Super Smash Brothers" .
+
+memo:super_smash_brothers_3ds_wii_u a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Super Smash Brothers 3DS / Wii U" .
+
+memo:super_smash_brothers_community a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Super Smash Brothers Community" .
+
+memo:super_smash_brothers_ultimate a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Super Smash Brothers Ultimate" .
+
+memo:superman_batman_apocalypse_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Superman/Batman: Apocalypse (Film)" .
+
+memo:supernatural a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Supernatural" .
+
+memo:syko_artist a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Syko (Artist)" .
+
+memo:taff_television_show a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Taff (Television Show)" .
+
+memo:tally_hall a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Tally Hall" .
+
+memo:tastefully_offensive a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Tastefully Offensive" .
+
+memo:taylor_swift a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Taylor Swift" .
+
+memo:team_fortress_2_video_game a memo:OriginVideoGame,
+owl:NamedIndividual ;
+rdfs:label "Team Fortress 2 (Video Game)" .
+
+memo:teen_titans_go_movie a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Teen Titans GO Movie" .
+
+memo:television_advertisement a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Television Advertisement" .
+
+memo:terminator_2_judgement_day a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Terminator 2: Judgement Day" .
+
+memo:the_2016_presidential_election a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The 2016 Presidential Election" .
+
+memo:the_babadook a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Babadook" .
+
+memo:the_backyardians a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Backyardians" .
+
+memo:the_backyardigans a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Backyardigans" .
+
+memo:the_bad_guys a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Bad Guys" .
+
+memo:the_ben_shapiro_show a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Ben Shapiro Show" .
+
+memo:the_best_of_disney_50_years_of_magic a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Best of Disney: 50 Years of Magic" .
+
+memo:the_blast a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Blast" .
+
+memo:the_boondocks a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Boondocks" .
+
+memo:the_congolese_dandies a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Congolese Dandies" .
+
+memo:the_cut a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Cut" .
+
+memo:the_danemen a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The DaneMen" .
+
+memo:the_dark_knight_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "The Dark Knight (Film)" .
+
+memo:the_elder_scrolls_v_skyrim a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Elder Scrolls V: Skyrim" .
+
+memo:the_emperor_s_new_groove_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "The Emperor's New Groove (Film)" .
+
+memo:the_fader a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Fader" .
+
+memo:the_far_side a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Far Side" .
+
+memo:the_game_awards_2020 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Game Awards 2020" .
+
+memo:the_grim_adventures_of_billy_mandy a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Grim Adventures of Billy & Mandy" .
+
+memo:the_hangover a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Hangover" .
+
+memo:the_hard_times a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Hard Times" .
+
+memo:the_howard_stern_show_gary_dell_abate a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Howard Stern Show / Gary Dell'Abate" .
+
+memo:the_huffington_post a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Huffington Post" .
+
+memo:the_incredibles a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Incredibles" .
+
+memo:the_incredibles_2_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "The Incredibles 2 (Film)" .
+
+memo:the_interview_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "The Interview (Film)" .
+
+memo:the_joy_of_painting_with_bob_ross_television_series a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "The Joy of Painting With Bob Ross (Television Series)" .
+
+memo:the_kangaroo_chronicles_movie a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "The Kangaroo Chronicles (Movie)" .
+
+memo:the_kardashians a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Kardashians" .
+
+memo:the_last_of_us_part_ii a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Last of Us Part II" .
+
+memo:the_legend_of_zelda_breath_of_the_wild a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Legend of Zelda: Breath of the Wild" .
+
+memo:the_lighthouse a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Lighthouse" .
+
+memo:the_mandalorian_tv_series a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "The Mandalorian (TV Series)" .
+
+memo:the_millennium_tour_documentary a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "The Millennium Tour (Documentary)" .
+
+memo:the_mountain_goats a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Mountain Goats" .
+
+memo:the_national_enquirerer_tabloid_magazine a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The National Enquirerer (Tabloid Magazine)" .
+
+memo:the_new_republic a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The New Republic" .
+
+memo:the_office a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Office" .
+
+memo:the_office_television_series a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "The Office (Television Series)" .
+
+memo:the_office_television_show a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Office (Television Show)" .
+
+memo:the_office_tv_series a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "The Office (TV Series)" .
+
+memo:the_passion_of_the_christ a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Passion of the Christ" .
+
+memo:the_proud_family_movie a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Proud Family Movie" .
+
+memo:the_real_housewives_of_atlanta_television_series a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "The Real Housewives of Atlanta (Television Series)" .
+
+memo:the_return_of_the_king_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "The Return of the King (Film)" .
+
+memo:the_rising_of_the_shield_hero a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Rising of the Shield Hero" .
+
+memo:the_simpsons_television_show a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Simpsons (Television Show)" .
+
+memo:the_sopranos_tv_show a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "The Sopranos (TV Show)" .
+
+memo:the_spongebob_squarepants_movie a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The SpongeBob SquarePants Movie" .
+
+memo:the_stock_market a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Stock Market" .
+
+memo:the_super_mario_bros_movie_2023 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Super Mario Bros Movie (2023)" .
+
+memo:the_transformed_wife a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Transformed Wife" .
+
+memo:the_verkkars a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Verkkars" .
+
+memo:the_washington_free_beacon_media_outlet a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Washington Free Beacon (Media Outlet)" .
+
+memo:the_white_house a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The White House" .
+
+memo:the_year_without_a_santa_claus a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Year Without a Santa Claus" .
+
+memo:thingverse a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Thingverse" .
+
+memo:thomas_the_tank_engine_tv_series a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "Thomas The Tank Engine (TV Series)" .
+
+memo:thor_ragnarok a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Thor Ragnarok" .
+
+memo:tiananmen_square_protests a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Tiananmen Square Protests" .
+
+memo:tidying_up_with_marie_kondo a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Tidying Up with Marie Kondo" .
+
+memo:tig_forums a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "TIG Forums" .
+
+memo:tilburg_netherlands a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Tilburg, Netherlands" .
+
+memo:time a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Time" .
+
+memo:timothy_snyder a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Timothy Snyder" .
+
+memo:titanic_movie a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Titanic movie" .
+
+memo:tom_and_jerry a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Tom and Jerry" .
+
+memo:tom_fulp a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Tom Fulp" .
+
+memo:tom_jones a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Tom Jones" .
+
+memo:tom_stiglich_political_cartoon a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Tom Stiglich Political Cartoon" .
+
+memo:tone_deaf_by_eminem a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "\"Tone Deaf\" by Eminem" .
+
+memo:tonhon_chonlatee a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Tonhon Chonlatee" .
+
+memo:tony_igy a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Tony Igy" .
+
+memo:top_gear a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Top Gear" .
+
+memo:top_gear_television_series a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "Top Gear (Television Series" .
+
+memo:top_gear_tv_series a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "Top Gear (TV Series)" .
+
+memo:town_of_salem_video_game a memo:OriginVideoGame,
+owl:NamedIndividual ;
+rdfs:label "Town of Salem (Video Game)" .
+
+memo:townhall a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Townhall" .
+
+memo:toy_story a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Toy Story" .
+
+memo:tracy_beaker a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Tracy Beaker" .
+
+memo:trailer_park_boys a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Trailer Park Boys" .
+
+memo:trevor_henderson a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Trevor Henderson" .
+
+memo:tri-state_livestock_news a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Tri-State Livestock News" .
+
+memo:trident a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Trident" .
+
+memo:trolls a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Trolls" .
+
+memo:trump_kim_jong_un_north_korea_meeting a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Trump / Kim Jong Un North Korea Meeting" .
+
+memo:truth_social a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Truth Social" .
+
+memo:trutv a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "TruTV" .
+
+memo:turkey a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Turkey" .
+
+memo:turning_red a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Turning Red" .
+
+memo:twiiter a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Twiiter" .
+
+memo:twilight a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Twilight" .
+
+memo:twisted_sifter a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Twisted Sifter" .
+
+memo:ukraine a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Ukraine" .
+
+memo:undertale_halloween_hack a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Undertale: Halloween Hack" .
+
+memo:unicode a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Unicode" .
+
+memo:unicode_6_0 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Unicode 6.0" .
+
+memo:united_states_federal_emergency_management_agency a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "United States Federal Emergency Management Agency" .
+
+memo:unkown a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "unkown" .
+
+memo:up_movie a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Up (Movie)" .
+
+memo:uquiz a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "uQuiz" .
+
+memo:utah_jazz_fans a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Utah Jazz Fans" .
+
+memo:van_eyck_brothers a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Van Eyck Brothers" .
+
+memo:vennu_mallesh_singer a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Vennu Mallesh (Singer)" .
+
+memo:vh1 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "VH1" .
+
+memo:video_music_awards a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Video Music Awards" .
+
+memo:vimeo a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Vimeo" .
+
+memo:vladimir_brest_paranoia_album a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Vladimir Brest \"Paranoia\" (Album_" .
+
+memo:vrchat a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "VrChat" .
+
+memo:waiting_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Waiting... (Film)" .
+
+memo:wall-e_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "WALL-E (Film)" .
+
+memo:wandavision_television a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "WandaVision (Television)" .
+
+memo:warframe a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Warframe" .
+
+memo:washington_dc a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Washington, DC" .
+
+memo:washington_post a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Washington Post" .
+
+memo:watchmen_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Watchmen (Film)" .
+
+memo:watzatsong a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "WatZatSong" .
+
+memo:wdrb a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "WDRB" .
+
+memo:we_heart_it a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "We Heart It" .
+
+memo:webcomic_artists a memo:OriginComic,
+owl:NamedIndividual ;
+rdfs:label "Webcomic Artists" .
+
+memo:webtoon a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Webtoon" .
+
+memo:west_side_story_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "West Side Story (Film)" .
+
+memo:what_could_have_been_by_rysenkari a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "\"What Could Have Been...\" by RySenkari" .
+
+memo:white_house_garden a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "White House Garden" .
+
+memo:wikihow a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "WikiHow" .
+
+memo:willie_d_rapper a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Willie D. (Rapper)" .
+
+memo:wonder_woman_1984_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Wonder Woman 1984 (Film)" .
+
+memo:wondermark a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Wondermark" .
+
+memo:world_economic_forum a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "World Economic Forum" .
+
+memo:world_war_ii a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "World War II" .
+
+memo:worth1000 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Worth1000" .
+
+memo:wowkie_zhang a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Wowkie Zhang" .
+
+memo:wreck_it_ralph_2_trailer a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Wreck It Ralph 2 Trailer" .
+
+memo:wwe_monday_night_raw a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "WWE Monday Night Raw" .
+
+memo:yahoo a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Yahoo!" .
+
+memo:yahoo_answers a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Yahoo Answers" .
+
+memo:yakuza a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Yakuza" .
+
+memo:yediot_aharonot_newspaper a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Yediot Aharonot (Newspaper)" .
+
+memo:you a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "You" .
+
+memo:youchew_forums a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "YouChew Forums" .
+
+memo:yu-gi-oh a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Yu-Gi-Oh" .
+
+memo:zack_snyder_s_justice_league_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Zack Snyder's Justice League (Film)" .
+
+memo:zbrushcentral a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "ZbrushCentral" .
+
+memo:zenless_zone_zero a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Zenless Zone Zero" .
+
+memo:zone-sama a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Zone-sama" .
+
+memo:zyzz a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Zyzz" .
+
+memo:émile_borel a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Émile Borel" .
+
+memo:ōkiku_naru_ko_japanese_tv_series a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "Ōkiku Naru Ko (Japanese TV Series)" .
+
+memo:マクロスmacross_82-99_yung_bae_harrison a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "マクロスMACROSS 82-99, Yung Bae, Harrison" .
+
+memo:Argentina a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Argentina" .
+
+memo:Item a owl:Class ;
+rdfs:label "Item" ;
+rdfs:subClassOf memo:FRBRLevel .
+
+memo:KnowYourMeme a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "KnowYourMeme" .
+
+memo:Manifestation a owl:Class ;
+rdfs:label "Manifestation" ;
+rdfs:subClassOf memo:FRBRLevel .
+
+memo:Netherlands a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Netherlands" .
+
+memo:Singapore a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Singapore" .
+
+memo:SomethingAwful a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "SomethingAwful" .
+
+memo:Spain a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Spain" .
+
+memo:Sweden a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Sweden" .
+
+memo:Thailand a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Thailand" .
+
+memo:Turkey a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Turkey" .
+
+memo:adult_swim a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Adult Swim" .
+
+memo:apple a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Apple" .
+
+memo:aqua_teen_hunger_force a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Aqua Teen Hunger Force" .
+
+memo:attack_on_titan a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Attack on Titan" .
+
+memo:avengers_endgame_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Avengers: Endgame (Film)" .
+
+memo:bluesky a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Bluesky" .
+
+memo:chappelle_s_show_television_series a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "Chappelle's Show (Television Series)" .
+
+memo:clone_high a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Clone High" .
+
+memo:cyberpunk_2077 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Cyberpunk 2077" .
+
+memo:donkey_kong_64 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Donkey Kong 64" .
+
+memo:doom a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Doom" .
+
+memo:doom_eternal a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Doom Eternal" .
+
+memo:eminem a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Eminem" .
+
+memo:espn a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "ESPN" .
+
+memo:euphoria a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Euphoria" .
+
+memo:family_guy a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Family Guy" .
+
+memo:fanfiction_net a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "FanFiction.net" .
+
+memo:fortnite_video_game a memo:OriginVideoGame,
+owl:NamedIndividual ;
+rdfs:label "Fortnite (Video Game)" .
+
+memo:fur_affinity a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Fur Affinity" .
+
+memo:furaffinity a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "FurAffinity" .
+
+memo:gamefaqs a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "GameFAQs" .
+
+memo:google a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Google" .
+
+memo:grand_theft_auto_v a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Grand Theft Auto V" .
+
+memo:gravity_falls a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Gravity Falls" .
+
+memo:i_think_you_should_leave_tv_show a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "I Think You Should Leave (TV Show)" .
+
+memo:invincible_tv_show a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "Invincible (TV Show)" .
+
+memo:king_of_the_hill a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "King of the Hill" .
+
+memo:left_4_dead_2 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Left 4 Dead 2" .
+
+memo:leftypol a memo:OriginBoard,
+owl:NamedIndividual ;
+rdfs:label "/leftypol/" .
+
+memo:lookism_net a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Lookism.net" .
+
+memo:marvel_comics a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Marvel Comics" .
+
+memo:metal_gear_rising_revengeance a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Metal Gear Rising: Revengeance" .
+
+memo:midjourney a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Midjourney" .
+
+memo:mr_lovenstein a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Mr. Lovenstein" .
+
+memo:new_york_city a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "New York City" .
+
+memo:niconico a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "niconico" .
+
+memo:once_upon_a_time_in_hollywood_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Once Upon A Time In Hollywood (Film)" .
+
+memo:pewdiepie a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "PewDiePie" .
+
+memo:pokemon_gold_and_silver a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Pokemon Gold and Silver" .
+
+memo:pokemon_red_and_blue a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Pokemon Red and Blue" .
+
+memo:pokemon_sword_and_shield a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Pokemon Sword and Shield" .
+
+memo:quickmeme a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "QuickMeme" .
+
+memo:rick_and_morty a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Rick and Morty" .
+
+memo:saturday_night_live a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Saturday Night Live" .
+
+memo:sesame_street a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Sesame Street" .
+
+memo:shrek_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Shrek (Film)" .
+
+memo:snl a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "SNL" .
+
+memo:soyjak_party a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Soyjak.party" .
+
+memo:spider-man_3_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Spider-Man 3 (Film)" .
+
+memo:sponge_bob_square_pants a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Sponge Bob Square Pants" .
+
+memo:star_wars_episode_ii_attack_of_the_clones_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Star Wars: Episode II — Attack of the Clones (Film)" .
+
+memo:star_wars_the_clone_wars a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Star Wars: The Clone Wars" .
+
+memo:stonetoss a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Stonetoss" .
+
+memo:team_fortress_2 a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Team Fortress 2" .
+
+memo:the_daily_mail a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Daily Mail" .
+
+memo:the_eric_andre_show a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Eric Andre Show" .
+
+memo:the_incredibles_movie a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Incredibles Movie" .
+
+memo:the_internet a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Internet" .
+
+memo:tv a memo:OriginBoard,
+owl:NamedIndividual ;
+rdfs:label "/tv/" .
+
+memo:tv_show a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "TV Show" .
+
+memo:uncut_gems_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Uncut Gems (Film)" .
+
+memo:undertale a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Undertale" .
+
+memo:vice a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Vice" .
+
+memo:vk a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "VK" .
+
+memo:wandavision a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "WandaVision" .
+
+memo:warner_brothers a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Warner Brothers" .
+
+memo:watchmen a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Watchmen" .
+
+memo:white_house a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "White House" .
+
+memo:wordpress a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Wordpress" .
+
+memo:ytmnd a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "YTMND" .
+
+memo:AnimationStatus a owl:Class ;
+rdfs:label "AnimationStatus" ;
+rdfs:subClassOf memo:DocumentaryLevel,
+memo:Item .
+
+memo:ColorMode a owl:Class ;
+rdfs:label "ColorMode" ;
+rdfs:subClassOf memo:Expression,
+memo:PreIconographical .
+
+memo:Philippines a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Philippines" .
+
+memo:SemanticLevel a owl:Class ;
+rdfs:label "SemanticLevel" .
+
+memo:TextPresence a owl:Class ;
+rdfs:label "TextPresence" ;
+rdfs:subClassOf memo:Expression,
+memo:PreIconographical .
+
+memo:avengers_infinity_war_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "Avengers: Infinity War (Film)" .
+
+memo:bilibili a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Bilibili" .
+
+memo:daily_mail a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Daily Mail" .
+
+memo:disney a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Disney" .
+
+memo:donald_trump a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Donald Trump" .
+
+memo:flickr a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "flickr" .
+
+memo:fortnite a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Fortnite" .
+
+memo:game_of_thrones_television_series a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "Game of Thrones (Television Series)" .
+
+memo:getty_images a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Getty Images" .
+
+memo:imgflip a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Imgflip" .
+
+memo:it_s_always_sunny_in_philadelphia a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "It's Always Sunny In Philadelphia" .
+
+memo:kaguya-sama_love_is_war a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Kaguya-sama: Love Is War!" .
+
+memo:magic_the_gathering a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Magic the Gathering" .
+
+memo:memecenter a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Memecenter" .
+
+memo:minecraft a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Minecraft" .
+
+memo:new_york_times a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "New York Times" .
+
+memo:newgrounds a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Newgrounds" .
+
+memo:shutterstock a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Shutterstock" .
+
+memo:spider-man_into_the_spider-verse a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Spider-Man: Into the Spider-Verse" .
+
+memo:spongebob_squarepants_television_series a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "SpongeBob SquarePants (Television Series)" .
+
+memo:telegram a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Telegram" .
+
+memo:tenor a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Tenor" .
+
+memo:the_incredibles_film a memo:OriginFilm,
+owl:NamedIndividual ;
+rdfs:label "The Incredibles (Film)" .
+
+memo:the_mandalorian_television_series a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "The Mandalorian (Television Series)" .
+
+memo:the_onion a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Onion" .
+
+memo:united_states a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "United States" .
+
+memo:weibo a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Weibo" .
+
+memo:wwe a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "WWE" .
+
+memo:Australia a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Australia" .
+
+memo:FRBRLevel a owl:Class ;
+rdfs:label "FRBRLevel" .
+
+memo:Israel a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Israel" .
+
+memo:OriginMusic a owl:Class ;
+rdfs:label "OriginMusic" ;
+rdfs:subClassOf memo:OriginWork .
+
+memo:PreIconographical a owl:Class ;
+rdfs:label "PreIconographical" ;
+rdfs:subClassOf memo:SemanticLevel .
+
+memo:douyin a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Douyin" .
+
+memo:five_nights_at_freddy_s_security_breach a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Five Nights At Freddy's: Security Breach" .
+
+memo:memedroid a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Memedroid" .
+
+memo:nintendo_direct a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Nintendo Direct" .
+
+memo:scp_foundation a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "SCP Foundation" .
+
+memo:steam a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Steam" .
+
+memo:Canada a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Canada" .
+
+memo:Italy a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Italy" .
+
+memo:Poland a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Poland" .
+
+memo:frankerfacez a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "FrankerFacez" .
+
+memo:pokémon_sword_and_shield a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Pokémon Sword and Shield" .
+
+memo:the_simpsons a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "The Simpsons" .
+
+memo:the_simpsons_television_series a memo:OriginTVShow,
+owl:NamedIndividual ;
+rdfs:label "The Simpsons (Television Series)" .
+
+memo:DocumentaryLevel a owl:Class ;
+rdfs:label "DocumentaryLevel" .
+
+memo:ImageType a owl:Class ;
+rdfs:label "ImageType" ;
+rdfs:subClassOf memo:Expression,
+memo:PreIconographical .
+
+memo:Indonesia a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Indonesia" .
+
+memo:OriginBoard a owl:Class ;
+rdfs:label "OriginBoard" ;
+rdfs:subClassOf memo:OriginWork .
+
+memo:Snapchat a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Snapchat" .
+
+memo:TimePeriod a owl:Class ;
+rdfs:label "TimePeriod" ;
+rdfs:subClassOf memo:DocumentaryLevel,
+memo:Expression .
+
+memo:game_of_thrones a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Game of Thrones" .
+
+memo:nintendo a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Nintendo" .
+
+memo:pinterest a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Pinterest" .
+
+memo:CulturalReference a owl:Class ;
+rdfs:label "CulturalReference" ;
+rdfs:subClassOf memo:Expression,
+memo:Iconological,
+memo:Manifestation .
+
+memo:FileFormat a owl:Class ;
+rdfs:label "FileFormat" ;
+rdfs:subClassOf memo:DocumentaryLevel,
+memo:Item .
+
+memo:FunnyJunk a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "FunnyJunk" .
+
+memo:Mexico a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Mexico" .
+
+memo:avengers_infinity_war a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Avengers: Infinity War" .
+
+memo:elden_ring a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Elden Ring" .
+
+memo:Russia a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Russia" .
+
+memo:SouthKorea a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "SouthKorea" .
+
+memo:SubjectMatter a owl:Class ;
+rdfs:label "SubjectMatter" ;
+rdfs:subClassOf memo:Expression,
+memo:PreIconographical .
+
+memo:_9gag a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "9gag" .
+
+memo:jojo_s_bizarre_adventure a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "JoJo's Bizarre Adventure" .
+
+memo:avengers_endgame a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Avengers: Endgame" .
+
+memo:Expression a owl:Class ;
+rdfs:label "Expression" ;
+rdfs:subClassOf memo:FRBRLevel .
+
+memo:France a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "France" .
+
+memo:soundcloud a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "SoundCloud" .
+
+memo:India a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "India" .
+
+memo:OriginComic a owl:Class ;
+rdfs:label "OriginComic" ;
+rdfs:subClassOf memo:OriginWork .
+
+memo:Brazil a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Brazil" .
+
+memo:Optical_Illusion a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "Optical Illusion" .
+
+memo:Discord a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Discord" .
+
+memo:OriginVideoGame a owl:Class ;
+rdfs:label "OriginVideoGame" ;
+rdfs:subClassOf memo:OriginWork .
+
+memo:Shock_Media a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "Shock Media" .
+
+memo:China a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "China" .
+
+memo:DeviantArt a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "DeviantArt" .
+
+memo:spongebob_squarepants a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "SpongeBob SquarePants" .
+
+memo:Creepypasta a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "Creepypasta" .
+
+memo:OriginWork a owl:Class ;
+rdfs:label "OriginWork" ;
+rdfs:subClassOf memo:DocumentaryLevel,
+memo:Expression .
+
+memo:Animated a memo:AnimationStatus,
+owl:NamedIndividual ;
+rdfs:label "Animated" .
+
+memo:GIF a memo:FileFormat,
+owl:NamedIndividual ;
+rdfs:label "GIF" .
+
+memo:Imgur a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Imgur" .
+
+memo:Worldwide a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Worldwide" .
+
+memo:Vine a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Vine" .
+
+memo:Twitch a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Twitch" .
+
+memo:UnitedKingdom a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "UnitedKingdom" .
+
+memo:Axiom a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "Axiom" .
+
+memo:Painting a memo:ImageType,
+owl:NamedIndividual ;
+rdfs:label "Painting" .
+
+memo:Advertisement a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "Advertisement" .
+
+memo:urban_dictionary a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Urban Dictionary" .
+
+memo:Japan a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "Japan" .
+
+memo:OriginTVShow a owl:Class ;
+rdfs:label "OriginTVShow" ;
+rdfs:subClassOf memo:OriginWork .
+
+memo:Visual_Effect a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "Visual Effect" .
+
+memo:MemeFormat a owl:Class ;
+rdfs:label "MemeFormat" ;
+rdfs:subClassOf memo:Expression,
+memo:Iconographical .
+
+memo:Hashtag a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "Hashtag" .
+
+memo:GeographicRegion a owl:Class ;
+rdfs:label "GeographicRegion" ;
+rdfs:subClassOf memo:DocumentaryLevel,
+memo:Expression .
+
+memo:AI-generated a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "AI-generated" .
+
+memo:OriginFilm a owl:Class ;
+rdfs:label "OriginFilm" ;
+rdfs:subClassOf memo:OriginWork .
+
+memo:Emoticon a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "Emoticon" .
+
+memo:Dance a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "Dance" .
+
+memo:Hoax a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "Hoax" .
+
+memo:Fan_Labor a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "Fan Labor" .
+
+memo:iFunny a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "iFunny" .
+
+memo:Conspiracy_Theory a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "Conspiracy Theory" .
+
+memo:Lip_Dub a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "Lip Dub" .
+
+memo:ObjectOnly a memo:SubjectMatter,
+owl:NamedIndividual ;
+rdfs:label "ObjectOnly" .
+
+memo:Social_Game a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "Social Game" .
+
+memo:Animal a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "Animal" .
+
+memo:SoundEffect a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "SoundEffect" .
+
+memo:_4chan a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "4chan" .
+
+memo:Cliche a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "Cliche" .
+
+memo:ViralDebate a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "ViralDebate" .
+
+memo:FanArt a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "FanArt" .
+
+memo:Tumblr a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Tumblr" .
+
+memo:Facebook a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Facebook" .
+
+memo:Illustration a memo:ImageType,
+owl:NamedIndividual ;
+rdfs:label "Illustration" .
+
+memo:Remix a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "Remix" .
+
+memo:Copypasta a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "Copypasta" .
+
+memo:AnimalPresent a memo:SubjectMatter,
+owl:NamedIndividual ;
+rdfs:label "AnimalPresent" .
+
+memo:Snowclone a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "Snowclone" .
+
+memo:Instagram a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Instagram" .
+
+memo:Photoshop a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "Photoshop" .
+
+memo:Song a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "Song" .
+
+memo:Drawing a memo:ImageType,
+owl:NamedIndividual ;
+rdfs:label "Drawing" .
+
+memo:Slang a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "Slang" .
+
+memo:Reddit a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "Reddit" .
+
+memo:Pre2010 a memo:TimePeriod,
+owl:NamedIndividual ;
+rdfs:label "Pre2010" .
+
+memo:VariantInstance a owl:Class ;
+rdfs:label "Variant Instance" ;
+rdfs:subClassOf memo:Manifestation .
+
+memo:ParticipatoryMedia a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "ParticipatoryMedia" .
+
+memo:Parody a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "Parody" .
+
+memo:TextOnly a memo:SubjectMatter,
+owl:NamedIndividual ;
+rdfs:label "TextOnly" .
+
+memo:Character a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "Character" .
+
+memo:YouTube a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "YouTube" .
+
+memo:Monochrome a memo:ColorMode,
+owl:NamedIndividual ;
+rdfs:label "Monochrome" .
+
+memo:PopCultureReference a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "PopCultureReference" .
+
+memo:Reaction a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "Reaction" .
+
+memo:Period2010to2015 a memo:TimePeriod,
+owl:NamedIndividual ;
+rdfs:label "Period2010to2015" .
+
+memo:TikTok a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "TikTok" .
+
+memo:PNG a memo:FileFormat,
+owl:NamedIndividual ;
+rdfs:label "PNG" .
+
+memo:PersonPresent a memo:SubjectMatter,
+owl:NamedIndividual ;
+rdfs:label "PersonPresent" .
+
+memo:ViralVideo a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "ViralVideo" .
+
+memo:OriginWork a owl:Class ;
+rdfs:label "OriginWork" ;
+rdfs:subClassOf memo:DocumentaryLevel,
+memo:Expression .
+
+memo:CharacterPresent a memo:SubjectMatter,
+owl:NamedIndividual ;
+rdfs:label "CharacterPresent" .
+
+memo:Catchphrase a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "Catchphrase" .
+
+memo:ImageMacro a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "ImageMacro" .
+
+memo:MultipleSubjects a memo:SubjectMatter,
+owl:NamedIndividual ;
+rdfs:label "MultipleSubjects" .
+
+memo:Exploitable a memo:MemeFormat,
+owl:NamedIndividual ;
+rdfs:label "Exploitable" .
+
+memo:TwitterX a memo:OriginWork,
+owl:NamedIndividual ;
+rdfs:label "TwitterX" .
+
+memo:UnitedStates a memo:GeographicRegion,
+owl:NamedIndividual ;
+rdfs:label "UnitedStates" .
+
+memo:Period2021toPresent a memo:TimePeriod,
+owl:NamedIndividual ;
+rdfs:label "Period2021toPresent" .
+
+memo:NoText a memo:TextPresence,
+owl:NamedIndividual ;
+rdfs:label "NoText" .
+
+memo:Period2016to2020 a memo:TimePeriod,
+owl:NamedIndividual ;
+rdfs:label "Period2016to2020" .
+
+memo:Photograph a memo:ImageType,
+owl:NamedIndividual ;
+rdfs:label "Photograph" .
+
+memo:Cartoon a memo:ImageType,
+owl:NamedIndividual ;
+rdfs:label "Cartoon" .
+
+memo:ContainsText a memo:TextPresence,
+owl:NamedIndividual ;
+rdfs:label "ContainsText" .
+
+memo:JPEG a memo:FileFormat,
+owl:NamedIndividual ;
+rdfs:label "JPEG" .
+
+memo:Color a memo:ColorMode,
+owl:NamedIndividual ;
+rdfs:label "Color" .
+
+memo:Static a memo:AnimationStatus,
+owl:NamedIndividual ;
+rdfs:label "Static" .
+
+memo:MemeConcept a memo:MemeFormat,
+owl:Class,
+owl:NamedIndividual ;
+rdfs:label "Meme Template" ;
+rdfs:subClassOf memo:Expression .
+
+memo:Unknown a memo:FileFormat,
+memo:GeographicRegion,
+memo:MemeFormat,
+memo:OriginWork,
+memo:SubjectMatter,
+memo:TimePeriod,
+owl:NamedIndividual ;
+rdfs:label "Unknown" .
+
+### BEGIN ANNOTATION POPULATION
+
+# ── Schema additions ────────────────────────────────────────
+
+memo:TransformationDimension a owl:Class ;
+rdfs:label "TransformationDimension" .
+
+memo:TransformationExtent a owl:Class ;
+rdfs:label "TransformationExtent" .
+
+memo:conceptDescription a owl:DatatypeProperty ;
+rdfs:label "conceptDescription" ;
+rdfs:domain memo:MemeIdea ;
+rdfs:range xsd:string .
+
+memo:hasTransformationDimension a owl:ObjectProperty ;
+rdfs:label "hasTransformationDimension" ;
+rdfs:domain memo:VariantInstance ;
+rdfs:range memo:TransformationDimension .
+
+memo:hasTransformationExtent a owl:ObjectProperty ;
+rdfs:label "hasTransformationExtent" ;
+rdfs:domain memo:VariantInstance ;
+rdfs:range memo:TransformationExtent .
+
+memo:transformationNote a owl:DatatypeProperty ;
+rdfs:label "transformationNote" ;
+rdfs:domain memo:VariantInstance ;
+rdfs:range xsd:string .
+
+memo:variantTitle a owl:DatatypeProperty ;
+rdfs:label "variantTitle" ;
+rdfs:domain memo:VariantInstance ;
+rdfs:range xsd:string .
+
+memo:captionText a owl:DatatypeProperty ;
+rdfs:label "captionText" ;
+rdfs:domain memo:VariantInstance ;
+rdfs:range xsd:string .
+
+memo:hasIdea a owl:ObjectProperty ;
+rdfs:label "hasIdea" ;
+rdfs:domain memo:MemeConcept ;
+rdfs:range memo:MemeIdea .
+
+# ── TransformationDimension individuals ─────────────────────
+
+memo:CaptionChange a memo:TransformationDimension,
+owl:NamedIndividual ;
+rdfs:label "CaptionChange" .
+
+memo:CompositionShift a memo:TransformationDimension,
+owl:NamedIndividual ;
+rdfs:label "CompositionShift" .
+
+memo:CrossoverMerge a memo:TransformationDimension,
+owl:NamedIndividual ;
+rdfs:label "CrossoverMerge" .
+
+memo:Localization a memo:TransformationDimension,
+owl:NamedIndividual ;
+rdfs:label "Localization" .
+
+memo:MediumShift a memo:TransformationDimension,
+owl:NamedIndividual ;
+rdfs:label "MediumShift" .
+
+memo:StyleShift a memo:TransformationDimension,
+owl:NamedIndividual ;
+rdfs:label "StyleShift" .
+
+memo:VisualSubstrate a memo:TransformationDimension,
+owl:NamedIndividual ;
+rdfs:label "VisualSubstrate" .
+
+# ── TransformationExtent individuals ────────────────────────
+
+memo:Minimal a memo:TransformationExtent,
+owl:NamedIndividual ;
+rdfs:label "Minimal" .
+
+memo:Moderate a memo:TransformationExtent,
+owl:NamedIndividual ;
+rdfs:label "Moderate" .
+
+memo:Parody a memo:TransformationExtent,
+owl:NamedIndividual ;
+rdfs:label "Parody" .
+
+memo:Substantial a memo:TransformationExtent,
+owl:NamedIndividual ;
+rdfs:label "Substantial" .
+
+# ── CulturalReference individuals ───────────────────────────
+
+memo:3d-animation-culture a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "3D animation culture" ;
+rdfs:comment "References the default rest pose of unrigged 3D character models in game development" .
+
+memo:4chan-imageboard-culture a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "4chan imageboard culture" ;
+rdfs:comment "Originated on 4chan; embodies imageboard humor conventions around transgressive enjoyment" .
+
+memo:4chan-paranormal-board a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "4chan /x/ paranormal board" ;
+rdfs:comment "Originated on 4chan's /x/ paranormal board as a creepypasta image post in 2019" .
+
+memo:4chan-pol-board-culture a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "4chan /pol/ board culture" ;
+rdfs:comment "Originated on 4chan's /pol/ board in 2018 as a political satire template" .
+
+memo:aave-slang-adoption a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "AAVE slang adoption" ;
+rdfs:comment "The phrase entered mainstream internet slang from African American Vernacular English" .
+
+memo:academic-deadline-anxiety a memo:SocialPhenomenon,
+owl:NamedIndividual ;
+rdfs:label "Academic deadline anxiety" ;
+rdfs:comment "Resonates particularly with student culture and the panic of imminent submission deadlines" .
+
+memo:amazon-alexa a memo:MediaProperty,
+owl:NamedIndividual ;
+rdfs:label "Amazon Alexa" ;
+rdfs:comment "References Amazon's voice assistant Alexa as the vehicle for the musical request" .
+
+memo:animal-crossing-video-game a memo:MediaProperty,
+owl:NamedIndividual ;
+rdfs:label "Animal Crossing (Video Game)" ;
+rdfs:comment "Features Ankha, an Egyptian-themed cat villager from Nintendo's Animal Crossing franchise" .
+
+memo:anxious-attachment-discourse a memo:SocialPhenomenon,
+owl:NamedIndividual ;
+rdfs:label "Anxious attachment discourse" ;
+rdfs:comment "Reflects widespread online discourse around attachment styles and anxious attachment in romantic relationships" .
+
+memo:aokigahara-forest-incident-2018 a memo:HistoricalEvent,
+owl:NamedIndividual ;
+rdfs:label "Aokigahara Forest Incident 2018" ;
+rdfs:comment "The specific event: Logan Paul filming a suicide victim's body in Japan's Aokigahara forest" .
+
+memo:ben-shapiro a memo:PublicFigure,
+owl:NamedIndividual ;
+rdfs:label "Ben Shapiro" ;
+rdfs:comment "Features conservative political commentator Ben Shapiro's laugh edited into the Joker film" .
+
+memo:black-twitter a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "Black Twitter" ;
+rdfs:comment "Popularized through Black Twitter as a vehicle for documenting specific patterns of racial entitlement" .
+
+memo:brazzers-entertainment a memo:MediaProperty,
+owl:NamedIndividual ;
+rdfs:label "Brazzers Entertainment" ;
+rdfs:comment "References the adult entertainment company's logo as the recontextualizing signifier" .
+
+memo:breaking-bad-television-series a memo:MediaProperty,
+owl:NamedIndividual ;
+rdfs:label "Breaking Bad (Television Series)" ;
+rdfs:comment "The cooking metaphor references Walter White's methamphetamine production in Breaking Bad" .
+
+memo:brett-kavanaugh-hearings-2018 a memo:PoliticalEvent,
+owl:NamedIndividual ;
+rdfs:label "Brett Kavanaugh Hearings 2018" ;
+rdfs:comment "Emerged directly in response to Donald Trump's tweet questioning why Christine Blasey Ford had not reported her alleged assault sooner" .
+
+memo:bruce-willis a memo:PublicFigure,
+owl:NamedIndividual ;
+rdfs:label "Bruce Willis" ;
+rdfs:comment "Bruce Willis's own oscillating statements on the question became part of the meme's cultural life" .
+
+memo:burger-king-corporation a memo:MediaProperty,
+owl:NamedIndividual ;
+rdfs:label "Burger King" ;
+rdfs:comment "Directly references the Burger King fast food corporation as the site of the hygiene violation" .
+
+memo:campus-free-speech-debates-2018 a memo:PoliticalEvent,
+owl:NamedIndividual ;
+rdfs:label "Campus free speech debates 2018" ;
+rdfs:comment "Emerged during heightened discourse around free speech and political debate on university campuses" .
+
+memo:capture-of-saddam-hussein-2003 a memo:HistoricalEvent,
+owl:NamedIndividual ;
+rdfs:label "Capture of Saddam Hussein 2003" ;
+rdfs:comment "References Operation Red Dawn, December 13 2003, when US forces captured Hussein" .
+
+memo:christine-blasey-ford a memo:PublicFigure,
+owl:NamedIndividual ;
+rdfs:label "Christine Blasey Ford" ;
+rdfs:comment "The hashtag emerged in solidarity with Ford's testimony against Brett Kavanaugh" .
+
+memo:classical-music-meme-culture a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "Classical music meme culture" ;
+rdfs:comment "Engages with the online tradition of applying classical music associations to unexpected subjects" .
+
+memo:conservative-media-culture-wars a memo:PoliticalEvent,
+owl:NamedIndividual ;
+rdfs:label "Conservative media culture wars" ;
+rdfs:comment "Part of the broader genre of memes mapping right-wing commentators onto villain archetypes" .
+
+memo:consumerism-and-acquisition-joy a memo:SocialPhenomenon,
+owl:NamedIndividual ;
+rdfs:label "Consumerism and acquisition joy" ;
+rdfs:comment "Taps into the universal experience of excitement about a new purchase as a relatable emotional hook" .
+
+memo:copypasta-culture a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "Copypasta culture" ;
+rdfs:comment "Circulates as a classic copypasta, one of the earliest self-referential recursive texts" .
+
+memo:copypasta-romantic-longing-format a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "Copypasta romantic longing format" ;
+rdfs:comment "Follows the template of 'I need a girlfriend who...' copypastas expressing niche romantic desires" .
+
+memo:covid-19-stimulus-packages-2020 a memo:PoliticalEvent,
+owl:NamedIndividual ;
+rdfs:label "COVID-19 Stimulus Packages 2020" ;
+rdfs:comment "Emerged in response to US Federal Reserve quantitative easing during the COVID-19 pandemic" .
+
+memo:creepypasta-narration-format a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "Creepypasta narration format" ;
+rdfs:comment "Later adapted into YouTube narration videos by channels like Suggestive Gaming" .
+
+memo:cryptocurrency-and-inflation-discourse a memo:SocialPhenomenon,
+owl:NamedIndividual ;
+rdfs:label "Cryptocurrency and inflation discourse" ;
+rdfs:comment "Widely adopted in Bitcoin and cryptocurrency communities as anti-fiat monetary argument" .
+
+memo:cursed-image-meme-format a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "Cursed image meme format" ;
+rdfs:comment "Belongs to the cursed/liminal image tradition of placing incongruous prehistoric creatures in domestic settings" .
+
+memo:despacito-song a memo:MediaProperty,
+owl:NamedIndividual ;
+rdfs:label "Despacito (Song)" ;
+rdfs:comment "References Luis Fonsi's 2017 hit Despacito, the most-streamed song of 2017" .
+
+memo:die-hard-film a memo:MediaProperty,
+owl:NamedIndividual ;
+rdfs:label "Die Hard (Film)" ;
+rdfs:comment "Centers on whether the 1988 Bruce Willis action film qualifies as a Christmas movie" .
+
+memo:domestic-labor-division a memo:SocialPhenomenon,
+owl:NamedIndividual ;
+rdfs:label "Domestic labor division" ;
+rdfs:comment "Resonates with widespread discourse about unequal division of household labor in cohabiting relationships" .
+
+memo:early-youtube-meme-era a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "Early YouTube meme era" ;
+rdfs:comment "Originated from early YouTube comment culture and emoticon-based image macros circa 2010" .
+
+memo:early-youtube-viral-culture a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "Early YouTube viral culture" ;
+rdfs:comment "One of the earliest YouTube viral videos, circulating from 2006 onward" .
+
+memo:everything2-nostalgia-database a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "Everything2" ;
+rdfs:comment "Originated as a nostalgia-format entry on the Everything2 knowledge database" .
+
+memo:facebook-viral-math-problems a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "Facebook viral math problems" ;
+rdfs:comment "Part of the genre of viral math problems designed to generate argument through ambiguous notation" .
+
+memo:fire-emblem-three-houses-video-game a memo:MediaProperty,
+owl:NamedIndividual ;
+rdfs:label "Fire Emblem: Three Houses (Video Game)" ;
+rdfs:comment "Features Seteth, a character from Nintendo's Fire Emblem: Three Houses (2019) known for stern directives" .
+
+memo:fuckparade-berlin-2000 a memo:HistoricalEvent,
+owl:NamedIndividual ;
+rdfs:label "Fuckparade Berlin 2000" ;
+rdfs:comment "Filmed at the Fuckparade techno street festival in Berlin in 2000 by artist Matthias Fritsch" .
+
+memo:funnyjunk-photoshop-culture a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "FunnyJunk photoshop culture" ;
+rdfs:comment "Originated on FunnyJunk as a photoshop challenge format" .
+
+memo:gamer-culture-representation-debates a memo:SocialPhenomenon,
+owl:NamedIndividual ;
+rdfs:label "Gamer culture representation debates" ;
+rdfs:comment "Part of ongoing discourse about female character design and representation in games" .
+
+memo:gen-z-emotional-irony a memo:SocialPhenomenon,
+owl:NamedIndividual ;
+rdfs:label "Gen Z emotional irony" ;
+rdfs:comment "Reflects Gen Z's ironic relationship with emotional vulnerability, performing detachment as a coping strategy" .
+
+memo:genre-classification-debates a memo:SocialPhenomenon,
+owl:NamedIndividual ;
+rdfs:label "Genre classification debates" ;
+rdfs:comment "Emblematic of Christmas-season debates about the boundaries of genre categories" .
+
+memo:glitchy-video-game-aesthetics a memo:MediaProperty,
+owl:NamedIndividual ;
+rdfs:label "Glitchy video game aesthetics" ;
+rdfs:comment "Derived from glitch culture in which characters assume the T-pose due to animation errors" .
+
+memo:hailey-welch a memo:PublicFigure,
+owl:NamedIndividual ;
+rdfs:label "Hailey Welch" ;
+rdfs:comment "Features Hailey Welch whose viral street interview moment launched the meme in 2024" .
+
+memo:influencer-culture-commodification a memo:SocialPhenomenon,
+owl:NamedIndividual ;
+rdfs:label "Influencer culture commodification" ;
+rdfs:comment "Exemplifies the commodification of domestic moments by celebrity influencer culture" .
+
+memo:instagram-viral-reaction-videos a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "Instagram viral reaction videos" ;
+rdfs:comment "Originated as an Instagram video of a genuine panicked reaction to a rat in an urban environment" .
+
+memo:iraq-war a memo:PoliticalEvent,
+owl:NamedIndividual ;
+rdfs:label "Iraq War" ;
+rdfs:comment "Situated within the broader context of the 2003 US-led invasion of Iraq" .
+
+memo:joker-film-2019 a memo:MediaProperty,
+owl:NamedIndividual ;
+rdfs:label "Joker (Film 2019)" ;
+rdfs:comment "Uses the iconic staircase dance scene from Todd Phillips' 2019 Joker film" .
+
+memo:jollibee-fast-food a memo:MediaProperty,
+owl:NamedIndividual ;
+rdfs:label "Jollibee" ;
+rdfs:comment "Features the mascot of Jollibee, the dominant fast food chain in the Philippines" .
+
+memo:keeping-up-with-the-kardashians a memo:MediaProperty,
+owl:NamedIndividual ;
+rdfs:label "Keeping Up With The Kardashians" ;
+rdfs:comment "Emerged from the cultural ecosystem of the Kardashian-Jenner media empire" .
+
+memo:kylie-jenner a memo:PublicFigure,
+owl:NamedIndividual ;
+rdfs:label "Kylie Jenner" ;
+rdfs:comment "Features beauty mogul and reality TV personality Kylie Jenner waking her daughter Stormi" .
+
+memo:liminal-space-aesthetic a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "Liminal space aesthetic" ;
+rdfs:comment "Became the defining artifact of the liminal space internet aesthetic genre" .
+
+memo:logan-paul a memo:PublicFigure,
+owl:NamedIndividual ;
+rdfs:label "Logan Paul" ;
+rdfs:comment "Centers on YouTuber Logan Paul's January 2018 video filmed in Aokigahara forest" .
+
+memo:looney-tunes a memo:MediaProperty,
+owl:NamedIndividual ;
+rdfs:label "Looney Tunes" ;
+rdfs:comment "Derived from Bugs Bunny character in a 1941 Looney Tunes short" .
+
+memo:mathematical-notation-ambiguity a memo:SocialPhenomenon,
+owl:NamedIndividual ;
+rdfs:label "Mathematical notation ambiguity" ;
+rdfs:comment "The meme exploits genuine ambiguity in PEMDAS/BODMAS conventions for implicit multiplication" .
+
+memo:meme-man-character a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "Meme Man character" ;
+rdfs:comment "Features the Meme Man 3D character from surreal meme communities" .
+
+memo:metoo-movement a memo:SocialPhenomenon,
+owl:NamedIndividual ;
+rdfs:label "#MeToo Movement" ;
+rdfs:comment "Part of the broader #MeToo movement's documentation of systemic barriers to reporting sexual violence" .
+
+memo:millennial-generational-identity a memo:SocialPhenomenon,
+owl:NamedIndividual ;
+rdfs:label "Millennial generational identity" ;
+rdfs:comment "Satirizes millennials who adopted boomer nostalgia for an era they did not fully experience" .
+
+memo:minecraft-video-game a memo:MediaProperty,
+owl:NamedIndividual ;
+rdfs:label "Minecraft (Video Game)" ;
+rdfs:comment "Involves the E skin from Minecraft used in conjunction with Farquaad imagery" .
+
+memo:moral-framing-in-political-discourse a memo:SocialPhenomenon,
+owl:NamedIndividual ;
+rdfs:label "Moral framing in political discourse" ;
+rdfs:comment "Used extensively to frame political positions as heroic or villainous through identical action framing" .
+
+memo:new-super-mario-bros-u-deluxe a memo:MediaProperty,
+owl:NamedIndividual ;
+rdfs:label "New Super Mario Bros. U Deluxe" ;
+rdfs:comment "Inspired by the Toadette/Peachette transformation mechanic announced for this game" .
+
+memo:nostalgia-and-uncanny-dread a memo:SocialPhenomenon,
+owl:NamedIndividual ;
+rdfs:label "Nostalgia and uncanny dread" ;
+rdfs:comment "Taps into collective anxiety about the familiar rendered strange and inescapable" .
+
+memo:online-cancel-culture-discourse a memo:SocialPhenomenon,
+owl:NamedIndividual ;
+rdfs:label "Online cancel culture discourse" ;
+rdfs:comment "Satirizes the perceived fragility of public figures or online personas under critical scrutiny" .
+
+memo:online-debate-culture a memo:SocialPhenomenon,
+owl:NamedIndividual ;
+rdfs:label "Online debate culture" ;
+rdfs:comment "Resonates with the experience of fruitless online argumentation across political and social forums" .
+
+memo:overwatch-tracer-pose-controversy-2016 a memo:PoliticalEvent,
+owl:NamedIndividual ;
+rdfs:label "Overwatch Tracer Pose Controversy 2016" ;
+rdfs:comment "Blizzard removed a victory pose deemed too sexualized, prompting community debate" .
+
+memo:overwatch-video-game a memo:MediaProperty,
+owl:NamedIndividual ;
+rdfs:label "Overwatch (Video Game)" ;
+rdfs:comment "References Tracer, a character from Blizzard's Overwatch, and debates about her sexualized appearance" .
+
+memo:paleontology-popular-culture a memo:SocialPhenomenon,
+owl:NamedIndividual ;
+rdfs:label "Paleontology popular culture" ;
+rdfs:comment "Part of renewed popular interest in prehistoric megafauna driven by social media and paleoart communities" .
+
+memo:philippine-internet-culture a memo:SocialPhenomenon,
+owl:NamedIndividual ;
+rdfs:label "Philippine internet culture" ;
+rdfs:comment "Reflects the strong presence of Filipino internet culture and Jollibee fandom online" .
+
+memo:pikachu a memo:PublicFigure,
+owl:NamedIndividual ;
+rdfs:label "Pikachu" ;
+rdfs:comment "The iconic Pokemon mascot whose expression became the template" .
+
+memo:pokemon-anime-series a memo:MediaProperty,
+owl:NamedIndividual ;
+rdfs:label "Pokemon (Anime Series)" ;
+rdfs:comment "Screenshot from the Pokemon anime episode The Punchy Pokemon (Season 1)" .
+
+memo:political-meme-culture a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "Political meme culture" ;
+rdfs:comment "Became a template for asserting any controversial position as a debate challenge" .
+
+memo:political-polarization-discourse a memo:SocialPhenomenon,
+owl:NamedIndividual ;
+rdfs:label "Political polarization discourse" ;
+rdfs:comment "Used to dehumanize political opponents as uncritical followers of mainstream narratives" .
+
+memo:reddit-meme-culture a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "Reddit meme culture" ;
+rdfs:comment "Spread through Reddit gaming communities in 2018" .
+
+memo:retail-investing-culture a memo:SocialPhenomenon,
+owl:NamedIndividual ;
+rdfs:label "Retail investing culture" ;
+rdfs:comment "Satirizes amateur retail investor logic and stock market speculation" .
+
+memo:retail-nostalgia-culture a memo:SocialPhenomenon,
+owl:NamedIndividual ;
+rdfs:label "Retail nostalgia culture" ;
+rdfs:comment "Part of broader nostalgia for the pre-internet consumer era and its now-defunct retail institutions" .
+
+memo:retro-commercial-appreciation a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "Retro commercial appreciation" ;
+rdfs:comment "Belongs to the genre of ironic appreciation for low-production-value vintage advertising" .
+
+memo:rule-34-internet-culture a memo:SocialPhenomenon,
+owl:NamedIndividual ;
+rdfs:label "Rule 34 internet culture" ;
+rdfs:comment "Exemplifies the rule 34 phenomenon: explicit content exists for every media property" .
+
+memo:saddam-hussein a memo:PublicFigure,
+owl:NamedIndividual ;
+rdfs:label "Saddam Hussein" ;
+rdfs:comment "Features the former Iraqi president captured hiding in a spider hole" .
+
+memo:sears-department-stores a memo:MediaProperty,
+owl:NamedIndividual ;
+rdfs:label "Sears Department Stores" ;
+rdfs:comment "References the defunct American department store chain Sears, which closed most locations by 2018" .
+
+memo:service-industry-labor a memo:SocialPhenomenon,
+owl:NamedIndividual ;
+rdfs:label "Service industry labor" ;
+rdfs:comment "Embodies the dynamic of customer entitlement directed at low-wage service workers" .
+
+memo:shrek-film a memo:MediaProperty,
+owl:NamedIndividual ;
+rdfs:label "Shrek (Film)" ;
+rdfs:comment "References Lord Farquaad, the villain of the DreamWorks Shrek franchise" .
+
+memo:shrek-internet-fandom a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "Shrek internet fandom" ;
+rdfs:comment "Part of the broader ironic Shrek worship culture on Tumblr and Reddit" .
+
+memo:smudge-the-cat a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "Smudge the Cat" ;
+rdfs:comment "The cat in the right panel became independently famous as Smudge Lord" .
+
+memo:spider-man-1967-animated-series a memo:MediaProperty,
+owl:NamedIndividual ;
+rdfs:label "Spider-Man 1967 (Animated Series)" ;
+rdfs:comment "The canonical image features Spider-Man pointing at himself from the 1967 animated series" .
+
+memo:steven-crowder a memo:PublicFigure,
+owl:NamedIndividual ;
+rdfs:label "Steven Crowder" ;
+rdfs:comment "Features conservative commentator Steven Crowder's campus debate setup" .
+
+memo:street-interview-viral-culture a memo:SocialPhenomenon,
+owl:NamedIndividual ;
+rdfs:label "Street interview viral culture" ;
+rdfs:comment "Part of the broader genre of viral street interview moments that generate detached catchphrases" .
+
+memo:super-mario-video-game a memo:MediaProperty,
+owl:NamedIndividual ;
+rdfs:label "Super Mario (Video Game)" ;
+rdfs:comment "Derives from Bowser, the primary antagonist of Nintendo's Super Mario franchise" .
+
+memo:taylor-armstrong a memo:PublicFigure,
+owl:NamedIndividual ;
+rdfs:label "Taylor Armstrong" ;
+rdfs:comment "Reality TV personality whose emotional confrontation scene formed the left panel" .
+
+memo:technoviking-anonymous a memo:PublicFigure,
+owl:NamedIndividual ;
+rdfs:label "Technoviking (anonymous)" ;
+rdfs:comment "The unidentified man sued Fritsch over the video in 2013 and won, briefly removing it from the internet" .
+
+memo:the-real-housewives-of-beverly-hills a memo:MediaProperty,
+owl:NamedIndividual ;
+rdfs:label "The Real Housewives of Beverly Hills" ;
+rdfs:comment "Left panel features Taylor Armstrong and Kyle Richards from RHOBH Season 2" .
+
+memo:therian-community a memo:SocialPhenomenon,
+owl:NamedIndividual ;
+rdfs:label "Therian community" ;
+rdfs:comment "References the therian subculture of individuals who identify psychologically or spiritually as non-human animals" .
+
+memo:tiktok-audio-participatory-trend a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "TikTok audio participatory trend" ;
+rdfs:comment "Spread as a TikTok audio trend in 2025 with creators replacing saxophone with their own new purchases" .
+
+memo:tiktok-body-image-trends a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "TikTok body image trends" ;
+rdfs:comment "Part of TikTok's genre of self-presentation trends around physical self-description as aesthetic identity" .
+
+memo:tiktok-emotional-detachment-trend a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "TikTok emotional detachment trend" ;
+rdfs:comment "Part of TikTok's broader genre of performative emotional detachment as self-improvement narrative" .
+
+memo:tiktok-identity-subcultures a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "TikTok identity subcultures" ;
+rdfs:comment "Therian identity gained mainstream visibility through TikTok in 2022-2024" .
+
+memo:tiktok-lip-dub-culture a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "TikTok lip-dub culture" ;
+rdfs:comment "Became a TikTok lip-dub trend with creators mouthing the audio while doing unrelated activities" .
+
+memo:tiktok-participatory-trends a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "TikTok participatory trends" ;
+rdfs:comment "Spread through TikTok as a participatory sound meme applied to absurd or trivial group behaviors" .
+
+memo:tiktok-sound-meme-culture a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "TikTok sound meme culture" ;
+rdfs:comment "Spread as a TikTok audio meme applied to moments of sudden deadline awareness" .
+
+memo:tiktok-viral-catchphrases a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "TikTok viral catchphrases" ;
+rdfs:comment "Spread primarily through TikTok as an audio meme and catchphrase" .
+
+memo:tumblr-irony-culture a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "Tumblr irony culture" ;
+rdfs:comment "Originated on Tumblr as a format for ironic emotional deflection" .
+
+memo:twitter-fan-art-culture a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "Twitter fan art culture" ;
+rdfs:comment "Created by artist ayyk92 on Twitter in September 2018 and spread globally within days" .
+
+memo:twitter-gaming-fan-communities a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "Twitter gaming fan communities" ;
+rdfs:comment "Spread through Fire Emblem fan communities on Twitter as a format for ironic advice" .
+
+memo:twitter-relationship-meme-format a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "Twitter relationship meme format" ;
+rdfs:comment "Part of Twitter/X's genre of self-deprecating relationship confession exploitables in 2025" .
+
+memo:twitter-slang-2017 a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "Twitter slang 2017" ;
+rdfs:comment "Emerged from Twitter slang culture as a response format to humble-brag statements" .
+
+memo:twitter-two-panel-exploitable-format a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "Twitter two-panel exploitable format" ;
+rdfs:comment "Part of the genre of two-panel hero/villain exploitables popular on Twitter from 2017 onward" .
+
+memo:urban-community-identity a memo:SocialPhenomenon,
+owl:NamedIndividual ;
+rdfs:label "Urban community identity" ;
+rdfs:comment "Draws on the concept of hood loyalty and the tension between community belonging and individual mobility" .
+
+memo:urban-pest-anxiety a memo:SocialPhenomenon,
+owl:NamedIndividual ;
+rdfs:label "Urban pest anxiety" ;
+rdfs:comment "Taps into widespread urban anxiety about rodent encounters in domestic and public spaces" .
+
+memo:uwu-kawaii-internet-culture a memo:SocialPhenomenon,
+owl:NamedIndividual ;
+rdfs:label "Uwu/kawaii internet culture" ;
+rdfs:comment "Draws on the uwu/kawaii aesthetic tradition of performing cuteness and diminutiveness" .
+
+memo:waiting-film a memo:MediaProperty,
+owl:NamedIndividual ;
+rdfs:label "Waiting... (Film)" ;
+rdfs:comment "Originated from the 2005 film Waiting... set in a restaurant kitchen" .
+
+memo:white-privilege-discourse a memo:SocialPhenomenon,
+owl:NamedIndividual ;
+rdfs:label "White privilege discourse" ;
+rdfs:comment "The archetype emerged from discussions of entitled behavior as a racially coded social phenomenon" .
+
+memo:wholesome-meme-culture a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "Wholesome meme culture" ;
+rdfs:comment "Part of the wholesome/uwu meme tradition emphasizing affective response to endearing content" .
+
+memo:willem-dafoe a memo:PublicFigure,
+owl:NamedIndividual ;
+rdfs:label "Willem Dafoe" ;
+rdfs:comment "Features actor Willem Dafoe as the subject of absurdist fictional character elaboration" .
+
+memo:wojak-meme-family a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "Wojak meme family" ;
+rdfs:comment "Part of the Wojak/feels guy family of character-based meme templates from 4chan" .
+
+memo:youtube-absurdist-lore-videos a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "YouTube absurdist lore videos" ;
+rdfs:comment "Part of the genre of YouTube videos building elaborate fictional lore around real celebrities" .
+
+memo:youtube-creator-accountability a memo:SocialPhenomenon,
+owl:NamedIndividual ;
+rdfs:label "YouTube creator accountability" ;
+rdfs:comment "Became a defining moment in discourse about content creator ethics and platform responsibility" .
+
+memo:zone-sama-flash-animations a memo:WebCulture,
+owl:NamedIndividual ;
+rdfs:label "Zone-sama flash animations" ;
+rdfs:comment "Created by adult animator Zone-sama, known for rule 34 content of video game characters" .
+
+# ── hasReference links ──────────────────────────────────────
+
+memo:me-gusta memo:hasReference memo:4chan-imageboard-culture .
+
+memo:big-chungus memo:hasReference memo:looney-tunes, memo:reddit-meme-culture .
+
+memo:woman-yelling-at-a-cat memo:hasReference memo:the-real-housewives-of-beverly-hills, memo:taylor-armstrong, memo:smudge-the-cat .
+
+memo:brazzers memo:hasReference memo:brazzers-entertainment, memo:funnyjunk-photoshop-culture .
+
+memo:stonks memo:hasReference memo:retail-investing-culture, memo:meme-man-character .
+
+memo:lord-marquaad-e memo:hasReference memo:shrek-film, memo:minecraft-video-game, memo:shrek-internet-fandom .
+
+memo:surprised-pikachu memo:hasReference memo:pokemon-anime-series, memo:pikachu .
+
+memo:ankha-zone memo:hasReference memo:animal-crossing-video-game, memo:zone-sama-flash-animations, memo:rule-34-internet-culture .
+
+memo:crazy-i-was-crazy-once-they-locked-me-in-a-room-a-rubber-room-a-rubber-room-with-rats-and-rats-make-me-crazy memo:hasReference memo:everything2-nostalgia-database, memo:copypasta-culture .
+
+memo:karen memo:hasReference memo:white-privilege-discourse, memo:service-industry-labor, memo:black-twitter .
+
+memo:logan-pauls-suicide-forest-video memo:hasReference memo:logan-paul, memo:aokigahara-forest-incident-2018, memo:youtube-creator-accountability .
+
+memo:weird-flex-but-ok memo:hasReference memo:twitter-slang-2017 .
+
+memo:me-and-the-boys memo:hasReference memo:spider-man-1967-animated-series, memo:reddit-meme-culture .
+
+memo:this-is-so-sad-alexa-play-despacito memo:hasReference memo:despacito-song, memo:amazon-alexa, memo:tumblr-irony-culture .
+
+memo:bowsette memo:hasReference memo:super-mario-video-game, memo:new-super-mario-bros-u-deluxe, memo:twitter-fan-art-culture .
+
+memo:steven-crowders-change-my-mind-campus-sign memo:hasReference memo:steven-crowder, memo:campus-free-speech-debates-2018, memo:political-meme-culture .
+
+memo:the-backrooms memo:hasReference memo:4chan-paranormal-board, memo:liminal-space-aesthetic, memo:nostalgia-and-uncanny-dread .
+
+memo:30-year-old-boomer memo:hasReference memo:wojak-meme-family, memo:millennial-generational-identity, memo:4chan-imageboard-culture .
+
+memo:burger-king-foot-lettuce memo:hasReference memo:burger-king-corporation, memo:4chan-imageboard-culture, memo:creepypasta-narration-format .
+
+memo:saddam-husseins-hiding-place memo:hasReference memo:saddam-hussein, memo:capture-of-saddam-hussein-2003, memo:iraq-war .
+
+memo:t-pose memo:hasReference memo:3d-animation-culture, memo:glitchy-video-game-aesthetics .
+
+memo:hawk-tuah-girl memo:hasReference memo:hailey-welch, memo:street-interview-viral-culture, memo:tiktok-viral-catchphrases .
+
+memo:im-already-tracer memo:hasReference memo:overwatch-video-game, memo:overwatch-tracer-pose-controversy-2016, memo:gamer-culture-representation-debates .
+
+memo:let-him-cook-let-that-boy-cook memo:hasReference memo:breaking-bad-television-series, memo:aave-slang-adoption .
+
+memo:npc-wojak memo:hasReference memo:wojak-meme-family, memo:political-polarization-discourse, memo:4chan-pol-board-culture .
+
+memo:technoviking memo:hasReference memo:fuckparade-berlin-2000, memo:technoviking-anonymous, memo:early-youtube-viral-culture .
+
+memo:48293 memo:hasReference memo:mathematical-notation-ambiguity, memo:facebook-viral-math-problems .
+
+memo:money-printer-go-brrr memo:hasReference memo:covid-19-stimulus-packages-2020, memo:cryptocurrency-and-inflation-discourse, memo:wojak-meme-family .
+
+memo:whyididntreport memo:hasReference memo:brett-kavanaugh-hearings-2018, memo:metoo-movement, memo:christine-blasey-ford .
+
+memo:wash-the-fucking-dishes memo:hasReference memo:waiting-film, memo:domestic-labor-division, memo:tiktok-lip-dub-culture .
+
+memo:we-not-making-it-out-the-hood memo:hasReference memo:urban-community-identity, memo:tiktok-participatory-trends .
+
+memo:sears-air-conditioning-commercial memo:hasReference memo:sears-department-stores, memo:retail-nostalgia-culture, memo:retro-commercial-appreciation .
+
+memo:she-looks-so-lovable memo:hasReference memo:wholesome-meme-culture .
+
+memo:do-you-know-you-have-30-minutes memo:hasReference memo:tiktok-sound-meme-culture, memo:academic-deadline-anxiety .
+
+memo:gets-criticized-once-fucking-dies memo:hasReference memo:wojak-meme-family, memo:online-cancel-culture-discourse .
+
+memo:daeodon-at-the-door memo:hasReference memo:cursed-image-meme-format, memo:paleontology-popular-culture .
+
+memo:oh-shit-a-rat memo:hasReference memo:instagram-viral-reaction-videos, memo:urban-pest-anxiety .
+
+memo:is-die-hard-a-christmas-movie memo:hasReference memo:die-hard-film, memo:bruce-willis, memo:genre-classification-debates .
+
+memo:setethsays memo:hasReference memo:fire-emblem-three-houses-video-game, memo:twitter-gaming-fan-communities .
+
+memo:i-became-very-nonchalant memo:hasReference memo:tiktok-emotional-detachment-trend, memo:gen-z-emotional-irony .
+
+memo:ben-shapiro-joker-laugh memo:hasReference memo:ben-shapiro, memo:joker-film-2019, memo:conservative-media-culture-wars .
+
+memo:i-need-a-therian-girlfriend memo:hasReference memo:therian-community, memo:tiktok-identity-subcultures, memo:copypasta-romantic-longing-format .
+
+memo:talking-to-brick-wall memo:hasReference memo:early-youtube-meme-era, memo:online-debate-culture .
+
+memo:tiny-tiktok-im-so-small-and-petite memo:hasReference memo:tiktok-body-image-trends, memo:uwu-kawaii-internet-culture .
+
+memo:always-go-for-this-only-villains-do-that memo:hasReference memo:twitter-two-panel-exploitable-format, memo:moral-framing-in-political-discourse .
+
+memo:jollibot memo:hasReference memo:jollibee-fast-food, memo:twitter-fan-art-culture, memo:philippine-internet-culture .
+
+memo:willem-dafoe-hes-gay-but-he-has-a-special-connection-to-classical-music memo:hasReference memo:willem-dafoe, memo:youtube-absurdist-lore-videos, memo:classical-music-meme-culture .
+
+memo:kylie-jenner-rise-and-shine memo:hasReference memo:kylie-jenner, memo:keeping-up-with-the-kardashians, memo:influencer-culture-commodification .
+
+memo:i-got-a-brand-new-saxophone memo:hasReference memo:tiktok-audio-participatory-trend, memo:consumerism-and-acquisition-joy .
+
+memo:im-this-clingy memo:hasReference memo:twitter-relationship-meme-format, memo:anxious-attachment-discourse .
+
+# ── MemeIdea individuals ────────────────────────────────────
+
+# ── hasIdea back-links ──────────────────────────────────────
+
+memo:me-gusta memo:hasIdea memo:me-gusta-idea .
+
+memo:big-chungus memo:hasIdea memo:big-chungus-idea .
+
+memo:woman-yelling-at-a-cat memo:hasIdea memo:woman-yelling-at-a-cat-idea .
+
+memo:brazzers memo:hasIdea memo:brazzers-idea .
+
+memo:stonks memo:hasIdea memo:stonks-idea .
+
+memo:lord-marquaad-e memo:hasIdea memo:lord-marquaad-e-idea .
+
+memo:surprised-pikachu memo:hasIdea memo:surprised-pikachu-idea .
+
+memo:ankha-zone memo:hasIdea memo:ankha-zone-idea .
+
+memo:crazy-i-was-crazy-once-they-locked-me-in-a-room-a-rubber-room-a-rubber-room-with-rats-and-rats-make-me-crazy memo:hasIdea memo:crazy-i-was-crazy-once-idea .
+
+memo:karen memo:hasIdea memo:karen-idea .
+
+memo:logan-pauls-suicide-forest-video memo:hasIdea memo:logan-pauls-suicide-forest-video-idea .
+
+memo:weird-flex-but-ok memo:hasIdea memo:weird-flex-but-ok-idea .
+
+memo:me-and-the-boys memo:hasIdea memo:me-and-the-boys-idea .
+
+memo:this-is-so-sad-alexa-play-despacito memo:hasIdea memo:this-is-so-sad-alexa-play-despacito-idea .
+
+memo:bowsette memo:hasIdea memo:bowsette-idea .
+
+memo:steven-crowders-change-my-mind-campus-sign memo:hasIdea memo:steven-crowders-change-my-mind-campus-sign-idea .
+
+memo:the-backrooms memo:hasIdea memo:the-backrooms-idea .
+
+memo:30-year-old-boomer memo:hasIdea memo:30-year-old-boomer-idea .
+
+memo:burger-king-foot-lettuce memo:hasIdea memo:burger-king-foot-lettuce-idea .
+
+memo:saddam-husseins-hiding-place memo:hasIdea memo:saddam-husseins-hiding-place-idea .
+
+memo:t-pose memo:hasIdea memo:t-pose-idea .
+
+memo:hawk-tuah-girl memo:hasIdea memo:hawk-tuah-girl-idea .
+
+memo:im-already-tracer memo:hasIdea memo:im-already-tracer-idea .
+
+memo:let-him-cook-let-that-boy-cook memo:hasIdea memo:let-him-cook-idea .
+
+memo:npc-wojak memo:hasIdea memo:npc-wojak-idea .
+
+memo:technoviking memo:hasIdea memo:technoviking-idea .
+
+memo:48293 memo:hasIdea memo:48293-idea .
+
+memo:money-printer-go-brrr memo:hasIdea memo:money-printer-go-brrr-idea .
+
+memo:whyididntreport memo:hasIdea memo:whyididntreport-idea .
+
+memo:wash-the-fucking-dishes memo:hasIdea memo:wash-the-fucking-dishes-idea .
+
+memo:we-not-making-it-out-the-hood memo:hasIdea memo:we-not-making-it-out-the-hood-idea .
+
+memo:sears-air-conditioning-commercial memo:hasIdea memo:sears-air-conditioning-commercial-idea .
+
+memo:she-looks-so-lovable memo:hasIdea memo:she-looks-so-lovable-idea .
+
+memo:do-you-know-you-have-30-minutes memo:hasIdea memo:do-you-know-you-have-30-minutes-idea .
+
+memo:gets-criticized-once-fucking-dies memo:hasIdea memo:gets-criticized-once-fucking-dies-idea .
+
+memo:daeodon-at-the-door memo:hasIdea memo:daeodon-at-the-door-idea .
+
+memo:oh-shit-a-rat memo:hasIdea memo:oh-shit-a-rat-idea .
+
+memo:is-die-hard-a-christmas-movie memo:hasIdea memo:is-die-hard-a-christmas-movie-idea .
+
+memo:setethsays memo:hasIdea memo:setethsays-idea .
+
+memo:i-became-very-nonchalant memo:hasIdea memo:i-became-very-nonchalant-idea .
+
+memo:ben-shapiro-joker-laugh memo:hasIdea memo:ben-shapiro-joker-laugh-idea .
+
+memo:i-need-a-therian-girlfriend memo:hasIdea memo:i-need-a-therian-girlfriend-idea .
+
+memo:talking-to-brick-wall memo:hasIdea memo:talking-to-brick-wall-idea .
+
+memo:tiny-tiktok-im-so-small-and-petite memo:hasIdea memo:tiny-tiktok-idea .
+
+memo:always-go-for-this-only-villains-do-that memo:hasIdea memo:always-go-for-this-only-villains-do-that-idea .
+
+memo:jollibot memo:hasIdea memo:jollibot-idea .
+
+memo:willem-dafoe-hes-gay-but-he-has-a-special-connection-to-classical-music memo:hasIdea memo:willem-dafoe-idea .
+
+memo:kylie-jenner-rise-and-shine memo:hasIdea memo:kylie-jenner-rise-and-shine-idea .
+
+memo:i-got-a-brand-new-saxophone memo:hasIdea memo:i-got-a-brand-new-saxophone-idea .
+
+memo:im-this-clingy memo:hasIdea memo:im-this-clingy-idea .
+
+# ── Transformation VariantInstance individuals ───────────────
+
+### END ANNOTATION POPULATION
