@@ -14,17 +14,17 @@ dc:rights a owl:AnnotationProperty .
 
 dcterms:created a owl:AnnotationProperty .
 
-<http://www.semanticweb.org/meme-ontology#> a owl:Ontology ;
+memo: a owl:Ontology ;
     rdfs:label "Meme Ontology (MEMO)"@en ;
     dc:creator "Meme Ontology Project" ;
-    dc:description """The Meme Ontology (MEMO) is an ontology for the formal description of internet memes. It models meme templates\r\r
-(MemeConcept), their underlying creative ideas (MemeIdea), and scraped variant\r\r
-images (VariantInstance) using a FRBR-aligned four-level abstraction hierarchy\r\r
-and Panofsky's three levels of semantic analysis. Value classes provide\r\r
-controlled vocabularies for format, platform, image type, transformation extent\r\r
-and dimension, and other classifiers. 5,000 meme concepts, 50 enriched meme\r\r
+    dc:description """The Meme Ontology (MEMO) is an ontology for the formal description of internet memes. It models meme templates\r\r\r
+(MemeConcept), their underlying creative ideas (MemeIdea), and scraped variant\r\r\r
+images (VariantInstance) using a FRBR-aligned four-level abstraction hierarchy\r\r\r
+and Panofsky's three levels of semantic analysis. Value classes provide\r\r\r
+controlled vocabularies for format, platform, image type, transformation extent\r\r\r
+and dimension, and other classifiers. 5,000 meme concepts, 50 enriched meme\r\r\r
 ideas and 391 variant instances are included as named individuals."""@en ;
-    dc:rights """Released for academic research. Data sourced from\r\r
+    dc:rights """Released for academic research. Data sourced from\r\r\r
 Know Your Meme under fair use."""@en ;
     dcterms:created "2024"^^xsd:gYear ;
     rdfs:comment "Patch v2: adds frbrLevel/semanticLevel/documentaryLevel annotations to all classes, fixes naming inconsistencies (Conspiracy_Theory, Fan_Labor, Lip_Dub, hasId, photoId, imageFilename), and adds renamed property declarations with deprecation notices on old names." ;
@@ -399,20 +399,15 @@ memo:description a owl:DatatypeProperty ;
     rdfs:range xsd:string .
 
 memo:documentaryLevel a owl:AnnotationProperty ;
-    rdfs:label "Documentary Level",
-        "documentary level"@en ;
-    rdfs:comment "Marks this class as encoding factual provenance information recorded from external documentary sources rather than interpreted from content. Value: true.",
-        "Marks this class as encoding factual provenance information recorded from external documentary sources. Value: true.",
-        """Associates a class or property with the\r\r
-documentary analysis dimension (provenance, platform, geographic and temporal\r\r
+    rdfs:label "documentary level"@en ;
+    rdfs:comment """Associates a class or property with the\r\r\r
+documentary analysis dimension (provenance, platform, geographic and temporal\r\r\r
 context)."""@en .
 
 memo:frbrLevel a owl:AnnotationProperty ;
-    rdfs:label "FRBR Level",
-        "FRBR level"@en ;
-    rdfs:comment "Records the FRBR bibliographic hierarchy level at which this class operates. Values: Work, Expression, Manifestation, Item.",
-        """Associates a class or property with its\r\r
-position in the FRBR abstraction hierarchy: Work, Expression, Manifestation, or\r\r
+    rdfs:label "FRBR level"@en ;
+    rdfs:comment """Associates a class or property with its\r\r\r
+position in the FRBR abstraction hierarchy: Work, Expression, Manifestation, or\r\r\r
 Item."""@en .
 
 memo:hasAnimationStatus a owl:ObjectProperty ;
@@ -433,7 +428,7 @@ memo:hasCanonicalImageType a owl:ObjectProperty ;
     rdfs:label "hasCanonicalImageType" ;
     memo:frbrLevel "Manifestation" ;
     memo:semanticLevel "PreIconographical" ;
-    rdfs:comment """The visual medium of the canonical meme image,\r\r
+    rdfs:comment """The visual medium of the canonical meme image,\r\r\r
 assigned by CLIP-based classification."""@en ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range memo:CanonicalImageType .
@@ -468,16 +463,14 @@ memo:hasFormat a owl:ObjectProperty ;
     rdfs:label "hasFormat" ;
     memo:frbrLevel "Expression" ;
     memo:semanticLevel "Iconographical" ;
-    rdfs:comment """Links a MemeConcept to one or more MemeFormat\r\r
+    rdfs:comment """Links a MemeConcept to one or more MemeFormat\r\r\r
 values describing its rhetorical structure."""@en ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range memo:MemeFormat .
 
 memo:hasId a owl:DatatypeProperty ;
-    rdfs:label "hasId",
-        "has ID"@en ;
-    rdfs:comment "Deprecated. Use hasID instead.",
-        """Numeric identifier matching the meme's position\r\r
+    rdfs:label "has ID"@en ;
+    rdfs:comment """Numeric identifier matching the meme's position\r\r\r
 in the scraped dataset (1–5000)."""@en ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range xsd:integer ;
@@ -492,7 +485,7 @@ memo:hasOriginBoard a owl:ObjectProperty ;
     rdfs:label "hasOriginBoard" ;
     memo:documentaryLevel "true" ;
     memo:frbrLevel "Expression" ;
-    rdfs:comment """Links a MemeConcept to the specific imageboard\r\r
+    rdfs:comment """Links a MemeConcept to the specific imageboard\r\r\r
 or forum thread where it originated."""@en ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range memo:OriginBoard .
@@ -541,7 +534,7 @@ memo:hasOriginWork a owl:ObjectProperty ;
     rdfs:label "hasOriginWork" ;
     memo:frbrLevel "Work" ;
     memo:semanticLevel "Iconological" ;
-    rdfs:comment """Links a MemeConcept to the cultural Work it\r\r
+    rdfs:comment """Links a MemeConcept to the cultural Work it\r\r\r
 derives from or references."""@en ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range memo:OriginWork .
@@ -554,7 +547,7 @@ memo:hasReference a owl:ObjectProperty ;
 memo:hasRegion a owl:ObjectProperty ;
     rdfs:label "hasRegion" ;
     memo:documentaryLevel "true" ;
-    rdfs:comment """The geographic region of a meme's origin or\r\r
+    rdfs:comment """The geographic region of a meme's origin or\r\r\r
 primary circulation."""@en ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range memo:GeographicRegion .
@@ -639,11 +632,9 @@ memo:scrapedAt a owl:DatatypeProperty ;
     rdfs:range xsd:string .
 
 memo:semanticLevel a owl:AnnotationProperty ;
-    rdfs:label "Semantic Level",
-        "semantic level"@en ;
-    rdfs:comment "Records the Panofsky semantic level of the information encoded by this class. Values: PreIconographical, Iconographical, Iconological.",
-        """Associates a class or property with a Panofsky\r\r
-level of iconological analysis: PreIconographical, Iconographical, or\r\r
+    rdfs:label "semantic level"@en ;
+    rdfs:comment """Associates a class or property with a Panofsky\r\r\r
+level of iconological analysis: PreIconographical, Iconographical, or\r\r\r
 Iconological."""@en .
 
 memo:tags a owl:DatatypeProperty ;
@@ -749,45 +740,37 @@ memo:Iconographical rdfs:label "Iconographical" .
 memo:Iconological rdfs:label "Iconological" .
 
 memo:MemeIdea a owl:Class ;
-    rdfs:label "Meme Idea",
-        "Meme Idea"@en ;
+    rdfs:label "Meme Idea"@en ;
     memo:frbrLevel "Work" ;
-    rdfs:comment "The abstract cultural concept underlying a named meme template. Work-level class. Populated manually for D0 subset via conceptDescription data property. Has no visual properties — only the pure abstract idea.",
-        """The abstract Work-level idea underlying a memo:\r\r
-its core narrative, emotional register, rhetorical function or cultural role,\r\r
-independent of any specific image or format. 50 enriched individuals from the\r\r
+    rdfs:comment """The abstract Work-level idea underlying a memo:\r\r\r
+its core narrative, emotional register, rhetorical function or cultural role,\r\r\r
+independent of any specific image or format. 50 enriched individuals from the\r\r\r
 D0 sample, with descriptions and cultural reference annotations."""@en ;
     rdfs:subClassOf owl:Thing .
 
 memo:PreIconographical rdfs:label "Pre Iconographical" .
 
 memo:AnimationStatus a owl:Class ;
-    rdfs:label "Animation Status",
-        "AnimationStatus",
-        "Animation Status"@en ;
+    rdfs:label "Animation Status"@en ;
     memo:documentaryLevel "true" ;
     memo:frbrLevel "Item" ;
-    rdfs:comment """Whether a meme image is static or animated\r\r
+    rdfs:comment """Whether a meme image is static or animated\r\r\r
 (GIF/video)."""@en ;
     rdfs:subClassOf owl:Thing .
 
 memo:CanonicalColorMode a owl:Class ;
-    rdfs:label "Canonical Color Mode",
-        "CanonicalColorMode",
-        "Canonical Color Mode"@en ;
+    rdfs:label "Canonical Color Mode"@en ;
     memo:frbrLevel "Expression" ;
     memo:semanticLevel "PreIconographical" ;
-    rdfs:comment """Whether the canonical meme image is in colour or\r\r
+    rdfs:comment """Whether the canonical meme image is in colour or\r\r\r
 monochrome."""@en ;
     rdfs:subClassOf owl:Thing .
 
 memo:CanonicalTextPresence a owl:Class ;
-    rdfs:label "Canonical Text Presence",
-        "CanonicalTextPresence",
-        "Canonical Text Presence"@en ;
+    rdfs:label "Canonical Text Presence"@en ;
     memo:frbrLevel "Expression" ;
     memo:semanticLevel "PreIconographical" ;
-    rdfs:comment """Whether the canonical meme image contains\r\r
+    rdfs:comment """Whether the canonical meme image contains\r\r\r
 overlaid text."""@en ;
     rdfs:subClassOf owl:Thing .
 
@@ -864,72 +847,56 @@ memo:Photograph a owl:Class ;
     rdfs:subClassOf memo:ImageType .
 
 memo:TransformationExtent a owl:Class ;
-    rdfs:label "Transformation Extent",
-        "TransformationExtent",
-        "Transformation Extent"@en ;
+    rdfs:label "Transformation Extent"@en ;
     memo:documentaryLevel "true" ;
     memo:frbrLevel "Manifestation" ;
-    rdfs:comment "The overall degree of transformation from the canonical Expression. Single-valued.",
-        """The degree to which a variant departs from the\r\r
-canonical template: Minimal (close copy), Moderate, Substantial, or Parody\r\r
+    rdfs:comment """The degree to which a variant departs from the\r\r\r
+canonical template: Minimal (close copy), Moderate, Substantial, or Parody\r\r\r
 (radical departure)."""@en ;
     rdfs:subClassOf owl:Thing .
 
 memo:CanonicalImageType a owl:Class ;
-    rdfs:label "Canonical Image Type",
-        "CanonicalImageType",
-        "Canonical Image Type"@en ;
+    rdfs:label "Canonical Image Type"@en ;
     memo:frbrLevel "Expression" ;
     memo:semanticLevel "PreIconographical" ;
-    rdfs:comment "The canonical visual medium of the named template as derived from the representative image via CLIP. Property of the Expression-level MemeConcept.",
-        """The visual medium of the canonical meme image\r\r
-(Photograph, Drawing, Cartoon, Illustration, Painting, etc.). Pre-iconographical\r\r
+    rdfs:comment """The visual medium of the canonical meme image\r\r\r
+(Photograph, Drawing, Cartoon, Illustration, Painting, etc.). Pre-iconographical\r\r\r
 classification at the Manifestation level, assigned via CLIP-based scoring."""@en ;
     rdfs:subClassOf owl:Thing .
 
 memo:FileFormat a owl:Class ;
-    rdfs:label "File Format",
-        "FileFormat",
-        "File Format"@en ;
+    rdfs:label "File Format"@en ;
     memo:documentaryLevel "true" ;
     memo:frbrLevel "Item" ;
-    rdfs:comment """The digital file format of the meme image (JPEG,\r\r
+    rdfs:comment """The digital file format of the meme image (JPEG,\r\r\r
 PNG, GIF, WebP, BMP)."""@en ;
     rdfs:subClassOf owl:Thing .
 
 memo:ImageType a owl:Class ;
-    rdfs:label "Image Type",
-        "ImageType",
-        "Image Type"@en ;
+    rdfs:label "Image Type"@en ;
     memo:frbrLevel "Manifestation" ;
     memo:semanticLevel "PreIconographical" ;
-    rdfs:comment "The visual medium of a specific variant image. Manifestation-level property on VariantInstance.",
-        """The visual medium type of an individual variant\r\r
-image. Uses the same controlled vocabulary as CanonicalImageType but applied at\r\r
+    rdfs:comment """The visual medium type of an individual variant\r\r\r
+image. Uses the same controlled vocabulary as CanonicalImageType but applied at\r\r\r
 the Item (VariantInstance) level."""@en ;
     rdfs:subClassOf owl:Thing .
 
 memo:TimePeriod a owl:Class ;
-    rdfs:label "Time Period",
-        "TimePeriod",
-        "Time Period"@en ;
+    rdfs:label "Time Period"@en ;
     memo:documentaryLevel "true" ;
     memo:frbrLevel "Expression" ;
-    rdfs:comment """The era in which a meme originated or peaked\r\r
+    rdfs:comment """The era in which a meme originated or peaked\r\r\r
 (Pre2010, Period2010to2015, Period2016to2020, Period2021toPresent)."""@en ;
     rdfs:subClassOf owl:Thing .
 
 memo:CulturalReference a owl:Class ;
-    rdfs:label "Cultural Reference",
-        "CulturalReference",
-        "Cultural Reference"@en ;
+    rdfs:label "Cultural Reference"@en ;
     memo:frbrLevel "Expression Manifestation",
         "Expression, Manifestation" ;
     memo:semanticLevel "Iconological" ;
-    rdfs:comment "The cultural phenomena encoded by a meme template. At Expression level: template-wide references. At Manifestation level: variant-specific references.",
-        """A cultural entity referenced by a meme — a historical\r\r
-event, media property, political event, public figure, social phenomenon, or web\r\r
-culture artefact. Subclasses: HistoricalEvent, MediaProperty, PoliticalEvent,\r\r
+    rdfs:comment """A cultural entity referenced by a meme — a historical\r\r\r
+event, media property, political event, public figure, social phenomenon, or web\r\r\r
+culture artefact. Subclasses: HistoricalEvent, MediaProperty, PoliticalEvent,\r\r\r
 PublicFigure, SocialPhenomenon, WebCulture."""@en ;
     rdfs:subClassOf owl:Thing .
 
@@ -938,13 +905,11 @@ memo:AnimalPresent a owl:Class ;
     rdfs:subClassOf memo:SubjectMatter .
 
 memo:CanonicalSubjectMatter a owl:Class ;
-    rdfs:label "Canonical Subject Matter",
-        "CanonicalSubjectMatter",
-        "Canonical Subject Matter"@en ;
+    rdfs:label "Canonical Subject Matter"@en ;
     memo:frbrLevel "Expression" ;
     memo:semanticLevel "PreIconographical" ;
-    rdfs:comment """The category of subjects depicted in the\r\r
-canonical image (PersonPresent, AnimalPresent, ObjectOnly, TextOnly,\r\r
+    rdfs:comment """The category of subjects depicted in the\r\r\r
+canonical image (PersonPresent, AnimalPresent, ObjectOnly, TextOnly,\r\r\r
 MultipleSubjects, etc.)."""@en ;
     rdfs:subClassOf owl:Thing .
 
@@ -984,80 +949,62 @@ memo:TextOnly a owl:Class ;
 memo:UnknownPerson rdfs:label "Unknown Person" .
 
 memo:OriginWork a owl:Class ;
-    rdfs:label "Origin Work",
-        "OriginWork",
-        "Origin Work"@en ;
+    rdfs:label "Origin Work"@en ;
     memo:documentaryLevel "true" ;
     memo:frbrLevel "Expression" ;
-    rdfs:comment "A cultural text (film, game, TV show etc.) that is the origin of the meme template. Documentary fact.",
-        """The original cultural work (film, TV show, video\r\r
+    rdfs:comment """The original cultural work (film, TV show, video\r\r\r
 game, book, song, etc.) from which a meme derives its source material."""@en ;
     rdfs:subClassOf owl:Thing .
 
 memo:TransformationDimension a owl:Class ;
-    rdfs:label "Transformation Dimension",
-        "TransformationDimension",
-        "Transformation Dimension"@en ;
+    rdfs:label "Transformation Dimension"@en ;
     memo:documentaryLevel "true" ;
     memo:frbrLevel "Manifestation" ;
-    rdfs:comment "The specific aspect of the canonical template that changes in a variant. Multi-valued.",
-        """The axis along which a variant transforms the\r\r
-canonical template: CaptionChange, VisualSubstrate, MediumShift, StyleShift,\r\r
+    rdfs:comment """The axis along which a variant transforms the\r\r\r
+canonical template: CaptionChange, VisualSubstrate, MediumShift, StyleShift,\r\r\r
 CompositionShift, CrossoverMerge, LanguageShift, Localization."""@en ;
     rdfs:subClassOf owl:Thing .
 
 memo:GeographicRegion a owl:Class ;
-    rdfs:label "Geographic Region",
-        "GeographicRegion",
-        "Geographic Region"@en ;
+    rdfs:label "Geographic Region"@en ;
     memo:documentaryLevel "true" ;
     memo:frbrLevel "Expression" ;
-    rdfs:comment """The country or geographic region of a meme's\r\r
+    rdfs:comment """The country or geographic region of a meme's\r\r\r
 origin."""@en ;
     rdfs:subClassOf owl:Thing .
 
 memo:VariantInstance a owl:Class ;
-    rdfs:label "Variant Instance",
-        "Variant Instance"@en ;
+    rdfs:label "Variant Instance"@en ;
     memo:frbrLevel "Manifestation" ;
-    rdfs:comment "A specific physical variant realization of a named meme template. Manifestation-level class. 391 individuals populated from D0 variant scraping.",
-        """A single scraped variant image — an Item-level\r\r
-exemplar of a MemeConcept. 391 named individuals with transformation extent and\r\r
+    rdfs:comment """A single scraped variant image — an Item-level\r\r\r
+exemplar of a MemeConcept. 391 named individuals with transformation extent and\r\r\r
 dimension annotations for 5 fully annotated meme templates."""@en ;
     rdfs:subClassOf owl:Thing .
 
 memo:OriginPlatform a owl:Class ;
-    rdfs:label "Origin Platform",
-        "Origin Platform"@en ;
+    rdfs:label "Origin Platform"@en ;
     memo:documentaryLevel "true" ;
     memo:frbrLevel "Expression" ;
-    rdfs:comment "The social platform where the meme template first emerged. Documentary fact scraped from KnowYourMeme origin field.",
-        """The online platform where a meme first appeared\r\r
-or gained traction (e.g. Reddit, Twitter/X, 4chan, TikTok). Classified at the\r\r
+    rdfs:comment """The online platform where a meme first appeared\r\r\r
+or gained traction (e.g. Reddit, Twitter/X, 4chan, TikTok). Classified at the\r\r\r
 Expression level with Documentary provenance."""@en ;
     rdfs:subClassOf owl:Thing .
 
 memo:MemeFormat a owl:Class ;
-    rdfs:label "Meme Format",
-        "MemeFormat",
-        "Meme Format"@en ;
+    rdfs:label "Meme Format"@en ;
     memo:frbrLevel "Expression" ;
     memo:semanticLevel "Iconographical" ;
-    rdfs:comment "The cultural format type of the meme template. Controlled vocabulary derived from KnowYourMeme type field.",
-        """The rhetorical or structural format of a meme\r\r
-(e.g. ImageMacro, Catchphrase, Exploitable, Reaction, ViralVideo). Classifies\r\r
+    rdfs:comment """The rhetorical or structural format of a meme\r\r\r
+(e.g. ImageMacro, Catchphrase, Exploitable, Reaction, ViralVideo). Classifies\r\r\r
 memes at the Expression level with Iconographical analysis."""@en ;
     rdfs:subClassOf owl:Thing .
 
 memo:MemeConcept a owl:Class ;
-    rdfs:label "Meme Concept",
-        "Meme Template",
-        "Meme Concept"@en ;
+    rdfs:label "Meme Concept"@en ;
     memo:frbrLevel "Expression" ;
-    rdfs:comment "The named and documented meme template as recognized by the KnowYourMeme community. Primary individual class of the ontology. 5000 individuals populated from KnowYourMeme entries.",
-        """A canonical internet meme template as indexed\r\r
-on Know Your Meme. Represents the stable, Expression-level identity of a meme\r\r
-across all its variants. 5,000 named individuals are included, classified by\r\r
+    rdfs:comment """A canonical internet meme template as indexed\r\r\r
+on Know Your Meme. Represents the stable, Expression-level identity of a meme\r\r\r
+across all its variants. 5,000 named individuals are included, classified by\r\r\r
 image type, format, platform, region and time period."""@en ;
     rdfs:subClassOf owl:Thing .
 
@@ -1065,25 +1012,40 @@ image type, format, platform, region and time period."""@en ;
     owl:members ( memo:AnimalPresent memo:NoPerson ) .
 
 [] a owl:AllDisjointClasses ;
-    owl:members ( memo:Static memo:Animated ) .
+    owl:members ( memo:MultipleSubjects memo:NoPerson ) .
 
 [] a owl:AllDisjointClasses ;
-    owl:members ( memo:Work memo:Manifestation ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:PreIconographical memo:Iconological ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:PersonPresent memo:CharacterPresent ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:CharacterPresent memo:PublicFigure ) .
+    owl:members ( memo:AnimalPresent memo:CharacterPresent ) .
 
 [] a owl:AllDisjointClasses ;
     owl:members ( memo:MultipleSubjects memo:UnknownPerson ) .
 
 [] a owl:AllDisjointClasses ;
+    owl:members ( memo:Illustration memo:Painting ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:CharacterPresent memo:UnknownPerson ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:Photograph memo:Illustration ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:PersonPresent memo:NoPerson ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:PNG memo:WebP ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:PersonPresent memo:AnimalPresent ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:ObjectOnly memo:UnknownPerson ) .
+
+[] a owl:AllDisjointClasses ;
     owl:members ( memo:Substantial memo:Parody ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:PersonPresent memo:MultipleSubjects ) .
 
 [] a owl:AllDisjointClasses ;
     owl:members ( memo:Photograph memo:Painting ) .
@@ -1101,6 +1063,9 @@ image type, format, platform, region and time period."""@en ;
     owl:members ( memo:Work memo:Expression ) .
 
 [] a owl:AllDisjointClasses ;
+    owl:members ( memo:Static memo:Animated ) .
+
+[] a owl:AllDisjointClasses ;
     owl:members ( memo:ObjectOnly memo:TextOnly ) .
 
 [] a owl:AllDisjointClasses ;
@@ -1111,6 +1076,9 @@ image type, format, platform, region and time period."""@en ;
 
 [] a owl:AllDisjointClasses ;
     owl:members ( memo:AnimalPresent memo:PublicFigure ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:PersonPresent memo:TextOnly ) .
 
 [] a owl:AllDisjointClasses ;
     owl:members ( memo:Drawing memo:Painting ) .
@@ -1131,6 +1099,9 @@ image type, format, platform, region and time period."""@en ;
     owl:members ( memo:Expression memo:Manifestation ) .
 
 [] a owl:AllDisjointClasses ;
+    owl:members ( memo:Work memo:Manifestation ) .
+
+[] a owl:AllDisjointClasses ;
     owl:members ( memo:JPEG memo:PNG ) .
 
 [] a owl:AllDisjointClasses ;
@@ -1138,6 +1109,9 @@ image type, format, platform, region and time period."""@en ;
 
 [] a owl:AllDisjointClasses ;
     owl:members ( memo:AnimalPresent memo:UnknownPerson ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:Iconographical memo:Iconological ) .
 
 [] a owl:AllDisjointClasses ;
     owl:members ( memo:JPEG memo:WebP ) .
@@ -1161,21 +1135,6 @@ image type, format, platform, region and time period."""@en ;
     owl:members ( memo:PersonPresent memo:UnknownPerson ) .
 
 [] a owl:AllDisjointClasses ;
-    owl:members ( memo:TextOnly memo:UnknownPerson ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:MultipleSubjects memo:NoPerson ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:PersonPresent memo:MultipleSubjects ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:PersonPresent memo:TextOnly ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:Iconographical memo:Iconological ) .
-
-[] a owl:AllDisjointClasses ;
     owl:members ( memo:UnknownPerson memo:NoPerson ) .
 
 [] a owl:AllDisjointClasses ;
@@ -1189,6 +1148,12 @@ image type, format, platform, region and time period."""@en ;
 
 [] a owl:AllDisjointClasses ;
     owl:members ( memo:Minimal memo:Parody ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:PersonPresent memo:CharacterPresent ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:PreIconographical memo:Iconological ) .
 
 [] a owl:AllDisjointClasses ;
     owl:members ( memo:ObjectOnly memo:MultipleSubjects ) .
@@ -1221,6 +1186,12 @@ image type, format, platform, region and time period."""@en ;
     owl:members ( memo:AnimalPresent memo:TextOnly ) .
 
 [] a owl:AllDisjointClasses ;
+    owl:members ( memo:TextOnly memo:UnknownPerson ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:CharacterPresent memo:PublicFigure ) .
+
+[] a owl:AllDisjointClasses ;
     owl:members ( memo:PNG memo:GIF ) .
 
 [] a owl:AllDisjointClasses ;
@@ -1246,28 +1217,4 @@ image type, format, platform, region and time period."""@en ;
 
 [] a owl:AllDisjointClasses ;
     owl:members ( memo:Cartoon memo:Painting ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:AnimalPresent memo:CharacterPresent ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:Illustration memo:Painting ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:CharacterPresent memo:UnknownPerson ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:Photograph memo:Illustration ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:PersonPresent memo:NoPerson ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:PNG memo:WebP ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:PersonPresent memo:AnimalPresent ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:ObjectOnly memo:UnknownPerson ) .
 
