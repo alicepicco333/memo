@@ -1,4 +1,6 @@
 /* ── State ─────────────────────────────────────────────────────────────────── */
+let isMobile = () => window.innerWidth <= 768;
+let isSmallMobile = () => window.innerWidth <= 480;
 let DATA        = null;
 let D0_DATA     = null;
 let VARIANTS_DATA = null;
@@ -378,7 +380,10 @@ function buildPopularityByFormat() {
   const W = rect.width || (window.innerWidth - 48);
   const H = rect.height || (window.innerHeight - 72);
 
-  const margin = { top: 30, right: 28, bottom: 140, left: 100 };
+  const mobile = isMobile();
+  const margin = mobile
+    ? { top: 16, right: 8, bottom: 60, left: 40 }
+    : { top: 30, right: 28, bottom: 140, left: 100 };
   const iW = W - margin.left - margin.right;
   const iH = H - margin.top - margin.bottom;
 
@@ -489,7 +494,10 @@ function buildTimeline() {
   const W = rect.width  || window.innerWidth  - 48;
   const H = rect.height || window.innerHeight - 72;
 
-  const margin = { top: 36, right: 56, bottom: 80, left: 180 };
+  const mobile = isMobile();
+  const margin = mobile
+    ? { top: 16, right: 16, bottom: 50, left: 60 }
+    : { top: 36, right: 56, bottom: 80, left: 180 };
   const iW = W - margin.left - margin.right;
   const iH = H - margin.top  - margin.bottom;
 
@@ -586,7 +594,10 @@ function buildPlatformTimeStacked() {
   const W = rect.width || (window.innerWidth - 48);
   const H = rect.height || (window.innerHeight - 72);
 
-  const margin = { top: 30, right: 220, bottom: 70, left: 72 };
+  const mobile = isMobile();
+  const margin = mobile
+    ? { top: 16, right: 80, bottom: 50, left: 40 }
+    : { top: 30, right: 220, bottom: 70, left: 72 };
   const iW = W - margin.left - margin.right;
   const iH = H - margin.top - margin.bottom;
 
@@ -859,7 +870,10 @@ function buildVariantBubble() {
 
   var W = wrap.getBoundingClientRect().width || 900;
   var H = 500;
-  var M = { top: 24, right: 40, bottom: 60, left: 82 };
+  var mobile = isMobile();
+  var M = mobile
+    ? { top: 12, right: 16, bottom: 40, left: 40 }
+    : { top: 24, right: 40, bottom: 60, left: 82 };
   var w = W - M.left - M.right;
   var h = H - M.top - M.bottom;
 
