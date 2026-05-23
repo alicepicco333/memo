@@ -85499,8 +85499,7 @@ assigned by CLIP-based classification."""@en ;
     owl:inverseOf memo:isCanonicalImageTypeOf .
 
 memo:hasCanonicalSubjectMatter a owl:ObjectProperty ;
-    rdfs:label "Has Canonical Subject Matter",
-        "has canonical subject matter"@en ;
+    rdfs:label "hasCanonicalSubjectMatter" ;
     memo:frbrLevel "Manifestation" ;
     memo:semanticLevel "PreIconographical" ;
     rdfs:comment "What is inherently built into the base meme template (Expression level)." ;
@@ -85531,7 +85530,7 @@ memo:hasFileFormat a owl:ObjectProperty ;
     owl:inverseOf memo:isFileFormatOf .
 
 memo:hasFormat a owl:ObjectProperty ;
-    rdfs:label "has format"@en ;
+    rdfs:label "hasFormat"@en ;
     memo:frbrLevel "Expression" ;
     memo:semanticLevel "Iconographical" ;
     rdfs:comment """Links a MemeConcept to one or more MemeFormat\r\r\r\r\r\r
@@ -85872,9 +85871,11 @@ memo:isTransformationExtentOf a owl:ObjectProperty ;
     rdfs:range memo:VariantInstance ;
     owl:inverseOf memo:hasTransformationExtent .
 
-memo:isVariantColorModeOf rdfs:domain memo:ColorMode .
+memo:isVariantColorModeOf a owl:ObjectProperty ;
+    rdfs:label "isVariantColorModeOf" ; rdfs:domain memo:ColorMode .
 
-memo:isVariantImageTypeOf rdfs:domain memo:ImageType .
+memo:isVariantImageTypeOf a owl:ObjectProperty ;
+    rdfs:label "isVariantImageTypeOf" ; rdfs:domain memo:ImageType .
 
 memo:isVariantOf a owl:ObjectProperty ;
     rdfs:label "isVariantOf" ;
@@ -85882,7 +85883,8 @@ memo:isVariantOf a owl:ObjectProperty ;
     rdfs:range memo:MemeConcept ;
     owl:inverseOf memo:hasVariant .
 
-memo:isVariantTextPresenceOf rdfs:domain memo:TextPresence .
+memo:isVariantTextPresenceOf a owl:ObjectProperty ;
+    rdfs:label "isVariantTextPresenceOf" ; rdfs:domain memo:TextPresence .
 
 memo:isorrowproduction a memo:OriginWork,
         owl:NamedIndividual ;
