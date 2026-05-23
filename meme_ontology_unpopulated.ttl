@@ -40,51 +40,67 @@ Know Your Meme under fair use."""@en ;
     rdfs:subClassOf :GeographicRegion .
 
 :CanonicalAnimalPresent a owl:Class ;
+    rdfs:label "Canonical Animal Present" ;
     rdfs:subClassOf :CanonicalSubjectMatter .
 
 :CanonicalCartoon a owl:Class ;
+    rdfs:label "Canonical Cartoon" ;
     rdfs:subClassOf :CanonicalImageType .
 
 :CanonicalCharacterPresent a owl:Class ;
+    rdfs:label "Canonical Character Present" ;
     rdfs:subClassOf :CanonicalSubjectMatter .
 
 :CanonicalColor a owl:Class ;
+    rdfs:label "Canonical Color" ;
     rdfs:subClassOf :CanonicalColorMode .
 
 :CanonicalContainsText a owl:Class ;
+    rdfs:label "Canonical Contains Text" ;
     rdfs:subClassOf :CanonicalTextPresence .
 
 :CanonicalDrawing a owl:Class ;
+    rdfs:label "Canonical Drawing" ;
     rdfs:subClassOf :CanonicalImageType .
 
 :CanonicalIllustration a owl:Class ;
+    rdfs:label "Canonical Illustration" ;
     rdfs:subClassOf :CanonicalImageType .
 
 :CanonicalMonochrome a owl:Class ;
+    rdfs:label "Canonical Monochrome" ;
     rdfs:subClassOf :CanonicalColorMode .
 
 :CanonicalMultipleSubjects a owl:Class ;
+    rdfs:label "Canonical Multiple Subjects" ;
     rdfs:subClassOf :CanonicalSubjectMatter .
 
 :CanonicalNoText a owl:Class ;
+    rdfs:label "Canonical No Text" ;
     rdfs:subClassOf :CanonicalTextPresence .
 
 :CanonicalObjectOnly a owl:Class ;
+    rdfs:label "Canonical Object Only" ;
     rdfs:subClassOf :CanonicalSubjectMatter .
 
 :CanonicalPainting a owl:Class ;
+    rdfs:label "Canonical Painting" ;
     rdfs:subClassOf :CanonicalImageType .
 
 :CanonicalPersonPresent a owl:Class ;
+    rdfs:label "Canonical Person Present" ;
     rdfs:subClassOf :CanonicalSubjectMatter .
 
 :CanonicalPhotograph a owl:Class ;
+    rdfs:label "Canonical Photograph" ;
     rdfs:subClassOf :CanonicalImageType .
 
 :CanonicalTextOnly a owl:Class ;
+    rdfs:label "Canonical Text Only" ;
     rdfs:subClassOf :CanonicalSubjectMatter .
 
 :CanonicalUnknown a owl:Class ;
+    rdfs:label "Canonical Unknown" ;
     rdfs:subClassOf :CanonicalSubjectMatter .
 
 :CaptionChange a owl:Class ;
@@ -148,6 +164,7 @@ Know Your Meme under fair use."""@en ;
     rdfs:subClassOf :MemeFormat .
 
 :FourChan a owl:Class ;
+    rdfs:label "Four Chan" ;
     rdfs:subClassOf :OriginPlatform .
 
 :France a owl:Class ;
@@ -727,6 +744,10 @@ xsd:gYear a rdfs:Datatype .
     rdfs:label "Static" ;
     rdfs:subClassOf :AnimationStatus .
 
+:Iconographical rdfs:label "Iconographical" .
+
+:Iconological rdfs:label "Iconological" .
+
 :MemeIdea a owl:Class ;
     rdfs:label "Meme Idea",
         "Meme Idea"@en ;
@@ -737,6 +758,8 @@ its core narrative, emotional register, rhetorical function or cultural role,\r
 independent of any specific image or format. 50 enriched individuals from the\r
 D0 sample, with descriptions and cultural reference annotations."""@en ;
     rdfs:subClassOf owl:Thing .
+
+:PreIconographical rdfs:label "Pre Iconographical" .
 
 :AnimationStatus a owl:Class ;
     rdfs:label "Animation Status",
@@ -774,13 +797,19 @@ overlaid text."""@en ;
     :semanticLevel "PreIconographical" ;
     rdfs:subClassOf owl:Thing .
 
+:Expression rdfs:label "Expression" .
+
 :GIF a owl:Class ;
     rdfs:label "GIF" ;
     rdfs:subClassOf :FileFormat .
 
+:Item rdfs:label "Item" .
+
 :JPEG a owl:Class ;
     rdfs:label "JPEG" ;
     rdfs:subClassOf :FileFormat .
+
+:Manifestation rdfs:label "Manifestation" .
 
 :Minimal a owl:Class ;
     rdfs:label "Minimal" ;
@@ -811,6 +840,8 @@ overlaid text."""@en ;
 :WebP a owl:Class ;
     rdfs:label "WebP" ;
     rdfs:subClassOf :FileFormat .
+
+:Work rdfs:label "Work" .
 
 :Cartoon a owl:Class ;
     rdfs:label "Cartoon" ;
@@ -925,6 +956,8 @@ MultipleSubjects, etc.)."""@en ;
     rdfs:label "MultipleSubjects" ;
     rdfs:subClassOf :SubjectMatter .
 
+:NoPerson rdfs:label "No Person" .
+
 :ObjectOnly a owl:Class ;
     rdfs:label "ObjectOnly" ;
     rdfs:subClassOf :SubjectMatter .
@@ -947,6 +980,8 @@ MultipleSubjects, etc.)."""@en ;
     rdfs:label "TextOnly" ;
     rdfs:comment "SubjectMatter: TextOnly — image whose primary visible content is text with no person, character or animal present. Distinct from CaptionChange TransformationDimension." ;
     rdfs:subClassOf :SubjectMatter .
+
+:UnknownPerson rdfs:label "Unknown Person" .
 
 :OriginWork a owl:Class ;
     rdfs:label "Origin Work",
@@ -1030,25 +1065,40 @@ image type, format, platform, region and time period."""@en ;
     owl:members ( :AnimalPresent :NoPerson ) .
 
 [] a owl:AllDisjointClasses ;
-    owl:members ( :AnimalPresent :CharacterPresent ) .
+    owl:members ( :CharacterPresent :ObjectOnly ) .
 
 [] a owl:AllDisjointClasses ;
-    owl:members ( :Photograph :Painting ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :AnimalPresent :UnknownPerson ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :Moderate :Parody ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :Moderate :Substantial ) .
+    owl:members ( :PNG :WebP ) .
 
 [] a owl:AllDisjointClasses ;
     owl:members ( :Photograph :Cartoon ) .
 
 [] a owl:AllDisjointClasses ;
+    owl:members ( :Drawing :Painting ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :Minimal :Substantial ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :Static :Animated ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :CharacterPresent :TextOnly ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :TextOnly :NoPerson ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :PersonPresent :ObjectOnly ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :TextOnly :PublicFigure ) .
+
+[] a owl:AllDisjointClasses ;
     owl:members ( :AnimalPresent :TextOnly ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :PNG :GIF ) .
 
 [] a owl:AllDisjointClasses ;
     owl:members ( :PublicFigure :UnknownPerson ) .
@@ -1066,6 +1116,9 @@ image type, format, platform, region and time period."""@en ;
     owl:members ( :Cartoon :Painting ) .
 
 [] a owl:AllDisjointClasses ;
+    owl:members ( :AnimalPresent :CharacterPresent ) .
+
+[] a owl:AllDisjointClasses ;
     owl:members ( :Illustration :Painting ) .
 
 [] a owl:AllDisjointClasses ;
@@ -1076,6 +1129,9 @@ image type, format, platform, region and time period."""@en ;
 
 [] a owl:AllDisjointClasses ;
     owl:members ( :PersonPresent :NoPerson ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :PersonPresent :AnimalPresent ) .
 
 [] a owl:AllDisjointClasses ;
     owl:members ( :ObjectOnly :UnknownPerson ) .
@@ -1096,6 +1152,9 @@ image type, format, platform, region and time period."""@en ;
     owl:members ( :Substantial :Parody ) .
 
 [] a owl:AllDisjointClasses ;
+    owl:members ( :Photograph :Painting ) .
+
+[] a owl:AllDisjointClasses ;
     owl:members ( :JPEG :GIF ) .
 
 [] a owl:AllDisjointClasses ;
@@ -1103,6 +1162,9 @@ image type, format, platform, region and time period."""@en ;
 
 [] a owl:AllDisjointClasses ;
     owl:members ( :Work :Item ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :TextOnly :MultipleSubjects ) .
 
 [] a owl:AllDisjointClasses ;
     owl:members ( :PreIconographical :Iconographical ) .
@@ -1126,21 +1188,6 @@ image type, format, platform, region and time period."""@en ;
     owl:members ( :AnimalPresent :MultipleSubjects ) .
 
 [] a owl:AllDisjointClasses ;
-    owl:members ( :GIF :WebP ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :CharacterPresent :ObjectOnly ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :PNG :GIF ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :PersonPresent :AnimalPresent ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :TextOnly :MultipleSubjects ) .
-
-[] a owl:AllDisjointClasses ;
     owl:members ( :AnimalPresent :PublicFigure ) .
 
 [] a owl:AllDisjointClasses ;
@@ -1154,6 +1201,12 @@ image type, format, platform, region and time period."""@en ;
 
 [] a owl:AllDisjointClasses ;
     owl:members ( :Expression :Manifestation ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :Moderate :Parody ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :AnimalPresent :UnknownPerson ) .
 
 [] a owl:AllDisjointClasses ;
     owl:members ( :JPEG :WebP ) .
@@ -1186,6 +1239,12 @@ image type, format, platform, region and time period."""@en ;
     owl:members ( :UnknownPerson :NoPerson ) .
 
 [] a owl:AllDisjointClasses ;
+    owl:members ( :GIF :WebP ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :Moderate :Substantial ) .
+
+[] a owl:AllDisjointClasses ;
     owl:members ( :Illustration :Cartoon ) .
 
 [] a owl:AllDisjointClasses ;
@@ -1211,28 +1270,4 @@ image type, format, platform, region and time period."""@en ;
 
 [] a owl:AllDisjointClasses ;
     owl:members ( :PersonPresent :PublicFigure ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :PNG :WebP ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :Drawing :Painting ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :Minimal :Substantial ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :Static :Animated ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :CharacterPresent :TextOnly ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :TextOnly :NoPerson ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :PersonPresent :ObjectOnly ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :TextOnly :PublicFigure ) .
 

@@ -32,51 +32,67 @@ Know Your Meme under fair use."""@en ;
     owl:versionInfo "1.0" .
 
 :CanonicalAnimalPresent a owl:Class ;
+    rdfs:label "Canonical Animal Present" ;
     rdfs:subClassOf :CanonicalSubjectMatter .
 
 :CanonicalCartoon a owl:Class ;
+    rdfs:label "Canonical Cartoon" ;
     rdfs:subClassOf :CanonicalImageType .
 
 :CanonicalCharacterPresent a owl:Class ;
+    rdfs:label "Canonical Character Present" ;
     rdfs:subClassOf :CanonicalSubjectMatter .
 
 :CanonicalColor a owl:Class ;
+    rdfs:label "Canonical Color" ;
     rdfs:subClassOf :CanonicalColorMode .
 
 :CanonicalContainsText a owl:Class ;
+    rdfs:label "Canonical Contains Text" ;
     rdfs:subClassOf :CanonicalTextPresence .
 
 :CanonicalDrawing a owl:Class ;
+    rdfs:label "Canonical Drawing" ;
     rdfs:subClassOf :CanonicalImageType .
 
 :CanonicalIllustration a owl:Class ;
+    rdfs:label "Canonical Illustration" ;
     rdfs:subClassOf :CanonicalImageType .
 
 :CanonicalMonochrome a owl:Class ;
+    rdfs:label "Canonical Monochrome" ;
     rdfs:subClassOf :CanonicalColorMode .
 
 :CanonicalMultipleSubjects a owl:Class ;
+    rdfs:label "Canonical Multiple Subjects" ;
     rdfs:subClassOf :CanonicalSubjectMatter .
 
 :CanonicalNoText a owl:Class ;
+    rdfs:label "Canonical No Text" ;
     rdfs:subClassOf :CanonicalTextPresence .
 
 :CanonicalObjectOnly a owl:Class ;
+    rdfs:label "Canonical Object Only" ;
     rdfs:subClassOf :CanonicalSubjectMatter .
 
 :CanonicalPainting a owl:Class ;
+    rdfs:label "Canonical Painting" ;
     rdfs:subClassOf :CanonicalImageType .
 
 :CanonicalPersonPresent a owl:Class ;
+    rdfs:label "Canonical Person Present" ;
     rdfs:subClassOf :CanonicalSubjectMatter .
 
 :CanonicalPhotograph a owl:Class ;
+    rdfs:label "Canonical Photograph" ;
     rdfs:subClassOf :CanonicalImageType .
 
 :CanonicalTextOnly a owl:Class ;
+    rdfs:label "Canonical Text Only" ;
     rdfs:subClassOf :CanonicalSubjectMatter .
 
 :CanonicalUnknown a owl:Class ;
+    rdfs:label "Canonical Unknown" ;
     rdfs:subClassOf :CanonicalSubjectMatter .
 
 :CaptionChange a owl:Class ;
@@ -187,6 +203,7 @@ Know Your Meme under fair use."""@en ;
     rdfs:label "Finland" .
 
 :FourChan a owl:Class ;
+    rdfs:label "Four Chan" ;
     rdfs:subClassOf :OriginPlatform .
 
 :HistoricalEvent a owl:Class ;
@@ -286,10 +303,8 @@ Know Your Meme under fair use."""@en ;
     rdfs:subClassOf :CulturalReference .
 
 :WebP a :FileFormat,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "WebP" ;
-    rdfs:subClassOf :FileFormat .
+    rdfs:label "WebP" .
 
 :Website a :MemeFormat,
         owl:NamedIndividual ;
@@ -26556,78 +26571,6 @@ Item."""@en .
     :hasRegion :UnitedStates ;
     :hasTimePeriod :Period2021toPresent .
 
-:hasAnimationStatus a owl:ObjectProperty ;
-    rdfs:label "has animation status",
-        "hasAnimationStatus",
-        "has animation status"@en ;
-    :frbrLevel "Manifestation" ;
-    :semanticLevel "PreIconographical" ;
-    rdfs:domain :MemeConcept ;
-    rdfs:range :AnimationStatus .
-
-:hasCanonicalColorMode a owl:ObjectProperty ;
-    rdfs:label "has canonical color mode",
-        "hasCanonicalColorMode",
-        "has canonical color mode"@en ;
-    :frbrLevel "Manifestation" ;
-    :semanticLevel "PreIconographical" ;
-    rdfs:domain :MemeConcept ;
-    rdfs:range :CanonicalColorMode .
-
-:hasCanonicalImageType a owl:ObjectProperty ;
-    rdfs:label "has canonical image type",
-        "hasCanonicalImageType",
-        "has canonical image type"@en ;
-    :frbrLevel "Manifestation" ;
-    :semanticLevel "PreIconographical" ;
-    rdfs:comment """The visual medium of the canonical meme image,\r
-assigned by CLIP-based classification."""@en ;
-    rdfs:domain :MemeConcept ;
-    rdfs:range :CanonicalImageType .
-
-:hasCanonicalSubjectMatter a owl:ObjectProperty ;
-    rdfs:label "has canonical subject matter",
-        "hasCanonicalSubjectMatter",
-        "has canonical subject matter"@en ;
-    :frbrLevel "Manifestation" ;
-    :semanticLevel "PreIconographical" ;
-    rdfs:domain :MemeConcept ;
-    rdfs:range :CanonicalSubjectMatter .
-
-:hasCanonicalTextPresence a owl:ObjectProperty ;
-    rdfs:label "has canonical text presence",
-        "hasCanonicalTextPresence",
-        "has canonical text presence"@en ;
-    :frbrLevel "Manifestation" ;
-    :semanticLevel "PreIconographical" ;
-    rdfs:domain :MemeConcept ;
-    rdfs:range :CanonicalTextPresence .
-
-:hasColorMode a owl:ObjectProperty ;
-    rdfs:label "hasColorMode" ;
-    rdfs:domain :VariantInstance ;
-    rdfs:range :ColorMode .
-
-:hasFileFormat a owl:ObjectProperty ;
-    rdfs:label "has file format",
-        "hasFileFormat",
-        "has file format"@en ;
-    :frbrLevel "Manifestation" ;
-    :semanticLevel "PreIconographical" ;
-    rdfs:domain :MemeConcept ;
-    rdfs:range :FileFormat .
-
-:hasFormat a owl:ObjectProperty ;
-    rdfs:label "has format",
-        "hasFormat",
-        "has format"@en ;
-    :frbrLevel "Expression" ;
-    :semanticLevel "Iconographical" ;
-    rdfs:comment """Links a MemeConcept to one or more MemeFormat\r
-values describing its rhetorical structure."""@en ;
-    rdfs:domain :MemeConcept ;
-    rdfs:range :MemeFormat .
-
 :hasId a owl:DatatypeProperty ;
     rdfs:label "hasId",
         "has ID"@en ;
@@ -26637,115 +26580,6 @@ in the scraped dataset (1–5000)."""@en ;
     rdfs:domain :MemeConcept ;
     rdfs:range xsd:integer ;
     owl:deprecated true .
-
-:hasImageType a owl:ObjectProperty ;
-    rdfs:label "hasImageType" ;
-    rdfs:domain :VariantInstance ;
-    rdfs:range :ImageType .
-
-:hasOriginBoard a owl:ObjectProperty ;
-    rdfs:label "hasOriginBoard",
-        "has origin board"@en ;
-    :documentaryLevel "true" ;
-    :frbrLevel "Expression" ;
-    rdfs:comment """Links a MemeConcept to the specific imageboard\r
-or forum thread where it originated."""@en ;
-    rdfs:domain :MemeConcept ;
-    rdfs:range :OriginBoard .
-
-:hasOriginBook a owl:ObjectProperty ;
-    rdfs:label "hasOriginBook" ;
-    rdfs:domain :MemeConcept ;
-    rdfs:range :OriginBook .
-
-:hasOriginComic a owl:ObjectProperty ;
-    rdfs:label "hasOriginComic" ;
-    rdfs:domain :MemeConcept ;
-    rdfs:range :OriginComic .
-
-:hasOriginFilm a owl:ObjectProperty ;
-    rdfs:label "hasOriginFilm" ;
-    rdfs:domain :MemeConcept ;
-    rdfs:range :OriginFilm .
-
-:hasOriginMusic a owl:ObjectProperty ;
-    rdfs:label "hasOriginMusic" ;
-    rdfs:domain :MemeConcept ;
-    rdfs:range :OriginMusic .
-
-:hasOriginPerson a owl:ObjectProperty ;
-    rdfs:label "hasOriginPerson" ;
-    rdfs:domain :MemeConcept ;
-    rdfs:range :OriginPerson .
-
-:hasOriginPlatform a owl:ObjectProperty ;
-    rdfs:label "has origin platform" ;
-    rdfs:domain :MemeConcept ;
-    rdfs:range :OriginPlatform .
-
-:hasOriginTVShow a owl:ObjectProperty ;
-    rdfs:label "hasOriginTVShow" ;
-    rdfs:domain :MemeConcept ;
-    rdfs:range :OriginTVShow .
-
-:hasOriginVideoGame a owl:ObjectProperty ;
-    rdfs:label "hasOriginVideoGame" ;
-    rdfs:domain :MemeConcept ;
-    rdfs:range :OriginVideoGame .
-
-:hasOriginWork a owl:ObjectProperty ;
-    rdfs:label "has origin work",
-        "hasOriginWork",
-        "has origin work"@en ;
-    :frbrLevel "Work" ;
-    :semanticLevel "Iconological" ;
-    rdfs:comment """Links a MemeConcept to the cultural Work it\r
-derives from or references."""@en ;
-    rdfs:domain :MemeConcept ;
-    rdfs:range :OriginWork .
-
-:hasReference a owl:ObjectProperty ;
-    rdfs:label "hasReference" ;
-    rdfs:domain :MemeConcept ;
-    rdfs:range :CulturalReference .
-
-:hasRegion a owl:ObjectProperty ;
-    rdfs:label "has region",
-        "hasRegion",
-        "has region"@en ;
-    :documentaryLevel "true" ;
-    rdfs:comment """The geographic region of a meme's origin or\r
-primary circulation."""@en ;
-    rdfs:domain :MemeConcept ;
-    rdfs:range :GeographicRegion .
-
-:hasSubjectMatter a owl:ObjectProperty ;
-    rdfs:label "hasSubjectMatter" ;
-    rdfs:domain :VariantInstance ;
-    rdfs:range :SubjectMatter .
-
-:hasTextPresence a owl:ObjectProperty ;
-    rdfs:label "hasTextPresence" ;
-    rdfs:domain :VariantInstance ;
-    rdfs:range :TextPresence .
-
-:hasTimePeriod a owl:ObjectProperty ;
-    rdfs:label "has time period",
-        "hasTimePeriod",
-        "has time period"@en ;
-    :documentaryLevel "true" ;
-    rdfs:domain :MemeConcept ;
-    rdfs:range :TimePeriod .
-
-:hasTransformationDimension a owl:ObjectProperty ;
-    rdfs:label "hasTransformationDimension" ;
-    rdfs:domain :VariantInstance ;
-    rdfs:range :TransformationDimension .
-
-:hasTransformationExtent a owl:ObjectProperty ;
-    rdfs:label "hasTransformationExtent" ;
-    rdfs:domain :VariantInstance ;
-    rdfs:range :TransformationExtent .
 
 :haudi a :MemeConcept,
         owl:NamedIndividual ;
@@ -34960,16 +34794,6 @@ primary circulation."""@en ;
     :hasOriginWork :YouTube ;
     :hasRegion :Unknown ;
     :hasTimePeriod :Period2021toPresent .
-
-:isConceptualizedAs a owl:ObjectProperty ;
-    rdfs:label "isConceptualizedAs" ;
-    rdfs:domain :MemeIdea ;
-    rdfs:range :MemeConcept .
-
-:isVariantOf a owl:ObjectProperty ;
-    rdfs:label "isVariantOf" ;
-    rdfs:domain :VariantInstance ;
-    rdfs:range :MemeConcept .
 
 :isabelles-song a :MemeConcept,
         owl:NamedIndividual ;
@@ -70580,6 +70404,7 @@ Iconological."""@en .
 
 :variant_119467 a :VariantInstance,
         owl:NamedIndividual ;
+    rdfs:label "variant_119467" ;
     :imageFilename "10_hoya.jpg" ;
     :imageURL "https://i.kym-cdn.com/photos/images/original/000/119/467/hoya.jpg" ;
     :isVariantOf :_48293 ;
@@ -70589,6 +70414,7 @@ Iconological."""@en .
 
 :variant_125932 a :VariantInstance,
         owl:NamedIndividual ;
+    rdfs:label "variant_125932" ;
     :imageFilename "09_D2A3w.png" ;
     :imageURL "https://i.kym-cdn.com/photos/images/original/000/125/932/D2A3w.png" ;
     :isVariantOf :_48293 ;
@@ -71368,6 +71194,7 @@ Iconological."""@en .
 
 :variant_162071 a :VariantInstance,
         owl:NamedIndividual ;
+    rdfs:label "variant_162071" ;
     :imageFilename "08_24f.png" ;
     :imageURL "https://i.kym-cdn.com/photos/images/original/000/162/071/24f.png" ;
     :isVariantOf :_48293 ;
@@ -71477,6 +71304,7 @@ Iconological."""@en .
 
 :variant_185154 a :VariantInstance,
         owl:NamedIndividual ;
+    rdfs:label "variant_185154" ;
     :imageFilename "07_szxNM.jpg" ;
     :imageURL "https://i.kym-cdn.com/photos/images/original/000/185/154/szxNM.jpg" ;
     :isVariantOf :_48293 ;
@@ -71736,6 +71564,7 @@ Iconological."""@en .
 
 :variant_206784 a :VariantInstance,
         owl:NamedIndividual ;
+    rdfs:label "variant_206784" ;
     :imageFilename "06_6de.jpg" ;
     :imageURL "https://i.kym-cdn.com/photos/images/original/000/206/784/6de.jpg" ;
     :isVariantOf :_48293 ;
@@ -73865,6 +73694,7 @@ Iconological."""@en .
 
 :variant_314055 a :VariantInstance,
         owl:NamedIndividual ;
+    rdfs:label "variant_314055" ;
     :imageFilename "10_0a8.jpg" ;
     :imageURL "https://i.kym-cdn.com/photos/images/original/000/314/055/0a8.jpg" ;
     :isVariantOf :technoviking ;
@@ -74354,6 +74184,7 @@ Iconological."""@en .
 
 :variant_373428 a :VariantInstance,
         owl:NamedIndividual ;
+    rdfs:label "variant_373428" ;
     :imageFilename "09_429.jpg" ;
     :imageURL "https://i.kym-cdn.com/photos/images/original/000/373/428/429.jpg" ;
     :isVariantOf :technoviking ;
@@ -74363,6 +74194,7 @@ Iconological."""@en .
 
 :variant_373440 a :VariantInstance,
         owl:NamedIndividual ;
+    rdfs:label "variant_373440" ;
     :imageFilename "08_509.png" ;
     :imageURL "https://i.kym-cdn.com/photos/images/original/000/373/440/509.png" ;
     :isVariantOf :technoviking ;
@@ -74372,6 +74204,7 @@ Iconological."""@en .
 
 :variant_373445 a :VariantInstance,
         owl:NamedIndividual ;
+    rdfs:label "variant_373445" ;
     :imageFilename "07_a15.png" ;
     :imageURL "https://i.kym-cdn.com/photos/images/original/000/373/445/a15.png" ;
     :isVariantOf :technoviking ;
@@ -74401,6 +74234,7 @@ Iconological."""@en .
 
 :variant_480903 a :VariantInstance,
         owl:NamedIndividual ;
+    rdfs:label "variant_480903" ;
     :imageFilename "05_c9d.png" ;
     :imageURL "https://i.kym-cdn.com/photos/images/original/000/480/903/c9d.png" ;
     :isVariantOf :technoviking ;
@@ -74420,6 +74254,7 @@ Iconological."""@en .
 
 :variant_574334 a :VariantInstance,
         owl:NamedIndividual ;
+    rdfs:label "variant_574334" ;
     :imageFilename "04_3de.png" ;
     :imageURL "https://i.kym-cdn.com/photos/images/original/000/574/334/3de.png" ;
     :isVariantOf :_48293 ;
@@ -74429,6 +74264,7 @@ Iconological."""@en .
 
 :variant_574344 a :VariantInstance,
         owl:NamedIndividual ;
+    rdfs:label "variant_574344" ;
     :imageFilename "03_ec1.png" ;
     :imageURL "https://i.kym-cdn.com/photos/images/original/000/574/344/ec1.png" ;
     :isVariantOf :_48293 ;
@@ -82918,6 +82754,9 @@ xsd:gYear a rdfs:Datatype .
         owl:NamedIndividual ;
     rdfs:label "El Salvador" .
 
+:Expression rdfs:label "Expression" ;
+    owl:equivalentClass :Manifestation .
+
 :Germany a :GeographicRegion,
         owl:NamedIndividual ;
     rdfs:label "Germany" .
@@ -82942,13 +82781,8 @@ xsd:gYear a rdfs:Datatype .
         owl:NamedIndividual ;
     rdfs:label "Mali" .
 
-:OriginBook a owl:Class ;
-    rdfs:label "OriginBook" ;
-    rdfs:subClassOf :OriginWork .
-
-:OriginPerson a owl:Class ;
-    rdfs:label "OriginPerson" ;
-    rdfs:subClassOf :OriginWork .
+:Manifestation rdfs:label "Manifestation" ;
+    owl:equivalentClass :Expression .
 
 :Pakistan a :GeographicRegion,
         owl:NamedIndividual ;
@@ -83493,6 +83327,12 @@ xsd:gYear a rdfs:Datatype .
 :competitive_gaming a :OriginWork,
         owl:NamedIndividual ;
     rdfs:label "Competitive Gaming" .
+
+:conceptualizes a owl:ObjectProperty ;
+    rdfs:label "conceptualizes" ;
+    rdfs:domain :MemeConcept ;
+    rdfs:range :MemeIdea ;
+    owl:inverseOf :isConceptualizedAs .
 
 :conservative_daily_post a :OriginWork,
         owl:NamedIndividual ;
@@ -84098,6 +83938,219 @@ xsd:gYear a rdfs:Datatype .
         owl:NamedIndividual ;
     rdfs:label "Harry Potter: Hogwarts Mystery" .
 
+:hasAnimationStatus a owl:ObjectProperty ;
+    rdfs:label "has animation status",
+        "hasAnimationStatus",
+        "has animation status"@en ;
+    :frbrLevel "Manifestation" ;
+    :semanticLevel "PreIconographical" ;
+    rdfs:domain :MemeConcept ;
+    rdfs:range :AnimationStatus ;
+    owl:inverseOf :isAnimationStatusOf .
+
+:hasCanonicalColorMode a owl:ObjectProperty ;
+    rdfs:label "has canonical color mode",
+        "hasCanonicalColorMode",
+        "has canonical color mode"@en ;
+    :frbrLevel "Manifestation" ;
+    :semanticLevel "PreIconographical" ;
+    rdfs:domain :MemeConcept ;
+    rdfs:range :CanonicalColorMode ;
+    owl:inverseOf :isCanonicalColorModeOf .
+
+:hasCanonicalImageType a owl:ObjectProperty ;
+    rdfs:label "has canonical image type",
+        "hasCanonicalImageType",
+        "has canonical image type"@en ;
+    :frbrLevel "Manifestation" ;
+    :semanticLevel "PreIconographical" ;
+    rdfs:comment """The visual medium of the canonical meme image,\r
+assigned by CLIP-based classification."""@en ;
+    rdfs:domain :MemeConcept ;
+    rdfs:range :CanonicalImageType ;
+    owl:inverseOf :isCanonicalImageTypeOf .
+
+:hasCanonicalSubjectMatter a owl:ObjectProperty ;
+    rdfs:label "has canonical subject matter",
+        "hasCanonicalSubjectMatter",
+        "has canonical subject matter"@en ;
+    :frbrLevel "Manifestation" ;
+    :semanticLevel "PreIconographical" ;
+    rdfs:domain :MemeConcept ;
+    rdfs:range :CanonicalSubjectMatter ;
+    owl:inverseOf :isCanonicalSubjectMatterOf .
+
+:hasCanonicalTextPresence a owl:ObjectProperty ;
+    rdfs:label "has canonical text presence",
+        "hasCanonicalTextPresence",
+        "has canonical text presence"@en ;
+    :frbrLevel "Manifestation" ;
+    :semanticLevel "PreIconographical" ;
+    rdfs:domain :MemeConcept ;
+    rdfs:range :CanonicalTextPresence ;
+    owl:inverseOf :isCanonicalTextPresenceOf .
+
+:hasColorMode a owl:ObjectProperty ;
+    rdfs:label "hasColorMode" ;
+    rdfs:domain :VariantInstance ;
+    rdfs:range :ColorMode ;
+    owl:inverseOf :isColorModeOf .
+
+:hasFileFormat a owl:ObjectProperty ;
+    rdfs:label "has file format",
+        "hasFileFormat",
+        "has file format"@en ;
+    :frbrLevel "Manifestation" ;
+    :semanticLevel "PreIconographical" ;
+    rdfs:domain :MemeConcept ;
+    rdfs:range :FileFormat ;
+    owl:inverseOf :isFileFormatOf .
+
+:hasFormat a owl:ObjectProperty ;
+    rdfs:label "has format",
+        "hasFormat",
+        "has format"@en ;
+    :frbrLevel "Expression" ;
+    :semanticLevel "Iconographical" ;
+    rdfs:comment """Links a MemeConcept to one or more MemeFormat\r
+values describing its rhetorical structure."""@en ;
+    rdfs:domain :MemeConcept ;
+    rdfs:range :MemeFormat ;
+    owl:inverseOf :isFormatOf .
+
+:hasImageType a owl:ObjectProperty ;
+    rdfs:label "hasImageType" ;
+    rdfs:domain :VariantInstance ;
+    rdfs:range :ImageType ;
+    owl:inverseOf :isImageTypeOf .
+
+:hasOriginBoard a owl:ObjectProperty ;
+    rdfs:label "hasOriginBoard",
+        "has origin board"@en ;
+    :documentaryLevel "true" ;
+    :frbrLevel "Expression" ;
+    rdfs:comment """Links a MemeConcept to the specific imageboard\r
+or forum thread where it originated."""@en ;
+    rdfs:domain :MemeConcept ;
+    rdfs:range :OriginBoard ;
+    owl:inverseOf :isOriginBoardOf .
+
+:hasOriginBook a owl:ObjectProperty ;
+    rdfs:label "hasOriginBook" ;
+    rdfs:domain :MemeConcept ;
+    rdfs:range :OriginBook ;
+    owl:inverseOf :isOriginBookOf .
+
+:hasOriginComic a owl:ObjectProperty ;
+    rdfs:label "hasOriginComic" ;
+    rdfs:domain :MemeConcept ;
+    rdfs:range :OriginComic ;
+    owl:inverseOf :isOriginComicOf .
+
+:hasOriginFilm a owl:ObjectProperty ;
+    rdfs:label "hasOriginFilm" ;
+    rdfs:domain :MemeConcept ;
+    rdfs:range :OriginFilm ;
+    owl:inverseOf :isOriginFilmOf .
+
+:hasOriginMusic a owl:ObjectProperty ;
+    rdfs:label "hasOriginMusic" ;
+    rdfs:domain :MemeConcept ;
+    rdfs:range :OriginMusic ;
+    owl:inverseOf :isOriginMusicOf .
+
+:hasOriginPerson a owl:ObjectProperty ;
+    rdfs:label "hasOriginPerson" ;
+    rdfs:domain :MemeConcept ;
+    rdfs:range :OriginPerson ;
+    owl:inverseOf :isOriginPersonOf .
+
+:hasOriginPlatform a owl:ObjectProperty ;
+    rdfs:label "has origin platform" ;
+    rdfs:domain :MemeConcept ;
+    rdfs:range :OriginPlatform ;
+    owl:inverseOf :isOriginPlatformOf .
+
+:hasOriginTVShow a owl:ObjectProperty ;
+    rdfs:label "hasOriginTVShow" ;
+    rdfs:domain :MemeConcept ;
+    rdfs:range :OriginTVShow ;
+    owl:inverseOf :isOriginTVShowOf .
+
+:hasOriginVideoGame a owl:ObjectProperty ;
+    rdfs:label "hasOriginVideoGame" ;
+    rdfs:domain :MemeConcept ;
+    rdfs:range :OriginVideoGame ;
+    owl:inverseOf :isOriginVideoGameOf .
+
+:hasOriginWork a owl:ObjectProperty ;
+    rdfs:label "has origin work",
+        "hasOriginWork",
+        "has origin work"@en ;
+    :frbrLevel "Work" ;
+    :semanticLevel "Iconological" ;
+    rdfs:comment """Links a MemeConcept to the cultural Work it\r
+derives from or references."""@en ;
+    rdfs:domain :MemeConcept ;
+    rdfs:range :OriginWork ;
+    owl:inverseOf :isOriginWorkOf .
+
+:hasReference a owl:ObjectProperty ;
+    rdfs:label "hasReference" ;
+    rdfs:domain :MemeConcept ;
+    rdfs:range :CulturalReference ;
+    owl:inverseOf :isReferencedIn .
+
+:hasRegion a owl:ObjectProperty ;
+    rdfs:label "has region",
+        "hasRegion",
+        "has region"@en ;
+    :documentaryLevel "true" ;
+    rdfs:comment """The geographic region of a meme's origin or\r
+primary circulation."""@en ;
+    rdfs:domain :MemeConcept ;
+    rdfs:range :GeographicRegion ;
+    owl:inverseOf :isRegionOf .
+
+:hasSubjectMatter a owl:ObjectProperty ;
+    rdfs:label "hasSubjectMatter" ;
+    rdfs:domain :VariantInstance ;
+    rdfs:range :SubjectMatter ;
+    owl:inverseOf :isSubjectMatterOf .
+
+:hasTextPresence a owl:ObjectProperty ;
+    rdfs:label "hasTextPresence" ;
+    rdfs:domain :VariantInstance ;
+    rdfs:range :TextPresence ;
+    owl:inverseOf :isTextPresenceOf .
+
+:hasTimePeriod a owl:ObjectProperty ;
+    rdfs:label "has time period",
+        "hasTimePeriod",
+        "has time period"@en ;
+    :documentaryLevel "true" ;
+    rdfs:domain :MemeConcept ;
+    rdfs:range :TimePeriod ;
+    owl:inverseOf :isTimePeriodOf .
+
+:hasTransformationDimension a owl:ObjectProperty ;
+    rdfs:label "hasTransformationDimension" ;
+    rdfs:domain :VariantInstance ;
+    rdfs:range :TransformationDimension ;
+    owl:inverseOf :isTransformationDimensionOf .
+
+:hasTransformationExtent a owl:ObjectProperty ;
+    rdfs:label "hasTransformationExtent" ;
+    rdfs:domain :VariantInstance ;
+    rdfs:range :TransformationExtent ;
+    owl:inverseOf :isTransformationExtentOf .
+
+:hasVariant a owl:ObjectProperty ;
+    rdfs:label "has Variant" ;
+    rdfs:domain :MemeConcept ;
+    rdfs:range :VariantInstance ;
+    owl:inverseOf :isVariantOf .
+
 :hasbro a :OriginWork,
         owl:NamedIndividual ;
     rdfs:label "Hasbro" .
@@ -84261,6 +84314,174 @@ xsd:gYear a rdfs:Datatype .
 :iron_giant a :OriginWork,
         owl:NamedIndividual ;
     rdfs:label "Iron Giant" .
+
+:isAnimationStatusOf a owl:ObjectProperty ;
+    rdfs:label "is Animation Status Of" ;
+    rdfs:domain :AnimationStatus ;
+    rdfs:range :MemeConcept ;
+    owl:inverseOf :hasAnimationStatus .
+
+:isCanonicalColorModeOf a owl:ObjectProperty ;
+    rdfs:label "is Canonical Color Mode Of" ;
+    rdfs:domain :CanonicalColorMode ;
+    rdfs:range :MemeConcept ;
+    owl:inverseOf :hasCanonicalColorMode .
+
+:isCanonicalImageTypeOf a owl:ObjectProperty ;
+    rdfs:label "is Canonical Image Type Of" ;
+    rdfs:domain :CanonicalImageType ;
+    rdfs:range :MemeConcept ;
+    owl:inverseOf :hasCanonicalImageType .
+
+:isCanonicalSubjectMatterOf a owl:ObjectProperty ;
+    rdfs:label "is Canonical Subject Matter Of" ;
+    rdfs:domain :CanonicalSubjectMatter ;
+    rdfs:range :MemeConcept ;
+    owl:inverseOf :hasCanonicalSubjectMatter .
+
+:isCanonicalTextPresenceOf a owl:ObjectProperty ;
+    rdfs:label "is Canonical Text Presence Of" ;
+    rdfs:domain :CanonicalTextPresence ;
+    rdfs:range :MemeConcept ;
+    owl:inverseOf :hasCanonicalTextPresence .
+
+:isColorModeOf a owl:ObjectProperty ;
+    rdfs:label "is Color Mode Of" ;
+    rdfs:domain :ColorMode ;
+    rdfs:range :VariantInstance ;
+    owl:inverseOf :hasColorMode .
+
+:isConceptualizedAs a owl:ObjectProperty ;
+    rdfs:label "isConceptualizedAs" ;
+    rdfs:domain :MemeIdea ;
+    rdfs:range :MemeConcept ;
+    owl:inverseOf :conceptualizes .
+
+:isFileFormatOf a owl:ObjectProperty ;
+    rdfs:label "is File Format Of" ;
+    rdfs:domain :FileFormat ;
+    rdfs:range :MemeConcept ;
+    owl:inverseOf :hasFileFormat .
+
+:isFormatOf a owl:ObjectProperty ;
+    rdfs:label "is Format Of" ;
+    rdfs:domain :MemeFormat ;
+    rdfs:range :MemeConcept ;
+    owl:inverseOf :hasFormat .
+
+:isImageTypeOf a owl:ObjectProperty ;
+    rdfs:label "is Image Type Of" ;
+    rdfs:domain :ImageType ;
+    rdfs:range :VariantInstance ;
+    owl:inverseOf :hasImageType .
+
+:isOriginBoardOf a owl:ObjectProperty ;
+    rdfs:label "is Origin Board Of" ;
+    rdfs:domain :OriginBoard ;
+    rdfs:range :MemeConcept ;
+    owl:inverseOf :hasOriginBoard .
+
+:isOriginBookOf a owl:ObjectProperty ;
+    rdfs:label "is Origin Book Of" ;
+    rdfs:domain :OriginBook ;
+    rdfs:range :MemeConcept ;
+    owl:inverseOf :hasOriginBook .
+
+:isOriginComicOf a owl:ObjectProperty ;
+    rdfs:label "is Origin Comic Of" ;
+    rdfs:domain :OriginComic ;
+    rdfs:range :MemeConcept ;
+    owl:inverseOf :hasOriginComic .
+
+:isOriginFilmOf a owl:ObjectProperty ;
+    rdfs:label "is Origin Film Of" ;
+    rdfs:domain :OriginFilm ;
+    rdfs:range :MemeConcept ;
+    owl:inverseOf :hasOriginFilm .
+
+:isOriginMusicOf a owl:ObjectProperty ;
+    rdfs:label "is Origin Music Of" ;
+    rdfs:domain :OriginMusic ;
+    rdfs:range :MemeConcept ;
+    owl:inverseOf :hasOriginMusic .
+
+:isOriginPersonOf a owl:ObjectProperty ;
+    rdfs:label "is Origin Person Of" ;
+    rdfs:domain :OriginPerson ;
+    rdfs:range :MemeConcept ;
+    owl:inverseOf :hasOriginPerson .
+
+:isOriginPlatformOf a owl:ObjectProperty ;
+    rdfs:label "is Origin Platform Of" ;
+    rdfs:domain :OriginPlatform ;
+    rdfs:range :MemeConcept ;
+    owl:inverseOf :hasOriginPlatform .
+
+:isOriginTVShowOf a owl:ObjectProperty ;
+    rdfs:label "is Origin TV Show Of" ;
+    rdfs:domain :OriginTVShow ;
+    rdfs:range :MemeConcept ;
+    owl:inverseOf :hasOriginTVShow .
+
+:isOriginVideoGameOf a owl:ObjectProperty ;
+    rdfs:label "is Origin Video Game Of" ;
+    rdfs:domain :OriginVideoGame ;
+    rdfs:range :MemeConcept ;
+    owl:inverseOf :hasOriginVideoGame .
+
+:isOriginWorkOf a owl:ObjectProperty ;
+    rdfs:label "is Origin Work Of" ;
+    rdfs:domain :OriginWork ;
+    rdfs:range :MemeConcept ;
+    owl:inverseOf :hasOriginWork .
+
+:isReferencedIn a owl:ObjectProperty ;
+    rdfs:label "is Referenced In" ;
+    rdfs:domain :CulturalReference ;
+    rdfs:range :MemeConcept ;
+    owl:inverseOf :hasReference .
+
+:isRegionOf a owl:ObjectProperty ;
+    rdfs:label "is Region Of" ;
+    rdfs:domain :GeographicRegion ;
+    rdfs:range :MemeConcept ;
+    owl:inverseOf :hasRegion .
+
+:isSubjectMatterOf a owl:ObjectProperty ;
+    rdfs:label "is Subject Matter Of" ;
+    rdfs:domain :SubjectMatter ;
+    rdfs:range :VariantInstance ;
+    owl:inverseOf :hasSubjectMatter .
+
+:isTextPresenceOf a owl:ObjectProperty ;
+    rdfs:label "is Text Presence Of" ;
+    rdfs:domain :TextPresence ;
+    rdfs:range :VariantInstance ;
+    owl:inverseOf :hasTextPresence .
+
+:isTimePeriodOf a owl:ObjectProperty ;
+    rdfs:label "is Time Period Of" ;
+    rdfs:domain :TimePeriod ;
+    rdfs:range :MemeConcept ;
+    owl:inverseOf :hasTimePeriod .
+
+:isTransformationDimensionOf a owl:ObjectProperty ;
+    rdfs:label "is Transformation Dimension Of" ;
+    rdfs:domain :TransformationDimension ;
+    rdfs:range :VariantInstance ;
+    owl:inverseOf :hasTransformationDimension .
+
+:isTransformationExtentOf a owl:ObjectProperty ;
+    rdfs:label "is Transformation Extent Of" ;
+    rdfs:domain :TransformationExtent ;
+    rdfs:range :VariantInstance ;
+    owl:inverseOf :hasTransformationExtent .
+
+:isVariantOf a owl:ObjectProperty ;
+    rdfs:label "isVariantOf" ;
+    rdfs:domain :VariantInstance ;
+    rdfs:range :MemeConcept ;
+    owl:inverseOf :hasVariant .
 
 :isorrowproduction a :OriginWork,
         owl:NamedIndividual ;
@@ -86217,26 +86438,39 @@ xsd:gYear a rdfs:Datatype .
         owl:NamedIndividual ;
     rdfs:label "Argentina" .
 
-:KnowYourMeme a :OriginWork,
-        owl:Class,
-        owl:NamedIndividual ;
-    rdfs:label "KnowYourMeme" ;
-    rdfs:subClassOf :OriginPlatform .
-
-:MemeIdea a owl:Class ;
-    rdfs:label "Meme Idea",
-        "Meme Idea"@en ;
-    :frbrLevel "Work" ;
-    rdfs:comment "The abstract cultural concept underlying a named meme template. Work-level class. Populated manually for D0 subset via conceptDescription data property. Has no visual properties — only the pure abstract idea.",
-        """The abstract Work-level idea underlying a memo:\r
-its core narrative, emotional register, rhetorical function or cultural role,\r
-independent of any specific image or format. 50 enriched individuals from the\r
-D0 sample, with descriptions and cultural reference annotations."""@en ;
+:ColorMode a owl:Class ;
+    rdfs:label "ColorMode" ;
+    :frbrLevel "Manifestation" ;
+    :semanticLevel "PreIconographical" ;
     rdfs:subClassOf owl:Thing .
+
+:ImageType a owl:Class ;
+    rdfs:label "Image Type",
+        "ImageType",
+        "Image Type"@en ;
+    :frbrLevel "Manifestation" ;
+    :semanticLevel "PreIconographical" ;
+    rdfs:comment "The visual medium of a specific variant image. Manifestation-level property on VariantInstance.",
+        """The visual medium type of an individual variant\r
+image. Uses the same controlled vocabulary as CanonicalImageType but applied at\r
+the Item (VariantInstance) level."""@en ;
+    rdfs:subClassOf owl:Thing .
+
+:KnowYourMeme a :OriginWork,
+        owl:NamedIndividual ;
+    rdfs:label "KnowYourMeme" .
 
 :Netherlands a :GeographicRegion,
         owl:NamedIndividual ;
     rdfs:label "Netherlands" .
+
+:OriginBook a owl:Class ;
+    rdfs:label "OriginBook" ;
+    rdfs:subClassOf :OriginWork .
+
+:OriginPerson a owl:Class ;
+    rdfs:label "OriginPerson" ;
+    rdfs:subClassOf :OriginWork .
 
 :Singapore a :GeographicRegion,
         owl:NamedIndividual ;
@@ -86250,9 +86484,21 @@ D0 sample, with descriptions and cultural reference annotations."""@en ;
         owl:NamedIndividual ;
     rdfs:label "Spain" .
 
+:SubjectMatter a owl:Class ;
+    rdfs:label "SubjectMatter" ;
+    :frbrLevel "Manifestation" ;
+    :semanticLevel "PreIconographical" ;
+    rdfs:subClassOf owl:Thing .
+
 :Sweden a :GeographicRegion,
         owl:NamedIndividual ;
     rdfs:label "Sweden" .
+
+:TextPresence a owl:Class ;
+    rdfs:label "TextPresence" ;
+    :frbrLevel "Manifestation" ;
+    :semanticLevel "PreIconographical" ;
+    rdfs:subClassOf owl:Thing .
 
 :Thailand a :GeographicRegion,
         owl:NamedIndividual ;
@@ -86557,21 +86803,20 @@ D0 sample, with descriptions and cultural reference annotations."""@en ;
         owl:NamedIndividual ;
     rdfs:label "YTMND" .
 
-:ColorMode a owl:Class ;
-    rdfs:label "ColorMode" ;
-    :frbrLevel "Manifestation" ;
-    :semanticLevel "PreIconographical" ;
+:MemeIdea a owl:Class ;
+    rdfs:label "Meme Idea",
+        "Meme Idea"@en ;
+    :frbrLevel "Work" ;
+    rdfs:comment "The abstract cultural concept underlying a named meme template. Work-level class. Populated manually for D0 subset via conceptDescription data property. Has no visual properties — only the pure abstract idea.",
+        """The abstract Work-level idea underlying a memo:\r
+its core narrative, emotional register, rhetorical function or cultural role,\r
+independent of any specific image or format. 50 enriched individuals from the\r
+D0 sample, with descriptions and cultural reference annotations."""@en ;
     rdfs:subClassOf owl:Thing .
 
 :Philippines a :GeographicRegion,
         owl:NamedIndividual ;
     rdfs:label "Philippines" .
-
-:TextPresence a owl:Class ;
-    rdfs:label "TextPresence" ;
-    :frbrLevel "Manifestation" ;
-    :semanticLevel "PreIconographical" ;
-    rdfs:subClassOf owl:Thing .
 
 :avengers_infinity_war_film a :OriginFilm,
         owl:NamedIndividual ;
@@ -86685,6 +86930,16 @@ D0 sample, with descriptions and cultural reference annotations."""@en ;
         owl:NamedIndividual ;
     rdfs:label "WWE" .
 
+:AnimationStatus a owl:Class ;
+    rdfs:label "Animation Status",
+        "AnimationStatus",
+        "Animation Status"@en ;
+    :documentaryLevel "true" ;
+    :frbrLevel "Item" ;
+    rdfs:comment """Whether a meme image is static or animated\r
+(GIF/video)."""@en ;
+    rdfs:subClassOf owl:Thing .
+
 :Australia a :GeographicRegion,
         owl:NamedIndividual ;
     rdfs:label "Australia" .
@@ -86693,9 +86948,16 @@ D0 sample, with descriptions and cultural reference annotations."""@en ;
         owl:NamedIndividual ;
     rdfs:label "Israel" .
 
-:OriginMusic a owl:Class ;
-    rdfs:label "OriginMusic" ;
-    rdfs:subClassOf :OriginWork .
+:OriginPlatform a owl:Class ;
+    rdfs:label "Origin Platform",
+        "Origin Platform"@en ;
+    :documentaryLevel "true" ;
+    :frbrLevel "Expression" ;
+    rdfs:comment "The social platform where the meme template first emerged. Documentary fact scraped from KnowYourMeme origin field.",
+        """The online platform where a meme first appeared\r
+or gained traction (e.g. Reddit, Twitter/X, 4chan, TikTok). Classified at the\r
+Expression level with Documentary provenance."""@en ;
+    rdfs:subClassOf owl:Thing .
 
 :douyin a :OriginWork,
         owl:NamedIndividual ;
@@ -86721,49 +86983,21 @@ D0 sample, with descriptions and cultural reference annotations."""@en ;
         owl:NamedIndividual ;
     rdfs:label "Steam" .
 
-:AnimationStatus a owl:Class ;
-    rdfs:label "Animation Status",
-        "AnimationStatus",
-        "Animation Status"@en ;
-    :documentaryLevel "true" ;
-    :frbrLevel "Item" ;
-    rdfs:comment """Whether a meme image is static or animated\r
-(GIF/video)."""@en ;
-    rdfs:subClassOf owl:Thing .
-
 :Canada a :GeographicRegion,
         owl:NamedIndividual ;
     rdfs:label "Canada" .
-
-:CanonicalColorMode a owl:Class ;
-    rdfs:label "Canonical Color Mode",
-        "CanonicalColorMode",
-        "Canonical Color Mode"@en ;
-    :frbrLevel "Expression" ;
-    :semanticLevel "PreIconographical" ;
-    rdfs:comment """Whether the canonical meme image is in colour or\r
-monochrome."""@en ;
-    rdfs:subClassOf owl:Thing .
-
-:CanonicalTextPresence a owl:Class ;
-    rdfs:label "Canonical Text Presence",
-        "CanonicalTextPresence",
-        "Canonical Text Presence"@en ;
-    :frbrLevel "Expression" ;
-    :semanticLevel "PreIconographical" ;
-    rdfs:comment """Whether the canonical meme image contains\r
-overlaid text."""@en ;
-    rdfs:subClassOf owl:Thing .
 
 :Italy a :GeographicRegion,
         owl:NamedIndividual ;
     rdfs:label "Italy" .
 
+:OriginMusic a owl:Class ;
+    rdfs:label "OriginMusic" ;
+    rdfs:subClassOf :OriginWork .
+
 :Poland a :GeographicRegion,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Poland" ;
-    rdfs:subClassOf :GeographicRegion .
+    rdfs:label "Poland" .
 
 :TransformationExtent a owl:Class ;
     rdfs:label "Transformation Extent",
@@ -86793,33 +87027,33 @@ canonical template: Minimal (close copy), Moderate, Substantial, or Parody\r
         owl:NamedIndividual ;
     rdfs:label "The Simpsons (Television Series)" .
 
-:ImageType a owl:Class ;
-    rdfs:label "Image Type",
-        "ImageType",
-        "Image Type"@en ;
-    :frbrLevel "Manifestation" ;
+:CanonicalColorMode a owl:Class ;
+    rdfs:label "Canonical Color Mode",
+        "CanonicalColorMode",
+        "Canonical Color Mode"@en ;
+    :frbrLevel "Expression" ;
     :semanticLevel "PreIconographical" ;
-    rdfs:comment "The visual medium of a specific variant image. Manifestation-level property on VariantInstance.",
-        """The visual medium type of an individual variant\r
-image. Uses the same controlled vocabulary as CanonicalImageType but applied at\r
-the Item (VariantInstance) level."""@en ;
+    rdfs:comment """Whether the canonical meme image is in colour or\r
+monochrome."""@en ;
+    rdfs:subClassOf owl:Thing .
+
+:CanonicalTextPresence a owl:Class ;
+    rdfs:label "Canonical Text Presence",
+        "CanonicalTextPresence",
+        "Canonical Text Presence"@en ;
+    :frbrLevel "Expression" ;
+    :semanticLevel "PreIconographical" ;
+    rdfs:comment """Whether the canonical meme image contains\r
+overlaid text."""@en ;
     rdfs:subClassOf owl:Thing .
 
 :Indonesia a :GeographicRegion,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Indonesia" ;
-    rdfs:subClassOf :GeographicRegion .
-
-:OriginBoard a owl:Class ;
-    rdfs:label "OriginBoard" ;
-    rdfs:subClassOf :OriginWork .
+    rdfs:label "Indonesia" .
 
 :Snapchat a :OriginWork,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Snapchat" ;
-    rdfs:subClassOf :OriginPlatform .
+    rdfs:label "Snapchat" .
 
 :game_of_thrones a :OriginWork,
         owl:NamedIndividual ;
@@ -86833,29 +87067,17 @@ the Item (VariantInstance) level."""@en ;
         owl:NamedIndividual ;
     rdfs:label "Pinterest" .
 
-:CulturalReference a owl:Class ;
-    rdfs:label "Cultural Reference",
-        "CulturalReference",
-        "Cultural Reference"@en ;
-    :frbrLevel "Expression Manifestation",
-        "Expression, Manifestation" ;
-    :semanticLevel "Iconological" ;
-    rdfs:comment "The cultural phenomena encoded by a meme template. At Expression level: template-wide references. At Manifestation level: variant-specific references.",
-        """A cultural entity referenced by a meme — a historical\r
-event, media property, political event, public figure, social phenomenon, or web\r
-culture artefact. Subclasses: HistoricalEvent, MediaProperty, PoliticalEvent,\r
-PublicFigure, SocialPhenomenon, WebCulture."""@en ;
-    rdfs:subClassOf owl:Thing .
-
 :FunnyJunk a :OriginWork,
         owl:NamedIndividual ;
     rdfs:label "FunnyJunk" .
 
 :Mexico a :GeographicRegion,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Mexico" ;
-    rdfs:subClassOf :GeographicRegion .
+    rdfs:label "Mexico" .
+
+:OriginBoard a owl:Class ;
+    rdfs:label "OriginBoard" ;
+    rdfs:subClassOf :OriginWork .
 
 :avengers_infinity_war a :OriginWork,
         owl:NamedIndividual ;
@@ -86880,22 +87102,46 @@ PublicFigure, SocialPhenomenon, WebCulture."""@en ;
         owl:NamedIndividual ;
     rdfs:label "Elden Ring" .
 
+:CulturalReference a owl:Class ;
+    rdfs:label "Cultural Reference",
+        "CulturalReference",
+        "Cultural Reference"@en ;
+    :frbrLevel "Expression Manifestation",
+        "Expression, Manifestation" ;
+    :semanticLevel "Iconological" ;
+    rdfs:comment "The cultural phenomena encoded by a meme template. At Expression level: template-wide references. At Manifestation level: variant-specific references.",
+        """A cultural entity referenced by a meme — a historical\r
+event, media property, political event, public figure, social phenomenon, or web\r
+culture artefact. Subclasses: HistoricalEvent, MediaProperty, PoliticalEvent,\r
+PublicFigure, SocialPhenomenon, WebCulture."""@en ;
+    rdfs:subClassOf owl:Thing .
+
+:FileFormat a owl:Class ;
+    rdfs:label "File Format",
+        "FileFormat",
+        "File Format"@en ;
+    :documentaryLevel "true" ;
+    :frbrLevel "Item" ;
+    rdfs:comment """The digital file format of the meme image (JPEG,\r
+PNG, GIF, WebP, BMP)."""@en ;
+    rdfs:subClassOf owl:Thing .
+
 :Russia a :GeographicRegion,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Russia" ;
-    rdfs:subClassOf :GeographicRegion .
+    rdfs:label "Russia" .
 
 :SouthKorea a :GeographicRegion,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "SouthKorea" ;
-    rdfs:subClassOf :GeographicRegion .
+    rdfs:label "SouthKorea" .
 
-:SubjectMatter a owl:Class ;
-    rdfs:label "SubjectMatter" ;
-    :frbrLevel "Manifestation" ;
-    :semanticLevel "PreIconographical" ;
+:TimePeriod a owl:Class ;
+    rdfs:label "Time Period",
+        "TimePeriod",
+        "Time Period"@en ;
+    :documentaryLevel "true" ;
+    :frbrLevel "Expression" ;
+    rdfs:comment """The era in which a meme originated or peaked\r
+(Pre2010, Period2010to2015, Period2016to2020, Period2021toPresent)."""@en ;
     rdfs:subClassOf owl:Thing .
 
 :_9gag a :OriginWork,
@@ -86905,18 +87151,6 @@ PublicFigure, SocialPhenomenon, WebCulture."""@en ;
 :jojo_s_bizarre_adventure a :OriginWork,
         owl:NamedIndividual ;
     rdfs:label "JoJo's Bizarre Adventure" .
-
-:TransformationDimension a owl:Class ;
-    rdfs:label "Transformation Dimension",
-        "TransformationDimension",
-        "Transformation Dimension"@en ;
-    :documentaryLevel "true" ;
-    :frbrLevel "Manifestation" ;
-    rdfs:comment "The specific aspect of the canonical template that changes in a variant. Multi-valued.",
-        """The axis along which a variant transforms the\r
-canonical template: CaptionChange, VisualSubstrate, MediumShift, StyleShift,\r
-CompositionShift, CrossoverMerge, LanguageShift, Localization."""@en ;
-    rdfs:subClassOf owl:Thing .
 
 :oh-shit-a-rat a :MemeConcept,
         owl:NamedIndividual ;
@@ -86933,6 +87167,18 @@ CompositionShift, CrossoverMerge, LanguageShift, Localization."""@en ;
     :hasOriginWork :Instagram ;
     :hasRegion :Unknown ;
     :hasTimePeriod :Period2016to2020 .
+
+:TransformationDimension a owl:Class ;
+    rdfs:label "Transformation Dimension",
+        "TransformationDimension",
+        "Transformation Dimension"@en ;
+    :documentaryLevel "true" ;
+    :frbrLevel "Manifestation" ;
+    rdfs:comment "The specific aspect of the canonical template that changes in a variant. Multi-valued.",
+        """The axis along which a variant transforms the\r
+canonical template: CaptionChange, VisualSubstrate, MediumShift, StyleShift,\r
+CompositionShift, CrossoverMerge, LanguageShift, Localization."""@en ;
+    rdfs:subClassOf owl:Thing .
 
 :_30-year-old-boomer a :MemeConcept,
         owl:NamedIndividual ;
@@ -87516,6 +87762,14 @@ CompositionShift, CrossoverMerge, LanguageShift, Localization."""@en ;
     :hasRegion :Unknown ;
     :hasTimePeriod :Period2016to2020 .
 
+:France a :GeographicRegion,
+        owl:NamedIndividual ;
+    rdfs:label "France" .
+
+:soundcloud a :OriginWork,
+        owl:NamedIndividual ;
+    rdfs:label "SoundCloud" .
+
 :CanonicalImageType a owl:Class ;
     rdfs:label "Canonical Image Type",
         "CanonicalImageType",
@@ -87528,61 +87782,25 @@ CompositionShift, CrossoverMerge, LanguageShift, Localization."""@en ;
 classification at the Manifestation level, assigned via CLIP-based scoring."""@en ;
     rdfs:subClassOf owl:Thing .
 
-:FileFormat a owl:Class ;
-    rdfs:label "File Format",
-        "FileFormat",
-        "File Format"@en ;
-    :documentaryLevel "true" ;
-    :frbrLevel "Item" ;
-    rdfs:comment """The digital file format of the meme image (JPEG,\r
-PNG, GIF, WebP, BMP)."""@en ;
-    rdfs:subClassOf owl:Thing .
-
-:France a :GeographicRegion,
-        owl:Class,
-        owl:NamedIndividual ;
-    rdfs:label "France" ;
-    rdfs:subClassOf :GeographicRegion .
-
-:TimePeriod a owl:Class ;
-    rdfs:label "Time Period",
-        "TimePeriod",
-        "Time Period"@en ;
-    :documentaryLevel "true" ;
-    :frbrLevel "Expression" ;
-    rdfs:comment """The era in which a meme originated or peaked\r
-(Pre2010, Period2010to2015, Period2016to2020, Period2021toPresent)."""@en ;
-    rdfs:subClassOf owl:Thing .
-
-:soundcloud a :OriginWork,
-        owl:NamedIndividual ;
-    rdfs:label "SoundCloud" .
-
 :India a :GeographicRegion,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "India" ;
-    rdfs:subClassOf :GeographicRegion .
-
-:OriginComic a owl:Class ;
-    rdfs:label "OriginComic" ;
-    rdfs:subClassOf :OriginWork .
+    rdfs:label "India" .
 
 :Brazil a :GeographicRegion,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Brazil" ;
-    rdfs:subClassOf :GeographicRegion .
+    rdfs:label "Brazil" .
 
 :Optical_Illusion a :MemeFormat,
         owl:NamedIndividual ;
     rdfs:label "Optical Illusion" .
 
+:OriginComic a owl:Class ;
+    rdfs:label "OriginComic" ;
+    rdfs:subClassOf :OriginWork .
+
 :Discord a :OriginWork,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Discord" ;
-    rdfs:subClassOf :OriginPlatform .
+    rdfs:label "Discord" .
 
 :OriginVideoGame a owl:Class ;
     rdfs:label "OriginVideoGame" ;
@@ -87604,27 +87822,12 @@ MultipleSubjects, etc.)."""@en ;
     rdfs:label "Shock Media" .
 
 :China a :GeographicRegion,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "China" ;
-    rdfs:subClassOf :GeographicRegion .
+    rdfs:label "China" .
 
 :DeviantArt a :OriginWork,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "DeviantArt" ;
-    rdfs:subClassOf :OriginPlatform .
-
-:OriginPlatform a owl:Class ;
-    rdfs:label "Origin Platform",
-        "Origin Platform"@en ;
-    :documentaryLevel "true" ;
-    :frbrLevel "Expression" ;
-    rdfs:comment "The social platform where the meme template first emerged. Documentary fact scraped from KnowYourMeme origin field.",
-        """The online platform where a meme first appeared\r
-or gained traction (e.g. Reddit, Twitter/X, 4chan, TikTok). Classified at the\r
-Expression level with Documentary provenance."""@en ;
-    rdfs:subClassOf owl:Thing .
+    rdfs:label "DeviantArt" .
 
 :spongebob_squarepants a :OriginWork,
         owl:NamedIndividual ;
@@ -87635,56 +87838,40 @@ Expression level with Documentary provenance."""@en ;
     rdfs:label "Creepypasta" .
 
 :Animated a :AnimationStatus,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Animated" ;
-    rdfs:subClassOf :AnimationStatus .
+    rdfs:label "Animated" .
 
 :GIF a :FileFormat,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "GIF" ;
-    rdfs:subClassOf :FileFormat .
+    rdfs:label "GIF" .
 
 :Imgur a :OriginWork,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Imgur" ;
-    rdfs:subClassOf :OriginPlatform .
+    rdfs:label "Imgur" .
 
 :Worldwide a :GeographicRegion,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Worldwide" ;
-    rdfs:subClassOf :GeographicRegion .
+    rdfs:label "Worldwide" .
 
 :Vine a :OriginWork,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Vine" ;
-    rdfs:subClassOf :OriginPlatform .
+    rdfs:label "Vine" .
 
 :Twitch a :OriginWork,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Twitch" ;
-    rdfs:subClassOf :OriginPlatform .
+    rdfs:label "Twitch" .
 
 :UnitedKingdom a :GeographicRegion,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "UnitedKingdom" ;
-    rdfs:subClassOf :GeographicRegion .
+    rdfs:label "UnitedKingdom" .
 
 :Axiom a :MemeFormat,
         owl:NamedIndividual ;
     rdfs:label "Axiom" .
 
 :Painting a :CanonicalImageType,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Painting" ;
-    rdfs:subClassOf :ImageType .
+    rdfs:label "Painting" .
 
 :Advertisement a :MemeFormat,
         owl:NamedIndividual ;
@@ -87695,10 +87882,8 @@ Expression level with Documentary provenance."""@en ;
     rdfs:label "Urban Dictionary" .
 
 :Japan a :GeographicRegion,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Japan" ;
-    rdfs:subClassOf :GeographicRegion .
+    rdfs:label "Japan" .
 
 :OriginTVShow a owl:Class ;
     rdfs:label "OriginTVShow" ;
@@ -87711,34 +87896,6 @@ Expression level with Documentary provenance."""@en ;
 :Hashtag a :MemeFormat,
         owl:NamedIndividual ;
     rdfs:label "Hashtag" .
-
-:AI-generated a :MemeFormat,
-        owl:NamedIndividual ;
-    rdfs:label "AI-generated" .
-
-:OriginFilm a owl:Class ;
-    rdfs:label "OriginFilm" ;
-    rdfs:subClassOf :OriginWork .
-
-:Emoticon a :MemeFormat,
-        owl:NamedIndividual ;
-    rdfs:label "Emoticon" .
-
-:Dance a :MemeFormat,
-        owl:NamedIndividual ;
-    rdfs:label "Dance" .
-
-:Hoax a :MemeFormat,
-        owl:Class,
-        owl:NamedIndividual ;
-    rdfs:label "Hoax" ;
-    rdfs:subClassOf :MemeFormat .
-
-:Fan_Labor a :MemeFormat,
-        owl:NamedIndividual ;
-    rdfs:label "Fan Labor" ;
-    rdfs:comment "Deprecated. Use FanLabor instead." ;
-    owl:deprecated true .
 
 :MemeFormat a owl:Class ;
     rdfs:label "Meme Format",
@@ -87762,11 +87919,35 @@ memes at the Expression level with Iconographical analysis."""@en ;
 origin."""@en ;
     rdfs:subClassOf owl:Thing .
 
-:iFunny a :OriginWork,
-        owl:Class,
+:AI-generated a :MemeFormat,
         owl:NamedIndividual ;
-    rdfs:label "iFunny" ;
-    rdfs:subClassOf :OriginPlatform .
+    rdfs:label "AI-generated" .
+
+:Emoticon a :MemeFormat,
+        owl:NamedIndividual ;
+    rdfs:label "Emoticon" .
+
+:OriginFilm a owl:Class ;
+    rdfs:label "OriginFilm" ;
+    rdfs:subClassOf :OriginWork .
+
+:Dance a :MemeFormat,
+        owl:NamedIndividual ;
+    rdfs:label "Dance" .
+
+:Hoax a :MemeFormat,
+        owl:NamedIndividual ;
+    rdfs:label "Hoax" .
+
+:Fan_Labor a :MemeFormat,
+        owl:NamedIndividual ;
+    rdfs:label "Fan Labor" ;
+    rdfs:comment "Deprecated. Use FanLabor instead." ;
+    owl:deprecated true .
+
+:iFunny a :OriginWork,
+        owl:NamedIndividual ;
+    rdfs:label "iFunny" .
 
 :Conspiracy_Theory a :MemeFormat,
         owl:NamedIndividual ;
@@ -87781,130 +87962,92 @@ origin."""@en ;
     owl:deprecated true .
 
 :ObjectOnly a :CanonicalSubjectMatter,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "ObjectOnly" ;
-    rdfs:subClassOf :SubjectMatter .
+    rdfs:label "ObjectOnly" .
 
 :Social_Game a :MemeFormat,
         owl:NamedIndividual ;
     rdfs:label "Social Game" .
 
 :Animal a :MemeFormat,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Animal" ;
-    rdfs:subClassOf :MemeFormat .
+    rdfs:label "Animal" .
 
 :SoundEffect a :MemeFormat,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "SoundEffect" ;
-    rdfs:subClassOf :MemeFormat .
+    rdfs:label "SoundEffect" .
 
 :_4chan a :OriginWork,
         owl:NamedIndividual ;
     rdfs:label "4chan" .
 
 :Cliche a :MemeFormat,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Cliche" ;
-    rdfs:subClassOf :MemeFormat .
+    rdfs:label "Cliche" .
 
 :ViralDebate a :MemeFormat,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "ViralDebate" ;
-    rdfs:subClassOf :MemeFormat .
+    rdfs:label "ViralDebate" .
 
 :FanArt a :MemeFormat,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "FanArt" ;
-    rdfs:subClassOf :MemeFormat .
+    rdfs:label "FanArt" .
 
 :Tumblr a :OriginWork,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Tumblr" ;
-    rdfs:subClassOf :OriginPlatform .
+    rdfs:label "Tumblr" .
 
 :Facebook a :OriginWork,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Facebook" ;
-    rdfs:subClassOf :OriginPlatform .
+    rdfs:label "Facebook" .
 
 :Illustration a :CanonicalImageType,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Illustration" ;
-    rdfs:subClassOf :ImageType .
+    rdfs:label "Illustration" .
 
 :Remix a :MemeFormat,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Remix" ;
-    rdfs:subClassOf :MemeFormat .
+    rdfs:label "Remix" .
 
 :Copypasta a :MemeFormat,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Copypasta" ;
-    rdfs:subClassOf :MemeFormat .
+    rdfs:label "Copypasta" .
 
 :AnimalPresent a :CanonicalSubjectMatter,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "AnimalPresent" ;
-    rdfs:subClassOf :SubjectMatter .
+    rdfs:label "AnimalPresent" .
 
 :Snowclone a :MemeFormat,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Snowclone" ;
-    rdfs:subClassOf :MemeFormat .
+    rdfs:label "Snowclone" .
 
 :Instagram a :OriginWork,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Instagram" ;
-    rdfs:subClassOf :OriginPlatform .
+    rdfs:label "Instagram" .
 
 :Photoshop a :MemeFormat,
         owl:NamedIndividual ;
     rdfs:label "Photoshop" .
 
 :Song a :MemeFormat,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Song" ;
-    rdfs:subClassOf :MemeFormat .
+    rdfs:label "Song" .
 
 :Drawing a :CanonicalImageType,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Drawing" ;
-    rdfs:subClassOf :ImageType .
+    rdfs:label "Drawing" .
 
 :Slang a :MemeFormat,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Slang" ;
-    rdfs:subClassOf :MemeFormat .
+    rdfs:label "Slang" .
 
 :Reddit a :OriginWork,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Reddit" ;
-    rdfs:subClassOf :OriginPlatform .
+    rdfs:label "Reddit" .
 
 :Pre2010 a :TimePeriod,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Pre2010" ;
-    rdfs:subClassOf :TimePeriod .
+    rdfs:label "Pre2010" .
 
 :VariantInstance a owl:Class ;
     rdfs:label "Variant Instance",
@@ -87917,83 +88060,57 @@ dimension annotations for 5 fully annotated meme templates."""@en ;
     rdfs:subClassOf owl:Thing .
 
 :ParticipatoryMedia a :MemeFormat,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "ParticipatoryMedia" ;
-    rdfs:subClassOf :MemeFormat .
+    rdfs:label "ParticipatoryMedia" .
 
 :Parody a :MemeFormat,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Parody" ;
-    rdfs:subClassOf :TransformationExtent .
+    rdfs:label "Parody" .
 
 :TextOnly a :CanonicalSubjectMatter,
-        owl:Class,
         owl:NamedIndividual ;
     rdfs:label "TextOnly" ;
-    rdfs:comment "SubjectMatter: TextOnly — image whose primary visible content is text with no person, character or animal present. Distinct from CaptionChange TransformationDimension." ;
-    rdfs:subClassOf :SubjectMatter .
+    rdfs:comment "SubjectMatter: TextOnly — image whose primary visible content is text with no person, character or animal present. Distinct from CaptionChange TransformationDimension." .
 
 :Character a :MemeFormat,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Character" ;
-    rdfs:subClassOf :MemeFormat .
+    rdfs:label "Character" .
 
 :YouTube a :OriginWork,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "YouTube" ;
-    rdfs:subClassOf :OriginPlatform .
+    rdfs:label "YouTube" .
 
 :Monochrome a :CanonicalColorMode,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Monochrome" ;
-    rdfs:subClassOf :ColorMode .
+    rdfs:label "Monochrome" .
 
 :PopCultureReference a :MemeFormat,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "PopCultureReference" ;
-    rdfs:subClassOf :MemeFormat .
+    rdfs:label "PopCultureReference" .
 
 :Reaction a :MemeFormat,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Reaction" ;
-    rdfs:subClassOf :MemeFormat .
+    rdfs:label "Reaction" .
 
 :Period2010to2015 a :TimePeriod,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Period2010to2015" ;
-    rdfs:subClassOf :TimePeriod .
+    rdfs:label "Period2010to2015" .
 
 :TikTok a :OriginWork,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "TikTok" ;
-    rdfs:subClassOf :OriginPlatform .
+    rdfs:label "TikTok" .
 
 :PNG a :FileFormat,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "PNG" ;
-    rdfs:subClassOf :FileFormat .
+    rdfs:label "PNG" .
 
 :PersonPresent a :CanonicalSubjectMatter,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "PersonPresent" ;
-    rdfs:subClassOf :SubjectMatter .
+    rdfs:label "PersonPresent" .
 
 :ViralVideo a :MemeFormat,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "ViralVideo" ;
-    rdfs:subClassOf :MemeFormat .
+    rdfs:label "ViralVideo" .
 
 :OriginWork a owl:Class ;
     rdfs:label "Origin Work",
@@ -88007,103 +88124,70 @@ game, book, song, etc.) from which a meme derives its source material."""@en ;
     rdfs:subClassOf owl:Thing .
 
 :CharacterPresent a :CanonicalSubjectMatter,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "CharacterPresent" ;
-    rdfs:subClassOf :SubjectMatter .
+    rdfs:label "CharacterPresent" .
 
 :Catchphrase a :MemeFormat,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Catchphrase" ;
-    rdfs:subClassOf :MemeFormat .
+    rdfs:label "Catchphrase" .
 
 :ImageMacro a :MemeFormat,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "ImageMacro" ;
-    rdfs:subClassOf :MemeFormat .
+    rdfs:label "ImageMacro" .
 
 :MultipleSubjects a :CanonicalSubjectMatter,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "MultipleSubjects" ;
-    rdfs:subClassOf :SubjectMatter .
+    rdfs:label "MultipleSubjects" .
 
 :Exploitable a :MemeFormat,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Exploitable" ;
-    rdfs:subClassOf :MemeFormat .
+    rdfs:label "Exploitable" .
 
 :TwitterX a :OriginWork,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "TwitterX" ;
-    rdfs:subClassOf :OriginPlatform .
+    rdfs:label "TwitterX" .
 
 :UnitedStates a :GeographicRegion,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "UnitedStates" ;
-    rdfs:subClassOf :GeographicRegion .
+    rdfs:label "UnitedStates" .
 
 :Period2021toPresent a :TimePeriod,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Period2021toPresent" ;
-    rdfs:subClassOf :TimePeriod .
+    rdfs:label "Period2021toPresent" .
 
 :NoText a :CanonicalTextPresence,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "NoText" ;
-    rdfs:subClassOf :TextPresence .
+    rdfs:label "NoText" .
 
 :Period2016to2020 a :TimePeriod,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Period2016to2020" ;
-    rdfs:subClassOf :TimePeriod .
+    rdfs:label "Period2016to2020" .
 
 :Photograph a :CanonicalImageType,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Photograph" ;
-    rdfs:subClassOf :ImageType .
+    rdfs:label "Photograph" .
 
 :Cartoon a :CanonicalImageType,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Cartoon" ;
-    rdfs:subClassOf :ImageType .
+    rdfs:label "Cartoon" .
 
 :ContainsText a :CanonicalTextPresence,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "ContainsText" ;
-    rdfs:subClassOf :TextPresence .
+    rdfs:label "ContainsText" .
 
 :JPEG a :FileFormat,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "JPEG" ;
-    rdfs:subClassOf :FileFormat .
+    rdfs:label "JPEG" .
 
 :Color a :CanonicalColorMode,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Color" ;
-    rdfs:subClassOf :ColorMode .
+    rdfs:label "Color" .
 
 :Static a :AnimationStatus,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Static" ;
-    rdfs:subClassOf :AnimationStatus .
+    rdfs:label "Static" .
 
 :MemeConcept a :MemeFormat,
-        owl:Class,
         owl:NamedIndividual ;
     rdfs:label "Meme Concept",
         "Meme Template",
@@ -88113,8 +88197,7 @@ game, book, song, etc.) from which a meme derives its source material."""@en ;
         """A canonical internet meme template as indexed\r
 on Know Your Meme. Represents the stable, Expression-level identity of a meme\r
 across all its variants. 5,000 named individuals are included, classified by\r
-image type, format, platform, region and time period."""@en ;
-    rdfs:subClassOf owl:Thing .
+image type, format, platform, region and time period."""@en .
 
 :Unknown a :CanonicalSubjectMatter,
         :FileFormat,
@@ -88122,8 +88205,6 @@ image type, format, platform, region and time period."""@en ;
         :MemeFormat,
         :OriginWork,
         :TimePeriod,
-        owl:Class,
         owl:NamedIndividual ;
-    rdfs:label "Unknown" ;
-    rdfs:subClassOf :SubjectMatter .
+    rdfs:label "Unknown" .
 
