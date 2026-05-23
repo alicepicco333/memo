@@ -71,7 +71,7 @@ memo:CaptionChange a owl:Class ;
     rdfs:label "CaptionChange" ;
     rdfs:subClassOf memo:TransformationDimension .
 
-memo:Cartoon a memo:CanonicalImageType,
+memo:Cartoon a memo:ImageType,
         owl:NamedIndividual ;
     rdfs:label "Cartoon" .
 
@@ -103,7 +103,7 @@ memo:Colombia a memo:GeographicRegion,
         owl:NamedIndividual ;
     rdfs:label "Colombia" .
 
-memo:Color a memo:CanonicalColorMode,
+memo:Color a memo:ColorMode,
         owl:NamedIndividual ;
     rdfs:label "Color" .
 
@@ -117,7 +117,7 @@ memo:ConspiracyTheory a memo:MemeFormat,
     rdfs:comment "Deprecated. Use ConspiracyTheory instead." ;
     owl:deprecated true .
 
-memo:ContainsText a memo:CanonicalTextPresence,
+memo:ContainsText a memo:TextPresence,
         owl:NamedIndividual ;
     rdfs:label "ContainsText" .
 
@@ -149,7 +149,7 @@ memo:Discord a memo:OriginPlatform,
         owl:NamedIndividual ;
     rdfs:label "Discord" .
 
-memo:Drawing a memo:CanonicalImageType,
+memo:Drawing a memo:ImageType,
         owl:NamedIndividual ;
     rdfs:label "Drawing" .
 
@@ -223,7 +223,7 @@ memo:Hoax a memo:MemeFormat,
         owl:NamedIndividual ;
     rdfs:label "Hoax" .
 
-memo:Illustration a memo:CanonicalImageType,
+memo:Illustration a memo:ImageType,
         owl:NamedIndividual ;
     rdfs:label "Illustration" .
 
@@ -313,7 +313,7 @@ memo:Moderate a memo:TransformationExtent,
         owl:NamedIndividual ;
     rdfs:label "Moderate" .
 
-memo:Monochrome a memo:CanonicalColorMode,
+memo:Monochrome a memo:ColorMode,
         owl:NamedIndividual ;
     rdfs:label "Monochrome" .
 
@@ -325,7 +325,7 @@ memo:Netherlands a memo:GeographicRegion,
         owl:NamedIndividual ;
     rdfs:label "Netherlands" .
 
-memo:NoText a memo:CanonicalTextPresence,
+memo:NoText a memo:TextPresence,
         owl:NamedIndividual ;
     rdfs:label "NoText" .
 
@@ -341,7 +341,7 @@ memo:PNG a memo:FileFormat,
         owl:NamedIndividual ;
     rdfs:label "PNG" .
 
-memo:Painting a memo:CanonicalImageType,
+memo:Painting a memo:ImageType,
         owl:NamedIndividual ;
     rdfs:label "Painting" .
 
@@ -385,7 +385,7 @@ memo:Philippines a memo:GeographicRegion,
         owl:NamedIndividual ;
     rdfs:label "Philippines" .
 
-memo:Photograph a memo:CanonicalImageType,
+memo:Photograph a memo:ImageType,
         owl:NamedIndividual ;
     rdfs:label "Photograph" .
 
@@ -763,7 +763,6 @@ memo:hasCanonicalColorMode a owl:ObjectProperty ;
     memo:frbrLevel "Manifestation" ;
     memo:semanticLevel "PreIconographical" ;
     rdfs:domain memo:MemeConcept ;
-    rdfs:range memo:CanonicalColorMode ;
     owl:inverseOf memo:isCanonicalColorModeOf .
 
 memo:hasCanonicalImageType a owl:ObjectProperty ;
@@ -773,7 +772,6 @@ memo:hasCanonicalImageType a owl:ObjectProperty ;
     rdfs:comment """The visual medium of the canonical meme image,\r\r\r\r\r\r
 assigned by CLIP-based classification."""@en ;
     rdfs:domain memo:MemeConcept ;
-    rdfs:range memo:CanonicalImageType ;
     owl:inverseOf memo:isCanonicalImageTypeOf .
 
 memo:hasCanonicalSubjectMatter a owl:ObjectProperty ;
@@ -791,7 +789,6 @@ memo:hasCanonicalTextPresence a owl:ObjectProperty ;
     memo:frbrLevel "Manifestation" ;
     memo:semanticLevel "PreIconographical" ;
     rdfs:domain memo:MemeConcept ;
-    rdfs:range memo:CanonicalTextPresence ;
     owl:inverseOf memo:isCanonicalTextPresenceOf .
 
 memo:hasColorMode a owl:ObjectProperty ;
@@ -1134,21 +1131,6 @@ memo:AnimationStatus a owl:Class ;
 (GIF/video)."""@en ;
     rdfs:subClassOf owl:Thing .
 
-memo:ColorMode a owl:Class ;
-    rdfs:label "ColorMode" ;
-    memo:frbrLevel "Manifestation" ;
-    memo:semanticLevel "PreIconographical" ;
-    rdfs:subClassOf owl:Thing .
-
-memo:ImageType a owl:Class ;
-    rdfs:label "Image Type"@en ;
-    memo:frbrLevel "Manifestation" ;
-    memo:semanticLevel "PreIconographical" ;
-    rdfs:comment """The visual medium type of an individual variant\r\r\r\r\r\r
-image. Uses the same controlled vocabulary as CanonicalImageType but applied at\r\r\r\r\r\r
-the Item (VariantInstance) level."""@en ;
-    rdfs:subClassOf owl:Thing .
-
 memo:OriginBoard a owl:Class ;
     rdfs:label "OriginBoard" ;
     rdfs:subClassOf memo:OriginWork .
@@ -1181,12 +1163,6 @@ memo:OriginVideoGame a owl:Class ;
     rdfs:label "OriginVideoGame" ;
     rdfs:subClassOf memo:OriginWork .
 
-memo:TextPresence a owl:Class ;
-    rdfs:label "TextPresence" ;
-    memo:frbrLevel "Manifestation" ;
-    memo:semanticLevel "PreIconographical" ;
-    rdfs:subClassOf owl:Thing .
-
 memo:MemeIdea a owl:Class ;
     rdfs:label "Meme Idea"@en ;
     memo:frbrLevel "Work" ;
@@ -1196,20 +1172,16 @@ independent of any specific image or format. 50 enriched individuals from the\r\
 D0 sample, with descriptions and cultural reference annotations."""@en ;
     rdfs:subClassOf owl:Thing .
 
-memo:CanonicalColorMode a owl:Class ;
-    rdfs:label "Canonical Color Mode"@en ;
-    memo:frbrLevel "Expression" ;
+memo:ColorMode a owl:Class ;
+    rdfs:label "ColorMode" ;
+    memo:frbrLevel "Manifestation" ;
     memo:semanticLevel "PreIconographical" ;
-    rdfs:comment """Whether the canonical meme image is in colour or\r\r\r\r\r\r
-monochrome."""@en ;
     rdfs:subClassOf owl:Thing .
 
-memo:CanonicalTextPresence a owl:Class ;
-    rdfs:label "Canonical Text Presence"@en ;
-    memo:frbrLevel "Expression" ;
+memo:TextPresence a owl:Class ;
+    rdfs:label "TextPresence" ;
+    memo:frbrLevel "Manifestation" ;
     memo:semanticLevel "PreIconographical" ;
-    rdfs:comment """Whether the canonical meme image contains\r\r\r\r\r\r
-overlaid text."""@en ;
     rdfs:subClassOf owl:Thing .
 
 memo:TransformationExtent a owl:Class ;
@@ -1221,21 +1193,21 @@ canonical template: Minimal (close copy), Moderate, Substantial, or Parody\r\r\r
 (radical departure)."""@en ;
     rdfs:subClassOf owl:Thing .
 
-memo:CanonicalImageType a owl:Class ;
-    rdfs:label "Canonical Image Type"@en ;
-    memo:frbrLevel "Expression" ;
-    memo:semanticLevel "PreIconographical" ;
-    rdfs:comment """The visual medium of the canonical meme image\r\r\r\r\r\r
-(Photograph, Drawing, Cartoon, Illustration, Painting, etc.). Pre-iconographical\r\r\r\r\r\r
-classification at the Manifestation level, assigned via CLIP-based scoring."""@en ;
-    rdfs:subClassOf owl:Thing .
-
 memo:FileFormat a owl:Class ;
     rdfs:label "File Format"@en ;
     memo:documentaryLevel "true" ;
     memo:frbrLevel "Item" ;
     rdfs:comment """The digital file format of the meme image (JPEG,\r\r\r\r\r\r
 PNG, GIF, WebP, BMP)."""@en ;
+    rdfs:subClassOf owl:Thing .
+
+memo:ImageType a owl:Class ;
+    rdfs:label "Image Type"@en ;
+    memo:frbrLevel "Manifestation" ;
+    memo:semanticLevel "PreIconographical" ;
+    rdfs:comment """The visual medium type of an individual variant\r\r\r\r\r\r
+image. Uses the same controlled vocabulary as CanonicalImageType but applied at\r\r\r\r\r\r
+the Item (VariantInstance) level."""@en ;
     rdfs:subClassOf owl:Thing .
 
 memo:TimePeriod a owl:Class ;

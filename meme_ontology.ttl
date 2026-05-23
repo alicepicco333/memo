@@ -85529,7 +85529,6 @@ memo:hasCanonicalColorMode a owl:ObjectProperty ;
     memo:frbrLevel "Manifestation" ;
     memo:semanticLevel "PreIconographical" ;
     rdfs:domain memo:MemeConcept ;
-    rdfs:range memo:CanonicalColorMode ;
     owl:inverseOf memo:isCanonicalColorModeOf .
 
 memo:hasCanonicalImageType a owl:ObjectProperty ;
@@ -85539,7 +85538,6 @@ memo:hasCanonicalImageType a owl:ObjectProperty ;
     rdfs:comment """The visual medium of the canonical meme image,\r\r\r\r\r\r
 assigned by CLIP-based classification."""@en ;
     rdfs:domain memo:MemeConcept ;
-    rdfs:range memo:CanonicalImageType ;
     owl:inverseOf memo:isCanonicalImageTypeOf .
 
 memo:hasCanonicalSubjectMatter a owl:ObjectProperty ;
@@ -85557,7 +85555,6 @@ memo:hasCanonicalTextPresence a owl:ObjectProperty ;
     memo:frbrLevel "Manifestation" ;
     memo:semanticLevel "PreIconographical" ;
     rdfs:domain memo:MemeConcept ;
-    rdfs:range memo:CanonicalTextPresence ;
     owl:inverseOf memo:isCanonicalTextPresenceOf .
 
 memo:hasColorMode a owl:ObjectProperty ;
@@ -86360,12 +86357,6 @@ memo:CloneHigh a memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "Clone High" .
 
-memo:ColorMode a owl:Class ;
-    rdfs:label "ColorMode" ;
-    memo:frbrLevel "Manifestation" ;
-    memo:semanticLevel "PreIconographical" ;
-    rdfs:subClassOf owl:Thing .
-
 memo:Cyberpunk2077 a memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "Cyberpunk 2077" .
@@ -86407,15 +86398,6 @@ memo:GravityFalls a memo:OriginWork,
 memo:IThinkYouShouldLeaveTvShow a memo:OriginTVShow,
         owl:NamedIndividual ;
     rdfs:label "I Think You Should Leave (TV Show)" .
-
-memo:ImageType a owl:Class ;
-    rdfs:label "Image Type"@en ;
-    memo:frbrLevel "Manifestation" ;
-    memo:semanticLevel "PreIconographical" ;
-    rdfs:comment """The visual medium type of an individual variant\r\r\r\r\r\r
-image. Uses the same controlled vocabulary as CanonicalImageType but applied at\r\r\r\r\r\r
-the Item (VariantInstance) level."""@en ;
-    rdfs:subClassOf owl:Thing .
 
 memo:InvincibleTvShow a memo:OriginTVShow,
         owl:NamedIndividual ;
@@ -86553,12 +86535,6 @@ memo:Sweden a memo:GeographicRegion,
 memo:TeamFortress2 a memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "Team Fortress 2" .
-
-memo:TextPresence a owl:Class ;
-    rdfs:label "TextPresence" ;
-    memo:frbrLevel "Manifestation" ;
-    memo:semanticLevel "PreIconographical" ;
-    rdfs:subClassOf owl:Thing .
 
 memo:Thailand a memo:GeographicRegion,
         owl:NamedIndividual ;
@@ -86829,20 +86805,10 @@ memo:Australia a memo:GeographicRegion,
         owl:NamedIndividual ;
     rdfs:label "Australia" .
 
-memo:CanonicalColorMode a owl:Class ;
-    rdfs:label "Canonical Color Mode"@en ;
-    memo:frbrLevel "Expression" ;
+memo:ColorMode a owl:Class ;
+    rdfs:label "ColorMode" ;
+    memo:frbrLevel "Manifestation" ;
     memo:semanticLevel "PreIconographical" ;
-    rdfs:comment """Whether the canonical meme image is in colour or\r\r\r\r\r\r
-monochrome."""@en ;
-    rdfs:subClassOf owl:Thing .
-
-memo:CanonicalTextPresence a owl:Class ;
-    rdfs:label "Canonical Text Presence"@en ;
-    memo:frbrLevel "Expression" ;
-    memo:semanticLevel "PreIconographical" ;
-    rdfs:comment """Whether the canonical meme image contains\r\r\r\r\r\r
-overlaid text."""@en ;
     rdfs:subClassOf owl:Thing .
 
 memo:FiveNightsAtFreddySSecurityBreach a memo:OriginWork,
@@ -86860,6 +86826,12 @@ memo:NintendoDirect a memo:OriginWork,
 memo:ScpFoundation a memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "SCP Foundation" .
+
+memo:TextPresence a owl:Class ;
+    rdfs:label "TextPresence" ;
+    memo:frbrLevel "Manifestation" ;
+    memo:semanticLevel "PreIconographical" ;
+    rdfs:subClassOf owl:Thing .
 
 memo:douyin a memo:OriginWork,
         owl:NamedIndividual ;
@@ -86938,15 +86910,6 @@ memo:AvengersInfinityWar a memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "Avengers: Infinity War" .
 
-memo:CanonicalImageType a owl:Class ;
-    rdfs:label "Canonical Image Type"@en ;
-    memo:frbrLevel "Expression" ;
-    memo:semanticLevel "PreIconographical" ;
-    rdfs:comment """The visual medium of the canonical meme image\r\r\r\r\r\r
-(Photograph, Drawing, Cartoon, Illustration, Painting, etc.). Pre-iconographical\r\r\r\r\r\r
-classification at the Manifestation level, assigned via CLIP-based scoring."""@en ;
-    rdfs:subClassOf owl:Thing .
-
 memo:CrazyIWasCrazyOnceTheyLockedMeInARoomARubberRoomARubberRoomWithRatsAndRatsMakeMeCrazy a memo:MemeConcept,
         owl:NamedIndividual ;
     rdfs:label "crazy-i-was-crazy-once-they-locked-me-in-a-room-a-rubber-room-a-rubber-room-with-rats-and-rats-make-me-crazy" ;
@@ -86977,6 +86940,15 @@ PNG, GIF, WebP, BMP)."""@en ;
 memo:FunnyJunk a memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "FunnyJunk" .
+
+memo:ImageType a owl:Class ;
+    rdfs:label "Image Type"@en ;
+    memo:frbrLevel "Manifestation" ;
+    memo:semanticLevel "PreIconographical" ;
+    rdfs:comment """The visual medium type of an individual variant\r\r\r\r\r\r
+image. Uses the same controlled vocabulary as CanonicalImageType but applied at\r\r\r\r\r\r
+the Item (VariantInstance) level."""@en ;
+    rdfs:subClassOf owl:Thing .
 
 memo:Mexico a memo:GeographicRegion,
         owl:NamedIndividual ;
@@ -87728,7 +87700,7 @@ memo:Axiom a memo:MemeFormat,
         owl:NamedIndividual ;
     rdfs:label "Axiom" .
 
-memo:Painting a memo:CanonicalImageType,
+memo:Painting a memo:ImageType,
         owl:NamedIndividual ;
     rdfs:label "Painting" .
 
@@ -87855,7 +87827,7 @@ memo:Facebook a memo:OriginPlatform,
         owl:NamedIndividual ;
     rdfs:label "Facebook" .
 
-memo:Illustration a memo:CanonicalImageType,
+memo:Illustration a memo:ImageType,
         owl:NamedIndividual ;
     rdfs:label "Illustration" .
 
@@ -87887,7 +87859,7 @@ memo:Song a memo:MemeFormat,
         owl:NamedIndividual ;
     rdfs:label "Song" .
 
-memo:Drawing a memo:CanonicalImageType,
+memo:Drawing a memo:ImageType,
         owl:NamedIndividual ;
     rdfs:label "Drawing" .
 
@@ -87932,7 +87904,7 @@ memo:YouTube a memo:OriginPlatform,
         owl:NamedIndividual ;
     rdfs:label "YouTube" .
 
-memo:Monochrome a memo:CanonicalColorMode,
+memo:Monochrome a memo:ColorMode,
         owl:NamedIndividual ;
     rdfs:label "Monochrome" .
 
@@ -88004,7 +87976,7 @@ memo:Period2021toPresent a memo:TimePeriod,
         owl:NamedIndividual ;
     rdfs:label "Period2021toPresent" .
 
-memo:NoText a memo:CanonicalTextPresence,
+memo:NoText a memo:TextPresence,
         owl:NamedIndividual ;
     rdfs:label "NoText" .
 
@@ -88012,15 +87984,15 @@ memo:Period2016to2020 a memo:TimePeriod,
         owl:NamedIndividual ;
     rdfs:label "Period2016to2020" .
 
-memo:Photograph a memo:CanonicalImageType,
+memo:Photograph a memo:ImageType,
         owl:NamedIndividual ;
     rdfs:label "Photograph" .
 
-memo:Cartoon a memo:CanonicalImageType,
+memo:Cartoon a memo:ImageType,
         owl:NamedIndividual ;
     rdfs:label "Cartoon" .
 
-memo:ContainsText a memo:CanonicalTextPresence,
+memo:ContainsText a memo:TextPresence,
         owl:NamedIndividual ;
     rdfs:label "ContainsText" .
 
@@ -88028,7 +88000,7 @@ memo:JPEG a memo:FileFormat,
         owl:NamedIndividual ;
     rdfs:label "JPEG" .
 
-memo:Color a memo:CanonicalColorMode,
+memo:Color a memo:ColorMode,
         owl:NamedIndividual ;
     rdfs:label "Color" .
 
