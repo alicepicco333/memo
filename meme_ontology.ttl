@@ -79850,6 +79850,12 @@ in the scraped dataset (1–5000)."""@en ;
     rdfs:range xsd:integer ;
     owl:deprecated true .
 
+memo:hasVariantSubjectMatter a owl:ObjectProperty ;
+    rdfs:label "Has Variant Subject Matter" ;
+    rdfs:comment "What a specific user added or changed when they created their individual variation (Manifestation/Item level)." ;
+    rdfs:domain memo:VariantInstance ;
+    rdfs:range memo:SubjectMatter .
+
 memo:haudi a memo:MemeConcept,
         owl:NamedIndividual ;
     rdfs:label "haudi" ;
@@ -85537,11 +85543,13 @@ assigned by CLIP-based classification."""@en ;
     owl:inverseOf memo:isCanonicalImageTypeOf .
 
 memo:hasCanonicalSubjectMatter a owl:ObjectProperty ;
-    rdfs:label "has canonical subject matter"@en ;
+    rdfs:label "Has Canonical Subject Matter",
+        "has canonical subject matter"@en ;
     memo:frbrLevel "Manifestation" ;
     memo:semanticLevel "PreIconographical" ;
+    rdfs:comment "What is inherently built into the base meme template (Expression level)." ;
     rdfs:domain memo:MemeConcept ;
-    rdfs:range memo:CanonicalSubjectMatter ;
+    rdfs:range memo:SubjectMatter ;
     owl:inverseOf memo:isCanonicalSubjectMatterOf .
 
 memo:hasCanonicalTextPresence a owl:ObjectProperty ;
@@ -86538,12 +86546,6 @@ memo:StarWarsTheCloneWars a memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "Star Wars: The Clone Wars" .
 
-memo:SubjectMatter a owl:Class ;
-    rdfs:label "SubjectMatter" ;
-    memo:frbrLevel "Manifestation" ;
-    memo:semanticLevel "PreIconographical" ;
-    rdfs:subClassOf owl:Thing .
-
 memo:Sweden a memo:GeographicRegion,
         owl:NamedIndividual ;
     rdfs:label "Sweden" .
@@ -86859,6 +86861,12 @@ memo:ScpFoundation a memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "SCP Foundation" .
 
+memo:SubjectMatter a owl:Class ;
+    rdfs:label "SubjectMatter" ;
+    memo:frbrLevel "Manifestation" ;
+    memo:semanticLevel "PreIconographical" ;
+    rdfs:subClassOf owl:Thing .
+
 memo:douyin a memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "Douyin" .
@@ -86996,6 +87004,15 @@ memo:9gag a memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "9gag" .
 
+memo:CanonicalSubjectMatter a owl:Class ;
+    rdfs:label "Canonical Subject Matter"@en ;
+    memo:frbrLevel "Expression" ;
+    memo:semanticLevel "PreIconographical" ;
+    rdfs:comment """The category of subjects depicted in the\r\r\r\r\r\r
+canonical image (PersonPresent, AnimalPresent, ObjectOnly, TextOnly,\r\r\r\r\r\r
+MultipleSubjects, etc.)."""@en ;
+    rdfs:subClassOf owl:Thing .
+
 memo:CulturalReference a owl:Class ;
     rdfs:label "Cultural Reference"@en ;
     memo:frbrLevel "Expression Manifestation",
@@ -87014,15 +87031,6 @@ memo:JojoSBizarreAdventure a memo:OriginWork,
 memo:Russia a memo:GeographicRegion,
         owl:NamedIndividual ;
     rdfs:label "Russia" .
-
-memo:CanonicalSubjectMatter a owl:Class ;
-    rdfs:label "Canonical Subject Matter"@en ;
-    memo:frbrLevel "Expression" ;
-    memo:semanticLevel "PreIconographical" ;
-    rdfs:comment """The category of subjects depicted in the\r\r\r\r\r\r
-canonical image (PersonPresent, AnimalPresent, ObjectOnly, TextOnly,\r\r\r\r\r\r
-MultipleSubjects, etc.)."""@en ;
-    rdfs:subClassOf owl:Thing .
 
 memo:OhShitARat a memo:MemeConcept,
         owl:NamedIndividual ;

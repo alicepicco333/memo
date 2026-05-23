@@ -655,6 +655,12 @@ in the scraped dataset (1–5000)."""@en ;
     rdfs:range xsd:integer ;
     owl:deprecated true .
 
+memo:hasVariantSubjectMatter a owl:ObjectProperty ;
+    rdfs:label "Has Variant Subject Matter" ;
+    rdfs:comment "What a specific user added or changed when they created their individual variation (Manifestation/Item level)." ;
+    rdfs:domain memo:VariantInstance ;
+    rdfs:range memo:SubjectMatter .
+
 memo:iFunny a memo:OriginPlatform,
         owl:NamedIndividual ;
     rdfs:label "iFunny" .
@@ -771,11 +777,13 @@ assigned by CLIP-based classification."""@en ;
     owl:inverseOf memo:isCanonicalImageTypeOf .
 
 memo:hasCanonicalSubjectMatter a owl:ObjectProperty ;
-    rdfs:label "has canonical subject matter"@en ;
+    rdfs:label "Has Canonical Subject Matter",
+        "has canonical subject matter"@en ;
     memo:frbrLevel "Manifestation" ;
     memo:semanticLevel "PreIconographical" ;
+    rdfs:comment "What is inherently built into the base meme template (Expression level)." ;
     rdfs:domain memo:MemeConcept ;
-    rdfs:range memo:CanonicalSubjectMatter ;
+    rdfs:range memo:SubjectMatter ;
     owl:inverseOf memo:isCanonicalSubjectMatterOf .
 
 memo:hasCanonicalTextPresence a owl:ObjectProperty ;
@@ -1173,12 +1181,6 @@ memo:OriginVideoGame a owl:Class ;
     rdfs:label "OriginVideoGame" ;
     rdfs:subClassOf memo:OriginWork .
 
-memo:SubjectMatter a owl:Class ;
-    rdfs:label "SubjectMatter" ;
-    memo:frbrLevel "Manifestation" ;
-    memo:semanticLevel "PreIconographical" ;
-    rdfs:subClassOf owl:Thing .
-
 memo:TextPresence a owl:Class ;
     rdfs:label "TextPresence" ;
     memo:frbrLevel "Manifestation" ;
@@ -1208,6 +1210,12 @@ memo:CanonicalTextPresence a owl:Class ;
     memo:semanticLevel "PreIconographical" ;
     rdfs:comment """Whether the canonical meme image contains\r\r\r\r\r\r
 overlaid text."""@en ;
+    rdfs:subClassOf owl:Thing .
+
+memo:SubjectMatter a owl:Class ;
+    rdfs:label "SubjectMatter" ;
+    memo:frbrLevel "Manifestation" ;
+    memo:semanticLevel "PreIconographical" ;
     rdfs:subClassOf owl:Thing .
 
 memo:TransformationExtent a owl:Class ;
@@ -1244,6 +1252,15 @@ memo:TimePeriod a owl:Class ;
 (Pre2010, Period2010to2015, Period2016to2020, Period2021toPresent)."""@en ;
     rdfs:subClassOf owl:Thing .
 
+memo:CanonicalSubjectMatter a owl:Class ;
+    rdfs:label "Canonical Subject Matter"@en ;
+    memo:frbrLevel "Expression" ;
+    memo:semanticLevel "PreIconographical" ;
+    rdfs:comment """The category of subjects depicted in the\r\r\r\r\r\r
+canonical image (PersonPresent, AnimalPresent, ObjectOnly, TextOnly,\r\r\r\r\r\r
+MultipleSubjects, etc.)."""@en ;
+    rdfs:subClassOf owl:Thing .
+
 memo:CulturalReference a owl:Class ;
     rdfs:label "Cultural Reference"@en ;
     memo:frbrLevel "Expression Manifestation",
@@ -1253,15 +1270,6 @@ memo:CulturalReference a owl:Class ;
 event, media property, political event, public figure, social phenomenon, or web\r\r\r\r\r\r
 culture artefact. Subclasses: HistoricalEvent, MediaProperty, PoliticalEvent,\r\r\r\r\r\r
 PublicFigure, SocialPhenomenon, WebCulture."""@en ;
-    rdfs:subClassOf owl:Thing .
-
-memo:CanonicalSubjectMatter a owl:Class ;
-    rdfs:label "Canonical Subject Matter"@en ;
-    memo:frbrLevel "Expression" ;
-    memo:semanticLevel "PreIconographical" ;
-    rdfs:comment """The category of subjects depicted in the\r\r\r\r\r\r
-canonical image (PersonPresent, AnimalPresent, ObjectOnly, TextOnly,\r\r\r\r\r\r
-MultipleSubjects, etc.)."""@en ;
     rdfs:subClassOf owl:Thing .
 
 memo:TransformationDimension a owl:Class ;
