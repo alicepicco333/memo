@@ -1033,7 +1033,11 @@ in the scraped dataset (1–5000).</rdfs:comment>
     <owl:inverseOf rdf:resource="http://www.semanticweb.org/meme-ontology#isOriginFilmOf"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#isVariantTextPresenceOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>isVariantTextPresenceOf</rdfs:label>
     <rdfs:domain rdf:resource="http://www.semanticweb.org/meme-ontology#TextPresence"/>
+    <rdfs:range rdf:resource="http://www.semanticweb.org/meme-ontology#VariantInstance"/>
+    <owl:inverseOf rdf:resource="http://www.semanticweb.org/meme-ontology#hasVariantTextPresence"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#OriginTVShow">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -1424,7 +1428,11 @@ memes at the Expression level with Iconographical analysis.</rdfs:comment>
     <rdfs:label>Philippines</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#isVariantImageTypeOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>isVariantImageTypeOf</rdfs:label>
     <rdfs:domain rdf:resource="http://www.semanticweb.org/meme-ontology#ImageType"/>
+    <rdfs:range rdf:resource="http://www.semanticweb.org/meme-ontology#VariantInstance"/>
+    <owl:inverseOf rdf:resource="http://www.semanticweb.org/meme-ontology#hasVariantImageType"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#variantFilename">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
@@ -1470,6 +1478,10 @@ memes at the Expression level with Iconographical analysis.</rdfs:comment>
     <rdfs:label>Photoshop</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#isVariantColorModeOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>isVariantColorModeOf</rdfs:label>
     <rdfs:domain rdf:resource="http://www.semanticweb.org/meme-ontology#ColorMode"/>
+    <rdfs:range rdf:resource="http://www.semanticweb.org/meme-ontology#VariantInstance"/>
+    <owl:inverseOf rdf:resource="http://www.semanticweb.org/meme-ontology#hasVariantColorMode"/>
   </rdf:Description>
 </rdf:RDF>
