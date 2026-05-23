@@ -20700,9 +20700,9 @@ memo:FotosintesisPhotosynthesis a memo:MemeConcept,
     memo:hasRegion memo:Unknown ;
     memo:hasTimePeriod memo:Period2021toPresent .
 
-memo:FourChan a owl:Class ;
-    rdfs:label "Four Chan" ;
-    rdfs:subClassOf memo:OriginPlatform .
+memo:FourChan a memo:OriginPlatform,
+        owl:NamedIndividual ;
+    rdfs:label "Four Chan" .
 
 memo:FourLadsInJeans a memo:MemeConcept,
         owl:NamedIndividual ;

@@ -32,9 +32,9 @@ memo:Animal a owl:Class ;
     rdfs:label "Animal" ;
     rdfs:subClassOf memo:MemeFormat .
 
-memo:Brazil a owl:Class ;
-    rdfs:label "Brazil" ;
-    rdfs:subClassOf memo:GeographicRegion .
+memo:Brazil a memo:GeographicRegion,
+        owl:NamedIndividual ;
+    rdfs:label "Brazil" .
 
 memo:CanonicalAnimalPresent a owl:Class ;
     rdfs:label "Canonical Animal Present" ;
@@ -112,9 +112,9 @@ memo:Character a owl:Class ;
     rdfs:label "Character" ;
     rdfs:subClassOf memo:MemeFormat .
 
-memo:China a owl:Class ;
-    rdfs:label "China" ;
-    rdfs:subClassOf memo:GeographicRegion .
+memo:China a memo:GeographicRegion,
+        owl:NamedIndividual ;
+    rdfs:label "China" .
 
 memo:Cliche a owl:Class ;
     rdfs:label "Cliche" ;
@@ -136,21 +136,21 @@ memo:CrossoverMerge a owl:Class ;
     rdfs:label "CrossoverMerge" ;
     rdfs:subClassOf memo:TransformationDimension .
 
-memo:DeviantArt a owl:Class ;
-    rdfs:label "DeviantArt" ;
-    rdfs:subClassOf memo:OriginPlatform .
+memo:DeviantArt a memo:OriginPlatform,
+        owl:NamedIndividual ;
+    rdfs:label "DeviantArt" .
 
-memo:Discord a owl:Class ;
-    rdfs:label "Discord" ;
-    rdfs:subClassOf memo:OriginPlatform .
+memo:Discord a memo:OriginPlatform,
+        owl:NamedIndividual ;
+    rdfs:label "Discord" .
 
 memo:Exploitable a owl:Class ;
     rdfs:label "Exploitable" ;
     rdfs:subClassOf memo:MemeFormat .
 
-memo:Facebook a owl:Class ;
-    rdfs:label "Facebook" ;
-    rdfs:subClassOf memo:OriginPlatform .
+memo:Facebook a memo:OriginPlatform,
+        owl:NamedIndividual ;
+    rdfs:label "Facebook" .
 
 memo:FanArt a owl:Class ;
     rdfs:label "FanArt" ;
@@ -160,13 +160,13 @@ memo:FanLabor a owl:Class ;
     rdfs:label "Fan Labor" ;
     rdfs:subClassOf memo:MemeFormat .
 
-memo:FourChan a owl:Class ;
-    rdfs:label "Four Chan" ;
-    rdfs:subClassOf memo:OriginPlatform .
+memo:FourChan a memo:OriginPlatform,
+        owl:NamedIndividual ;
+    rdfs:label "Four Chan" .
 
-memo:France a owl:Class ;
-    rdfs:label "France" ;
-    rdfs:subClassOf memo:GeographicRegion .
+memo:France a memo:GeographicRegion,
+        owl:NamedIndividual ;
+    rdfs:label "France" .
 
 memo:HistoricalEvent a owl:Class ;
     rdfs:label "HistoricalEvent" ;
@@ -180,29 +180,29 @@ memo:ImageMacro a owl:Class ;
     rdfs:label "ImageMacro" ;
     rdfs:subClassOf memo:MemeFormat .
 
-memo:Imgur a owl:Class ;
-    rdfs:label "Imgur" ;
-    rdfs:subClassOf memo:OriginPlatform .
+memo:Imgur a memo:OriginPlatform,
+        owl:NamedIndividual ;
+    rdfs:label "Imgur" .
 
-memo:India a owl:Class ;
-    rdfs:label "India" ;
-    rdfs:subClassOf memo:GeographicRegion .
+memo:India a memo:GeographicRegion,
+        owl:NamedIndividual ;
+    rdfs:label "India" .
 
-memo:Indonesia a owl:Class ;
-    rdfs:label "Indonesia" ;
-    rdfs:subClassOf memo:GeographicRegion .
+memo:Indonesia a memo:GeographicRegion,
+        owl:NamedIndividual ;
+    rdfs:label "Indonesia" .
 
-memo:Instagram a owl:Class ;
-    rdfs:label "Instagram" ;
-    rdfs:subClassOf memo:OriginPlatform .
+memo:Instagram a memo:OriginPlatform,
+        owl:NamedIndividual ;
+    rdfs:label "Instagram" .
 
-memo:Japan a owl:Class ;
-    rdfs:label "Japan" ;
-    rdfs:subClassOf memo:GeographicRegion .
+memo:Japan a memo:GeographicRegion,
+        owl:NamedIndividual ;
+    rdfs:label "Japan" .
 
-memo:KnowYourMeme a owl:Class ;
-    rdfs:label "KnowYourMeme" ;
-    rdfs:subClassOf memo:OriginPlatform .
+memo:KnowYourMeme a memo:OriginPlatform,
+        owl:NamedIndividual ;
+    rdfs:label "KnowYourMeme" .
 
 memo:LanguageShift a owl:Class ;
     rdfs:label "LanguageShift" ;
@@ -224,29 +224,29 @@ memo:MediumShift a owl:Class ;
     rdfs:label "MediumShift" ;
     rdfs:subClassOf memo:TransformationDimension .
 
-memo:Mexico a owl:Class ;
-    rdfs:label "Mexico" ;
-    rdfs:subClassOf memo:GeographicRegion .
+memo:Mexico a memo:GeographicRegion,
+        owl:NamedIndividual ;
+    rdfs:label "Mexico" .
 
 memo:ParticipatoryMedia a owl:Class ;
     rdfs:label "ParticipatoryMedia" ;
     rdfs:subClassOf memo:MemeFormat .
 
-memo:Period2010to2015 a owl:Class ;
-    rdfs:label "Period2010to2015" ;
-    rdfs:subClassOf memo:TimePeriod .
+memo:Period2010to2015 a memo:TimePeriod,
+        owl:NamedIndividual ;
+    rdfs:label "Period2010to2015" .
 
-memo:Period2016to2020 a owl:Class ;
-    rdfs:label "Period2016to2020" ;
-    rdfs:subClassOf memo:TimePeriod .
+memo:Period2016to2020 a memo:TimePeriod,
+        owl:NamedIndividual ;
+    rdfs:label "Period2016to2020" .
 
-memo:Period2021toPresent a owl:Class ;
-    rdfs:label "Period2021toPresent" ;
-    rdfs:subClassOf memo:TimePeriod .
+memo:Period2021toPresent a memo:TimePeriod,
+        owl:NamedIndividual ;
+    rdfs:label "Period2021toPresent" .
 
-memo:Poland a owl:Class ;
-    rdfs:label "Poland" ;
-    rdfs:subClassOf memo:GeographicRegion .
+memo:Poland a memo:GeographicRegion,
+        owl:NamedIndividual ;
+    rdfs:label "Poland" .
 
 memo:PoliticalEvent a owl:Class ;
     rdfs:label "PoliticalEvent" ;
@@ -256,33 +256,33 @@ memo:PopCultureReference a owl:Class ;
     rdfs:label "PopCultureReference" ;
     rdfs:subClassOf memo:MemeFormat .
 
-memo:Pre2010 a owl:Class ;
-    rdfs:label "Pre2010" ;
-    rdfs:subClassOf memo:TimePeriod .
+memo:Pre2010 a memo:TimePeriod,
+        owl:NamedIndividual ;
+    rdfs:label "Pre2010" .
 
 memo:Reaction a owl:Class ;
     rdfs:label "Reaction" ;
     rdfs:subClassOf memo:MemeFormat .
 
-memo:Reddit a owl:Class ;
-    rdfs:label "Reddit" ;
-    rdfs:subClassOf memo:OriginPlatform .
+memo:Reddit a memo:OriginPlatform,
+        owl:NamedIndividual ;
+    rdfs:label "Reddit" .
 
 memo:Remix a owl:Class ;
     rdfs:label "Remix" ;
     rdfs:subClassOf memo:MemeFormat .
 
-memo:Russia a owl:Class ;
-    rdfs:label "Russia" ;
-    rdfs:subClassOf memo:GeographicRegion .
+memo:Russia a memo:GeographicRegion,
+        owl:NamedIndividual ;
+    rdfs:label "Russia" .
 
 memo:Slang a owl:Class ;
     rdfs:label "Slang" ;
     rdfs:subClassOf memo:MemeFormat .
 
-memo:Snapchat a owl:Class ;
-    rdfs:label "Snapchat" ;
-    rdfs:subClassOf memo:OriginPlatform .
+memo:Snapchat a memo:OriginPlatform,
+        owl:NamedIndividual ;
+    rdfs:label "Snapchat" .
 
 memo:Snowclone a owl:Class ;
     rdfs:label "Snowclone" ;
@@ -300,37 +300,37 @@ memo:SoundEffect a owl:Class ;
     rdfs:label "SoundEffect" ;
     rdfs:subClassOf memo:MemeFormat .
 
-memo:SouthKorea a owl:Class ;
-    rdfs:label "SouthKorea" ;
-    rdfs:subClassOf memo:GeographicRegion .
+memo:SouthKorea a memo:GeographicRegion,
+        owl:NamedIndividual ;
+    rdfs:label "SouthKorea" .
 
 memo:StyleShift a owl:Class ;
     rdfs:label "StyleShift" ;
     rdfs:subClassOf memo:TransformationDimension .
 
-memo:TikTok a owl:Class ;
-    rdfs:label "TikTok" ;
-    rdfs:subClassOf memo:OriginPlatform .
+memo:TikTok a memo:OriginPlatform,
+        owl:NamedIndividual ;
+    rdfs:label "TikTok" .
 
-memo:Tumblr a owl:Class ;
-    rdfs:label "Tumblr" ;
-    rdfs:subClassOf memo:OriginPlatform .
+memo:Tumblr a memo:OriginPlatform,
+        owl:NamedIndividual ;
+    rdfs:label "Tumblr" .
 
-memo:Twitch a owl:Class ;
-    rdfs:label "Twitch" ;
-    rdfs:subClassOf memo:OriginPlatform .
+memo:Twitch a memo:OriginPlatform,
+        owl:NamedIndividual ;
+    rdfs:label "Twitch" .
 
-memo:TwitterX a owl:Class ;
-    rdfs:label "TwitterX" ;
-    rdfs:subClassOf memo:OriginPlatform .
+memo:TwitterX a memo:OriginPlatform,
+        owl:NamedIndividual ;
+    rdfs:label "TwitterX" .
 
-memo:UnitedKingdom a owl:Class ;
-    rdfs:label "UnitedKingdom" ;
-    rdfs:subClassOf memo:GeographicRegion .
+memo:UnitedKingdom a memo:GeographicRegion,
+        owl:NamedIndividual ;
+    rdfs:label "UnitedKingdom" .
 
-memo:UnitedStates a owl:Class ;
-    rdfs:label "UnitedStates" ;
-    rdfs:subClassOf memo:GeographicRegion .
+memo:UnitedStates a memo:GeographicRegion,
+        owl:NamedIndividual ;
+    rdfs:label "UnitedStates" .
 
 memo:Unknown a owl:Class ;
     rdfs:label "Unknown" ;
@@ -352,9 +352,9 @@ memo:UnknownRegion a owl:Class ;
     rdfs:label "Unknown Region" ;
     rdfs:subClassOf memo:GeographicRegion .
 
-memo:Vine a owl:Class ;
-    rdfs:label "Vine" ;
-    rdfs:subClassOf memo:OriginPlatform .
+memo:Vine a memo:OriginPlatform,
+        owl:NamedIndividual ;
+    rdfs:label "Vine" .
 
 memo:ViralDebate a owl:Class ;
     rdfs:label "ViralDebate" ;
@@ -372,13 +372,13 @@ memo:WebCulture a owl:Class ;
     rdfs:label "WebCulture" ;
     rdfs:subClassOf memo:CulturalReference .
 
-memo:Worldwide a owl:Class ;
-    rdfs:label "Worldwide" ;
-    rdfs:subClassOf memo:GeographicRegion .
+memo:Worldwide a memo:GeographicRegion,
+        owl:NamedIndividual ;
+    rdfs:label "Worldwide" .
 
-memo:YouTube a owl:Class ;
-    rdfs:label "YouTube" ;
-    rdfs:subClassOf memo:OriginPlatform .
+memo:YouTube a memo:OriginPlatform,
+        owl:NamedIndividual ;
+    rdfs:label "YouTube" .
 
 memo:captionText a owl:DatatypeProperty ;
     rdfs:label "captionText" ;
@@ -575,9 +575,9 @@ memo:hasTransformationExtent a owl:ObjectProperty ;
     rdfs:domain memo:VariantInstance ;
     rdfs:range memo:TransformationExtent .
 
-memo:iFunny a owl:Class ;
-    rdfs:label "iFunny" ;
-    rdfs:subClassOf memo:OriginPlatform .
+memo:iFunny a memo:OriginPlatform,
+        owl:NamedIndividual ;
+    rdfs:label "iFunny" .
 
 memo:imageFilePath a owl:DatatypeProperty ;
     rdfs:label "imageFilePath" ;
@@ -1022,153 +1022,6 @@ image type, format, platform, region and time period."""@en ;
 [] rdf:first memo:Photograph ;
     rdf:rest ( memo:Cartoon ) .
 
-[] rdf:first memo:CharacterPresent ;
-    rdf:rest ( memo:NoPerson ) .
-
-[] rdf:first memo:PersonPresent ;
-    rdf:rest ( memo:MultipleSubjects ) .
-
-[] rdf:first memo:MultipleSubjects ;
-    rdf:rest ( memo:NoPerson ) .
-
-[] rdf:first memo:Expression ;
-    rdf:rest ( memo:Manifestation ) .
-
-[] rdf:first memo:PersonPresent ;
-    rdf:rest ( memo:PublicFigure ) .
-
-[] rdf:first memo:Cartoon ;
-    rdf:rest ( memo:Painting ) .
-
-[] rdf:first memo:CharacterPresent ;
-    rdf:rest ( memo:TextOnly ) .
-
-[] rdf:first memo:AnimalPresent ;
-    rdf:rest ( memo:UnknownPerson ) .
-
-[] rdf:first memo:CharacterPresent ;
-    rdf:rest ( memo:UnknownPerson ) .
-
-[] rdf:first memo:PreIconographical ;
-    rdf:rest ( memo:Iconographical ) .
-
-[] rdf:first memo:AnimalPresent ;
-    rdf:rest ( memo:NoPerson ) .
-
-[] rdf:first memo:CharacterPresent ;
-    rdf:rest ( memo:MultipleSubjects ) .
-
-[] rdf:first memo:Illustration ;
-    rdf:rest ( memo:Painting ) .
-
-[] rdf:first memo:AnimalPresent ;
-    rdf:rest ( memo:TextOnly ) .
-
-[] rdf:first memo:TextOnly ;
-    rdf:rest ( memo:UnknownPerson ) .
-
-[] rdf:first memo:PersonPresent ;
-    rdf:rest ( memo:ObjectOnly ) .
-
-[] rdf:first memo:AnimalPresent ;
-    rdf:rest ( memo:MultipleSubjects ) .
-
-[] rdf:first memo:CharacterPresent ;
-    rdf:rest ( memo:PublicFigure ) .
-
-[] rdf:first memo:PNG ;
-    rdf:rest ( memo:GIF ) .
-
-[] rdf:first memo:PublicFigure ;
-    rdf:rest ( memo:NoPerson ) .
-
-[] rdf:first memo:Manifestation ;
-    rdf:rest ( memo:Item ) .
-
-[] rdf:first memo:TextOnly ;
-    rdf:rest ( memo:MultipleSubjects ) .
-
-[] rdf:first memo:PersonPresent ;
-    rdf:rest ( memo:NoPerson ) .
-
-[] rdf:first memo:JPEG ;
-    rdf:rest ( memo:WebP ) .
-
-[] rdf:first memo:PNG ;
-    rdf:rest ( memo:WebP ) .
-
-[] rdf:first memo:PersonPresent ;
-    rdf:rest ( memo:AnimalPresent ) .
-
-[] rdf:first memo:Photograph ;
-    rdf:rest ( memo:Painting ) .
-
-[] rdf:first memo:JPEG ;
-    rdf:rest ( memo:GIF ) .
-
-[] rdf:first memo:TextOnly ;
-    rdf:rest ( memo:NoPerson ) .
-
-[] rdf:first memo:Expression ;
-    rdf:rest ( memo:Item ) .
-
-[] rdf:first memo:Color ;
-    rdf:rest ( memo:Monochrome ) .
-
-[] rdf:first memo:ObjectOnly ;
-    rdf:rest ( memo:PublicFigure ) .
-
-[] rdf:first memo:Substantial ;
-    rdf:rest ( memo:Parody ) .
-
-[] rdf:first memo:GIF ;
-    rdf:rest ( memo:WebP ) .
-
-[] rdf:first memo:Drawing ;
-    rdf:rest ( memo:Cartoon ) .
-
-[] rdf:first memo:Work ;
-    rdf:rest ( memo:Expression ) .
-
-[] rdf:first memo:Static ;
-    rdf:rest ( memo:Animated ) .
-
-[] rdf:first memo:CharacterPresent ;
-    rdf:rest ( memo:ObjectOnly ) .
-
-[] rdf:first memo:ObjectOnly ;
-    rdf:rest ( memo:UnknownPerson ) .
-
-[] rdf:first memo:AnimalPresent ;
-    rdf:rest ( memo:PublicFigure ) .
-
-[] rdf:first memo:AnimalPresent ;
-    rdf:rest ( memo:CharacterPresent ) .
-
-[] rdf:first memo:ContainsText ;
-    rdf:rest ( memo:NoText ) .
-
-[] rdf:first memo:PersonPresent ;
-    rdf:rest ( memo:TextOnly ) .
-
-[] rdf:first memo:Drawing ;
-    rdf:rest ( memo:Painting ) .
-
-[] rdf:first memo:Work ;
-    rdf:rest ( memo:Manifestation ) .
-
-[] rdf:first memo:JPEG ;
-    rdf:rest ( memo:PNG ) .
-
-[] rdf:first memo:Iconographical ;
-    rdf:rest ( memo:Iconological ) .
-
-[] rdf:first memo:Moderate ;
-    rdf:rest ( memo:Parody ) .
-
-[] rdf:first memo:ObjectOnly ;
-    rdf:rest ( memo:TextOnly ) .
-
 [] rdf:first memo:ObjectOnly ;
     rdf:rest ( memo:NoPerson ) .
 
@@ -1183,6 +1036,9 @@ image type, format, platform, region and time period."""@en ;
 
 [] rdf:first memo:Work ;
     rdf:rest ( memo:Item ) .
+
+[] rdf:first memo:PersonPresent ;
+    rdf:rest ( memo:PublicFigure ) .
 
 [] rdf:first memo:Minimal ;
     rdf:rest ( memo:Substantial ) .
@@ -1214,6 +1070,9 @@ image type, format, platform, region and time period."""@en ;
 [] rdf:first memo:MultipleSubjects ;
     rdf:rest ( memo:UnknownPerson ) .
 
+[] rdf:first memo:Cartoon ;
+    rdf:rest ( memo:Painting ) .
+
 [] rdf:first memo:PreIconographical ;
     rdf:rest ( memo:Iconological ) .
 
@@ -1228,4 +1087,145 @@ image type, format, platform, region and time period."""@en ;
 
 [] rdf:first memo:UnknownPerson ;
     rdf:rest ( memo:NoPerson ) .
+
+[] rdf:first memo:CharacterPresent ;
+    rdf:rest ( memo:TextOnly ) .
+
+[] rdf:first memo:AnimalPresent ;
+    rdf:rest ( memo:UnknownPerson ) .
+
+[] rdf:first memo:CharacterPresent ;
+    rdf:rest ( memo:UnknownPerson ) .
+
+[] rdf:first memo:PreIconographical ;
+    rdf:rest ( memo:Iconographical ) .
+
+[] rdf:first memo:AnimalPresent ;
+    rdf:rest ( memo:NoPerson ) .
+
+[] rdf:first memo:CharacterPresent ;
+    rdf:rest ( memo:MultipleSubjects ) .
+
+[] rdf:first memo:Illustration ;
+    rdf:rest ( memo:Painting ) .
+
+[] rdf:first memo:AnimalPresent ;
+    rdf:rest ( memo:TextOnly ) .
+
+[] rdf:first memo:CharacterPresent ;
+    rdf:rest ( memo:NoPerson ) .
+
+[] rdf:first memo:TextOnly ;
+    rdf:rest ( memo:UnknownPerson ) .
+
+[] rdf:first memo:PersonPresent ;
+    rdf:rest ( memo:ObjectOnly ) .
+
+[] rdf:first memo:AnimalPresent ;
+    rdf:rest ( memo:MultipleSubjects ) .
+
+[] rdf:first memo:CharacterPresent ;
+    rdf:rest ( memo:PublicFigure ) .
+
+[] rdf:first memo:PNG ;
+    rdf:rest ( memo:GIF ) .
+
+[] rdf:first memo:PublicFigure ;
+    rdf:rest ( memo:NoPerson ) .
+
+[] rdf:first memo:Manifestation ;
+    rdf:rest ( memo:Item ) .
+
+[] rdf:first memo:TextOnly ;
+    rdf:rest ( memo:MultipleSubjects ) .
+
+[] rdf:first memo:PersonPresent ;
+    rdf:rest ( memo:NoPerson ) .
+
+[] rdf:first memo:JPEG ;
+    rdf:rest ( memo:WebP ) .
+
+[] rdf:first memo:PersonPresent ;
+    rdf:rest ( memo:MultipleSubjects ) .
+
+[] rdf:first memo:PNG ;
+    rdf:rest ( memo:WebP ) .
+
+[] rdf:first memo:PersonPresent ;
+    rdf:rest ( memo:AnimalPresent ) .
+
+[] rdf:first memo:Photograph ;
+    rdf:rest ( memo:Painting ) .
+
+[] rdf:first memo:JPEG ;
+    rdf:rest ( memo:GIF ) .
+
+[] rdf:first memo:TextOnly ;
+    rdf:rest ( memo:NoPerson ) .
+
+[] rdf:first memo:Expression ;
+    rdf:rest ( memo:Item ) .
+
+[] rdf:first memo:Color ;
+    rdf:rest ( memo:Monochrome ) .
+
+[] rdf:first memo:ObjectOnly ;
+    rdf:rest ( memo:PublicFigure ) .
+
+[] rdf:first memo:Substantial ;
+    rdf:rest ( memo:Parody ) .
+
+[] rdf:first memo:GIF ;
+    rdf:rest ( memo:WebP ) .
+
+[] rdf:first memo:MultipleSubjects ;
+    rdf:rest ( memo:NoPerson ) .
+
+[] rdf:first memo:Drawing ;
+    rdf:rest ( memo:Cartoon ) .
+
+[] rdf:first memo:Work ;
+    rdf:rest ( memo:Expression ) .
+
+[] rdf:first memo:Static ;
+    rdf:rest ( memo:Animated ) .
+
+[] rdf:first memo:CharacterPresent ;
+    rdf:rest ( memo:ObjectOnly ) .
+
+[] rdf:first memo:ObjectOnly ;
+    rdf:rest ( memo:UnknownPerson ) .
+
+[] rdf:first memo:AnimalPresent ;
+    rdf:rest ( memo:PublicFigure ) .
+
+[] rdf:first memo:AnimalPresent ;
+    rdf:rest ( memo:CharacterPresent ) .
+
+[] rdf:first memo:ContainsText ;
+    rdf:rest ( memo:NoText ) .
+
+[] rdf:first memo:PersonPresent ;
+    rdf:rest ( memo:TextOnly ) .
+
+[] rdf:first memo:Drawing ;
+    rdf:rest ( memo:Painting ) .
+
+[] rdf:first memo:Expression ;
+    rdf:rest ( memo:Manifestation ) .
+
+[] rdf:first memo:Work ;
+    rdf:rest ( memo:Manifestation ) .
+
+[] rdf:first memo:JPEG ;
+    rdf:rest ( memo:PNG ) .
+
+[] rdf:first memo:Iconographical ;
+    rdf:rest ( memo:Iconological ) .
+
+[] rdf:first memo:Moderate ;
+    rdf:rest ( memo:Parody ) .
+
+[] rdf:first memo:ObjectOnly ;
+    rdf:rest ( memo:TextOnly ) .
 
