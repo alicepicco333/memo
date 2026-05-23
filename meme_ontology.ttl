@@ -19,9 +19,12 @@ memo: a owl:Ontology ;
     dc:description "The Meme Ontology (MEMO) is an OWL 2 DL ontology for the formal description of internet memes. It models meme templates (MemeConcept), their underlying creative ideas (MemeIdea), and scraped variant images (VariantInstance) using a FRBR-aligned four-level abstraction hierarchy and Panofsky's three levels of semantic analysis. Value classes provide controlled vocabularies for format, platform, image type, transformation extent and dimension, and other classifiers. 5,000 meme concepts, 50 enriched meme ideas and 391 variant instances are included as named individuals."@en ;
     dc:rights """Released for academic research. Data sourced from\r\r\r\r\r
 Know Your Meme under fair use."""@en ;
+    dc:title "Meme Ontology (MEMO)"@en ;
     dcterms:abstract "The Meme Ontology (MEMO) is a comprehensive OWL 2 DL ontology for the formal description and analysis of internet memes. It models the FRBR-aligned four-level abstraction hierarchy: meme templates (MemeConcept), creative instantiations (MemeIdea), variant manifestations (VariantInstance), and individual images (Item). Using Panofsky's three-level semantic analysis framework (PreIconographical, Iconographical, Iconological), the ontology provides controlled vocabularies for format classification, platform origin, image characteristics, transformation patterns, and cultural context. The schema encompasses 5,000 meme concepts, 50 enriched ideas, and 391 variant instances from Know Your Meme, enabling computational analysis of meme evolution, cultural adoption patterns, and creative transformation strategies in digital culture."@en ;
     dcterms:created "2024"^^xsd:gYear ;
+    dcterms:title "Meme Ontology (MEMO)"@en ;
     rdfs:seeAlso <https://github.com/meme-ontology/meme-ontology> ;
+    owl:name "Meme Ontology (MEMO)" ;
     owl:versionInfo "1.0" .
 
 memo:100MenVs1Gorilla a memo:MemeConcept,
