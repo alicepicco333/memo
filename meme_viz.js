@@ -148,8 +148,7 @@ function route() {
     showPage('dataset');
     if (!dsBuilt) buildDatasetPage();
   } else if (hash === 'ontology') {
-    showPage('ontology');
-    initOntoPage();
+    window.open('http://150.146.207.114/lode/extract?url=https%3A%2F%2Fraw.githubusercontent.com%2Falicepicco333%2Fmemo%2Frefs%2Fheads%2Fmain%2Fmeme_ontology_unpopulated.owl&owlapi=true&imported=true&closure=true&reasoner=true&lang=en', '_blank');
   } else {
     showViz();
   }
@@ -161,7 +160,7 @@ function showPage(name, navPage) {
   document.getElementById('dot-nav').classList.add('hidden');
   document.getElementById('node-panel').classList.add('hidden');
   document.getElementById('app').classList.remove('panel-open');
-  ['about', 'dataset', 'ontology', 'meme', 'd0', 'variant'].forEach(p =>
+  ['about', 'dataset', 'meme', 'd0', 'variant'].forEach(p =>
     document.getElementById('page-' + p).classList.add('hidden'));
   document.getElementById('page-' + name).classList.remove('hidden');
   setActiveNav(navPage || name);
@@ -266,7 +265,7 @@ function switchOntoTab(tab) {
 }
 
 function showViz() {
-  ['about', 'dataset', 'ontology', 'meme', 'd0', 'variant'].forEach(p =>
+  ['about', 'dataset', 'meme', 'd0', 'variant'].forEach(p =>
     document.getElementById('page-' + p).classList.add('hidden'));
   document.getElementById('app').classList.remove('hidden');
   document.getElementById('dot-nav').classList.remove('hidden');
