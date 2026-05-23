@@ -17,8 +17,7 @@ dcterms:created a owl:AnnotationProperty .
 <http://www.semanticweb.org/meme-ontology> a owl:Ontology ;
     rdfs:label "Meme Ontology (MEMO)"@en ;
     dc:creator "Meme Ontology Project" ;
-    dc:description """The Meme Ontology (MEMO) is an OWL 2 DL\r
-ontology for the formal description of internet memes. It models meme templates\r
+    dc:description """The Meme Ontology (MEMO) is an ontology for the formal description of internet memes. It models meme templates\r
 (MemeConcept), their underlying creative ideas (MemeIdea), and scraped variant\r
 images (VariantInstance) using a FRBR-aligned four-level abstraction hierarchy\r
 and Panofsky's three levels of semantic analysis. Value classes provide\r
