@@ -452,7 +452,7 @@ SELECT ?format (COUNT(DISTINCT ?m) AS ?count)
 WHERE {
   ?m a memo:MemeConcept ;
      memo:hasFormat ?fmt .
-  BIND(LOCALNAME(?fmt) AS ?format)
+  BIND(STRAFTER(STR(?fmt), "#") AS ?format)
 }
 GROUP BY ?format
 ORDER BY DESC(?count)</textarea>
@@ -495,7 +495,7 @@ ORDER BY DESC(?count)</textarea>
         'WHERE {',
         '  ?m a memo:MemeConcept ;',
         '     memo:hasFormat ?fmt .',
-        '  BIND(LOCALNAME(?fmt) AS ?format)',
+        '  BIND(STRAFTER(STR(?fmt), "#") AS ?format)',
         '}',
         'GROUP BY ?format',
         'ORDER BY DESC(?count)'
@@ -508,7 +508,7 @@ ORDER BY DESC(?count)</textarea>
         'WHERE {',
         '  ?m a memo:MemeConcept ;',
         '     memo:hasTimePeriod ?tp .',
-        '  BIND(LOCALNAME(?tp) AS ?period)',
+        '  BIND(STRAFTER(STR(?tp), "#") AS ?period)',
         '}',
         'GROUP BY ?period',
         'ORDER BY ?period'
@@ -524,7 +524,7 @@ ORDER BY DESC(?count)</textarea>
         '     rdfs:label ?label ;',
         '     memo:hasAnimationStatus memo:Animated ;',
         '     memo:hasFormat ?fmt .',
-        '  BIND(LOCALNAME(?fmt) AS ?format)',
+        '  BIND(STRAFTER(STR(?fmt), "#") AS ?format)',
         '}',
         'ORDER BY ?label',
         'LIMIT 100'
@@ -555,8 +555,8 @@ ORDER BY DESC(?count)</textarea>
         '     memo:hasOriginWork memo:TwitterX ;',
         '     memo:hasFormat ?fmt ;',
         '     memo:hasTimePeriod ?tp .',
-        '  BIND(LOCALNAME(?fmt) AS ?format)',
-        '  BIND(LOCALNAME(?tp) AS ?period)',
+        '  BIND(STRAFTER(STR(?fmt), "#") AS ?format)',
+        '  BIND(STRAFTER(STR(?tp), "#") AS ?period)',
         '}',
         'ORDER BY ?label',
         'LIMIT 50'
@@ -585,8 +585,8 @@ ORDER BY DESC(?count)</textarea>
         '     memo:hasCanonicalTextPresence memo:NoText ;',
         '     memo:hasFormat ?fmt ;',
         '     memo:hasCanonicalImageType ?it .',
-        '  BIND(LOCALNAME(?fmt) AS ?format)',
-        '  BIND(LOCALNAME(?it) AS ?imageType)',
+        '  BIND(STRAFTER(STR(?fmt), "#") AS ?format)',
+        '  BIND(STRAFTER(STR(?it), "#") AS ?imageType)',
         '}',
         'ORDER BY ?label',
         'LIMIT 100'
@@ -604,7 +604,7 @@ ORDER BY DESC(?count)</textarea>
         '  ?ref rdfs:label ?refLabel .',
         '  OPTIONAL {',
         '    ?ref a ?refType .',
-        '    BIND(LOCALNAME(?refType) AS ?refClass)',
+        '    BIND(STRAFTER(STR(?refType), "#") AS ?refClass)',
         '  }',
         '}',
         'ORDER BY ?memeName ?refLabel',
@@ -638,8 +638,8 @@ ORDER BY DESC(?count)</textarea>
         '     memo:hasTransformationDimension ?dim ;',
         '     memo:hasTransformationExtent ?ext .',
         '  ?m rdfs:label ?memeName .',
-        '  BIND(LOCALNAME(?dim) AS ?dimension)',
-        '  BIND(LOCALNAME(?ext) AS ?extent)',
+        '  BIND(STRAFTER(STR(?dim), "#") AS ?dimension)',
+        '  BIND(STRAFTER(STR(?ext), "#") AS ?extent)',
         '  OPTIONAL { ?v memo:transformationNote ?note }',
         '}',
         'ORDER BY ?memeName ?variantLabel'
@@ -704,8 +704,8 @@ ORDER BY DESC(?count)</textarea>
         '     memo:hasAnimationStatus ?anim ;',
         '     memo:hasVariant ?v .',
         '  ?v memo:hasVariantColorMode ?clr .',
-        '  BIND(LOCALNAME(?clr) AS ?color)',
-        '  BIND(LOCALNAME(?anim) AS ?animation)',
+        '  BIND(STRAFTER(STR(?clr), "#") AS ?color)',
+        '  BIND(STRAFTER(STR(?anim), "#") AS ?animation)',
         '}',
         'GROUP BY ?memeName ?color ?animation',
         'ORDER BY ?memeName',
@@ -721,8 +721,8 @@ ORDER BY DESC(?count)</textarea>
         '  ?v a memo:VariantInstance ;',
         '     memo:hasTransformationDimension ?dim ;',
         '     memo:hasTransformationExtent ?ext .',
-        '  BIND(LOCALNAME(?dim) AS ?dimension)',
-        '  BIND(LOCALNAME(?ext) AS ?extent)',
+        '  BIND(STRAFTER(STR(?dim), "#") AS ?dimension)',
+        '  BIND(STRAFTER(STR(?ext), "#") AS ?extent)',
         '}',
         'GROUP BY ?dimension ?extent',
         'ORDER BY DESC(?count)'
