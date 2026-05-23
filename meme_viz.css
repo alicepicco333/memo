@@ -1947,154 +1947,297 @@ body {
 }
 
 /* ════════════════════════════════════════════════════════════════════════════
-   RESPONSIVE MEDIA QUERIES
+   RESPONSIVE MEDIA QUERIES - Mobile First
    ════════════════════════════════════════════════════════════════════════════ */
 
-/* Tablets and below (1024px) */
-@media (max-width: 1024px) {
-  :root { --dot-nav-w: 0px; --panel-w: 320px; }
+/* Mobile (max 768px) - Most aggressive changes */
+@media (max-width: 768px) {
+  :root {
+    --dot-nav-w: 0;
+    --panel-w: 100vw;
+    --nav-h: 56px;
+  }
+
+  body { font-size: 13px; }
+
+  /* Navbar */
+  .topnav {
+    padding: 0 12px;
+    height: var(--nav-h);
+    flex-wrap: wrap;
+  }
+  .topnav-brand { font-size: 0.65rem; letter-spacing: 0.1em; }
+  .topnav-links {
+    gap: 2px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .topnav-link {
+    font-size: 0.65rem;
+    padding: 5px 8px;
+    min-height: 36px;
+    min-width: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .topnav-dropdown-menu {
+    min-width: 150px;
+    font-size: 0.7rem;
+  }
+  .topnav-dropdown-item {
+    font-size: 0.7rem;
+    padding: 6px 12px;
+  }
+
+  /* Hide sidebars */
+  nav.dot-nav { display: none !important; }
+  #app {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-top: var(--nav-h);
+  }
+  #app.panel-open { padding-right: 0 !important; }
+
+  /* Sections */
+  .viz-section {
+    height: auto;
+    min-height: calc(100vh - var(--nav-h) - 20px);
+    overflow: visible;
+    padding: 12px 10px !important;
+    border: none;
+  }
+  .viz-group-label {
+    font-size: 0.6rem;
+    padding: 4px 8px;
+  }
+  .sec-header {
+    height: auto;
+    padding: 8px 10px;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .sec-header h2 {
+    font-size: 0.9rem;
+    flex: 1 1 100%;
+  }
+  .sec-header p {
+    font-size: 0.75rem;
+    flex: 1 1 100%;
+  }
+
+  /* Graphs */
+  .graph-wrap {
+    min-height: 250px;
+    max-height: 400px;
+  }
+
+  /* Side panel */
+  .node-panel {
+    position: fixed !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: 60vh !important;
+    bottom: 0 !important;
+    right: 0 !important;
+    left: 0 !important;
+    border-radius: 12px 12px 0 0;
+    z-index: 500;
+  }
+  .node-panel.hidden { display: none !important; }
+
+  /* Pages */
+  .page { overflow-y: auto !important; }
+  .page-inner {
+    padding: 12px 10px 40px !important;
+  }
+  .page-inner h1 {
+    font-size: 1.2rem;
+    margin-bottom: 6px;
+  }
+  .page-sub {
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+  }
+
+  /* About page */
+  .about-stats {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .stat-card {
+    padding: 8px 10px;
+    font-size: 0.7rem;
+  }
+  .stat-num { font-size: 1.1rem; }
+  .about-section {
+    margin-bottom: 16px;
+  }
+  .about-section h2 {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+  .about-section p {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  .about-pipeline {
+    gap: 8px;
+  }
+  .pipeline-step {
+    flex: 0 1 calc(50% - 4px);
+    padding: 8px;
+    font-size: 0.75rem;
+  }
+
+  /* Dataset page */
+  .ds-overview-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .ds-overview-card {
+    padding: 10px;
+  }
+  .ds-ov-num { font-size: 1rem; }
+  .ds-ov-label { font-size: 0.6rem; }
+  .ds-jump-bar {
+    gap: 4px;
+  }
+  .ds-jump-btn {
+    flex: 1;
+    padding: 6px 8px;
+    font-size: 0.65rem;
+  }
+  .ds-jump-btn span { display: none; }
+  .dataset-toolbar {
+    flex-direction: column;
+    gap: 6px;
+  }
+  .dataset-search,
+  .dataset-select {
+    width: 100%;
+    font-size: 0.8rem;
+    padding: 6px 8px;
+  }
+  .dataset-grid {
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    gap: 6px;
+  }
+  .ds-d0-grid {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  }
+
+  /* Documentation page */
+  main.lode-main {
+    margin-left: 0 !important;
+    max-width: 100% !important;
+    padding: 12px 10px 40px !important;
+  }
+  .entity-block {
+    padding: 10px 12px;
+    margin-bottom: 8px;
+  }
+  .entity-title {
+    font-size: 0.8rem;
+  }
+  .entity-iri {
+    font-size: 0.7rem;
+  }
+  .entity-table {
+    font-size: 0.75rem;
+  }
+
+  /* Transformation legend */
+  .transform-legend {
+    padding: 10px 8px;
+    margin-bottom: 10px;
+  }
+  .transform-legend h3 {
+    font-size: 0.8rem;
+    margin-bottom: 6px;
+  }
+  .legend-grid {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  .legend-item {
+    padding: 6px 8px;
+  }
+  .legend-item strong {
+    font-size: 0.75rem;
+  }
+  .legend-item p {
+    font-size: 0.65rem;
+    margin-top: 2px;
+  }
+
+  /* Meme grids */
+  .meme-grid {
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    gap: 6px;
+  }
+
+  /* Hero page (index.html) */
+  .hero-section {
+    min-height: 100vh;
+  }
+  .hero-content {
+    padding: 20px 16px;
+    gap: 12px;
+  }
+  .hero-title {
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+  .hero-tagline {
+    font-size: 0.75rem;
+  }
+  .hero-stats {
+    gap: 12px;
+  }
+  .hero-stat-num {
+    font-size: 1.2rem;
+  }
+  .hero-stat-lbl {
+    font-size: 0.6rem;
+  }
+  .hero-nav {
+    gap: 6px;
+  }
+  .hero-nav-btn {
+    padding: 7px 12px;
+    font-size: 0.65rem;
+  }
+  .hero-links {
+    gap: 12px;
+    font-size: 0.65rem;
+  }
+}
+
+/* Tablets (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  :root {
+    --dot-nav-w: 0;
+    --panel-w: 320px;
+  }
+
   nav.dot-nav { display: none; }
   #app { padding-left: 0; }
-  main.lode-main { margin-left: 0; max-width: 100%; padding: 32px 24px 80px; }
   .topnav { padding: 0 16px; }
-  .topnav-links { gap: 8px; }
-  .topnav-link { font-size: 0.75rem; padding: 6px 12px; }
-  .viz-section { padding: 24px 16px; }
-  .sec-header h2 { font-size: 1.1rem; }
-  .sec-header p { font-size: 0.85rem; }
-  .about-section { margin-bottom: 28px; }
-  .about-section h2 { font-size: 1rem; }
-  .about-stats { gap: 12px; }
-  .stat-card { padding: 12px 16px; font-size: 0.8rem; }
-  .stat-num { font-size: 1.3rem; }
-  .ds-sec-hd { flex-direction: column; align-items: flex-start; gap: 12px; }
-  .ds-sec-hd-left { flex: 1; min-width: auto; }
-  .ds-badge { align-self: flex-start; }
-  .dataset-toolbar { flex-direction: column; gap: 8px; }
-  .dataset-search, .dataset-select { width: 100%; }
-  .entity-block { padding: 14px 16px; margin-bottom: 12px; }
-  .entity-title { font-size: 0.85rem; }
-  .entity-table { font-size: 0.8rem; }
-  .transform-legend { padding: 16px 12px; }
-  .legend-grid { grid-template-columns: 1fr; gap: 12px; }
-  .legend-item { padding: 10px 12px; }
-}
-
-/* Mobile (768px) */
-@media (max-width: 768px) {
-  :root { --panel-w: 280px; }
-  .topnav { padding: 0 12px; gap: 4px; }
-  .topnav-brand { font-size: 0.65rem; letter-spacing: 0.08em; }
-  .topnav-links { gap: 4px; }
-  .topnav-link { font-size: 0.7rem; padding: 5px 10px; }
-  .topnav-dropdown-menu { min-width: 180px; }
-  .topnav-dropdown-item { font-size: 0.7rem; padding: 3px 12px; }
-  .viz-section { padding: 20px 12px; }
-  .viz-group-label { font-size: 0.65rem; }
-  .sec-header { margin-bottom: 14px; }
-  .sec-header h2 { font-size: 1rem; }
-  .sec-header p { font-size: 0.8rem; }
-  .graph-wrap { min-height: 280px; }
-  .node-panel { width: 100%; max-width: 280px; height: auto; max-height: 400px; bottom: 10px; right: 10px; border-radius: 6px; }
-  #app.panel-open { padding-right: 0; }
-  .about-section { margin-bottom: 24px; }
-  .about-section h2 { font-size: 0.95rem; margin-bottom: 10px; }
-  .about-section p { font-size: 0.9rem; line-height: 1.6; }
-  .about-stats { flex-direction: column; gap: 10px; }
-  .stat-card { padding: 10px 12px; font-size: 0.75rem; }
-  .stat-num { font-size: 1.2rem; }
-  .about-pipeline { flex-wrap: wrap; }
-  .pipeline-step { flex: 0 1 calc(50% - 6px); padding: 12px; }
-  .pipeline-num { font-size: 0.9rem; }
-  .pipeline-label { font-size: 0.75rem; }
-  .page-inner { padding: 24px 12px 60px; }
-  .ds-jump-bar { flex-wrap: wrap; gap: 8px; }
-  .ds-jump-btn { flex: 1; min-width: 100px; padding: 8px 12px; font-size: 0.7rem; }
-  .dataset-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 8px; }
-  .ds-d0-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
-  .meme-grid { grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 6px; }
-  .entity-block { padding: 12px 14px; margin-bottom: 10px; }
-  .entity-title { font-size: 0.8rem; }
-  .entity-iri { font-size: 0.7rem; }
-  .entity-table { font-size: 0.75rem; }
-  .transform-legend { padding: 12px 10px; margin-bottom: 12px; }
-  .transform-legend h3 { font-size: 0.85rem; margin-bottom: 8px; }
-  .legend-grid { grid-template-columns: 1fr; gap: 8px; }
-  .legend-item { padding: 8px 10px; border-left-width: 2px; }
-  .legend-item strong { font-size: 0.8rem; }
-  .legend-item p { font-size: 0.7rem; margin-top: 3px; }
-}
-
-/* Small mobile (480px) */
-@media (max-width: 480px) {
-  :root { --panel-w: 100vw; }
-  * { margin: 0; padding: 0; }
-  body { font-size: 13px; }
-  nav.topnav { flex-direction: column; padding: 0; gap: 0; }
-  .topnav-brand { padding: 12px 16px; font-size: 0.6rem; border-bottom: 1px solid var(--border); }
-  .topnav-links { flex-direction: column; width: 100%; gap: 0; }
-  .topnav-dropdown { width: 100%; }
-  .topnav-link { border-top: 1px solid var(--border); padding: 10px 16px; font-size: 0.75rem; width: 100%; display: block; }
-  .topnav-dropdown-menu { position: static; background: transparent; border: none; box-shadow: none; }
-  .topnav-dropdown-menu.active { display: flex; flex-direction: column; }
-  .topnav-dropdown-item { width: 100%; display: block; padding: 8px 24px; font-size: 0.7rem; border-left: none; border-top: 1px solid var(--border); }
-  #app { margin-top: 0; }
-  .viz-section { padding: 14px 12px; margin: 0; }
-  .viz-group-label { font-size: 0.6rem; margin-bottom: 8px; }
-  .sec-header { margin-bottom: 12px; }
+  .topnav-links { gap: 6px; }
+  .topnav-link { font-size: 0.72rem; padding: 6px 12px; }
+  .viz-section { padding: 20px 14px; }
+  .sec-header { padding: 0 16px; }
   .sec-header h2 { font-size: 0.95rem; }
-  .sec-header p { font-size: 0.75rem; }
-  .graph-wrap { min-height: 200px; max-height: 300px; }
-  .hero-section { padding: 16px; }
-  .hero-title { font-size: 1.6rem; }
-  .hero-content { padding: 24px 16px; gap: 14px; }
-  .node-panel { width: calc(100% - 20px); max-width: none; height: auto; max-height: 350px; }
-  .panel-label { font-size: 0.7rem; }
-  #panel-title { font-size: 0.9rem; }
-  .panel-count { font-size: 0.75rem; }
-  .meme-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
-  .dataset-grid { grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 6px; }
-  .about-section { margin-bottom: 18px; }
-  .about-section h2 { font-size: 0.9rem; }
-  .about-section p { font-size: 0.85rem; }
-  .about-stats { flex-direction: column; gap: 8px; }
-  .stat-card { padding: 8px 10px; font-size: 0.7rem; }
-  .stat-num { font-size: 1.1rem; }
-  .about-pipeline { gap: 8px; }
-  .pipeline-step { padding: 8px 10px; font-size: 0.75rem; }
-  .page-inner { padding: 16px 12px 40px; }
-  .page-inner h1 { font-size: 1.3rem; }
-  .page-sub { font-size: 0.8rem; }
-  .ds-overview-row { flex-direction: column; gap: 10px; }
-  .ds-overview-card { padding: 12px; }
-  .ds-ov-num { font-size: 1.1rem; }
-  .ds-ov-label { font-size: 0.65rem; }
-  .ds-jump-bar { gap: 6px; }
-  .ds-jump-btn { flex: 1; min-width: 0; padding: 6px 8px; font-size: 0.65rem; }
-  .ds-jump-btn span { display: none; }
-  .dataset-toolbar { gap: 6px; }
-  .dataset-search, .dataset-select { font-size: 0.8rem; padding: 6px; }
-  .entity-block { padding: 10px 12px; margin-bottom: 8px; }
-  .entity-title { font-size: 0.75rem; gap: 6px; }
-  .entity-iri { font-size: 0.65rem; }
-  .transform-legend { padding: 10px 8px; }
-  .transform-legend h3 { font-size: 0.8rem; }
-  .legend-grid { gap: 6px; }
-  .legend-item { padding: 6px 8px; }
-  .legend-item strong { font-size: 0.75rem; }
-  .legend-item p { font-size: 0.65rem; }
-}
-
-/* Extra small mobile (max 360px) */
-@media (max-width: 360px) {
-  body { font-size: 12px; }
-  .hero-title { font-size: 1.4rem; }
-  .stat-card { padding: 6px 8px; }
-  .stat-num { font-size: 1rem; }
-  .sec-header h2 { font-size: 0.9rem; }
-  .graph-wrap { min-height: 180px; }
-  .meme-grid { grid-template-columns: 1fr; }
-  .dataset-grid { grid-template-columns: repeat(2, 1fr); }
-  .pipeline-step { flex: 0 1 100%; }
+  .sec-header p { font-size: 0.8rem; }
+  .graph-wrap { min-height: 300px; }
+  .page-inner { padding: 20px 14px 60px; }
+  .dataset-toolbar { flex-direction: column; gap: 8px; }
+  .dataset-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 8px; }
+  .about-stats { gap: 12px; }
+  .stat-card { padding: 10px 14px; font-size: 0.75rem; }
+  .transform-legend { padding: 12px 10px; }
+  .legend-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
 }
 
