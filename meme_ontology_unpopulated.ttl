@@ -502,10 +502,6 @@ memo:UnitedStates a memo:GeographicRegion,
         owl:NamedIndividual ;
     rdfs:label "UnitedStates" .
 
-memo:UnitedStatesNetherlands a memo:GeographicRegion,
-        owl:NamedIndividual ;
-    rdfs:label "UnitedStatesNetherlands" .
-
 memo:Unknown a memo:MemeFormat,
         memo:SubjectMatter,
         owl:NamedIndividual ;

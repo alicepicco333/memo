@@ -71230,7 +71230,8 @@ memo:WeHebbenEenSerieusProbleem a memo:MemeConcept,
     memo:hasFormat memo:Reaction ;
     memo:hasId 4611 ;
     memo:hasOriginWork memo:TwitterX ;
-    memo:hasRegion memo:UnitedStatesNetherlands ;
+    memo:hasRegion memo:UnitedStates,
+        memo:Netherlands ;
     memo:hasTimePeriod memo:Period2021toPresent .
 
 memo:WeIrritating a memo:MemeConcept,
