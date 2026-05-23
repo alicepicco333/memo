@@ -86481,7 +86481,7 @@ memo:KingOfTheHill a memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "King of the Hill" .
 
-memo:KnowYourMeme a memo:OriginWork,
+memo:KnowYourMeme a memo:OriginPlatform,
         owl:NamedIndividual ;
     rdfs:label "KnowYourMeme" .
 
@@ -86993,7 +86993,7 @@ memo:Indonesia a memo:GeographicRegion,
         owl:NamedIndividual ;
     rdfs:label "Indonesia" .
 
-memo:Snapchat a memo:OriginWork,
+memo:Snapchat a memo:OriginPlatform,
         owl:NamedIndividual ;
     rdfs:label "Snapchat" .
 
@@ -87724,7 +87724,7 @@ memo:OriginComic a owl:Class ;
     rdfs:label "OriginComic" ;
     rdfs:subClassOf memo:OriginWork .
 
-memo:Discord a memo:OriginWork,
+memo:Discord a memo:OriginPlatform,
         owl:NamedIndividual ;
     rdfs:label "Discord" .
 
@@ -87753,7 +87753,7 @@ memo:SpongebobSquarepants a memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "SpongeBob SquarePants" .
 
-memo:DeviantArt a memo:OriginWork,
+memo:DeviantArt a memo:OriginPlatform,
         owl:NamedIndividual ;
     rdfs:label "Deviant Art" .
 
@@ -87769,7 +87769,7 @@ memo:GIF a memo:FileFormat,
         owl:NamedIndividual ;
     rdfs:label "GIF" .
 
-memo:Imgur a memo:OriginWork,
+memo:Imgur a memo:OriginPlatform,
         owl:NamedIndividual ;
     rdfs:label "Imgur" .
 
@@ -87777,11 +87777,11 @@ memo:Worldwide a memo:GeographicRegion,
         owl:NamedIndividual ;
     rdfs:label "Worldwide" .
 
-memo:Vine a memo:OriginWork,
+memo:Vine a memo:OriginPlatform,
         owl:NamedIndividual ;
     rdfs:label "Vine" .
 
-memo:Twitch a memo:OriginWork,
+memo:Twitch a memo:OriginPlatform,
         owl:NamedIndividual ;
     rdfs:label "Twitch" .
 
@@ -87866,7 +87866,7 @@ memo:FanLabor a memo:MemeFormat,
     rdfs:subClassOf memo:MemeFormat ;
     owl:deprecated true .
 
-memo:iFunny a memo:OriginWork,
+memo:iFunny a memo:OriginPlatform,
         owl:NamedIndividual ;
     rdfs:label "iFunny" .
 
@@ -87918,11 +87918,11 @@ memo:FanArt a memo:MemeFormat,
         owl:NamedIndividual ;
     rdfs:label "FanArt" .
 
-memo:Tumblr a memo:OriginWork,
+memo:Tumblr a memo:OriginPlatform,
         owl:NamedIndividual ;
     rdfs:label "Tumblr" .
 
-memo:Facebook a memo:OriginWork,
+memo:Facebook a memo:OriginPlatform,
         owl:NamedIndividual ;
     rdfs:label "Facebook" .
 
@@ -87946,7 +87946,7 @@ memo:Snowclone a memo:MemeFormat,
         owl:NamedIndividual ;
     rdfs:label "Snowclone" .
 
-memo:Instagram a memo:OriginWork,
+memo:Instagram a memo:OriginPlatform,
         owl:NamedIndividual ;
     rdfs:label "Instagram" .
 
@@ -87966,7 +87966,7 @@ memo:Slang a memo:MemeFormat,
         owl:NamedIndividual ;
     rdfs:label "Slang" .
 
-memo:Reddit a memo:OriginWork,
+memo:Reddit a memo:OriginPlatform,
         owl:NamedIndividual ;
     rdfs:label "Reddit" .
 
@@ -87999,7 +87999,7 @@ memo:Character a memo:MemeFormat,
         owl:NamedIndividual ;
     rdfs:label "Character" .
 
-memo:YouTube a memo:OriginWork,
+memo:YouTube a memo:OriginPlatform,
         owl:NamedIndividual ;
     rdfs:label "YouTube" .
 
@@ -88019,7 +88019,7 @@ memo:Period2010to2015 a memo:TimePeriod,
         owl:NamedIndividual ;
     rdfs:label "Period2010to2015" .
 
-memo:TikTok a memo:OriginWork,
+memo:TikTok a memo:OriginPlatform,
         owl:NamedIndividual ;
     rdfs:label "TikTok" .
 
@@ -88063,12 +88063,11 @@ memo:Exploitable a memo:MemeFormat,
         owl:NamedIndividual ;
     rdfs:label "Exploitable" .
 
-memo:TwitterX a memo:OriginWork,
+memo:TwitterX a memo:OriginPlatform,
         owl:NamedIndividual ;
     rdfs:label "TwitterX" .
 
 memo:UnitedStates a memo:GeographicRegion,
-        memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "United States" .
 
