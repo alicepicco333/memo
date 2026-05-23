@@ -14,7 +14,7 @@ dc:rights a owl:AnnotationProperty .
 
 dcterms:created a owl:AnnotationProperty .
 
-<http://www.semanticweb.org/meme-ontology> a owl:Ontology ;
+memo: a owl:Ontology ;
     rdfs:label "Meme Ontology (MEMO)"@en ;
     dc:creator "Meme Ontology Project" ;
     dc:description "The Meme Ontology (MEMO) is an ontology for the formal description of internet memes. It models meme templates (MemeConcept), their underlying creative ideas (MemeIdea), and scraped variant images (VariantInstance) using a FRBR-aligned four-level abstraction hierarchy and Panofsky's three levels of semantic analysis. Value classes provide controlled vocabularies for format, platform, image type, transformation extent and dimension, and other classifiers. 5,000 meme concepts, 50 enriched meme ideas and 391 variant instances are included as named individuals."@en ;
@@ -1019,23 +1019,71 @@ image type, format, platform, region and time period."""@en ;
 [] rdf:first memo:Photograph ;
     rdf:rest ( memo:Cartoon ) .
 
-[] rdf:first memo:TextOnly ;
-    rdf:rest ( memo:MultipleSubjects ) .
-
-[] rdf:first memo:TextOnly ;
+[] rdf:first memo:UnknownPerson ;
     rdf:rest ( memo:NoPerson ) .
 
-[] rdf:first memo:PersonPresent ;
-    rdf:rest ( memo:ObjectOnly ) .
+[] rdf:first memo:Illustration ;
+    rdf:rest ( memo:Painting ) .
 
-[] rdf:first memo:Photograph ;
-    rdf:rest ( memo:Illustration ) .
+[] rdf:first memo:MultipleSubjects ;
+    rdf:rest ( memo:UnknownPerson ) .
+
+[] rdf:first memo:Substantial ;
+    rdf:rest ( memo:Parody ) .
+
+[] rdf:first memo:GIF ;
+    rdf:rest ( memo:WebP ) .
 
 [] rdf:first memo:TextOnly ;
     rdf:rest ( memo:PublicFigure ) .
 
+[] rdf:first memo:Moderate ;
+    rdf:rest ( memo:Substantial ) .
+
+[] rdf:first memo:Illustration ;
+    rdf:rest ( memo:Cartoon ) .
+
+[] rdf:first memo:Minimal ;
+    rdf:rest ( memo:Parody ) .
+
+[] rdf:first memo:PersonPresent ;
+    rdf:rest ( memo:CharacterPresent ) .
+
+[] rdf:first memo:PreIconographical ;
+    rdf:rest ( memo:Iconological ) .
+
+[] rdf:first memo:ObjectOnly ;
+    rdf:rest ( memo:MultipleSubjects ) .
+
+[] rdf:first memo:AnimalPresent ;
+    rdf:rest ( memo:ObjectOnly ) .
+
+[] rdf:first memo:Drawing ;
+    rdf:rest ( memo:Illustration ) .
+
+[] rdf:first memo:CharacterPresent ;
+    rdf:rest ( memo:NoPerson ) .
+
+[] rdf:first memo:PersonPresent ;
+    rdf:rest ( memo:MultipleSubjects ) .
+
 [] rdf:first memo:MultipleSubjects ;
     rdf:rest ( memo:NoPerson ) .
+
+[] rdf:first memo:PersonPresent ;
+    rdf:rest ( memo:PublicFigure ) .
+
+[] rdf:first memo:CharacterPresent ;
+    rdf:rest ( memo:TextOnly ) .
+
+[] rdf:first memo:AnimalPresent ;
+    rdf:rest ( memo:UnknownPerson ) .
+
+[] rdf:first memo:CharacterPresent ;
+    rdf:rest ( memo:UnknownPerson ) .
+
+[] rdf:first memo:PreIconographical ;
+    rdf:rest ( memo:Iconographical ) .
 
 [] rdf:first memo:AnimalPresent ;
     rdf:rest ( memo:NoPerson ) .
@@ -1060,6 +1108,9 @@ image type, format, platform, region and time period."""@en ;
 
 [] rdf:first memo:Manifestation ;
     rdf:rest ( memo:Item ) .
+
+[] rdf:first memo:TextOnly ;
+    rdf:rest ( memo:MultipleSubjects ) .
 
 [] rdf:first memo:Color ;
     rdf:rest ( memo:Monochrome ) .
@@ -1091,6 +1142,9 @@ image type, format, platform, region and time period."""@en ;
 [] rdf:first memo:JPEG ;
     rdf:rest ( memo:GIF ) .
 
+[] rdf:first memo:TextOnly ;
+    rdf:rest ( memo:NoPerson ) .
+
 [] rdf:first memo:Expression ;
     rdf:rest ( memo:Item ) .
 
@@ -1120,6 +1174,9 @@ image type, format, platform, region and time period."""@en ;
 
 [] rdf:first memo:Expression ;
     rdf:rest ( memo:Manifestation ) .
+
+[] rdf:first memo:PersonPresent ;
+    rdf:rest ( memo:ObjectOnly ) .
 
 [] rdf:first memo:AnimalPresent ;
     rdf:rest ( memo:MultipleSubjects ) .
@@ -1151,6 +1208,9 @@ image type, format, platform, region and time period."""@en ;
 [] rdf:first memo:ObjectOnly ;
     rdf:rest ( memo:NoPerson ) .
 
+[] rdf:first memo:Photograph ;
+    rdf:rest ( memo:Illustration ) .
+
 [] rdf:first memo:Work ;
     rdf:rest ( memo:Item ) .
 
@@ -1165,64 +1225,4 @@ image type, format, platform, region and time period."""@en ;
 
 [] rdf:first memo:Photograph ;
     rdf:rest ( memo:Drawing ) .
-
-[] rdf:first memo:UnknownPerson ;
-    rdf:rest ( memo:NoPerson ) .
-
-[] rdf:first memo:Illustration ;
-    rdf:rest ( memo:Painting ) .
-
-[] rdf:first memo:MultipleSubjects ;
-    rdf:rest ( memo:UnknownPerson ) .
-
-[] rdf:first memo:Substantial ;
-    rdf:rest ( memo:Parody ) .
-
-[] rdf:first memo:GIF ;
-    rdf:rest ( memo:WebP ) .
-
-[] rdf:first memo:Moderate ;
-    rdf:rest ( memo:Substantial ) .
-
-[] rdf:first memo:Illustration ;
-    rdf:rest ( memo:Cartoon ) .
-
-[] rdf:first memo:Minimal ;
-    rdf:rest ( memo:Parody ) .
-
-[] rdf:first memo:PersonPresent ;
-    rdf:rest ( memo:CharacterPresent ) .
-
-[] rdf:first memo:PreIconographical ;
-    rdf:rest ( memo:Iconological ) .
-
-[] rdf:first memo:ObjectOnly ;
-    rdf:rest ( memo:MultipleSubjects ) .
-
-[] rdf:first memo:AnimalPresent ;
-    rdf:rest ( memo:ObjectOnly ) .
-
-[] rdf:first memo:Drawing ;
-    rdf:rest ( memo:Illustration ) .
-
-[] rdf:first memo:CharacterPresent ;
-    rdf:rest ( memo:NoPerson ) .
-
-[] rdf:first memo:PersonPresent ;
-    rdf:rest ( memo:MultipleSubjects ) .
-
-[] rdf:first memo:PersonPresent ;
-    rdf:rest ( memo:PublicFigure ) .
-
-[] rdf:first memo:CharacterPresent ;
-    rdf:rest ( memo:TextOnly ) .
-
-[] rdf:first memo:AnimalPresent ;
-    rdf:rest ( memo:UnknownPerson ) .
-
-[] rdf:first memo:CharacterPresent ;
-    rdf:rest ( memo:UnknownPerson ) .
-
-[] rdf:first memo:PreIconographical ;
-    rdf:rest ( memo:Iconographical ) .
 
