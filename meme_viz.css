@@ -1898,3 +1898,50 @@ body {
   content-visibility: auto;
 }
 .collage-thumb:hover { opacity: .72; }
+
+/* ── Transformation Dimension Legend ────────────────────────────────────────── */
+.transform-legend {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+}
+
+.transform-legend h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent2);
+  margin: 0 0 16px 0;
+}
+
+.legend-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.legend-item {
+  padding: 12px 14px;
+  background: var(--bg);
+  border-left: 3px solid var(--accent2);
+  border-radius: 3px;
+}
+
+.legend-item strong {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent2);
+  margin-bottom: 6px;
+  letter-spacing: 0.04em;
+}
+
+.legend-item p {
+  font-size: 0.75rem;
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 0;
+}
