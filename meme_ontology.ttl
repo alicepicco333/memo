@@ -87753,10 +87753,6 @@ memo:VisualEffect a memo:MemeFormat,
         owl:NamedIndividual ;
     rdfs:label "Visual Effect" .
 
-memo:Hashtag a memo:MemeFormat,
-        owl:NamedIndividual ;
-    rdfs:label "Hashtag" .
-
 memo:MemeFormat a owl:Class ;
     rdfs:label "Meme Format"@en ;
     memo:frbrLevel "Expression" ;
@@ -87765,6 +87761,10 @@ memo:MemeFormat a owl:Class ;
 (e.g. ImageMacro, Catchphrase, Exploitable, Reaction, ViralVideo). Classifies\r\r\r\r\r\r
 memes at the Expression level with Iconographical analysis."""@en ;
     rdfs:subClassOf owl:Thing .
+
+memo:Hashtag a memo:MemeFormat,
+        owl:NamedIndividual ;
+    rdfs:label "Hashtag" .
 
 memo:GeographicRegion a owl:Class ;
     rdfs:label "Geographic Region"@en ;
@@ -87798,7 +87798,6 @@ memo:FanLabor a memo:MemeFormat,
         owl:NamedIndividual ;
     rdfs:label "Fan Labor" ;
     rdfs:comment "Deprecated. Use FanLabor instead." ;
-    rdfs:subClassOf memo:MemeFormat ;
     owl:deprecated true .
 
 memo:iFunny a memo:OriginPlatform,
@@ -87809,14 +87808,12 @@ memo:ConspiracyTheory a memo:MemeFormat,
         owl:NamedIndividual ;
     rdfs:label "Conspiracy Theory" ;
     rdfs:comment "Deprecated. Use ConspiracyTheory instead." ;
-    rdfs:subClassOf memo:MemeFormat ;
     owl:deprecated true .
 
 memo:LipDub a memo:MemeFormat,
         owl:NamedIndividual ;
     rdfs:label "Lip Dub" ;
     rdfs:comment "Deprecated. Use LipDub instead." ;
-    rdfs:subClassOf memo:MemeFormat ;
     owl:deprecated true .
 
 memo:ObjectOnly a memo:CanonicalSubjectMatter,
