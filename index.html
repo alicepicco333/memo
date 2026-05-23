@@ -125,6 +125,94 @@
       transition: color .15s;
     }
     .hero-links a:hover { color: rgba(255,255,255,.85); }
+
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      .index-hero .hero-content {
+        padding: 24px 20px;
+        gap: 14px;
+        max-width: 100%;
+        width: calc(100% - 24px);
+      }
+      .index-hero .hero-title {
+        font-size: 1.8rem;
+      }
+      .hero-tagline {
+        font-size: 0.8rem;
+      }
+      .hero-stats {
+        gap: 12px;
+      }
+      .hero-stat-num {
+        font-size: 1.1rem;
+      }
+      .hero-stat-lbl {
+        font-size: 0.6rem;
+      }
+      .hero-nav {
+        gap: 6px;
+        width: 100%;
+      }
+      .hero-nav-btn {
+        padding: 7px 14px;
+        font-size: 0.7rem;
+        flex: 1 1 calc(50% - 3px);
+        text-align: center;
+      }
+      .hero-links {
+        gap: 10px;
+        font-size: 0.65rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .index-hero .hero-content {
+        padding: 16px 14px;
+        gap: 10px;
+      }
+      .index-hero .hero-title {
+        font-size: 1.4rem;
+      }
+      .hero-tagline {
+        font-size: 0.7rem;
+        margin-top: -2px;
+      }
+      .hero-stats {
+        gap: 8px;
+        width: 100%;
+      }
+      .hero-stat {
+        flex: 1 1 calc(50% - 4px);
+      }
+      .hero-stat-num {
+        font-size: 0.95rem;
+      }
+      .hero-stat-lbl {
+        font-size: 0.55rem;
+      }
+      .hero-divider {
+        margin: 4px 0;
+      }
+      .hero-nav {
+        gap: 4px;
+        width: 100%;
+      }
+      .hero-nav-btn {
+        padding: 6px 10px;
+        font-size: 0.65rem;
+        flex: 1 1 calc(50% - 2px);
+        min-height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .hero-links {
+        gap: 8px;
+        font-size: 0.6rem;
+      }
+    }
   </style>
 </head>
 <body>
