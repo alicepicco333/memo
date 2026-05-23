@@ -16,8 +16,8 @@
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#hasAnimationStatus">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:label>hasAnimationStatus</rdfs:label>
-    <memo:frbrLevel>Manifestation</memo:frbrLevel>
-    <memo:semanticLevel>PreIconographical</memo:semanticLevel>
+    <memo:frbrLevel>Item</memo:frbrLevel>
+    <memo:documentaryLevel>true</memo:documentaryLevel>
     <rdfs:domain rdf:resource="http://www.semanticweb.org/meme-ontology#MemeConcept"/>
     <rdfs:range rdf:resource="http://www.semanticweb.org/meme-ontology#AnimationStatus"/>
     <owl:inverseOf rdf:resource="http://www.semanticweb.org/meme-ontology#isAnimationStatusOf"/>
@@ -113,8 +113,7 @@ Know Your Meme under fair use.</dc:rights>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#hasCanonicalTextPresence">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:label>hasCanonicalTextPresence</rdfs:label>
-    <memo:frbrLevel>Manifestation</memo:frbrLevel>
-    <memo:semanticLevel>PreIconographical</memo:semanticLevel>
+    <memo:frbrLevel>Expression</memo:frbrLevel>
     <rdfs:domain rdf:resource="http://www.semanticweb.org/meme-ontology#MemeConcept"/>
     <rdfs:range rdf:resource="http://www.semanticweb.org/meme-ontology#TextPresence"/>
     <owl:inverseOf rdf:resource="http://www.semanticweb.org/meme-ontology#isCanonicalTextPresenceOf"/>
@@ -189,9 +188,7 @@ PNG, GIF, WebP, BMP).</rdfs:comment>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#hasCanonicalSubjectMatter">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:label>hasCanonicalSubjectMatter</rdfs:label>
-    <rdfs:label>hasCanonicalSubjectMatter</rdfs:label>
-    <memo:frbrLevel>Manifestation</memo:frbrLevel>
-    <memo:semanticLevel>PreIconographical</memo:semanticLevel>
+    <memo:frbrLevel>Expression</memo:frbrLevel>
     <rdfs:comment>What is inherently built into the base meme template (Expression level).</rdfs:comment>
     <rdfs:domain rdf:resource="http://www.semanticweb.org/meme-ontology#MemeConcept"/>
     <rdfs:range rdf:resource="http://www.semanticweb.org/meme-ontology#SubjectMatter"/>
@@ -242,8 +239,7 @@ CompositionShift, CrossoverMerge, LanguageShift, Localization.</rdfs:comment>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#hasCanonicalImageType">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:label>hasCanonicalImageType</rdfs:label>
-    <memo:frbrLevel>Manifestation</memo:frbrLevel>
-    <memo:semanticLevel>PreIconographical</memo:semanticLevel>
+    <memo:frbrLevel>Expression</memo:frbrLevel>
     <rdfs:comment xml:lang="en">The visual medium of the canonical meme image,&#13;&#13;&#13;&#13;&#13;&#13;
 assigned by CLIP-based classification.</rdfs:comment>
     <rdfs:domain rdf:resource="http://www.semanticweb.org/meme-ontology#MemeConcept"/>
@@ -602,8 +598,8 @@ origin.</rdfs:comment>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#hasFileFormat">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:label>hasFileFormat</rdfs:label>
-    <memo:frbrLevel>Manifestation</memo:frbrLevel>
-    <memo:semanticLevel>PreIconographical</memo:semanticLevel>
+    <memo:frbrLevel>Item</memo:frbrLevel>
+    <memo:documentaryLevel>true</memo:documentaryLevel>
     <rdfs:domain rdf:resource="http://www.semanticweb.org/meme-ontology#MemeConcept"/>
     <rdfs:range rdf:resource="http://www.semanticweb.org/meme-ontology#FileFormat"/>
     <owl:inverseOf rdf:resource="http://www.semanticweb.org/meme-ontology#isFileFormatOf"/>
@@ -751,8 +747,8 @@ canonical template: Minimal (close copy), Moderate, Substantial, or Parody&#13;&
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#hasOriginWork">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:label>hasOriginWork</rdfs:label>
-    <memo:frbrLevel>Work</memo:frbrLevel>
-    <memo:semanticLevel>Iconological</memo:semanticLevel>
+    <memo:frbrLevel>Expression</memo:frbrLevel>
+    <memo:documentaryLevel>true</memo:documentaryLevel>
     <rdfs:comment xml:lang="en">Links a MemeConcept to the cultural Work it&#13;&#13;&#13;&#13;&#13;&#13;
 derives from or references.</rdfs:comment>
     <rdfs:domain rdf:resource="http://www.semanticweb.org/meme-ontology#MemeConcept"/>
@@ -1086,8 +1082,7 @@ in the scraped dataset (1–5000).</rdfs:comment>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#hasCanonicalColorMode">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:label>hasCanonicalColorMode</rdfs:label>
-    <memo:frbrLevel>Manifestation</memo:frbrLevel>
-    <memo:semanticLevel>PreIconographical</memo:semanticLevel>
+    <memo:frbrLevel>Expression</memo:frbrLevel>
     <rdfs:domain rdf:resource="http://www.semanticweb.org/meme-ontology#MemeConcept"/>
     <rdfs:range rdf:resource="http://www.semanticweb.org/meme-ontology#ColorMode"/>
     <owl:inverseOf rdf:resource="http://www.semanticweb.org/meme-ontology#isCanonicalColorModeOf"/>

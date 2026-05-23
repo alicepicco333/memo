@@ -698,24 +698,22 @@ memo:conceptualizes a owl:ObjectProperty ;
 
 memo:hasAnimationStatus a owl:ObjectProperty ;
     rdfs:label "hasAnimationStatus"@en ;
-    memo:frbrLevel "Manifestation" ;
-    memo:semanticLevel "PreIconographical" ;
+    memo:frbrLevel "Item" ;
+    memo:documentaryLevel "true" ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range memo:AnimationStatus ;
     owl:inverseOf memo:isAnimationStatusOf .
 
 memo:hasCanonicalColorMode a owl:ObjectProperty ;
     rdfs:label "hasCanonicalColorMode"@en ;
-    memo:frbrLevel "Manifestation" ;
-    memo:semanticLevel "PreIconographical" ;
+    memo:frbrLevel "Expression" ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range memo:ColorMode ;
     owl:inverseOf memo:isCanonicalColorModeOf .
 
 memo:hasCanonicalImageType a owl:ObjectProperty ;
     rdfs:label "hasCanonicalImageType"@en ;
-    memo:frbrLevel "Manifestation" ;
-    memo:semanticLevel "PreIconographical" ;
+    memo:frbrLevel "Expression" ;
     rdfs:comment """The visual medium of the canonical meme image,\r\r\r\r\r\r
 assigned by CLIP-based classification."""@en ;
     rdfs:domain memo:MemeConcept ;
@@ -724,8 +722,7 @@ assigned by CLIP-based classification."""@en ;
 
 memo:hasCanonicalSubjectMatter a owl:ObjectProperty ;
     rdfs:label "hasCanonicalSubjectMatter" ;
-    memo:frbrLevel "Manifestation" ;
-    memo:semanticLevel "PreIconographical" ;
+    memo:frbrLevel "Expression" ;
     rdfs:comment "What is inherently built into the base meme template (Expression level)." ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range memo:SubjectMatter ;
@@ -733,8 +730,7 @@ memo:hasCanonicalSubjectMatter a owl:ObjectProperty ;
 
 memo:hasCanonicalTextPresence a owl:ObjectProperty ;
     rdfs:label "hasCanonicalTextPresence"@en ;
-    memo:frbrLevel "Manifestation" ;
-    memo:semanticLevel "PreIconographical" ;
+    memo:frbrLevel "Expression" ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range memo:TextPresence ;
     owl:inverseOf memo:isCanonicalTextPresenceOf .
@@ -747,8 +743,8 @@ memo:hasColorMode a owl:ObjectProperty ;
 
 memo:hasFileFormat a owl:ObjectProperty ;
     rdfs:label "hasFileFormat"@en ;
-    memo:frbrLevel "Manifestation" ;
-    memo:semanticLevel "PreIconographical" ;
+    memo:frbrLevel "Item" ;
+    memo:documentaryLevel "true" ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range memo:FileFormat ;
     owl:inverseOf memo:isFileFormatOf .
@@ -829,8 +825,8 @@ memo:hasOriginVideoGame a owl:ObjectProperty ;
 
 memo:hasOriginWork a owl:ObjectProperty ;
     rdfs:label "hasOriginWork"@en ;
-    memo:frbrLevel "Work" ;
-    memo:semanticLevel "Iconological" ;
+    memo:frbrLevel "Expression" ;
+    memo:documentaryLevel "true" ;
     rdfs:comment """Links a MemeConcept to the cultural Work it\r\r\r\r\r\r
 derives from or references."""@en ;
     rdfs:domain memo:MemeConcept ;
