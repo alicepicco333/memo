@@ -407,6 +407,26 @@
           <span class="ex-title">DESCRIBE a meme</span>
           <span class="ex-desc">DESCRIBE returns Turtle</span>
         </button>
+
+        <button class="example-btn" data-example="wikidata-regions">
+          <span class="ex-title">Memes by region (Wikidata)</span>
+          <span class="ex-desc">Geographic distribution with URIs</span>
+        </button>
+
+        <button class="example-btn" data-example="platform-stats">
+          <span class="ex-title">Platform statistics</span>
+          <span class="ex-desc">Meme counts per origin platform</span>
+        </button>
+
+        <button class="example-btn" data-example="color-and-animation">
+          <span class="ex-title">Color × Animation analysis</span>
+          <span class="ex-desc">Variant transformations by style</span>
+        </button>
+
+        <button class="example-btn" data-example="transformation-analysis">
+          <span class="ex-title">Transformation matrix</span>
+          <span class="ex-desc">Dimension & extent distribution</span>
+        </button>
       </div>
 
     </aside><div class="sparql-editor-area">
@@ -558,12 +578,14 @@ ORDER BY DESC(?count)</textarea>
         'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
         'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>',
         '',
-        'SELECT ?label ?imageType',
+        'SELECT ?label ?format ?imageType',
         'WHERE {',
         '  ?m a memo:MemeConcept ;',
         '     rdfs:label ?label ;',
-        '     memo:hasTextPresence memo:NoText ;',
-        '     memo:hasImageType ?it .',
+        '     memo:hasCanonicalTextPresence memo:NoText ;',
+        '     memo:hasFormat ?fmt ;',
+        '     memo:hasCanonicalImageType ?it .',
+        '  BIND(LOCALNAME(?fmt) AS ?format)',
         '  BIND(LOCALNAME(?it) AS ?imageType)',
         '}',
         'ORDER BY ?label',
@@ -636,6 +658,74 @@ ORDER BY DESC(?count)</textarea>
         'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
         '',
         'DESCRIBE memo:woman-yelling-at-a-cat'
+      ].join('\n'),
+
+      'wikidata-regions': [
+        'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
+        'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>',
+        '',
+        'SELECT ?region ?wikidata (COUNT(DISTINCT ?m) AS ?memeCount)',
+        'WHERE {',
+        '  ?region a memo:GeographicRegion ;',
+        '          rdfs:label ?regionLabel ;',
+        '          rdfs:seeAlso ?wikidata .',
+        '  ?m a memo:MemeConcept ;',
+        '     memo:hasRegion ?region .',
+        '}',
+        'GROUP BY ?region ?wikidata ?regionLabel',
+        'ORDER BY DESC(?memeCount)'
+      ].join('\n'),
+
+      'platform-stats': [
+        'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
+        'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>',
+        '',
+        'SELECT ?platform ?label (COUNT(DISTINCT ?m) AS ?count)',
+        'WHERE {',
+        '  ?platform a memo:OriginPlatform ;',
+        '            rdfs:label ?label ;',
+        '            rdfs:seeAlso ?wikidata .',
+        '  ?m a memo:MemeConcept ;',
+        '     memo:hasOriginPlatform ?platform .',
+        '}',
+        'GROUP BY ?platform ?label',
+        'ORDER BY DESC(?count)',
+        'LIMIT 20'
+      ].join('\n'),
+
+      'color-and-animation': [
+        'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
+        'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>',
+        '',
+        'SELECT ?memeName ?color ?animation (COUNT(DISTINCT ?v) AS ?variantCount)',
+        'WHERE {',
+        '  ?m a memo:MemeConcept ;',
+        '     rdfs:label ?memeName ;',
+        '     memo:hasAnimationStatus ?anim ;',
+        '     memo:hasVariant ?v .',
+        '  ?v memo:hasVariantColorMode ?clr .',
+        '  BIND(LOCALNAME(?clr) AS ?color)',
+        '  BIND(LOCALNAME(?anim) AS ?animation)',
+        '}',
+        'GROUP BY ?memeName ?color ?animation',
+        'ORDER BY ?memeName',
+        'LIMIT 50'
+      ].join('\n'),
+
+      'transformation-analysis': [
+        'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
+        'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>',
+        '',
+        'SELECT ?dimension ?extent (COUNT(DISTINCT ?v) AS ?count)',
+        'WHERE {',
+        '  ?v a memo:VariantInstance ;',
+        '     memo:hasTransformationDimension ?dim ;',
+        '     memo:hasTransformationExtent ?ext .',
+        '  BIND(LOCALNAME(?dim) AS ?dimension)',
+        '  BIND(LOCALNAME(?ext) AS ?extent)',
+        '}',
+        'GROUP BY ?dimension ?extent',
+        'ORDER BY DESC(?count)'
       ].join('\n')
     };
 
