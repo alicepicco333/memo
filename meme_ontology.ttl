@@ -78895,7 +78895,8 @@ memo:delulu a memo:MemeConcept,
 memo:description a owl:DatatypeProperty ;
     rdfs:label "description" ;
     rdfs:domain memo:MemeConcept ;
-    rdfs:range xsd:string .
+    rdfs:range xsd:string ;
+    owl:equivalentProperty dcterms:description .
 
 memo:dirds a memo:MemeConcept,
         owl:NamedIndividual ;
@@ -80489,7 +80490,8 @@ memo:melony a memo:MemeConcept,
 memo:memeURL a owl:DatatypeProperty ;
     rdfs:label "memeURL" ;
     rdfs:domain memo:MemeConcept ;
-    rdfs:range xsd:string .
+    rdfs:range xsd:string ;
+    owl:equivalentProperty schema:url .
 
 memo:meowl a memo:MemeConcept,
         owl:NamedIndividual ;
@@ -81743,7 +81745,8 @@ memo:swampletics a memo:MemeConcept,
 memo:tags a owl:DatatypeProperty ;
     rdfs:label "tags" ;
     rdfs:domain memo:MemeConcept ;
-    rdfs:range xsd:string .
+    rdfs:range xsd:string ;
+    owl:equivalentProperty schema:keywords .
 
 memo:technologia a memo:MemeConcept,
         owl:NamedIndividual ;
@@ -82074,7 +82077,8 @@ memo:vergil a memo:MemeConcept,
 memo:views a owl:DatatypeProperty ;
     rdfs:label "views" ;
     rdfs:domain memo:MemeConcept ;
-    rdfs:range xsd:integer .
+    rdfs:range xsd:integer ;
+    rdfs:seeAlso schema:interactionCount .
 
 memo:vishawn a memo:MemeConcept,
         owl:NamedIndividual ;
@@ -82454,7 +82458,8 @@ memo:yakub a memo:MemeConcept,
 memo:yearOfOrigin a owl:DatatypeProperty ;
     rdfs:label "yearOfOrigin" ;
     rdfs:domain memo:MemeConcept ;
-    rdfs:range xsd:integer .
+    rdfs:range xsd:integer ;
+    owl:equivalentProperty dcterms:created .
 
 memo:yobama a memo:MemeConcept,
         owl:NamedIndividual ;
@@ -85633,7 +85638,8 @@ memo:hasOriginWork a owl:ObjectProperty ;
 derives from or references."""@en ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range memo:OriginWork ;
-    owl:inverseOf memo:isOriginWorkOf .
+    owl:inverseOf memo:isOriginWorkOf ;
+    owl:equivalentProperty schema:isBasedOn .
 
 memo:hasReference a owl:ObjectProperty ;
     rdfs:label "hasReference" ;
@@ -85648,7 +85654,8 @@ memo:hasRegion a owl:ObjectProperty ;
 primary circulation."""@en ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range memo:GeographicRegion ;
-    owl:inverseOf memo:isRegionOf .
+    owl:inverseOf memo:isRegionOf ;
+    rdfs:seeAlso dcterms:spatial .
 
 memo:hasTextPresence a owl:ObjectProperty ;
     rdfs:label "hasTextPresence" ;

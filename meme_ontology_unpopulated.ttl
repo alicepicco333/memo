@@ -831,7 +831,8 @@ memo:hasOriginWork a owl:ObjectProperty ;
 derives from or references."""@en ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range memo:OriginWork ;
-    owl:inverseOf memo:isOriginWorkOf .
+    owl:inverseOf memo:isOriginWorkOf ;
+    owl:equivalentProperty schema:isBasedOn .
 
 memo:hasReference a owl:ObjectProperty ;
     rdfs:label "hasReference" ;
@@ -846,7 +847,8 @@ memo:hasRegion a owl:ObjectProperty ;
 primary circulation."""@en ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range memo:GeographicRegion ;
-    owl:inverseOf memo:isRegionOf .
+    owl:inverseOf memo:isRegionOf ;
+    rdfs:seeAlso dcterms:spatial .
 
 memo:hasTextPresence a owl:ObjectProperty ;
     rdfs:label "hasTextPresence" ;
