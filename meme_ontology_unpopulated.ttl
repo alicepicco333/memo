@@ -1041,11 +1041,13 @@ memo:isTransformationExtentOf a owl:ObjectProperty ;
 memo:isVariantColorModeOf a owl:ObjectProperty ;
     rdfs:label "isVariantColorModeOf" ;
     rdfs:domain memo:ColorMode ;
+    rdfs:range memo:VariantInstance ;
     owl:inverseOf memo:hasVariantColorMode .
 
 memo:isVariantImageTypeOf a owl:ObjectProperty ;
     rdfs:label "isVariantImageTypeOf" ;
     rdfs:domain memo:ImageType ;
+    rdfs:range memo:VariantInstance ;
     owl:inverseOf memo:hasVariantImageType .
 
 memo:isVariantOf a owl:ObjectProperty ;
@@ -1057,6 +1059,7 @@ memo:isVariantOf a owl:ObjectProperty ;
 memo:isVariantTextPresenceOf a owl:ObjectProperty ;
     rdfs:label "isVariantTextPresenceOf" ;
     rdfs:domain memo:TextPresence ;
+    rdfs:range memo:VariantInstance ;
     owl:inverseOf memo:hasVariantTextPresence .
 
 memo:AnimationStatus a owl:Class ;
