@@ -14,16 +14,10 @@ dc:rights a owl:AnnotationProperty .
 
 dcterms:created a owl:AnnotationProperty .
 
-memo: a owl:Ontology ;
+<http://www.semanticweb.org/meme-ontology#> a owl:Ontology ;
     rdfs:label "Meme Ontology (MEMO)"@en ;
     dc:creator "Meme Ontology Project" ;
-    dc:description """The Meme Ontology (MEMO) is an ontology for the formal description of internet memes. It models meme templates\r\r\r\r
-(MemeConcept), their underlying creative ideas (MemeIdea), and scraped variant\r\r\r\r
-images (VariantInstance) using a FRBR-aligned four-level abstraction hierarchy\r\r\r\r
-and Panofsky's three levels of semantic analysis. Value classes provide\r\r\r\r
-controlled vocabularies for format, platform, image type, transformation extent\r\r\r\r
-and dimension, and other classifiers. 5,000 meme concepts, 50 enriched meme\r\r\r\r
-ideas and 391 variant instances are included as named individuals."""@en ;
+    dc:description "The Meme Ontology (MEMO) is an ontology for the formal description of internet memes. It models meme templates (MemeConcept), their underlying creative ideas (MemeIdea), and scraped variant images (VariantInstance) using a FRBR-aligned four-level abstraction hierarchy and Panofsky's three levels of semantic analysis. Value classes provide controlled vocabularies for format, platform, image type, transformation extent and dimension, and other classifiers. 5,000 meme concepts, 50 enriched meme ideas and 391 variant instances are included as named individuals."@en ;
     dc:rights """Released for academic research. Data sourced from\r\r\r\r
 Know Your Meme under fair use."""@en ;
     dcterms:created "2024"^^xsd:gYear ;
@@ -1012,100 +1006,7 @@ image type, format, platform, region and time period."""@en ;
     owl:members ( memo:AnimalPresent memo:NoPerson ) .
 
 [] a owl:AllDisjointClasses ;
-    owl:members ( memo:MultipleSubjects memo:UnknownPerson ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:AnimalPresent memo:UnknownPerson ) .
-
-[] a owl:AllDisjointClasses ;
     owl:members ( memo:Iconographical memo:Iconological ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:JPEG memo:WebP ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:Drawing memo:Cartoon ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:Photograph memo:Drawing ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:ObjectOnly memo:NoPerson ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:Work memo:Item ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:Minimal memo:Substantial ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:PersonPresent memo:UnknownPerson ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:UnknownPerson memo:NoPerson ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:Illustration memo:Painting ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:GIF memo:WebP ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:Moderate memo:Substantial ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:Illustration memo:Cartoon ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:Minimal memo:Parody ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:PersonPresent memo:CharacterPresent ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:PreIconographical memo:Iconological ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:ObjectOnly memo:MultipleSubjects ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:CharacterPresent memo:NoPerson ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:PersonPresent memo:PublicFigure ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:CharacterPresent memo:TextOnly ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:CharacterPresent memo:UnknownPerson ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:PreIconographical memo:Iconographical ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:TextOnly memo:MultipleSubjects ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:TextOnly memo:NoPerson ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:PersonPresent memo:ObjectOnly ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:TextOnly memo:PublicFigure ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:AnimalPresent memo:TextOnly ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:TextOnly memo:UnknownPerson ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:CharacterPresent memo:PublicFigure ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( memo:PNG memo:GIF ) .
 
 [] a owl:AllDisjointClasses ;
     owl:members ( memo:CharacterPresent memo:ObjectOnly ) .
@@ -1138,6 +1039,9 @@ image type, format, platform, region and time period."""@en ;
     owl:members ( memo:PersonPresent memo:NoPerson ) .
 
 [] a owl:AllDisjointClasses ;
+    owl:members ( memo:JPEG memo:WebP ) .
+
+[] a owl:AllDisjointClasses ;
     owl:members ( memo:PNG memo:WebP ) .
 
 [] a owl:AllDisjointClasses ;
@@ -1166,6 +1070,9 @@ image type, format, platform, region and time period."""@en ;
 
 [] a owl:AllDisjointClasses ;
     owl:members ( memo:ObjectOnly memo:PublicFigure ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:Drawing memo:Cartoon ) .
 
 [] a owl:AllDisjointClasses ;
     owl:members ( memo:Work memo:Expression ) .
@@ -1198,6 +1105,9 @@ image type, format, platform, region and time period."""@en ;
     owl:members ( memo:Photograph memo:Cartoon ) .
 
 [] a owl:AllDisjointClasses ;
+    owl:members ( memo:Photograph memo:Drawing ) .
+
+[] a owl:AllDisjointClasses ;
     owl:members ( memo:AnimalPresent memo:ObjectOnly ) .
 
 [] a owl:AllDisjointClasses ;
@@ -1217,4 +1127,88 @@ image type, format, platform, region and time period."""@en ;
 
 [] a owl:AllDisjointClasses ;
     owl:members ( memo:Moderate memo:Parody ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:ObjectOnly memo:NoPerson ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:Work memo:Item ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:Minimal memo:Substantial ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:PersonPresent memo:UnknownPerson ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:UnknownPerson memo:NoPerson ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:Illustration memo:Painting ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:MultipleSubjects memo:UnknownPerson ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:GIF memo:WebP ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:Moderate memo:Substantial ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:Illustration memo:Cartoon ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:Minimal memo:Parody ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:PersonPresent memo:CharacterPresent ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:PreIconographical memo:Iconological ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:ObjectOnly memo:MultipleSubjects ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:CharacterPresent memo:NoPerson ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:PersonPresent memo:PublicFigure ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:CharacterPresent memo:TextOnly ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:AnimalPresent memo:UnknownPerson ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:CharacterPresent memo:UnknownPerson ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:PreIconographical memo:Iconographical ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:TextOnly memo:MultipleSubjects ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:TextOnly memo:NoPerson ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:PersonPresent memo:ObjectOnly ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:TextOnly memo:PublicFigure ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:AnimalPresent memo:TextOnly ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:TextOnly memo:UnknownPerson ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:CharacterPresent memo:PublicFigure ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( memo:PNG memo:GIF ) .
 
