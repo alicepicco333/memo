@@ -105,6 +105,18 @@ Promise.all([
       'Critical dataset missing (meme_data.json).';
   });
 
+/* ── Responsive chart redraw on resize ──────────────────────────────────── */
+let resizeTimeout;
+window.addEventListener('resize', function() {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(function() {
+    const currentHash = window.location.hash.slice(1) || '';
+    if (['sec-time', 'sec-popularity', 'sec-platform-time', 'sec-variant-bubble'].some(h => currentHash.includes(h))) {
+      buildGraphs();
+    }
+  }, 250);
+});
+
 /* ── Live reload (polls while scraper runs) ──────────────────────────────── */
 let _lastDataSize = 0;
 function startLiveReload() {
