@@ -299,27 +299,6 @@ primary circulation.</rdfs:comment>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>captionText</rdfs:label>
     </owl:DatatypeProperty>
-<owl:DatatypeProperty rdf:about="http://www.semanticweb.org/meme-ontology#clipImageTypeScore">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/meme-ontology#MemeConcept"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-        <rdfs:comment xml:lang="en">Confidence score (0–1) from the CLIP model for
-the assigned CanonicalImageType classification.</rdfs:comment>
-        <rdfs:label>clipImageTypeScore</rdfs:label>
-    </owl:DatatypeProperty>
-<owl:DatatypeProperty rdf:about="http://www.semanticweb.org/meme-ontology#clipPublicFigureScore">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/meme-ontology#MemeConcept"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-        <rdfs:comment xml:lang="en">CLIP confidence score (0–1) estimating the
-likelihood that the image depicts a recognisable public figure.</rdfs:comment>
-        <rdfs:label>clipPublicFigureScore</rdfs:label>
-    </owl:DatatypeProperty>
-<owl:DatatypeProperty rdf:about="http://www.semanticweb.org/meme-ontology#clipTextScore">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/meme-ontology#MemeConcept"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-        <rdfs:comment xml:lang="en">CLIP confidence score (0–1) for the text-presence
-classification.</rdfs:comment>
-        <rdfs:label>clipTextScore</rdfs:label>
-    </owl:DatatypeProperty>
 <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/meme-ontology#conceptDescription">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/meme-ontology#MemeIdea"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
@@ -22955,6 +22934,428 @@ image type, format, platform, region and time period.</rdfs:comment>
     <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#iFunny">
         <rdfs:label>iFunny</rdfs:label>
     </rdf:Description>
+
+    <!-- Disjoint axioms for mutually exclusive classes -->
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Color"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Monochrome"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Static"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Animated"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#ContainsText"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#NoText"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#PersonPresent"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#AnimalPresent"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#PersonPresent"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#CharacterPresent"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#PersonPresent"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#ObjectOnly"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#PersonPresent"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#TextOnly"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#PersonPresent"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#MultipleSubjects"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#PersonPresent"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#PublicFigure"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#PersonPresent"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#UnknownPerson"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#PersonPresent"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#NoPerson"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#AnimalPresent"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#CharacterPresent"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#AnimalPresent"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#ObjectOnly"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#AnimalPresent"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#TextOnly"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#AnimalPresent"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#MultipleSubjects"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#AnimalPresent"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#PublicFigure"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#AnimalPresent"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#UnknownPerson"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#AnimalPresent"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#NoPerson"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#CharacterPresent"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#ObjectOnly"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#CharacterPresent"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#TextOnly"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#CharacterPresent"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#MultipleSubjects"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#CharacterPresent"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#PublicFigure"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#CharacterPresent"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#UnknownPerson"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#CharacterPresent"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#NoPerson"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#ObjectOnly"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#TextOnly"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#ObjectOnly"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#MultipleSubjects"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#ObjectOnly"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#PublicFigure"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#ObjectOnly"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#UnknownPerson"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#ObjectOnly"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#NoPerson"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#TextOnly"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#MultipleSubjects"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#TextOnly"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#PublicFigure"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#TextOnly"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#UnknownPerson"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#TextOnly"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#NoPerson"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#MultipleSubjects"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#PublicFigure"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#MultipleSubjects"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#UnknownPerson"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#MultipleSubjects"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#NoPerson"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#PublicFigure"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#UnknownPerson"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#PublicFigure"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#NoPerson"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#UnknownPerson"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#NoPerson"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Photograph"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Drawing"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Photograph"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Illustration"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Photograph"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Cartoon"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Photograph"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Painting"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Drawing"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Illustration"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Drawing"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Cartoon"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Drawing"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Painting"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Illustration"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Cartoon"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Illustration"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Painting"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Cartoon"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Painting"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Minimal"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Moderate"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Minimal"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Substantial"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Minimal"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Parody"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Moderate"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Substantial"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Moderate"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Parody"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Substantial"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Parody"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#JPEG"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#PNG"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#JPEG"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#GIF"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#JPEG"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#WebP"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#PNG"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#GIF"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#PNG"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#WebP"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#GIF"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#WebP"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Work"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Expression"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Work"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Manifestation"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Work"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Item"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Expression"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Manifestation"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Expression"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Item"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Manifestation"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Item"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#PreIconographical"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Iconographical"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#PreIconographical"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Iconological"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
+    <owl:AllDisjointClasses>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Iconographical"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Iconological"/>
+        </owl:members>
+    </owl:AllDisjointClasses>
 </rdf:RDF>
 
 
