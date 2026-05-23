@@ -9358,10 +9358,6 @@ memo:CaptainMarvelPunch a memo:MemeConcept,
     memo:hasRegion memo:Unknown ;
     memo:hasTimePeriod memo:Period2016to2020 .
 
-memo:CaptionChange a owl:Class ;
-    rdfs:label "CaptionChange" ;
-    rdfs:subClassOf memo:TransformationDimension .
-
 memo:CaramelldansenLights a memo:MemeConcept,
         owl:NamedIndividual ;
     rdfs:label "caramelldansen-lights" ;
@@ -11802,10 +11798,6 @@ memo:ComplaintTabletToEaNasir a memo:MemeConcept,
     memo:hasRegion memo:Babylon ;
     memo:hasTimePeriod memo:Pre2010 .
 
-memo:CompositionShift a owl:Class ;
-    rdfs:label "CompositionShift" ;
-    rdfs:subClassOf memo:TransformationDimension .
-
 memo:ConanTheAlBaghdadiRaidDog a memo:MemeConcept,
         owl:NamedIndividual ;
     rdfs:label "conan-the-al-baghdadi-raid-dog" ;
@@ -12609,10 +12601,6 @@ memo:CrossedOutPrideFlagEmojiCombination a memo:MemeConcept,
     memo:hasOriginWork memo:TwitterX ;
     memo:hasRegion memo:Unknown ;
     memo:hasTimePeriod memo:Period2016to2020 .
-
-memo:CrossoverMerge a owl:Class ;
-    rdfs:label "CrossoverMerge" ;
-    rdfs:subClassOf memo:TransformationDimension .
 
 memo:CrotchGoblin a memo:MemeConcept,
         owl:NamedIndividual ;
@@ -25866,10 +25854,6 @@ memo:HistoricalBattleShitpostsDecisiveVictory a memo:MemeConcept,
     memo:hasRegion memo:Unknown ;
     memo:hasTimePeriod memo:Period2016to2020 .
 
-memo:HistoricalEvent a owl:Class ;
-    rdfs:label "HistoricalEvent" ;
-    rdfs:subClassOf memo:CulturalReference .
-
 memo:HistoryChannelAtNight a memo:MemeConcept,
         owl:NamedIndividual ;
     rdfs:label "history-channel-at-night" ;
@@ -36757,10 +36741,6 @@ memo:LanceStrollInterrupts a memo:MemeConcept,
     memo:hasRegion memo:Unknown ;
     memo:hasTimePeriod memo:Period2021toPresent .
 
-memo:LanguageShift a owl:Class ;
-    rdfs:label "LanguageShift" ;
-    rdfs:subClassOf memo:TransformationDimension .
-
 memo:LaptopCat a memo:MemeConcept,
         owl:NamedIndividual ;
     rdfs:label "laptop-cat" ;
@@ -38319,10 +38299,6 @@ memo:LobotomySlang a memo:MemeConcept,
     memo:hasOriginWork memo:Reddit ;
     memo:hasRegion memo:Unknown ;
     memo:hasTimePeriod memo:Period2021toPresent .
-
-memo:Localization a owl:Class ;
-    rdfs:label "Localization" ;
-    rdfs:subClassOf memo:TransformationDimension .
 
 memo:LockedInNinjaLowTaperFadeXLockedInAlienRemix a memo:MemeConcept,
         owl:NamedIndividual ;
@@ -40155,10 +40131,6 @@ memo:MediaLiteracy a memo:MemeConcept,
     memo:hasRegion memo:UnitedStates ;
     memo:hasTimePeriod memo:Period2016to2020 .
 
-memo:MediaProperty a owl:Class ;
-    rdfs:label "MediaProperty" ;
-    rdfs:subClassOf memo:CulturalReference .
-
 memo:MedievalKnightWithArrowInEyeSlot a memo:MemeConcept,
         owl:NamedIndividual ;
     rdfs:label "medieval-knight-with-arrow-in-eye-slot" ;
@@ -40173,10 +40145,6 @@ memo:MedievalKnightWithArrowInEyeSlot a memo:MemeConcept,
     memo:hasOriginWork memo:DeviantArt ;
     memo:hasRegion memo:Unknown ;
     memo:hasTimePeriod memo:Period2010to2015 .
-
-memo:MediumShift a owl:Class ;
-    rdfs:label "MediumShift" ;
-    rdfs:subClassOf memo:TransformationDimension .
 
 memo:MeetMeAtOurSpotByTheAnxiety a memo:MemeConcept,
         owl:NamedIndividual ;
@@ -49135,10 +49103,6 @@ memo:PoliteLizard a memo:MemeConcept,
     memo:hasRegion memo:Unknown ;
     memo:hasTimePeriod memo:Period2016to2020 .
 
-memo:PoliticalEvent a owl:Class ;
-    rdfs:label "PoliticalEvent" ;
-    rdfs:subClassOf memo:CulturalReference .
-
 memo:PolsAaGyiPols a memo:MemeConcept,
         owl:NamedIndividual ;
     rdfs:label "pols-aa-gyi-pols" ;
@@ -49824,10 +49788,6 @@ memo:PtsdChihuahua a memo:MemeConcept,
     memo:hasId 1018 ;
     memo:hasRegion memo:Unknown ;
     memo:hasTimePeriod memo:Unknown .
-
-memo:PublicFigure a owl:Class ;
-    rdfs:label "PublicFigure" ;
-    rdfs:subClassOf memo:CulturalReference .
 
 memo:PudgySecKidAndHotGirlCouple a memo:MemeConcept,
         owl:NamedIndividual ;
@@ -55863,10 +55823,6 @@ memo:SocialDistancing a memo:MemeConcept,
     memo:hasRegion memo:Unknown ;
     memo:hasTimePeriod memo:Period2016to2020 .
 
-memo:SocialPhenomenon a owl:Class ;
-    rdfs:label "SocialPhenomenon" ;
-    rdfs:subClassOf memo:CulturalReference .
-
 memo:SociallyAwkwardBlackGuy a memo:MemeConcept,
         owl:NamedIndividual ;
     rdfs:label "socially-awkward-black-guy" ;
@@ -58085,10 +58041,6 @@ memo:StupidEmoGay a memo:MemeConcept,
     memo:hasOriginWork memo:Facebook ;
     memo:hasRegion memo:Unknown ;
     memo:hasTimePeriod memo:Period2010to2015 .
-
-memo:StyleShift a owl:Class ;
-    rdfs:label "StyleShift" ;
-    rdfs:subClassOf memo:TransformationDimension .
 
 memo:Subculture a memo:MemeFormat,
         owl:NamedIndividual ;
@@ -70380,10 +70332,6 @@ memo:VisibleConfusion a memo:MemeConcept,
     memo:hasRegion memo:Unknown ;
     memo:hasTimePeriod memo:Period2016to2020 .
 
-memo:VisualSubstrate a owl:Class ;
-    rdfs:label "VisualSubstrate" ;
-    rdfs:subClassOf memo:TransformationDimension .
-
 memo:VivaLaVidaByCosplay a memo:MemeConcept,
         owl:NamedIndividual ;
     rdfs:label "viva-la-vida-by-cosplay" ;
@@ -71578,10 +71526,6 @@ memo:Web2MeVsWeb3Me a memo:MemeConcept,
     memo:hasOriginWork memo:TwitterX ;
     memo:hasRegion memo:Unknown ;
     memo:hasTimePeriod memo:Period2021toPresent .
-
-memo:WebCulture a owl:Class ;
-    rdfs:label "WebCulture" ;
-    rdfs:subClassOf memo:CulturalReference .
 
 memo:WebP a memo:FileFormat,
         owl:NamedIndividual ;
@@ -86357,6 +86301,17 @@ memo:CloneHigh a memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "Clone High" .
 
+memo:CulturalReference a owl:Class ;
+    rdfs:label "Cultural Reference"@en ;
+    memo:frbrLevel "Expression Manifestation",
+        "Expression, Manifestation" ;
+    memo:semanticLevel "Iconological" ;
+    rdfs:comment """A cultural entity referenced by a meme — a historical\r\r\r\r\r\r
+event, media property, political event, public figure, social phenomenon, or web\r\r\r\r\r\r
+culture artefact. Subclasses: HistoricalEvent, MediaProperty, PoliticalEvent,\r\r\r\r\r\r
+PublicFigure, SocialPhenomenon, WebCulture."""@en ;
+    rdfs:subClassOf owl:Thing .
+
 memo:Cyberpunk2077 a memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "Cyberpunk 2077" .
@@ -86555,6 +86510,15 @@ memo:TheIncrediblesMovie a memo:OriginWork,
 memo:TheInternet a memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "The Internet" .
+
+memo:TransformationDimension a owl:Class ;
+    rdfs:label "Transformation Dimension"@en ;
+    memo:documentaryLevel "true" ;
+    memo:frbrLevel "Manifestation" ;
+    rdfs:comment """The axis along which a variant transforms the\r\r\r\r\r\r
+canonical template: CaptionChange, VisualSubstrate, MediumShift, StyleShift,\r\r\r\r\r\r
+CompositionShift, CrossoverMerge, LanguageShift, Localization."""@en ;
+    rdfs:subClassOf owl:Thing .
 
 memo:Turkey a memo:GeographicRegion,
         owl:NamedIndividual ;
@@ -86969,17 +86933,6 @@ memo:TimePeriod a owl:Class ;
 memo:9gag a memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "9gag" .
-
-memo:CulturalReference a owl:Class ;
-    rdfs:label "Cultural Reference"@en ;
-    memo:frbrLevel "Expression Manifestation",
-        "Expression, Manifestation" ;
-    memo:semanticLevel "Iconological" ;
-    rdfs:comment """A cultural entity referenced by a meme — a historical\r\r\r\r\r\r
-event, media property, political event, public figure, social phenomenon, or web\r\r\r\r\r\r
-culture artefact. Subclasses: HistoricalEvent, MediaProperty, PoliticalEvent,\r\r\r\r\r\r
-PublicFigure, SocialPhenomenon, WebCulture."""@en ;
-    rdfs:subClassOf owl:Thing .
 
 memo:JojoSBizarreAdventure a memo:OriginWork,
         owl:NamedIndividual ;
@@ -87436,15 +87389,6 @@ memo:ThisIsSoSadAlexaPlayDespacito a memo:MemeConcept,
     memo:hasOriginWork memo:Tumblr ;
     memo:hasRegion memo:Unknown ;
     memo:hasTimePeriod memo:Period2016to2020 .
-
-memo:TransformationDimension a owl:Class ;
-    rdfs:label "Transformation Dimension"@en ;
-    memo:documentaryLevel "true" ;
-    memo:frbrLevel "Manifestation" ;
-    rdfs:comment """The axis along which a variant transforms the\r\r\r\r\r\r
-canonical template: CaptionChange, VisualSubstrate, MediumShift, StyleShift,\r\r\r\r\r\r
-CompositionShift, CrossoverMerge, LanguageShift, Localization."""@en ;
-    rdfs:subClassOf owl:Thing .
 
 memo:WeirdFlexButOk a memo:MemeConcept,
         owl:NamedIndividual ;
