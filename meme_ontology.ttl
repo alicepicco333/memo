@@ -13,7 +13,7 @@ dc:rights a owl:AnnotationProperty .
 
 dcterms:created a owl:AnnotationProperty .
 
-<http://www.semanticweb.org/meme-ontology> a owl:Ontology ;
+: a owl:Ontology ;
     rdfs:label "Meme Ontology (MEMO)"@en ;
     dc:creator "Meme Ontology Project" ;
     dc:description """The Meme Ontology (MEMO) is an OWL 2 DL\r

@@ -14,7 +14,7 @@ dc:rights a owl:AnnotationProperty .
 
 dcterms:created a owl:AnnotationProperty .
 
-<http://www.semanticweb.org/meme-ontology> a owl:Ontology ;
+: a owl:Ontology ;
     rdfs:label "Meme Ontology (MEMO)"@en ;
     dc:creator "Meme Ontology Project" ;
     dc:description """The Meme Ontology (MEMO) is an ontology for the formal description of internet memes. It models meme templates\r
@@ -1065,100 +1065,7 @@ image type, format, platform, region and time period."""@en ;
     owl:members ( :AnimalPresent :NoPerson ) .
 
 [] a owl:AllDisjointClasses ;
-    owl:members ( :CharacterPresent :ObjectOnly ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :PNG :WebP ) .
-
-[] a owl:AllDisjointClasses ;
     owl:members ( :Photograph :Cartoon ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :Drawing :Painting ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :Minimal :Substantial ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :Static :Animated ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :CharacterPresent :TextOnly ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :TextOnly :NoPerson ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :PersonPresent :ObjectOnly ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :TextOnly :PublicFigure ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :AnimalPresent :TextOnly ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :PNG :GIF ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :PublicFigure :UnknownPerson ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :Drawing :Illustration ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :CharacterPresent :MultipleSubjects ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :PublicFigure :NoPerson ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :Cartoon :Painting ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :AnimalPresent :CharacterPresent ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :Illustration :Painting ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :CharacterPresent :UnknownPerson ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :Photograph :Illustration ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :PersonPresent :NoPerson ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :PersonPresent :AnimalPresent ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :ObjectOnly :UnknownPerson ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :Work :Manifestation ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :PersonPresent :CharacterPresent ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :CharacterPresent :PublicFigure ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :MultipleSubjects :UnknownPerson ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :Substantial :Parody ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :Photograph :Painting ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :JPEG :GIF ) .
-
-[] a owl:AllDisjointClasses ;
-    owl:members ( :Expression :Item ) .
 
 [] a owl:AllDisjointClasses ;
     owl:members ( :Work :Item ) .
@@ -1191,6 +1098,9 @@ image type, format, platform, region and time period."""@en ;
     owl:members ( :AnimalPresent :PublicFigure ) .
 
 [] a owl:AllDisjointClasses ;
+    owl:members ( :Drawing :Painting ) .
+
+[] a owl:AllDisjointClasses ;
     owl:members ( :AnimalPresent :ObjectOnly ) .
 
 [] a owl:AllDisjointClasses ;
@@ -1219,6 +1129,9 @@ image type, format, platform, region and time period."""@en ;
 
 [] a owl:AllDisjointClasses ;
     owl:members ( :ObjectOnly :NoPerson ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :Minimal :Substantial ) .
 
 [] a owl:AllDisjointClasses ;
     owl:members ( :PersonPresent :UnknownPerson ) .
@@ -1251,6 +1164,9 @@ image type, format, platform, region and time period."""@en ;
     owl:members ( :Manifestation :Item ) .
 
 [] a owl:AllDisjointClasses ;
+    owl:members ( :Static :Animated ) .
+
+[] a owl:AllDisjointClasses ;
     owl:members ( :Work :Expression ) .
 
 [] a owl:AllDisjointClasses ;
@@ -1270,4 +1186,88 @@ image type, format, platform, region and time period."""@en ;
 
 [] a owl:AllDisjointClasses ;
     owl:members ( :PersonPresent :PublicFigure ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :CharacterPresent :TextOnly ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :TextOnly :NoPerson ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :PersonPresent :ObjectOnly ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :TextOnly :PublicFigure ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :AnimalPresent :TextOnly ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :PNG :GIF ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :CharacterPresent :ObjectOnly ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :PublicFigure :UnknownPerson ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :Drawing :Illustration ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :CharacterPresent :MultipleSubjects ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :PublicFigure :NoPerson ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :Cartoon :Painting ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :AnimalPresent :CharacterPresent ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :Illustration :Painting ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :CharacterPresent :UnknownPerson ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :Photograph :Illustration ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :PersonPresent :NoPerson ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :PNG :WebP ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :PersonPresent :AnimalPresent ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :ObjectOnly :UnknownPerson ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :Work :Manifestation ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :PersonPresent :CharacterPresent ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :CharacterPresent :PublicFigure ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :MultipleSubjects :UnknownPerson ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :Substantial :Parody ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :Photograph :Painting ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :JPEG :GIF ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( :Expression :Item ) .
 
