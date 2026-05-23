@@ -18877,6 +18877,8 @@ memo:ExposedNerve a memo:MemeConcept,
     memo:hasRegion memo:Unknown ;
     memo:hasTimePeriod memo:Period2021toPresent .
 
+memo:Expression rdfs:label "Expression" .
+
 memo:ExtinctBirdReEvolvedItselfBackIntoExistence a memo:MemeConcept,
         owl:NamedIndividual ;
     rdfs:label "extinct-bird-re-evolved-itself-back-into-existence" ;
@@ -39216,6 +39218,8 @@ memo:MangoPhonk a memo:MemeConcept,
     memo:hasOriginWork memo:TikTok ;
     memo:hasRegion memo:ElSalvador ;
     memo:hasTimePeriod memo:Period2021toPresent .
+
+memo:Manifestation rdfs:label "Manifestation" .
 
 memo:MankindIsDeadBloodIsFuelHellIsFull a memo:MemeConcept,
         owl:NamedIndividual ;
@@ -79999,13 +80003,6 @@ memo:imageFilePath a owl:DatatypeProperty ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range xsd:string .
 
-memo:imageFilename a owl:DatatypeProperty ;
-    rdfs:label "imageFilename" ;
-    rdfs:comment "Deprecated. Use imageFileName instead." ;
-    rdfs:domain memo:MemeConcept ;
-    rdfs:range xsd:string ;
-    owl:deprecated true .
-
 memo:imageURL a owl:DatatypeProperty ;
     rdfs:label "imageURL" ;
     rdfs:domain memo:MemeConcept ;
@@ -80851,13 +80848,6 @@ memo:perrin a memo:MemeConcept,
     memo:hasOriginWork memo:YouTube ;
     memo:hasRegion memo:Japan ;
     memo:hasTimePeriod memo:Period2021toPresent .
-
-memo:photoId a owl:DatatypeProperty ;
-    rdfs:label "photoId" ;
-    rdfs:comment "Deprecated. Use photoID instead." ;
-    rdfs:domain memo:VariantInstance ;
-    rdfs:range xsd:string ;
-    owl:deprecated true .
 
 memo:photoURL a owl:DatatypeProperty ;
     rdfs:label "photoURL" ;
@@ -85473,6 +85463,7 @@ memo:hasCanonicalColorMode a owl:ObjectProperty ;
     memo:frbrLevel "Manifestation" ;
     memo:semanticLevel "PreIconographical" ;
     rdfs:domain memo:MemeConcept ;
+    rdfs:range memo:ColorMode ;
     owl:inverseOf memo:isCanonicalColorModeOf .
 
 memo:hasCanonicalImageType a owl:ObjectProperty ;
@@ -85482,6 +85473,7 @@ memo:hasCanonicalImageType a owl:ObjectProperty ;
     rdfs:comment """The visual medium of the canonical meme image,\r\r\r\r\r\r
 assigned by CLIP-based classification."""@en ;
     rdfs:domain memo:MemeConcept ;
+    rdfs:range memo:ImageType ;
     owl:inverseOf memo:isCanonicalImageTypeOf .
 
 memo:hasCanonicalSubjectMatter a owl:ObjectProperty ;
@@ -85499,6 +85491,7 @@ memo:hasCanonicalTextPresence a owl:ObjectProperty ;
     memo:frbrLevel "Manifestation" ;
     memo:semanticLevel "PreIconographical" ;
     rdfs:domain memo:MemeConcept ;
+    rdfs:range memo:TextPresence ;
     owl:inverseOf memo:isCanonicalTextPresenceOf .
 
 memo:hasColorMode a owl:ObjectProperty ;
@@ -85530,13 +85523,6 @@ memo:hasImageType a owl:ObjectProperty ;
     rdfs:domain memo:VariantInstance ;
     rdfs:range memo:ImageType ;
     owl:inverseOf memo:isImageTypeOf .
-
-memo:hasManifestation a owl:ObjectProperty ;
-    rdfs:label "has manifestation" ;
-    rdfs:comment "Relates a Manifestation to the Expression it instantiates" ;
-    rdfs:domain memo:Manifestation ;
-    rdfs:range memo:Expression ;
-    owl:inverseOf memo:isManifestedIn .
 
 memo:hasOriginBoard a owl:ObjectProperty ;
     rdfs:label "has origin board"@en ;
@@ -85620,12 +85606,6 @@ primary circulation."""@en ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range memo:GeographicRegion ;
     owl:inverseOf memo:isRegionOf .
-
-memo:hasSubjectMatter a owl:ObjectProperty ;
-    rdfs:label "hasSubjectMatter" ;
-    rdfs:domain memo:VariantInstance ;
-    rdfs:range memo:SubjectMatter ;
-    owl:inverseOf memo:isSubjectMatterOf .
 
 memo:hasTextPresence a owl:ObjectProperty ;
     rdfs:label "hasTextPresence" ;
@@ -85722,13 +85702,11 @@ memo:isAnimationStatusOf a owl:ObjectProperty ;
 
 memo:isCanonicalColorModeOf a owl:ObjectProperty ;
     rdfs:label "is Canonical Color Mode Of" ;
-    rdfs:domain memo:CanonicalColorMode ;
     rdfs:range memo:MemeConcept ;
     owl:inverseOf memo:hasCanonicalColorMode .
 
 memo:isCanonicalImageTypeOf a owl:ObjectProperty ;
     rdfs:label "is Canonical Image Type Of" ;
-    rdfs:domain memo:CanonicalImageType ;
     rdfs:range memo:MemeConcept ;
     owl:inverseOf memo:hasCanonicalImageType .
 
@@ -85740,7 +85718,6 @@ memo:isCanonicalSubjectMatterOf a owl:ObjectProperty ;
 
 memo:isCanonicalTextPresenceOf a owl:ObjectProperty ;
     rdfs:label "is Canonical Text Presence Of" ;
-    rdfs:domain memo:CanonicalTextPresence ;
     rdfs:range memo:MemeConcept ;
     owl:inverseOf memo:hasCanonicalTextPresence .
 
@@ -85773,13 +85750,6 @@ memo:isImageTypeOf a owl:ObjectProperty ;
     rdfs:domain memo:ImageType ;
     rdfs:range memo:VariantInstance ;
     owl:inverseOf memo:hasImageType .
-
-memo:isManifestedIn a owl:ObjectProperty ;
-    rdfs:label "is manifested in" ;
-    rdfs:comment "Relates an Expression (template concept) to its Manifestations (format-specific instances)" ;
-    rdfs:domain memo:Expression ;
-    rdfs:range memo:Manifestation ;
-    owl:inverseOf memo:hasManifestation .
 
 memo:isOriginBoardOf a owl:ObjectProperty ;
     rdfs:label "is Origin Board Of" ;
@@ -85852,12 +85822,6 @@ memo:isRegionOf a owl:ObjectProperty ;
     rdfs:domain memo:GeographicRegion ;
     rdfs:range memo:MemeConcept ;
     owl:inverseOf memo:hasRegion .
-
-memo:isSubjectMatterOf a owl:ObjectProperty ;
-    rdfs:label "is Subject Matter Of" ;
-    rdfs:domain memo:SubjectMatter ;
-    rdfs:range memo:VariantInstance ;
-    owl:inverseOf memo:hasSubjectMatter .
 
 memo:isTextPresenceOf a owl:ObjectProperty ;
     rdfs:label "is Text Presence Of" ;
@@ -86324,8 +86288,6 @@ memo:DoomEternal a memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "Doom Eternal" .
 
-memo:Expression rdfs:label "Expression" .
-
 memo:FamilyGuy a memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "Family Guy" .
@@ -86388,8 +86350,6 @@ memo:Left4Dead2 a memo:OriginWork,
 memo:LookismNet a memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "Lookism.net" .
-
-memo:Manifestation rdfs:label "Manifestation" .
 
 memo:MarvelComics a memo:OriginWork,
         owl:NamedIndividual ;
@@ -86769,12 +86729,6 @@ memo:Australia a memo:GeographicRegion,
         owl:NamedIndividual ;
     rdfs:label "Australia" .
 
-memo:ColorMode a owl:Class ;
-    rdfs:label "ColorMode" ;
-    memo:frbrLevel "Manifestation" ;
-    memo:semanticLevel "PreIconographical" ;
-    rdfs:subClassOf owl:Thing .
-
 memo:FiveNightsAtFreddySSecurityBreach a memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "Five Nights At Freddy's: Security Breach" .
@@ -86790,12 +86744,6 @@ memo:NintendoDirect a memo:OriginWork,
 memo:ScpFoundation a memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "SCP Foundation" .
-
-memo:TextPresence a owl:Class ;
-    rdfs:label "TextPresence" ;
-    memo:frbrLevel "Manifestation" ;
-    memo:semanticLevel "PreIconographical" ;
-    rdfs:subClassOf owl:Thing .
 
 memo:douyin a memo:OriginWork,
         owl:NamedIndividual ;
@@ -86813,6 +86761,12 @@ memo:Canada a memo:GeographicRegion,
         owl:NamedIndividual ;
     rdfs:label "Canada" .
 
+memo:ColorMode a owl:Class ;
+    rdfs:label "ColorMode" ;
+    memo:frbrLevel "Manifestation" ;
+    memo:semanticLevel "PreIconographical" ;
+    rdfs:subClassOf owl:Thing .
+
 memo:Italy a memo:GeographicRegion,
         owl:NamedIndividual ;
     rdfs:label "Italy" .
@@ -86828,6 +86782,12 @@ memo:PokémonSwordAndShield a memo:OriginWork,
 memo:Poland a memo:GeographicRegion,
         owl:NamedIndividual ;
     rdfs:label "Poland" .
+
+memo:TextPresence a owl:Class ;
+    rdfs:label "TextPresence" ;
+    memo:frbrLevel "Manifestation" ;
+    memo:semanticLevel "PreIconographical" ;
+    rdfs:subClassOf owl:Thing .
 
 memo:TheSimpsons a memo:OriginWork,
         owl:NamedIndividual ;
@@ -86905,15 +86865,6 @@ memo:FunnyJunk a memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "FunnyJunk" .
 
-memo:ImageType a owl:Class ;
-    rdfs:label "Image Type"@en ;
-    memo:frbrLevel "Manifestation" ;
-    memo:semanticLevel "PreIconographical" ;
-    rdfs:comment """The visual medium type of an individual variant\r\r\r\r\r\r
-image. Uses the same controlled vocabulary as CanonicalImageType but applied at\r\r\r\r\r\r
-the Item (VariantInstance) level."""@en ;
-    rdfs:subClassOf owl:Thing .
-
 memo:Mexico a memo:GeographicRegion,
         owl:NamedIndividual ;
     rdfs:label "Mexico" .
@@ -86933,6 +86884,15 @@ memo:TimePeriod a owl:Class ;
 memo:9gag a memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "9gag" .
+
+memo:ImageType a owl:Class ;
+    rdfs:label "Image Type"@en ;
+    memo:frbrLevel "Manifestation" ;
+    memo:semanticLevel "PreIconographical" ;
+    rdfs:comment """The visual medium type of an individual variant\r\r\r\r\r\r
+image. Uses the same controlled vocabulary as CanonicalImageType but applied at\r\r\r\r\r\r
+the Item (VariantInstance) level."""@en ;
+    rdfs:subClassOf owl:Thing .
 
 memo:JojoSBizarreAdventure a memo:OriginWork,
         owl:NamedIndividual ;
@@ -86962,6 +86922,12 @@ memo:SouthKorea a memo:GeographicRegion,
         memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "South Korea" .
+
+memo:SubjectMatter a owl:Class ;
+    rdfs:label "SubjectMatter" ;
+    memo:frbrLevel "Manifestation" ;
+    memo:semanticLevel "PreIconographical" ;
+    rdfs:subClassOf owl:Thing .
 
 memo:30YearOldBoomer a memo:MemeConcept,
         owl:NamedIndividual ;
@@ -87548,12 +87514,6 @@ memo:whyididntreport a memo:MemeConcept,
 memo:France a memo:GeographicRegion,
         owl:NamedIndividual ;
     rdfs:label "France" .
-
-memo:SubjectMatter a owl:Class ;
-    rdfs:label "SubjectMatter" ;
-    memo:frbrLevel "Manifestation" ;
-    memo:semanticLevel "PreIconographical" ;
-    rdfs:subClassOf owl:Thing .
 
 memo:soundcloud a memo:OriginWork,
         owl:NamedIndividual ;

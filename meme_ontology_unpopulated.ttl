@@ -614,13 +614,6 @@ memo:imageFilePath a owl:DatatypeProperty ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range xsd:string .
 
-memo:imageFilename a owl:DatatypeProperty ;
-    rdfs:label "imageFilename" ;
-    rdfs:comment "Deprecated. Use imageFileName instead." ;
-    rdfs:domain memo:MemeConcept ;
-    rdfs:range xsd:string ;
-    owl:deprecated true .
-
 memo:imageURL a owl:DatatypeProperty ;
     rdfs:label "imageURL" ;
     rdfs:domain memo:MemeConcept ;
@@ -630,13 +623,6 @@ memo:memeURL a owl:DatatypeProperty ;
     rdfs:label "memeURL" ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range xsd:string .
-
-memo:photoId a owl:DatatypeProperty ;
-    rdfs:label "photoId" ;
-    rdfs:comment "Deprecated. Use photoID instead." ;
-    rdfs:domain memo:VariantInstance ;
-    rdfs:range xsd:string ;
-    owl:deprecated true .
 
 memo:photoURL a owl:DatatypeProperty ;
     rdfs:label "photoURL" ;
@@ -707,6 +693,7 @@ memo:hasCanonicalColorMode a owl:ObjectProperty ;
     memo:frbrLevel "Manifestation" ;
     memo:semanticLevel "PreIconographical" ;
     rdfs:domain memo:MemeConcept ;
+    rdfs:range memo:ColorMode ;
     owl:inverseOf memo:isCanonicalColorModeOf .
 
 memo:hasCanonicalImageType a owl:ObjectProperty ;
@@ -716,6 +703,7 @@ memo:hasCanonicalImageType a owl:ObjectProperty ;
     rdfs:comment """The visual medium of the canonical meme image,\r\r\r\r\r\r
 assigned by CLIP-based classification."""@en ;
     rdfs:domain memo:MemeConcept ;
+    rdfs:range memo:ImageType ;
     owl:inverseOf memo:isCanonicalImageTypeOf .
 
 memo:hasCanonicalSubjectMatter a owl:ObjectProperty ;
@@ -733,6 +721,7 @@ memo:hasCanonicalTextPresence a owl:ObjectProperty ;
     memo:frbrLevel "Manifestation" ;
     memo:semanticLevel "PreIconographical" ;
     rdfs:domain memo:MemeConcept ;
+    rdfs:range memo:TextPresence ;
     owl:inverseOf memo:isCanonicalTextPresenceOf .
 
 memo:hasColorMode a owl:ObjectProperty ;
@@ -764,13 +753,6 @@ memo:hasImageType a owl:ObjectProperty ;
     rdfs:domain memo:VariantInstance ;
     rdfs:range memo:ImageType ;
     owl:inverseOf memo:isImageTypeOf .
-
-memo:hasManifestation a owl:ObjectProperty ;
-    rdfs:label "has manifestation" ;
-    rdfs:comment "Relates a Manifestation to the Expression it instantiates" ;
-    rdfs:domain memo:Manifestation ;
-    rdfs:range memo:Expression ;
-    owl:inverseOf memo:isManifestedIn .
 
 memo:hasOriginBoard a owl:ObjectProperty ;
     rdfs:label "has origin board"@en ;
@@ -855,12 +837,6 @@ primary circulation."""@en ;
     rdfs:range memo:GeographicRegion ;
     owl:inverseOf memo:isRegionOf .
 
-memo:hasSubjectMatter a owl:ObjectProperty ;
-    rdfs:label "hasSubjectMatter" ;
-    rdfs:domain memo:VariantInstance ;
-    rdfs:range memo:SubjectMatter ;
-    owl:inverseOf memo:isSubjectMatterOf .
-
 memo:hasTextPresence a owl:ObjectProperty ;
     rdfs:label "hasTextPresence" ;
     rdfs:domain memo:VariantInstance ;
@@ -900,13 +876,11 @@ memo:isAnimationStatusOf a owl:ObjectProperty ;
 
 memo:isCanonicalColorModeOf a owl:ObjectProperty ;
     rdfs:label "is Canonical Color Mode Of" ;
-    rdfs:domain memo:CanonicalColorMode ;
     rdfs:range memo:MemeConcept ;
     owl:inverseOf memo:hasCanonicalColorMode .
 
 memo:isCanonicalImageTypeOf a owl:ObjectProperty ;
     rdfs:label "is Canonical Image Type Of" ;
-    rdfs:domain memo:CanonicalImageType ;
     rdfs:range memo:MemeConcept ;
     owl:inverseOf memo:hasCanonicalImageType .
 
@@ -918,7 +892,6 @@ memo:isCanonicalSubjectMatterOf a owl:ObjectProperty ;
 
 memo:isCanonicalTextPresenceOf a owl:ObjectProperty ;
     rdfs:label "is Canonical Text Presence Of" ;
-    rdfs:domain memo:CanonicalTextPresence ;
     rdfs:range memo:MemeConcept ;
     owl:inverseOf memo:hasCanonicalTextPresence .
 
@@ -951,13 +924,6 @@ memo:isImageTypeOf a owl:ObjectProperty ;
     rdfs:domain memo:ImageType ;
     rdfs:range memo:VariantInstance ;
     owl:inverseOf memo:hasImageType .
-
-memo:isManifestedIn a owl:ObjectProperty ;
-    rdfs:label "is manifested in" ;
-    rdfs:comment "Relates an Expression (template concept) to its Manifestations (format-specific instances)" ;
-    rdfs:domain memo:Expression ;
-    rdfs:range memo:Manifestation ;
-    owl:inverseOf memo:hasManifestation .
 
 memo:isOriginBoardOf a owl:ObjectProperty ;
     rdfs:label "is Origin Board Of" ;
@@ -1030,12 +996,6 @@ memo:isRegionOf a owl:ObjectProperty ;
     rdfs:domain memo:GeographicRegion ;
     rdfs:range memo:MemeConcept ;
     owl:inverseOf memo:hasRegion .
-
-memo:isSubjectMatterOf a owl:ObjectProperty ;
-    rdfs:label "is Subject Matter Of" ;
-    rdfs:domain memo:SubjectMatter ;
-    rdfs:range memo:VariantInstance ;
-    owl:inverseOf memo:hasSubjectMatter .
 
 memo:isTextPresenceOf a owl:ObjectProperty ;
     rdfs:label "is Text Presence Of" ;
@@ -1165,6 +1125,14 @@ memo:FileFormat a owl:Class ;
 PNG, GIF, WebP, BMP)."""@en ;
     rdfs:subClassOf owl:Thing .
 
+memo:TimePeriod a owl:Class ;
+    rdfs:label "Time Period"@en ;
+    memo:documentaryLevel "true" ;
+    memo:frbrLevel "Expression" ;
+    rdfs:comment """The era in which a meme originated or peaked\r\r\r\r\r\r
+(Pre2010, Period2010to2015, Period2016to2020, Period2021toPresent)."""@en ;
+    rdfs:subClassOf owl:Thing .
+
 memo:ImageType a owl:Class ;
     rdfs:label "Image Type"@en ;
     memo:frbrLevel "Manifestation" ;
@@ -1174,12 +1142,10 @@ image. Uses the same controlled vocabulary as CanonicalImageType but applied at\
 the Item (VariantInstance) level."""@en ;
     rdfs:subClassOf owl:Thing .
 
-memo:TimePeriod a owl:Class ;
-    rdfs:label "Time Period"@en ;
-    memo:documentaryLevel "true" ;
-    memo:frbrLevel "Expression" ;
-    rdfs:comment """The era in which a meme originated or peaked\r\r\r\r\r\r
-(Pre2010, Period2010to2015, Period2016to2020, Period2021toPresent)."""@en ;
+memo:SubjectMatter a owl:Class ;
+    rdfs:label "SubjectMatter" ;
+    memo:frbrLevel "Manifestation" ;
+    memo:semanticLevel "PreIconographical" ;
     rdfs:subClassOf owl:Thing .
 
 memo:OriginWork a owl:Class ;
@@ -1188,12 +1154,6 @@ memo:OriginWork a owl:Class ;
     memo:frbrLevel "Expression" ;
     rdfs:comment """The original cultural work (film, TV show, video\r\r\r\r\r\r
 game, book, song, etc.) from which a meme derives its source material."""@en ;
-    rdfs:subClassOf owl:Thing .
-
-memo:SubjectMatter a owl:Class ;
-    rdfs:label "SubjectMatter" ;
-    memo:frbrLevel "Manifestation" ;
-    memo:semanticLevel "PreIconographical" ;
     rdfs:subClassOf owl:Thing .
 
 memo:OriginPlatform a owl:Class ;
@@ -1222,14 +1182,6 @@ memo:MemeFormat a owl:Class ;
 memes at the Expression level with Iconographical analysis."""@en ;
     rdfs:subClassOf owl:Thing .
 
-memo:GeographicRegion a owl:Class ;
-    rdfs:label "Geographic Region"@en ;
-    memo:documentaryLevel "true" ;
-    memo:frbrLevel "Expression" ;
-    rdfs:comment """The country or geographic region of a meme's\r\r\r\r\r\r
-origin."""@en ;
-    rdfs:subClassOf owl:Thing .
-
 memo:MemeConcept a memo:MemeFormat,
         owl:NamedIndividual ;
     rdfs:label "Meme Concept"@en ;
@@ -1238,4 +1190,12 @@ memo:MemeConcept a memo:MemeFormat,
 on Know Your Meme. Represents the stable, Expression-level identity of a meme\r\r\r\r\r\r
 across all its variants. 5,000 named individuals are included, classified by\r\r\r\r\r\r
 image type, format, platform, region and time period."""@en .
+
+memo:GeographicRegion a owl:Class ;
+    rdfs:label "Geographic Region"@en ;
+    memo:documentaryLevel "true" ;
+    memo:frbrLevel "Expression" ;
+    rdfs:comment """The country or geographic region of a meme's\r\r\r\r\r\r
+origin."""@en ;
+    rdfs:subClassOf owl:Thing .
 
