@@ -82738,9 +82738,6 @@ memo:El_Salvador a memo:GeographicRegion,
         owl:NamedIndividual ;
     rdfs:label "El Salvador" .
 
-memo:Expression rdfs:label "Expression" ;
-    owl:equivalentClass memo:Manifestation .
-
 memo:Germany a memo:GeographicRegion,
         owl:NamedIndividual ;
     rdfs:label "Germany" .
@@ -82764,9 +82761,6 @@ memo:Little_Italy a memo:GeographicRegion,
 memo:Mali a memo:GeographicRegion,
         owl:NamedIndividual ;
     rdfs:label "Mali" .
-
-memo:Manifestation rdfs:label "Manifestation" ;
-    owl:equivalentClass memo:Expression .
 
 memo:Pakistan a memo:GeographicRegion,
         owl:NamedIndividual ;
@@ -83994,6 +83988,13 @@ memo:hasImageType a owl:ObjectProperty ;
     rdfs:range memo:ImageType ;
     owl:inverseOf memo:isImageTypeOf .
 
+memo:hasManifestation a owl:ObjectProperty ;
+    rdfs:label "has manifestation" ;
+    rdfs:comment "Relates a Manifestation to the Expression it instantiates" ;
+    rdfs:domain memo:Manifestation ;
+    rdfs:range memo:Expression ;
+    owl:inverseOf memo:isManifestedIn .
+
 memo:hasOriginBoard a owl:ObjectProperty ;
     rdfs:label "has origin board"@en ;
     memo:documentaryLevel "true" ;
@@ -84337,6 +84338,13 @@ memo:isImageTypeOf a owl:ObjectProperty ;
     rdfs:domain memo:ImageType ;
     rdfs:range memo:VariantInstance ;
     owl:inverseOf memo:hasImageType .
+
+memo:isManifestedIn a owl:ObjectProperty ;
+    rdfs:label "is manifested in" ;
+    rdfs:comment "Relates an Expression (template concept) to its Manifestations (format-specific instances)" ;
+    rdfs:domain memo:Expression ;
+    rdfs:range memo:Manifestation ;
+    owl:inverseOf memo:hasManifestation .
 
 memo:isOriginBoardOf a owl:ObjectProperty ;
     rdfs:label "is Origin Board Of" ;
@@ -86407,6 +86415,8 @@ memo:ColorMode a owl:Class ;
     memo:semanticLevel "PreIconographical" ;
     rdfs:subClassOf owl:Thing .
 
+memo:Expression rdfs:label "Expression" .
+
 memo:ImageType a owl:Class ;
     rdfs:label "Image Type"@en ;
     memo:frbrLevel "Manifestation" ;
@@ -86419,6 +86429,8 @@ the Item (VariantInstance) level."""@en ;
 memo:KnowYourMeme a memo:OriginWork,
         owl:NamedIndividual ;
     rdfs:label "KnowYourMeme" .
+
+memo:Manifestation rdfs:label "Manifestation" .
 
 memo:Netherlands a memo:GeographicRegion,
         owl:NamedIndividual ;
