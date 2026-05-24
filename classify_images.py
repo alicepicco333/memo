@@ -472,8 +472,11 @@ VOCAB = {
     "TimePeriod":      ["Pre2010", "Period2010to2015", "Period2016to2020", "Period2021toPresent", "Unknown"],
     "FileFormat":      ["JPEG", "PNG", "GIF", "WebP", "BMP"],
     "AnimationStatus": ["Static", "Animated"],
-    "OriginPlatform":   ["Unknown"],           # WD-mapped platforms declared via WD_PLATFORM_INDIVIDUALS
-    "GeographicRegion": ["Unknown", "Worldwide"],  # WD-mapped regions declared via WD_REGION_INDIVIDUALS
+    "OriginPlatform":        ["Unknown"],           # WD-mapped platforms declared via WD_PLATFORM_INDIVIDUALS
+    "GeographicRegion":      ["Unknown", "Worldwide"],  # WD-mapped regions declared via WD_REGION_INDIVIDUALS
+    "TransformationDimension": ["CaptionChange", "CompositionShift", "CrossoverMerge",
+                                "Localization", "MediumShift", "StyleShift", "VisualSubstrate"],
+    "TransformationExtent":    ["Minimal", "Moderate", "Substantial"],
 }
 
 # Wikidata QIDs for GeographicRegion individuals.
@@ -795,10 +798,13 @@ def _iri_local_norm(s):
     return _iri_local(s.lower())
 
 
-def build_ontology(results, owl_path, meta_lookup=None, variants_path=None):
+def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
+                   cultural_refs_path=None, transformation_path=None):
     """Build OWL ontology from classification results.
-    meta_lookup:   optional dict {zero-padded-id -> metadata entry} for imageFilename lookup.
-    variants_path: optional path to variants_metadata.json; generates MemeIdea + VariantInstance individuals."""
+    meta_lookup:          optional dict {zero-padded-id -> metadata entry}.
+    variants_path:        path to variants_metadata.json — generates MemeIdea + VariantInstance.
+    cultural_refs_path:   path to cultural_reference_annotations.json — populates hasReference.
+    transformation_path:  path to transformation_annotations.json — populates hasTransformation*."""
     MEME = Namespace(ONTO_BASE)
     g = Graph()
     g.bind("memo",    MEME)
@@ -1024,7 +1030,8 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None):
             origin_ind  = ensure_individual("OriginWork", ow, normalize=True)
             if schema_type:
                 g.add((origin_ind, RDF.type, schema_type))
-            g.add((meme_uri, PROV.wasDerivedFrom, origin_ind))
+            g.add((meme_uri, MEME.hasOriginWork, origin_ind))
+            g.add((origin_ind, MEME.isOriginWorkOf, meme_uri))
         region_raw = rec.get("hasRegion", "")
         if region_raw and region_raw != "Unknown":
             for _part in region_raw.split(","):
@@ -1087,32 +1094,37 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None):
             if tag:
                 g.add((meme_uri, SCHEMA.keywords, Literal(tag, datatype=XSD.string)))
 
+    # ── Shared slug → MemeConcept URI lookup (used by variants AND annotation loaders) ──
+    def _meme_slug_from_name(name):
+        slug = re.sub(r"[^\w\s-]", "", name.lower())
+        slug = re.sub(r"[\s_]+", "-", slug).strip("-")
+        return _iri_local(slug)
+
+    url_slug_to_meme_uri = {}
+    if meta_lookup:
+        for _eid, _me in meta_lookup.items():
+            _img = _me.get("image_filename", "")
+            if _img:
+                _stem = Path(_img).stem
+                _name_slug = re.sub(r"^\d{4}_", "", _stem)
+                _local = _iri_local(_name_slug) or f"Meme_{_eid}"
+                _meme_url = _me.get("meme_url", "")
+                if _meme_url:
+                    _url_slug = _meme_url.rstrip("/").split("/")[-1]
+                    url_slug_to_meme_uri[_url_slug] = (MEME[_local], _me)
+
     # ── MemeIdea + VariantInstance individuals ────────────────────────────────
     if variants_path and Path(variants_path).exists():
         with open(variants_path, encoding="utf-8") as _vf:
             variant_rows = json.load(_vf)
 
-        # Build slug→meme_uri lookup from already-declared MemeConcept individuals
-        def _meme_slug_from_name(name):
-            slug = re.sub(r"[^\w\s-]", "", name.lower())
-            slug = re.sub(r"[\s_]+", "-", slug).strip("-")
-            return _iri_local(slug)
+        # Load transformation annotations indexed by photoId
+        ta_lookup = {}
+        if transformation_path and Path(transformation_path).exists():
+            with open(transformation_path, encoding="utf-8-sig") as _tf:
+                for _ta in json.load(_tf):
+                    ta_lookup[str(_ta["photoId"])] = _ta
 
-        # Build slug→meme_uri from meta_lookup (meme_url path segment → iri local)
-        url_slug_to_meme_uri = {}
-        if meta_lookup:
-            for _eid, _me in meta_lookup.items():
-                _img = _me.get("image_filename", "")
-                if _img:
-                    _stem = Path(_img).stem
-                    _name_slug = re.sub(r"^\d{4}_", "", _stem)
-                    _local = _iri_local(_name_slug) or f"Meme_{_eid}"
-                    _meme_url = _me.get("meme_url", "")
-                    if _meme_url:
-                        _url_slug = _meme_url.rstrip("/").split("/")[-1]
-                        url_slug_to_meme_uri[_url_slug] = (MEME[_local], _me)
-
-        # Group variants by meme_name
         from collections import defaultdict
         variants_by_meme = defaultdict(list)
         for row in variant_rows:
@@ -1123,7 +1135,6 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None):
             url_slug = _meme_slug_from_name(meme_name)
             match = url_slug_to_meme_uri.get(url_slug)
             if match is None:
-                # Fallback: linear search by comparing slugified meme_url
                 for _slug, (_uri, _me) in url_slug_to_meme_uri.items():
                     if _meme_slug_from_name(_slug) == url_slug:
                         match = (_uri, _me)
@@ -1133,50 +1144,98 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None):
                 continue
 
             meme_uri, meta_entry = match
-
-            # MemeIdea individual: <meme_local>_idea
             meme_local = str(meme_uri).split("#")[-1]
-            idea_local  = f"{meme_local}_idea"
-            idea_uri    = MEME[idea_local]
+
+            # MemeIdea individual
+            idea_local = f"{meme_local}_idea"
+            idea_uri   = MEME[idea_local]
             g.add((idea_uri, RDF.type,   OWL.NamedIndividual))
-            g.add((idea_uri, RDF.type,   WD.Q3249551))           # MemeIdea class
+            g.add((idea_uri, RDF.type,   WD.Q3249551))
             g.add((idea_uri, RDFS.label, Literal(f"{meme_name} (idea)")))
             desc = (meta_entry.get("description") or "").strip()
             if desc:
                 g.add((idea_uri, MEME.conceptDescription, Literal(desc, datatype=XSD.string)))
-            # Link MemeConcept ↔ MemeIdea
             g.add((meme_uri, MEME.conceptualizes,     idea_uri))
             g.add((idea_uri, MEME.isConceptualizedAs, meme_uri))
             n_ideas += 1
 
             # VariantInstance individuals
             for row in rows:
-                idx       = int(row.get("index", 0))
-                v_local   = f"{meme_local}_v{idx:02d}"
-                v_uri     = MEME[v_local]
+                idx     = int(row.get("index", 0))
+                v_local = f"{meme_local}_v{idx:02d}"
+                v_uri   = MEME[v_local]
                 g.add((v_uri, RDF.type,   OWL.NamedIndividual))
                 g.add((v_uri, RDF.type,   MEME.VariantInstance))
                 g.add((v_uri, RDFS.label, Literal(row.get("title") or f"{meme_name} variant {idx}")))
-                if row.get("title"):
-                    g.add((v_uri, MEME.variantTitle,    Literal(row["title"],    datatype=XSD.string)))
+                v_title = (row.get("title") or "").strip() or (row.get("img_alt") or "")[:100].strip() or f"{meme_name} variant {idx}"
+                g.add((v_uri, MEME.variantTitle, Literal(v_title, datatype=XSD.string)))
                 if row.get("author"):
-                    g.add((v_uri, MEME.variantUploader, Literal(row["author"],   datatype=XSD.string)))
+                    g.add((v_uri, MEME.variantUploader, Literal(row["author"],    datatype=XSD.string)))
                 if row.get("image_url"):
-                    g.add((v_uri, MEME.variantImageURL, Literal(row["image_url"],datatype=XSD.string)))
+                    g.add((v_uri, MEME.variantImageURL, Literal(row["image_url"], datatype=XSD.string)))
                 if row.get("filename"):
-                    g.add((v_uri, MEME.variantFilename, Literal(row["filename"], datatype=XSD.string)))
+                    g.add((v_uri, MEME.variantFilename, Literal(row["filename"],  datatype=XSD.string)))
                 if row.get("photo_url"):
-                    g.add((v_uri, MEME.photoURL,        Literal(row["photo_url"],datatype=XSD.string)))
+                    g.add((v_uri, MEME.photoURL,        Literal(row["photo_url"], datatype=XSD.string)))
                 if row.get("img_alt"):
-                    g.add((v_uri, MEME.captionText,     Literal(row["img_alt"],  datatype=XSD.string)))
+                    g.add((v_uri, MEME.captionText,     Literal(row["img_alt"],   datatype=XSD.string)))
                 g.add((v_uri, MEME.variantIndex, Literal(idx, datatype=XSD.integer)))
-                # Link MemeConcept ↔ VariantInstance
-                g.add((meme_uri, prop_uri("hasVariant"), v_uri))
+                g.add((meme_uri, prop_uri("hasVariant"),  v_uri))
                 g.add((v_uri,    prop_uri("isVariantOf"), meme_uri))
+
+                # Transformation annotations (matched by photo_id)
+                ta = ta_lookup.get(str(row.get("photo_id", "")))
+                if ta:
+                    for _dim in ta.get("transformationDimension", []):
+                        _dim_ind = ensure_individual("TransformationDimension", _dim)
+                        g.add((v_uri,     MEME.hasTransformationDimension,   _dim_ind))
+                        g.add((_dim_ind,  MEME.isTransformationDimensionOf,  v_uri))
+                    _ext = ta.get("transformationExtent")
+                    if _ext:
+                        _ext_ind = ensure_individual("TransformationExtent", _ext)
+                        g.add((v_uri,     MEME.hasTransformationExtent,  _ext_ind))
+                        g.add((_ext_ind,  MEME.isTransformationExtentOf, v_uri))
+
                 n_variants += 1
 
         print(f"  MemeIdea individuals added: {n_ideas}")
         print(f"  VariantInstance individuals added: {n_variants}")
+        if ta_lookup:
+            print(f"  Transformation annotations applied: {len(ta_lookup)}")
+
+    # ── Cultural reference annotations ────────────────────────────────────────
+    if cultural_refs_path and Path(cultural_refs_path).exists():
+        with open(cultural_refs_path, encoding="utf-8") as _crf:
+            cr_list = json.load(_crf)
+
+        n_cr = 0
+        for cr_entry in cr_list:
+            url_slug = cr_entry["slug"]
+            match = url_slug_to_meme_uri.get(url_slug)
+            if match is None:
+                print(f"  [cultural_refs] no MemeConcept match for {url_slug!r}")
+                continue
+            mc_uri, _ = match
+
+            for ref in cr_entry.get("references", []):
+                ref_local = _iri_local(ref["individual"])
+                ref_uri   = MEME[ref_local]
+                if ref_local not in declared_ind:
+                    g.add((ref_uri, RDF.type,    OWL.NamedIndividual))
+                    g.add((ref_uri, RDFS.label,  Literal(ref["label"])))
+                    declared_ind[ref_local] = set()
+                ref_class = ref["class"]   # e.g. "WebCulture"
+                if ref_class not in declared_ind[ref_local]:
+                    g.add((ref_uri, RDF.type, MEME[ref_class]))   # specific subtype
+                    g.add((ref_uri, RDF.type, WD.Q96622155))      # CulturalReference supertype
+                    declared_ind[ref_local].add(ref_class)
+                if ref.get("note"):
+                    g.add((ref_uri, RDFS.comment, Literal(ref["note"], lang="en")))
+                g.add((mc_uri,  prop_uri("hasReference"),   ref_uri))
+                g.add((ref_uri, prop_uri("isReferencedIn"), mc_uri))
+                n_cr += 1
+
+        print(f"  Cultural reference assertions added: {n_cr}")
 
     g.serialize(destination=str(owl_path), format="xml")
     print(f"OWL ontology written -> {owl_path}")
@@ -1249,6 +1308,10 @@ def main():
                         help="Skip CLIP; rebuild OWL + merged from existing --out JSON")
     parser.add_argument("--variants",       default="variants_metadata.json",
                         help="Variant images metadata for MemeIdea+VariantInstance generation")
+    parser.add_argument("--cultural-refs",  default="cultural_reference_annotations(1).json",
+                        help="Cultural reference annotations JSON for hasReference population")
+    parser.add_argument("--transformation", default="transformation_annotations.json",
+                        help="Transformation annotations JSON for hasTransformationDimension/Extent")
     args = parser.parse_args()
 
     # ── OWL-only / merge-only mode ────────────────────────────────────────────
@@ -1259,7 +1322,10 @@ def main():
             _meta_list = json.load(f)
         meta_lookup = {f"{e['id']:04d}": e for e in _meta_list}
         _write_three_files(results, args.meta, args.out, args.merged)
-        build_ontology(results, Path(args.owl), meta_lookup, variants_path=args.variants)
+        build_ontology(results, Path(args.owl), meta_lookup,
+                       variants_path=args.variants,
+                       cultural_refs_path=getattr(args, "cultural_refs", None),
+                       transformation_path=getattr(args, "transformation", None))
         return
 
     # ── Classification mode ───────────────────────────────────────────────────
@@ -1358,7 +1424,10 @@ def main():
 
     meta_lookup = {f"{e['id']:04d}": e for e in metadata}
     _write_three_files(results, args.meta, args.out, args.merged)
-    build_ontology(results, Path(args.owl), meta_lookup)
+    build_ontology(results, Path(args.owl), meta_lookup,
+                   variants_path=args.variants,
+                   cultural_refs_path=getattr(args, "cultural_refs", None),
+                   transformation_path=getattr(args, "transformation", None))
 
 
 if __name__ == "__main__":
