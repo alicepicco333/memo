@@ -524,7 +524,6 @@ REGION_QID_MAP = {
     "Serbia":        "Q403",
     "Ghana":         "Q117",
     "Uganda":        "Q1036",
-    "Nigeria":       "Q1033",
     "Ecuador":       "Q736",
     "El Salvador":   "Q792",
     "Guatemala":     "Q774",
@@ -604,7 +603,6 @@ WD_REGION_INDIVIDUALS = {
     "Q403":     "Serbia",
     "Q117":     "Ghana",
     "Q1036":    "Uganda",
-    "Q1033":    "Nigeria",
     "Q736":     "Ecuador",
     "Q792":     "El Salvador",
     "Q774":     "Guatemala",
@@ -683,9 +681,6 @@ DATA_PROPS = [
     ("imageFilename",         "MemeConcept",    XSD.string),
     ("imageFilePath",         "MemeConcept",    XSD.string),
     ("views",                 "MemeConcept",    XSD.integer),
-    ("clipImageTypeScore",    "MemeConcept",    XSD.float),
-    ("clipTextScore",         "MemeConcept",    XSD.float),
-    ("clipPublicFigureScore", "MemeConcept",    XSD.float),
     # MemeIdea level
     ("conceptDescription",    "MemeIdea",       XSD.string),
     # VariantInstance level
@@ -738,6 +733,11 @@ MEMO_CLASS_COMMENTS = {
     "PublicFigure":            "A public figure, celebrity, politician, or historical person referenced by a meme.",
     "HistoricalEvent":         "A historical event, period, or crisis referenced by a meme.",
     "SocialPhenomenon":        "A social movement, behavioural trend, or cultural practice referenced by a meme.",
+    "VideoFormat":             "MemeFormat subclass grouping video-based formats: ViralVideo, ViralDebate.",
+    "TextFormat":              "MemeFormat subclass grouping text-based formats: Catchphrase, Copypasta, Slang, Snowclone.",
+    "ImageManipulationFormat": "MemeFormat subclass grouping image manipulation formats: Exploitable, ImageMacro, Photoshop, Remix.",
+    "ParticipatoryFormat":     "MemeFormat subclass grouping participatory formats: ParticipatoryMedia, Dance.",
+    "NarrativeFormat":         "MemeFormat subclass grouping character- and narrative-based formats: Character, FanArt, Parody, PopCultureReference.",
 }
 
 # Fix: rdfs:comment + rdfs:seeAlso for each Wikidata class
@@ -782,6 +782,31 @@ CULTURAL_REF_SUBTYPES = [
     "PublicFigure", "HistoricalEvent", "SocialPhenomenon",
 ]
 
+# MemeFormat subgroup classes: which format individuals belong to which subgroup.
+# Individuals not listed here remain as bare memo:MemeFormat.
+MEME_FORMAT_GROUPS = {
+    "VideoFormat":             ["ViralVideo", "ViralDebate"],
+    "TextFormat":              ["Catchphrase", "Copypasta", "Slang", "Snowclone"],
+    "ImageManipulationFormat": ["Exploitable", "ImageMacro", "Photoshop", "Remix"],
+    "ParticipatoryFormat":     ["ParticipatoryMedia", "Dance"],
+    "NarrativeFormat":         ["Character", "FanArt", "Parody", "PopCultureReference"],
+}
+
+# FRBR level and Panofsky semantic level annotations for classes
+FRBR_LEVELS = {
+    "MemeConcept":   "Expression",
+    "MemeIdea":      "Work",        # wd:Q3249551 — resolved via WD_CLASS_MAP
+    "VariantInstance":"Manifestation",
+}
+SEMANTIC_LEVELS = {
+    "MemeFormat":    "Iconographical",
+    "SubjectMatter": "PreIconographical",  # wd:Q16334295
+    "ImageType":     "PreIconographical",
+    "ColorMode":     "PreIconographical",
+    "TextPresence":  "PreIconographical",
+    "CulturalReference": "Iconological",   # wd:Q96622155
+}
+
 
 def _iri_local(s):
     """Sanitize a string for use as an IRI local name (valid in RDF/XML)."""
@@ -799,7 +824,8 @@ def _iri_local_norm(s):
 
 
 def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
-                   cultural_refs_path=None, transformation_path=None):
+                   cultural_refs_path=None, transformation_path=None,
+                   ttl_path=None, unpopulated_owl_path=None, unpopulated_ttl_path=None):
     """Build OWL ontology from classification results.
     meta_lookup:          optional dict {zero-padded-id -> metadata entry}.
     variants_path:        path to variants_metadata.json — generates MemeIdea + VariantInstance.
@@ -823,6 +849,9 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
     g.add((ONTO_URI, DCTERMS.title,   Literal("The Meme Ontology (MEMO)", lang="en")))
     g.add((ONTO_URI, DCTERMS.license, URIRef("https://creativecommons.org/licenses/by/4.0/")))
     g.add((ONTO_URI, DC.creator,      Literal("Alice Picco")))
+    g.add((ONTO_URI, OWL.imports,     URIRef("http://www.w3.org/ns/prov-o#")))
+    g.add((ONTO_URI, OWL.imports,     URIRef("http://purl.org/dc/terms/")))
+    g.add((ONTO_URI, OWL.imports,     URIRef("https://schema.org/")))
 
     def class_uri(name):
         return WD_CLASS_MAP.get(name, MEME[name])
@@ -915,6 +944,15 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
         g.add((_prop, RDFS.range,  XSD.string))
         g.add((_prop, RDFS.label,  Literal(_label)))
 
+    # Fix 4 — memo:frbrLevel and memo:semanticLevel as AnnotationProperty on classes
+    for _ap, _lbl in [(MEME.frbrLevel, "frbrLevel"), (MEME.semanticLevel, "semanticLevel")]:
+        g.add((_ap, RDF.type,   OWL.AnnotationProperty))
+        g.add((_ap, RDFS.label, Literal(_lbl)))
+    for cls_name, level in FRBR_LEVELS.items():
+        g.add((class_uri(cls_name), MEME.frbrLevel, Literal(level)))
+    for cls_name, level in SEMANTIC_LEVELS.items():
+        g.add((class_uri(cls_name), MEME.semanticLevel, Literal(level)))
+
     # Pre-declared named individuals (controlled vocabularies).
     # declared_ind: {local_iri -> set(class_names)} — tracks which type triples have
     # been added so that shared labels like "Unknown" get typed under EVERY class.
@@ -955,6 +993,17 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
         g.add((sub_uri, RDFS.subClassOf, WD.Q96622155))
         if subtype in MEMO_CLASS_COMMENTS:
             g.add((sub_uri, RDFS.comment, Literal(MEMO_CLASS_COMMENTS[subtype], lang="en")))
+
+    # Fix 2 — MemeFormat subgroup classes (VideoFormat etc.) with member type assignments
+    for group_name, members in MEME_FORMAT_GROUPS.items():
+        group_uri = MEME[group_name]
+        g.add((group_uri, RDF.type,        OWL.Class))
+        g.add((group_uri, RDFS.label,      Literal(group_name)))
+        g.add((group_uri, RDFS.subClassOf, MEME.MemeFormat))
+        if group_name in MEMO_CLASS_COMMENTS:
+            g.add((group_uri, RDFS.comment, Literal(MEMO_CLASS_COMMENTS[group_name], lang="en")))
+        for member in members:
+            g.add((MEME[_iri_local(member)], RDF.type, group_uri))
 
     def ensure_individual(class_name, label, normalize=False):
         """Declare a named individual on first encounter; return its URI.
@@ -1057,10 +1106,6 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
 
         dat("hasId",                 rec.get("id"),                    XSD.integer)
         dat("imageFilename",         img_fn,                           XSD.string)
-        dat("clipImageTypeScore",    rec.get("clipImageTypeScore"),    XSD.float)
-        dat("clipTextScore",         rec.get("clipTextScore"),         XSD.float)
-        dat("clipPublicFigureScore", rec.get("clipPublicFigureScore"), XSD.float)
-
         # Metadata properties from meta_lookup (external vocabulary)
         meta = (meta_lookup or {}).get(entry_id, {})
 
@@ -1238,7 +1283,28 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
         print(f"  Cultural reference assertions added: {n_cr}")
 
     g.serialize(destination=str(owl_path), format="xml")
-    print(f"OWL ontology written -> {owl_path}")
+    print(f"OWL ontology written -> {owl_path}  ({len(g)} triples)")
+    if ttl_path:
+        g.serialize(destination=str(ttl_path), format="turtle")
+        print(f"TTL ontology written -> {ttl_path}  ({len(g)} triples)")
+
+    if unpopulated_owl_path or unpopulated_ttl_path:
+        ind_uris = {s for s in g.subjects(RDF.type, OWL.NamedIndividual)
+                    if isinstance(s, URIRef)}
+        ug = Graph()
+        for prefix, ns in g.namespaces():
+            ug.bind(prefix, ns, override=True)
+        for s, p, o in g:
+            if (isinstance(s, URIRef) and s in ind_uris) or \
+               (isinstance(o, URIRef) and o in ind_uris):
+                continue
+            ug.add((s, p, o))
+        if unpopulated_owl_path:
+            ug.serialize(destination=str(unpopulated_owl_path), format="xml")
+            print(f"Unpopulated OWL written -> {unpopulated_owl_path}  ({len(ug)} triples)")
+        if unpopulated_ttl_path:
+            ug.serialize(destination=str(unpopulated_ttl_path), format="turtle")
+            print(f"Unpopulated TTL written -> {unpopulated_ttl_path}  ({len(ug)} triples)")
 
 
 # Fields that belong exclusively to classifications (not scraping data)
@@ -1306,12 +1372,18 @@ def main():
                         help="Process only N entries (for testing)")
     parser.add_argument("--owl-only",       action="store_true",
                         help="Skip CLIP; rebuild OWL + merged from existing --out JSON")
-    parser.add_argument("--variants",       default="variants_metadata.json",
+    parser.add_argument("--variants",         default="variants_metadata.json",
                         help="Variant images metadata for MemeIdea+VariantInstance generation")
-    parser.add_argument("--cultural-refs",  default="cultural_reference_annotations(1).json",
+    parser.add_argument("--cultural-refs",    default="cultural_reference_annotations(1).json",
                         help="Cultural reference annotations JSON for hasReference population")
-    parser.add_argument("--transformation", default="transformation_annotations.json",
+    parser.add_argument("--transformation",   default="transformation_annotations.json",
                         help="Transformation annotations JSON for hasTransformationDimension/Extent")
+    parser.add_argument("--ttl",              default="meme_ontology.ttl",
+                        help="Turtle serialization of the populated ontology")
+    parser.add_argument("--unpopulated-owl",  default="meme_ontology_unpopulated.owl",
+                        help="Schema-only OWL (no named individuals)")
+    parser.add_argument("--unpopulated-ttl",  default="meme_ontology_unpopulated.ttl",
+                        help="Schema-only Turtle (no named individuals)")
     args = parser.parse_args()
 
     # ── OWL-only / merge-only mode ────────────────────────────────────────────
@@ -1325,7 +1397,10 @@ def main():
         build_ontology(results, Path(args.owl), meta_lookup,
                        variants_path=args.variants,
                        cultural_refs_path=getattr(args, "cultural_refs", None),
-                       transformation_path=getattr(args, "transformation", None))
+                       transformation_path=getattr(args, "transformation", None),
+                       ttl_path=getattr(args, "ttl", None),
+                       unpopulated_owl_path=getattr(args, "unpopulated_owl", None),
+                       unpopulated_ttl_path=getattr(args, "unpopulated_ttl", None))
         return
 
     # ── Classification mode ───────────────────────────────────────────────────
