@@ -7,10 +7,13 @@ from urllib.parse import urlparse
 import numpy as np
 import torch
 from PIL import Image
-from rdflib import Graph, Namespace, RDF, RDFS, OWL, XSD, Literal, URIRef, DCTERMS
+from rdflib import Graph, Namespace, RDF, RDFS, OWL, XSD, Literal, URIRef, DCTERMS, BNode
+from rdflib.collection import Collection
 
 PROV   = Namespace("http://www.w3.org/ns/prov#")
 SCHEMA = Namespace("http://schema.org/")
+WD     = Namespace("http://www.wikidata.org/entity/")
+WDT    = Namespace("http://www.wikidata.org/prop/direct/")
 
 try:
     import clip
@@ -414,8 +417,31 @@ def classify_image(model, preprocess, device, image_path, text_threshold, subj_t
 
 # ── OWL output ────────────────────────────────────────────────────────────────
 
-ONTO_BASE = "http://www.semanticweb.org/meme-ontology#"
-ONTO_URI  = URIRef("http://www.semanticweb.org/meme-ontology")
+ONTO_BASE = "https://purl.org/memo#"
+ONTO_URI  = URIRef("https://purl.org/memo")
+
+# P2 — Wikidata Q-item classes that replace memo: class declarations
+WD_CLASS_MAP = {
+    "GeographicRegion": WD.Q82794,
+    "TimePeriod":       WD.Q11471,
+    "OriginPlatform":   WD.Q3220391,
+    "OriginWork":       WD.Q386724,
+    "FileFormat":       WD.Q235557,
+    "CulturalReference":WD.Q96622155,
+    "MemeIdea":         WD.Q3249551,
+    "SubjectMatter":    WD.Q16334295,
+}
+
+# P3 — Wikidata P-item properties that replace memo: object property declarations
+WD_PROP_MAP = {
+    "hasRegion":         WDT.P495,
+    "hasTimePeriod":     WDT.P2408,
+    "hasReference":      WDT.P8371,
+    "hasVariant":        WDT.P527,
+    "isVariantOf":       WDT.P361,
+    "hasFormat":         WDT.P2283,
+    "hasOriginPlatform": WDT.P123,
+}
 
 # All pre-declared named individuals per class
 VOCAB = {
@@ -451,38 +477,65 @@ VOCAB = {
         "Colombia", "Pakistan",
         "Unknown",
     ],
-    "FRBRLevel": ["Work", "Expression", "Manifestation", "Item"],
 }
 
 OBJ_PROPS = [
-    # Image analysis
-    ("hasImageType",       "Meme", "ImageType"),
-    ("hasTextPresence",    "Meme", "TextPresence"),
-    ("hasColorMode",       "Meme", "ColorMode"),
-    ("hasSubjectMatter",   "Meme", "SubjectMatter"),
-    # Format & distribution
-    ("hasFormat",          "Meme", "MemeFormat"),
-    ("hasOriginPlatform",  "Meme", "OriginPlatform"),
-    ("hasRegion",          "Meme", "GeographicRegion"),
-    ("hasTimePeriod",      "Meme", "TimePeriod"),
-    ("hasAnimationStatus", "Meme", "AnimationStatus"),
-    ("hasReference",       "Meme", "CulturalReference"),
-    # Origin work — generic catch-all kept for schema completeness;
-    # population now uses prov:wasDerivedFrom (see build_ontology)
-    ("hasOriginWork",      "Meme", "OriginWork"),
-    # FRBR
-    ("hasFRBRLevel",        "Meme",               "FRBRLevel"),
-    ("hasFRBRExpression",   "FRBRWork",           "FRBRExpression"),
-    ("hasFRBRManifestation","FRBRExpression",     "FRBRManifestation"),
-    ("hasFRBRItem",         "FRBRManifestation",  "FRBRItem"),
+    # P4 — consolidated visual props: union domain MemeConcept ∪ VariantInstance
+    ("hasImageType",      ("MemeConcept", "VariantInstance"), "ImageType"),
+    ("isImageTypeOf",     "ImageType",    ("MemeConcept", "VariantInstance")),
+    ("hasTextPresence",   ("MemeConcept", "VariantInstance"), "TextPresence"),
+    ("isTextPresenceOf",  "TextPresence", ("MemeConcept", "VariantInstance")),
+    ("hasColorMode",      ("MemeConcept", "VariantInstance"), "ColorMode"),
+    ("isColorModeOf",     "ColorMode",    ("MemeConcept", "VariantInstance")),
+    ("hasSubjectMatter",  ("MemeConcept", "VariantInstance"), "SubjectMatter"),
+    ("isSubjectMatterOf", "SubjectMatter",("MemeConcept", "VariantInstance")),
+    # MemeConcept — format & distribution (P3: several use Wikidata URIs)
+    ("hasFormat",          "MemeConcept",     "MemeFormat"),        # → WDT.P2283
+    ("isFormatOf",         "MemeFormat",      "MemeConcept"),
+    ("hasOriginPlatform",  "MemeConcept",     "OriginPlatform"),    # → WDT.P123
+    ("isOriginPlatformOf", "OriginPlatform",  "MemeConcept"),
+    ("hasOriginWork",      "MemeConcept",     "OriginWork"),
+    ("isOriginWorkOf",     "OriginWork",      "MemeConcept"),
+    ("hasRegion",          "MemeConcept",     "GeographicRegion"),  # → WDT.P495
+    ("isRegionOf",         "GeographicRegion","MemeConcept"),
+    ("hasTimePeriod",      "MemeConcept",     "TimePeriod"),        # → WDT.P2408
+    ("isTimePeriodOf",     "TimePeriod",      "MemeConcept"),
+    ("hasAnimationStatus", "MemeConcept",     "AnimationStatus"),
+    ("isAnimationStatusOf","AnimationStatus", "MemeConcept"),
+    ("hasReference",       "MemeConcept",     "CulturalReference"), # → WDT.P8371
+    ("isReferencedIn",     "CulturalReference","MemeConcept"),
+    # FRBR relations (P3: hasVariant/isVariantOf use Wikidata)
+    ("hasVariant",         "MemeConcept",     "VariantInstance"),   # → WDT.P527
+    ("isVariantOf",        "VariantInstance", "MemeConcept"),       # → WDT.P361
+    ("conceptualizes",     "MemeConcept",     "MemeIdea"),
+    ("isConceptualizedAs", "MemeIdea",        "MemeConcept"),
+    # VariantInstance
+    ("hasTransformationDimension", "VariantInstance",        "TransformationDimension"),
+    ("isTransformationDimensionOf","TransformationDimension","VariantInstance"),
+    ("hasTransformationExtent",    "VariantInstance",        "TransformationExtent"),
+    ("isTransformationExtentOf",   "TransformationExtent",   "VariantInstance"),
 ]
 
+# (name, domain_class, xsd_range)
 DATA_PROPS = [
-    ("hasId",                 XSD.integer),
-    ("imageFilename",         XSD.string),
-    ("clipImageTypeScore",    XSD.float),
-    ("clipTextScore",         XSD.float),
-    ("clipPublicFigureScore", XSD.float),
+    # MemeConcept level
+    ("hasId",                 "MemeConcept",    XSD.integer),
+    ("imageFilename",         "MemeConcept",    XSD.string),
+    ("imageFilePath",         "MemeConcept",    XSD.string),
+    ("views",                 "MemeConcept",    XSD.integer),
+    ("clipImageTypeScore",    "MemeConcept",    XSD.float),
+    ("clipTextScore",         "MemeConcept",    XSD.float),
+    ("clipPublicFigureScore", "MemeConcept",    XSD.float),
+    # MemeIdea level
+    ("conceptDescription",    "MemeIdea",       XSD.string),
+    # VariantInstance level
+    ("captionText",           "VariantInstance", XSD.string),
+    ("variantFilename",       "VariantInstance", XSD.string),
+    ("variantImageURL",       "VariantInstance", XSD.string),
+    ("variantIndex",          "VariantInstance", XSD.integer),
+    ("variantTitle",          "VariantInstance", XSD.string),
+    ("variantUploader",       "VariantInstance", XSD.string),
+    ("photoURL",              "VariantInstance", XSD.string),
 ]
 
 
@@ -501,9 +554,10 @@ def _iri_local_norm(s):
     return _iri_local(s.lower())
 
 
-def build_ontology(results, owl_path, meta_lookup=None):
+def build_ontology(results, owl_path, meta_lookup=None, variants_path=None):
     """Build OWL ontology from classification results.
-    meta_lookup: optional dict {zero-padded-id -> metadata entry} for imageFilename lookup."""
+    meta_lookup:   optional dict {zero-padded-id -> metadata entry} for imageFilename lookup.
+    variants_path: optional path to variants_metadata.json; generates MemeIdea + VariantInstance individuals."""
     MEME = Namespace(ONTO_BASE)
     g = Graph()
     g.bind("memo",    MEME)
@@ -513,44 +567,55 @@ def build_ontology(results, owl_path, meta_lookup=None):
     g.bind("prov",    PROV)
     g.bind("schema",  SCHEMA, override=True, replace=True)
     g.bind("dcterms", DCTERMS)
+    g.bind("wd",      WD)
+    g.bind("wdt",     WDT)
 
     g.add((ONTO_URI, RDF.type, OWL.Ontology))
 
-    # Classes
-    all_classes = [
-        "Meme", "ImageType", "TextPresence", "ColorMode", "SubjectMatter",
-        "MemeFormat", "OriginPlatform", "GeographicRegion",
-        "TimePeriod", "FileFormat", "AnimationStatus", "CulturalReference",
-        # OriginWork (parent class kept; subclasses replaced by schema.org typing)
-        "OriginWork",
-        # FRBR entity classes
-        "FRBRLevel", "FRBRWork", "FRBRExpression", "FRBRManifestation", "FRBRItem",
-        "MemeIdea", "VariantInstance",
+    def class_uri(name):
+        return WD_CLASS_MAP.get(name, MEME[name])
+
+    def prop_uri(name):
+        return WD_PROP_MAP.get(name, MEME[name])
+
+    def _union_node(class_names):
+        bn = BNode()
+        g.add((bn, RDF.type, OWL.Class))
+        lst = BNode()
+        Collection(g, lst, [class_uri(c) for c in class_names])
+        g.add((bn, OWL.unionOf, lst))
+        return bn
+
+    # Classes — memo: classes (P2 Wikidata classes declared separately below)
+    memo_only_classes = [
+        "MemeConcept", "ImageType", "TextPresence", "ColorMode",
+        "MemeFormat", "AnimationStatus",
+        "VariantInstance", "TransformationDimension", "TransformationExtent",
     ]
-    for c in all_classes:
+    for c in memo_only_classes:
         g.add((MEME[c], RDF.type, OWL.Class))
         g.add((MEME[c], RDFS.label, Literal(c)))
 
-    # Domain class alignment to FRBR levels
-    # (FRBRWork/Expression/Manifestation/Item are sibling classes — no subclass chain
-    # between them, since Item is not a kind of Manifestation etc.)
-    g.add((MEME["MemeIdea"],        RDFS.subClassOf, MEME["FRBRWork"]))
-    g.add((MEME["Meme"],            RDFS.subClassOf, MEME["FRBRExpression"]))
-    g.add((MEME["VariantInstance"], RDFS.subClassOf, MEME["FRBRManifestation"]))
+    # P2 — Wikidata Q-item classes declared as OWL classes
+    for name, wd_uri in WD_CLASS_MAP.items():
+        g.add((wd_uri, RDF.type, OWL.Class))
+        g.add((wd_uri, RDFS.label, Literal(name)))
 
-    # Object properties
+    # Object properties (P3: Wikidata props via prop_uri; P4: union domains via _union_node)
     for name, domain, range_ in OBJ_PROPS:
-        p = MEME[name]
-        g.add((p, RDF.type,        OWL.ObjectProperty))
-        g.add((p, RDFS.domain,     MEME[domain]))
-        g.add((p, RDFS.range,      MEME[range_]))
-        g.add((p, RDFS.label,      Literal(name)))
+        p = prop_uri(name)
+        g.add((p, RDF.type,   OWL.ObjectProperty))
+        g.add((p, RDFS.label, Literal(name)))
+        dom_node = _union_node(domain) if isinstance(domain, tuple) else class_uri(domain)
+        rng_node = _union_node(range_) if isinstance(range_, tuple) else class_uri(range_)
+        g.add((p, RDFS.domain, dom_node))
+        g.add((p, RDFS.range,  rng_node))
 
     # Data properties
-    for name, dtype in DATA_PROPS:
+    for name, domain, dtype in DATA_PROPS:
         p = MEME[name]
         g.add((p, RDF.type,    OWL.DatatypeProperty))
-        g.add((p, RDFS.domain, MEME["Meme"]))
+        g.add((p, RDFS.domain, class_uri(domain)))
         g.add((p, RDFS.range,  dtype))
         g.add((p, RDFS.label,  Literal(name)))
 
@@ -568,7 +633,7 @@ def build_ontology(results, owl_path, meta_lookup=None):
                 g.add((ind, RDFS.label, Literal(label)))
                 declared_ind[local] = set()
             if class_name not in declared_ind[local]:
-                g.add((ind, RDF.type, MEME[class_name]))
+                g.add((ind, RDF.type, class_uri(class_name)))
                 declared_ind[local].add(class_name)
 
     def ensure_individual(class_name, label, normalize=False):
@@ -582,7 +647,7 @@ def build_ontology(results, owl_path, meta_lookup=None):
             g.add((ind, RDFS.label, Literal(label.strip())))
             declared_ind[local] = set()
         if class_name not in declared_ind[local]:
-            g.add((ind, RDF.type, MEME[class_name]))
+            g.add((ind, RDF.type, class_uri(class_name)))
             declared_ind[local].add(class_name)
         return ind
 
@@ -607,23 +672,23 @@ def build_ontology(results, owl_path, meta_lookup=None):
 
         meme_uri = MEME[local_id]
         g.add((meme_uri, RDF.type,   OWL.NamedIndividual))
-        g.add((meme_uri, RDF.type,   MEME.Meme))
+        g.add((meme_uri, RDF.type,   MEME.MemeConcept))
         g.add((meme_uri, RDFS.label, Literal(label_str)))
 
         def obj(prop, class_, val):
             if val:
-                g.add((meme_uri, MEME[prop], ensure_individual(class_, val)))
+                g.add((meme_uri, prop_uri(prop), ensure_individual(class_, val)))
 
-        # Macro 1 — CLIP / pixel
-        obj("hasImageType",      "ImageType",     rec.get("hasImageType"))
-        obj("hasTextPresence",   "TextPresence",  rec.get("hasTextPresence"))
-        obj("hasColorMode",      "ColorMode",     rec.get("hasColorMode"))
-        obj("hasSubjectMatter",  "SubjectMatter", rec.get("hasSubjectMatter"))
+        # Macro 1 — CLIP / pixel (stored in classifications.json as hasImageType etc.)
+        obj("hasImageType",     "ImageType",     rec.get("hasImageType"))
+        obj("hasTextPresence",  "TextPresence",  rec.get("hasTextPresence"))
+        obj("hasColorMode",     "ColorMode",     rec.get("hasColorMode"))
+        obj("hasSubjectMatter", "SubjectMatter", rec.get("hasSubjectMatter"))
 
         # Macro 2 — metadata (hasFormat is a list)
         for fmt in rec.get("hasFormat", []):
             if fmt:
-                g.add((meme_uri, MEME.hasFormat, ensure_individual("MemeFormat", fmt)))
+                g.add((meme_uri, prop_uri("hasFormat"), ensure_individual("MemeFormat", fmt)))
         obj("hasOriginPlatform", "OriginPlatform",  rec.get("hasOriginPlatform"))
         # OriginWork: free-text from KYM, routed to the most specific sub-property.
         # IRI is lowercased so "The Simpsons" / "the simpsons" collapse to one individual.
@@ -641,13 +706,8 @@ def build_ontology(results, owl_path, meta_lookup=None):
                 _part = _part.strip()
                 if _part and _part != "Unknown":
                     _norm = REGION_MAP.get(_part.lower(), _part)
-                    g.add((meme_uri, MEME.hasRegion, ensure_individual("GeographicRegion", _norm)))
+                    g.add((meme_uri, prop_uri("hasRegion"), ensure_individual("GeographicRegion", _norm)))
         obj("hasTimePeriod",     "TimePeriod",       rec.get("hasTimePeriod"))
-
-        # FRBR — all current Meme individuals represent a specific image file,
-        # which maps to the Manifestation level of the FRBR hierarchy.
-        g.add((meme_uri, MEME.hasFRBRLevel,
-               ensure_individual("FRBRLevel", "Manifestation")))
 
         # Macro 3 — format
         ff = rec.get("hasFileFormat")
@@ -695,6 +755,95 @@ def build_ontology(results, owl_path, meta_lookup=None):
         for tag in meta.get("tags", []):
             if tag:
                 g.add((meme_uri, SCHEMA.keywords, Literal(tag, datatype=XSD.string)))
+
+    # ── MemeIdea + VariantInstance individuals ────────────────────────────────
+    if variants_path and Path(variants_path).exists():
+        with open(variants_path, encoding="utf-8") as _vf:
+            variant_rows = json.load(_vf)
+
+        # Build slug→meme_uri lookup from already-declared MemeConcept individuals
+        def _meme_slug_from_name(name):
+            slug = re.sub(r"[^\w\s-]", "", name.lower())
+            slug = re.sub(r"[\s_]+", "-", slug).strip("-")
+            return _iri_local(slug)
+
+        # Build slug→meme_uri from meta_lookup (meme_url path segment → iri local)
+        url_slug_to_meme_uri = {}
+        if meta_lookup:
+            for _eid, _me in meta_lookup.items():
+                _img = _me.get("image_filename", "")
+                if _img:
+                    _stem = Path(_img).stem
+                    _name_slug = re.sub(r"^\d{4}_", "", _stem)
+                    _local = _iri_local(_name_slug) or f"Meme_{_eid}"
+                    _meme_url = _me.get("meme_url", "")
+                    if _meme_url:
+                        _url_slug = _meme_url.rstrip("/").split("/")[-1]
+                        url_slug_to_meme_uri[_url_slug] = (MEME[_local], _me)
+
+        # Group variants by meme_name
+        from collections import defaultdict
+        variants_by_meme = defaultdict(list)
+        for row in variant_rows:
+            variants_by_meme[row["meme_name"]].append(row)
+
+        n_ideas = n_variants = 0
+        for meme_name, rows in variants_by_meme.items():
+            url_slug = _meme_slug_from_name(meme_name)
+            match = url_slug_to_meme_uri.get(url_slug)
+            if match is None:
+                # Fallback: linear search by comparing slugified meme_url
+                for _slug, (_uri, _me) in url_slug_to_meme_uri.items():
+                    if _meme_slug_from_name(_slug) == url_slug:
+                        match = (_uri, _me)
+                        break
+            if match is None:
+                print(f"  [variants] no MemeConcept match for {meme_name!r}")
+                continue
+
+            meme_uri, meta_entry = match
+
+            # MemeIdea individual: <meme_local>_idea
+            meme_local = str(meme_uri).split("#")[-1]
+            idea_local  = f"{meme_local}_idea"
+            idea_uri    = MEME[idea_local]
+            g.add((idea_uri, RDF.type,   OWL.NamedIndividual))
+            g.add((idea_uri, RDF.type,   WD.Q3249551))           # MemeIdea class
+            g.add((idea_uri, RDFS.label, Literal(f"{meme_name} (idea)")))
+            desc = (meta_entry.get("description") or "").strip()
+            if desc:
+                g.add((idea_uri, MEME.conceptDescription, Literal(desc, datatype=XSD.string)))
+            # Link MemeConcept ↔ MemeIdea
+            g.add((meme_uri, MEME.conceptualizes,     idea_uri))
+            g.add((idea_uri, MEME.isConceptualizedAs, meme_uri))
+            n_ideas += 1
+
+            # VariantInstance individuals
+            for row in rows:
+                idx       = int(row.get("index", 0))
+                v_local   = f"{meme_local}_v{idx:02d}"
+                v_uri     = MEME[v_local]
+                g.add((v_uri, RDF.type,   OWL.NamedIndividual))
+                g.add((v_uri, RDF.type,   MEME.VariantInstance))
+                g.add((v_uri, RDFS.label, Literal(row.get("title") or f"{meme_name} variant {idx}")))
+                if row.get("title"):
+                    g.add((v_uri, MEME.variantTitle,    Literal(row["title"],    datatype=XSD.string)))
+                if row.get("author"):
+                    g.add((v_uri, MEME.variantUploader, Literal(row["author"],   datatype=XSD.string)))
+                if row.get("image_url"):
+                    g.add((v_uri, MEME.variantImageURL, Literal(row["image_url"],datatype=XSD.string)))
+                if row.get("filename"):
+                    g.add((v_uri, MEME.variantFilename, Literal(row["filename"], datatype=XSD.string)))
+                if row.get("photo_url"):
+                    g.add((v_uri, MEME.photoURL,        Literal(row["photo_url"],datatype=XSD.string)))
+                g.add((v_uri, MEME.variantIndex, Literal(idx, datatype=XSD.integer)))
+                # Link MemeConcept ↔ VariantInstance
+                g.add((meme_uri, prop_uri("hasVariant"), v_uri))
+                g.add((v_uri,    prop_uri("isVariantOf"), meme_uri))
+                n_variants += 1
+
+        print(f"  MemeIdea individuals added: {n_ideas}")
+        print(f"  VariantInstance individuals added: {n_variants}")
 
     g.serialize(destination=str(owl_path), format="xml")
     print(f"OWL ontology written -> {owl_path}")
