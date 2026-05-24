@@ -456,7 +456,6 @@ WD_CLASS_MAP = {
 WD_PROP_MAP = {
     "hasRegion":         WDT.P495,
     "hasTimePeriod":     WDT.P2408,
-    "hasReference":      WDT.P8371,
     "hasVariant":        WDT.P527,
     "isVariantOf":       WDT.P361,
     "hasFormat":         WDT.P2283,
@@ -660,7 +659,7 @@ OBJ_PROPS = [
     ("isTimePeriodOf",     "TimePeriod",      "MemeConcept"),
     ("hasAnimationStatus", "MemeConcept",     "AnimationStatus"),
     ("isAnimationStatusOf","AnimationStatus", "MemeConcept"),
-    ("hasReference",       "MemeConcept",     "CulturalReference"), # → WDT.P8371
+    ("hasReference",       "MemeConcept",     "CulturalReference"),
     ("isReferencedIn",     "CulturalReference","MemeConcept"),
     # FRBR relations (P3: hasVariant/isVariantOf use Wikidata)
     ("hasVariant",         "MemeConcept",     "VariantInstance"),   # → WDT.P527
@@ -733,11 +732,12 @@ MEMO_CLASS_COMMENTS = {
     "PublicFigure":            "A public figure, celebrity, politician, or historical person referenced by a meme.",
     "HistoricalEvent":         "A historical event, period, or crisis referenced by a meme.",
     "SocialPhenomenon":        "A social movement, behavioural trend, or cultural practice referenced by a meme.",
-    "VideoFormat":             "MemeFormat subclass grouping video-based formats: ViralVideo, ViralDebate.",
-    "TextFormat":              "MemeFormat subclass grouping text-based formats: Catchphrase, Copypasta, Slang, Snowclone.",
+    "VideoFormat":             "MemeFormat subclass grouping video-based formats: ViralVideo, ViralDebate, LipDub.",
+    "AudioFormat":             "MemeFormat subclass grouping audio-primary formats: Song, SoundEffect.",
+    "TextFormat":              "MemeFormat subclass grouping text-based formats: Catchphrase, Copypasta, Slang, Snowclone, Hashtag.",
     "ImageManipulationFormat": "MemeFormat subclass grouping image manipulation formats: Exploitable, ImageMacro, Photoshop, Remix.",
-    "ParticipatoryFormat":     "MemeFormat subclass grouping participatory formats: ParticipatoryMedia, Dance.",
-    "NarrativeFormat":         "MemeFormat subclass grouping character- and narrative-based formats: Character, FanArt, Parody, PopCultureReference.",
+    "ParticipatoryFormat":     "MemeFormat subclass grouping participatory formats: ParticipatoryMedia, Dance, SocialGame.",
+    "NarrativeFormat":         "MemeFormat subclass grouping character- and narrative-based formats: Character, FanArt, Parody, PopCultureReference, Reaction.",
 }
 
 # Fix: rdfs:comment + rdfs:seeAlso for each Wikidata class
@@ -785,11 +785,12 @@ CULTURAL_REF_SUBTYPES = [
 # MemeFormat subgroup classes: which format individuals belong to which subgroup.
 # Individuals not listed here remain as bare memo:MemeFormat.
 MEME_FORMAT_GROUPS = {
-    "VideoFormat":             ["ViralVideo", "ViralDebate"],
-    "TextFormat":              ["Catchphrase", "Copypasta", "Slang", "Snowclone"],
+    "VideoFormat":             ["ViralVideo", "ViralDebate", "Lip_Dub"],
+    "AudioFormat":             ["Song", "SoundEffect"],
+    "TextFormat":              ["Catchphrase", "Copypasta", "Slang", "Snowclone", "Hashtag"],
     "ImageManipulationFormat": ["Exploitable", "ImageMacro", "Photoshop", "Remix"],
-    "ParticipatoryFormat":     ["ParticipatoryMedia", "Dance"],
-    "NarrativeFormat":         ["Character", "FanArt", "Parody", "PopCultureReference"],
+    "ParticipatoryFormat":     ["ParticipatoryMedia", "Dance", "Social_Game"],
+    "NarrativeFormat":         ["Character", "FanArt", "Parody", "PopCultureReference", "Reaction"],
 }
 
 # FRBR level and Panofsky semantic level annotations for classes
@@ -913,15 +914,23 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
         g.add((p_fwd, OWL.inverseOf, p_inv))
         g.add((p_inv, OWL.inverseOf, p_fwd))
 
+    # memo:hasReference aligns to wdt:P8371 (Wikidata "has use"); explicit assertions use memo: namespace
+    g.add((MEME.hasReference, OWL.equivalentProperty, WDT.P8371))
+    g.add((WDT.P8371,         OWL.equivalentProperty, MEME.hasReference))
+
     # Fix 4 — hasOriginWork is a specialisation of prov:wasDerivedFrom
     g.add((MEME.hasOriginWork, RDFS.subPropertyOf, PROV.wasDerivedFrom))
 
     # Fix 2 — declare external properties used in populated but absent from schema
-    # prov:wasDerivedFrom — object property linking MemeConcept to OriginWork
-    g.add((PROV.wasDerivedFrom, RDF.type,    OWL.ObjectProperty))
-    g.add((PROV.wasDerivedFrom, RDFS.domain, MEME.MemeConcept))
-    g.add((PROV.wasDerivedFrom, RDFS.range,  WD.Q386724))
-    g.add((PROV.wasDerivedFrom, RDFS.label,  Literal("wasDerivedFrom")))
+    # prov:wasDerivedFrom — superproperty of memo:hasOriginWork; not directly asserted in MEMO
+    g.add((PROV.wasDerivedFrom, RDF.type,     OWL.ObjectProperty))
+    g.add((PROV.wasDerivedFrom, RDFS.domain,  MEME.MemeConcept))
+    g.add((PROV.wasDerivedFrom, RDFS.range,   WD.Q386724))
+    g.add((PROV.wasDerivedFrom, RDFS.label,   Literal("wasDerivedFrom")))
+    g.add((PROV.wasDerivedFrom, RDFS.comment, Literal(
+        "Superproperty of memo:hasOriginWork. Not directly asserted in MEMO — "
+        "memo:hasOriginWork is used throughout, from which reasoners infer prov:wasDerivedFrom.",
+        lang="en")))
     # dcterms: metadata properties
     for _prop, _label, _rng, _ptype in [
         (DCTERMS.created,     "created",     XSD.integer,  OWL.AnnotationProperty),
@@ -1289,6 +1298,7 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
         print(f"TTL ontology written -> {ttl_path}  ({len(g)} triples)")
 
     if unpopulated_owl_path or unpopulated_ttl_path:
+        # Schema-only (TBox): strip every owl:NamedIndividual from the populated graph.
         ind_uris = {s for s in g.subjects(RDF.type, OWL.NamedIndividual)
                     if isinstance(s, URIRef)}
         ug = Graph()

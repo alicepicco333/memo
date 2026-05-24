@@ -55,6 +55,11 @@ schema1:url a owl:AnnotationProperty ;
         schema: ;
     owl:versionInfo "1.0" .
 
+memo:AudioFormat a owl:Class ;
+    rdfs:label "AudioFormat" ;
+    rdfs:comment "MemeFormat subclass grouping audio-primary formats: Song, SoundEffect."@en ;
+    rdfs:subClassOf memo:MemeFormat .
+
 memo:HistoricalEvent a owl:Class ;
     rdfs:label "HistoricalEvent" ;
     rdfs:comment "A historical event, period, or crisis referenced by a meme."@en ;
@@ -72,12 +77,12 @@ memo:MediaProperty a owl:Class ;
 
 memo:NarrativeFormat a owl:Class ;
     rdfs:label "NarrativeFormat" ;
-    rdfs:comment "MemeFormat subclass grouping character- and narrative-based formats: Character, FanArt, Parody, PopCultureReference."@en ;
+    rdfs:comment "MemeFormat subclass grouping character- and narrative-based formats: Character, FanArt, Parody, PopCultureReference, Reaction."@en ;
     rdfs:subClassOf memo:MemeFormat .
 
 memo:ParticipatoryFormat a owl:Class ;
     rdfs:label "ParticipatoryFormat" ;
-    rdfs:comment "MemeFormat subclass grouping participatory formats: ParticipatoryMedia, Dance."@en ;
+    rdfs:comment "MemeFormat subclass grouping participatory formats: ParticipatoryMedia, Dance, SocialGame."@en ;
     rdfs:subClassOf memo:MemeFormat .
 
 memo:PoliticalEvent a owl:Class ;
@@ -97,12 +102,12 @@ memo:SocialPhenomenon a owl:Class ;
 
 memo:TextFormat a owl:Class ;
     rdfs:label "TextFormat" ;
-    rdfs:comment "MemeFormat subclass grouping text-based formats: Catchphrase, Copypasta, Slang, Snowclone."@en ;
+    rdfs:comment "MemeFormat subclass grouping text-based formats: Catchphrase, Copypasta, Slang, Snowclone, Hashtag."@en ;
     rdfs:subClassOf memo:MemeFormat .
 
 memo:VideoFormat a owl:Class ;
     rdfs:label "VideoFormat" ;
-    rdfs:comment "MemeFormat subclass grouping video-based formats: ViralVideo, ViralDebate."@en ;
+    rdfs:comment "MemeFormat subclass grouping video-based formats: ViralVideo, ViralDebate, LipDub."@en ;
     rdfs:subClassOf memo:MemeFormat .
 
 memo:WebCulture a owl:Class ;
@@ -178,6 +183,7 @@ memo:views a owl:DatatypeProperty ;
 
 prov:wasDerivedFrom a owl:ObjectProperty ;
     rdfs:label "wasDerivedFrom" ;
+    rdfs:comment "Superproperty of memo:hasOriginWork. Not directly asserted in MEMO — memo:hasOriginWork is used throughout, from which reasoners infer prov:wasDerivedFrom."@en ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range wd:Q386724 .
 
@@ -222,11 +228,7 @@ wdt:P527 a owl:ObjectProperty ;
     rdfs:range memo:VariantInstance ;
     owl:inverseOf wdt:P361 .
 
-wdt:P8371 a owl:ObjectProperty ;
-    rdfs:label "hasReference" ;
-    rdfs:domain memo:MemeConcept ;
-    rdfs:range wd:Q96622155 ;
-    owl:inverseOf memo:isReferencedIn .
+wdt:P8371 owl:equivalentProperty memo:hasReference .
 
 memo:conceptualizes a owl:ObjectProperty ;
     rdfs:label "conceptualizes" ;
@@ -335,7 +337,7 @@ memo:isReferencedIn a owl:ObjectProperty ;
     rdfs:label "isReferencedIn" ;
     rdfs:domain wd:Q96622155 ;
     rdfs:range memo:MemeConcept ;
-    owl:inverseOf wdt:P8371 .
+    owl:inverseOf memo:hasReference .
 
 memo:isRegionOf a owl:ObjectProperty ;
     rdfs:label "isRegionOf" ;
@@ -423,6 +425,13 @@ memo:TransformationExtent a owl:Class ;
     rdfs:label "TransformationExtent" ;
     rdfs:comment "The degree to which a VariantInstance diverges from its source template (e.g. Minimal, Moderate, Major). Enables quantitative analysis of meme mutation."@en .
 
+memo:hasReference a owl:ObjectProperty ;
+    rdfs:label "hasReference" ;
+    rdfs:domain memo:MemeConcept ;
+    rdfs:range wd:Q96622155 ;
+    owl:equivalentProperty wdt:P8371 ;
+    owl:inverseOf memo:isReferencedIn .
+
 wd:Q3249551 a owl:Class ;
     rdfs:label "MemeIdea" ;
     rdfs:comment "Abstract creative idea underlying a meme template; corresponds to the FRBR Work level, aligned with Wikidata Q3249551."@en ;
@@ -434,16 +443,16 @@ wd:Q386724 a owl:Class ;
     rdfs:comment "Creative work (film, TV series, game, etc.) from which the meme derives, aligned with Wikidata Q386724."@en ;
     rdfs:seeAlso <https://www.wikidata.org/wiki/Q386724> .
 
-memo:MemeFormat a owl:Class ;
-    rdfs:label "MemeFormat" ;
-    rdfs:comment "The genre or structural format of a meme (e.g. ImageMacro, Copypasta, ViralVideo). Drawn from Know Your Meme's type taxonomy."@en ;
-    memo:semanticLevel "Iconographical" .
-
 wd:Q96622155 a owl:Class ;
     rdfs:label "CulturalReference" ;
     rdfs:comment "Cultural artefact, event, or phenomenon that a meme iconologically references, aligned with Wikidata Q96622155."@en ;
     rdfs:seeAlso <https://www.wikidata.org/wiki/Q96622155> ;
     memo:semanticLevel "Iconological" .
+
+memo:MemeFormat a owl:Class ;
+    rdfs:label "MemeFormat" ;
+    rdfs:comment "The genre or structural format of a meme (e.g. ImageMacro, Copypasta, ViralVideo). Drawn from Know Your Meme's type taxonomy."@en ;
+    memo:semanticLevel "Iconographical" .
 
 memo:VariantInstance a owl:Class ;
     rdfs:label "VariantInstance" ;
