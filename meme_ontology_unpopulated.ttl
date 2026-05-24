@@ -66,6 +66,12 @@ image. Uses the same controlled vocabulary as CanonicalImageType but applied at
 the Item (VariantInstance) level."""@en ;
     rdfs:subClassOf owl:Thing .
 
+memo:Meme a owl:Class ;
+    rdfs:label "Meme" ;
+    memo:frbrLevel "Expression" ;
+    rdfs:comment "A canonical internet meme template as indexed on Know Your Meme. Represents the Expression-level identity of a meme: a stable, recognisable template that exists across all its variant images."@en ;
+    rdfs:subClassOf memo:FRBRExpression .
+
 memo:MemeFormat a owl:Class ;
     rdfs:label "MemeFormat" ;
     memo:frbrLevel "Expression" ;
@@ -82,7 +88,7 @@ memo:MemeIdea a owl:Class ;
 its core narrative, emotional register, rhetorical function or cultural role,
 independent of any specific image or format. 50 enriched individuals from the
 D0 sample, with descriptions and cultural reference annotations."""@en ;
-    rdfs:subClassOf owl:Thing .
+    rdfs:subClassOf memo:FRBRWork .
 
 memo:OriginPlatform a owl:Class ;
     rdfs:label "OriginPlatform" ;
@@ -140,7 +146,7 @@ memo:VariantInstance a owl:Class ;
     rdfs:comment """A single scraped variant image — an Item-level
 exemplar of a MemeConcept. 391 named individuals with transformation extent and
 dimension annotations for 5 fully annotated meme templates."""@en ;
-    rdfs:subClassOf owl:Thing .
+    rdfs:subClassOf memo:FRBRManifestation .
 
 memo:conceptualizes a owl:ObjectProperty ;
     rdfs:label "conceptualizes" ;

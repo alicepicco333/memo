@@ -77,6 +77,13 @@ image. Uses the same controlled vocabulary as CanonicalImageType but applied at
 the Item (VariantInstance) level.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
   </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#Meme">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>Meme</rdfs:label>
+    <memo:frbrLevel>Expression</memo:frbrLevel>
+    <rdfs:comment xml:lang="en">A canonical internet meme template as indexed on Know Your Meme. Represents the Expression-level identity of a meme: a stable, recognisable template that exists across all its variant images.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/meme-ontology#FRBRExpression"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#MemeFormat">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>MemeFormat</rdfs:label>
@@ -95,7 +102,7 @@ memes at the Expression level with Iconographical analysis.</rdfs:comment>
 its core narrative, emotional register, rhetorical function or cultural role,
 independent of any specific image or format. 50 enriched individuals from the
 D0 sample, with descriptions and cultural reference annotations.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/meme-ontology#FRBRWork"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#OriginPlatform">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -161,7 +168,7 @@ canonical template: Minimal (close copy), Moderate, Substantial, or Parody
     <rdfs:comment xml:lang="en">A single scraped variant image — an Item-level
 exemplar of a MemeConcept. 391 named individuals with transformation extent and
 dimension annotations for 5 fully annotated meme templates.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/meme-ontology#FRBRManifestation"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/meme-ontology#conceptualizes">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>

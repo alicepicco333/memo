@@ -506,7 +506,7 @@ def build_ontology(results, owl_path, meta_lookup=None):
     meta_lookup: optional dict {zero-padded-id -> metadata entry} for imageFilename lookup."""
     MEME = Namespace(ONTO_BASE)
     g = Graph()
-    g.bind("meme",    MEME)
+    g.bind("memo",    MEME)
     g.bind("owl",     OWL)
     g.bind("rdfs",    RDFS)
     g.bind("xsd",     XSD)
@@ -531,11 +531,9 @@ def build_ontology(results, owl_path, meta_lookup=None):
         g.add((MEME[c], RDF.type, OWL.Class))
         g.add((MEME[c], RDFS.label, Literal(c)))
 
-    # FRBR entity hierarchy
-    g.add((MEME["FRBRExpression"],     RDFS.subClassOf, MEME["FRBRWork"]))
-    g.add((MEME["FRBRManifestation"],  RDFS.subClassOf, MEME["FRBRExpression"]))
-    g.add((MEME["FRBRItem"],           RDFS.subClassOf, MEME["FRBRManifestation"]))
     # Domain class alignment to FRBR levels
+    # (FRBRWork/Expression/Manifestation/Item are sibling classes — no subclass chain
+    # between them, since Item is not a kind of Manifestation etc.)
     g.add((MEME["MemeIdea"],        RDFS.subClassOf, MEME["FRBRWork"]))
     g.add((MEME["Meme"],            RDFS.subClassOf, MEME["FRBRExpression"]))
     g.add((MEME["VariantInstance"], RDFS.subClassOf, MEME["FRBRManifestation"]))
