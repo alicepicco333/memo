@@ -173,6 +173,19 @@ REGION_MAP = {
     "chile": "Chile",
     "colombia": "Colombia",
     "pakistan": "Pakistan",
+    # Additional countries present in KYM data
+    "ghana": "Ghana",
+    "uganda": "Uganda",
+    "nigeria": "Nigeria",
+    "ecuador": "Ecuador",
+    "el salvador": "El Salvador",
+    "guatelama": "Guatemala", "guatemala": "Guatemala",   # typo + canonical
+    "mali": "Mali",
+    "palestine": "Palestine",
+    "vatican": "Vatican", "vatican city": "Vatican City",
+    "babylon": "Babylon",
+    "arabic": "Arabic",
+    "little italy": "Little Italy",
     "": "Unknown",
 }
 
@@ -459,23 +472,168 @@ VOCAB = {
     "TimePeriod":      ["Pre2010", "Period2010to2015", "Period2016to2020", "Period2021toPresent", "Unknown"],
     "FileFormat":      ["JPEG", "PNG", "GIF", "WebP", "BMP"],
     "AnimationStatus": ["Static", "Animated"],
-    "OriginPlatform": [
-        "TwitterX", "TikTok", "YouTube", "Reddit", "Instagram", "Facebook",
-        "Tumblr", "4chan", "iFunny", "Twitch", "Vine", "Imgur", "DeviantArt",
-        "Discord", "Snapchat", "KnowYourMeme", "9gag", "MySpace",
-        "eBaumsWorld", "SomethingAwful", "FunnyJunk", "Unknown",
-    ],
-    "GeographicRegion": [
-        "UnitedStates", "Japan", "UnitedKingdom", "Worldwide", "China",
-        "Brazil", "India", "France", "Canada", "Australia", "Germany",
-        "SouthKorea", "Russia", "Spain", "Italy", "Mexico", "Netherlands",
-        "Sweden", "Finland", "Poland", "Philippines", "Indonesia",
-        "Thailand", "Turkey", "Argentina",
-        "Israel", "Singapore", "Ireland", "Ukraine", "Romania", "Serbia",
-        "Belgium", "Switzerland", "Vietnam", "CzechRepublic", "Chile",
-        "Colombia", "Pakistan",
-        "Unknown",
-    ],
+    "OriginPlatform":   ["Unknown"],           # WD-mapped platforms declared via WD_PLATFORM_INDIVIDUALS
+    "GeographicRegion": ["Unknown", "Worldwide"],  # WD-mapped regions declared via WD_REGION_INDIVIDUALS
+}
+
+# Wikidata QIDs for GeographicRegion individuals.
+# Keys are the strings that appear as `_norm` after the REGION_MAP lookup at OWL-build time,
+# which is the same as the value stored in classifications.json (normalize_region output).
+REGION_QID_MAP = {
+    # CamelCase — produced by normalize_region (stored in classifications.json)
+    "UnitedStates":  "Q30",
+    "UnitedKingdom": "Q145",
+    "SouthKorea":    "Q884",
+    "CzechRepublic": "Q213",
+    # Natural / single-word names that fall through REGION_MAP unchanged
+    "Japan":         "Q17",
+    "China":         "Q148",
+    "Brazil":        "Q155",
+    "India":         "Q668",
+    "France":        "Q142",
+    "Russia":        "Q159",
+    "Mexico":        "Q96",
+    "Germany":       "Q183",
+    "Australia":     "Q408",
+    "Canada":        "Q16",
+    "Italy":         "Q38",
+    "Spain":         "Q29",
+    "Indonesia":     "Q252",
+    "Philippines":   "Q928",
+    "Poland":        "Q36",
+    "Netherlands":   "Q55",
+    "Ukraine":       "Q212",
+    "Turkey":        "Q43",
+    "Sweden":        "Q34",
+    "Switzerland":   "Q39",
+    "Belgium":       "Q31",
+    "Argentina":     "Q414",
+    "Colombia":      "Q739",
+    "Chile":         "Q298",
+    "Finland":       "Q33",
+    "Romania":       "Q218",
+    "Pakistan":      "Q843",
+    "Israel":        "Q801",
+    "Singapore":     "Q334",
+    "Vietnam":       "Q881",
+    "Thailand":      "Q869",
+    "Ireland":       "Q27",
+    "Serbia":        "Q403",
+    "Ghana":         "Q117",
+    "Uganda":        "Q1036",
+    "Nigeria":       "Q1033",
+    "Ecuador":       "Q736",
+    "El Salvador":   "Q792",
+    "Guatemala":     "Q774",
+    "Guatelama":     "Q774",   # typo variant possibly stored in classifications.json
+    "Mali":          "Q912",
+    "Palestine":     "Q219060",
+    "Vatican":       "Q237",
+    "Vatican City":  "Q237",
+    "Babylon":       "Q5684",
+    # Worldwide / Unknown / linguistic labels have no QID — keep as memo: (None means skip)
+}
+
+# Wikidata QIDs for OriginPlatform individuals, keyed by PLATFORM_MAP output.
+PLATFORM_QID_MAP = {
+    "TwitterX":       "Q918",
+    "TikTok":         "Q50003786",
+    "YouTube":        "Q866",
+    "Reddit":         "Q28811",
+    "Instagram":      "Q209330",
+    "Facebook":       "Q355",
+    "Tumblr":         "Q212971",
+    "4chan":          "Q674637",
+    "Vine":           "Q5754076",
+    "Imgur":          "Q898279",
+    "DeviantArt":     "Q545858",
+    "Discord":        "Q56028744",
+    "Snapchat":       "Q18373543",
+    "Twitch":         "Q10288502",
+    "MySpace":        "Q38022",
+    "SomethingAwful": "Q3489062",
+    "9gag":           "Q2737200",
+    "iFunny":         "Q4319804",
+    "eBaumsWorld":    "Q3724165",
+    "FunnyJunk":      "Q5509787",
+    "KnowYourMeme":   "Q928047",
+}
+
+# Schema-level declarations: Wikidata individuals for GeographicRegion (wd:Q82794).
+# QID → display label (used as rdfs:label on the wd: individual).
+WD_REGION_INDIVIDUALS = {
+    "Q30":      "United States",
+    "Q145":     "United Kingdom",
+    "Q884":     "South Korea",
+    "Q213":     "Czech Republic",
+    "Q17":      "Japan",
+    "Q148":     "China",
+    "Q155":     "Brazil",
+    "Q668":     "India",
+    "Q142":     "France",
+    "Q159":     "Russia",
+    "Q96":      "Mexico",
+    "Q183":     "Germany",
+    "Q408":     "Australia",
+    "Q16":      "Canada",
+    "Q38":      "Italy",
+    "Q29":      "Spain",
+    "Q252":     "Indonesia",
+    "Q928":     "Philippines",
+    "Q36":      "Poland",
+    "Q55":      "Netherlands",
+    "Q212":     "Ukraine",
+    "Q43":      "Turkey",
+    "Q34":      "Sweden",
+    "Q39":      "Switzerland",
+    "Q31":      "Belgium",
+    "Q414":     "Argentina",
+    "Q739":     "Colombia",
+    "Q298":     "Chile",
+    "Q33":      "Finland",
+    "Q218":     "Romania",
+    "Q843":     "Pakistan",
+    "Q801":     "Israel",
+    "Q334":     "Singapore",
+    "Q881":     "Vietnam",
+    "Q869":     "Thailand",
+    "Q27":      "Ireland",
+    "Q403":     "Serbia",
+    "Q117":     "Ghana",
+    "Q1036":    "Uganda",
+    "Q1033":    "Nigeria",
+    "Q736":     "Ecuador",
+    "Q792":     "El Salvador",
+    "Q774":     "Guatemala",
+    "Q912":     "Mali",
+    "Q219060":  "Palestine",
+    "Q237":     "Vatican City",
+    "Q5684":    "Babylon",
+}
+
+# Schema-level declarations: Wikidata individuals for OriginPlatform (wd:Q3220391).
+WD_PLATFORM_INDIVIDUALS = {
+    "Q918":      "Twitter/X",
+    "Q50003786": "TikTok",
+    "Q866":      "YouTube",
+    "Q28811":    "Reddit",
+    "Q209330":   "Instagram",
+    "Q355":      "Facebook",
+    "Q212971":   "Tumblr",
+    "Q674637":   "4chan",
+    "Q5754076":  "Vine",
+    "Q898279":   "Imgur",
+    "Q545858":   "DeviantArt",
+    "Q56028744": "Discord",
+    "Q18373543": "Snapchat",
+    "Q10288502": "Twitch",
+    "Q38022":    "MySpace",
+    "Q3489062":  "Something Awful",
+    "Q2737200":  "9GAG",
+    "Q4319804":  "iFunny",
+    "Q3724165":  "eBaum's World",
+    "Q5509787":  "FunnyJunk",
+    "Q928047":   "Know Your Meme",
 }
 
 OBJ_PROPS = [
@@ -768,6 +926,21 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None):
                 g.add((ind, RDF.type, class_uri(class_name)))
                 declared_ind[local].add(class_name)
 
+    # Wikidata-namespace individuals for GeographicRegion (wd:Q82794) and OriginPlatform (wd:Q3220391).
+    # Declared here so the unpopulated schema includes them; the populated file reuses these URIs.
+    for _qid, _label in WD_REGION_INDIVIDUALS.items():
+        _ind = WD[_qid]
+        g.add((_ind, RDF.type,     OWL.NamedIndividual))
+        g.add((_ind, RDF.type,     WD.Q82794))
+        g.add((_ind, RDFS.label,   Literal(_label)))
+        g.add((_ind, RDFS.seeAlso, URIRef(f"https://www.wikidata.org/wiki/{_qid}")))
+    for _qid, _label in WD_PLATFORM_INDIVIDUALS.items():
+        _ind = WD[_qid]
+        g.add((_ind, RDF.type,     OWL.NamedIndividual))
+        g.add((_ind, RDF.type,     WD.Q3220391))
+        g.add((_ind, RDFS.label,   Literal(_label)))
+        g.add((_ind, RDFS.seeAlso, URIRef(f"https://www.wikidata.org/wiki/{_qid}")))
+
     # Fix 10 — CulturalReference subtypes as owl:Class subclasses of wd:Q96622155 (with rdfs:comment)
     for subtype in CULTURAL_REF_SUBTYPES:
         sub_uri = MEME[subtype]
@@ -836,7 +1009,12 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None):
                 fmt_ind = ensure_individual("MemeFormat", fmt)
                 g.add((meme_uri, prop_uri("hasFormat"), fmt_ind))
                 g.add((fmt_ind,  prop_uri("isFormatOf"), meme_uri))
-        obj("hasOriginPlatform", "OriginPlatform",  rec.get("hasOriginPlatform"))
+        _plat_val = rec.get("hasOriginPlatform")
+        if _plat_val:
+            _plat_qid = PLATFORM_QID_MAP.get(_plat_val)
+            _plat_ind = WD[_plat_qid] if _plat_qid else ensure_individual("OriginPlatform", _plat_val)
+            g.add((meme_uri,   prop_uri("hasOriginPlatform"), _plat_ind))
+            g.add((_plat_ind,  prop_uri("isOriginPlatformOf"), meme_uri))
         # OriginWork: free-text from KYM, routed to the most specific sub-property.
         # IRI is lowercased so "The Simpsons" / "the simpsons" collapse to one individual.
         # Skip literal "Unknown" — avoids creating a lowercase 'unknown' IRI via normalize=True.
@@ -852,8 +1030,9 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None):
             for _part in region_raw.split(","):
                 _part = _part.strip()
                 if _part and _part != "Unknown":
-                    _norm = REGION_MAP.get(_part.lower(), _part)
-                    _reg_ind = ensure_individual("GeographicRegion", _norm)
+                    _norm    = REGION_MAP.get(_part.lower(), _part)
+                    _reg_qid = REGION_QID_MAP.get(_norm)
+                    _reg_ind = WD[_reg_qid] if _reg_qid else ensure_individual("GeographicRegion", _norm)
                     g.add((meme_uri,   prop_uri("hasRegion"), _reg_ind))
                     g.add((_reg_ind,   prop_uri("isRegionOf"), meme_uri))
         obj("hasTimePeriod",     "TimePeriod",       rec.get("hasTimePeriod"))
