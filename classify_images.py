@@ -12,6 +12,7 @@ from rdflib.collection import Collection
 
 PROV   = Namespace("http://www.w3.org/ns/prov#")
 SCHEMA = Namespace("http://schema.org/")
+DC     = Namespace("http://purl.org/dc/elements/1.1/")
 WD     = Namespace("http://www.wikidata.org/entity/")
 WDT    = Namespace("http://www.wikidata.org/prop/direct/")
 
@@ -108,15 +109,21 @@ FORMAT_MAP = {
     "cliché": "Cliche", "cliche": "Cliche",
     "animal": "Animal",
     "sound effect": "SoundEffect",
-    "meme": "Meme",
-    "event": "Event",
-    "video game": "VideoGame",
-    "subculture": "Subculture",
-    "person": "Person",
-    "trend": "Trend",
-    "clothing": "Clothing",
-    "website": "Website",
+    "social game": "SocialGame",
+    "lip dub": "LipDub",
+    "conspiracy theory": "ConspiracyTheory",
+    "fan labor": "FanLabor",
+    "hoax": "Hoax",
+    "dance": "Dance",
+    "emoticon": "Emoticon",
+    "ai-generated": "AiGenerated", "ai generated": "AiGenerated",
     "hashtag": "Hashtag",
+    "visual effect": "VisualEffect",
+    "advertisement": "Advertisement",
+    "axiom": "Axiom",
+    "creepypasta": "Creepypasta",
+    "shock media": "ShockMedia",
+    "optical illusion": "OpticalIllusion",
 }
 
 REGION_MAP = {
@@ -452,14 +459,6 @@ VOCAB = {
     "TimePeriod":      ["Pre2010", "Period2010to2015", "Period2016to2020", "Period2021toPresent", "Unknown"],
     "FileFormat":      ["JPEG", "PNG", "GIF", "WebP", "BMP"],
     "AnimationStatus": ["Static", "Animated"],
-    "MemeFormat": [
-        "ImageMacro", "Exploitable", "Catchphrase", "ViralVideo", "Reaction",
-        "PopCultureReference", "Character", "Parody", "ParticipatoryMedia",
-        "Slang", "Song", "Photoshop", "Snowclone", "Copypasta", "Remix",
-        "FanArt", "ViralDebate", "Cliche", "Animal", "SoundEffect",
-        "Meme", "Event", "VideoGame", "Subculture", "Person", "Trend",
-        "Clothing", "Website", "Hashtag", "Unknown",
-    ],
     "OriginPlatform": [
         "TwitterX", "TikTok", "YouTube", "Reddit", "Instagram", "Facebook",
         "Tumblr", "4chan", "iFunny", "Twitch", "Vine", "Imgur", "DeviantArt",
@@ -557,7 +556,30 @@ INVERSE_PAIRS = [
     ("hasTransformationExtent",    "isTransformationExtentOf"),
 ]
 
-# Fix 8 — rdfs:comment + rdfs:seeAlso for each Wikidata class
+# Reverse lookup for asserting explicit inverses in the populated file
+INVERSE_LOOKUP = {fwd: inv for fwd, inv in INVERSE_PAIRS}
+INVERSE_LOOKUP.update({inv: fwd for fwd, inv in INVERSE_PAIRS})
+
+# Fix: rdfs:comment for all memo: classes (external classes get theirs via WD_CLASS_META)
+MEMO_CLASS_COMMENTS = {
+    "MemeConcept":             "A meme template or canonical format; the Expression level of the FRBR hierarchy. Represents the stable, recognisable form of a meme as documented on Know Your Meme.",
+    "VariantInstance":         "A specific image derived from a meme template; the Manifestation level of the FRBR hierarchy. Represents a single scraped or documented instantiation of a MemeConcept.",
+    "ImageType":               "The visual medium or rendering technique of a meme image (e.g. Photograph, Drawing, Cartoon). Corresponds to Panofsky's pre-iconographic description.",
+    "TextPresence":            "Whether visible text is present in a meme image (ContainsText or NoText). Detected automatically via CLIP and EasyOCR.",
+    "ColorMode":               "Whether a meme image uses colour or is monochromatic (Color or Monochrome). Determined by per-pixel colour range analysis.",
+    "MemeFormat":              "The genre or structural format of a meme (e.g. ImageMacro, Copypasta, ViralVideo). Drawn from Know Your Meme's type taxonomy.",
+    "AnimationStatus":         "Whether a meme image is animated (Animated, i.e. a GIF) or static (Static). Derived from file extension.",
+    "TransformationDimension": "The primary dimension along which a VariantInstance transforms the source template (e.g. textual, visual, contextual). Enables typological analysis of meme variation.",
+    "TransformationExtent":    "The degree to which a VariantInstance diverges from its source template (e.g. Minimal, Moderate, Major). Enables quantitative analysis of meme mutation.",
+    "PoliticalEvent":          "A political event, controversy, or campaign that a meme iconologically references.",
+    "MediaProperty":           "A media franchise, film, TV series, game, or other creative property referenced by a meme.",
+    "WebCulture":              "A web-native cultural phenomenon, community, or trend referenced by a meme.",
+    "PublicFigure":            "A public figure, celebrity, politician, or historical person referenced by a meme.",
+    "HistoricalEvent":         "A historical event, period, or crisis referenced by a meme.",
+    "SocialPhenomenon":        "A social movement, behavioural trend, or cultural practice referenced by a meme.",
+}
+
+# Fix: rdfs:comment + rdfs:seeAlso for each Wikidata class
 WD_CLASS_META = {
     "GeographicRegion":  (
         "Geographic region or country of meme origin, as defined by Wikidata Q82794.",
@@ -591,15 +613,6 @@ WD_CLASS_META = {
         "Primary visual subject depicted in a meme image; corresponds to Panofsky's pre-iconographic level, aligned with Wikidata Q16334295.",
         "Q16334295",
     ),
-}
-
-# Fix 9 — MemeFormat subclass groups (individuals also typed as the group class)
-MEME_FORMAT_GROUPS = {
-    "VideoFormat":             ["ViralVideo", "ViralDebate"],
-    "TextFormat":              ["Copypasta", "Slang", "Catchphrase", "Snowclone"],
-    "ImageManipulationFormat": ["Exploitable", "Photoshop", "ImageMacro", "Remix"],
-    "ParticipatoryFormat":     ["ParticipatoryMedia", "SoundEffect"],
-    "NarrativeFormat":         ["Character", "FanArt", "Parody", "PopCultureReference"],
 }
 
 # Fix 10 — CulturalReference subtypes as owl:Class subclasses of wd:Q96622155
@@ -639,11 +652,13 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None):
     g.bind("dcterms", DCTERMS)
     g.bind("wd",      WD)
     g.bind("wdt",     WDT)
+    g.bind("dc",      DC)
 
     g.add((ONTO_URI, RDF.type,        OWL.Ontology))
     g.add((ONTO_URI, OWL.versionInfo, Literal("1.0")))
     g.add((ONTO_URI, DCTERMS.title,   Literal("The Meme Ontology (MEMO)", lang="en")))
     g.add((ONTO_URI, DCTERMS.license, URIRef("https://creativecommons.org/licenses/by/4.0/")))
+    g.add((ONTO_URI, DC.creator,      Literal("Alice Picco")))
 
     def class_uri(name):
         return WD_CLASS_MAP.get(name, MEME[name])
@@ -666,8 +681,10 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None):
         "VariantInstance", "TransformationDimension", "TransformationExtent",
     ]
     for c in memo_only_classes:
-        g.add((MEME[c], RDF.type, OWL.Class))
+        g.add((MEME[c], RDF.type,  OWL.Class))
         g.add((MEME[c], RDFS.label, Literal(c)))
+        if c in MEMO_CLASS_COMMENTS:
+            g.add((MEME[c], RDFS.comment, Literal(MEMO_CLASS_COMMENTS[c], lang="en")))
 
     # P2 — Wikidata Q-item classes declared as OWL classes (Fix 8: comment + seeAlso)
     for name, wd_uri in WD_CLASS_MAP.items():
@@ -751,22 +768,14 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None):
                 g.add((ind, RDF.type, class_uri(class_name)))
                 declared_ind[local].add(class_name)
 
-    # Fix 9 — MemeFormat subclass hierarchy
-    for group_name, members in MEME_FORMAT_GROUPS.items():
-        group_uri = MEME[group_name]
-        g.add((group_uri, RDF.type,        OWL.Class))
-        g.add((group_uri, RDFS.label,      Literal(group_name)))
-        g.add((group_uri, RDFS.subClassOf, MEME.MemeFormat))
-        for member in members:
-            member_uri = MEME[_iri_local(member)]
-            g.add((member_uri, RDF.type, group_uri))
-
-    # Fix 10 — CulturalReference subtypes as owl:Class subclasses of wd:Q96622155
+    # Fix 10 — CulturalReference subtypes as owl:Class subclasses of wd:Q96622155 (with rdfs:comment)
     for subtype in CULTURAL_REF_SUBTYPES:
         sub_uri = MEME[subtype]
         g.add((sub_uri, RDF.type,        OWL.Class))
         g.add((sub_uri, RDFS.label,      Literal(subtype)))
         g.add((sub_uri, RDFS.subClassOf, WD.Q96622155))
+        if subtype in MEMO_CLASS_COMMENTS:
+            g.add((sub_uri, RDFS.comment, Literal(MEMO_CLASS_COMMENTS[subtype], lang="en")))
 
     def ensure_individual(class_name, label, normalize=False):
         """Declare a named individual on first encounter; return its URI.
@@ -809,7 +818,11 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None):
 
         def obj(prop, class_, val):
             if val:
-                g.add((meme_uri, prop_uri(prop), ensure_individual(class_, val)))
+                ind = ensure_individual(class_, val)
+                g.add((meme_uri, prop_uri(prop), ind))
+                inv = INVERSE_LOOKUP.get(prop)
+                if inv:
+                    g.add((ind, prop_uri(inv), meme_uri))
 
         # Macro 1 — CLIP / pixel (stored in classifications.json as hasImageType etc.)
         obj("hasImageType",     "ImageType",     rec.get("hasImageType"))
@@ -820,7 +833,9 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None):
         # Macro 2 — metadata (hasFormat is a list)
         for fmt in rec.get("hasFormat", []):
             if fmt:
-                g.add((meme_uri, prop_uri("hasFormat"), ensure_individual("MemeFormat", fmt)))
+                fmt_ind = ensure_individual("MemeFormat", fmt)
+                g.add((meme_uri, prop_uri("hasFormat"), fmt_ind))
+                g.add((fmt_ind,  prop_uri("isFormatOf"), meme_uri))
         obj("hasOriginPlatform", "OriginPlatform",  rec.get("hasOriginPlatform"))
         # OriginWork: free-text from KYM, routed to the most specific sub-property.
         # IRI is lowercased so "The Simpsons" / "the simpsons" collapse to one individual.
@@ -838,7 +853,9 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None):
                 _part = _part.strip()
                 if _part and _part != "Unknown":
                     _norm = REGION_MAP.get(_part.lower(), _part)
-                    g.add((meme_uri, prop_uri("hasRegion"), ensure_individual("GeographicRegion", _norm)))
+                    _reg_ind = ensure_individual("GeographicRegion", _norm)
+                    g.add((meme_uri,   prop_uri("hasRegion"), _reg_ind))
+                    g.add((_reg_ind,   prop_uri("isRegionOf"), meme_uri))
         obj("hasTimePeriod",     "TimePeriod",       rec.get("hasTimePeriod"))
 
         # Macro 3 — format
@@ -971,6 +988,8 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None):
                     g.add((v_uri, MEME.variantFilename, Literal(row["filename"], datatype=XSD.string)))
                 if row.get("photo_url"):
                     g.add((v_uri, MEME.photoURL,        Literal(row["photo_url"],datatype=XSD.string)))
+                if row.get("img_alt"):
+                    g.add((v_uri, MEME.captionText,     Literal(row["img_alt"],  datatype=XSD.string)))
                 g.add((v_uri, MEME.variantIndex, Literal(idx, datatype=XSD.integer)))
                 # Link MemeConcept ↔ VariantInstance
                 g.add((meme_uri, prop_uri("hasVariant"), v_uri))
