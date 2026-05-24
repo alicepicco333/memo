@@ -7,7 +7,10 @@ from urllib.parse import urlparse
 import numpy as np
 import torch
 from PIL import Image
-from rdflib import Graph, Namespace, RDF, RDFS, OWL, XSD, Literal, URIRef
+from rdflib import Graph, Namespace, RDF, RDFS, OWL, XSD, Literal, URIRef, DCTERMS
+
+PROV   = Namespace("http://www.w3.org/ns/prov#")
+SCHEMA = Namespace("http://schema.org/")
 
 try:
     import clip
@@ -209,50 +212,52 @@ def normalize_origin(raw):
 # the most specific OWL property instead of the generic hasOriginWork.
 
 _BOARD_RE    = re.compile(r"^/[\w\-]+/$")   # /b/  /pol/  /v/  etc.
+# Each rule maps keyword hints to a schema.org type URIRef.
+# Matched individuals are linked via prov:wasDerivedFrom and typed as schema:X.
 _ORIGIN_RULES = [
-    ("hasOriginTVShow",    "OriginTVShow",    [
+    (SCHEMA.TVSeries,    [
         "television series", "tv series", "tv show", "animated series",
         "web series", "anime series", "cartoon series", "sitcom",
         "miniseries", "webseries",
     ]),
-    ("hasOriginFilm",      "OriginFilm",      [
+    (SCHEMA.Movie,       [
         "(film)", "(movie)", "animated film", "documentary",
         "short film", "motion picture", "(animated movie)",
     ]),
-    ("hasOriginVideoGame", "OriginVideoGame", [
+    (SCHEMA.VideoGame,   [
         "video game", "(game)", "arcade game", "mobile game",
         "online game", "flash game",
     ]),
-    ("hasOriginComic",     "OriginComic",     [
+    (SCHEMA.ComicSeries, [
         "comic strip", "comic book", "webcomic", "(manga)",
         "graphic novel", "newspaper comic",
     ]),
-    ("hasOriginMusic",     "OriginMusic",     [
+    (SCHEMA.MusicAlbum,  [
         "(song)", "music video", "(album)", "(rap song)", "(single)", "(track)",
     ]),
-    ("hasOriginBook",      "OriginBook",      [
+    (SCHEMA.Book,        [
         "(novel)", "(book)", "(short story)", "(children's book)",
     ]),
 ]
 
 
 def categorize_origin_work(raw):
-    """Return (property_name, class_name) for a free-text origin-work string.
+    """Return a schema.org type URIRef for a free-text origin-work string, or None.
 
-    Falls back to ('hasOriginWork', 'OriginWork') when no rule matches.
-    Note: hasOriginPerson is defined in the schema but not auto-assigned —
-    person names require NER and are best annotated manually in Protégé.
+    None means no specific schema type was identified; caller types the individual
+    as OriginWork only.  Imageboards (/b/, /pol/ …) also return None.
+    prov:wasAttributedTo (person attribution) is assigned manually in Protégé.
     """
     if not raw or not raw.strip():
-        return "hasOriginWork", "OriginWork"
+        return None
     stripped = raw.strip()
     lower    = stripped.lower()
     if _BOARD_RE.match(stripped):
-        return "hasOriginBoard", "OriginBoard"
-    for prop, cls, kws in _ORIGIN_RULES:
+        return None  # imageboard — no schema.org type; stays as OriginWork
+    for schema_type, kws in _ORIGIN_RULES:
         if any(kw in lower for kw in kws):
-            return prop, cls
-    return "hasOriginWork", "OriginWork"
+            return schema_type
+    return None
 
 
 def normalize_region(raw):
@@ -419,7 +424,7 @@ VOCAB = {
     "ColorMode":       ["Color", "Monochrome"],
     "SubjectMatter":   ["PersonPresent", "AnimalPresent", "CharacterPresent", "ObjectOnly", "TextOnly", "MultipleSubjects", "Unknown"],
     "TimePeriod":      ["Pre2010", "Period2010to2015", "Period2016to2020", "Period2021toPresent", "Unknown"],
-    "FileFormat":      ["JPEG", "PNG", "GIF", "WebP", "BMP", "Unknown"],
+    "FileFormat":      ["JPEG", "PNG", "GIF", "WebP", "BMP"],
     "AnimationStatus": ["Static", "Animated"],
     "MemeFormat": [
         "ImageMacro", "Exploitable", "Catchphrase", "ViralVideo", "Reaction",
@@ -461,19 +466,10 @@ OBJ_PROPS = [
     ("hasRegion",          "Meme", "GeographicRegion"),
     ("hasTimePeriod",      "Meme", "TimePeriod"),
     ("hasAnimationStatus", "Meme", "AnimationStatus"),
-    ("hasFileFormat",      "Meme", "FileFormat"),
     ("hasReference",       "Meme", "CulturalReference"),
-    # Origin work — generic catch-all (used when no specific sub-type is matched)
+    # Origin work — generic catch-all kept for schema completeness;
+    # population now uses prov:wasDerivedFrom (see build_ontology)
     ("hasOriginWork",      "Meme", "OriginWork"),
-    # Origin work — specific sub-types (classified from KYM 'origin' field)
-    ("hasOriginTVShow",    "Meme", "OriginTVShow"),
-    ("hasOriginFilm",      "Meme", "OriginFilm"),
-    ("hasOriginVideoGame", "Meme", "OriginVideoGame"),
-    ("hasOriginComic",     "Meme", "OriginComic"),
-    ("hasOriginPerson",    "Meme", "OriginPerson"),   # assigned manually in Protégé
-    ("hasOriginBoard",     "Meme", "OriginBoard"),
-    ("hasOriginMusic",     "Meme", "OriginMusic"),
-    ("hasOriginBook",      "Meme", "OriginBook"),
     # FRBR
     ("hasFRBRLevel",        "Meme",               "FRBRLevel"),
     ("hasFRBRExpression",   "FRBRWork",           "FRBRExpression"),
@@ -483,12 +479,7 @@ OBJ_PROPS = [
 
 DATA_PROPS = [
     ("hasId",                 XSD.integer),
-    ("memeURL",               XSD.string),
-    ("imageURL",              XSD.string),
     ("imageFilename",         XSD.string),
-    ("yearOfOrigin",          XSD.integer),
-    ("scrapedAt",             XSD.string),
-    ("tags",                  XSD.string),
     ("clipImageTypeScore",    XSD.float),
     ("clipTextScore",         XSD.float),
     ("clipPublicFigureScore", XSD.float),
@@ -515,10 +506,13 @@ def build_ontology(results, owl_path, meta_lookup=None):
     meta_lookup: optional dict {zero-padded-id -> metadata entry} for imageFilename lookup."""
     MEME = Namespace(ONTO_BASE)
     g = Graph()
-    g.bind("meme", MEME)
-    g.bind("owl",  OWL)
-    g.bind("rdfs", RDFS)
-    g.bind("xsd",  XSD)
+    g.bind("meme",    MEME)
+    g.bind("owl",     OWL)
+    g.bind("rdfs",    RDFS)
+    g.bind("xsd",     XSD)
+    g.bind("prov",    PROV)
+    g.bind("schema",  SCHEMA, override=True, replace=True)
+    g.bind("dcterms", DCTERMS)
 
     g.add((ONTO_URI, RDF.type, OWL.Ontology))
 
@@ -527,26 +521,24 @@ def build_ontology(results, owl_path, meta_lookup=None):
         "Meme", "ImageType", "TextPresence", "ColorMode", "SubjectMatter",
         "MemeFormat", "OriginPlatform", "GeographicRegion",
         "TimePeriod", "FileFormat", "AnimationStatus", "CulturalReference",
-        # OriginWork hierarchy
+        # OriginWork (parent class kept; subclasses replaced by schema.org typing)
         "OriginWork",
-        "OriginTVShow", "OriginFilm", "OriginVideoGame", "OriginComic",
-        "OriginPerson", "OriginBoard", "OriginMusic", "OriginBook",
         # FRBR entity classes
         "FRBRLevel", "FRBRWork", "FRBRExpression", "FRBRManifestation", "FRBRItem",
+        "MemeIdea", "VariantInstance",
     ]
     for c in all_classes:
         g.add((MEME[c], RDF.type, OWL.Class))
         g.add((MEME[c], RDFS.label, Literal(c)))
 
-    # OriginWork sub-class hierarchy
-    for sub in ["OriginTVShow", "OriginFilm", "OriginVideoGame", "OriginComic",
-                "OriginPerson", "OriginBoard", "OriginMusic", "OriginBook"]:
-        g.add((MEME[sub], RDFS.subClassOf, MEME["OriginWork"]))
-
-    # FRBR entity hierarchy (schema only — instances at Manifestation level for now)
+    # FRBR entity hierarchy
     g.add((MEME["FRBRExpression"],     RDFS.subClassOf, MEME["FRBRWork"]))
     g.add((MEME["FRBRManifestation"],  RDFS.subClassOf, MEME["FRBRExpression"]))
     g.add((MEME["FRBRItem"],           RDFS.subClassOf, MEME["FRBRManifestation"]))
+    # Domain class alignment to FRBR levels
+    g.add((MEME["MemeIdea"],        RDFS.subClassOf, MEME["FRBRWork"]))
+    g.add((MEME["Meme"],            RDFS.subClassOf, MEME["FRBRExpression"]))
+    g.add((MEME["VariantInstance"], RDFS.subClassOf, MEME["FRBRManifestation"]))
 
     # Object properties
     for name, domain, range_ in OBJ_PROPS:
@@ -640,9 +632,18 @@ def build_ontology(results, owl_path, meta_lookup=None):
         # Skip literal "Unknown" — avoids creating a lowercase 'unknown' IRI via normalize=True.
         ow = rec.get("hasOriginWork")
         if ow and ow.strip().lower() not in ("unknown", "none", "n/a", ""):
-            prop, cls = categorize_origin_work(ow)
-            g.add((meme_uri, MEME[prop], ensure_individual(cls, ow, normalize=True)))
-        obj("hasRegion",         "GeographicRegion", rec.get("hasRegion"))
+            schema_type = categorize_origin_work(ow)
+            origin_ind  = ensure_individual("OriginWork", ow, normalize=True)
+            if schema_type:
+                g.add((origin_ind, RDF.type, schema_type))
+            g.add((meme_uri, PROV.wasDerivedFrom, origin_ind))
+        region_raw = rec.get("hasRegion", "")
+        if region_raw and region_raw != "Unknown":
+            for _part in region_raw.split(","):
+                _part = _part.strip()
+                if _part and _part != "Unknown":
+                    _norm = REGION_MAP.get(_part.lower(), _part)
+                    g.add((meme_uri, MEME.hasRegion, ensure_individual("GeographicRegion", _norm)))
         obj("hasTimePeriod",     "TimePeriod",       rec.get("hasTimePeriod"))
 
         # FRBR — all current Meme individuals represent a specific image file,
@@ -651,30 +652,51 @@ def build_ontology(results, owl_path, meta_lookup=None):
                ensure_individual("FRBRLevel", "Manifestation")))
 
         # Macro 3 — format
-        obj("hasFileFormat",      "FileFormat",      rec.get("hasFileFormat"))
+        ff = rec.get("hasFileFormat")
+        if ff and ff != "Unknown":
+            g.add((meme_uri, DCTERMS.format, ensure_individual("FileFormat", ff)))
         obj("hasAnimationStatus", "AnimationStatus", rec.get("hasAnimationStatus"))
 
-        # Data properties
+        # Data properties (MEME namespace)
         def dat(prop, val, dtype):
             if val is not None and val != "":
                 g.add((meme_uri, MEME[prop], Literal(val, datatype=dtype)))
 
         dat("hasId",                 rec.get("id"),                    XSD.integer)
-        dat("memeURL",               rec.get("memeURL", ""),           XSD.string)
-        dat("imageURL",              rec.get("imageURL", ""),          XSD.string)
         dat("imageFilename",         rec.get("imageFilename", ""),     XSD.string)
-        dat("scrapedAt",             rec.get("scrapedAt", ""),         XSD.string)
         dat("clipImageTypeScore",    rec.get("clipImageTypeScore"),    XSD.float)
         dat("clipTextScore",         rec.get("clipTextScore"),         XSD.float)
         dat("clipPublicFigureScore", rec.get("clipPublicFigureScore"), XSD.float)
 
-        if rec.get("yearOfOrigin") is not None:
-            g.add((meme_uri, MEME.yearOfOrigin,
-                   Literal(rec["yearOfOrigin"], datatype=XSD.integer)))
+        # Metadata properties from meta_lookup (external vocabulary)
+        meta = (meta_lookup or {}).get(entry_id, {})
 
-        for tag in rec.get("tags", []):
+        meme_url = meta.get("meme_url", "")
+        if meme_url:
+            g.add((meme_uri, SCHEMA.url, Literal(meme_url, datatype=XSD.string)))
+
+        image_url = meta.get("image_url", "")
+        if image_url:
+            g.add((meme_uri, SCHEMA.image, Literal(image_url, datatype=XSD.string)))
+
+        scraped_at = meta.get("scraped_at", "")
+        if scraped_at:
+            g.add((meme_uri, DCTERMS.modified, Literal(scraped_at, datatype=XSD.string)))
+
+        year = meta.get("year")
+        try:
+            if year is not None:
+                g.add((meme_uri, DCTERMS.created, Literal(int(year), datatype=XSD.integer)))
+        except (ValueError, TypeError):
+            pass
+
+        description = meta.get("description", "")
+        if description:
+            g.add((meme_uri, DCTERMS.description, Literal(description, datatype=XSD.string)))
+
+        for tag in meta.get("tags", []):
             if tag:
-                g.add((meme_uri, MEME.tags, Literal(tag, datatype=XSD.string)))
+                g.add((meme_uri, SCHEMA.keywords, Literal(tag, datatype=XSD.string)))
 
     g.serialize(destination=str(owl_path), format="xml")
     print(f"OWL ontology written -> {owl_path}")
