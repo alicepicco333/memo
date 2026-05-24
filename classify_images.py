@@ -538,6 +538,76 @@ DATA_PROPS = [
     ("photoURL",              "VariantInstance", XSD.string),
 ]
 
+# Fix 1 — owl:inverseOf for all 15 inverse pairs
+INVERSE_PAIRS = [
+    ("hasImageType",               "isImageTypeOf"),
+    ("hasTextPresence",            "isTextPresenceOf"),
+    ("hasColorMode",               "isColorModeOf"),
+    ("hasSubjectMatter",           "isSubjectMatterOf"),
+    ("hasFormat",                  "isFormatOf"),
+    ("hasOriginPlatform",          "isOriginPlatformOf"),
+    ("hasOriginWork",              "isOriginWorkOf"),
+    ("hasRegion",                  "isRegionOf"),
+    ("hasTimePeriod",              "isTimePeriodOf"),
+    ("hasAnimationStatus",         "isAnimationStatusOf"),
+    ("hasReference",               "isReferencedIn"),
+    ("hasVariant",                 "isVariantOf"),
+    ("conceptualizes",             "isConceptualizedAs"),
+    ("hasTransformationDimension", "isTransformationDimensionOf"),
+    ("hasTransformationExtent",    "isTransformationExtentOf"),
+]
+
+# Fix 8 — rdfs:comment + rdfs:seeAlso for each Wikidata class
+WD_CLASS_META = {
+    "GeographicRegion":  (
+        "Geographic region or country of meme origin, as defined by Wikidata Q82794.",
+        "Q82794",
+    ),
+    "TimePeriod":        (
+        "Chronological period in which the meme originated or peaked, aligned with Wikidata Q11471.",
+        "Q11471",
+    ),
+    "OriginPlatform":    (
+        "Online platform or service where the meme was first published, aligned with Wikidata Q3220391.",
+        "Q3220391",
+    ),
+    "OriginWork":        (
+        "Creative work (film, TV series, game, etc.) from which the meme derives, aligned with Wikidata Q386724.",
+        "Q386724",
+    ),
+    "FileFormat":        (
+        "Digital file format of the meme image resource, as defined by Wikidata Q235557.",
+        "Q235557",
+    ),
+    "CulturalReference": (
+        "Cultural artefact, event, or phenomenon that a meme iconologically references, aligned with Wikidata Q96622155.",
+        "Q96622155",
+    ),
+    "MemeIdea":          (
+        "Abstract creative idea underlying a meme template; corresponds to the FRBR Work level, aligned with Wikidata Q3249551.",
+        "Q3249551",
+    ),
+    "SubjectMatter":     (
+        "Primary visual subject depicted in a meme image; corresponds to Panofsky's pre-iconographic level, aligned with Wikidata Q16334295.",
+        "Q16334295",
+    ),
+}
+
+# Fix 9 — MemeFormat subclass groups (individuals also typed as the group class)
+MEME_FORMAT_GROUPS = {
+    "VideoFormat":             ["ViralVideo", "ViralDebate"],
+    "TextFormat":              ["Copypasta", "Slang", "Catchphrase", "Snowclone"],
+    "ImageManipulationFormat": ["Exploitable", "Photoshop", "ImageMacro", "Remix"],
+    "ParticipatoryFormat":     ["ParticipatoryMedia", "SoundEffect"],
+    "NarrativeFormat":         ["Character", "FanArt", "Parody", "PopCultureReference"],
+}
+
+# Fix 10 — CulturalReference subtypes as owl:Class subclasses of wd:Q96622155
+CULTURAL_REF_SUBTYPES = [
+    "PoliticalEvent", "MediaProperty", "WebCulture",
+    "PublicFigure", "HistoricalEvent", "SocialPhenomenon",
+]
+
 
 def _iri_local(s):
     """Sanitize a string for use as an IRI local name (valid in RDF/XML)."""
@@ -570,7 +640,10 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None):
     g.bind("wd",      WD)
     g.bind("wdt",     WDT)
 
-    g.add((ONTO_URI, RDF.type, OWL.Ontology))
+    g.add((ONTO_URI, RDF.type,        OWL.Ontology))
+    g.add((ONTO_URI, OWL.versionInfo, Literal("1.0")))
+    g.add((ONTO_URI, DCTERMS.title,   Literal("The Meme Ontology (MEMO)", lang="en")))
+    g.add((ONTO_URI, DCTERMS.license, URIRef("https://creativecommons.org/licenses/by/4.0/")))
 
     def class_uri(name):
         return WD_CLASS_MAP.get(name, MEME[name])
@@ -596,10 +669,14 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None):
         g.add((MEME[c], RDF.type, OWL.Class))
         g.add((MEME[c], RDFS.label, Literal(c)))
 
-    # P2 — Wikidata Q-item classes declared as OWL classes
+    # P2 — Wikidata Q-item classes declared as OWL classes (Fix 8: comment + seeAlso)
     for name, wd_uri in WD_CLASS_MAP.items():
-        g.add((wd_uri, RDF.type, OWL.Class))
+        g.add((wd_uri, RDF.type,  OWL.Class))
         g.add((wd_uri, RDFS.label, Literal(name)))
+        if name in WD_CLASS_META:
+            comment, q_id = WD_CLASS_META[name]
+            g.add((wd_uri, RDFS.comment,  Literal(comment, lang="en")))
+            g.add((wd_uri, RDFS.seeAlso,  URIRef(f"https://www.wikidata.org/wiki/{q_id}")))
 
     # Object properties (P3: Wikidata props via prop_uri; P4: union domains via _union_node)
     for name, domain, range_ in OBJ_PROPS:
@@ -619,6 +696,44 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None):
         g.add((p, RDFS.range,  dtype))
         g.add((p, RDFS.label,  Literal(name)))
 
+    # Fix 1 — owl:inverseOf for all 15 inverse pairs
+    for fwd, inv in INVERSE_PAIRS:
+        p_fwd = prop_uri(fwd)
+        p_inv = prop_uri(inv)
+        g.add((p_fwd, OWL.inverseOf, p_inv))
+        g.add((p_inv, OWL.inverseOf, p_fwd))
+
+    # Fix 4 — hasOriginWork is a specialisation of prov:wasDerivedFrom
+    g.add((MEME.hasOriginWork, RDFS.subPropertyOf, PROV.wasDerivedFrom))
+
+    # Fix 2 — declare external properties used in populated but absent from schema
+    # prov:wasDerivedFrom — object property linking MemeConcept to OriginWork
+    g.add((PROV.wasDerivedFrom, RDF.type,    OWL.ObjectProperty))
+    g.add((PROV.wasDerivedFrom, RDFS.domain, MEME.MemeConcept))
+    g.add((PROV.wasDerivedFrom, RDFS.range,  WD.Q386724))
+    g.add((PROV.wasDerivedFrom, RDFS.label,  Literal("wasDerivedFrom")))
+    # dcterms: metadata properties
+    for _prop, _label, _rng, _ptype in [
+        (DCTERMS.created,     "created",     XSD.integer,  OWL.AnnotationProperty),
+        (DCTERMS.description, "description", XSD.string,   OWL.AnnotationProperty),
+        (DCTERMS.modified,    "modified",    XSD.string,   OWL.AnnotationProperty),
+        (DCTERMS["format"],      "format",      WD.Q235557,   OWL.ObjectProperty),
+    ]:
+        g.add((_prop, RDF.type,    _ptype))
+        g.add((_prop, RDFS.domain, MEME.MemeConcept))
+        g.add((_prop, RDFS.range,  _rng))
+        g.add((_prop, RDFS.label,  Literal(_label)))
+    # schema: annotation properties
+    for _prop, _label in [
+        (SCHEMA.url,      "url"),
+        (SCHEMA.image,    "image"),
+        (SCHEMA.keywords, "keywords"),
+    ]:
+        g.add((_prop, RDF.type,    OWL.AnnotationProperty))
+        g.add((_prop, RDFS.domain, MEME.MemeConcept))
+        g.add((_prop, RDFS.range,  XSD.string))
+        g.add((_prop, RDFS.label,  Literal(_label)))
+
     # Pre-declared named individuals (controlled vocabularies).
     # declared_ind: {local_iri -> set(class_names)} — tracks which type triples have
     # been added so that shared labels like "Unknown" get typed under EVERY class.
@@ -635,6 +750,23 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None):
             if class_name not in declared_ind[local]:
                 g.add((ind, RDF.type, class_uri(class_name)))
                 declared_ind[local].add(class_name)
+
+    # Fix 9 — MemeFormat subclass hierarchy
+    for group_name, members in MEME_FORMAT_GROUPS.items():
+        group_uri = MEME[group_name]
+        g.add((group_uri, RDF.type,        OWL.Class))
+        g.add((group_uri, RDFS.label,      Literal(group_name)))
+        g.add((group_uri, RDFS.subClassOf, MEME.MemeFormat))
+        for member in members:
+            member_uri = MEME[_iri_local(member)]
+            g.add((member_uri, RDF.type, group_uri))
+
+    # Fix 10 — CulturalReference subtypes as owl:Class subclasses of wd:Q96622155
+    for subtype in CULTURAL_REF_SUBTYPES:
+        sub_uri = MEME[subtype]
+        g.add((sub_uri, RDF.type,        OWL.Class))
+        g.add((sub_uri, RDFS.label,      Literal(subtype)))
+        g.add((sub_uri, RDFS.subClassOf, WD.Q96622155))
 
     def ensure_individual(class_name, label, normalize=False):
         """Declare a named individual on first encounter; return its URI.
@@ -712,7 +844,7 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None):
         # Macro 3 — format
         ff = rec.get("hasFileFormat")
         if ff and ff != "Unknown":
-            g.add((meme_uri, DCTERMS.format, ensure_individual("FileFormat", ff)))
+            g.add((meme_uri, DCTERMS["format"], ensure_individual("FileFormat", ff)))
         obj("hasAnimationStatus", "AnimationStatus", rec.get("hasAnimationStatus"))
 
         # Data properties (MEME namespace)
@@ -721,13 +853,16 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None):
                 g.add((meme_uri, MEME[prop], Literal(val, datatype=dtype)))
 
         dat("hasId",                 rec.get("id"),                    XSD.integer)
-        dat("imageFilename",         rec.get("imageFilename", ""),     XSD.string)
+        dat("imageFilename",         img_fn,                           XSD.string)
         dat("clipImageTypeScore",    rec.get("clipImageTypeScore"),    XSD.float)
         dat("clipTextScore",         rec.get("clipTextScore"),         XSD.float)
         dat("clipPublicFigureScore", rec.get("clipPublicFigureScore"), XSD.float)
 
         # Metadata properties from meta_lookup (external vocabulary)
         meta = (meta_lookup or {}).get(entry_id, {})
+
+        dat("views",         meta.get("views"),              XSD.integer)
+        dat("imageFilePath", meta.get("image_path", ""),     XSD.string)
 
         meme_url = meta.get("meme_url", "")
         if meme_url:
@@ -914,6 +1049,8 @@ def main():
                         help="Process only N entries (for testing)")
     parser.add_argument("--owl-only",       action="store_true",
                         help="Skip CLIP; rebuild OWL + merged from existing --out JSON")
+    parser.add_argument("--variants",       default="variants_metadata.json",
+                        help="Variant images metadata for MemeIdea+VariantInstance generation")
     args = parser.parse_args()
 
     # ── OWL-only / merge-only mode ────────────────────────────────────────────
@@ -924,7 +1061,7 @@ def main():
             _meta_list = json.load(f)
         meta_lookup = {f"{e['id']:04d}": e for e in _meta_list}
         _write_three_files(results, args.meta, args.out, args.merged)
-        build_ontology(results, Path(args.owl), meta_lookup)
+        build_ontology(results, Path(args.owl), meta_lookup, variants_path=args.variants)
         return
 
     # ── Classification mode ───────────────────────────────────────────────────

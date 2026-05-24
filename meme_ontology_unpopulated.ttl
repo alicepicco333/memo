@@ -1,33 +1,54 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://purl.org/memo> a owl:Ontology .
+<https://purl.org/memo> a owl:Ontology ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:title "The Meme Ontology (MEMO)"@en ;
+    owl:versionInfo "1.0" .
 
 <http://www.wikidata.org/entity/Q11471> a owl:Class ;
-    rdfs:label "TimePeriod" .
+    rdfs:label "TimePeriod" ;
+    rdfs:comment "Chronological period in which the meme originated or peaked, aligned with Wikidata Q11471."@en ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q11471> .
 
 <http://www.wikidata.org/entity/Q16334295> a owl:Class ;
-    rdfs:label "SubjectMatter" .
+    rdfs:label "SubjectMatter" ;
+    rdfs:comment "Primary visual subject depicted in a meme image; corresponds to Panofsky's pre-iconographic level, aligned with Wikidata Q16334295."@en ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q16334295> .
 
 <http://www.wikidata.org/entity/Q235557> a owl:Class ;
-    rdfs:label "FileFormat" .
+    rdfs:label "FileFormat" ;
+    rdfs:comment "Digital file format of the meme image resource, as defined by Wikidata Q235557."@en ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q235557> .
 
 <http://www.wikidata.org/entity/Q3220391> a owl:Class ;
-    rdfs:label "OriginPlatform" .
+    rdfs:label "OriginPlatform" ;
+    rdfs:comment "Online platform or service where the meme was first published, aligned with Wikidata Q3220391."@en ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q3220391> .
 
 <http://www.wikidata.org/entity/Q3249551> a owl:Class ;
-    rdfs:label "MemeIdea" .
+    rdfs:label "MemeIdea" ;
+    rdfs:comment "Abstract creative idea underlying a meme template; corresponds to the FRBR Work level, aligned with Wikidata Q3249551."@en ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q3249551> .
 
 <http://www.wikidata.org/entity/Q386724> a owl:Class ;
-    rdfs:label "OriginWork" .
+    rdfs:label "OriginWork" ;
+    rdfs:comment "Creative work (film, TV series, game, etc.) from which the meme derives, aligned with Wikidata Q386724."@en ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q386724> .
 
 <http://www.wikidata.org/entity/Q82794> a owl:Class ;
-    rdfs:label "GeographicRegion" .
+    rdfs:label "GeographicRegion" ;
+    rdfs:comment "Geographic region or country of meme origin, as defined by Wikidata Q82794."@en ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q82794> .
 
 <http://www.wikidata.org/entity/Q96622155> a owl:Class ;
-    rdfs:label "CulturalReference" .
+    rdfs:label "CulturalReference" ;
+    rdfs:comment "Cultural artefact, event, or phenomenon that a meme iconologically references, aligned with Wikidata Q96622155."@en ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q96622155> .
 
 <https://purl.org/memo#AnimationStatus> a owl:Class ;
     rdfs:label "AnimationStatus" .
@@ -35,14 +56,50 @@
 <https://purl.org/memo#ColorMode> a owl:Class ;
     rdfs:label "ColorMode" .
 
+<https://purl.org/memo#HistoricalEvent> a owl:Class ;
+    rdfs:label "HistoricalEvent" ;
+    rdfs:subClassOf <http://www.wikidata.org/entity/Q96622155> .
+
+<https://purl.org/memo#ImageManipulationFormat> a owl:Class ;
+    rdfs:label "ImageManipulationFormat" ;
+    rdfs:subClassOf <https://purl.org/memo#MemeFormat> .
+
 <https://purl.org/memo#ImageType> a owl:Class ;
     rdfs:label "ImageType" .
+
+<https://purl.org/memo#MediaProperty> a owl:Class ;
+    rdfs:label "MediaProperty" ;
+    rdfs:subClassOf <http://www.wikidata.org/entity/Q96622155> .
 
 <https://purl.org/memo#MemeConcept> a owl:Class ;
     rdfs:label "MemeConcept" .
 
 <https://purl.org/memo#MemeFormat> a owl:Class ;
     rdfs:label "MemeFormat" .
+
+<https://purl.org/memo#NarrativeFormat> a owl:Class ;
+    rdfs:label "NarrativeFormat" ;
+    rdfs:subClassOf <https://purl.org/memo#MemeFormat> .
+
+<https://purl.org/memo#ParticipatoryFormat> a owl:Class ;
+    rdfs:label "ParticipatoryFormat" ;
+    rdfs:subClassOf <https://purl.org/memo#MemeFormat> .
+
+<https://purl.org/memo#PoliticalEvent> a owl:Class ;
+    rdfs:label "PoliticalEvent" ;
+    rdfs:subClassOf <http://www.wikidata.org/entity/Q96622155> .
+
+<https://purl.org/memo#PublicFigure> a owl:Class ;
+    rdfs:label "PublicFigure" ;
+    rdfs:subClassOf <http://www.wikidata.org/entity/Q96622155> .
+
+<https://purl.org/memo#SocialPhenomenon> a owl:Class ;
+    rdfs:label "SocialPhenomenon" ;
+    rdfs:subClassOf <http://www.wikidata.org/entity/Q96622155> .
+
+<https://purl.org/memo#TextFormat> a owl:Class ;
+    rdfs:label "TextFormat" ;
+    rdfs:subClassOf <https://purl.org/memo#MemeFormat> .
 
 <https://purl.org/memo#TextPresence> a owl:Class ;
     rdfs:label "TextPresence" .
@@ -56,163 +113,227 @@
 <https://purl.org/memo#VariantInstance> a owl:Class ;
     rdfs:label "VariantInstance" .
 
+<https://purl.org/memo#VideoFormat> a owl:Class ;
+    rdfs:label "VideoFormat" ;
+    rdfs:subClassOf <https://purl.org/memo#MemeFormat> .
+
+<https://purl.org/memo#WebCulture> a owl:Class ;
+    rdfs:label "WebCulture" ;
+    rdfs:subClassOf <http://www.wikidata.org/entity/Q96622155> .
+
 <https://purl.org/memo#hasColorMode> a owl:ObjectProperty ;
     rdfs:label "hasColorMode" ;
     rdfs:domain [ a owl:Class ;
             owl:unionOf ( <https://purl.org/memo#MemeConcept> <https://purl.org/memo#VariantInstance> ) ] ;
-    rdfs:range <https://purl.org/memo#ColorMode> .
+    rdfs:range <https://purl.org/memo#ColorMode> ;
+    owl:inverseOf <https://purl.org/memo#isColorModeOf> .
 
 <https://purl.org/memo#hasImageType> a owl:ObjectProperty ;
     rdfs:label "hasImageType" ;
     rdfs:domain [ a owl:Class ;
             owl:unionOf ( <https://purl.org/memo#MemeConcept> <https://purl.org/memo#VariantInstance> ) ] ;
-    rdfs:range <https://purl.org/memo#ImageType> .
+    rdfs:range <https://purl.org/memo#ImageType> ;
+    owl:inverseOf <https://purl.org/memo#isImageTypeOf> .
 
 <https://purl.org/memo#hasSubjectMatter> a owl:ObjectProperty ;
     rdfs:label "hasSubjectMatter" ;
     rdfs:domain [ a owl:Class ;
             owl:unionOf ( <https://purl.org/memo#MemeConcept> <https://purl.org/memo#VariantInstance> ) ] ;
-    rdfs:range <http://www.wikidata.org/entity/Q16334295> .
+    rdfs:range <http://www.wikidata.org/entity/Q16334295> ;
+    owl:inverseOf <https://purl.org/memo#isSubjectMatterOf> .
 
 <https://purl.org/memo#hasTextPresence> a owl:ObjectProperty ;
     rdfs:label "hasTextPresence" ;
     rdfs:domain [ a owl:Class ;
             owl:unionOf ( <https://purl.org/memo#MemeConcept> <https://purl.org/memo#VariantInstance> ) ] ;
-    rdfs:range <https://purl.org/memo#TextPresence> .
+    rdfs:range <https://purl.org/memo#TextPresence> ;
+    owl:inverseOf <https://purl.org/memo#isTextPresenceOf> .
 
 <https://purl.org/memo#isColorModeOf> a owl:ObjectProperty ;
     rdfs:label "isColorModeOf" ;
     rdfs:domain <https://purl.org/memo#ColorMode> ;
     rdfs:range [ a owl:Class ;
-            owl:unionOf ( <https://purl.org/memo#MemeConcept> <https://purl.org/memo#VariantInstance> ) ] .
+            owl:unionOf ( <https://purl.org/memo#MemeConcept> <https://purl.org/memo#VariantInstance> ) ] ;
+    owl:inverseOf <https://purl.org/memo#hasColorMode> .
 
 <https://purl.org/memo#isImageTypeOf> a owl:ObjectProperty ;
     rdfs:label "isImageTypeOf" ;
     rdfs:domain <https://purl.org/memo#ImageType> ;
     rdfs:range [ a owl:Class ;
-            owl:unionOf ( <https://purl.org/memo#MemeConcept> <https://purl.org/memo#VariantInstance> ) ] .
+            owl:unionOf ( <https://purl.org/memo#MemeConcept> <https://purl.org/memo#VariantInstance> ) ] ;
+    owl:inverseOf <https://purl.org/memo#hasImageType> .
 
 <https://purl.org/memo#isSubjectMatterOf> a owl:ObjectProperty ;
     rdfs:label "isSubjectMatterOf" ;
     rdfs:domain <http://www.wikidata.org/entity/Q16334295> ;
     rdfs:range [ a owl:Class ;
-            owl:unionOf ( <https://purl.org/memo#MemeConcept> <https://purl.org/memo#VariantInstance> ) ] .
+            owl:unionOf ( <https://purl.org/memo#MemeConcept> <https://purl.org/memo#VariantInstance> ) ] ;
+    owl:inverseOf <https://purl.org/memo#hasSubjectMatter> .
 
 <https://purl.org/memo#isTextPresenceOf> a owl:ObjectProperty ;
     rdfs:label "isTextPresenceOf" ;
     rdfs:domain <https://purl.org/memo#TextPresence> ;
     rdfs:range [ a owl:Class ;
-            owl:unionOf ( <https://purl.org/memo#MemeConcept> <https://purl.org/memo#VariantInstance> ) ] .
+            owl:unionOf ( <https://purl.org/memo#MemeConcept> <https://purl.org/memo#VariantInstance> ) ] ;
+    owl:inverseOf <https://purl.org/memo#hasTextPresence> .
 
 <http://www.wikidata.org/prop/direct/P123> a owl:ObjectProperty ;
     rdfs:label "hasOriginPlatform" ;
     rdfs:domain <https://purl.org/memo#MemeConcept> ;
-    rdfs:range <http://www.wikidata.org/entity/Q3220391> .
+    rdfs:range <http://www.wikidata.org/entity/Q3220391> ;
+    owl:inverseOf <https://purl.org/memo#isOriginPlatformOf> .
 
 <http://www.wikidata.org/prop/direct/P2283> a owl:ObjectProperty ;
     rdfs:label "hasFormat" ;
     rdfs:domain <https://purl.org/memo#MemeConcept> ;
-    rdfs:range <https://purl.org/memo#MemeFormat> .
+    rdfs:range <https://purl.org/memo#MemeFormat> ;
+    owl:inverseOf <https://purl.org/memo#isFormatOf> .
 
 <http://www.wikidata.org/prop/direct/P2408> a owl:ObjectProperty ;
     rdfs:label "hasTimePeriod" ;
     rdfs:domain <https://purl.org/memo#MemeConcept> ;
-    rdfs:range <http://www.wikidata.org/entity/Q11471> .
+    rdfs:range <http://www.wikidata.org/entity/Q11471> ;
+    owl:inverseOf <https://purl.org/memo#isTimePeriodOf> .
 
 <http://www.wikidata.org/prop/direct/P361> a owl:ObjectProperty ;
     rdfs:label "isVariantOf" ;
     rdfs:domain <https://purl.org/memo#VariantInstance> ;
-    rdfs:range <https://purl.org/memo#MemeConcept> .
+    rdfs:range <https://purl.org/memo#MemeConcept> ;
+    owl:inverseOf <http://www.wikidata.org/prop/direct/P527> .
 
 <http://www.wikidata.org/prop/direct/P495> a owl:ObjectProperty ;
     rdfs:label "hasRegion" ;
     rdfs:domain <https://purl.org/memo#MemeConcept> ;
-    rdfs:range <http://www.wikidata.org/entity/Q82794> .
+    rdfs:range <http://www.wikidata.org/entity/Q82794> ;
+    owl:inverseOf <https://purl.org/memo#isRegionOf> .
 
 <http://www.wikidata.org/prop/direct/P527> a owl:ObjectProperty ;
     rdfs:label "hasVariant" ;
     rdfs:domain <https://purl.org/memo#MemeConcept> ;
-    rdfs:range <https://purl.org/memo#VariantInstance> .
+    rdfs:range <https://purl.org/memo#VariantInstance> ;
+    owl:inverseOf <http://www.wikidata.org/prop/direct/P361> .
 
 <http://www.wikidata.org/prop/direct/P8371> a owl:ObjectProperty ;
     rdfs:label "hasReference" ;
     rdfs:domain <https://purl.org/memo#MemeConcept> ;
-    rdfs:range <http://www.wikidata.org/entity/Q96622155> .
+    rdfs:range <http://www.wikidata.org/entity/Q96622155> ;
+    owl:inverseOf <https://purl.org/memo#isReferencedIn> .
 
 <https://purl.org/memo#conceptualizes> a owl:ObjectProperty ;
     rdfs:label "conceptualizes" ;
     rdfs:domain <https://purl.org/memo#MemeConcept> ;
-    rdfs:range <http://www.wikidata.org/entity/Q3249551> .
+    rdfs:range <http://www.wikidata.org/entity/Q3249551> ;
+    owl:inverseOf <https://purl.org/memo#isConceptualizedAs> .
 
 <https://purl.org/memo#hasAnimationStatus> a owl:ObjectProperty ;
     rdfs:label "hasAnimationStatus" ;
     rdfs:domain <https://purl.org/memo#MemeConcept> ;
-    rdfs:range <https://purl.org/memo#AnimationStatus> .
+    rdfs:range <https://purl.org/memo#AnimationStatus> ;
+    owl:inverseOf <https://purl.org/memo#isAnimationStatusOf> .
 
 <https://purl.org/memo#hasOriginWork> a owl:ObjectProperty ;
     rdfs:label "hasOriginWork" ;
     rdfs:domain <https://purl.org/memo#MemeConcept> ;
-    rdfs:range <http://www.wikidata.org/entity/Q386724> .
+    rdfs:range <http://www.wikidata.org/entity/Q386724> ;
+    rdfs:subPropertyOf prov:wasDerivedFrom ;
+    owl:inverseOf <https://purl.org/memo#isOriginWorkOf> .
 
 <https://purl.org/memo#hasTransformationDimension> a owl:ObjectProperty ;
     rdfs:label "hasTransformationDimension" ;
     rdfs:domain <https://purl.org/memo#VariantInstance> ;
-    rdfs:range <https://purl.org/memo#TransformationDimension> .
+    rdfs:range <https://purl.org/memo#TransformationDimension> ;
+    owl:inverseOf <https://purl.org/memo#isTransformationDimensionOf> .
 
 <https://purl.org/memo#hasTransformationExtent> a owl:ObjectProperty ;
     rdfs:label "hasTransformationExtent" ;
     rdfs:domain <https://purl.org/memo#VariantInstance> ;
-    rdfs:range <https://purl.org/memo#TransformationExtent> .
+    rdfs:range <https://purl.org/memo#TransformationExtent> ;
+    owl:inverseOf <https://purl.org/memo#isTransformationExtentOf> .
 
 <https://purl.org/memo#isAnimationStatusOf> a owl:ObjectProperty ;
     rdfs:label "isAnimationStatusOf" ;
     rdfs:domain <https://purl.org/memo#AnimationStatus> ;
-    rdfs:range <https://purl.org/memo#MemeConcept> .
+    rdfs:range <https://purl.org/memo#MemeConcept> ;
+    owl:inverseOf <https://purl.org/memo#hasAnimationStatus> .
 
 <https://purl.org/memo#isConceptualizedAs> a owl:ObjectProperty ;
     rdfs:label "isConceptualizedAs" ;
     rdfs:domain <http://www.wikidata.org/entity/Q3249551> ;
-    rdfs:range <https://purl.org/memo#MemeConcept> .
+    rdfs:range <https://purl.org/memo#MemeConcept> ;
+    owl:inverseOf <https://purl.org/memo#conceptualizes> .
 
 <https://purl.org/memo#isFormatOf> a owl:ObjectProperty ;
     rdfs:label "isFormatOf" ;
     rdfs:domain <https://purl.org/memo#MemeFormat> ;
-    rdfs:range <https://purl.org/memo#MemeConcept> .
+    rdfs:range <https://purl.org/memo#MemeConcept> ;
+    owl:inverseOf <http://www.wikidata.org/prop/direct/P2283> .
 
 <https://purl.org/memo#isOriginPlatformOf> a owl:ObjectProperty ;
     rdfs:label "isOriginPlatformOf" ;
     rdfs:domain <http://www.wikidata.org/entity/Q3220391> ;
-    rdfs:range <https://purl.org/memo#MemeConcept> .
+    rdfs:range <https://purl.org/memo#MemeConcept> ;
+    owl:inverseOf <http://www.wikidata.org/prop/direct/P123> .
 
 <https://purl.org/memo#isOriginWorkOf> a owl:ObjectProperty ;
     rdfs:label "isOriginWorkOf" ;
     rdfs:domain <http://www.wikidata.org/entity/Q386724> ;
-    rdfs:range <https://purl.org/memo#MemeConcept> .
+    rdfs:range <https://purl.org/memo#MemeConcept> ;
+    owl:inverseOf <https://purl.org/memo#hasOriginWork> .
 
 <https://purl.org/memo#isReferencedIn> a owl:ObjectProperty ;
     rdfs:label "isReferencedIn" ;
     rdfs:domain <http://www.wikidata.org/entity/Q96622155> ;
-    rdfs:range <https://purl.org/memo#MemeConcept> .
+    rdfs:range <https://purl.org/memo#MemeConcept> ;
+    owl:inverseOf <http://www.wikidata.org/prop/direct/P8371> .
 
 <https://purl.org/memo#isRegionOf> a owl:ObjectProperty ;
     rdfs:label "isRegionOf" ;
     rdfs:domain <http://www.wikidata.org/entity/Q82794> ;
-    rdfs:range <https://purl.org/memo#MemeConcept> .
+    rdfs:range <https://purl.org/memo#MemeConcept> ;
+    owl:inverseOf <http://www.wikidata.org/prop/direct/P495> .
 
 <https://purl.org/memo#isTimePeriodOf> a owl:ObjectProperty ;
     rdfs:label "isTimePeriodOf" ;
     rdfs:domain <http://www.wikidata.org/entity/Q11471> ;
-    rdfs:range <https://purl.org/memo#MemeConcept> .
+    rdfs:range <https://purl.org/memo#MemeConcept> ;
+    owl:inverseOf <http://www.wikidata.org/prop/direct/P2408> .
 
 <https://purl.org/memo#isTransformationDimensionOf> a owl:ObjectProperty ;
     rdfs:label "isTransformationDimensionOf" ;
     rdfs:domain <https://purl.org/memo#TransformationDimension> ;
-    rdfs:range <https://purl.org/memo#VariantInstance> .
+    rdfs:range <https://purl.org/memo#VariantInstance> ;
+    owl:inverseOf <https://purl.org/memo#hasTransformationDimension> .
 
 <https://purl.org/memo#isTransformationExtentOf> a owl:ObjectProperty ;
     rdfs:label "isTransformationExtentOf" ;
     rdfs:domain <https://purl.org/memo#TransformationExtent> ;
-    rdfs:range <https://purl.org/memo#VariantInstance> .
+    rdfs:range <https://purl.org/memo#VariantInstance> ;
+    owl:inverseOf <https://purl.org/memo#hasTransformationExtent> .
+
+dcterms:format a owl:ObjectProperty ;
+    rdfs:label "format" ;
+    rdfs:domain <https://purl.org/memo#MemeConcept> ;
+    rdfs:range <http://www.wikidata.org/entity/Q235557> .
+
+prov:wasDerivedFrom a owl:ObjectProperty ;
+    rdfs:label "wasDerivedFrom" ;
+    rdfs:domain <https://purl.org/memo#MemeConcept> ;
+    rdfs:range <http://www.wikidata.org/entity/Q386724> .
+
+<http://schema.org/image> a owl:AnnotationProperty ;
+    rdfs:label "image" ;
+    rdfs:domain <https://purl.org/memo#MemeConcept> ;
+    rdfs:range xsd:string .
+
+<http://schema.org/keywords> a owl:AnnotationProperty ;
+    rdfs:label "keywords" ;
+    rdfs:domain <https://purl.org/memo#MemeConcept> ;
+    rdfs:range xsd:string .
+
+<http://schema.org/url> a owl:AnnotationProperty ;
+    rdfs:label "url" ;
+    rdfs:domain <https://purl.org/memo#MemeConcept> ;
+    rdfs:range xsd:string .
 
 <https://purl.org/memo#captionText> a owl:DatatypeProperty ;
     rdfs:label "captionText" ;
@@ -289,6 +410,21 @@
     rdfs:domain <https://purl.org/memo#MemeConcept> ;
     rdfs:range xsd:integer .
 
+dcterms:created a owl:AnnotationProperty ;
+    rdfs:label "created" ;
+    rdfs:domain <https://purl.org/memo#MemeConcept> ;
+    rdfs:range xsd:integer .
+
+dcterms:description a owl:AnnotationProperty ;
+    rdfs:label "description" ;
+    rdfs:domain <https://purl.org/memo#MemeConcept> ;
+    rdfs:range xsd:string .
+
+dcterms:modified a owl:AnnotationProperty ;
+    rdfs:label "modified" ;
+    rdfs:domain <https://purl.org/memo#MemeConcept> ;
+    rdfs:range xsd:string .
+
 <https://purl.org/memo#Animal> a owl:NamedIndividual,
         <https://purl.org/memo#MemeFormat> ;
     rdfs:label "Animal" .
@@ -330,11 +466,13 @@
     rdfs:label "Cartoon" .
 
 <https://purl.org/memo#Catchphrase> a owl:NamedIndividual,
-        <https://purl.org/memo#MemeFormat> ;
+        <https://purl.org/memo#MemeFormat>,
+        <https://purl.org/memo#TextFormat> ;
     rdfs:label "Catchphrase" .
 
 <https://purl.org/memo#Character> a owl:NamedIndividual,
-        <https://purl.org/memo#MemeFormat> ;
+        <https://purl.org/memo#MemeFormat>,
+        <https://purl.org/memo#NarrativeFormat> ;
     rdfs:label "Character" .
 
 <https://purl.org/memo#CharacterPresent> a owl:NamedIndividual,
@@ -370,7 +508,8 @@
     rdfs:label "ContainsText" .
 
 <https://purl.org/memo#Copypasta> a owl:NamedIndividual,
-        <https://purl.org/memo#MemeFormat> ;
+        <https://purl.org/memo#MemeFormat>,
+        <https://purl.org/memo#TextFormat> ;
     rdfs:label "Copypasta" .
 
 <https://purl.org/memo#CzechRepublic> a owl:NamedIndividual,
@@ -394,6 +533,7 @@
     rdfs:label "Event" .
 
 <https://purl.org/memo#Exploitable> a owl:NamedIndividual,
+        <https://purl.org/memo#ImageManipulationFormat>,
         <https://purl.org/memo#MemeFormat> ;
     rdfs:label "Exploitable" .
 
@@ -402,7 +542,8 @@
     rdfs:label "Facebook" .
 
 <https://purl.org/memo#FanArt> a owl:NamedIndividual,
-        <https://purl.org/memo#MemeFormat> ;
+        <https://purl.org/memo#MemeFormat>,
+        <https://purl.org/memo#NarrativeFormat> ;
     rdfs:label "FanArt" .
 
 <https://purl.org/memo#Finland> a owl:NamedIndividual,
@@ -434,6 +575,7 @@
     rdfs:label "Illustration" .
 
 <https://purl.org/memo#ImageMacro> a owl:NamedIndividual,
+        <https://purl.org/memo#ImageManipulationFormat>,
         <https://purl.org/memo#MemeFormat> ;
     rdfs:label "ImageMacro" .
 
@@ -522,11 +664,13 @@
     rdfs:label "Pakistan" .
 
 <https://purl.org/memo#Parody> a owl:NamedIndividual,
-        <https://purl.org/memo#MemeFormat> ;
+        <https://purl.org/memo#MemeFormat>,
+        <https://purl.org/memo#NarrativeFormat> ;
     rdfs:label "Parody" .
 
 <https://purl.org/memo#ParticipatoryMedia> a owl:NamedIndividual,
-        <https://purl.org/memo#MemeFormat> ;
+        <https://purl.org/memo#MemeFormat>,
+        <https://purl.org/memo#ParticipatoryFormat> ;
     rdfs:label "ParticipatoryMedia" .
 
 <https://purl.org/memo#Period2010to2015> a owl:NamedIndividual,
@@ -558,6 +702,7 @@
     rdfs:label "Photograph" .
 
 <https://purl.org/memo#Photoshop> a owl:NamedIndividual,
+        <https://purl.org/memo#ImageManipulationFormat>,
         <https://purl.org/memo#MemeFormat> ;
     rdfs:label "Photoshop" .
 
@@ -566,7 +711,8 @@
     rdfs:label "Poland" .
 
 <https://purl.org/memo#PopCultureReference> a owl:NamedIndividual,
-        <https://purl.org/memo#MemeFormat> ;
+        <https://purl.org/memo#MemeFormat>,
+        <https://purl.org/memo#NarrativeFormat> ;
     rdfs:label "PopCultureReference" .
 
 <https://purl.org/memo#Pre2010> a owl:NamedIndividual,
@@ -582,6 +728,7 @@
     rdfs:label "Reddit" .
 
 <https://purl.org/memo#Remix> a owl:NamedIndividual,
+        <https://purl.org/memo#ImageManipulationFormat>,
         <https://purl.org/memo#MemeFormat> ;
     rdfs:label "Remix" .
 
@@ -602,7 +749,8 @@
     rdfs:label "Singapore" .
 
 <https://purl.org/memo#Slang> a owl:NamedIndividual,
-        <https://purl.org/memo#MemeFormat> ;
+        <https://purl.org/memo#MemeFormat>,
+        <https://purl.org/memo#TextFormat> ;
     rdfs:label "Slang" .
 
 <https://purl.org/memo#Snapchat> a owl:NamedIndividual,
@@ -610,7 +758,8 @@
     rdfs:label "Snapchat" .
 
 <https://purl.org/memo#Snowclone> a owl:NamedIndividual,
-        <https://purl.org/memo#MemeFormat> ;
+        <https://purl.org/memo#MemeFormat>,
+        <https://purl.org/memo#TextFormat> ;
     rdfs:label "Snowclone" .
 
 <https://purl.org/memo#SomethingAwful> a owl:NamedIndividual,
@@ -622,7 +771,8 @@
     rdfs:label "Song" .
 
 <https://purl.org/memo#SoundEffect> a owl:NamedIndividual,
-        <https://purl.org/memo#MemeFormat> ;
+        <https://purl.org/memo#MemeFormat>,
+        <https://purl.org/memo#ParticipatoryFormat> ;
     rdfs:label "SoundEffect" .
 
 <https://purl.org/memo#SouthKorea> a owl:NamedIndividual,
@@ -714,11 +864,13 @@
     rdfs:label "Vine" .
 
 <https://purl.org/memo#ViralDebate> a owl:NamedIndividual,
-        <https://purl.org/memo#MemeFormat> ;
+        <https://purl.org/memo#MemeFormat>,
+        <https://purl.org/memo#VideoFormat> ;
     rdfs:label "ViralDebate" .
 
 <https://purl.org/memo#ViralVideo> a owl:NamedIndividual,
-        <https://purl.org/memo#MemeFormat> ;
+        <https://purl.org/memo#MemeFormat>,
+        <https://purl.org/memo#VideoFormat> ;
     rdfs:label "ViralVideo" .
 
 <https://purl.org/memo#WebP> a owl:NamedIndividual,
