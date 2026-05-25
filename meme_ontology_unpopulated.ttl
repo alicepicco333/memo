@@ -5,7 +5,6 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix schema: <https://schema.org/> .
 @prefix schema1: <http://schema.org/> .
 @prefix wd: <http://www.wikidata.org/entity/> .
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
@@ -50,9 +49,6 @@ schema1:url a owl:AnnotationProperty ;
     dc:creator "Alice Picco" ;
     dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
     dcterms:title "The Meme Ontology (MEMO)"@en ;
-    owl:imports dcterms:,
-        <http://www.w3.org/ns/prov-o#>,
-        schema: ;
     owl:versionInfo "1.0" .
 
 memo:AudioFormat a owl:Class ;
@@ -122,7 +118,7 @@ memo:captionText a owl:DatatypeProperty ;
 
 memo:conceptDescription a owl:DatatypeProperty ;
     rdfs:label "conceptDescription" ;
-    rdfs:domain wd:Q3249551 ;
+    rdfs:domain memo:MemeIdea ;
     rdfs:range xsd:string .
 
 memo:frbrLevel a owl:AnnotationProperty ;
@@ -233,7 +229,7 @@ wdt:P8371 owl:equivalentProperty memo:hasReference .
 memo:conceptualizes a owl:ObjectProperty ;
     rdfs:label "conceptualizes" ;
     rdfs:domain memo:MemeConcept ;
-    rdfs:range wd:Q3249551 ;
+    rdfs:range memo:MemeIdea ;
     owl:inverseOf memo:isConceptualizedAs .
 
 memo:hasAnimationStatus a owl:ObjectProperty ;
@@ -304,7 +300,7 @@ memo:isColorModeOf a owl:ObjectProperty ;
 
 memo:isConceptualizedAs a owl:ObjectProperty ;
     rdfs:label "isConceptualizedAs" ;
-    rdfs:domain wd:Q3249551 ;
+    rdfs:domain memo:MemeIdea ;
     rdfs:range memo:MemeConcept ;
     owl:inverseOf memo:conceptualizes .
 
@@ -432,16 +428,16 @@ memo:hasReference a owl:ObjectProperty ;
     owl:equivalentProperty wdt:P8371 ;
     owl:inverseOf memo:isReferencedIn .
 
-wd:Q3249551 a owl:Class ;
-    rdfs:label "MemeIdea" ;
-    rdfs:comment "Abstract creative idea underlying a meme template; corresponds to the FRBR Work level, aligned with Wikidata Q3249551."@en ;
-    rdfs:seeAlso <https://www.wikidata.org/wiki/Q3249551> ;
-    memo:frbrLevel "Work" .
-
 wd:Q386724 a owl:Class ;
     rdfs:label "OriginWork" ;
     rdfs:comment "Creative work (film, TV series, game, etc.) from which the meme derives, aligned with Wikidata Q386724."@en ;
     rdfs:seeAlso <https://www.wikidata.org/wiki/Q386724> .
+
+memo:MemeIdea a owl:Class ;
+    rdfs:label "MemeIdea" ;
+    rdfs:comment "The abstract creative idea underlying a meme template; the Work level of the FRBR hierarchy. Represents the core concept, emotional register, or rhetorical function of a meme, independent of any specific image or format."@en ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q3249551> ;
+    memo:frbrLevel "Work" .
 
 wd:Q96622155 a owl:Class ;
     rdfs:label "CulturalReference" ;

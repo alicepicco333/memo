@@ -448,7 +448,6 @@ WD_CLASS_MAP = {
     "OriginWork":       WD.Q386724,
     "FileFormat":       WD.Q235557,
     "CulturalReference":WD.Q96622155,
-    "MemeIdea":         WD.Q3249551,
     "SubjectMatter":    WD.Q16334295,
 }
 
@@ -718,6 +717,7 @@ INVERSE_LOOKUP.update({inv: fwd for fwd, inv in INVERSE_PAIRS})
 # Fix: rdfs:comment for all memo: classes (external classes get theirs via WD_CLASS_META)
 MEMO_CLASS_COMMENTS = {
     "MemeConcept":             "A meme template or canonical format; the Expression level of the FRBR hierarchy. Represents the stable, recognisable form of a meme as documented on Know Your Meme.",
+    "MemeIdea":                "The abstract creative idea underlying a meme template; the Work level of the FRBR hierarchy. Represents the core concept, emotional register, or rhetorical function of a meme, independent of any specific image or format.",
     "VariantInstance":         "A specific image derived from a meme template; the Manifestation level of the FRBR hierarchy. Represents a single scraped or documented instantiation of a MemeConcept.",
     "ImageType":               "The visual medium or rendering technique of a meme image (e.g. Photograph, Drawing, Cartoon). Corresponds to Panofsky's pre-iconographic description.",
     "TextPresence":            "Whether visible text is present in a meme image (ContainsText or NoText). Detected automatically via CLIP and EasyOCR.",
@@ -795,8 +795,8 @@ MEME_FORMAT_GROUPS = {
 
 # FRBR level and Panofsky semantic level annotations for classes
 FRBR_LEVELS = {
-    "MemeConcept":   "Expression",
-    "MemeIdea":      "Work",        # wd:Q3249551 — resolved via WD_CLASS_MAP
+    "MemeConcept":    "Expression",
+    "MemeIdea":       "Work",
     "VariantInstance":"Manifestation",
 }
 SEMANTIC_LEVELS = {
@@ -850,9 +850,6 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
     g.add((ONTO_URI, DCTERMS.title,   Literal("The Meme Ontology (MEMO)", lang="en")))
     g.add((ONTO_URI, DCTERMS.license, URIRef("https://creativecommons.org/licenses/by/4.0/")))
     g.add((ONTO_URI, DC.creator,      Literal("Alice Picco")))
-    g.add((ONTO_URI, OWL.imports,     URIRef("http://www.w3.org/ns/prov-o#")))
-    g.add((ONTO_URI, OWL.imports,     URIRef("http://purl.org/dc/terms/")))
-    g.add((ONTO_URI, OWL.imports,     URIRef("https://schema.org/")))
 
     def class_uri(name):
         return WD_CLASS_MAP.get(name, MEME[name])
@@ -870,7 +867,7 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
 
     # Classes — memo: classes (P2 Wikidata classes declared separately below)
     memo_only_classes = [
-        "MemeConcept", "ImageType", "TextPresence", "ColorMode",
+        "MemeConcept", "MemeIdea", "ImageType", "TextPresence", "ColorMode",
         "MemeFormat", "AnimationStatus",
         "VariantInstance", "TransformationDimension", "TransformationExtent",
     ]
@@ -879,6 +876,7 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
         g.add((MEME[c], RDFS.label, Literal(c)))
         if c in MEMO_CLASS_COMMENTS:
             g.add((MEME[c], RDFS.comment, Literal(MEMO_CLASS_COMMENTS[c], lang="en")))
+    g.add((MEME.MemeIdea, RDFS.seeAlso, URIRef("https://www.wikidata.org/wiki/Q3249551")))
 
     # P2 — Wikidata Q-item classes declared as OWL classes (Fix 8: comment + seeAlso)
     for name, wd_uri in WD_CLASS_MAP.items():
@@ -1204,7 +1202,7 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
             idea_local = f"{meme_local}_idea"
             idea_uri   = MEME[idea_local]
             g.add((idea_uri, RDF.type,   OWL.NamedIndividual))
-            g.add((idea_uri, RDF.type,   WD.Q3249551))
+            g.add((idea_uri, RDF.type,   MEME.MemeIdea))
             g.add((idea_uri, RDFS.label, Literal(f"{meme_name} (idea)")))
             desc = (meta_entry.get("description") or "").strip()
             if desc:
