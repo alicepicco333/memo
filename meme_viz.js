@@ -418,7 +418,7 @@ function buildPopularityByFormat() {
   const maxEntries = d3.max(points, d => d.entries || 0) || 1;
   // rMax grows with chart width; bandwidth cap is removed — bubbles may overlap, which is fine.
   // range starts at 4 so the smallest formats are always a visible dot.
-  const rMax = Math.min(46, Math.max(32, iW / 18));
+  const rMax = Math.min(28, Math.max(18, iW / 28));
   const r = d3.scaleSqrt()
     .domain([0, maxEntries])
     .range([4, rMax]);
@@ -951,13 +951,11 @@ function buildVariantBubble() {
 
   var g = svg.append('g').attr('transform', 'translate(' + M.left + ',' + M.top + ')');
 
-  // Image size proportional to views (popularity)
-  var sScale = d3.scaleSqrt()
-    .domain([0, d3.max(points, function(p) { return p.views; }) || 1])
-    .range([12, 60]);
+  // Fixed image size — popularity is already encoded by the X axis, not image size.
+  var IMG_SIZE = 44;
 
-  // Pad scale ranges by half the max image size so no image is clipped at the edges
-  var PAD = 32;
+  // Pad scale ranges by half the image size so no image is clipped at the edges
+  var PAD = IMG_SIZE / 2 + 4;
 
   // X = Number of Views (linear scale)
   var xScale = d3.scaleLinear()
@@ -999,13 +997,13 @@ function buildVariantBubble() {
     .attr('text-anchor', 'middle').attr('fill', '#888').attr('font-size', 11)
     .text('Number of Variants');
 
-  // Meme images — all 50 entries, sized by views
+  // Meme images — all 50 entries, uniform size (popularity on X axis, variants on Y axis)
   g.append('g').attr('clip-path', 'url(#bubble-clip)')
     .selectAll('image').data(points).join('image')
-      .attr('x', function(p) { var s = sScale(p.views); return xScale(Math.max(1, p.views)) - s / 2; })
-      .attr('y', function(p) { var s = sScale(p.views); return yScale(Math.max(1, p.photos)) - s / 2; })
-      .attr('width',  function(p) { return sScale(p.views); })
-      .attr('height', function(p) { return sScale(p.views); })
+      .attr('x', function(p) { return xScale(Math.max(1, p.views)) - IMG_SIZE / 2; })
+      .attr('y', function(p) { return yScale(Math.max(1, p.photos)) - IMG_SIZE / 2; })
+      .attr('width',  IMG_SIZE)
+      .attr('height', IMG_SIZE)
       .attr('href', function(p) { return p.imgSrc; })
       .attr('preserveAspectRatio', 'xMidYMid slice')
       .style('cursor', 'pointer')
