@@ -11,10 +11,11 @@ from rdflib import Graph, Namespace, RDF, RDFS, OWL, XSD, Literal, URIRef, DCTER
 from rdflib.collection import Collection
 
 PROV   = Namespace("http://www.w3.org/ns/prov#")
-SCHEMA = Namespace("http://schema.org/")
+SCHEMA = Namespace("https://schema.org/")
 DC     = Namespace("http://purl.org/dc/elements/1.1/")
 WD     = Namespace("http://www.wikidata.org/entity/")
 WDT    = Namespace("http://www.wikidata.org/prop/direct/")
+FRBRER = Namespace("http://iflastandards.info/ns/fr/frbr/frbrer/")
 
 try:
     import clip
@@ -440,16 +441,8 @@ def classify_image(model, preprocess, device, image_path, text_threshold, subj_t
 ONTO_BASE = "https://purl.org/memo#"
 ONTO_URI  = URIRef("https://purl.org/memo")
 
-# P2 — Wikidata Q-item classes that replace memo: class declarations
-WD_CLASS_MAP = {
-    "GeographicRegion": WD.Q82794,
-    "TimePeriod":       WD.Q11471,
-    "OriginPlatform":   WD.Q3220391,
-    "OriginWork":       WD.Q386724,
-    "FileFormat":       WD.Q235557,
-    "CulturalReference":WD.Q96622155,
-    "SubjectMatter":    WD.Q16334295,
-}
+# All classes are now in the memo: namespace; WD QIDs kept as rdfs:seeAlso only
+WD_CLASS_MAP = {}  # empty — class_uri() always returns MEME[name]
 
 # P3 — Wikidata P-item properties that replace memo: object property declarations
 WD_PROP_MAP = {
@@ -464,14 +457,12 @@ WD_PROP_MAP = {
 # All pre-declared named individuals per class
 VOCAB = {
     "ImageType":       ["Photograph", "Drawing", "Illustration", "Cartoon", "Painting"],
-    "TextPresence":    ["ContainsText", "NoText"],
-    "ColorMode":       ["Color", "Monochrome"],
     "SubjectMatter":   ["PersonPresent", "AnimalPresent", "CharacterPresent", "ObjectOnly", "TextOnly", "MultipleSubjects", "Unknown"],
     "TimePeriod":      ["Pre2010", "Period2010to2015", "Period2016to2020", "Period2021toPresent", "Unknown"],
     "FileFormat":      ["JPEG", "PNG", "GIF", "WebP", "BMP"],
     "AnimationStatus": ["Static", "Animated"],
-    "OriginPlatform":        ["Unknown"],           # WD-mapped platforms declared via WD_PLATFORM_INDIVIDUALS
-    "GeographicRegion":      ["Unknown", "Worldwide"],  # WD-mapped regions declared via WD_REGION_INDIVIDUALS
+    "OriginPlatform":        ["Unknown"],
+    "GeographicRegion":      ["Unknown", "Worldwide"],
     "TransformationDimension": ["CaptionChange", "CompositionShift", "CrossoverMerge",
                                 "Localization", "MediumShift", "StyleShift", "VisualSubstrate"],
     "TransformationExtent":    ["Minimal", "Moderate", "Substantial"],
@@ -530,33 +521,32 @@ REGION_QID_MAP = {
     "Palestine":     "Q219060",
     "Vatican":       "Q237",
     "Vatican City":  "Q237",
-    "Babylon":       "Q5684",
     # Worldwide / Unknown / linguistic labels have no QID — keep as memo: (None means skip)
 }
 
 # Wikidata QIDs for OriginPlatform individuals, keyed by PLATFORM_MAP output.
 PLATFORM_QID_MAP = {
     "TwitterX":       "Q918",
-    "TikTok":         "Q50003786",
+    "TikTok":         "Q48938223",
     "YouTube":        "Q866",
-    "Reddit":         "Q28811",
+    "Reddit":         "Q1136",
     "Instagram":      "Q209330",
     "Facebook":       "Q355",
-    "Tumblr":         "Q212971",
-    "4chan":          "Q674637",
-    "Vine":           "Q5754076",
-    "Imgur":          "Q898279",
-    "DeviantArt":     "Q545858",
-    "Discord":        "Q56028744",
-    "Snapchat":       "Q18373543",
-    "Twitch":         "Q10288502",
-    "MySpace":        "Q38022",
-    "SomethingAwful": "Q3489062",
-    "9gag":           "Q2737200",
-    "iFunny":         "Q4319804",
-    "eBaumsWorld":    "Q3724165",
-    "FunnyJunk":      "Q5509787",
-    "KnowYourMeme":   "Q928047",
+    "Tumblr":         "Q384060",
+    "4chan":          "Q238330",
+    "Vine":           "Q3700238",
+    "Imgur":          "Q355022",
+    "DeviantArt":     "Q46523",
+    "Discord":        "Q22907849",
+    "Snapchat":       "Q333618",
+    "Twitch":         "Q4555537",
+    "MySpace":        "Q40629",
+    "SomethingAwful": "Q1048635",
+    "9gag":           "Q277421",
+    "iFunny":         "Q97573363",
+    "eBaumsWorld":    "Q5322609",
+    "FunnyJunk":      "Q63891999",
+    "KnowYourMeme":   "Q2071334",
 }
 
 # Schema-level declarations: Wikidata individuals for GeographicRegion (wd:Q82794).
@@ -607,42 +597,37 @@ WD_REGION_INDIVIDUALS = {
     "Q912":     "Mali",
     "Q219060":  "Palestine",
     "Q237":     "Vatican City",
-    "Q5684":    "Babylon",
 }
 
 # Schema-level declarations: Wikidata individuals for OriginPlatform (wd:Q3220391).
 WD_PLATFORM_INDIVIDUALS = {
     "Q918":      "Twitter/X",
-    "Q50003786": "TikTok",
+    "Q48938223": "TikTok",
     "Q866":      "YouTube",
-    "Q28811":    "Reddit",
+    "Q1136":     "Reddit",
     "Q209330":   "Instagram",
     "Q355":      "Facebook",
-    "Q212971":   "Tumblr",
-    "Q674637":   "4chan",
-    "Q5754076":  "Vine",
-    "Q898279":   "Imgur",
-    "Q545858":   "DeviantArt",
-    "Q56028744": "Discord",
-    "Q18373543": "Snapchat",
-    "Q10288502": "Twitch",
-    "Q38022":    "MySpace",
-    "Q3489062":  "Something Awful",
-    "Q2737200":  "9GAG",
-    "Q4319804":  "iFunny",
-    "Q3724165":  "eBaum's World",
-    "Q5509787":  "FunnyJunk",
-    "Q928047":   "Know Your Meme",
+    "Q384060":   "Tumblr",
+    "Q238330":   "4chan",
+    "Q3700238":  "Vine",
+    "Q355022":   "Imgur",
+    "Q46523":    "DeviantArt",
+    "Q22907849": "Discord",
+    "Q333618":   "Snapchat",
+    "Q4555537":  "Twitch",
+    "Q40629":    "MySpace",
+    "Q1048635":  "Something Awful",
+    "Q277421":   "9GAG",
+    "Q97573363": "iFunny",
+    "Q5322609":  "eBaum's World",
+    "Q63891999": "FunnyJunk",
+    "Q2071334":  "Know Your Meme",
 }
 
 OBJ_PROPS = [
-    # P4 — consolidated visual props: union domain MemeConcept ∪ VariantInstance
+    # Visual classification object properties
     ("hasImageType",      ("MemeConcept", "VariantInstance"), "ImageType"),
     ("isImageTypeOf",     "ImageType",    ("MemeConcept", "VariantInstance")),
-    ("hasTextPresence",   ("MemeConcept", "VariantInstance"), "TextPresence"),
-    ("isTextPresenceOf",  "TextPresence", ("MemeConcept", "VariantInstance")),
-    ("hasColorMode",      ("MemeConcept", "VariantInstance"), "ColorMode"),
-    ("isColorModeOf",     "ColorMode",    ("MemeConcept", "VariantInstance")),
     ("hasSubjectMatter",  ("MemeConcept", "VariantInstance"), "SubjectMatter"),
     ("isSubjectMatterOf", "SubjectMatter",("MemeConcept", "VariantInstance")),
     # MemeConcept — format & distribution (P3: several use Wikidata URIs)
@@ -679,6 +664,8 @@ DATA_PROPS = [
     ("imageFilename",         "MemeConcept",    XSD.string),
     ("imageFilePath",         "MemeConcept",    XSD.string),
     ("views",                 "MemeConcept",    XSD.integer),
+    ("hasTextPresence",       "MemeConcept",    XSD.boolean),
+    ("isColor",               "MemeConcept",    XSD.boolean),
     # MemeIdea level
     ("conceptDescription",    "MemeIdea",       XSD.string),
     # VariantInstance level
@@ -694,8 +681,6 @@ DATA_PROPS = [
 # Fix 1 — owl:inverseOf for all 15 inverse pairs
 INVERSE_PAIRS = [
     ("hasImageType",               "isImageTypeOf"),
-    ("hasTextPresence",            "isTextPresenceOf"),
-    ("hasColorMode",               "isColorModeOf"),
     ("hasSubjectMatter",           "isSubjectMatterOf"),
     ("hasFormat",                  "isFormatOf"),
     ("hasOriginPlatform",          "isOriginPlatformOf"),
@@ -718,6 +703,7 @@ INVERSE_LOOKUP.update({inv: fwd for fwd, inv in INVERSE_PAIRS})
 MEMO_CLASS_COMMENTS = {
     "MemeConcept":             "A meme template or canonical format; the Expression level of the FRBR hierarchy. Represents the stable, recognisable form of a meme as documented on Know Your Meme.",
     "MemeIdea":                "The abstract creative idea underlying a meme template; the Work level of the FRBR hierarchy. Represents the core concept, emotional register, or rhetorical function of a meme, independent of any specific image or format.",
+    "SubjectMatter":           "The primary visual subject category depicted in a meme image (e.g. PersonPresent, AnimalPresent, ObjectOnly). Corresponds to Panofsky's pre-iconographic description level.",
     "VariantInstance":         "A specific image derived from a meme template; the Manifestation level of the FRBR hierarchy. Represents a single scraped or documented instantiation of a MemeConcept.",
     "ImageType":               "The visual medium or rendering technique of a meme image (e.g. Photograph, Drawing, Cartoon). Corresponds to Panofsky's pre-iconographic description.",
     "TextPresence":            "Whether visible text is present in a meme image (ContainsText or NoText). Detected automatically via CLIP and EasyOCR.",
@@ -738,9 +724,26 @@ MEMO_CLASS_COMMENTS = {
     "ImageManipulationFormat": "MemeFormat subclass grouping image manipulation formats: Exploitable, ImageMacro, Photoshop, Remix.",
     "ParticipatoryFormat":     "MemeFormat subclass grouping participatory formats: ParticipatoryMedia, Dance, SocialGame.",
     "NarrativeFormat":         "MemeFormat subclass grouping character- and narrative-based formats: Character, FanArt, Parody, PopCultureReference, Reaction.",
+    # Six classes converted from wd: to memo: namespace
+    "GeographicRegion":  "Geographic region or country of meme origin; aligned with Wikidata Q82794.",
+    "TimePeriod":        "Chronological period in which the meme originated or peaked; aligned with Wikidata Q11471.",
+    "OriginPlatform":    "Online platform or service where the meme was first published; aligned with Wikidata Q3220391.",
+    "OriginWork":        "Creative work (film, TV series, game, etc.) from which the meme derives; aligned with Wikidata Q386724.",
+    "FileFormat":        "Digital file format of the meme image resource; aligned with Wikidata Q235557.",
+    "CulturalReference": "Cultural artefact, event, or phenomenon that a meme iconologically references; aligned with Wikidata Q96622155.",
 }
 
-# Fix: rdfs:comment + rdfs:seeAlso for each Wikidata class
+# Wikidata seeAlso QIDs for memo: classes that have a WD equivalent
+CLASS_WD_SEEALSO = {
+    "GeographicRegion":  "Q82794",
+    "TimePeriod":        "Q11471",
+    "OriginPlatform":    "Q3220391",
+    "OriginWork":        "Q386724",
+    "FileFormat":        "Q235557",
+    "CulturalReference": "Q96622155",
+}
+
+# Kept for reference only (no longer used to declare OWL classes)
 WD_CLASS_META = {
     "GeographicRegion":  (
         "Geographic region or country of meme origin, as defined by Wikidata Q82794.",
@@ -800,12 +803,10 @@ FRBR_LEVELS = {
     "VariantInstance":"Manifestation",
 }
 SEMANTIC_LEVELS = {
-    "MemeFormat":    "Iconographical",
-    "SubjectMatter": "PreIconographical",  # wd:Q16334295
-    "ImageType":     "PreIconographical",
-    "ColorMode":     "PreIconographical",
-    "TextPresence":  "PreIconographical",
-    "CulturalReference": "Iconological",   # wd:Q96622155
+    "MemeFormat":        "Iconographical",
+    "SubjectMatter":     "PreIconographical",
+    "ImageType":         "PreIconographical",
+    "CulturalReference": "Iconological",
 }
 
 
@@ -844,6 +845,7 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
     g.bind("wd",      WD)
     g.bind("wdt",     WDT)
     g.bind("dc",      DC)
+    g.bind("frbrer",  FRBRER)
 
     g.add((ONTO_URI, RDF.type,        OWL.Ontology))
     g.add((ONTO_URI, OWL.versionInfo, Literal("1.0")))
@@ -865,27 +867,41 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
         g.add((bn, OWL.unionOf, lst))
         return bn
 
-    # Classes — memo: classes (P2 Wikidata classes declared separately below)
+    # All classes now in memo: namespace (six formerly-WD classes merged in)
     memo_only_classes = [
-        "MemeConcept", "MemeIdea", "ImageType", "TextPresence", "ColorMode",
+        "MemeConcept", "MemeIdea", "SubjectMatter", "ImageType",
         "MemeFormat", "AnimationStatus",
         "VariantInstance", "TransformationDimension", "TransformationExtent",
+        "GeographicRegion", "TimePeriod", "OriginPlatform",
+        "OriginWork", "FileFormat", "CulturalReference",
     ]
     for c in memo_only_classes:
-        g.add((MEME[c], RDF.type,  OWL.Class))
+        g.add((MEME[c], RDF.type,   OWL.Class))
         g.add((MEME[c], RDFS.label, Literal(c)))
         if c in MEMO_CLASS_COMMENTS:
             g.add((MEME[c], RDFS.comment, Literal(MEMO_CLASS_COMMENTS[c], lang="en")))
-    g.add((MEME.MemeIdea, RDFS.seeAlso, URIRef("https://www.wikidata.org/wiki/Q3249551")))
+        if c in CLASS_WD_SEEALSO:
+            g.add((MEME[c], RDFS.seeAlso, URIRef(f"https://www.wikidata.org/wiki/{CLASS_WD_SEEALSO[c]}")))
+    g.add((MEME.MemeIdea,      RDFS.seeAlso, URIRef("https://www.wikidata.org/wiki/Q3249551")))
+    g.add((MEME.SubjectMatter, RDFS.seeAlso, URIRef("https://www.wikidata.org/wiki/Q16334295")))
 
-    # P2 — Wikidata Q-item classes declared as OWL classes (Fix 8: comment + seeAlso)
-    for name, wd_uri in WD_CLASS_MAP.items():
-        g.add((wd_uri, RDF.type,  OWL.Class))
-        g.add((wd_uri, RDFS.label, Literal(name)))
-        if name in WD_CLASS_META:
-            comment, q_id = WD_CLASS_META[name]
-            g.add((wd_uri, RDFS.comment,  Literal(comment, lang="en")))
-            g.add((wd_uri, RDFS.seeAlso,  URIRef(f"https://www.wikidata.org/wiki/{q_id}")))
+    # IFLA FRBR subclass declarations
+    g.add((MEME.MemeIdea,        RDFS.subClassOf, FRBRER.C1002))  # Work
+    g.add((MEME.MemeConcept,     RDFS.subClassOf, FRBRER.C1003))  # Expression
+    g.add((MEME.VariantInstance, RDFS.subClassOf, FRBRER.C1004))  # Manifestation
+
+    # schema.org OriginWork subtypes — declared as subclasses of wd:Q386724
+    for schema_cls, comment in [
+        (SCHEMA.TVSeries,    "Television or web series from which the meme derives; subclass of OriginWork (wd:Q386724)."),
+        (SCHEMA.Movie,       "Film from which the meme derives; subclass of OriginWork (wd:Q386724)."),
+        (SCHEMA.VideoGame,   "Video game from which the meme derives; subclass of OriginWork (wd:Q386724)."),
+        (SCHEMA.ComicSeries, "Comic strip, webcomic or graphic novel from which the meme derives; subclass of OriginWork (wd:Q386724)."),
+        (SCHEMA.MusicAlbum,  "Song, album or music video from which the meme derives; subclass of OriginWork (wd:Q386724)."),
+        (SCHEMA.Book,        "Book, novel or short story from which the meme derives; subclass of OriginWork (wd:Q386724)."),
+    ]:
+        g.add((schema_cls, RDF.type,        OWL.Class))
+        g.add((schema_cls, RDFS.subClassOf, MEME.OriginWork))
+        g.add((schema_cls, RDFS.comment,    Literal(comment, lang="en")))
 
     # Object properties (P3: Wikidata props via prop_uri; P4: union domains via _union_node)
     for name, domain, range_ in OBJ_PROPS:
@@ -923,7 +939,7 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
     # prov:wasDerivedFrom — superproperty of memo:hasOriginWork; not directly asserted in MEMO
     g.add((PROV.wasDerivedFrom, RDF.type,     OWL.ObjectProperty))
     g.add((PROV.wasDerivedFrom, RDFS.domain,  MEME.MemeConcept))
-    g.add((PROV.wasDerivedFrom, RDFS.range,   WD.Q386724))
+    g.add((PROV.wasDerivedFrom, RDFS.range,   MEME.OriginWork))
     g.add((PROV.wasDerivedFrom, RDFS.label,   Literal("wasDerivedFrom")))
     g.add((PROV.wasDerivedFrom, RDFS.comment, Literal(
         "Superproperty of memo:hasOriginWork. Not directly asserted in MEMO — "
@@ -934,12 +950,17 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
         (DCTERMS.created,     "created",     XSD.integer,  OWL.AnnotationProperty),
         (DCTERMS.description, "description", XSD.string,   OWL.AnnotationProperty),
         (DCTERMS.modified,    "modified",    XSD.string,   OWL.AnnotationProperty),
-        (DCTERMS["format"],      "format",      WD.Q235557,   OWL.ObjectProperty),
+        (DCTERMS["format"],      "format",      MEME.FileFormat, OWL.ObjectProperty),
     ]:
         g.add((_prop, RDF.type,    _ptype))
         g.add((_prop, RDFS.domain, MEME.MemeConcept))
         g.add((_prop, RDFS.range,  _rng))
         g.add((_prop, RDFS.label,  Literal(_label)))
+    g.add((DCTERMS["format"], RDFS.comment, Literal(
+        "File format of the meme image (JPEG, PNG, GIF, etc.), "
+        "linked to a FileFormat individual (wd:Q235557). "
+        "Uses dcterms:format rather than a memo: property to align with Dublin Core usage.",
+        lang="en")))
     # schema: annotation properties
     for _prop, _label in [
         (SCHEMA.url,      "url"),
@@ -982,13 +1003,13 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
     for _qid, _label in WD_REGION_INDIVIDUALS.items():
         _ind = WD[_qid]
         g.add((_ind, RDF.type,     OWL.NamedIndividual))
-        g.add((_ind, RDF.type,     WD.Q82794))
+        g.add((_ind, RDF.type,     MEME.GeographicRegion))
         g.add((_ind, RDFS.label,   Literal(_label)))
         g.add((_ind, RDFS.seeAlso, URIRef(f"https://www.wikidata.org/wiki/{_qid}")))
     for _qid, _label in WD_PLATFORM_INDIVIDUALS.items():
         _ind = WD[_qid]
         g.add((_ind, RDF.type,     OWL.NamedIndividual))
-        g.add((_ind, RDF.type,     WD.Q3220391))
+        g.add((_ind, RDF.type,     MEME.OriginPlatform))
         g.add((_ind, RDFS.label,   Literal(_label)))
         g.add((_ind, RDFS.seeAlso, URIRef(f"https://www.wikidata.org/wiki/{_qid}")))
 
@@ -997,7 +1018,7 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
         sub_uri = MEME[subtype]
         g.add((sub_uri, RDF.type,        OWL.Class))
         g.add((sub_uri, RDFS.label,      Literal(subtype)))
-        g.add((sub_uri, RDFS.subClassOf, WD.Q96622155))
+        g.add((sub_uri, RDFS.subClassOf, MEME.CulturalReference))
         if subtype in MEMO_CLASS_COMMENTS:
             g.add((sub_uri, RDFS.comment, Literal(MEMO_CLASS_COMMENTS[subtype], lang="en")))
 
@@ -1061,8 +1082,6 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
 
         # Macro 1 — CLIP / pixel (stored in classifications.json as hasImageType etc.)
         obj("hasImageType",     "ImageType",     rec.get("hasImageType"))
-        obj("hasTextPresence",  "TextPresence",  rec.get("hasTextPresence"))
-        obj("hasColorMode",     "ColorMode",     rec.get("hasColorMode"))
         obj("hasSubjectMatter", "SubjectMatter", rec.get("hasSubjectMatter"))
 
         # Macro 2 — metadata (hasFormat is a list)
@@ -1118,6 +1137,13 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
 
         dat("views",         meta.get("views"),              XSD.integer)
         dat("imageFilePath", meta.get("image_path", ""),     XSD.string)
+
+        _tp = rec.get("hasTextPresence")
+        if _tp:
+            dat("hasTextPresence", _tp == "ContainsText", XSD.boolean)
+        _cm = rec.get("hasColorMode")
+        if _cm:
+            dat("isColor", _cm == "Color", XSD.boolean)
 
         meme_url = meta.get("meme_url", "")
         if meme_url:
@@ -1279,7 +1305,7 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
                 ref_class = ref["class"]   # e.g. "WebCulture"
                 if ref_class not in declared_ind[ref_local]:
                     g.add((ref_uri, RDF.type, MEME[ref_class]))   # specific subtype
-                    g.add((ref_uri, RDF.type, WD.Q96622155))      # CulturalReference supertype
+                    g.add((ref_uri, RDF.type, MEME.CulturalReference))  # supertype
                     declared_ind[ref_local].add(ref_class)
                 if ref.get("note"):
                     g.add((ref_uri, RDFS.comment, Literal(ref["note"], lang="en")))

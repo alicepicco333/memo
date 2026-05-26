@@ -1,12 +1,12 @@
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix frbrer: <http://iflastandards.info/ns/fr/frbr/frbrer/> .
 @prefix memo: <https://purl.org/memo#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix schema1: <http://schema.org/> .
-@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix schema: <https://schema.org/> .
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
@@ -22,26 +22,12 @@ dcterms:description a owl:AnnotationProperty ;
 
 dcterms:format a owl:ObjectProperty ;
     rdfs:label "format" ;
+    rdfs:comment "File format of the meme image (JPEG, PNG, GIF, etc.), linked to a FileFormat individual (wd:Q235557). Uses dcterms:format rather than a memo: property to align with Dublin Core usage."@en ;
     rdfs:domain memo:MemeConcept ;
-    rdfs:range wd:Q235557 .
+    rdfs:range memo:FileFormat .
 
 dcterms:modified a owl:AnnotationProperty ;
     rdfs:label "modified" ;
-    rdfs:domain memo:MemeConcept ;
-    rdfs:range xsd:string .
-
-schema1:image a owl:AnnotationProperty ;
-    rdfs:label "image" ;
-    rdfs:domain memo:MemeConcept ;
-    rdfs:range xsd:string .
-
-schema1:keywords a owl:AnnotationProperty ;
-    rdfs:label "keywords" ;
-    rdfs:domain memo:MemeConcept ;
-    rdfs:range xsd:string .
-
-schema1:url a owl:AnnotationProperty ;
-    rdfs:label "url" ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range xsd:string .
 
@@ -59,7 +45,7 @@ memo:AudioFormat a owl:Class ;
 memo:HistoricalEvent a owl:Class ;
     rdfs:label "HistoricalEvent" ;
     rdfs:comment "A historical event, period, or crisis referenced by a meme."@en ;
-    rdfs:subClassOf wd:Q96622155 .
+    rdfs:subClassOf memo:CulturalReference .
 
 memo:ImageManipulationFormat a owl:Class ;
     rdfs:label "ImageManipulationFormat" ;
@@ -69,7 +55,7 @@ memo:ImageManipulationFormat a owl:Class ;
 memo:MediaProperty a owl:Class ;
     rdfs:label "MediaProperty" ;
     rdfs:comment "A media franchise, film, TV series, game, or other creative property referenced by a meme."@en ;
-    rdfs:subClassOf wd:Q96622155 .
+    rdfs:subClassOf memo:CulturalReference .
 
 memo:NarrativeFormat a owl:Class ;
     rdfs:label "NarrativeFormat" ;
@@ -84,17 +70,17 @@ memo:ParticipatoryFormat a owl:Class ;
 memo:PoliticalEvent a owl:Class ;
     rdfs:label "PoliticalEvent" ;
     rdfs:comment "A political event, controversy, or campaign that a meme iconologically references."@en ;
-    rdfs:subClassOf wd:Q96622155 .
+    rdfs:subClassOf memo:CulturalReference .
 
 memo:PublicFigure a owl:Class ;
     rdfs:label "PublicFigure" ;
     rdfs:comment "A public figure, celebrity, politician, or historical person referenced by a meme."@en ;
-    rdfs:subClassOf wd:Q96622155 .
+    rdfs:subClassOf memo:CulturalReference .
 
 memo:SocialPhenomenon a owl:Class ;
     rdfs:label "SocialPhenomenon" ;
     rdfs:comment "A social movement, behavioural trend, or cultural practice referenced by a meme."@en ;
-    rdfs:subClassOf wd:Q96622155 .
+    rdfs:subClassOf memo:CulturalReference .
 
 memo:TextFormat a owl:Class ;
     rdfs:label "TextFormat" ;
@@ -109,7 +95,7 @@ memo:VideoFormat a owl:Class ;
 memo:WebCulture a owl:Class ;
     rdfs:label "WebCulture" ;
     rdfs:comment "A web-native cultural phenomenon, community, or trend referenced by a meme."@en ;
-    rdfs:subClassOf wd:Q96622155 .
+    rdfs:subClassOf memo:CulturalReference .
 
 memo:captionText a owl:DatatypeProperty ;
     rdfs:label "captionText" ;
@@ -129,6 +115,11 @@ memo:hasId a owl:DatatypeProperty ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range xsd:integer .
 
+memo:hasTextPresence a owl:DatatypeProperty ;
+    rdfs:label "hasTextPresence" ;
+    rdfs:domain memo:MemeConcept ;
+    rdfs:range xsd:boolean .
+
 memo:imageFilePath a owl:DatatypeProperty ;
     rdfs:label "imageFilePath" ;
     rdfs:domain memo:MemeConcept ;
@@ -138,6 +129,11 @@ memo:imageFilename a owl:DatatypeProperty ;
     rdfs:label "imageFilename" ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range xsd:string .
+
+memo:isColor a owl:DatatypeProperty ;
+    rdfs:label "isColor" ;
+    rdfs:domain memo:MemeConcept ;
+    rdfs:range xsd:boolean .
 
 memo:photoURL a owl:DatatypeProperty ;
     rdfs:label "photoURL" ;
@@ -177,21 +173,55 @@ memo:views a owl:DatatypeProperty ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range xsd:integer .
 
+schema:Book a owl:Class ;
+    rdfs:comment "Book, novel or short story from which the meme derives; subclass of OriginWork (wd:Q386724)."@en ;
+    rdfs:subClassOf memo:OriginWork .
+
+schema:ComicSeries a owl:Class ;
+    rdfs:comment "Comic strip, webcomic or graphic novel from which the meme derives; subclass of OriginWork (wd:Q386724)."@en ;
+    rdfs:subClassOf memo:OriginWork .
+
+schema:Movie a owl:Class ;
+    rdfs:comment "Film from which the meme derives; subclass of OriginWork (wd:Q386724)."@en ;
+    rdfs:subClassOf memo:OriginWork .
+
+schema:MusicAlbum a owl:Class ;
+    rdfs:comment "Song, album or music video from which the meme derives; subclass of OriginWork (wd:Q386724)."@en ;
+    rdfs:subClassOf memo:OriginWork .
+
+schema:TVSeries a owl:Class ;
+    rdfs:comment "Television or web series from which the meme derives; subclass of OriginWork (wd:Q386724)."@en ;
+    rdfs:subClassOf memo:OriginWork .
+
+schema:VideoGame a owl:Class ;
+    rdfs:comment "Video game from which the meme derives; subclass of OriginWork (wd:Q386724)."@en ;
+    rdfs:subClassOf memo:OriginWork .
+
+schema:image a owl:AnnotationProperty ;
+    rdfs:label "image" ;
+    rdfs:domain memo:MemeConcept ;
+    rdfs:range xsd:string .
+
+schema:keywords a owl:AnnotationProperty ;
+    rdfs:label "keywords" ;
+    rdfs:domain memo:MemeConcept ;
+    rdfs:range xsd:string .
+
+schema:url a owl:AnnotationProperty ;
+    rdfs:label "url" ;
+    rdfs:domain memo:MemeConcept ;
+    rdfs:range xsd:string .
+
 prov:wasDerivedFrom a owl:ObjectProperty ;
     rdfs:label "wasDerivedFrom" ;
     rdfs:comment "Superproperty of memo:hasOriginWork. Not directly asserted in MEMO — memo:hasOriginWork is used throughout, from which reasoners infer prov:wasDerivedFrom."@en ;
     rdfs:domain memo:MemeConcept ;
-    rdfs:range wd:Q386724 .
-
-wd:Q235557 a owl:Class ;
-    rdfs:label "FileFormat" ;
-    rdfs:comment "Digital file format of the meme image resource, as defined by Wikidata Q235557."@en ;
-    rdfs:seeAlso <https://www.wikidata.org/wiki/Q235557> .
+    rdfs:range memo:OriginWork .
 
 wdt:P123 a owl:ObjectProperty ;
     rdfs:label "hasOriginPlatform" ;
     rdfs:domain memo:MemeConcept ;
-    rdfs:range wd:Q3220391 ;
+    rdfs:range memo:OriginPlatform ;
     owl:inverseOf memo:isOriginPlatformOf .
 
 wdt:P2283 a owl:ObjectProperty ;
@@ -203,7 +233,7 @@ wdt:P2283 a owl:ObjectProperty ;
 wdt:P2408 a owl:ObjectProperty ;
     rdfs:label "hasTimePeriod" ;
     rdfs:domain memo:MemeConcept ;
-    rdfs:range wd:Q11471 ;
+    rdfs:range memo:TimePeriod ;
     owl:inverseOf memo:isTimePeriodOf .
 
 wdt:P361 a owl:ObjectProperty ;
@@ -215,7 +245,7 @@ wdt:P361 a owl:ObjectProperty ;
 wdt:P495 a owl:ObjectProperty ;
     rdfs:label "hasRegion" ;
     rdfs:domain memo:MemeConcept ;
-    rdfs:range wd:Q82794 ;
+    rdfs:range memo:GeographicRegion ;
     owl:inverseOf memo:isRegionOf .
 
 wdt:P527 a owl:ObjectProperty ;
@@ -225,6 +255,11 @@ wdt:P527 a owl:ObjectProperty ;
     owl:inverseOf wdt:P361 .
 
 wdt:P8371 owl:equivalentProperty memo:hasReference .
+
+memo:FileFormat a owl:Class ;
+    rdfs:label "FileFormat" ;
+    rdfs:comment "Digital file format of the meme image resource; aligned with Wikidata Q235557."@en ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q235557> .
 
 memo:conceptualizes a owl:ObjectProperty ;
     rdfs:label "conceptualizes" ;
@@ -238,13 +273,6 @@ memo:hasAnimationStatus a owl:ObjectProperty ;
     rdfs:range memo:AnimationStatus ;
     owl:inverseOf memo:isAnimationStatusOf .
 
-memo:hasColorMode a owl:ObjectProperty ;
-    rdfs:label "hasColorMode" ;
-    rdfs:domain [ a owl:Class ;
-            owl:unionOf ( memo:MemeConcept memo:VariantInstance ) ] ;
-    rdfs:range memo:ColorMode ;
-    owl:inverseOf memo:isColorModeOf .
-
 memo:hasImageType a owl:ObjectProperty ;
     rdfs:label "hasImageType" ;
     rdfs:domain [ a owl:Class ;
@@ -255,7 +283,7 @@ memo:hasImageType a owl:ObjectProperty ;
 memo:hasOriginWork a owl:ObjectProperty ;
     rdfs:label "hasOriginWork" ;
     rdfs:domain memo:MemeConcept ;
-    rdfs:range wd:Q386724 ;
+    rdfs:range memo:OriginWork ;
     rdfs:subPropertyOf prov:wasDerivedFrom ;
     owl:inverseOf memo:isOriginWorkOf .
 
@@ -263,15 +291,8 @@ memo:hasSubjectMatter a owl:ObjectProperty ;
     rdfs:label "hasSubjectMatter" ;
     rdfs:domain [ a owl:Class ;
             owl:unionOf ( memo:MemeConcept memo:VariantInstance ) ] ;
-    rdfs:range wd:Q16334295 ;
+    rdfs:range memo:SubjectMatter ;
     owl:inverseOf memo:isSubjectMatterOf .
-
-memo:hasTextPresence a owl:ObjectProperty ;
-    rdfs:label "hasTextPresence" ;
-    rdfs:domain [ a owl:Class ;
-            owl:unionOf ( memo:MemeConcept memo:VariantInstance ) ] ;
-    rdfs:range memo:TextPresence ;
-    owl:inverseOf memo:isTextPresenceOf .
 
 memo:hasTransformationDimension a owl:ObjectProperty ;
     rdfs:label "hasTransformationDimension" ;
@@ -290,13 +311,6 @@ memo:isAnimationStatusOf a owl:ObjectProperty ;
     rdfs:domain memo:AnimationStatus ;
     rdfs:range memo:MemeConcept ;
     owl:inverseOf memo:hasAnimationStatus .
-
-memo:isColorModeOf a owl:ObjectProperty ;
-    rdfs:label "isColorModeOf" ;
-    rdfs:domain memo:ColorMode ;
-    rdfs:range [ a owl:Class ;
-            owl:unionOf ( memo:MemeConcept memo:VariantInstance ) ] ;
-    owl:inverseOf memo:hasColorMode .
 
 memo:isConceptualizedAs a owl:ObjectProperty ;
     rdfs:label "isConceptualizedAs" ;
@@ -319,45 +333,38 @@ memo:isImageTypeOf a owl:ObjectProperty ;
 
 memo:isOriginPlatformOf a owl:ObjectProperty ;
     rdfs:label "isOriginPlatformOf" ;
-    rdfs:domain wd:Q3220391 ;
+    rdfs:domain memo:OriginPlatform ;
     rdfs:range memo:MemeConcept ;
     owl:inverseOf wdt:P123 .
 
 memo:isOriginWorkOf a owl:ObjectProperty ;
     rdfs:label "isOriginWorkOf" ;
-    rdfs:domain wd:Q386724 ;
+    rdfs:domain memo:OriginWork ;
     rdfs:range memo:MemeConcept ;
     owl:inverseOf memo:hasOriginWork .
 
 memo:isReferencedIn a owl:ObjectProperty ;
     rdfs:label "isReferencedIn" ;
-    rdfs:domain wd:Q96622155 ;
+    rdfs:domain memo:CulturalReference ;
     rdfs:range memo:MemeConcept ;
     owl:inverseOf memo:hasReference .
 
 memo:isRegionOf a owl:ObjectProperty ;
     rdfs:label "isRegionOf" ;
-    rdfs:domain wd:Q82794 ;
+    rdfs:domain memo:GeographicRegion ;
     rdfs:range memo:MemeConcept ;
     owl:inverseOf wdt:P495 .
 
 memo:isSubjectMatterOf a owl:ObjectProperty ;
     rdfs:label "isSubjectMatterOf" ;
-    rdfs:domain wd:Q16334295 ;
+    rdfs:domain memo:SubjectMatter ;
     rdfs:range [ a owl:Class ;
             owl:unionOf ( memo:MemeConcept memo:VariantInstance ) ] ;
     owl:inverseOf memo:hasSubjectMatter .
 
-memo:isTextPresenceOf a owl:ObjectProperty ;
-    rdfs:label "isTextPresenceOf" ;
-    rdfs:domain memo:TextPresence ;
-    rdfs:range [ a owl:Class ;
-            owl:unionOf ( memo:MemeConcept memo:VariantInstance ) ] ;
-    owl:inverseOf memo:hasTextPresence .
-
 memo:isTimePeriodOf a owl:ObjectProperty ;
     rdfs:label "isTimePeriodOf" ;
-    rdfs:domain wd:Q11471 ;
+    rdfs:domain memo:TimePeriod ;
     rdfs:range memo:MemeConcept ;
     owl:inverseOf wdt:P2408 .
 
@@ -373,45 +380,35 @@ memo:isTransformationExtentOf a owl:ObjectProperty ;
     rdfs:range memo:VariantInstance ;
     owl:inverseOf memo:hasTransformationExtent .
 
-wd:Q11471 a owl:Class ;
-    rdfs:label "TimePeriod" ;
-    rdfs:comment "Chronological period in which the meme originated or peaked, aligned with Wikidata Q11471."@en ;
-    rdfs:seeAlso <https://www.wikidata.org/wiki/Q11471> .
-
-wd:Q16334295 a owl:Class ;
-    rdfs:label "SubjectMatter" ;
-    rdfs:comment "Primary visual subject depicted in a meme image; corresponds to Panofsky's pre-iconographic level, aligned with Wikidata Q16334295."@en ;
-    rdfs:seeAlso <https://www.wikidata.org/wiki/Q16334295> ;
-    memo:semanticLevel "PreIconographical" .
-
-wd:Q3220391 a owl:Class ;
-    rdfs:label "OriginPlatform" ;
-    rdfs:comment "Online platform or service where the meme was first published, aligned with Wikidata Q3220391."@en ;
-    rdfs:seeAlso <https://www.wikidata.org/wiki/Q3220391> .
-
-wd:Q82794 a owl:Class ;
-    rdfs:label "GeographicRegion" ;
-    rdfs:comment "Geographic region or country of meme origin, as defined by Wikidata Q82794."@en ;
-    rdfs:seeAlso <https://www.wikidata.org/wiki/Q82794> .
-
 memo:AnimationStatus a owl:Class ;
     rdfs:label "AnimationStatus" ;
     rdfs:comment "Whether a meme image is animated (Animated, i.e. a GIF) or static (Static). Derived from file extension."@en .
 
-memo:ColorMode a owl:Class ;
-    rdfs:label "ColorMode" ;
-    rdfs:comment "Whether a meme image uses colour or is monochromatic (Color or Monochrome). Determined by per-pixel colour range analysis."@en ;
-    memo:semanticLevel "PreIconographical" .
+memo:GeographicRegion a owl:Class ;
+    rdfs:label "GeographicRegion" ;
+    rdfs:comment "Geographic region or country of meme origin; aligned with Wikidata Q82794."@en ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q82794> .
 
 memo:ImageType a owl:Class ;
     rdfs:label "ImageType" ;
     rdfs:comment "The visual medium or rendering technique of a meme image (e.g. Photograph, Drawing, Cartoon). Corresponds to Panofsky's pre-iconographic description."@en ;
     memo:semanticLevel "PreIconographical" .
 
-memo:TextPresence a owl:Class ;
-    rdfs:label "TextPresence" ;
-    rdfs:comment "Whether visible text is present in a meme image (ContainsText or NoText). Detected automatically via CLIP and EasyOCR."@en ;
+memo:OriginPlatform a owl:Class ;
+    rdfs:label "OriginPlatform" ;
+    rdfs:comment "Online platform or service where the meme was first published; aligned with Wikidata Q3220391."@en ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q3220391> .
+
+memo:SubjectMatter a owl:Class ;
+    rdfs:label "SubjectMatter" ;
+    rdfs:comment "The primary visual subject category depicted in a meme image (e.g. PersonPresent, AnimalPresent, ObjectOnly). Corresponds to Panofsky's pre-iconographic description level."@en ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q16334295> ;
     memo:semanticLevel "PreIconographical" .
+
+memo:TimePeriod a owl:Class ;
+    rdfs:label "TimePeriod" ;
+    rdfs:comment "Chronological period in which the meme originated or peaked; aligned with Wikidata Q11471."@en ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q11471> .
 
 memo:TransformationDimension a owl:Class ;
     rdfs:label "TransformationDimension" ;
@@ -424,24 +421,20 @@ memo:TransformationExtent a owl:Class ;
 memo:hasReference a owl:ObjectProperty ;
     rdfs:label "hasReference" ;
     rdfs:domain memo:MemeConcept ;
-    rdfs:range wd:Q96622155 ;
+    rdfs:range memo:CulturalReference ;
     owl:equivalentProperty wdt:P8371 ;
     owl:inverseOf memo:isReferencedIn .
-
-wd:Q386724 a owl:Class ;
-    rdfs:label "OriginWork" ;
-    rdfs:comment "Creative work (film, TV series, game, etc.) from which the meme derives, aligned with Wikidata Q386724."@en ;
-    rdfs:seeAlso <https://www.wikidata.org/wiki/Q386724> .
 
 memo:MemeIdea a owl:Class ;
     rdfs:label "MemeIdea" ;
     rdfs:comment "The abstract creative idea underlying a meme template; the Work level of the FRBR hierarchy. Represents the core concept, emotional register, or rhetorical function of a meme, independent of any specific image or format."@en ;
     rdfs:seeAlso <https://www.wikidata.org/wiki/Q3249551> ;
+    rdfs:subClassOf frbrer:C1002 ;
     memo:frbrLevel "Work" .
 
-wd:Q96622155 a owl:Class ;
+memo:CulturalReference a owl:Class ;
     rdfs:label "CulturalReference" ;
-    rdfs:comment "Cultural artefact, event, or phenomenon that a meme iconologically references, aligned with Wikidata Q96622155."@en ;
+    rdfs:comment "Cultural artefact, event, or phenomenon that a meme iconologically references; aligned with Wikidata Q96622155."@en ;
     rdfs:seeAlso <https://www.wikidata.org/wiki/Q96622155> ;
     memo:semanticLevel "Iconological" .
 
@@ -450,13 +443,20 @@ memo:MemeFormat a owl:Class ;
     rdfs:comment "The genre or structural format of a meme (e.g. ImageMacro, Copypasta, ViralVideo). Drawn from Know Your Meme's type taxonomy."@en ;
     memo:semanticLevel "Iconographical" .
 
+memo:OriginWork a owl:Class ;
+    rdfs:label "OriginWork" ;
+    rdfs:comment "Creative work (film, TV series, game, etc.) from which the meme derives; aligned with Wikidata Q386724."@en ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q386724> .
+
 memo:VariantInstance a owl:Class ;
     rdfs:label "VariantInstance" ;
     rdfs:comment "A specific image derived from a meme template; the Manifestation level of the FRBR hierarchy. Represents a single scraped or documented instantiation of a MemeConcept."@en ;
+    rdfs:subClassOf frbrer:C1004 ;
     memo:frbrLevel "Manifestation" .
 
 memo:MemeConcept a owl:Class ;
     rdfs:label "MemeConcept" ;
     rdfs:comment "A meme template or canonical format; the Expression level of the FRBR hierarchy. Represents the stable, recognisable form of a meme as documented on Know Your Meme."@en ;
+    rdfs:subClassOf frbrer:C1003 ;
     memo:frbrLevel "Expression" .
 

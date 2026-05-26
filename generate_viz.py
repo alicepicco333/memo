@@ -218,6 +218,7 @@ for image_type in IMAGE_TYPE_ORDER:
 
 
 # 4) Platform origin x time period stacked distribution.
+MODERN_PLATFORMS = {"TikTok", "Instagram", "Snapchat", "Twitch", "Discord"}
 platform_period_counts = defaultdict(Counter)
 period_platform_totals = defaultdict(Counter)
 period_totals = Counter()
@@ -234,6 +235,8 @@ for entry in data:
     if period not in PERIOD_ORDER:
         continue
     if platform in ("Unknown", "None", None):
+        continue
+    if platform in MODERN_PLATFORMS and period == "Pre2010":
         continue
 
     platform_period_counts[platform][period] += 1

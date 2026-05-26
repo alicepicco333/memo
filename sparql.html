@@ -339,9 +339,13 @@
 
       <div class="sidebar-section">
         <div class="sidebar-label">Prefixes</div>
-        <div class="ns-pill">memo: &lt;http://www.semanticweb.org/meme-ontology#&gt;</div>
+        <div class="ns-pill">memo: &lt;https://purl.org/memo#&gt;</div>
+        <div class="ns-pill">wdt: &lt;http://www.wikidata.org/prop/direct/&gt;</div>
+        <div class="ns-pill">wd: &lt;http://www.wikidata.org/entity/&gt;</div>
         <div class="ns-pill">rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;</div>
         <div class="ns-pill">owl: &lt;http://www.w3.org/2002/07/owl#&gt;</div>
+        <div class="ns-pill">dcterms: &lt;http://purl.org/dc/terms/&gt;</div>
+        <div class="ns-pill">frbrer: &lt;http://iflastandards.info/ns/fr/frbr/frbrer/&gt;</div>
         <div class="ns-pill">xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;</div>
       </div>
 
@@ -350,7 +354,7 @@
 
         <button class="example-btn" data-example="count-format">
           <span class="ex-title">Count memes by format</span>
-          <span class="ex-desc">GROUP BY on memo:hasFormat</span>
+          <span class="ex-desc">GROUP BY on wdt:P2283 (hasFormat)</span>
         </button>
 
         <button class="example-btn" data-example="count-period">
@@ -363,14 +367,14 @@
           <span class="ex-desc">memo:hasAnimationStatus memo:Animated</span>
         </button>
 
-        <button class="example-btn" data-example="public-figures">
-          <span class="ex-title">Top public-figure score</span>
-          <span class="ex-desc">ORDER BY DESC(clipPublicFigureScore)</span>
+        <button class="example-btn" data-example="top-views">
+          <span class="ex-title">Most viewed memes</span>
+          <span class="ex-desc">ORDER BY DESC(memo:views)</span>
         </button>
 
         <button class="example-btn" data-example="twitter">
           <span class="ex-title">Memes from Twitter/X</span>
-          <span class="ex-desc">memo:hasOriginWork memo:TwitterX</span>
+          <span class="ex-desc">wdt:P123 wd:Q918 (origin platform)</span>
         </button>
 
         <button class="example-btn" data-example="all-classes">
@@ -380,12 +384,12 @@
 
         <button class="example-btn" data-example="no-text">
           <span class="ex-title">Memes with no text</span>
-          <span class="ex-desc">memo:hasTextPresence memo:NoText</span>
+          <span class="ex-desc">memo:hasTextPresence false (boolean)</span>
         </button>
 
         <button class="example-btn" data-example="cultural-refs">
-          <span class="ex-title">Cultural references</span>
-          <span class="ex-desc">memo:hasReference per MemeConcept</span>
+          <span class="ex-title">Most-referenced memes</span>
+          <span class="ex-desc">COUNT(memo:hasReference) per MemeConcept</span>
         </button>
 
         <button class="example-btn" data-example="meme-ideas">
@@ -419,8 +423,8 @@
         </button>
 
         <button class="example-btn" data-example="color-and-animation">
-          <span class="ex-title">Color × Animation analysis</span>
-          <span class="ex-desc">Variant transformations by style</span>
+          <span class="ex-title">Color × Animation matrix</span>
+          <span class="ex-desc">memo:isColor × memo:hasAnimationStatus</span>
         </button>
 
         <button class="example-btn" data-example="transformation-analysis">
@@ -445,13 +449,13 @@
         autocomplete="off"
         autocorrect="off"
         autocapitalize="off"
-      >PREFIX memo: &lt;http://www.semanticweb.org/meme-ontology#&gt;
-PREFIX rdfs:  &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+      >PREFIX memo: &lt;https://purl.org/memo#&gt;
+PREFIX wdt:  &lt;http://www.wikidata.org/prop/direct/&gt;
 
 SELECT ?format (COUNT(DISTINCT ?m) AS ?count)
 WHERE {
   ?m a memo:MemeConcept ;
-     memo:hasFormat ?fmt .
+     wdt:P2283 ?fmt .
   BIND(STRAFTER(STR(?fmt), "#") AS ?format)
 }
 GROUP BY ?format
@@ -486,236 +490,206 @@ ORDER BY DESC(?count)</textarea>
     var queryStatus = document.getElementById('query-status');
     var resultsDiv  = document.getElementById('sparql-results');
 
+    /* ── Shared prefix block ────────────────────────────────────────────── */
+    var PFX = [
+      'PREFIX memo:    <https://purl.org/memo#>',
+      'PREFIX wdt:     <http://www.wikidata.org/prop/direct/>',
+      'PREFIX wd:      <http://www.wikidata.org/entity/>',
+      'PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>',
+      'PREFIX owl:     <http://www.w3.org/2002/07/owl#>',
+      'PREFIX dcterms: <http://purl.org/dc/terms/>',
+      'PREFIX frbrer:  <http://iflastandards.info/ns/fr/frbr/frbrer/>',
+      'PREFIX xsd:     <http://www.w3.org/2001/XMLSchema#>',
+    ].join('\n');
+
     /* ── Example queries ────────────────────────────────────────────────── */
     var EXAMPLES = {
-      'count-format': [
-        'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
-        '',
+      // wdt:P2283 = hasFormat
+      'count-format': PFX + '\n\n' + [
         'SELECT ?format (COUNT(DISTINCT ?m) AS ?count)',
         'WHERE {',
         '  ?m a memo:MemeConcept ;',
-        '     memo:hasFormat ?fmt .',
+        '     wdt:P2283 ?fmt .',
         '  BIND(STRAFTER(STR(?fmt), "#") AS ?format)',
         '}',
         'GROUP BY ?format',
         'ORDER BY DESC(?count)'
       ].join('\n'),
 
-      'count-period': [
-        'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
-        '',
+      // wdt:P2408 = hasTimePeriod
+      'count-period': PFX + '\n\n' + [
         'SELECT ?period (COUNT(DISTINCT ?m) AS ?count)',
         'WHERE {',
         '  ?m a memo:MemeConcept ;',
-        '     memo:hasTimePeriod ?tp .',
+        '     wdt:P2408 ?tp .',
         '  BIND(STRAFTER(STR(?tp), "#") AS ?period)',
         '}',
         'GROUP BY ?period',
         'ORDER BY ?period'
       ].join('\n'),
 
-      'animated': [
-        'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
-        'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>',
-        '',
+      // memo:hasAnimationStatus  wdt:P2283 = hasFormat
+      'animated': PFX + '\n\n' + [
         'SELECT ?label ?format',
         'WHERE {',
         '  ?m a memo:MemeConcept ;',
         '     rdfs:label ?label ;',
         '     memo:hasAnimationStatus memo:Animated ;',
-        '     memo:hasFormat ?fmt .',
+        '     wdt:P2283 ?fmt .',
         '  BIND(STRAFTER(STR(?fmt), "#") AS ?format)',
         '}',
         'ORDER BY ?label',
         'LIMIT 100'
       ].join('\n'),
 
-      'public-figures': [
-        'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
-        'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>',
-        '',
-        'SELECT ?label ?score',
+      // memo:views (integer)
+      'top-views': PFX + '\n\n' + [
+        'SELECT ?label ?views',
         'WHERE {',
         '  ?m a memo:MemeConcept ;',
         '     rdfs:label ?label ;',
-        '     memo:clipPublicFigureScore ?score .',
+        '     memo:views ?views .',
         '}',
-        'ORDER BY DESC(?score)',
+        'ORDER BY DESC(?views)',
         'LIMIT 25'
       ].join('\n'),
 
-      'twitter': [
-        'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
-        'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>',
-        '',
+      // wdt:P123 = hasOriginPlatform  wd:Q918 = Twitter/X
+      'twitter': PFX + '\n\n' + [
         'SELECT ?label ?format ?period',
         'WHERE {',
         '  ?m a memo:MemeConcept ;',
         '     rdfs:label ?label ;',
-        '     memo:hasOriginWork memo:TwitterX ;',
-        '     memo:hasFormat ?fmt ;',
-        '     memo:hasTimePeriod ?tp .',
+        '     wdt:P123 wd:Q918 ;',
+        '     wdt:P2283 ?fmt ;',
+        '     wdt:P2408 ?tp .',
         '  BIND(STRAFTER(STR(?fmt), "#") AS ?format)',
         '  BIND(STRAFTER(STR(?tp), "#") AS ?period)',
         '}',
-        'ORDER BY ?label',
-        'LIMIT 50'
+        'ORDER BY ?label'
       ].join('\n'),
 
-      'all-classes': [
-        'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>',
-        'PREFIX owl:  <http://www.w3.org/2002/07/owl#>',
-        '',
-        'SELECT ?class ?label',
+      'all-classes': PFX + '\n\n' + [
+        'SELECT ?class ?label ?comment',
         'WHERE {',
         '  ?class a owl:Class .',
         '  OPTIONAL { ?class rdfs:label ?label }',
+        '  OPTIONAL { ?class rdfs:comment ?comment }',
         '}',
-        'ORDER BY ?class'
+        'ORDER BY ?label'
       ].join('\n'),
 
-      'no-text': [
-        'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
-        'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>',
-        '',
-        'SELECT ?label ?format ?imageType',
+      // memo:hasTextPresence is a boolean DatatypeProperty
+      'no-text': PFX + '\n\n' + [
+        'SELECT ?label ?format',
         'WHERE {',
         '  ?m a memo:MemeConcept ;',
         '     rdfs:label ?label ;',
-        '     memo:hasCanonicalTextPresence memo:NoText ;',
-        '     memo:hasFormat ?fmt ;',
-        '     memo:hasCanonicalImageType ?it .',
+        '     memo:hasTextPresence false ;',
+        '     wdt:P2283 ?fmt .',
         '  BIND(STRAFTER(STR(?fmt), "#") AS ?format)',
-        '  BIND(STRAFTER(STR(?it), "#") AS ?imageType)',
         '}',
         'ORDER BY ?label',
         'LIMIT 100'
       ].join('\n'),
 
-      'cultural-refs': [
-        'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
-        'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>',
-        '',
-        'SELECT ?memeName ?refLabel ?refClass',
+      // Count hasReference links per MemeConcept
+      'cultural-refs': PFX + '\n\n' + [
+        'SELECT ?memeName (COUNT(DISTINCT ?ref) AS ?refCount)',
         'WHERE {',
         '  ?m a memo:MemeConcept ;',
         '     rdfs:label ?memeName ;',
         '     memo:hasReference ?ref .',
-        '  ?ref rdfs:label ?refLabel .',
-        '  OPTIONAL {',
-        '    ?ref a ?refType .',
-        '    BIND(STRAFTER(STR(?refType), "#") AS ?refClass)',
-        '  }',
         '}',
-        'ORDER BY ?memeName ?refLabel',
-        'LIMIT 100'
+        'GROUP BY ?memeName',
+        'ORDER BY DESC(?refCount)',
+        'LIMIT 25'
       ].join('\n'),
 
-      'meme-ideas': [
-        'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
-        'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>',
-        '',
-        'SELECT ?ideaLabel ?memeName ?desc',
-        'WHERE {',
-        '  ?idea a memo:MemeIdea ;',
-        '        rdfs:label ?ideaLabel ;',
-        '        memo:conceptDescription ?desc ;',
-        '        memo:isConceptualizedAs ?m .',
-        '  ?m rdfs:label ?memeName .',
-        '}',
-        'ORDER BY ?memeName'
-      ].join('\n'),
-
-      'transformations': [
-        'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
-        'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>',
-        '',
-        'SELECT ?variantLabel ?memeName ?dimension ?extent ?note',
-        'WHERE {',
-        '  ?v a memo:VariantInstance ;',
-        '     rdfs:label ?variantLabel ;',
-        '     memo:isVariantOf ?m ;',
-        '     memo:hasTransformationDimension ?dim ;',
-        '     memo:hasTransformationExtent ?ext .',
-        '  ?m rdfs:label ?memeName .',
-        '  BIND(STRAFTER(STR(?dim), "#") AS ?dimension)',
-        '  BIND(STRAFTER(STR(?ext), "#") AS ?extent)',
-        '  OPTIONAL { ?v memo:transformationNote ?note }',
-        '}',
-        'ORDER BY ?memeName ?variantLabel'
-      ].join('\n'),
-
-      'ask': [
-        'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
-        '',
-        'ASK {',
-        '  ?m a memo:MemeConcept ;',
-        '     memo:hasFileFormat memo:GIF .',
-        '}'
-      ].join('\n'),
-
-      'describe': [
-        'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
-        '',
-        'DESCRIBE memo:woman-yelling-at-a-cat'
-      ].join('\n'),
-
-      'wikidata-regions': [
-        'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
-        'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>',
-        '',
-        'SELECT ?region ?wikidata (COUNT(DISTINCT ?m) AS ?memeCount)',
-        'WHERE {',
-        '  ?region a memo:GeographicRegion ;',
-        '          rdfs:label ?regionLabel ;',
-        '          rdfs:seeAlso ?wikidata .',
-        '  ?m a memo:MemeConcept ;',
-        '     memo:hasRegion ?region .',
-        '}',
-        'GROUP BY ?region ?wikidata ?regionLabel',
-        'ORDER BY DESC(?memeCount)'
-      ].join('\n'),
-
-      'platform-stats': [
-        'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
-        'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>',
-        '',
-        'SELECT ?platform ?label (COUNT(DISTINCT ?m) AS ?count)',
-        'WHERE {',
-        '  ?platform a memo:OriginPlatform ;',
-        '            rdfs:label ?label ;',
-        '            rdfs:seeAlso ?wikidata .',
-        '  ?m a memo:MemeConcept ;',
-        '     memo:hasOriginPlatform ?platform .',
-        '}',
-        'GROUP BY ?platform ?label',
-        'ORDER BY DESC(?count)',
-        'LIMIT 20'
-      ].join('\n'),
-
-      'color-and-animation': [
-        'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
-        'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>',
-        '',
-        'SELECT ?memeName ?color ?animation (COUNT(DISTINCT ?v) AS ?variantCount)',
+      // MemeIdea → MemeConcept via memo:conceptualizes
+      'meme-ideas': PFX + '\n\n' + [
+        'SELECT ?memeName ?ideaLabel ?desc',
         'WHERE {',
         '  ?m a memo:MemeConcept ;',
         '     rdfs:label ?memeName ;',
-        '     memo:hasAnimationStatus ?anim ;',
-        '     memo:hasVariant ?v .',
-        '  ?v memo:hasVariantColorMode ?clr .',
-        '  BIND(STRAFTER(STR(?clr), "#") AS ?color)',
-        '  BIND(STRAFTER(STR(?anim), "#") AS ?animation)',
+        '     memo:conceptualizes ?idea .',
+        '  ?idea rdfs:label ?ideaLabel .',
+        '  OPTIONAL { ?idea memo:conceptDescription ?desc }',
         '}',
-        'GROUP BY ?memeName ?color ?animation',
         'ORDER BY ?memeName',
         'LIMIT 50'
       ].join('\n'),
 
-      'transformation-analysis': [
-        'PREFIX memo: <http://www.semanticweb.org/meme-ontology#>',
-        'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>',
-        '',
+      // wdt:P361 = isVariantOf  memo:hasTransformationDimension/Extent
+      'transformations': PFX + '\n\n' + [
+        'SELECT ?memeName ?variantTitle ?dimension ?extent',
+        'WHERE {',
+        '  ?v a memo:VariantInstance ;',
+        '     wdt:P361 ?m ;',
+        '     memo:hasTransformationDimension ?dim ;',
+        '     memo:hasTransformationExtent ?ext .',
+        '  ?m rdfs:label ?memeName .',
+        '  OPTIONAL { ?v memo:variantTitle ?variantTitle }',
+        '  BIND(STRAFTER(STR(?dim), "#") AS ?dimension)',
+        '  BIND(STRAFTER(STR(?ext), "#") AS ?extent)',
+        '}',
+        'ORDER BY ?memeName ?variantTitle',
+        'LIMIT 100'
+      ].join('\n'),
+
+      // dcterms:format = file format (FileFormat individuals)
+      'ask': PFX + '\n\n' + [
+        'ASK {',
+        '  ?m a memo:MemeConcept ;',
+        '     dcterms:format memo:GIF .',
+        '}'
+      ].join('\n'),
+
+      'describe': PFX + '\n\n' + [
+        'DESCRIBE memo:woman-yelling-at-a-cat'
+      ].join('\n'),
+
+      // wdt:P495 = hasRegion
+      'wikidata-regions': PFX + '\n\n' + [
+        'SELECT ?regionLabel (COUNT(DISTINCT ?m) AS ?memeCount)',
+        'WHERE {',
+        '  ?region a memo:GeographicRegion ;',
+        '          rdfs:label ?regionLabel .',
+        '  ?m a memo:MemeConcept ;',
+        '     wdt:P495 ?region .',
+        '}',
+        'GROUP BY ?regionLabel',
+        'ORDER BY DESC(?memeCount)'
+      ].join('\n'),
+
+      // wdt:P123 = hasOriginPlatform
+      'platform-stats': PFX + '\n\n' + [
+        'SELECT ?label (COUNT(DISTINCT ?m) AS ?count)',
+        'WHERE {',
+        '  ?platform a memo:OriginPlatform ;',
+        '            rdfs:label ?label .',
+        '  ?m a memo:MemeConcept ;',
+        '     wdt:P123 ?platform .',
+        '}',
+        'GROUP BY ?label',
+        'ORDER BY DESC(?count)'
+      ].join('\n'),
+
+      // memo:isColor = boolean  memo:hasAnimationStatus = named individual
+      'color-and-animation': PFX + '\n\n' + [
+        'SELECT ?colorMode ?animationStatus (COUNT(DISTINCT ?m) AS ?count)',
+        'WHERE {',
+        '  ?m a memo:MemeConcept ;',
+        '     memo:isColor ?isColor ;',
+        '     memo:hasAnimationStatus ?anim .',
+        '  BIND(IF(?isColor, "Color", "B&W") AS ?colorMode)',
+        '  BIND(STRAFTER(STR(?anim), "#") AS ?animationStatus)',
+        '}',
+        'GROUP BY ?colorMode ?animationStatus',
+        'ORDER BY ?colorMode ?animationStatus'
+      ].join('\n'),
+
+      'transformation-analysis': PFX + '\n\n' + [
         'SELECT ?dimension ?extent (COUNT(DISTINCT ?v) AS ?count)',
         'WHERE {',
         '  ?v a memo:VariantInstance ;',
@@ -745,7 +719,7 @@ ORDER BY DESC(?count)</textarea>
 
           var store  = new N3.Store();
           var parser = new N3.Parser({
-            baseIRI: 'http://www.semanticweb.org/meme-ontology#',
+            baseIRI: 'https://purl.org/memo#',
             format:  'Turtle'
           });
 
@@ -940,17 +914,34 @@ ORDER BY DESC(?count)</textarea>
     }
 
     /* ── Term → HTML ────────────────────────────────────────────────────── */
+    var URI_PREFIXES = [
+      ['https://purl.org/memo#',                          'memo:'],
+      ['http://www.wikidata.org/prop/direct/',            'wdt:'],
+      ['http://www.wikidata.org/entity/',                 'wd:'],
+      ['http://iflastandards.info/ns/fr/frbr/frbrer/',   'frbrer:'],
+      ['http://purl.org/dc/terms/',                       'dcterms:'],
+      ['http://www.w3.org/ns/prov#',                      'prov:'],
+      ['https://schema.org/',                             'schema:'],
+      ['http://www.w3.org/2000/01/rdf-schema#',          'rdfs:'],
+      ['http://www.w3.org/2002/07/owl#',                 'owl:'],
+      ['http://www.w3.org/2001/XMLSchema#',               'xsd:'],
+      ['http://www.w3.org/1999/02/22-rdf-syntax-ns#',    'rdf:'],
+    ];
+
+    function shortenURI(val) {
+      for (var i = 0; i < URI_PREFIXES.length; i++) {
+        if (val.startsWith(URI_PREFIXES[i][0]))
+          return URI_PREFIXES[i][1] + val.slice(URI_PREFIXES[i][0].length);
+      }
+      return val;
+    }
+
     function renderTerm(term) {
       if (!term) {
         return '<span class="td-null">(unbound)</span>';
       }
       if (term.termType === 'NamedNode') {
-        var val = term.value;
-        var short = val
-          .replace('http://www.semanticweb.org/meme-ontology#', 'memo:')
-          .replace('http://www.w3.org/2000/01/rdf-schema#',    'rdfs:')
-          .replace('http://www.w3.org/2002/07/owl#',           'owl:')
-          .replace('http://www.w3.org/2001/XMLSchema#',        'xsd:');
+        var short = shortenURI(term.value);
         return '<span class="td-uri">' + escapeHtml(short) + '</span>';
       }
       if (term.termType === 'Literal') {
