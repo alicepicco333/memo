@@ -895,27 +895,27 @@ function buildPlatformTimeStacked() {
     .range([0, iW])
     .padding(0.22);
 
-  // Palette ottimizzata: 15 colori distinti, ben contrastati
-  const nicePalette = [
-    '#1f77b4', // blue
-    '#ff7f0e', // orange
-    '#2ca02c', // green
-    '#d62728', // red
-    '#9467bd', // purple
-    '#8c564b', // brown
-    '#e377c2', // pink
-    '#7f7f7f', // gray
-    '#bcbd22', // olive
-    '#17becf', // cyan
-    '#f781bf', // magenta
-    '#a65628', // dark brown
-    '#4daf4a', // light green
-    '#984ea3', // violet
-    '#ffb300'  // gold
+  // Palette soft/pastello ispirata a ColorBrewer Set2/Paired
+  const pastelPalette = [
+    '#66c2a5', // teal
+    '#fc8d62', // orange
+    '#8da0cb', // blue
+    '#e78ac3', // pink
+    '#a6d854', // green
+    '#ffd92f', // yellow
+    '#e5c494', // beige
+    '#b3b3b3', // gray
+    '#80b1d3', // light blue
+    '#fdb462', // light orange
+    '#b3de69', // light green
+    '#fccde5', // light pink
+    '#d9d9d9', // light gray
+    '#bc80bd', // purple
+    '#ccebc5'  // mint
   ];
   const color = d3.scaleOrdinal()
     .domain(platforms)
-    .range(nicePalette);
+    .range(pastelPalette);
 
   const stack = d3.stack().keys(platforms);
   const stacked = stack(rows);
