@@ -1,3 +1,7 @@
+/* ── Constants ─────────────────────────────────────────────────────────────── */
+// Platforms that post-date 2009 — used to suppress impossible Pre2010 data artifacts.
+const MODERN_PLATFORMS = new Set(['TikTok', 'Instagram', 'Snapchat', 'Twitch', 'Discord']);
+
 /* ── State ─────────────────────────────────────────────────────────────────── */
 let isMobile = () => window.innerWidth <= 768;
 let isSmallMobile = () => window.innerWidth <= 480;
@@ -410,11 +414,12 @@ function buildPopularityByFormat() {
     .range([iH, 0]);
 
   const maxEntries = d3.max(points, d => d.entries || 0) || 1;
-  // Start at 0 so sqrt is measured from the true origin — area stays proportional to entries.
-  const rMax = Math.max(14, Math.min(44, x.bandwidth() * 0.46));
+  // rMax grows with chart width; bandwidth cap is removed — bubbles may overlap, which is fine.
+  // range starts at 4 so the smallest formats are always a visible dot.
+  const rMax = Math.min(46, Math.max(32, iW / 18));
   const r = d3.scaleSqrt()
     .domain([0, maxEntries])
-    .range([0, rMax]);
+    .range([4, rMax]);
 
   wrap.innerHTML = '';
   const svgEl = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -695,6 +700,9 @@ function buildPlatformTimeStacked() {
     .attr('width', x.bandwidth())
     .attr('stroke', '#fff')
     .attr('stroke-width', 1)
+    // Disable pointer events on invisible segments (0-height rects still occupy the SVG layer
+    // and can receive mouse events at their stacking position, leaking phantom tooltips).
+    .attr('pointer-events', d => (d[1] - d[0]) < 0.001 ? 'none' : 'all')
     .style('cursor', 'pointer')
     .on('mouseover', (e, d) => {
       const proportion = (d[1] - d[0]) * 100;
@@ -717,6 +725,8 @@ function buildPlatformTimeStacked() {
         slugs = Object.keys(DATA.memes).filter(slug => {
           const m = DATA.memes[slug];
           if (m.hasTimePeriod !== storedPeriod) return false;
+          // Never surface a MODERN_PLATFORMS meme in Pre2010 — bad data artifact.
+          if (storedPeriod === 'Pre2010' && MODERN_PLATFORMS.has(m.hasOriginPlatform)) return false;
           if (d.key === 'Other') return !m.hasOriginPlatform || !namedPlatforms.has(m.hasOriginPlatform);
           return m.hasOriginPlatform === d.key;
         });
