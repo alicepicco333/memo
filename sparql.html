@@ -333,7 +333,7 @@
         <div class="sidebar-label">Ontology</div>
         <div class="owl-status">
           <div class="owl-dot loading" id="owl-dot"></div>
-          <span id="owl-status-text">Loading Turtle…</span>
+          <span id="owl-status-text">Loading D0 ontology…</span>
         </div>
         <div class="owl-stats" id="owl-stats"></div>
       </div>
@@ -670,7 +670,7 @@ ORDER BY DESC(?count)</textarea>
       owlDot.className = 'owl-dot loading';
       owlStatus.textContent = 'Fetching ontology…';
 
-      var sources = ['meme_ontology.ttl', 'meme_ontology_unpopulated.ttl'];
+      var sources = ['meme_ontology_d0.ttl', 'meme_ontology.ttl'];
 
       function trySource(idx, lastErr) {
         if (idx >= sources.length) {

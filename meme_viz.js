@@ -909,15 +909,15 @@ function buildPlatformTimeStacked() {
     .padding(0.22);
 
   const platformColorMap = {
-    '4chan':     '#5aaa78',  // sage green   — 4chan's green
-    'Facebook':  '#6080d4',  // cornflower   — Facebook blue
-    'Instagram': '#c46fa0',  // dusty rose   — Instagram gradient midpoint
-    'Reddit':    '#d47a58',  // terra cotta  — Reddit orange
-    'TikTok':    '#45bec4',  // teal         — TikTok accent
-    'Tumblr':    '#7391b0',  // slate        — Tumblr navy softened
-    'TwitterX':  '#5aabdc',  // sky blue     — Twitter classic
-    'YouTube':   '#d45a55',  // coral red    — YouTube red
-    'Other':     '#9aabb8',  // neutral      — gray-blue
+    '4chan':     '#7dc497',  // sage green   — 4chan's green
+    'Facebook':  '#839de0',  // cornflower   — Facebook blue
+    'Instagram': '#d68fba',  // dusty rose   — Instagram gradient midpoint
+    'Reddit':    '#e09a7e',  // terra cotta  — Reddit orange
+    'TikTok':    '#68cfd4',  // teal         — TikTok accent
+    'Tumblr':    '#93adc4',  // slate        — Tumblr navy softened
+    'TwitterX':  '#7ec0e8',  // sky blue     — Twitter classic
+    'YouTube':   '#e07e7a',  // coral red    — YouTube red
+    'Other':     '#b0c0cc',  // neutral      — gray-blue
   };
   const color = platform =>
     platformColorMap[platform] || '#b0b8c8';
