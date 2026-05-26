@@ -896,20 +896,21 @@ function buildPlatformTimeStacked() {
     .padding(0.22);
 
   // Palette ispirata ai loghi delle piattaforme, armonizzata
+  // Versioni pastello/desaturate dei colori logo
   const platformColorMap = {
-    'TikTok':    '#25F4EE', // TikTok azzurro
-    'Instagram':'#E1306C', // Instagram rosa
-    'YouTube':  '#FF0000', // YouTube rosso
-    'Twitter':  '#1DA1F2', // Twitter blu
-    'Reddit':   '#FF5700', // Reddit arancione
-    'Discord':  '#5865F2', // Discord blu
-    'Twitch':   '#9146FF', // Twitch viola
-    'Facebook': '#1877F2', // Facebook blu
-    'Snapchat': '#FFFC00', // Snapchat giallo
-    'Vine':     '#00B489', // Vine verde
-    'Tumblr':   '#36465D', // Tumblr blu scuro
-    '4chan':    '#98E036', // 4chan verde chiaro
-    'Other':    '#B0B0B0'  // Other grigio neutro
+    'TikTok':    '#AEECEF', // TikTok azzurro pastello
+    'Instagram':'#F6B1C3', // Instagram rosa pastello
+    'YouTube':  '#FFB3B3', // YouTube rosso pastello
+    'Twitter':  '#B3E5FC', // Twitter blu pastello
+    'Reddit':   '#FFD6B3', // Reddit arancione pastello
+    'Discord':  '#C5C9F7', // Discord blu pastello
+    'Twitch':   '#E0C6FF', // Twitch viola pastello
+    'Facebook': '#B3D1FC', // Facebook blu pastello
+    'Snapchat': '#FFF9B3', // Snapchat giallo pastello
+    'Vine':     '#B3F6E0', // Vine verde pastello
+    'Tumblr':   '#BFC9D1', // Tumblr blu scuro pastello
+    '4chan':    '#D8F7B3', // 4chan verde chiaro pastello
+    'Other':    '#E0E0E0'  // Other grigio chiaro
   };
   // Palette fallback per piattaforme non note
   const pastelPalette = [
