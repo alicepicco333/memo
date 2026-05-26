@@ -1018,7 +1018,7 @@ function buildPlatformTimeStacked() {
             return m.hasOriginPlatform === d.key;
           });
         }
-        openPanel(`${d.data.period} · ${d.key}`, slugs, 'platformTime', 'segment');
+        openPanel(`${d.period} · ${d.platform}`, slugs, 'platformTime', 'segment');
       });
 
   g.append('g')
