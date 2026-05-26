@@ -503,11 +503,8 @@ ORDER BY DESC(?count)</textarea>
       var out = String(ttlText || '');
 
       // Remove long literal blocks known to carry malformed quotes in scraped captions.
-      out = out.replace(/\n\s*memo:(captionText|variantTitle)\s+"""[\s\S]*?"""\^\^xsd:string\s*;/g, '\n');
-      out = out.replace(/\n\s*memo:(captionText|variantTitle)\s+"(?:\\.|[^"\\])*"\^\^xsd:string\s*;/g, '\n');
-
-      // Last-resort cleanup: if malformed literals remain on same predicates, drop that statement chunk.
-      out = out.replace(/\n\s*memo:(captionText|variantTitle)\s+[\s\S]*?;/g, '\n');
+      out = out.replace(/\n\s*memo:(captionText|variantTitle)\s+"""[\s\S]*?"""(?:\^\^[^;\n]+|@[a-zA-Z-]+)?\s*;/g, '\n');
+      out = out.replace(/\n\s*memo:(captionText|variantTitle)\s+"(?:\\.|[^"\\])*"(?:\^\^[^;\n]+|@[a-zA-Z-]+)?\s*;/g, '\n');
 
       return out;
     }
