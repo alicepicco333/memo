@@ -5,6 +5,7 @@ const MODERN_PLATFORMS = new Set(['TikTok', 'Instagram', 'Snapchat', 'Twitch', '
 const POST2015_PLATFORMS = new Set(['TikTok']);
 const LODE_TARGET_BASE = 'http://150.146.207.114/lode/extract';
 const RAW_OWL_URL = 'https://raw.githubusercontent.com/alicepicco333/memo/refs/heads/main/meme_ontology_unpopulated.owl';
+const RAW_OWL_URL_CANONICAL = 'https://raw.githubusercontent.com/alicepicco333/memo/main/meme_ontology_unpopulated.owl';
 
 /* ── State ─────────────────────────────────────────────────────────────────── */
 let isMobile = () => window.innerWidth <= 768;
@@ -236,6 +237,39 @@ function safeEntityId(iri) {
   return 'onto-entity-' + String(iri || '').replace(/[^a-zA-Z0-9_-]/g, '_');
 }
 
+function hasRdfType(node, rdfNs, typeIri) {
+  var typeNodes = node.getElementsByTagNameNS(rdfNs, 'type');
+  for (var i = 0; i < typeNodes.length; i++) {
+    var t = xmlAttr(typeNodes[i], rdfNs, 'resource', 'rdf:resource');
+    if (t === typeIri) return true;
+  }
+  return false;
+}
+
+function getTypedDescriptionNodes(doc, rdfNs, typeIri) {
+  var descNodes = Array.prototype.slice.call(doc.getElementsByTagNameNS(rdfNs, 'Description'));
+  return descNodes.filter(function(node) {
+    return hasRdfType(node, rdfNs, typeIri);
+  });
+}
+
+function collectOwlEntityNodes(doc, owlNs, rdfNs, elementName, typeIri) {
+  var explicitNodes = Array.prototype.slice.call(doc.getElementsByTagNameNS(owlNs, elementName));
+  var typedNodes = getTypedDescriptionNodes(doc, rdfNs, typeIri);
+  var merged = [];
+  var seen = {};
+
+  explicitNodes.concat(typedNodes).forEach(function(node) {
+    var iri = xmlAttr(node, rdfNs, 'about', 'rdf:about');
+    var key = iri || ('_blank_' + merged.length);
+    if (seen[key]) return;
+    seen[key] = true;
+    merged.push(node);
+  });
+
+  return merged;
+}
+
 function buildLodeTargetUrl() {
   var owlUrl = RAW_OWL_URL;
   return LODE_TARGET_BASE + '?url=' + encodeURIComponent(owlUrl) + '&owlapi=true&imported=true&closure=true&reasoner=true&lang=en';
@@ -261,12 +295,19 @@ function fetchOntologyXmlFromCandidates(candidates) {
         }
 
         var OWL_NS = 'http://www.w3.org/2002/07/owl#';
-        var hasOntology = doc.getElementsByTagNameNS(OWL_NS, 'Ontology').length > 0;
+        var RDF_NS = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#';
+        var hasOntology =
+          doc.getElementsByTagNameNS(OWL_NS, 'Ontology').length > 0 ||
+          getTypedDescriptionNodes(doc, RDF_NS, OWL_NS + 'Ontology').length > 0;
         var hasSchemaEntities =
           doc.getElementsByTagNameNS(OWL_NS, 'Class').length > 0 ||
           doc.getElementsByTagNameNS(OWL_NS, 'ObjectProperty').length > 0 ||
           doc.getElementsByTagNameNS(OWL_NS, 'DatatypeProperty').length > 0 ||
-          doc.getElementsByTagNameNS(OWL_NS, 'AnnotationProperty').length > 0;
+          doc.getElementsByTagNameNS(OWL_NS, 'AnnotationProperty').length > 0 ||
+          getTypedDescriptionNodes(doc, RDF_NS, OWL_NS + 'Class').length > 0 ||
+          getTypedDescriptionNodes(doc, RDF_NS, OWL_NS + 'ObjectProperty').length > 0 ||
+          getTypedDescriptionNodes(doc, RDF_NS, OWL_NS + 'DatatypeProperty').length > 0 ||
+          getTypedDescriptionNodes(doc, RDF_NS, OWL_NS + 'AnnotationProperty').length > 0;
 
         if (!hasOntology && !hasSchemaEntities) {
           throw new Error('Response is not OWL ontology at ' + path);
@@ -381,12 +422,13 @@ function initOntoPage() {
   if (lodeBottom) lodeBottom.href = lodeUrl;
 
   fetchOntologyXmlFromCandidates([
-    RAW_OWL_URL,
-    '/ontology',
+    'meme_ontology_unpopulated.owl',
+    '/meme_ontology_unpopulated.owl',
     'meme_ontology.owl',
     '/meme_ontology.owl',
-    'meme_ontology_unpopulated.owl',
-    '/meme_ontology_unpopulated.owl'
+    '/ontology',
+    RAW_OWL_URL_CANONICAL,
+    RAW_OWL_URL
   ])
     .then(function(doc) {
 
@@ -394,32 +436,34 @@ function initOntoPage() {
       var RDFS_NS = 'http://www.w3.org/2000/01/rdf-schema#';
       var OWL_NS = 'http://www.w3.org/2002/07/owl#';
 
-      var classes = Array.prototype.slice.call(doc.getElementsByTagNameNS(OWL_NS, 'Class'))
+      var classes = collectOwlEntityNodes(doc, OWL_NS, RDF_NS, 'Class', OWL_NS + 'Class')
         .map(function(n) { return toEntity(n, RDF_NS, RDFS_NS, 'Class'); })
         .filter(Boolean)
         .sort(function(a, b) { return a.label.localeCompare(b.label); });
 
-      var objectProps = Array.prototype.slice.call(doc.getElementsByTagNameNS(OWL_NS, 'ObjectProperty'))
+      var objectProps = collectOwlEntityNodes(doc, OWL_NS, RDF_NS, 'ObjectProperty', OWL_NS + 'ObjectProperty')
         .map(function(n) { return toEntity(n, RDF_NS, RDFS_NS, 'Object property'); })
         .filter(Boolean)
         .sort(function(a, b) { return a.label.localeCompare(b.label); });
 
-      var datatypeProps = Array.prototype.slice.call(doc.getElementsByTagNameNS(OWL_NS, 'DatatypeProperty'))
+      var datatypeProps = collectOwlEntityNodes(doc, OWL_NS, RDF_NS, 'DatatypeProperty', OWL_NS + 'DatatypeProperty')
         .map(function(n) { return toEntity(n, RDF_NS, RDFS_NS, 'Datatype property'); })
         .filter(Boolean)
         .sort(function(a, b) { return a.label.localeCompare(b.label); });
 
-      var annotationProps = Array.prototype.slice.call(doc.getElementsByTagNameNS(OWL_NS, 'AnnotationProperty'))
+      var annotationProps = collectOwlEntityNodes(doc, OWL_NS, RDF_NS, 'AnnotationProperty', OWL_NS + 'AnnotationProperty')
         .map(function(n) { return toEntity(n, RDF_NS, RDFS_NS, 'Annotation property'); })
         .filter(Boolean)
         .sort(function(a, b) { return a.label.localeCompare(b.label); });
 
-      var individuals = Array.prototype.slice.call(doc.getElementsByTagNameNS(OWL_NS, 'NamedIndividual'))
+      var individuals = collectOwlEntityNodes(doc, OWL_NS, RDF_NS, 'NamedIndividual', OWL_NS + 'NamedIndividual')
         .map(function(n) { return toEntity(n, RDF_NS, RDFS_NS, 'Named individual'); })
         .filter(Boolean)
         .sort(function(a, b) { return a.label.localeCompare(b.label); });
 
-      var ontologyNode = doc.getElementsByTagNameNS(OWL_NS, 'Ontology')[0];
+      var ontologyNode =
+        doc.getElementsByTagNameNS(OWL_NS, 'Ontology')[0] ||
+        getTypedDescriptionNodes(doc, RDF_NS, OWL_NS + 'Ontology')[0];
       var ontologyIri = ontologyNode ? xmlAttr(ontologyNode, RDF_NS, 'about', 'rdf:about') : '';
 
       nav.innerHTML = '' +
