@@ -30,7 +30,7 @@ from rdflib import Graph, Namespace, RDF, RDFS, OWL, URIRef, Literal, XSD
 
 MEME   = Namespace("https://purl.org/memo#")
 WD     = Namespace("http://www.wikidata.org/entity/")
-WDT    = Namespace("http://www.wikidata.org/prop/direct/")
+WDP    = Namespace("http://www.wikidata.org/prop/direct/")
 SCHEMA = Namespace("https://schema.org/")
 FRBRER = Namespace("http://iflastandards.info/ns/fr/frbr/frbrer/")
 
@@ -51,6 +51,28 @@ for _sub in ["PoliticalEvent", "MediaProperty", "WebCulture",
 GEO_PLAT_TYPES = {MEME.GeographicRegion, MEME.OriginPlatform}  # was WD.Q82794 / WD.Q3220391
 
 
+def _inject_owl_xmlns(xml_str: str) -> str:
+    CANDIDATES = [
+        ('frbrer', 'http://iflastandards.info/ns/fr/frbr/frbrer/'),
+        ('wd',     'http://www.wikidata.org/entity/'),
+        ('wdp',    'http://www.wikidata.org/prop/direct/'),
+        ('schema', 'https://schema.org/'),
+        ('prov',   'http://www.w3.org/ns/prov#'),
+    ]
+    rdf_start = xml_str.find('<rdf:RDF')
+    rdf_end   = xml_str.find('>', rdf_start)
+    rdf_block = xml_str[rdf_start:rdf_end]
+    to_add = [
+        f'xmlns:{prefix}="{uri}"'
+        for prefix, uri in CANDIDATES
+        if f'xmlns:{prefix}=' not in rdf_block
+    ]
+    if not to_add:
+        return xml_str
+    extra = '   ' + '\n   '.join(to_add) + '\n'
+    return xml_str.replace("<rdf:RDF\n", f"<rdf:RDF\n{extra}", 1)
+
+
 def build_d0(populated_path, schema_path, out_owl, out_ttl):
     print(f"Loading populated  : {populated_path}")
     g = Graph()
@@ -67,7 +89,7 @@ def build_d0(populated_path, schema_path, out_owl, out_ttl):
     for s in g.subjects(MEME.conceptualizes, None):
         if (s, RDF.type, MEME.MemeConcept) in g:
             d0.add(s)
-    for s in g.subjects(WDT.P527, None):          # hasVariant
+    for s in g.subjects(WDP.P527, None):          # hasVariant
         if (s, RDF.type, MEME.MemeConcept) in g:
             d0.add(s)
     for s in g.subjects(MEME.hasReference, None):
@@ -88,7 +110,7 @@ def build_d0(populated_path, schema_path, out_owl, out_ttl):
 
     # ── Collect linked ABox individuals ───────────────────────────────────────
     ideas    = {o for d in d0 for o in g.objects(d, MEME.conceptualizes)}
-    variants = {o for d in d0 for o in g.objects(d, WDT.P527)}
+    variants = {o for d in d0 for o in g.objects(d, WDP.P527)}
     refs     = {o for d in d0 for o in g.objects(d, MEME.hasReference)}
 
     # Stub MemeIdea individuals for D0 memes that have no conceptualizes link
@@ -112,8 +134,8 @@ def build_d0(populated_path, schema_path, out_owl, out_ttl):
     print(f"D0 OriginWork      : {len(d0_works)}")
 
     # ── D0-referenced region and platform individuals only ────────────────────
-    d0_geo  = {o for d in d0 for o in g.objects(d, WDT.P495)}   # hasRegion
-    d0_plat = {o for d in d0 for o in g.objects(d, WDT.P123)}   # hasOriginPlatform
+    d0_geo  = {o for d in d0 for o in g.objects(d, WDP.P495)}   # hasRegion
+    d0_plat = {o for d in d0 for o in g.objects(d, WDP.P123)}   # hasOriginPlatform
     print(f"D0 GeographicRegion: {len(d0_geo)}")
     print(f"D0 OriginPlatform  : {len(d0_plat)}")
 
@@ -146,7 +168,7 @@ def build_d0(populated_path, schema_path, out_owl, out_ttl):
         out.bind(prefix, ns, override=True)
     # Explicitly bind wd:, wdt:, frbrer: — lost when parsing from RDF/XML
     out.bind("wd",     WD,     override=True)
-    out.bind("wdt",    WDT,    override=True)
+    out.bind("wdp",    WDP,    override=True)
     out.bind("frbrer", FRBRER, override=True)
 
     # Copy TBox from schema
@@ -193,7 +215,7 @@ def build_d0(populated_path, schema_path, out_owl, out_ttl):
     print(f"\nTBox triples       : {tbox_count}")
     print(f"Total triples      : {len(out)}")
 
-    out.serialize(destination=str(out_owl), format="xml")
+    out_owl.write_text(_inject_owl_xmlns(out.serialize(format="xml")), encoding="utf-8")
     print(f"Written            : {out_owl}")
     if out_ttl:
         out.serialize(destination=str(out_ttl), format="turtle")

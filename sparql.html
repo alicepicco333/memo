@@ -340,7 +340,7 @@
       <div class="sidebar-section">
         <div class="sidebar-label">Prefixes</div>
         <div class="ns-pill">memo: &lt;https://purl.org/memo#&gt;</div>
-        <div class="ns-pill">wdt: &lt;http://www.wikidata.org/prop/direct/&gt;</div>
+        <div class="ns-pill">wdp: &lt;http://www.wikidata.org/prop/direct/&gt;</div>
         <div class="ns-pill">wd: &lt;http://www.wikidata.org/entity/&gt;</div>
         <div class="ns-pill">rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;</div>
         <div class="ns-pill">owl: &lt;http://www.w3.org/2002/07/owl#&gt;</div>
@@ -354,7 +354,7 @@
 
         <button class="example-btn" data-example="count-format">
           <span class="ex-title">Count memes by format</span>
-          <span class="ex-desc">GROUP BY on wdt:P2283 (hasFormat)</span>
+          <span class="ex-desc">GROUP BY on wdp:P2283 (hasFormat)</span>
         </button>
 
         <button class="example-btn" data-example="count-period">
@@ -374,7 +374,7 @@
 
         <button class="example-btn" data-example="twitter">
           <span class="ex-title">Memes from Twitter/X</span>
-          <span class="ex-desc">wdt:P123 wd:Q918 (origin platform)</span>
+          <span class="ex-desc">wdp:P123 wd:Q918 (origin platform)</span>
         </button>
 
         <button class="example-btn" data-example="all-classes">
@@ -450,12 +450,12 @@
         autocorrect="off"
         autocapitalize="off"
       >PREFIX memo: &lt;https://purl.org/memo#&gt;
-PREFIX wdt:  &lt;http://www.wikidata.org/prop/direct/&gt;
+PREFIX wdp:  &lt;http://www.wikidata.org/prop/direct/&gt;
 
 SELECT ?format (COUNT(DISTINCT ?m) AS ?count)
 WHERE {
   ?m a memo:MemeConcept ;
-     wdt:P2283 ?fmt .
+     wdp:P2283 ?fmt .
   BIND(STRAFTER(STR(?fmt), "#") AS ?format)
 }
 GROUP BY ?format
@@ -493,7 +493,7 @@ ORDER BY DESC(?count)</textarea>
     /* ── Shared prefix block ────────────────────────────────────────────── */
     var PFX = [
       'PREFIX memo:    <https://purl.org/memo#>',
-      'PREFIX wdt:     <http://www.wikidata.org/prop/direct/>',
+      'PREFIX wdp:     <http://www.wikidata.org/prop/direct/>',
       'PREFIX wd:      <http://www.wikidata.org/entity/>',
       'PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>',
       'PREFIX owl:     <http://www.w3.org/2002/07/owl#>',
@@ -504,38 +504,38 @@ ORDER BY DESC(?count)</textarea>
 
     /* ── Example queries ────────────────────────────────────────────────── */
     var EXAMPLES = {
-      // wdt:P2283 = hasFormat
+      // wdp:P2283 = hasFormat
       'count-format': PFX + '\n\n' + [
         'SELECT ?format (COUNT(DISTINCT ?m) AS ?count)',
         'WHERE {',
         '  ?m a memo:MemeConcept ;',
-        '     wdt:P2283 ?fmt .',
+        '     wdp:P2283 ?fmt .',
         '  BIND(STRAFTER(STR(?fmt), "#") AS ?format)',
         '}',
         'GROUP BY ?format',
         'ORDER BY DESC(?count)'
       ].join('\n'),
 
-      // wdt:P2408 = hasTimePeriod
+      // wdp:P2408 = hasTimePeriod
       'count-period': PFX + '\n\n' + [
         'SELECT ?period (COUNT(DISTINCT ?m) AS ?count)',
         'WHERE {',
         '  ?m a memo:MemeConcept ;',
-        '     wdt:P2408 ?tp .',
+        '     wdp:P2408 ?tp .',
         '  BIND(STRAFTER(STR(?tp), "#") AS ?period)',
         '}',
         'GROUP BY ?period',
         'ORDER BY ?period'
       ].join('\n'),
 
-      // memo:hasAnimationStatus  wdt:P2283 = hasFormat
+      // memo:hasAnimationStatus  wdp:P2283 = hasFormat
       'animated': PFX + '\n\n' + [
         'SELECT ?label ?format',
         'WHERE {',
         '  ?m a memo:MemeConcept ;',
         '     rdfs:label ?label ;',
         '     memo:hasAnimationStatus memo:Animated ;',
-        '     wdt:P2283 ?fmt .',
+        '     wdp:P2283 ?fmt .',
         '  BIND(STRAFTER(STR(?fmt), "#") AS ?format)',
         '}',
         'ORDER BY ?label',
@@ -554,15 +554,15 @@ ORDER BY DESC(?count)</textarea>
         'LIMIT 25'
       ].join('\n'),
 
-      // wdt:P123 = hasOriginPlatform  wd:Q918 = Twitter/X
+      // wdp:P123 = hasOriginPlatform  wd:Q918 = Twitter/X
       'twitter': PFX + '\n\n' + [
         'SELECT ?label ?format ?period',
         'WHERE {',
         '  ?m a memo:MemeConcept ;',
         '     rdfs:label ?label ;',
-        '     wdt:P123 wd:Q918 ;',
-        '     wdt:P2283 ?fmt ;',
-        '     wdt:P2408 ?tp .',
+        '     wdp:P123 wd:Q918 ;',
+        '     wdp:P2283 ?fmt ;',
+        '     wdp:P2408 ?tp .',
         '  BIND(STRAFTER(STR(?fmt), "#") AS ?format)',
         '  BIND(STRAFTER(STR(?tp), "#") AS ?period)',
         '}',
@@ -586,7 +586,7 @@ ORDER BY DESC(?count)</textarea>
         '  ?m a memo:MemeConcept ;',
         '     rdfs:label ?label ;',
         '     memo:hasTextPresence false ;',
-        '     wdt:P2283 ?fmt .',
+        '     wdp:P2283 ?fmt .',
         '  BIND(STRAFTER(STR(?fmt), "#") AS ?format)',
         '}',
         'ORDER BY ?label',
@@ -620,12 +620,12 @@ ORDER BY DESC(?count)</textarea>
         'LIMIT 50'
       ].join('\n'),
 
-      // wdt:P361 = isVariantOf  memo:hasTransformationDimension/Extent
+      // wdp:P361 = isVariantOf  memo:hasTransformationDimension/Extent
       'transformations': PFX + '\n\n' + [
         'SELECT ?memeName ?variantTitle ?dimension ?extent',
         'WHERE {',
         '  ?v a memo:VariantInstance ;',
-        '     wdt:P361 ?m ;',
+        '     wdp:P361 ?m ;',
         '     memo:hasTransformationDimension ?dim ;',
         '     memo:hasTransformationExtent ?ext .',
         '  ?m rdfs:label ?memeName .',
@@ -649,27 +649,27 @@ ORDER BY DESC(?count)</textarea>
         'DESCRIBE memo:woman-yelling-at-a-cat'
       ].join('\n'),
 
-      // wdt:P495 = hasRegion
+      // wdp:P495 = hasRegion
       'wikidata-regions': PFX + '\n\n' + [
         'SELECT ?regionLabel (COUNT(DISTINCT ?m) AS ?memeCount)',
         'WHERE {',
         '  ?region a memo:GeographicRegion ;',
         '          rdfs:label ?regionLabel .',
         '  ?m a memo:MemeConcept ;',
-        '     wdt:P495 ?region .',
+        '     wdp:P495 ?region .',
         '}',
         'GROUP BY ?regionLabel',
         'ORDER BY DESC(?memeCount)'
       ].join('\n'),
 
-      // wdt:P123 = hasOriginPlatform
+      // wdp:P123 = hasOriginPlatform
       'platform-stats': PFX + '\n\n' + [
         'SELECT ?label (COUNT(DISTINCT ?m) AS ?count)',
         'WHERE {',
         '  ?platform a memo:OriginPlatform ;',
         '            rdfs:label ?label .',
         '  ?m a memo:MemeConcept ;',
-        '     wdt:P123 ?platform .',
+        '     wdp:P123 ?platform .',
         '}',
         'GROUP BY ?label',
         'ORDER BY DESC(?count)'
@@ -916,7 +916,7 @@ ORDER BY DESC(?count)</textarea>
     /* ── Term → HTML ────────────────────────────────────────────────────── */
     var URI_PREFIXES = [
       ['https://purl.org/memo#',                          'memo:'],
-      ['http://www.wikidata.org/prop/direct/',            'wdt:'],
+      ['http://www.wikidata.org/prop/direct/',            'wdp:'],
       ['http://www.wikidata.org/entity/',                 'wd:'],
       ['http://iflastandards.info/ns/fr/frbr/frbrer/',   'frbrer:'],
       ['http://purl.org/dc/terms/',                       'dcterms:'],

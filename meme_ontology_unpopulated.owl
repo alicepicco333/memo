@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rdf:RDF
+   xmlns:frbrer="http://iflastandards.info/ns/fr/frbr/frbrer/"
+   xmlns:wd="http://www.wikidata.org/entity/"
+   xmlns:wdp="http://www.wikidata.org/prop/direct/"
+   xmlns:schema="https://schema.org/"
+   xmlns:prov="http://www.w3.org/ns/prov#"
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:dcterms="http://purl.org/dc/terms/"
    xmlns:memo="https://purl.org/memo#"
@@ -7,583 +12,585 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
 >
-  <rdf:Description rdf:about="http://www.wikidata.org/prop/direct/P495">
-    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
-    <owl:inverseOf rdf:resource="https://purl.org/memo#isRegionOf"/>
-    <rdfs:label>hasRegion</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:range rdf:resource="https://purl.org/memo#GeographicRegion"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#CulturalReference">
-    <rdfs:comment xml:lang="en">Cultural artefact, event, or phenomenon that a meme iconologically references; aligned with Wikidata Q96622155.</rdfs:comment>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q96622155"/>
-    <rdfs:label>CulturalReference</rdfs:label>
-    <memo:semanticLevel>Iconological</memo:semanticLevel>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#variantIndex">
-    <rdfs:domain rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:label>variantIndex</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.wikidata.org/prop/direct/P123">
     <rdfs:range rdf:resource="https://purl.org/memo#OriginPlatform"/>
-    <rdfs:label>hasOriginPlatform</rdfs:label>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
     <owl:inverseOf rdf:resource="https://purl.org/memo#isOriginPlatformOf"/>
-    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
+    <rdfs:label>hasOriginPlatform</rdfs:label>
   </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#WebCulture">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>WebCulture</rdfs:label>
-    <rdfs:comment xml:lang="en">A web-native cultural phenomenon, community, or trend referenced by a meme.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="https://purl.org/memo#CulturalReference"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#conceptualizes">
-    <rdfs:label>conceptualizes</rdfs:label>
-    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
-    <owl:inverseOf rdf:resource="https://purl.org/memo#isConceptualizedAs"/>
-    <rdfs:range rdf:resource="https://purl.org/memo#MemeIdea"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#hasImageType">
-    <owl:inverseOf rdf:resource="https://purl.org/memo#isImageTypeOf"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:range rdf:resource="https://purl.org/memo#ImageType"/>
-    <rdfs:domain rdf:nodeID="N7ffcdc8f12704bf389b69612c39b1d15"/>
-    <rdfs:label>hasImageType</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#isOriginWorkOf">
-    <rdfs:range rdf:resource="https://purl.org/memo#MemeConcept"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="https://purl.org/memo#OriginWork"/>
-    <rdfs:label>isOriginWorkOf</rdfs:label>
-    <owl:inverseOf rdf:resource="https://purl.org/memo#hasOriginWork"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#MemeIdea">
-    <rdfs:comment xml:lang="en">The abstract creative idea underlying a meme template; the Work level of the FRBR hierarchy. Represents the core concept, emotional register, or rhetorical function of a meme, independent of any specific image or format.</rdfs:comment>
-    <rdfs:label>MemeIdea</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://iflastandards.info/ns/fr/frbr/frbrer/C1002"/>
-    <memo:frbrLevel>Work</memo:frbrLevel>
-    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q3249551"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  <rdf:Description rdf:about="https://purl.org/memo#photoURL">
+    <rdfs:domain rdf:resource="https://purl.org/memo#VariantInstance"/>
+    <rdfs:label>photoURL</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://purl.org/memo#imageFilePath">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     <rdfs:label>imageFilePath</rdfs:label>
     <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#MediaProperty">
-    <rdfs:subClassOf rdf:resource="https://purl.org/memo#CulturalReference"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:comment xml:lang="en">A media franchise, film, TV series, game, or other creative property referenced by a meme.</rdfs:comment>
-    <rdfs:label>MediaProperty</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://purl.org/dc/terms/modified">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
-    <rdfs:label>modified</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#PublicFigure">
-    <rdfs:subClassOf rdf:resource="https://purl.org/memo#CulturalReference"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>PublicFigure</rdfs:label>
-    <rdfs:comment xml:lang="en">A public figure, celebrity, politician, or historical person referenced by a meme.</rdfs:comment>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#MemeConcept">
-    <rdfs:label>MemeConcept</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://iflastandards.info/ns/fr/frbr/frbrer/C1003"/>
-    <memo:frbrLevel>Expression</memo:frbrLevel>
-    <rdfs:comment xml:lang="en">A meme template or canonical format; the Expression level of the FRBR hierarchy. Represents the stable, recognisable form of a meme as documented on Know Your Meme.</rdfs:comment>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#hasReference">
-    <rdfs:range rdf:resource="https://purl.org/memo#CulturalReference"/>
-    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
-    <owl:equivalentProperty rdf:resource="http://www.wikidata.org/prop/direct/P8371"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <owl:inverseOf rdf:resource="https://purl.org/memo#isReferencedIn"/>
-    <rdfs:label>hasReference</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#imageFilename">
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
-    <rdfs:label>imageFilename</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#captionText">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:domain rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:label>captionText</rdfs:label>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#ImageManipulationFormat">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:comment xml:lang="en">MemeFormat subclass grouping image manipulation formats: Exploitable, ImageMacro, Photoshop, Remix.</rdfs:comment>
-    <rdfs:label>ImageManipulationFormat</rdfs:label>
-    <rdfs:subClassOf rdf:resource="https://purl.org/memo#MemeFormat"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://schema.org/VideoGame">
-    <rdfs:comment xml:lang="en">Video game from which the meme derives; subclass of OriginWork (wd:Q386724).</rdfs:comment>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://purl.org/memo#OriginWork"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#isOriginPlatformOf">
-    <rdfs:domain rdf:resource="https://purl.org/memo#OriginPlatform"/>
-    <rdfs:label>isOriginPlatformOf</rdfs:label>
-    <owl:inverseOf rdf:resource="http://www.wikidata.org/prop/direct/P123"/>
-    <rdfs:range rdf:resource="https://purl.org/memo#MemeConcept"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Nfd00493f81294d50a046c11da1efee07">
-    <rdf:first rdf:resource="https://purl.org/memo#MemeConcept"/>
-    <rdf:rest rdf:nodeID="N807095b85a16419c9e5c12c389d0073a"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://purl.org/memo#hasOriginWork">
+    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:subPropertyOf rdf:resource="http://www.w3.org/ns/prov#wasDerivedFrom"/>
+    <owl:inverseOf rdf:resource="https://purl.org/memo#isOriginWorkOf"/>
     <rdfs:label>hasOriginWork</rdfs:label>
     <rdfs:range rdf:resource="https://purl.org/memo#OriginWork"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#imageFilename">
     <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
-    <owl:inverseOf rdf:resource="https://purl.org/memo#isOriginWorkOf"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#isTransformationDimensionOf">
-    <rdfs:label>isTransformationDimensionOf</rdfs:label>
-    <owl:inverseOf rdf:resource="https://purl.org/memo#hasTransformationDimension"/>
-    <rdfs:domain rdf:resource="https://purl.org/memo#TransformationDimension"/>
-    <rdfs:range rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#hasId">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label>imageFilename</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#isImageTypeOf">
+    <owl:inverseOf rdf:resource="https://purl.org/memo#hasImageType"/>
+    <rdfs:range rdf:nodeID="N8636ea2c6d674510b4b25745b1ff9a32"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://purl.org/memo#ImageType"/>
+    <rdfs:label>isImageTypeOf</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#isFormatOf">
+    <rdfs:label>isFormatOf</rdfs:label>
+    <rdfs:domain rdf:resource="https://purl.org/memo#MemeFormat"/>
+    <rdfs:range rdf:resource="https://purl.org/memo#MemeConcept"/>
+    <owl:inverseOf rdf:resource="http://www.wikidata.org/prop/direct/P2283"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#variantTitle">
+    <rdfs:label>variantTitle</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="https://purl.org/memo#VariantInstance"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.wikidata.org/prop/direct/P527">
+    <owl:inverseOf rdf:resource="http://www.wikidata.org/prop/direct/P361"/>
+    <rdfs:label>hasVariant</rdfs:label>
     <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
-    <rdfs:label>hasId</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://purl.org/memo#VariantInstance"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.wikidata.org/prop/direct/P495">
+    <owl:inverseOf rdf:resource="https://purl.org/memo#isRegionOf"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>hasRegion</rdfs:label>
+    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
+    <rdfs:range rdf:resource="https://purl.org/memo#GeographicRegion"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://schema.org/url">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label>url</rdfs:label>
+    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#ImageType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:comment xml:lang="en">The visual medium or rendering technique of a meme image (e.g. Photograph, Drawing, Cartoon). Corresponds to Panofsky's pre-iconographic description.</rdfs:comment>
+    <rdfs:label>ImageType</rdfs:label>
+    <memo:semanticLevel>PreIconographical</memo:semanticLevel>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#isColor">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label>isColor</rdfs:label>
+    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#TextFormat">
+    <rdfs:comment xml:lang="en">MemeFormat subclass grouping text-based formats: Catchphrase, Copypasta, Slang, Snowclone, Hashtag.</rdfs:comment>
+    <rdfs:label>TextFormat</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://purl.org/memo#MemeFormat"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#hasTransformationDimension">
+    <owl:inverseOf rdf:resource="https://purl.org/memo#isTransformationDimensionOf"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>hasTransformationDimension</rdfs:label>
+    <rdfs:range rdf:resource="https://purl.org/memo#TransformationDimension"/>
+    <rdfs:domain rdf:resource="https://purl.org/memo#VariantInstance"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://purl.org/dc/terms/format">
     <rdfs:range rdf:resource="https://purl.org/memo#FileFormat"/>
+    <rdfs:label>format</rdfs:label>
     <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:comment xml:lang="en">File format of the meme image (JPEG, PNG, GIF, etc.), linked to a FileFormat individual (wd:Q235557). Uses dcterms:format rather than a memo: property to align with Dublin Core usage.</rdfs:comment>
-    <rdfs:label>format</rdfs:label>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.wikidata.org/prop/direct/P527">
-    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
-    <rdfs:range rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <owl:inverseOf rdf:resource="http://www.wikidata.org/prop/direct/P361"/>
+  <rdf:Description rdf:about="http://www.wikidata.org/prop/direct/P361">
+    <rdfs:label>isVariantOf</rdfs:label>
+    <owl:inverseOf rdf:resource="http://www.wikidata.org/prop/direct/P527"/>
+    <rdfs:range rdf:resource="https://purl.org/memo#MemeConcept"/>
+    <rdfs:domain rdf:resource="https://purl.org/memo#VariantInstance"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>hasVariant</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#SocialPhenomenon">
+    <rdfs:subClassOf rdf:resource="https://purl.org/memo#CulturalReference"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:comment xml:lang="en">A social movement, behavioural trend, or cultural practice referenced by a meme.</rdfs:comment>
+    <rdfs:label>SocialPhenomenon</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#views">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label>views</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#isTransformationDimensionOf">
+    <rdfs:range rdf:resource="https://purl.org/memo#VariantInstance"/>
+    <rdfs:label>isTransformationDimensionOf</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://purl.org/memo#TransformationDimension"/>
+    <owl:inverseOf rdf:resource="https://purl.org/memo#hasTransformationDimension"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#PublicFigure">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://purl.org/memo#CulturalReference"/>
+    <rdfs:comment xml:lang="en">A public figure, celebrity, politician, or historical person referenced by a meme.</rdfs:comment>
+    <rdfs:label>PublicFigure</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#CulturalReference">
+    <rdfs:label>CulturalReference</rdfs:label>
+    <rdfs:comment xml:lang="en">Cultural artefact, event, or phenomenon that a meme iconologically references; aligned with Wikidata Q96622155.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q96622155"/>
+    <memo:semanticLevel>Iconological</memo:semanticLevel>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#isRegionOf">
+    <rdfs:domain rdf:resource="https://purl.org/memo#GeographicRegion"/>
+    <rdfs:range rdf:resource="https://purl.org/memo#MemeConcept"/>
+    <owl:inverseOf rdf:resource="http://www.wikidata.org/prop/direct/P495"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>isRegionOf</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#isTransformationExtentOf">
+    <rdfs:domain rdf:resource="https://purl.org/memo#TransformationExtent"/>
+    <owl:inverseOf rdf:resource="https://purl.org/memo#hasTransformationExtent"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>isTransformationExtentOf</rdfs:label>
+    <rdfs:range rdf:resource="https://purl.org/memo#VariantInstance"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://schema.org/ComicSeries">
+    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q25379"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://purl.org/memo#OriginWork"/>
+    <rdfs:comment xml:lang="en">Comic strip, webcomic or graphic novel from which the meme derives; subclass of memo:OriginWork.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#isOriginPlatformOf">
+    <owl:inverseOf rdf:resource="http://www.wikidata.org/prop/direct/P123"/>
+    <rdfs:domain rdf:resource="https://purl.org/memo#OriginPlatform"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>isOriginPlatformOf</rdfs:label>
+    <rdfs:range rdf:resource="https://purl.org/memo#MemeConcept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#FileFormat">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>FileFormat</rdfs:label>
+    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q235557"/>
+    <rdfs:comment xml:lang="en">Digital file format of the meme image resource; aligned with Wikidata Q235557.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.wikidata.org/prop/direct/P2408">
+    <owl:inverseOf rdf:resource="https://purl.org/memo#isTimePeriodOf"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
+    <rdfs:label>hasTimePeriod</rdfs:label>
+    <rdfs:range rdf:resource="https://purl.org/memo#TimePeriod"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://schema.org/TVSeries">
+    <rdfs:comment xml:lang="en">Television or web series from which the meme derives; subclass of memo:OriginWork.</rdfs:comment>
+    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q5398426"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://purl.org/memo#OriginWork"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://schema.org/Movie">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:comment xml:lang="en">Film from which the meme derives; subclass of memo:OriginWork.</rdfs:comment>
+    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q11424"/>
+    <rdfs:subClassOf rdf:resource="https://purl.org/memo#OriginWork"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#OriginWork">
+    <rdfs:label>OriginWork</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q386724"/>
+    <rdfs:comment xml:lang="en">Creative work (film, TV series, game, etc.) from which the meme derives; aligned with Wikidata Q386724.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N4739bfc2633a47859d91d47db5dca3ef">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="Ne26c7f790b8046c3aa163158a961515a"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N6f4598f61723478bb233b3f4472808ba">
+    <owl:unionOf rdf:nodeID="Nbf396da15a584905b53f609c74b45255"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.w3.org/ns/prov#wasDerivedFrom">
+    <rdfs:range rdf:resource="https://purl.org/memo#OriginWork"/>
+    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>wasDerivedFrom</rdfs:label>
+    <rdfs:comment xml:lang="en">Superproperty of memo:hasOriginWork. Not directly asserted in MEMO — memo:hasOriginWork is used throughout, from which reasoners infer prov:wasDerivedFrom.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#ParticipatoryFormat">
+    <rdfs:label>ParticipatoryFormat</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://purl.org/memo#MemeFormat"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:comment xml:lang="en">MemeFormat subclass grouping participatory formats: ParticipatoryMedia, Dance, SocialGame.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N851fe02920e84754ae00cb2ddf7a52b8">
+    <rdf:first rdf:resource="https://purl.org/memo#VariantInstance"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#MemeIdea">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:comment xml:lang="en">The abstract creative idea underlying a meme template; the Work level of the FRBR hierarchy. Represents the core concept, emotional register, or rhetorical function of a meme, independent of any specific image or format.</rdfs:comment>
+    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q3249551"/>
+    <rdfs:subClassOf rdf:resource="http://iflastandards.info/ns/fr/frbr/frbrer/C1002"/>
+    <memo:frbrLevel>Work</memo:frbrLevel>
+    <rdfs:label>MemeIdea</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/terms/description">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
+    <rdfs:label>description</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#variantUploader">
+    <rdfs:domain rdf:resource="https://purl.org/memo#VariantInstance"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label>variantUploader</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#isAnimationStatusOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://purl.org/memo#MemeConcept"/>
+    <rdfs:domain rdf:resource="https://purl.org/memo#AnimationStatus"/>
+    <rdfs:label>isAnimationStatusOf</rdfs:label>
+    <owl:inverseOf rdf:resource="https://purl.org/memo#hasAnimationStatus"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://purl.org/memo#hasTransformationExtent">
-    <rdfs:range rdf:resource="https://purl.org/memo#TransformationExtent"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>hasTransformationExtent</rdfs:label>
-    <owl:inverseOf rdf:resource="https://purl.org/memo#isTransformationExtentOf"/>
     <rdfs:domain rdf:resource="https://purl.org/memo#VariantInstance"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://purl.org/memo#TransformationExtent"/>
+    <owl:inverseOf rdf:resource="https://purl.org/memo#isTransformationExtentOf"/>
+    <rdfs:label>hasTransformationExtent</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://schema.org/Book">
+    <rdfs:subClassOf rdf:resource="https://purl.org/memo#OriginWork"/>
+    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q571"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:comment xml:lang="en">Book, novel or short story from which the meme derives; subclass of memo:OriginWork.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#TransformationDimension">
+    <rdfs:comment xml:lang="en">The primary dimension along which a VariantInstance transforms the source template (e.g. textual, visual, contextual). Enables typological analysis of meme variation.</rdfs:comment>
+    <rdfs:label>TransformationDimension</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#hasSubjectMatter">
+    <rdfs:domain rdf:nodeID="N4739bfc2633a47859d91d47db5dca3ef"/>
+    <rdfs:range rdf:resource="https://purl.org/memo#SubjectMatter"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>hasSubjectMatter</rdfs:label>
+    <owl:inverseOf rdf:resource="https://purl.org/memo#isSubjectMatterOf"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#isConceptualizedAs">
+    <rdfs:domain rdf:resource="https://purl.org/memo#MemeIdea"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>isConceptualizedAs</rdfs:label>
+    <owl:inverseOf rdf:resource="https://purl.org/memo#conceptualizes"/>
+    <rdfs:range rdf:resource="https://purl.org/memo#MemeConcept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#isTimePeriodOf">
+    <rdfs:range rdf:resource="https://purl.org/memo#MemeConcept"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="http://www.wikidata.org/prop/direct/P2408"/>
+    <rdfs:domain rdf:resource="https://purl.org/memo#TimePeriod"/>
+    <rdfs:label>isTimePeriodOf</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#MemeFormat">
+    <rdfs:comment xml:lang="en">The genre or structural format of a meme (e.g. ImageMacro, Copypasta, ViralVideo). Drawn from Know Your Meme's type taxonomy.</rdfs:comment>
+    <rdfs:label>MemeFormat</rdfs:label>
+    <memo:semanticLevel>Iconographical</memo:semanticLevel>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nbf396da15a584905b53f609c74b45255">
+    <rdf:first rdf:resource="https://purl.org/memo#MemeConcept"/>
+    <rdf:rest rdf:nodeID="N851fe02920e84754ae00cb2ddf7a52b8"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#NarrativeFormat">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:comment xml:lang="en">MemeFormat subclass grouping character- and narrative-based formats: Character, FanArt, Parody, PopCultureReference, Reaction.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://purl.org/memo#MemeFormat"/>
+    <rdfs:label>NarrativeFormat</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#isReferencedIn">
+    <owl:inverseOf rdf:resource="https://purl.org/memo#hasReference"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label>isReferencedIn</rdfs:label>
+    <rdfs:domain rdf:resource="https://purl.org/memo#CulturalReference"/>
+    <rdfs:range rdf:resource="https://purl.org/memo#MemeConcept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#MemeConcept">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:comment xml:lang="en">A meme template or canonical format; the Expression level of the FRBR hierarchy. Represents the stable, recognisable form of a meme as documented on Know Your Meme.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://iflastandards.info/ns/fr/frbr/frbrer/C1003"/>
+    <rdfs:label>MemeConcept</rdfs:label>
+    <memo:frbrLevel>Expression</memo:frbrLevel>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#AnimationStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:comment xml:lang="en">Whether a meme image is animated (Animated, i.e. a GIF) or static (Static). Derived from file extension.</rdfs:comment>
+    <rdfs:label>AnimationStatus</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#VariantInstance">
+    <rdfs:subClassOf rdf:resource="http://iflastandards.info/ns/fr/frbr/frbrer/C1004"/>
+    <rdfs:comment xml:lang="en">A specific image derived from a meme template; the Manifestation level of the FRBR hierarchy. Represents a single scraped or documented instantiation of a MemeConcept.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>VariantInstance</rdfs:label>
+    <memo:frbrLevel>Manifestation</memo:frbrLevel>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#SubjectMatter">
+    <memo:semanticLevel>PreIconographical</memo:semanticLevel>
+    <rdfs:comment xml:lang="en">The primary visual subject category depicted in a meme image (e.g. PersonPresent, AnimalPresent, ObjectOnly). Corresponds to Panofsky's pre-iconographic description level.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q16334295"/>
+    <rdfs:label>SubjectMatter</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#isSubjectMatterOf">
+    <rdfs:label>isSubjectMatterOf</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:nodeID="N9e41e9342a5044c1bc14680a0cbf23fd"/>
+    <owl:inverseOf rdf:resource="https://purl.org/memo#hasSubjectMatter"/>
+    <rdfs:domain rdf:resource="https://purl.org/memo#SubjectMatter"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#hasAnimationStatus">
+    <rdfs:label>hasAnimationStatus</rdfs:label>
+    <owl:inverseOf rdf:resource="https://purl.org/memo#isAnimationStatusOf"/>
+    <rdfs:range rdf:resource="https://purl.org/memo#AnimationStatus"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#hasImageType">
+    <owl:inverseOf rdf:resource="https://purl.org/memo#isImageTypeOf"/>
+    <rdfs:range rdf:resource="https://purl.org/memo#ImageType"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:nodeID="N6f4598f61723478bb233b3f4472808ba"/>
+    <rdfs:label>hasImageType</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#variantFilename">
+    <rdfs:domain rdf:resource="https://purl.org/memo#VariantInstance"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label>variantFilename</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#isOriginWorkOf">
+    <rdfs:label>isOriginWorkOf</rdfs:label>
+    <rdfs:domain rdf:resource="https://purl.org/memo#OriginWork"/>
+    <rdfs:range rdf:resource="https://purl.org/memo#MemeConcept"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="https://purl.org/memo#hasOriginWork"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://schema.org/image">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
+    <rdfs:label>image</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#hasTextPresence">
+    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label>hasTextPresence</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://schema.org/keywords">
+    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+    <rdfs:label>keywords</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/terms/created">
+    <rdfs:label>created</rdfs:label>
+    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N69ee3081068a410d82396f0da1f7604a">
+    <rdf:first rdf:resource="https://purl.org/memo#MemeConcept"/>
+    <rdf:rest rdf:nodeID="N90d46d65c2794d64a8884a01e3c3d09e"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#variantImageURL">
+    <rdfs:label>variantImageURL</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="https://purl.org/memo#VariantInstance"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#PoliticalEvent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>PoliticalEvent</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://purl.org/memo#CulturalReference"/>
+    <rdfs:comment xml:lang="en">A political event, controversy, or campaign that a meme iconologically references.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nce069312599749479645c319d17bd032">
+    <rdf:first rdf:resource="https://purl.org/memo#MemeConcept"/>
+    <rdf:rest rdf:nodeID="N408a72b33f1e46eeacbaba0ed99d9a07"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://schema.org/VideoGame">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:comment xml:lang="en">Video game from which the meme derives; subclass of memo:OriginWork.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://purl.org/memo#OriginWork"/>
+    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q7889"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo">
+    <dcterms:title xml:lang="en">The Meme Ontology (MEMO)</dcterms:title>
+    <dc:creator>Alice Picco</dc:creator>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <dcterms:license rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
+    <owl:versionInfo>1.0</owl:versionInfo>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/terms/modified">
+    <rdfs:label>modified</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#ImageManipulationFormat">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>ImageManipulationFormat</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://purl.org/memo#MemeFormat"/>
+    <rdfs:comment xml:lang="en">MemeFormat subclass grouping image manipulation formats: Exploitable, ImageMacro, Photoshop, Remix.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#VideoFormat">
+    <rdfs:comment xml:lang="en">MemeFormat subclass grouping video-based formats: ViralVideo, ViralDebate, LipDub.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://purl.org/memo#MemeFormat"/>
+    <rdfs:label>VideoFormat</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#WebCulture">
+    <rdfs:comment xml:lang="en">A web-native cultural phenomenon, community, or trend referenced by a meme.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>WebCulture</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://purl.org/memo#CulturalReference"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#OriginPlatform">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>OriginPlatform</rdfs:label>
+    <rdfs:comment xml:lang="en">Online platform or service where the meme was first published; aligned with Wikidata Q3220391.</rdfs:comment>
+    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q3220391"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://schema.org/MusicAlbum">
+    <rdfs:subClassOf rdf:resource="https://purl.org/memo#OriginWork"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q482994"/>
+    <rdfs:comment xml:lang="en">Song, album or music video from which the meme derives; subclass of memo:OriginWork.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#AudioFormat">
+    <rdfs:comment xml:lang="en">MemeFormat subclass grouping audio-primary formats: Song, SoundEffect.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://purl.org/memo#MemeFormat"/>
+    <rdfs:label>AudioFormat</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.wikidata.org/prop/direct/P2283">
+    <owl:inverseOf rdf:resource="https://purl.org/memo#isFormatOf"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
+    <rdfs:label>hasFormat</rdfs:label>
+    <rdfs:range rdf:resource="https://purl.org/memo#MemeFormat"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N9e41e9342a5044c1bc14680a0cbf23fd">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="Nce069312599749479645c319d17bd032"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N90d46d65c2794d64a8884a01e3c3d09e">
+    <rdf:first rdf:resource="https://purl.org/memo#VariantInstance"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#conceptDescription">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="https://purl.org/memo#MemeIdea"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label>conceptDescription</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#GeographicRegion">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>GeographicRegion</rdfs:label>
+    <rdfs:comment xml:lang="en">Geographic region or country of meme origin; aligned with Wikidata Q82794.</rdfs:comment>
+    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q82794"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#HistoricalEvent">
+    <rdfs:label>HistoricalEvent</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://purl.org/memo#CulturalReference"/>
+    <rdfs:comment xml:lang="en">A historical event, period, or crisis referenced by a meme.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#MediaProperty">
+    <rdfs:label>MediaProperty</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:comment xml:lang="en">A media franchise, film, TV series, game, or other creative property referenced by a meme.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://purl.org/memo#CulturalReference"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#semanticLevel">
+    <rdfs:label>semanticLevel</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#variantIndex">
+    <rdfs:label>variantIndex</rdfs:label>
+    <rdfs:domain rdf:resource="https://purl.org/memo#VariantInstance"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#hasId">
+    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:label>hasId</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#frbrLevel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+    <rdfs:label>frbrLevel</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#hasReference">
+    <rdfs:label>hasReference</rdfs:label>
+    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="https://purl.org/memo#isReferencedIn"/>
+    <rdfs:range rdf:resource="https://purl.org/memo#CulturalReference"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://purl.org/memo#conceptualizes">
+    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
+    <rdfs:label>conceptualizes</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="https://purl.org/memo#isConceptualizedAs"/>
+    <rdfs:range rdf:resource="https://purl.org/memo#MemeIdea"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Ne26c7f790b8046c3aa163158a961515a">
+    <rdf:first rdf:resource="https://purl.org/memo#MemeConcept"/>
+    <rdf:rest rdf:nodeID="Nbb66711984e84f2e914674b0c8d2434e"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N408a72b33f1e46eeacbaba0ed99d9a07">
+    <rdf:first rdf:resource="https://purl.org/memo#VariantInstance"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://purl.org/memo#TransformationExtent">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>TransformationExtent</rdfs:label>
     <rdfs:comment xml:lang="en">The degree to which a VariantInstance diverges from its source template (e.g. Minimal, Moderate, Major). Enables quantitative analysis of meme mutation.</rdfs:comment>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.wikidata.org/prop/direct/P2283">
-    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
-    <rdfs:label>hasFormat</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <owl:inverseOf rdf:resource="https://purl.org/memo#isFormatOf"/>
-    <rdfs:range rdf:resource="https://purl.org/memo#MemeFormat"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo">
-    <dc:creator>Alice Picco</dc:creator>
-    <dcterms:title xml:lang="en">The Meme Ontology (MEMO)</dcterms:title>
-    <dcterms:license rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
-    <owl:versionInfo>1.0</owl:versionInfo>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#conceptDescription">
-    <rdfs:domain rdf:resource="https://purl.org/memo#MemeIdea"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label>conceptDescription</rdfs:label>
+  <rdf:Description rdf:about="https://purl.org/memo#captionText">
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#views">
-    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
-    <rdfs:label>views</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#SocialPhenomenon">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://purl.org/memo#CulturalReference"/>
-    <rdfs:comment xml:lang="en">A social movement, behavioural trend, or cultural practice referenced by a meme.</rdfs:comment>
-    <rdfs:label>SocialPhenomenon</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#hasAnimationStatus">
-    <owl:inverseOf rdf:resource="https://purl.org/memo#isAnimationStatusOf"/>
-    <rdfs:label>hasAnimationStatus</rdfs:label>
-    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
-    <rdfs:range rdf:resource="https://purl.org/memo#AnimationStatus"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#hasSubjectMatter">
-    <owl:inverseOf rdf:resource="https://purl.org/memo#isSubjectMatterOf"/>
-    <rdfs:label>hasSubjectMatter</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:nodeID="N45fa5f41c0e7486b96da14be79aad49e"/>
-    <rdfs:range rdf:resource="https://purl.org/memo#SubjectMatter"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#isAnimationStatusOf">
-    <rdfs:range rdf:resource="https://purl.org/memo#MemeConcept"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="https://purl.org/memo#AnimationStatus"/>
-    <owl:inverseOf rdf:resource="https://purl.org/memo#hasAnimationStatus"/>
-    <rdfs:label>isAnimationStatusOf</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://purl.org/dc/terms/created">
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-    <rdfs:label>created</rdfs:label>
-    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#PoliticalEvent">
-    <rdfs:subClassOf rdf:resource="https://purl.org/memo#CulturalReference"/>
-    <rdfs:label>PoliticalEvent</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:comment xml:lang="en">A political event, controversy, or campaign that a meme iconologically references.</rdfs:comment>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://purl.org/dc/terms/description">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:label>description</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#ImageType">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <memo:semanticLevel>PreIconographical</memo:semanticLevel>
-    <rdfs:label>ImageType</rdfs:label>
-    <rdfs:comment xml:lang="en">The visual medium or rendering technique of a meme image (e.g. Photograph, Drawing, Cartoon). Corresponds to Panofsky's pre-iconographic description.</rdfs:comment>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#hasTransformationDimension">
-    <rdfs:range rdf:resource="https://purl.org/memo#TransformationDimension"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>hasTransformationDimension</rdfs:label>
     <rdfs:domain rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <owl:inverseOf rdf:resource="https://purl.org/memo#isTransformationDimensionOf"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://www.w3.org/ns/prov#wasDerivedFrom">
-    <rdfs:comment xml:lang="en">Superproperty of memo:hasOriginWork. Not directly asserted in MEMO — memo:hasOriginWork is used throughout, from which reasoners infer prov:wasDerivedFrom.</rdfs:comment>
-    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:label>wasDerivedFrom</rdfs:label>
-    <rdfs:range rdf:resource="https://purl.org/memo#OriginWork"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#HistoricalEvent">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://purl.org/memo#CulturalReference"/>
-    <rdfs:comment xml:lang="en">A historical event, period, or crisis referenced by a meme.</rdfs:comment>
-    <rdfs:label>HistoricalEvent</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#VideoFormat">
-    <rdfs:subClassOf rdf:resource="https://purl.org/memo#MemeFormat"/>
-    <rdfs:comment xml:lang="en">MemeFormat subclass grouping video-based formats: ViralVideo, ViralDebate, LipDub.</rdfs:comment>
-    <rdfs:label>VideoFormat</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://schema.org/Movie">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://purl.org/memo#OriginWork"/>
-    <rdfs:comment xml:lang="en">Film from which the meme derives; subclass of OriginWork (wd:Q386724).</rdfs:comment>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N95ad0a56980a4957aff26f4ce763af39">
-    <rdf:rest rdf:nodeID="N1764e2c32c834ef19cfa31bc22199478"/>
-    <rdf:first rdf:resource="https://purl.org/memo#MemeConcept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#GeographicRegion">
-    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q82794"/>
-    <rdfs:label>GeographicRegion</rdfs:label>
-    <rdfs:comment xml:lang="en">Geographic region or country of meme origin; aligned with Wikidata Q82794.</rdfs:comment>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#FileFormat">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q235557"/>
-    <rdfs:label>FileFormat</rdfs:label>
-    <rdfs:comment xml:lang="en">Digital file format of the meme image resource; aligned with Wikidata Q235557.</rdfs:comment>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N7ffcdc8f12704bf389b69612c39b1d15">
-    <owl:unionOf rdf:nodeID="Nfd00493f81294d50a046c11da1efee07"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#isTransformationExtentOf">
-    <rdfs:domain rdf:resource="https://purl.org/memo#TransformationExtent"/>
-    <rdfs:range rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:label>isTransformationExtentOf</rdfs:label>
-    <owl:inverseOf rdf:resource="https://purl.org/memo#hasTransformationExtent"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://www.wikidata.org/prop/direct/P361">
-    <owl:inverseOf rdf:resource="http://www.wikidata.org/prop/direct/P527"/>
-    <rdfs:domain rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:label>isVariantOf</rdfs:label>
-    <rdfs:range rdf:resource="https://purl.org/memo#MemeConcept"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#variantUploader">
-    <rdfs:domain rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:label>variantUploader</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#variantImageURL">
-    <rdfs:label>variantImageURL</rdfs:label>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:domain rdf:resource="https://purl.org/memo#VariantInstance"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#photoURL">
-    <rdfs:label>photoURL</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:domain rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#isRegionOf">
-    <owl:inverseOf rdf:resource="http://www.wikidata.org/prop/direct/P495"/>
-    <rdfs:range rdf:resource="https://purl.org/memo#MemeConcept"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="https://purl.org/memo#GeographicRegion"/>
-    <rdfs:label>isRegionOf</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#NarrativeFormat">
-    <rdfs:comment xml:lang="en">MemeFormat subclass grouping character- and narrative-based formats: Character, FanArt, Parody, PopCultureReference, Reaction.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="https://purl.org/memo#MemeFormat"/>
-    <rdfs:label>NarrativeFormat</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#isImageTypeOf">
-    <rdfs:domain rdf:resource="https://purl.org/memo#ImageType"/>
-    <owl:inverseOf rdf:resource="https://purl.org/memo#hasImageType"/>
-    <rdfs:label>isImageTypeOf</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:range rdf:nodeID="N37dfbedd90124e2a8bfc3ef086ebebf9"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N02940f9526334882ad08686ee7c607d9">
-    <rdf:first rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N0e6c1231425d458bb4676d3b6872709d">
-    <rdf:rest rdf:nodeID="N49acaa600f5e41048774837666f5d67b"/>
-    <rdf:first rdf:resource="https://purl.org/memo#MemeConcept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#isColor">
-    <rdfs:label>isColor</rdfs:label>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#isConceptualizedAs">
-    <rdfs:domain rdf:resource="https://purl.org/memo#MemeIdea"/>
-    <owl:inverseOf rdf:resource="https://purl.org/memo#conceptualizes"/>
-    <rdfs:label>isConceptualizedAs</rdfs:label>
-    <rdfs:range rdf:resource="https://purl.org/memo#MemeConcept"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#isFormatOf">
-    <rdfs:range rdf:resource="https://purl.org/memo#MemeConcept"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <owl:inverseOf rdf:resource="http://www.wikidata.org/prop/direct/P2283"/>
-    <rdfs:label>isFormatOf</rdfs:label>
-    <rdfs:domain rdf:resource="https://purl.org/memo#MemeFormat"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#SubjectMatter">
-    <rdfs:label>SubjectMatter</rdfs:label>
-    <memo:semanticLevel>PreIconographical</memo:semanticLevel>
-    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q16334295"/>
-    <rdfs:comment xml:lang="en">The primary visual subject category depicted in a meme image (e.g. PersonPresent, AnimalPresent, ObjectOnly). Corresponds to Panofsky's pre-iconographic description level.</rdfs:comment>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#isSubjectMatterOf">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:range rdf:nodeID="N85d7a55b09a64bc9a010d58c1b8d1b28"/>
-    <rdfs:domain rdf:resource="https://purl.org/memo#SubjectMatter"/>
-    <owl:inverseOf rdf:resource="https://purl.org/memo#hasSubjectMatter"/>
-    <rdfs:label>isSubjectMatterOf</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#ParticipatoryFormat">
-    <rdfs:label>ParticipatoryFormat</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://purl.org/memo#MemeFormat"/>
-    <rdfs:comment xml:lang="en">MemeFormat subclass grouping participatory formats: ParticipatoryMedia, Dance, SocialGame.</rdfs:comment>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://schema.org/image">
-    <rdfs:label>image</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#hasTextPresence">
-    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-    <rdfs:label>hasTextPresence</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://schema.org/MusicAlbum">
-    <rdfs:comment xml:lang="en">Song, album or music video from which the meme derives; subclass of OriginWork (wd:Q386724).</rdfs:comment>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://purl.org/memo#OriginWork"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#OriginWork">
-    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q386724"/>
-    <rdfs:label>OriginWork</rdfs:label>
-    <rdfs:comment xml:lang="en">Creative work (film, TV series, game, etc.) from which the meme derives; aligned with Wikidata Q386724.</rdfs:comment>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#MemeFormat">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:comment xml:lang="en">The genre or structural format of a meme (e.g. ImageMacro, Copypasta, ViralVideo). Drawn from Know Your Meme's type taxonomy.</rdfs:comment>
-    <rdfs:label>MemeFormat</rdfs:label>
-    <memo:semanticLevel>Iconographical</memo:semanticLevel>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#TextFormat">
-    <rdfs:subClassOf rdf:resource="https://purl.org/memo#MemeFormat"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:comment xml:lang="en">MemeFormat subclass grouping text-based formats: Catchphrase, Copypasta, Slang, Snowclone, Hashtag.</rdfs:comment>
-    <rdfs:label>TextFormat</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#isTimePeriodOf">
-    <rdfs:label>isTimePeriodOf</rdfs:label>
-    <rdfs:range rdf:resource="https://purl.org/memo#MemeConcept"/>
-    <rdfs:domain rdf:resource="https://purl.org/memo#TimePeriod"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <owl:inverseOf rdf:resource="http://www.wikidata.org/prop/direct/P2408"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#AudioFormat">
-    <rdfs:subClassOf rdf:resource="https://purl.org/memo#MemeFormat"/>
-    <rdfs:label>AudioFormat</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:comment xml:lang="en">MemeFormat subclass grouping audio-primary formats: Song, SoundEffect.</rdfs:comment>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://schema.org/url">
-    <rdfs:label>url</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://schema.org/ComicSeries">
-    <rdfs:comment xml:lang="en">Comic strip, webcomic or graphic novel from which the meme derives; subclass of OriginWork (wd:Q386724).</rdfs:comment>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:subClassOf rdf:resource="https://purl.org/memo#OriginWork"/>
+    <rdfs:label>captionText</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:about="https://purl.org/memo#TimePeriod">
-    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q11471"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>TimePeriod</rdfs:label>
     <rdfs:comment xml:lang="en">Chronological period in which the meme originated or peaked; aligned with Wikidata Q11471.</rdfs:comment>
+    <rdfs:label>TimePeriod</rdfs:label>
+    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q11471"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#isReferencedIn">
-    <rdfs:domain rdf:resource="https://purl.org/memo#CulturalReference"/>
-    <rdfs:label>isReferencedIn</rdfs:label>
-    <rdfs:range rdf:resource="https://purl.org/memo#MemeConcept"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <owl:inverseOf rdf:resource="https://purl.org/memo#hasReference"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://schema.org/keywords">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
-    <rdfs:label>keywords</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#OriginPlatform">
-    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q3220391"/>
-    <rdfs:label>OriginPlatform</rdfs:label>
-    <rdfs:comment xml:lang="en">Online platform or service where the meme was first published; aligned with Wikidata Q3220391.</rdfs:comment>
+  <rdf:Description rdf:nodeID="N8636ea2c6d674510b4b25745b1ff9a32">
+    <owl:unionOf rdf:nodeID="N69ee3081068a410d82396f0da1f7604a"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://schema.org/TVSeries">
-    <rdfs:subClassOf rdf:resource="https://purl.org/memo#OriginWork"/>
-    <rdfs:comment xml:lang="en">Television or web series from which the meme derives; subclass of OriginWork (wd:Q386724).</rdfs:comment>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#variantTitle">
-    <rdfs:label>variantTitle</rdfs:label>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:domain rdf:resource="https://purl.org/memo#VariantInstance"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#AnimationStatus">
-    <rdfs:label>AnimationStatus</rdfs:label>
-    <rdfs:comment xml:lang="en">Whether a meme image is animated (Animated, i.e. a GIF) or static (Static). Derived from file extension.</rdfs:comment>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#variantFilename">
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:domain rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:label>variantFilename</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#frbrLevel">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-    <rdfs:label>frbrLevel</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#semanticLevel">
-    <rdfs:label>semanticLevel</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#VariantInstance">
-    <rdfs:comment xml:lang="en">A specific image derived from a meme template; the Manifestation level of the FRBR hierarchy. Represents a single scraped or documented instantiation of a MemeConcept.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://iflastandards.info/ns/fr/frbr/frbrer/C1004"/>
-    <memo:frbrLevel>Manifestation</memo:frbrLevel>
-    <rdfs:label>VariantInstance</rdfs:label>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N85d7a55b09a64bc9a010d58c1b8d1b28">
-    <owl:unionOf rdf:nodeID="N95ad0a56980a4957aff26f4ce763af39"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://www.wikidata.org/prop/direct/P2408">
-    <rdfs:range rdf:resource="https://purl.org/memo#TimePeriod"/>
-    <rdfs:label>hasTimePeriod</rdfs:label>
-    <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <owl:inverseOf rdf:resource="https://purl.org/memo#isTimePeriodOf"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N45fa5f41c0e7486b96da14be79aad49e">
-    <owl:unionOf rdf:nodeID="N82a683fbe6604adbb8f60981ecd283dd"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://schema.org/Book">
-    <rdfs:comment xml:lang="en">Book, novel or short story from which the meme derives; subclass of OriginWork (wd:Q386724).</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="https://purl.org/memo#OriginWork"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N37dfbedd90124e2a8bfc3ef086ebebf9">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <owl:unionOf rdf:nodeID="N0e6c1231425d458bb4676d3b6872709d"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N49acaa600f5e41048774837666f5d67b">
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  <rdf:Description rdf:nodeID="Nbb66711984e84f2e914674b0c8d2434e">
     <rdf:first rdf:resource="https://purl.org/memo#VariantInstance"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://purl.org/memo#TransformationDimension">
-    <rdfs:comment xml:lang="en">The primary dimension along which a VariantInstance transforms the source template (e.g. textual, visual, contextual). Enables typological analysis of meme variation.</rdfs:comment>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:label>TransformationDimension</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://www.wikidata.org/prop/direct/P8371">
-    <owl:equivalentProperty rdf:resource="https://purl.org/memo#hasReference"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N82a683fbe6604adbb8f60981ecd283dd">
-    <rdf:first rdf:resource="https://purl.org/memo#MemeConcept"/>
-    <rdf:rest rdf:nodeID="N02940f9526334882ad08686ee7c607d9"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N1764e2c32c834ef19cfa31bc22199478">
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-    <rdf:first rdf:resource="https://purl.org/memo#VariantInstance"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N807095b85a16419c9e5c12c389d0073a">
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-    <rdf:first rdf:resource="https://purl.org/memo#VariantInstance"/>
   </rdf:Description>
 </rdf:RDF>

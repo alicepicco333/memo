@@ -14,7 +14,7 @@ PROV   = Namespace("http://www.w3.org/ns/prov#")
 SCHEMA = Namespace("https://schema.org/")
 DC     = Namespace("http://purl.org/dc/elements/1.1/")
 WD     = Namespace("http://www.wikidata.org/entity/")
-WDT    = Namespace("http://www.wikidata.org/prop/direct/")
+WDP    = Namespace("http://www.wikidata.org/prop/direct/")
 FRBRER = Namespace("http://iflastandards.info/ns/fr/frbr/frbrer/")
 
 try:
@@ -446,12 +446,12 @@ WD_CLASS_MAP = {}  # empty — class_uri() always returns MEME[name]
 
 # P3 — Wikidata P-item properties that replace memo: object property declarations
 WD_PROP_MAP = {
-    "hasRegion":         WDT.P495,
-    "hasTimePeriod":     WDT.P2408,
-    "hasVariant":        WDT.P527,
-    "isVariantOf":       WDT.P361,
-    "hasFormat":         WDT.P2283,
-    "hasOriginPlatform": WDT.P123,
+    "hasRegion":         WDP.P495,
+    "hasTimePeriod":     WDP.P2408,
+    "hasVariant":        WDP.P527,
+    "isVariantOf":       WDP.P361,
+    "hasFormat":         WDP.P2283,
+    "hasOriginPlatform": WDP.P123,
 }
 
 # All pre-declared named individuals per class
@@ -631,23 +631,23 @@ OBJ_PROPS = [
     ("hasSubjectMatter",  ("MemeConcept", "VariantInstance"), "SubjectMatter"),
     ("isSubjectMatterOf", "SubjectMatter",("MemeConcept", "VariantInstance")),
     # MemeConcept — format & distribution (P3: several use Wikidata URIs)
-    ("hasFormat",          "MemeConcept",     "MemeFormat"),        # → WDT.P2283
+    ("hasFormat",          "MemeConcept",     "MemeFormat"),        # → WDP.P2283
     ("isFormatOf",         "MemeFormat",      "MemeConcept"),
-    ("hasOriginPlatform",  "MemeConcept",     "OriginPlatform"),    # → WDT.P123
+    ("hasOriginPlatform",  "MemeConcept",     "OriginPlatform"),    # → WDP.P123
     ("isOriginPlatformOf", "OriginPlatform",  "MemeConcept"),
     ("hasOriginWork",      "MemeConcept",     "OriginWork"),
     ("isOriginWorkOf",     "OriginWork",      "MemeConcept"),
-    ("hasRegion",          "MemeConcept",     "GeographicRegion"),  # → WDT.P495
+    ("hasRegion",          "MemeConcept",     "GeographicRegion"),  # → WDP.P495
     ("isRegionOf",         "GeographicRegion","MemeConcept"),
-    ("hasTimePeriod",      "MemeConcept",     "TimePeriod"),        # → WDT.P2408
+    ("hasTimePeriod",      "MemeConcept",     "TimePeriod"),        # → WDP.P2408
     ("isTimePeriodOf",     "TimePeriod",      "MemeConcept"),
     ("hasAnimationStatus", "MemeConcept",     "AnimationStatus"),
     ("isAnimationStatusOf","AnimationStatus", "MemeConcept"),
     ("hasReference",       "MemeConcept",     "CulturalReference"),
     ("isReferencedIn",     "CulturalReference","MemeConcept"),
     # FRBR relations (P3: hasVariant/isVariantOf use Wikidata)
-    ("hasVariant",         "MemeConcept",     "VariantInstance"),   # → WDT.P527
-    ("isVariantOf",        "VariantInstance", "MemeConcept"),       # → WDT.P361
+    ("hasVariant",         "MemeConcept",     "VariantInstance"),   # → WDP.P527
+    ("isVariantOf",        "VariantInstance", "MemeConcept"),       # → WDP.P361
     ("conceptualizes",     "MemeConcept",     "MemeIdea"),
     ("isConceptualizedAs", "MemeIdea",        "MemeConcept"),
     # VariantInstance
@@ -825,6 +825,35 @@ def _iri_local_norm(s):
     return _iri_local(s.lower())
 
 
+def _inject_owl_xmlns(xml_str: str) -> str:
+    """Inject xmlns declarations that rdflib's RDF/XML serializer omits.
+
+    rdflib only emits xmlns for prefixes used as XML element QNames (predicates).
+    URIs appearing only in rdf:resource values are omitted; we inject them here,
+    but only if the serializer didn't already include them (avoids duplicate-attr errors).
+    """
+    CANDIDATES = [
+        ('frbrer', 'http://iflastandards.info/ns/fr/frbr/frbrer/'),
+        ('wd',     'http://www.wikidata.org/entity/'),
+        ('wdp',    'http://www.wikidata.org/prop/direct/'),
+        ('schema', 'https://schema.org/'),
+        ('prov',   'http://www.w3.org/ns/prov#'),
+    ]
+    # Locate the <rdf:RDF ...> opening block (search from <rdf:RDF, not start of file)
+    rdf_start = xml_str.find('<rdf:RDF')
+    rdf_end   = xml_str.find('>', rdf_start)
+    rdf_block = xml_str[rdf_start:rdf_end]
+    to_add = [
+        f'xmlns:{prefix}="{uri}"'
+        for prefix, uri in CANDIDATES
+        if f'xmlns:{prefix}=' not in rdf_block
+    ]
+    if not to_add:
+        return xml_str
+    extra = '   ' + '\n   '.join(to_add) + '\n'
+    return xml_str.replace("<rdf:RDF\n", f"<rdf:RDF\n{extra}", 1)
+
+
 def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
                    cultural_refs_path=None, transformation_path=None,
                    ttl_path=None, unpopulated_owl_path=None, unpopulated_ttl_path=None):
@@ -843,7 +872,7 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
     g.bind("schema",  SCHEMA, override=True, replace=True)
     g.bind("dcterms", DCTERMS)
     g.bind("wd",      WD)
-    g.bind("wdt",     WDT)
+    g.bind("wdp",     WDP)
     g.bind("dc",      DC)
     g.bind("frbrer",  FRBRER)
 
@@ -890,18 +919,19 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
     g.add((MEME.MemeConcept,     RDFS.subClassOf, FRBRER.C1003))  # Expression
     g.add((MEME.VariantInstance, RDFS.subClassOf, FRBRER.C1004))  # Manifestation
 
-    # schema.org OriginWork subtypes — declared as subclasses of wd:Q386724
-    for schema_cls, comment in [
-        (SCHEMA.TVSeries,    "Television or web series from which the meme derives; subclass of OriginWork (wd:Q386724)."),
-        (SCHEMA.Movie,       "Film from which the meme derives; subclass of OriginWork (wd:Q386724)."),
-        (SCHEMA.VideoGame,   "Video game from which the meme derives; subclass of OriginWork (wd:Q386724)."),
-        (SCHEMA.ComicSeries, "Comic strip, webcomic or graphic novel from which the meme derives; subclass of OriginWork (wd:Q386724)."),
-        (SCHEMA.MusicAlbum,  "Song, album or music video from which the meme derives; subclass of OriginWork (wd:Q386724)."),
-        (SCHEMA.Book,        "Book, novel or short story from which the meme derives; subclass of OriginWork (wd:Q386724)."),
+    # schema.org OriginWork subtypes — declared as subclasses of memo:OriginWork
+    for schema_cls, comment, wd_qid in [
+        (SCHEMA.TVSeries,    "Television or web series from which the meme derives; subclass of memo:OriginWork.", "Q5398426"),
+        (SCHEMA.Movie,       "Film from which the meme derives; subclass of memo:OriginWork.",                    "Q11424"),
+        (SCHEMA.VideoGame,   "Video game from which the meme derives; subclass of memo:OriginWork.",              "Q7889"),
+        (SCHEMA.ComicSeries, "Comic strip, webcomic or graphic novel from which the meme derives; subclass of memo:OriginWork.", "Q25379"),
+        (SCHEMA.MusicAlbum,  "Song, album or music video from which the meme derives; subclass of memo:OriginWork.", "Q482994"),
+        (SCHEMA.Book,        "Book, novel or short story from which the meme derives; subclass of memo:OriginWork.", "Q571"),
     ]:
         g.add((schema_cls, RDF.type,        OWL.Class))
         g.add((schema_cls, RDFS.subClassOf, MEME.OriginWork))
         g.add((schema_cls, RDFS.comment,    Literal(comment, lang="en")))
+        g.add((schema_cls, RDFS.seeAlso,    URIRef(f"https://www.wikidata.org/wiki/{wd_qid}")))
 
     # Object properties (P3: Wikidata props via prop_uri; P4: union domains via _union_node)
     for name, domain, range_ in OBJ_PROPS:
@@ -928,11 +958,7 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
         g.add((p_fwd, OWL.inverseOf, p_inv))
         g.add((p_inv, OWL.inverseOf, p_fwd))
 
-    # memo:hasReference aligns to wdt:P8371 (Wikidata "has use"); explicit assertions use memo: namespace
-    g.add((MEME.hasReference, OWL.equivalentProperty, WDT.P8371))
-    g.add((WDT.P8371,         OWL.equivalentProperty, MEME.hasReference))
-
-    # Fix 4 — hasOriginWork is a specialisation of prov:wasDerivedFrom
+    # hasOriginWork is a specialisation of prov:wasDerivedFrom
     g.add((MEME.hasOriginWork, RDFS.subPropertyOf, PROV.wasDerivedFrom))
 
     # Fix 2 — declare external properties used in populated but absent from schema
@@ -1315,7 +1341,7 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
 
         print(f"  Cultural reference assertions added: {n_cr}")
 
-    g.serialize(destination=str(owl_path), format="xml")
+    owl_path.write_text(_inject_owl_xmlns(g.serialize(format="xml")), encoding="utf-8")
     print(f"OWL ontology written -> {owl_path}  ({len(g)} triples)")
     if ttl_path:
         g.serialize(destination=str(ttl_path), format="turtle")
@@ -1334,7 +1360,7 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
                 continue
             ug.add((s, p, o))
         if unpopulated_owl_path:
-            ug.serialize(destination=str(unpopulated_owl_path), format="xml")
+            Path(unpopulated_owl_path).write_text(_inject_owl_xmlns(ug.serialize(format="xml")), encoding="utf-8")
             print(f"Unpopulated OWL written -> {unpopulated_owl_path}  ({len(ug)} triples)")
         if unpopulated_ttl_path:
             ug.serialize(destination=str(unpopulated_ttl_path), format="turtle")

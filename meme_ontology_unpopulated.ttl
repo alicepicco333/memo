@@ -7,7 +7,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
-@prefix wdt: <http://www.wikidata.org/prop/direct/> .
+@prefix wdp: <http://www.wikidata.org/prop/direct/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 dcterms:created a owl:AnnotationProperty ;
@@ -174,27 +174,33 @@ memo:views a owl:DatatypeProperty ;
     rdfs:range xsd:integer .
 
 schema:Book a owl:Class ;
-    rdfs:comment "Book, novel or short story from which the meme derives; subclass of OriginWork (wd:Q386724)."@en ;
+    rdfs:comment "Book, novel or short story from which the meme derives; subclass of memo:OriginWork."@en ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q571> ;
     rdfs:subClassOf memo:OriginWork .
 
 schema:ComicSeries a owl:Class ;
-    rdfs:comment "Comic strip, webcomic or graphic novel from which the meme derives; subclass of OriginWork (wd:Q386724)."@en ;
+    rdfs:comment "Comic strip, webcomic or graphic novel from which the meme derives; subclass of memo:OriginWork."@en ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q25379> ;
     rdfs:subClassOf memo:OriginWork .
 
 schema:Movie a owl:Class ;
-    rdfs:comment "Film from which the meme derives; subclass of OriginWork (wd:Q386724)."@en ;
+    rdfs:comment "Film from which the meme derives; subclass of memo:OriginWork."@en ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q11424> ;
     rdfs:subClassOf memo:OriginWork .
 
 schema:MusicAlbum a owl:Class ;
-    rdfs:comment "Song, album or music video from which the meme derives; subclass of OriginWork (wd:Q386724)."@en ;
+    rdfs:comment "Song, album or music video from which the meme derives; subclass of memo:OriginWork."@en ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q482994> ;
     rdfs:subClassOf memo:OriginWork .
 
 schema:TVSeries a owl:Class ;
-    rdfs:comment "Television or web series from which the meme derives; subclass of OriginWork (wd:Q386724)."@en ;
+    rdfs:comment "Television or web series from which the meme derives; subclass of memo:OriginWork."@en ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q5398426> ;
     rdfs:subClassOf memo:OriginWork .
 
 schema:VideoGame a owl:Class ;
-    rdfs:comment "Video game from which the meme derives; subclass of OriginWork (wd:Q386724)."@en ;
+    rdfs:comment "Video game from which the meme derives; subclass of memo:OriginWork."@en ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q7889> ;
     rdfs:subClassOf memo:OriginWork .
 
 schema:image a owl:AnnotationProperty ;
@@ -218,43 +224,41 @@ prov:wasDerivedFrom a owl:ObjectProperty ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range memo:OriginWork .
 
-wdt:P123 a owl:ObjectProperty ;
+wdp:P123 a owl:ObjectProperty ;
     rdfs:label "hasOriginPlatform" ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range memo:OriginPlatform ;
     owl:inverseOf memo:isOriginPlatformOf .
 
-wdt:P2283 a owl:ObjectProperty ;
+wdp:P2283 a owl:ObjectProperty ;
     rdfs:label "hasFormat" ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range memo:MemeFormat ;
     owl:inverseOf memo:isFormatOf .
 
-wdt:P2408 a owl:ObjectProperty ;
+wdp:P2408 a owl:ObjectProperty ;
     rdfs:label "hasTimePeriod" ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range memo:TimePeriod ;
     owl:inverseOf memo:isTimePeriodOf .
 
-wdt:P361 a owl:ObjectProperty ;
+wdp:P361 a owl:ObjectProperty ;
     rdfs:label "isVariantOf" ;
     rdfs:domain memo:VariantInstance ;
     rdfs:range memo:MemeConcept ;
-    owl:inverseOf wdt:P527 .
+    owl:inverseOf wdp:P527 .
 
-wdt:P495 a owl:ObjectProperty ;
+wdp:P495 a owl:ObjectProperty ;
     rdfs:label "hasRegion" ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range memo:GeographicRegion ;
     owl:inverseOf memo:isRegionOf .
 
-wdt:P527 a owl:ObjectProperty ;
+wdp:P527 a owl:ObjectProperty ;
     rdfs:label "hasVariant" ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range memo:VariantInstance ;
-    owl:inverseOf wdt:P361 .
-
-wdt:P8371 owl:equivalentProperty memo:hasReference .
+    owl:inverseOf wdp:P361 .
 
 memo:FileFormat a owl:Class ;
     rdfs:label "FileFormat" ;
@@ -286,6 +290,12 @@ memo:hasOriginWork a owl:ObjectProperty ;
     rdfs:range memo:OriginWork ;
     rdfs:subPropertyOf prov:wasDerivedFrom ;
     owl:inverseOf memo:isOriginWorkOf .
+
+memo:hasReference a owl:ObjectProperty ;
+    rdfs:label "hasReference" ;
+    rdfs:domain memo:MemeConcept ;
+    rdfs:range memo:CulturalReference ;
+    owl:inverseOf memo:isReferencedIn .
 
 memo:hasSubjectMatter a owl:ObjectProperty ;
     rdfs:label "hasSubjectMatter" ;
@@ -322,7 +332,7 @@ memo:isFormatOf a owl:ObjectProperty ;
     rdfs:label "isFormatOf" ;
     rdfs:domain memo:MemeFormat ;
     rdfs:range memo:MemeConcept ;
-    owl:inverseOf wdt:P2283 .
+    owl:inverseOf wdp:P2283 .
 
 memo:isImageTypeOf a owl:ObjectProperty ;
     rdfs:label "isImageTypeOf" ;
@@ -335,7 +345,7 @@ memo:isOriginPlatformOf a owl:ObjectProperty ;
     rdfs:label "isOriginPlatformOf" ;
     rdfs:domain memo:OriginPlatform ;
     rdfs:range memo:MemeConcept ;
-    owl:inverseOf wdt:P123 .
+    owl:inverseOf wdp:P123 .
 
 memo:isOriginWorkOf a owl:ObjectProperty ;
     rdfs:label "isOriginWorkOf" ;
@@ -353,7 +363,7 @@ memo:isRegionOf a owl:ObjectProperty ;
     rdfs:label "isRegionOf" ;
     rdfs:domain memo:GeographicRegion ;
     rdfs:range memo:MemeConcept ;
-    owl:inverseOf wdt:P495 .
+    owl:inverseOf wdp:P495 .
 
 memo:isSubjectMatterOf a owl:ObjectProperty ;
     rdfs:label "isSubjectMatterOf" ;
@@ -366,7 +376,7 @@ memo:isTimePeriodOf a owl:ObjectProperty ;
     rdfs:label "isTimePeriodOf" ;
     rdfs:domain memo:TimePeriod ;
     rdfs:range memo:MemeConcept ;
-    owl:inverseOf wdt:P2408 .
+    owl:inverseOf wdp:P2408 .
 
 memo:isTransformationDimensionOf a owl:ObjectProperty ;
     rdfs:label "isTransformationDimensionOf" ;
@@ -417,13 +427,6 @@ memo:TransformationDimension a owl:Class ;
 memo:TransformationExtent a owl:Class ;
     rdfs:label "TransformationExtent" ;
     rdfs:comment "The degree to which a VariantInstance diverges from its source template (e.g. Minimal, Moderate, Major). Enables quantitative analysis of meme mutation."@en .
-
-memo:hasReference a owl:ObjectProperty ;
-    rdfs:label "hasReference" ;
-    rdfs:domain memo:MemeConcept ;
-    rdfs:range memo:CulturalReference ;
-    owl:equivalentProperty wdt:P8371 ;
-    owl:inverseOf memo:isReferencedIn .
 
 memo:MemeIdea a owl:Class ;
     rdfs:label "MemeIdea" ;

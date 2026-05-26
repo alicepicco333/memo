@@ -1,6 +1,8 @@
 /* ── Constants ─────────────────────────────────────────────────────────────── */
 // Platforms that post-date 2009 — used to suppress impossible Pre2010 data artifacts.
 const MODERN_PLATFORMS = new Set(['TikTok', 'Instagram', 'Snapchat', 'Twitch', 'Discord']);
+// Platforms that post-date 2015 — suppress from Pre2010 and 2010-2015 bars (TikTok launched Sep 2016).
+const POST2015_PLATFORMS = new Set(['TikTok']);
 
 /* ── State ─────────────────────────────────────────────────────────────────── */
 let isMobile = () => window.innerWidth <= 768;
@@ -658,6 +660,9 @@ function buildPlatformTimeStacked() {
     const row = { period: periodRow.period };
     platforms.forEach(p => { row[p] = 0; });
     (periodRow.segments || []).forEach(seg => {
+      // Suppress impossible platform/period combinations caused by classification artifacts.
+      if (periodRow.period === 'Pre2010' && MODERN_PLATFORMS.has(seg.platform)) return;
+      if (periodRow.period === '2010-2015' && POST2015_PLATFORMS.has(seg.platform)) return;
       row[seg.platform] = seg.ratio || 0;
     });
     return row;
@@ -725,8 +730,9 @@ function buildPlatformTimeStacked() {
         slugs = Object.keys(DATA.memes).filter(slug => {
           const m = DATA.memes[slug];
           if (m.hasTimePeriod !== storedPeriod) return false;
-          // Never surface a MODERN_PLATFORMS meme in Pre2010 — bad data artifact.
+          // Suppress impossible platform/period combinations from click-through panels.
           if (storedPeriod === 'Pre2010' && MODERN_PLATFORMS.has(m.hasOriginPlatform)) return false;
+          if (storedPeriod === 'Period2010to2015' && POST2015_PLATFORMS.has(m.hasOriginPlatform)) return false;
           if (d.key === 'Other') return !m.hasOriginPlatform || !namedPlatforms.has(m.hasOriginPlatform);
           return m.hasOriginPlatform === d.key;
         });
