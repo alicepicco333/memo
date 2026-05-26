@@ -10446,6 +10446,7 @@ No, seriously. Who did this, I found this online a while ago and have completely
     <rdfs:label>AnimationStatus</rdfs:label>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:comment xml:lang="en">Whether a meme image is animated (Animated, i.e. a GIF) or static (Static). Derived from file extension.</rdfs:comment>
+    <memo:semanticLevel>PreIconographical</memo:semanticLevel>
   </rdf:Description>
   <rdf:Description rdf:nodeID="N672c748504dc40fe9789adc12d546955">
     <rdf:first rdf:resource="https://purl.org/memo#MemeConcept"/>

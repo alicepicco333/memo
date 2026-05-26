@@ -670,7 +670,7 @@ ORDER BY DESC(?count)</textarea>
       owlDot.className = 'owl-dot loading';
       owlStatus.textContent = 'Fetching ontology…';
 
-      var sources = ['meme_ontology_d0.ttl', 'meme_ontology.ttl'];
+      var sources = ['meme_ontology.ttl', 'meme_ontology_d0.ttl'];
 
       function trySource(idx, lastErr) {
         if (idx >= sources.length) {
