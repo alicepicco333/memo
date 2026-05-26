@@ -859,6 +859,7 @@ function buildPlatformTimeStacked() {
     return;
   }
 
+  // Trova tutte le piattaforme presenti
   const platforms = [];
   periods.forEach(p => {
     (p.segments || []).forEach(s => {
@@ -866,6 +867,19 @@ function buildPlatformTimeStacked() {
         platforms.push(s.platform);
     });
   });
+
+  // Ordina le piattaforme in base alla somma delle proporzioni decrescenti (così la più presente è sempre in fondo)
+  // Per ogni periodo, la piattaforma con la percentuale massima sarà in fondo
+  // Calcola la somma delle proporzioni per ogni piattaforma
+  const platformTotals = {};
+  periods.forEach(periodRow => {
+    (periodRow.segments || []).forEach(seg => {
+      if (!platformTotals[seg.platform]) platformTotals[seg.platform] = 0;
+      platformTotals[seg.platform] += seg.ratio || 0;
+    });
+  });
+  // Ordina le piattaforme per somma decrescente
+  const sortedPlatforms = [...platforms].sort((a, b) => (platformTotals[b] || 0) - (platformTotals[a] || 0));
 
   const rect = wrap.getBoundingClientRect();
   const W = rect.width || (window.innerWidth - 48);
@@ -880,9 +894,8 @@ function buildPlatformTimeStacked() {
 
   const rows = periods.map(periodRow => {
     const row = { period: periodRow.period };
-    platforms.forEach(p => { row[p] = 0; });
+    sortedPlatforms.forEach(p => { row[p] = 0; });
     (periodRow.segments || []).forEach(seg => {
-      // Suppress impossible platform/period combinations caused by classification artifacts.
       if (periodRow.period === 'Pre2010' && MODERN_PLATFORMS.has(seg.platform)) return;
       if (periodRow.period === '2010-2015' && POST2015_PLATFORMS.has(seg.platform)) return;
       row[seg.platform] = seg.ratio || 0;
@@ -896,21 +909,21 @@ function buildPlatformTimeStacked() {
     .padding(0.22);
 
   // Palette ispirata ai loghi delle piattaforme, armonizzata
-  // Versioni pastello/desaturate dei colori logo
+  // Colori ispirati ai loghi, saturazione media (soft vibrante)
   const platformColorMap = {
-    'TikTok':    '#AEECEF', // TikTok azzurro pastello
-    'Instagram':'#F6B1C3', // Instagram rosa pastello
-    'YouTube':  '#FFB3B3', // YouTube rosso pastello
-    'Twitter':  '#B3E5FC', // Twitter blu pastello
-    'Reddit':   '#FFD6B3', // Reddit arancione pastello
-    'Discord':  '#C5C9F7', // Discord blu pastello
-    'Twitch':   '#E0C6FF', // Twitch viola pastello
-    'Facebook': '#B3D1FC', // Facebook blu pastello
-    'Snapchat': '#FFF9B3', // Snapchat giallo pastello
-    'Vine':     '#B3F6E0', // Vine verde pastello
-    'Tumblr':   '#BFC9D1', // Tumblr blu scuro pastello
-    '4chan':    '#D8F7B3', // 4chan verde chiaro pastello
-    'Other':    '#E0E0E0'  // Other grigio chiaro
+    'TikTok':    '#4fdde9', // TikTok azzurro medio
+    'Instagram':'#f77cae', // Instagram rosa medio
+    'YouTube':  '#ff6666', // YouTube rosso medio
+    'Twitter':  '#5ecbfa', // Twitter blu medio
+    'Reddit':   '#ffb366', // Reddit arancione medio
+    'Discord':  '#8e9cf7', // Discord blu medio
+    'Twitch':   '#c59cff', // Twitch viola medio
+    'Facebook': '#6ea8fa', // Facebook blu medio
+    'Snapchat': '#fff066', // Snapchat giallo medio
+    'Vine':     '#66e6c7', // Vine verde medio
+    'Tumblr':   '#8a9bb8', // Tumblr blu scuro medio
+    '4chan':    '#b6e66a', // 4chan verde chiaro medio
+    'Other':    '#cccccc'  // Other grigio medio
   };
   // Palette fallback per piattaforme non note
   const pastelPalette = [
@@ -918,10 +931,10 @@ function buildPlatformTimeStacked() {
     '#80b1d3','#fdb462','#b3de69','#fccde5','#d9d9d9','#bc80bd','#ccebc5'
   ];
   const color = d3.scaleOrdinal()
-    .domain(platforms)
-    .range(platforms.map((p,i) => platformColorMap[p] || pastelPalette[i%pastelPalette.length]));
+    .domain(sortedPlatforms)
+    .range(sortedPlatforms.map((p,i) => platformColorMap[p] || pastelPalette[i%pastelPalette.length]));
 
-  const stack = d3.stack().keys(platforms);
+  const stack = d3.stack().keys(sortedPlatforms);
   const stacked = stack(rows);
 
   const yMax = d3.max(stacked[stacked.length - 1] || [[0, 1]], d => d[1]) || 1;
