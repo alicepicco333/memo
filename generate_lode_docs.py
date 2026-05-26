@@ -31,7 +31,7 @@ if '--url' in sys.argv:
             html_bytes = resp.read()
         html = html_bytes.decode('utf-8', errors='replace')
         # Patch back-link into LODE output so users can return to the viz
-        back = '<a href="meme_viz.html" style="position:fixed;top:10px;right:12px;' \
+        back = '<a href="visualizations.html" style="position:fixed;top:10px;right:12px;' \
                'z-index:9999;padding:6px 14px;background:#1a3d6b;color:#fff;' \
                'border-radius:4px;text-decoration:none;font-size:.78rem;font-family:sans-serif;">' \
                '&#x2190; Back to Meme Ontology</a>'
@@ -340,7 +340,7 @@ def toc_entries(items, prefix=""):
 # ── Assemble page ─────────────────────────────────────────────────────────────
 nav_html = f"""
 <nav class="lode-nav">
-  <div class="nav-brand"><a href="meme_viz.html">← The Meme Ontology</a></div>
+  <div class="nav-brand"><a href="visualizations.html">← The Meme Ontology</a></div>
   <div class="nav-section">Overview</div>
   <a class="nav-item" href="#overview">Ontology summary</a>
   <div class="nav-section">Classes ({len(classes)})</div>

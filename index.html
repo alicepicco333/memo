@@ -5,282 +5,139 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Meme Ontology</title>
   <link rel="stylesheet" href="meme_viz.css"/>
-  <style>
-    /* index-specific overrides */
-    body { overflow: hidden; }
-
-    .index-hero {
-      position: fixed;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* reuse .hero-images from meme_viz.css — position absolute fills .index-hero */
-    .index-hero .hero-images {
-      position: absolute;
-      inset: 0;
-    }
-
-    .index-hero .hero-content {
-      pointer-events: all;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      padding: 40px 48px 36px;
-      background: rgba(0,0,0,.55);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 6px;
-      max-width: 720px;
-      width: calc(100% - 48px);
-    }
-
-    .index-hero .hero-title {
-      line-height: 1;
-      margin: 0;
-    }
-
-    .hero-tagline {
-      font-size: .9rem;
-      color: rgba(255,255,255,.72);
-      letter-spacing: .1em;
-      text-align: center;
-      margin-top: -6px;
-    }
-
-    .hero-stats {
-      display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .hero-stat {
-      text-align: center;
-    }
-    .hero-stat-num {
-      display: block;
-      font-size: 1.35rem;
-      font-weight: 900;
-      color: #fff;
-    }
-    .hero-stat-lbl {
-      font-size: .65rem;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.55);
-    }
-
-    .hero-divider {
-      width: 100%;
-      border: none;
-      border-top: 1px solid rgba(255,255,255,.15);
-    }
-
-    .hero-nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      justify-content: center;
-    }
-
-    .hero-nav-btn {
-      padding: 9px 22px;
-      font-size: .78rem;
-      font-weight: 700;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: #fff;
-      background: rgba(255,255,255,.12);
-      border: 1px solid rgba(255,255,255,.28);
-      border-radius: 4px;
-      text-decoration: none;
-      transition: background .15s, border-color .15s;
-      white-space: nowrap;
-    }
-    .hero-nav-btn:hover {
-      background: rgba(255,255,255,.22);
-      border-color: rgba(255,255,255,.55);
-    }
-    .hero-nav-btn.primary {
-      background: #fff;
-      color: #111;
-      border-color: #fff;
-    }
-    .hero-nav-btn.primary:hover {
-      background: #eee;
-    }
-
-    .hero-links {
-      display: flex;
-      gap: 20px;
-      font-size: .72rem;
-    }
-    .hero-links a {
-      color: rgba(255,255,255,.5);
-      text-decoration: none;
-      transition: color .15s;
-    }
-    .hero-links a:hover { color: rgba(255,255,255,.85); }
-
-    /* Mobile responsiveness */
-    @media (max-width: 768px) {
-      .index-hero .hero-content {
-        padding: 24px 20px;
-        gap: 14px;
-        max-width: 100%;
-        width: calc(100% - 24px);
-      }
-      .index-hero .hero-title {
-        font-size: 1.8rem;
-      }
-      .hero-tagline {
-        font-size: 0.8rem;
-      }
-      .hero-stats {
-        gap: 12px;
-      }
-      .hero-stat-num {
-        font-size: 1.1rem;
-      }
-      .hero-stat-lbl {
-        font-size: 0.6rem;
-      }
-      .hero-nav {
-        gap: 6px;
-        width: 100%;
-      }
-      .hero-nav-btn {
-        padding: 7px 14px;
-        font-size: 0.7rem;
-        flex: 1 1 calc(50% - 3px);
-        text-align: center;
-      }
-      .hero-links {
-        gap: 10px;
-        font-size: 0.65rem;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .index-hero .hero-content {
-        padding: 16px 14px;
-        gap: 10px;
-      }
-      .index-hero .hero-title {
-        font-size: 1.4rem;
-      }
-      .hero-tagline {
-        font-size: 0.7rem;
-        margin-top: -2px;
-      }
-      .hero-stats {
-        gap: 8px;
-        width: 100%;
-      }
-      .hero-stat {
-        flex: 1 1 calc(50% - 4px);
-      }
-      .hero-stat-num {
-        font-size: 0.95rem;
-      }
-      .hero-stat-lbl {
-        font-size: 0.55rem;
-      }
-      .hero-divider {
-        margin: 4px 0;
-      }
-      .hero-nav {
-        gap: 4px;
-        width: 100%;
-      }
-      .hero-nav-btn {
-        padding: 6px 10px;
-        font-size: 0.65rem;
-        flex: 1 1 calc(50% - 2px);
-        min-height: 32px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .hero-links {
-        gap: 8px;
-        font-size: 0.6rem;
-      }
-    }
-  </style>
 </head>
-<body>
-
-  <section class="index-hero">
-    <div id="hero-images" class="hero-images"></div>
-
-    <div class="hero-content">
-      <h1 class="hero-title">THE MEME ONTOLOGY</h1>
-
-      <p class="hero-tagline">OWL 2 DL &middot; FRBR &times; Panofsky &middot; 5,000 internet memes</p>
-
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <span class="hero-stat-num">5,000</span>
-          <span class="hero-stat-lbl">Meme templates</span>
-        </div>
-        <div class="hero-stat">
-          <span class="hero-stat-num">391</span>
-          <span class="hero-stat-lbl">Variant instances</span>
-        </div>
-        <div class="hero-stat">
-          <span class="hero-stat-num">97,591</span>
-          <span class="hero-stat-lbl">Total triples</span>
-        </div>
-        <div class="hero-stat">
-          <span class="hero-stat-num">40</span>
-          <span class="hero-stat-lbl">OWL classes</span>
-        </div>
-      </div>
-
-      <hr class="hero-divider"/>
-
-      <nav class="hero-nav">
-        <a class="hero-nav-btn primary" href="visualizations.html">Visualizations</a>
-        <a class="hero-nav-btn" href="visualizations.html#dataset">Dataset</a>
-        <a class="hero-nav-btn" href="visualizations.html#disclaimer">Disclaimer</a>
-        <a class="hero-nav-btn" href="visualizations.html#ontology">Ontology</a>
-        <a class="hero-nav-btn" href="sparql.html" target="_blank">SPARQL</a>
-      </nav>
-
-      <div class="hero-links">
-        <a href="meme_ontology.owl" download>&#x2B07; Download OWL</a>
-        <a href="meme_ontology.ttl" download>&#x2B07; Download Turtle</a>
-        <a href="https://github.com/meme-ontology/meme-ontology" target="_blank" rel="noopener">GitHub</a>
-      </div>
+<body class="home-page">
+  <nav class="topnav" id="topnav">
+    <a class="topnav-brand" href="index.html">The Meme Ontology</a>
+    <div class="topnav-links">
+      <a class="topnav-link active" href="index.html">Home</a>
+      <a class="topnav-link" href="visualizations.html">Visualizations</a>
+      <a class="topnav-link" href="visualizations.html#about">About</a>
+      <a class="topnav-link" href="visualizations.html#dataset">Dataset</a>
+      <a class="topnav-link" href="visualizations.html#ontology">Ontology</a>
+      <a class="topnav-link" href="sparql.html" target="_blank" rel="noopener">SPARQL</a>
     </div>
-  </section>
+  </nav>
+
+  <main class="home-main">
+    <section class="home-collage-wrap">
+      <header class="home-collage-header">
+        <h1>MEME ONTOLOGY ARCHIVE</h1>
+        <p>Scroll through the corpus. Open any tile to jump directly to its detail page.</p>
+      </header>
+
+      <div id="home-collage" class="home-collage-grid" aria-live="polite"></div>
+      <div id="home-collage-sentinel" class="home-collage-sentinel"></div>
+    </section>
+
+    <section class="home-summary-wrap">
+      <div class="home-summary-card">
+        <h2>About This Archive</h2>
+        <p>The Meme Ontology structures internet memes as cultural and visual knowledge objects. The project links each meme concept to provenance, format, transformation behavior, and cultural references through OWL-based semantics.</p>
+        <p>This interface combines a large-scale meme corpus with ontology-backed navigation: visual analytics in the Visualizations page, entity-level ontology documentation, and SPARQL querying for reproducible analysis.</p>
+      </div>
+    </section>
+  </main>
 
   <script>
-    (async () => {
-      try {
-        const resp = await fetch('meme_data.json');
-        const data = await resp.json();
-        const memes = Object.values(data.memes).filter(m => m.imageFilename);
-        for (let i = memes.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [memes[i], memes[j]] = [memes[j], memes[i]];
+    (function() {
+      var collage = document.getElementById('home-collage');
+      var sentinel = document.getElementById('home-collage-sentinel');
+      var queue = [];
+      var cursor = 0;
+      var BATCH = 120;
+      var isLoading = false;
+      var exhausted = false;
+
+      function shuffle(arr) {
+        var a = arr.slice();
+        for (var i = a.length - 1; i > 0; i--) {
+          var j = Math.floor(Math.random() * (i + 1));
+          var tmp = a[i];
+          a[i] = a[j];
+          a[j] = tmp;
         }
-        const container = document.getElementById('hero-images');
-        memes.slice(0, 200).forEach(m => {
-          const img = document.createElement('img');
-          img.src     = m.imageURL || `images_flat/${m.imageFilename}`;
-          img.alt     = '';
+        return a;
+      }
+
+      function tileSizeClass(i) {
+        if (i % 17 === 0) return 'home-tile xl';
+        if (i % 9 === 0) return 'home-tile wide';
+        if (i % 7 === 0) return 'home-tile tall';
+        return 'home-tile';
+      }
+
+      function appendBatch() {
+        if (isLoading || exhausted) return;
+        isLoading = true;
+
+        var limit = Math.min(cursor + BATCH, queue.length);
+        for (var i = cursor; i < limit; i++) {
+          var item = queue[i];
+          var a = document.createElement('a');
+          a.className = tileSizeClass(i);
+          a.href = 'visualizations.html#meme/' + encodeURIComponent(item.slug);
+          a.title = item.slug.replace(/_/g, ' ');
+
+          var img = document.createElement('img');
+          img.src = item.imageURL || ('images_flat/' + item.imageFilename);
+          img.alt = item.slug;
           img.loading = 'lazy';
-          container.appendChild(img);
+
+          if (item.imageURL && item.imageFilename) {
+            img.addEventListener('error', function() {
+              if (this.dataset.fallbackTried) return;
+              this.dataset.fallbackTried = '1';
+              this.src = 'images_flat/' + this.dataset.fallbackFilename;
+            });
+            img.dataset.fallbackFilename = item.imageFilename;
+          }
+
+          a.appendChild(img);
+          collage.appendChild(a);
+        }
+
+        cursor = limit;
+        if (cursor >= queue.length) exhausted = true;
+        isLoading = false;
+      }
+
+      function boot(data) {
+        var memes = data && data.memes ? data.memes : {};
+        var slugs = Object.keys(memes);
+        queue = shuffle(slugs)
+          .map(function(slug) {
+            return {
+              slug: slug,
+              imageFilename: memes[slug] && memes[slug].imageFilename,
+              imageURL: memes[slug] && memes[slug].imageURL
+            };
+          })
+          .filter(function(m) { return !!m.imageFilename; });
+
+        appendBatch();
+        appendBatch();
+
+        var obs = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              appendBatch();
+              if (exhausted) obs.disconnect();
+            }
+          });
+        }, { rootMargin: '1100px 0px 1100px 0px' });
+        obs.observe(sentinel);
+      }
+
+      fetch('meme_data.json', { cache: 'no-store' })
+        .then(function(r) {
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          return r.json();
+        })
+        .then(boot)
+        .catch(function() {
+          collage.innerHTML = '<p style="grid-column:1 / -1; color:#666; font-size:.85rem; padding: 20px;">Unable to load collage data.</p>';
         });
-      } catch (_) {}
     })();
   </script>
 </body>

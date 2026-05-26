@@ -10,10 +10,11 @@
 
   <!-- Top navbar -->
   <nav class="topnav" id="topnav">
-    <a class="topnav-brand" href="/" id="nav-home">The Meme Ontology</a>
+    <a class="topnav-brand" href="index.html" id="nav-home">The Meme Ontology</a>
     <div class="topnav-links">
+      <a class="topnav-link" href="index.html">Home</a>
       <div class="topnav-dropdown">
-        <a class="topnav-link topnav-dropdown-trigger" href="#" data-page="viz">Visualizations</a>
+        <a class="topnav-link topnav-dropdown-trigger" href="visualizations.html" data-page="viz">Visualizations</a>
         <div class="topnav-dropdown-menu">
           <a class="topnav-dropdown-item" href="#sec-time">Temporal Distribution of Format</a>
           <a class="topnav-dropdown-item" href="#sec-popularity">Popularity × Format</a>
@@ -25,8 +26,9 @@
       <a class="topnav-link" href="#about"    data-page="about">About</a>
       <a class="topnav-link" href="#disclaimer" data-page="disclaimer">Disclaimer</a>
       <a class="topnav-link" href="#dataset"  data-page="dataset">Dataset</a>
-      <a class="topnav-link" href="meme_viz.html#ontology">Ontology</a>
+      <a class="topnav-link" href="#ontology" data-page="ontology">Ontology</a>
       <a class="topnav-link" href="sparql.html" target="_blank">SPARQL</a>
+      <a class="topnav-link" href="https://w3id.org/lode/" target="_blank" rel="noopener">LODE</a>
     </div>
   </nav>
 
@@ -238,6 +240,34 @@
 
     </div>
   </div>
+
+  <div id="page-ontology" class="page hidden">
+    <div class="onto-doc-shell">
+      <header class="onto-doc-header">
+        <div>
+          <h1>Meme Ontology Documentation</h1>
+          <p>LODE-compatible structure rendered directly in this page from meme_ontology_unpopulated.owl.</p>
+        </div>
+        <div class="onto-doc-actions">
+          <a class="onto-doc-btn" href="meme_ontology_unpopulated.owl" download>Download OWL</a>
+          <a class="onto-doc-btn" id="onto-open-lode-top" href="http://150.146.207.114/lode/extract?url=https%3A%2F%2Fraw.githubusercontent.com%2Falicepicco333%2Fmemo%2Frefs%2Fheads%2Fmain%2Fmeme_ontology_unpopulated.owl&owlapi=true&imported=true&closure=true&reasoner=true&lang=en" target="_blank" rel="noopener">Open in LODE</a>
+        </div>
+      </header>
+
+      <div class="onto-doc-layout">
+        <aside class="onto-doc-nav" id="onto-doc-nav"></aside>
+        <main class="onto-doc-main" id="onto-doc-main">
+          <div class="onto-doc-loading">Loading ontology documentation...</div>
+        </main>
+      </div>
+
+      <footer class="onto-doc-disclaimer">
+        <p>this is a visual restyling of ontology documentation service offered by lode. the content of this page has been remodeled visually on this platform but is provided free and open source by lode.</p>
+        <a class="onto-doc-btn" id="onto-open-lode-bottom" href="http://150.146.207.114/lode/extract?url=https%3A%2F%2Fraw.githubusercontent.com%2Falicepicco333%2Fmemo%2Frefs%2Fheads%2Fmain%2Fmeme_ontology_unpopulated.owl&owlapi=true&imported=true&closure=true&reasoner=true&lang=en" target="_blank" rel="noopener">Open in LODE</a>
+      </footer>
+    </div>
+  </div>
+
   <div id="page-meme" class="page hidden">
     <div class="page-inner" id="meme-page-content"></div>
   </div>
