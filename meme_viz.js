@@ -410,9 +410,11 @@ function buildPopularityByFormat() {
     .range([iH, 0]);
 
   const maxEntries = d3.max(points, d => d.entries || 0) || 1;
+  // Start at 0 so sqrt is measured from the true origin — area stays proportional to entries.
+  const rMax = Math.max(14, Math.min(44, x.bandwidth() * 0.46));
   const r = d3.scaleSqrt()
     .domain([0, maxEntries])
-    .range([4, Math.max(14, Math.min(42, x.bandwidth() * 0.45))]);
+    .range([0, rMax]);
 
   wrap.innerHTML = '';
   const svgEl = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -479,6 +481,40 @@ function buildPopularityByFormat() {
     .on('click', (e, d) => {
       openPanel(d.format, nodeToMemes[d.format] || [], 'popularity', 'format');
     });
+
+  // ── Size legend ──────────────────────────────────────────────────────────
+  // Vertical stack in top-right: largest circle first, count labels to the left.
+  const legendSteps = [200, 600, 1200].filter(v => v <= maxEntries * 1.05);
+  if (!mobile && legendSteps.length) {
+    const lg = g.append('g').attr('transform', `translate(${iW - 6}, 8)`);
+
+    lg.append('text')
+      .attr('x', 0).attr('y', 0)
+      .attr('text-anchor', 'end')
+      .style('font-size', '9px').style('fill', '#bbb').style('font-style', 'italic')
+      .text('entries');
+
+    let lyOff = 16;
+    [...legendSteps].reverse().forEach(val => {
+      const rad = r(val);
+      lyOff += rad;
+      // semi-transparent backing so circle shows over any stray data
+      lg.append('circle')
+        .attr('cx', -rad - 4).attr('cy', lyOff)
+        .attr('r', rad + 2)
+        .attr('fill', 'var(--surface)').attr('opacity', 0.75);
+      lg.append('circle')
+        .attr('cx', -rad - 4).attr('cy', lyOff)
+        .attr('r', rad)
+        .attr('fill', 'none').attr('stroke', '#bbb').attr('stroke-width', 1.2);
+      lg.append('text')
+        .attr('x', -rad * 2 - 14).attr('y', lyOff + 4)
+        .attr('text-anchor', 'end')
+        .style('font-size', '9px').style('fill', '#bbb')
+        .text(val >= 1000 ? (val / 1000) + 'k' : val);
+      lyOff += rad + 8;
+    });
+  }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
