@@ -3,7 +3,7 @@
 const MODERN_PLATFORMS = new Set(['TikTok', 'Instagram', 'Snapchat', 'Twitch', 'Discord']);
 // Platforms that post-date 2015 — suppress from Pre2010 and 2010-2015 bars (TikTok launched Sep 2016).
 const POST2015_PLATFORMS = new Set(['TikTok']);
-const LODE_TARGET_URL = 'https://essepuntato.it/lode/extract?url=https%3A%2F%2Fraw.githubusercontent.com%2Falicepicco333%2Fmemo%2Frefs%2Fheads%2Fmain%2Fmeme_ontology_unpopulated.owl&owlapi=true&imported=true&closure=true&reasoner=true&lang=en';
+const LODE_TARGET_BASE = 'http://150.146.207.114/lode/extract';
 
 /* ── State ─────────────────────────────────────────────────────────────────── */
 let isMobile = () => window.innerWidth <= 768;
@@ -235,6 +235,56 @@ function safeEntityId(iri) {
   return 'onto-entity-' + String(iri || '').replace(/[^a-zA-Z0-9_-]/g, '_');
 }
 
+function buildLodeTargetUrl() {
+  var owlUrl = '';
+  if (window.location && window.location.origin) {
+    owlUrl = window.location.origin.replace(/\/$/, '') + '/ontology';
+  }
+  if (!owlUrl) {
+    owlUrl = 'https://raw.githubusercontent.com/alicepicco333/memo/refs/heads/main/meme_ontology.owl';
+  }
+  return LODE_TARGET_BASE + '?url=' + encodeURIComponent(owlUrl) + '&owlapi=true&imported=true&closure=true&reasoner=true&lang=en';
+}
+
+function fetchOntologyXmlFromCandidates(candidates) {
+  var i = 0;
+  function tryNext() {
+    if (i >= candidates.length) {
+      throw new Error('Unable to load ontology from known paths');
+    }
+    var path = candidates[i++];
+    return fetch(path, { cache: 'no-store' })
+      .then(function(res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status + ' for ' + path);
+        return res.text();
+      })
+      .then(function(xmlText) {
+        var parser = new DOMParser();
+        var doc = parser.parseFromString(xmlText, 'application/xml');
+        if (doc.getElementsByTagName('parsererror').length) {
+          throw new Error('Cannot parse ontology XML from ' + path);
+        }
+
+        var OWL_NS = 'http://www.w3.org/2002/07/owl#';
+        var hasOntology = doc.getElementsByTagNameNS(OWL_NS, 'Ontology').length > 0;
+        var hasSchemaEntities =
+          doc.getElementsByTagNameNS(OWL_NS, 'Class').length > 0 ||
+          doc.getElementsByTagNameNS(OWL_NS, 'ObjectProperty').length > 0 ||
+          doc.getElementsByTagNameNS(OWL_NS, 'DatatypeProperty').length > 0 ||
+          doc.getElementsByTagNameNS(OWL_NS, 'AnnotationProperty').length > 0;
+
+        if (!hasOntology && !hasSchemaEntities) {
+          throw new Error('Response is not OWL ontology at ' + path);
+        }
+        return doc;
+      })
+      .catch(function() {
+        return tryNext();
+      });
+  }
+  return tryNext();
+}
+
 function toEntity(node, rdfNs, rdfsNs, kind) {
   var iri = xmlAttr(node, rdfNs, 'about', 'rdf:about');
   if (!iri) return null;
@@ -331,20 +381,18 @@ function initOntoPage() {
   var main = document.getElementById('onto-doc-main');
   var lodeTop = document.getElementById('onto-open-lode-top');
   var lodeBottom = document.getElementById('onto-open-lode-bottom');
-  if (lodeTop) lodeTop.href = LODE_TARGET_URL;
-  if (lodeBottom) lodeBottom.href = LODE_TARGET_URL;
+  var lodeUrl = buildLodeTargetUrl();
+  if (lodeTop) lodeTop.href = lodeUrl;
+  if (lodeBottom) lodeBottom.href = lodeUrl;
 
-  fetch('meme_ontology_unpopulated.owl', { cache: 'no-store' })
-    .then(function(res) {
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      return res.text();
-    })
-    .then(function(xmlText) {
-      var parser = new DOMParser();
-      var doc = parser.parseFromString(xmlText, 'application/xml');
-      if (doc.getElementsByTagName('parsererror').length) {
-        throw new Error('Cannot parse meme_ontology_unpopulated.owl');
-      }
+  fetchOntologyXmlFromCandidates([
+    '/ontology',
+    'meme_ontology.owl',
+    '/meme_ontology.owl',
+    'meme_ontology_unpopulated.owl',
+    '/meme_ontology_unpopulated.owl'
+  ])
+    .then(function(doc) {
 
       var RDF_NS = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#';
       var RDFS_NS = 'http://www.w3.org/2000/01/rdf-schema#';
