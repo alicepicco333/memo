@@ -932,15 +932,16 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
     g.add((MEME.VariantInstance, RDFS.subClassOf, FRBRER.C1004))  # Manifestation
 
     # schema.org OriginWork subtypes — declared as subclasses of memo:OriginWork
-    for schema_cls, comment, wd_qid in [
-        (SCHEMA.TVSeries,    "Television or web series from which the meme derives; subclass of memo:OriginWork.", "Q5398426"),
-        (SCHEMA.Movie,       "Film from which the meme derives; subclass of memo:OriginWork.",                    "Q11424"),
-        (SCHEMA.VideoGame,   "Video game from which the meme derives; subclass of memo:OriginWork.",              "Q7889"),
-        (SCHEMA.ComicSeries, "Comic strip, webcomic or graphic novel from which the meme derives; subclass of memo:OriginWork.", "Q25379"),
-        (SCHEMA.MusicAlbum,  "Song, album or music video from which the meme derives; subclass of memo:OriginWork.", "Q482994"),
-        (SCHEMA.Book,        "Book, novel or short story from which the meme derives; subclass of memo:OriginWork.", "Q571"),
+    for schema_cls, label, comment, wd_qid in [
+        (SCHEMA.TVSeries,    "TvSeries",   "Television or web series from which the meme derives; subclass of memo:OriginWork.", "Q5398426"),
+        (SCHEMA.Movie,       "Movie",      "Film from which the meme derives; subclass of memo:OriginWork.",                    "Q11424"),
+        (SCHEMA.VideoGame,   "VideoGame",  "Video game from which the meme derives; subclass of memo:OriginWork.",              "Q7889"),
+        (SCHEMA.ComicSeries, "ComicBook",  "Comic strip, webcomic or graphic novel from which the meme derives; subclass of memo:OriginWork.", "Q25379"),
+        (SCHEMA.MusicAlbum,  "MusicAlbum", "Song, album or music video from which the meme derives; subclass of memo:OriginWork.", "Q482994"),
+        (SCHEMA.Book,        "Book",       "Book, novel or short story from which the meme derives; subclass of memo:OriginWork.", "Q571"),
     ]:
         g.add((schema_cls, RDF.type,        OWL.Class))
+        g.add((schema_cls, RDFS.label,       Literal(label)))
         g.add((schema_cls, RDFS.subClassOf, MEME.OriginWork))
         g.add((schema_cls, RDFS.comment,    Literal(comment, lang="en")))
         g.add((schema_cls, RDFS.seeAlso,    URIRef(f"https://www.wikidata.org/wiki/{wd_qid}")))

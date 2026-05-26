@@ -553,6 +553,7 @@
     <memo:hasReference rdf:resource="https://purl.org/memo#anxious-attachment-discourse"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://schema.org/Book">
+    <rdfs:label>Book</rdfs:label>
     <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q571"/>
     <rdfs:comment xml:lang="en">Book, novel or short story from which the meme derives; subclass of memo:OriginWork.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="https://purl.org/memo#OriginWork"/>
@@ -6066,6 +6067,7 @@ Archive
     <rdfs:label>hasTransformationDimension</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:about="https://schema.org/ComicSeries">
+    <rdfs:label>ComicBook</rdfs:label>
     <rdfs:comment xml:lang="en">Comic strip, webcomic or graphic novel from which the meme derives; subclass of memo:OriginWork.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="https://purl.org/memo#OriginWork"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -7493,6 +7495,7 @@ Ankha Zone - ZONE-sama</memo:captionText>
     <memo:isReferencedIn rdf:resource="https://purl.org/memo#we-not-making-it-out-the-hood"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://schema.org/VideoGame">
+    <rdfs:label>VideoGame</rdfs:label>
     <rdfs:comment xml:lang="en">Video game from which the meme derives; subclass of memo:OriginWork.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="https://purl.org/memo#OriginWork"/>
     <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q7889"/>
@@ -8443,6 +8446,7 @@ I stole this from here and cropped it a little. The name is from a Conan tweet I
     <memo:hasTransformationExtent rdf:resource="https://purl.org/memo#Moderate"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://schema.org/Movie">
+    <rdfs:label>Movie</rdfs:label>
     <rdfs:subClassOf rdf:resource="https://purl.org/memo#OriginWork"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q11424"/>
@@ -9536,6 +9540,7 @@ https://www.youtube.com/watch?v=Wga5A6R9BJg</memo:captionText>
     <wdp:P361 rdf:resource="https://purl.org/memo#always-go-for-this-only-villains-do-that"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://schema.org/MusicAlbum">
+    <rdfs:label>MusicAlbum</rdfs:label>
     <rdfs:subClassOf rdf:resource="https://purl.org/memo#OriginWork"/>
     <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q482994"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -10215,6 +10220,7 @@ However, many people today, including stranger 1 in this Omegle chat, seem to ju
     <memo:isReferencedIn rdf:resource="https://purl.org/memo#steven-crowders-change-my-mind-campus-sign"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://schema.org/TVSeries">
+    <rdfs:label>TvSeries</rdfs:label>
     <rdfs:comment xml:lang="en">Television or web series from which the meme derives; subclass of memo:OriginWork.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="https://purl.org/memo#OriginWork"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -10452,6 +10458,8 @@ No, seriously. Who did this, I found this online a while ago and have completely
     <rdfs:comment xml:lang="en">A political event, controversy, or campaign that a meme iconologically references.</rdfs:comment>
   </rdf:Description>
 </rdf:RDF>
+
+
 
 
 

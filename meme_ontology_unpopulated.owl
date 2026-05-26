@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <rdf:RDF
    xmlns:frbrer="http://iflastandards.info/ns/fr/frbr/frbrer/"
    xmlns:wd="http://www.wikidata.org/entity/"
@@ -180,6 +180,7 @@
     <rdfs:range rdf:resource="https://purl.org/memo#VariantInstance"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://schema.org/ComicSeries">
+    <rdfs:label>ComicBook</rdfs:label>
     <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q25379"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:subClassOf rdf:resource="https://purl.org/memo#OriginWork"/>
@@ -207,12 +208,14 @@
     <rdfs:range rdf:resource="https://purl.org/memo#TimePeriod"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://schema.org/TVSeries">
+    <rdfs:label>TvSeries</rdfs:label>
     <rdfs:comment xml:lang="en">Television or web series from which the meme derives; subclass of memo:OriginWork.</rdfs:comment>
     <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q5398426"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:subClassOf rdf:resource="https://purl.org/memo#OriginWork"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://schema.org/Movie">
+    <rdfs:label>Movie</rdfs:label>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:comment xml:lang="en">Film from which the meme derives; subclass of memo:OriginWork.</rdfs:comment>
     <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q11424"/>
@@ -237,7 +240,7 @@
     <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:label>wasDerivedFrom</rdfs:label>
-    <rdfs:comment xml:lang="en">Superproperty of memo:hasOriginWork. Not directly asserted in MEMO — memo:hasOriginWork is used throughout, from which reasoners infer prov:wasDerivedFrom.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Superproperty of memo:hasOriginWork. Not directly asserted in MEMO â€” memo:hasOriginWork is used throughout, from which reasoners infer prov:wasDerivedFrom.</rdfs:comment>
   </rdf:Description>
   <rdf:Description rdf:about="https://purl.org/memo#ParticipatoryFormat">
     <rdfs:label>ParticipatoryFormat</rdfs:label>
@@ -284,6 +287,7 @@
     <rdfs:label>hasTransformationExtent</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:about="https://schema.org/Book">
+    <rdfs:label>Book</rdfs:label>
     <rdfs:subClassOf rdf:resource="https://purl.org/memo#OriginWork"/>
     <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q571"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -443,6 +447,7 @@
     <rdf:rest rdf:nodeID="N408a72b33f1e46eeacbaba0ed99d9a07"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://schema.org/VideoGame">
+    <rdfs:label>VideoGame</rdfs:label>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:comment xml:lang="en">Video game from which the meme derives; subclass of memo:OriginWork.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="https://purl.org/memo#OriginWork"/>
@@ -487,6 +492,7 @@
     <owl:equivalentClass rdf:resource="http://www.wikidata.org/entity/Q3220391"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://schema.org/MusicAlbum">
+    <rdfs:label>MusicAlbum</rdfs:label>
     <rdfs:subClassOf rdf:resource="https://purl.org/memo#OriginWork"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q482994"/>
@@ -606,3 +612,5 @@
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
 </rdf:RDF>
+
+

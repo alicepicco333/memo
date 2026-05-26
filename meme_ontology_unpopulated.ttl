@@ -178,31 +178,37 @@ memo:views a owl:DatatypeProperty ;
     rdfs:range xsd:integer .
 
 schema:Book a owl:Class ;
+    rdfs:label "Book" ;
     rdfs:comment "Book, novel or short story from which the meme derives; subclass of memo:OriginWork."@en ;
     rdfs:seeAlso <https://www.wikidata.org/wiki/Q571> ;
     rdfs:subClassOf memo:OriginWork .
 
 schema:ComicSeries a owl:Class ;
+    rdfs:label "ComicBook" ;
     rdfs:comment "Comic strip, webcomic or graphic novel from which the meme derives; subclass of memo:OriginWork."@en ;
     rdfs:seeAlso <https://www.wikidata.org/wiki/Q25379> ;
     rdfs:subClassOf memo:OriginWork .
 
 schema:Movie a owl:Class ;
+    rdfs:label "Movie" ;
     rdfs:comment "Film from which the meme derives; subclass of memo:OriginWork."@en ;
     rdfs:seeAlso <https://www.wikidata.org/wiki/Q11424> ;
     rdfs:subClassOf memo:OriginWork .
 
 schema:MusicAlbum a owl:Class ;
+    rdfs:label "MusicAlbum" ;
     rdfs:comment "Song, album or music video from which the meme derives; subclass of memo:OriginWork."@en ;
     rdfs:seeAlso <https://www.wikidata.org/wiki/Q482994> ;
     rdfs:subClassOf memo:OriginWork .
 
 schema:TVSeries a owl:Class ;
+    rdfs:label "TvSeries" ;
     rdfs:comment "Television or web series from which the meme derives; subclass of memo:OriginWork."@en ;
     rdfs:seeAlso <https://www.wikidata.org/wiki/Q5398426> ;
     rdfs:subClassOf memo:OriginWork .
 
 schema:VideoGame a owl:Class ;
+    rdfs:label "VideoGame" ;
     rdfs:comment "Video game from which the meme derives; subclass of memo:OriginWork."@en ;
     rdfs:seeAlso <https://www.wikidata.org/wiki/Q7889> ;
     rdfs:subClassOf memo:OriginWork .
