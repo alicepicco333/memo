@@ -34,11 +34,78 @@
     (function() {
       var heroContainer = document.getElementById('hero-images');
       var sentinel = document.getElementById('hero-collage-sentinel');
+      var desktopHover = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+      var turtleTip = null;
       var queue = [];
       var cursor = 0;
       var BATCH = 120;
       var isLoading = false;
       var exhausted = false;
+
+      function toMemoLocal(str) {
+        return String(str || '')
+          .toLowerCase()
+          .replace(/[^a-z0-9_-]+/g, '-')
+          .replace(/-+/g, '-')
+          .replace(/^-+|-+$/g, '') || 'memo_entry';
+      }
+
+      function shortText(str, maxLen) {
+        var s = String(str || '').replace(/\s+/g, ' ').trim();
+        if (s.length <= maxLen) return s;
+        return s.slice(0, Math.max(0, maxLen - 1)) + '…';
+      }
+
+      function buildMemeSnippet(item) {
+        var local = toMemoLocal(item.memoLocal || item.slug);
+        var label = shortText(item.label || item.slug || 'Meme', 60);
+        return [
+          'memo:' + local + ' a owl:NamedIndividual, memo:MemeConcept ;',
+          '  rdfs:label "' + label.replace(/"/g, '\\"') + '" .'
+        ].join('\n');
+      }
+
+      function buildVariantSnippet(item) {
+        var local = toMemoLocal(item.memoLocal || ('variant_' + (item.photoId || 'x')));
+        var parent = toMemoLocal(item.parentLocal || item.slug || 'meme');
+        var title = shortText(item.label || item.slug || 'Variant', 52);
+        return [
+          'memo:' + local + ' a owl:NamedIndividual, memo:VariantInstance ;',
+          '  memo:variantTitle "' + title.replace(/"/g, '\\"') + '" ;',
+          '  wdp:P361 memo:' + parent + ' .'
+        ].join('\n');
+      }
+
+      function ensureTooltip() {
+        if (!desktopHover || turtleTip) return;
+        turtleTip = document.createElement('div');
+        turtleTip.className = 'home-ttl-tooltip';
+        document.body.appendChild(turtleTip);
+      }
+
+      function showTooltip(text, e) {
+        if (!desktopHover) return;
+        ensureTooltip();
+        if (!turtleTip) return;
+        turtleTip.textContent = text;
+        turtleTip.style.display = 'block';
+        moveTooltip(e);
+      }
+
+      function moveTooltip(e) {
+        if (!desktopHover || !turtleTip || turtleTip.style.display !== 'block') return;
+        var pad = 12;
+        var x = e.clientX + 16;
+        var y = e.clientY + 16;
+        var maxX = window.innerWidth - turtleTip.offsetWidth - pad;
+        var maxY = window.innerHeight - turtleTip.offsetHeight - pad;
+        turtleTip.style.left = Math.max(pad, Math.min(x, maxX)) + 'px';
+        turtleTip.style.top = Math.max(pad, Math.min(y, maxY)) + 'px';
+      }
+
+      function hideTooltip() {
+        if (turtleTip) turtleTip.style.display = 'none';
+      }
 
       function shuffle(arr) {
         var a = arr.slice();
@@ -64,12 +131,15 @@
           var item = queue[i];
           var a = document.createElement('a');
           a.className = tileSizeClass(i);
-          a.href = 'visualizations.html#meme/' + encodeURIComponent(item.slug);
-          a.title = item.slug.replace(/_/g, ' ');
+          if (item.type === 'variant') {
+            a.href = 'visualizations.html#variant/' + encodeURIComponent(item.photoId || item.slug || '');
+          } else {
+            a.href = 'visualizations.html#meme/' + encodeURIComponent(item.slug);
+          }
 
           var img = document.createElement('img');
           img.src = item.imageURL || ('images_flat/' + item.imageFilename);
-          img.alt = item.slug;
+          img.alt = item.label || item.slug || '';
           img.loading = 'lazy';
 
           if (item.imageURL && item.imageFilename) {
@@ -81,6 +151,17 @@
             img.dataset.fallbackFilename = item.imageFilename;
           }
 
+          if (desktopHover) {
+            var snippet = item.type === 'variant'
+              ? buildVariantSnippet(item)
+              : buildMemeSnippet(item);
+            a.addEventListener('mouseenter', function(ev) {
+              showTooltip(snippet, ev);
+            });
+            a.addEventListener('mousemove', moveTooltip);
+            a.addEventListener('mouseleave', hideTooltip);
+          }
+
           a.appendChild(img);
           heroContainer.appendChild(a);
         }
@@ -90,18 +171,46 @@
         isLoading = false;
       }
 
-      function boot(data) {
-        var memes = data && data.memes ? data.memes : {};
+      function buildQueue(memeData, variantData) {
+        var memes = memeData && memeData.memes ? memeData.memes : {};
         var slugs = Object.keys(memes);
-        var shuffledQueue = shuffle(slugs)
+        var memeEntries = slugs
           .map(function(slug) {
+            var m = memes[slug] || {};
             return {
+              type: 'meme',
               slug: slug,
-              imageFilename: memes[slug] && memes[slug].imageFilename,
-              imageURL: memes[slug] && memes[slug].imageURL
+              label: slug.replace(/[-_]+/g, ' '),
+              memoLocal: slug,
+              imageFilename: m.imageFilename,
+              imageURL: m.imageURL
             };
           })
           .filter(function(m) { return !!m.imageFilename; });
+
+        var variants = Array.isArray(variantData) ? variantData : [];
+        var variantEntries = variants
+          .map(function(v) {
+            return {
+              type: 'variant',
+              slug: v.folder || toMemoLocal(v.meme_name),
+              photoId: v.photo_id,
+              label: v.title || v.meme_name || ('Variant ' + (v.photo_id || '')),
+              memoLocal: 'variant_' + (v.photo_id || ''),
+              parentLocal: v.folder || toMemoLocal(v.meme_name),
+              imageFilename: null,
+              imageURL: v.image_url || ''
+            };
+          })
+          .filter(function(v) { return !!v.imageURL; });
+
+        return shuffle(memeEntries.concat(variantEntries));
+      }
+
+      function boot(allData) {
+        var memeData = allData && allData[0] ? allData[0] : {};
+        var variantData = allData && allData[1] ? allData[1] : [];
+        var shuffledQueue = buildQueue(memeData, variantData);
 
         queue = shuffledQueue;
 
@@ -119,11 +228,18 @@
         obs.observe(sentinel);
       }
 
-      fetch('meme_data.json', { cache: 'no-store' })
-        .then(function(r) {
-          if (!r.ok) throw new Error('HTTP ' + r.status);
+      Promise.all([
+        fetch('meme_data.json', { cache: 'no-store' }).then(function(r) {
+          if (!r.ok) throw new Error('HTTP ' + r.status + ' for meme_data.json');
           return r.json();
-        })
+        }),
+        fetch('variants_metadata.json', { cache: 'no-store' })
+          .then(function(r) {
+            if (!r.ok) return [];
+            return r.json();
+          })
+          .catch(function() { return []; })
+      ])
         .then(boot)
         .catch(function() {
           heroContainer.innerHTML = '<p style="grid-column:1 / -1; color:#666; font-size:.85rem; padding: 20px;">Unable to load collage data.</p>';
