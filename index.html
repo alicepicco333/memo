@@ -28,13 +28,6 @@
       </div>
     </section>
 
-    <section class="home-summary-wrap">
-      <div class="home-summary-card">
-        <h2>About This Archive</h2>
-        <p>The Meme Ontology structures internet memes as cultural and visual knowledge objects. The project links each meme concept to provenance, format, transformation behavior, and cultural references through OWL-based semantics.</p>
-        <p>This interface combines a large-scale meme corpus with ontology-backed navigation: visual analytics in the Visualizations page, entity-level ontology documentation, and SPARQL querying for reproducible analysis.</p>
-      </div>
-    </section>
   </main>
 
   <script>
@@ -58,10 +51,7 @@
         return a;
       }
 
-      function tileSizeClass(i) {
-        if (i % 17 === 0) return 'home-tile xl';
-        if (i % 9 === 0) return 'home-tile wide';
-        if (i % 7 === 0) return 'home-tile tall';
+      function tileSizeClass() {
         return 'home-tile';
       }
 
