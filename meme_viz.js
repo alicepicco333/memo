@@ -1012,14 +1012,14 @@ function buildPlatformTimeStacked() {
             const m = DATA.memes[slug];
             if (m.hasTimePeriod !== storedPeriod) return false;
             // Suppress impossible platform/period combinations from click-through panels.
-          if (storedPeriod === 'Pre2010' && MODERN_PLATFORMS.has(m.hasOriginPlatform)) return false;
-          if (storedPeriod === 'Period2010to2015' && POST2015_PLATFORMS.has(m.hasOriginPlatform)) return false;
-          if (d.key === 'Other') return !m.hasOriginPlatform || !namedPlatforms.has(m.hasOriginPlatform);
-          return m.hasOriginPlatform === d.key;
-        });
-      }
-      openPanel(`${d.data.period} · ${d.key}`, slugs, 'platformTime', 'segment');
-    });
+            if (storedPeriod === 'Pre2010' && MODERN_PLATFORMS.has(m.hasOriginPlatform)) return false;
+            if (storedPeriod === 'Period2010to2015' && POST2015_PLATFORMS.has(m.hasOriginPlatform)) return false;
+            if (d.key === 'Other') return !m.hasOriginPlatform || !namedPlatforms.has(m.hasOriginPlatform);
+            return m.hasOriginPlatform === d.key;
+          });
+        }
+        openPanel(`${d.data.period} · ${d.key}`, slugs, 'platformTime', 'segment');
+      });
 
   g.append('g')
     .attr('transform', `translate(0,${iH})`)
