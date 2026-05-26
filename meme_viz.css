@@ -733,30 +733,38 @@ body.home-page {
   overflow: visible;
   border-bottom: 1px solid var(--border);
   display: block;
-  padding-bottom: 24px;
+  padding-bottom: 0;
 }
 
 .home-hero .hero-images {
   position: relative;
   inset: auto;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 58px 18px 0;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
   grid-auto-rows: 120px;
   grid-auto-flow: dense;
-  gap: 8px;
+  gap: 2px;
   overflow: visible;
 }
 
 .home-hero .hero-content {
-  position: sticky;
-  top: calc(var(--nav-h) + 10px);
+  position: absolute;
+  inset: 0;
   z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   pointer-events: none;
-  padding: 0 16px;
+  padding: 0;
+}
+
+.home-hero .hero-title span {
+  display: block;
 }
 
 .home-tile {
@@ -785,24 +793,24 @@ body.home-page {
 .home-tile.xl { grid-column: span 2; grid-row: span 2; }
 
 .home-collage-sentinel {
-  height: 20px;
-  max-width: 1200px;
-  margin: 6px auto 0;
+  height: 1px;
+  width: 100%;
+  margin: 0;
 }
 
 @media (max-width: 980px) {
   .home-hero .hero-images {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     grid-auto-rows: 110px;
+    gap: 2px;
   }
 }
 
 @media (max-width: 640px) {
   .home-hero .hero-images {
-    padding: 58px 10px 0;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-auto-rows: 96px;
-    gap: 6px;
+    gap: 2px;
   }
 
   .home-tile.wide,
