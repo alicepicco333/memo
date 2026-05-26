@@ -3,7 +3,7 @@
 const MODERN_PLATFORMS = new Set(['TikTok', 'Instagram', 'Snapchat', 'Twitch', 'Discord']);
 // Platforms that post-date 2015 — suppress from Pre2010 and 2010-2015 bars (TikTok launched Sep 2016).
 const POST2015_PLATFORMS = new Set(['TikTok']);
-const LODE_TARGET_URL = 'https://w3id.org/lode/owlapi/https://raw.githubusercontent.com/alicepicco333/memo/refs/heads/main/meme_ontology_unpopulated.owl';
+const LODE_TARGET_URL = 'https://essepuntato.it/lode/extract?url=https%3A%2F%2Fraw.githubusercontent.com%2Falicepicco333%2Fmemo%2Frefs%2Fheads%2Fmain%2Fmeme_ontology_unpopulated.owl&owlapi=true&imported=true&closure=true&reasoner=true&lang=en';
 
 /* ── State ─────────────────────────────────────────────────────────────────── */
 let isMobile = () => window.innerWidth <= 768;
@@ -181,13 +181,23 @@ function route() {
 window.addEventListener('hashchange', route);
 
 function showPage(name, navPage) {
-  document.getElementById('app').classList.add('hidden');
-  document.getElementById('dot-nav').classList.add('hidden');
-  document.getElementById('node-panel').classList.add('hidden');
-  document.getElementById('app').classList.remove('panel-open');
-  ['about', 'disclaimer', 'dataset', 'ontology', 'meme', 'd0', 'variant'].forEach(p =>
-    document.getElementById('page-' + p).classList.add('hidden'));
-  document.getElementById('page-' + name).classList.remove('hidden');
+  var app = document.getElementById('app');
+  var dotNav = document.getElementById('dot-nav');
+  var nodePanel = document.getElementById('node-panel');
+  if (app) {
+    app.classList.add('hidden');
+    app.classList.remove('panel-open');
+  }
+  if (dotNav) dotNav.classList.add('hidden');
+  if (nodePanel) nodePanel.classList.add('hidden');
+
+  ['about', 'disclaimer', 'dataset', 'ontology', 'meme', 'd0', 'variant'].forEach(function(p) {
+    var page = document.getElementById('page-' + p);
+    if (page) page.classList.add('hidden');
+  });
+
+  var target = document.getElementById('page-' + name);
+  if (target) target.classList.remove('hidden');
   setActiveNav(navPage || name);
 }
 
@@ -320,7 +330,9 @@ function initOntoPage() {
   var nav = document.getElementById('onto-doc-nav');
   var main = document.getElementById('onto-doc-main');
   var lodeTop = document.getElementById('onto-open-lode-top');
+  var lodeBottom = document.getElementById('onto-open-lode-bottom');
   if (lodeTop) lodeTop.href = LODE_TARGET_URL;
+  if (lodeBottom) lodeBottom.href = LODE_TARGET_URL;
 
   fetch('meme_ontology_unpopulated.owl', { cache: 'no-store' })
     .then(function(res) {
@@ -405,10 +417,15 @@ function initOntoPage() {
 }
 
 function showViz() {
-  ['about', 'disclaimer', 'dataset', 'ontology', 'meme', 'd0', 'variant'].forEach(p =>
-    document.getElementById('page-' + p).classList.add('hidden'));
-  document.getElementById('app').classList.remove('hidden');
-  document.getElementById('dot-nav').classList.remove('hidden');
+  ['about', 'disclaimer', 'dataset', 'ontology', 'meme', 'd0', 'variant'].forEach(function(p) {
+    var page = document.getElementById('page-' + p);
+    if (page) page.classList.add('hidden');
+  });
+
+  var app = document.getElementById('app');
+  var dotNav = document.getElementById('dot-nav');
+  if (app) app.classList.remove('hidden');
+  if (dotNav) dotNav.classList.remove('hidden');
   setActiveNav('viz');
 }
 
