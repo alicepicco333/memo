@@ -36,6 +36,8 @@
       var sentinel = document.getElementById('hero-collage-sentinel');
       var desktopHover = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
       var turtleTip = null;
+      var mousePos = { x: 0, y: 0 };
+      var currentTile = null;
       var queue = [];
       var cursor = 0;
       var BATCH = 120;
@@ -89,7 +91,7 @@
         if (!turtleTip) return;
         turtleTip.textContent = text;
         turtleTip.style.display = 'block';
-        moveTooltip(e);
+        moveTooltip(e || { clientX: mousePos.x, clientY: mousePos.y });
       }
 
       function moveTooltip(e) {
@@ -105,6 +107,37 @@
 
       function hideTooltip() {
         if (turtleTip) turtleTip.style.display = 'none';
+      }
+
+      function updateHoverFromPointer(e) {
+        if (!desktopHover) return;
+
+        mousePos.x = e.clientX;
+        mousePos.y = e.clientY;
+        moveTooltip(e);
+
+        var node = document.elementFromPoint(mousePos.x, mousePos.y);
+        var tile = node ? node.closest('.home-tile') : null;
+
+        if (!tile || !heroContainer.contains(tile)) {
+          currentTile = null;
+          hideTooltip();
+          return;
+        }
+
+        if (currentTile !== tile) {
+          currentTile = tile;
+          showTooltip(tile.dataset.ttlSnippet || '', e);
+          return;
+        }
+
+        // Same tile, keep tooltip content in sync in case data changed during lazy append.
+        if (turtleTip && turtleTip.style.display === 'block') {
+          var nextText = tile.dataset.ttlSnippet || '';
+          if (turtleTip.textContent !== nextText) {
+            turtleTip.textContent = nextText;
+          }
+        }
       }
 
       function shuffle(arr) {
@@ -155,11 +188,7 @@
             var snippet = item.type === 'variant'
               ? buildVariantSnippet(item)
               : buildMemeSnippet(item);
-            a.addEventListener('mouseenter', function(ev) {
-              showTooltip(snippet, ev);
-            });
-            a.addEventListener('mousemove', moveTooltip);
-            a.addEventListener('mouseleave', hideTooltip);
+            a.dataset.ttlSnippet = snippet;
           }
 
           a.appendChild(img);
@@ -244,6 +273,18 @@
         .catch(function() {
           heroContainer.innerHTML = '<p style="grid-column:1 / -1; color:#666; font-size:.85rem; padding: 20px;">Unable to load collage data.</p>';
         });
+
+      if (desktopHover) {
+        document.addEventListener('mousemove', updateHoverFromPointer);
+        document.addEventListener('mouseleave', function() {
+          currentTile = null;
+          hideTooltip();
+        });
+        window.addEventListener('blur', function() {
+          currentTile = null;
+          hideTooltip();
+        });
+      }
     })();
   </script>
 </body>

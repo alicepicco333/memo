@@ -668,30 +668,50 @@ ORDER BY DESC(?count)</textarea>
     /* ── Boot: load Turtle string safely ─────────────────────────── */
     function loadOntology() {
       owlDot.className = 'owl-dot loading';
-      owlStatus.textContent = 'Fetching meme_ontology.ttl…';
+      owlStatus.textContent = 'Fetching ontology…';
 
-      fetch('meme_ontology.ttl')
-        .then(function(r) {
-          if (!r.ok) throw new Error('HTTP ' + r.status);
-          return r.text();
-        })
-        .then(function(ttlText) {
-          var normalized = normalizeTtlForParser(ttlText);
-          owlStatus.textContent = 'Parsing…';
-          owlStats.textContent = 'Building triple store…';
+      var sources = ['meme_ontology.ttl', 'meme_ontology_unpopulated.ttl'];
 
-          return parseTtlToStore(normalized)
-            .then(function(store) {
-              return { store: store, safeMode: false };
-            })
-            .catch(function() {
-              owlStatus.textContent = 'Parsing (safe mode)…';
-              var safeText = stripProblematicLiteralTriples(normalized);
-              return parseTtlToStore(safeText).then(function(store) {
-                return { store: store, safeMode: true };
+      function trySource(idx, lastErr) {
+        if (idx >= sources.length) {
+          throw (lastErr || new Error('Unable to load ontology sources'));
+        }
+
+        var src = sources[idx];
+        owlStatus.textContent = 'Fetching ' + src + '…';
+
+        return fetch(src)
+          .then(function(r) {
+            if (!r.ok) throw new Error('HTTP ' + r.status + ' for ' + src);
+            return r.text();
+          })
+          .then(function(ttlText) {
+            var normalized = normalizeTtlForParser(ttlText);
+            owlStatus.textContent = 'Parsing ' + src + '…';
+            owlStats.textContent = 'Building triple store…';
+
+            return parseTtlToStore(normalized)
+              .then(function(store) {
+                return { store: store, safeMode: false, source: src };
+              })
+              .catch(function(parseErr) {
+                owlStatus.textContent = 'Parsing ' + src + ' (safe mode)…';
+                var safeText = stripProblematicLiteralTriples(normalized);
+                return parseTtlToStore(safeText)
+                  .then(function(store) {
+                    return { store: store, safeMode: true, source: src };
+                  })
+                  .catch(function() {
+                    return trySource(idx + 1, parseErr);
+                  });
               });
-            });
-        })
+          })
+          .catch(function(err) {
+            return trySource(idx + 1, err);
+          });
+      }
+
+      trySource(0)
         .then(function(parsed) {
           ontologyStore = parsed.store;
           engine  = new Comunica.QueryEngine();
@@ -699,7 +719,7 @@ ORDER BY DESC(?count)</textarea>
 
           owlDot.className    = 'owl-dot ready';
           owlStatus.textContent = 'Ready';
-          owlStats.textContent  = parsed.store.size.toLocaleString() + ' triples indexed' + (parsed.safeMode ? ' (safe mode)' : '');
+          owlStats.textContent  = parsed.store.size.toLocaleString() + ' triples indexed (' + parsed.source + ')' + (parsed.safeMode ? ' (safe mode)' : '');
           runBtn.disabled = false;
           queryStatus.textContent = parsed.safeMode
             ? 'Ontology loaded in safe mode — ready to parse queries'
