@@ -462,30 +462,41 @@ ORDER BY DESC(?count)</textarea>
     var resultsDiv  = document.getElementById('sparql-results');
 
     function normalizeTtlForParser(ttlText) {
-      // Some generated local names contain mojibake chars that break Turtle tokenization.
-      // We normalize only known problematic identifiers and keep labels/comments untouched.
-      var replacements = [
-        ['memo:a_french_documentary_c_est_pas_sorcier_-_sel_de_la_mer_Ã _la_terre_at_1_min_17', 'memo:a_french_documentary_c_est_pas_sorcier_-_sel_de_la_mer_a_la_terre_at_1_min_17'],
-        ['memo:daÃ°i_freyr_pÃ©tursson_and_gagnamagniÃ°', 'memo:dadi_freyr_petursson_and_gagnamagnid'],
-        ['memo:elizabeth_betita_martÃ­nez', 'memo:elizabeth_betita_martinez'],
-        ['memo:gÃ©nesis_insurance', 'memo:genesis_insurance'],
-        ['memo:joan_cornellÃ ', 'memo:joan_cornella'],
-        ['memo:marca_y_presiÃ³n', 'memo:marca_y_presion'],
-        ['memo:pokÃ©mon_sword_and_shield', 'memo:pokemon_sword_and_shield'],
-        ['memo:pokÃ©mon_legends_arceus', 'memo:pokemon_legends_arceus'],
-        ['memo:pokÃ©mon_sun_and_moon', 'memo:pokemon_sun_and_moon'],
-        ['memo:pokÃ©mon_shield', 'memo:pokemon_shield'],
-        ['memo:pokÃ©mon', 'memo:pokemon'],
-        ['memo:programa_do_jÃ´_brazilian_talk_show', 'memo:programa_do_jo_brazilian_talk_show'],
-        ['memo:Ã©mile_borel', 'memo:emile_borel'],
-        ['memo:ãƒžã‚¯ãƒ­ã‚¹macross_82-99_yung_bae_harrison', 'memo:macross_82-99_yung_bae_harrison']
-      ];
+      // Normalize malformed memo: local names (mojibake / invalid chars) globally.
+      // This keeps references consistent by applying the same rewrite everywhere.
+      var used = new Set();
+      var map = new Map();
 
-      var normalized = ttlText;
-      for (var i = 0; i < replacements.length; i++) {
-        normalized = normalized.split(replacements[i][0]).join(replacements[i][1]);
+      function sanitizeLocal(local) {
+        var base = String(local || '')
+          .normalize('NFKD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .replace(/[^A-Za-z0-9_-]/g, '_')
+          .replace(/_+/g, '_')
+          .replace(/^_+|_+$/g, '');
+
+        if (!base) base = 'memo_entity';
+        var candidate = base;
+        var idx = 2;
+        while (used.has(candidate)) {
+          candidate = base + '_' + idx;
+          idx += 1;
+        }
+        used.add(candidate);
+        return candidate;
       }
-      return normalized;
+
+      // Match memo:prefixed names in Turtle statements (not IRIs in <...>).
+      return String(ttlText || '').replace(/\bmemo:([^\s;,.()\[\]{}"'<>|`^\\]+)/g, function(full, local) {
+        if (/^[A-Za-z0-9_-]+$/.test(local)) {
+          used.add(local);
+          return full;
+        }
+        if (!map.has(local)) {
+          map.set(local, sanitizeLocal(local));
+        }
+        return 'memo:' + map.get(local);
+      });
     }
 
     /* ── Shared prefix block ────────────────────────────────────────────── */
