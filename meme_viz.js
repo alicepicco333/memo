@@ -4,6 +4,7 @@ const MODERN_PLATFORMS = new Set(['TikTok', 'Instagram', 'Snapchat', 'Twitch', '
 // Platforms that post-date 2015 — suppress from Pre2010 and 2010-2015 bars (TikTok launched Sep 2016).
 const POST2015_PLATFORMS = new Set(['TikTok']);
 const LODE_TARGET_BASE = 'http://150.146.207.114/lode/extract';
+const RAW_OWL_URL = 'https://raw.githubusercontent.com/alicepicco333/memo/refs/heads/main/meme_ontology_unpopulated.owl';
 
 /* ── State ─────────────────────────────────────────────────────────────────── */
 let isMobile = () => window.innerWidth <= 768;
@@ -236,13 +237,7 @@ function safeEntityId(iri) {
 }
 
 function buildLodeTargetUrl() {
-  var owlUrl = '';
-  if (window.location && window.location.origin) {
-    owlUrl = window.location.origin.replace(/\/$/, '') + '/ontology';
-  }
-  if (!owlUrl) {
-    owlUrl = 'https://raw.githubusercontent.com/alicepicco333/memo/refs/heads/main/meme_ontology.owl';
-  }
+  var owlUrl = RAW_OWL_URL;
   return LODE_TARGET_BASE + '?url=' + encodeURIComponent(owlUrl) + '&owlapi=true&imported=true&closure=true&reasoner=true&lang=en';
 }
 
@@ -386,6 +381,7 @@ function initOntoPage() {
   if (lodeBottom) lodeBottom.href = lodeUrl;
 
   fetchOntologyXmlFromCandidates([
+    RAW_OWL_URL,
     '/ontology',
     'meme_ontology.owl',
     '/meme_ontology.owl',

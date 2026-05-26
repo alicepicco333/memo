@@ -352,84 +352,54 @@
       <div class="sidebar-section" style="flex:1; border-bottom:none;">
         <div class="sidebar-label">Example Queries</div>
 
-        <button class="example-btn" data-example="count-format">
-          <span class="ex-title">Count memes by format</span>
-          <span class="ex-desc">GROUP BY on wdp:P2283 (hasFormat)</span>
+        <button class="example-btn" data-example="japan-imagemacro">
+          <span class="ex-title">1. Japan + ImageMacro</span>
+          <span class="ex-desc">Provenance crossed with iconographical format</span>
         </button>
 
-        <button class="example-btn" data-example="count-period">
-          <span class="ex-title">Count by time period</span>
-          <span class="ex-desc">Distribution across eras</span>
+        <button class="example-btn" data-example="publicfigure-twitter">
+          <span class="ex-title">2. PublicFigure references on Twitter</span>
+          <span class="ex-desc">Platform provenance + iconological layer</span>
         </button>
 
-        <button class="example-btn" data-example="animated">
-          <span class="ex-title">Animated memes</span>
-          <span class="ex-desc">memo:hasAnimationStatus memo:Animated</span>
+        <button class="example-btn" data-example="mediumshift">
+          <span class="ex-title">3. Detect MediumShift computationally</span>
+          <span class="ex-desc">Canonical vs variant ImageType mismatch</span>
         </button>
 
-        <button class="example-btn" data-example="top-views">
-          <span class="ex-title">Most viewed memes</span>
-          <span class="ex-desc">ORDER BY DESC(memo:views)</span>
+        <button class="example-btn" data-example="imagetype-distribution">
+          <span class="ex-title">4. ImageType distribution</span>
+          <span class="ex-desc">Corpus-level type percentages</span>
         </button>
 
-        <button class="example-btn" data-example="twitter">
-          <span class="ex-title">Memes from Twitter/X</span>
-          <span class="ex-desc">wdp:P123 wd:Q918 (origin platform)</span>
+        <button class="example-btn" data-example="frbr-work-expression">
+          <span class="ex-title">5. FRBR Work to Expression traversal</span>
+          <span class="ex-desc">MemeIdea linked MemeConcept templates</span>
         </button>
 
-        <button class="example-btn" data-example="all-classes">
-          <span class="ex-title">All ontology classes</span>
-          <span class="ex-desc">owl:Class individuals</span>
+        <button class="example-btn" data-example="top-originworks">
+          <span class="ex-title">6. Most productive source works</span>
+          <span class="ex-desc">Origin works generating most meme templates</span>
         </button>
 
-        <button class="example-btn" data-example="no-text">
-          <span class="ex-title">Memes with no text</span>
-          <span class="ex-desc">memo:hasTextPresence false (boolean)</span>
+        <button class="example-btn" data-example="pre2010-monochrome-text">
+          <span class="ex-title">7. Text + monochrome + pre-2010</span>
+          <span class="ex-desc">Boolean literal filters and temporal filter</span>
         </button>
 
-        <button class="example-btn" data-example="cultural-refs">
-          <span class="ex-title">Most-referenced memes</span>
-          <span class="ex-desc">COUNT(memo:hasReference) per MemeConcept</span>
+        <button class="example-btn" data-example="variants-dim-extent">
+          <span class="ex-title">8. Variants with dimensions and extents</span>
+          <span class="ex-desc">Full Manifestation-level transformation query</span>
         </button>
 
-        <button class="example-btn" data-example="meme-ideas">
-          <span class="ex-title">Meme ideas &amp; concepts</span>
-          <span class="ex-desc">MemeIdea conceptDescription</span>
+        <button class="example-btn" data-example="shared-cultural-refs">
+          <span class="ex-title">9. Shared CulturalReferences</span>
+          <span class="ex-desc">References linked to more than one meme</span>
         </button>
 
-        <button class="example-btn" data-example="transformations">
-          <span class="ex-title">Variant transformations</span>
-          <span class="ex-desc">Dimension &amp; extent per VariantInstance</span>
-        </button>
-
-        <button class="example-btn" data-example="ask">
-          <span class="ex-title">ASK: any GIF memes?</span>
-          <span class="ex-desc">Boolean ASK query</span>
-        </button>
-
-        <button class="example-btn" data-example="describe">
-          <span class="ex-title">DESCRIBE a meme</span>
-          <span class="ex-desc">DESCRIBE returns Turtle</span>
-        </button>
-
-        <button class="example-btn" data-example="wikidata-regions">
-          <span class="ex-title">Memes by region (Wikidata)</span>
-          <span class="ex-desc">Geographic distribution with URIs</span>
-        </button>
-
-        <button class="example-btn" data-example="platform-stats">
-          <span class="ex-title">Platform statistics</span>
-          <span class="ex-desc">Meme counts per origin platform</span>
-        </button>
-
-        <button class="example-btn" data-example="color-and-animation">
-          <span class="ex-title">Color × Animation matrix</span>
-          <span class="ex-desc">memo:isColor × memo:hasAnimationStatus</span>
-        </button>
-
-        <button class="example-btn" data-example="transformation-analysis">
-          <span class="ex-title">Transformation matrix</span>
-          <span class="ex-desc">Dimension & extent distribution</span>
+        <button class="example-btn" data-example="wikidata-federation-population">
+          <span class="ex-title">10. Wikidata federation by population</span>
+          <span class="ex-desc">SERVICE join on countries over 100M population</span>
         </button>
       </div>
 
@@ -504,202 +474,123 @@ ORDER BY DESC(?count)</textarea>
 
     /* ── Example queries ────────────────────────────────────────────────── */
     var EXAMPLES = {
-      // wdp:P2283 = hasFormat
-      'count-format': PFX + '\n\n' + [
-        'SELECT ?format (COUNT(DISTINCT ?m) AS ?count)',
-        'WHERE {',
-        '  ?m a memo:MemeConcept ;',
-        '     wdp:P2283 ?fmt .',
-        '  BIND(STRAFTER(STR(?fmt), "#") AS ?format)',
-        '}',
-        'GROUP BY ?format',
-        'ORDER BY DESC(?count)'
-      ].join('\n'),
-
-      // wdp:P2408 = hasTimePeriod
-      'count-period': PFX + '\n\n' + [
-        'SELECT ?period (COUNT(DISTINCT ?m) AS ?count)',
-        'WHERE {',
-        '  ?m a memo:MemeConcept ;',
-        '     wdp:P2408 ?tp .',
-        '  BIND(STRAFTER(STR(?tp), "#") AS ?period)',
-        '}',
-        'GROUP BY ?period',
-        'ORDER BY ?period'
-      ].join('\n'),
-
-      // memo:hasAnimationStatus  wdp:P2283 = hasFormat
-      'animated': PFX + '\n\n' + [
-        'SELECT ?label ?format',
-        'WHERE {',
-        '  ?m a memo:MemeConcept ;',
-        '     rdfs:label ?label ;',
-        '     memo:hasAnimationStatus memo:Animated ;',
-        '     wdp:P2283 ?fmt .',
-        '  BIND(STRAFTER(STR(?fmt), "#") AS ?format)',
-        '}',
-        'ORDER BY ?label',
-        'LIMIT 100'
-      ].join('\n'),
-
-      // memo:views (integer)
-      'top-views': PFX + '\n\n' + [
-        'SELECT ?label ?views',
-        'WHERE {',
-        '  ?m a memo:MemeConcept ;',
-        '     rdfs:label ?label ;',
-        '     memo:views ?views .',
-        '}',
-        'ORDER BY DESC(?views)',
-        'LIMIT 25'
-      ].join('\n'),
-
-      // wdp:P123 = hasOriginPlatform  wd:Q918 = Twitter/X
-      'twitter': PFX + '\n\n' + [
-        'SELECT ?label ?format ?period',
-        'WHERE {',
-        '  ?m a memo:MemeConcept ;',
-        '     rdfs:label ?label ;',
-        '     wdp:P123 wd:Q918 ;',
-        '     wdp:P2283 ?fmt ;',
-        '     wdp:P2408 ?tp .',
-        '  BIND(STRAFTER(STR(?fmt), "#") AS ?format)',
-        '  BIND(STRAFTER(STR(?tp), "#") AS ?period)',
-        '}',
-        'ORDER BY ?label'
-      ].join('\n'),
-
-      'all-classes': PFX + '\n\n' + [
-        'SELECT ?class ?label ?comment',
-        'WHERE {',
-        '  ?class a owl:Class .',
-        '  OPTIONAL { ?class rdfs:label ?label }',
-        '  OPTIONAL { ?class rdfs:comment ?comment }',
-        '}',
-        'ORDER BY ?label'
-      ].join('\n'),
-
-      // memo:hasTextPresence is a boolean DatatypeProperty
-      'no-text': PFX + '\n\n' + [
-        'SELECT ?label ?format',
-        'WHERE {',
-        '  ?m a memo:MemeConcept ;',
-        '     rdfs:label ?label ;',
-        '     memo:hasTextPresence false ;',
-        '     wdp:P2283 ?fmt .',
-        '  BIND(STRAFTER(STR(?fmt), "#") AS ?format)',
-        '}',
-        'ORDER BY ?label',
-        'LIMIT 100'
-      ].join('\n'),
-
-      // Count hasReference links per MemeConcept
-      'cultural-refs': PFX + '\n\n' + [
-        'SELECT ?memeName (COUNT(DISTINCT ?ref) AS ?refCount)',
-        'WHERE {',
-        '  ?m a memo:MemeConcept ;',
-        '     rdfs:label ?memeName ;',
-        '     memo:hasReference ?ref .',
-        '}',
-        'GROUP BY ?memeName',
-        'ORDER BY DESC(?refCount)',
-        'LIMIT 25'
-      ].join('\n'),
-
-      // MemeIdea → MemeConcept via memo:conceptualizes
-      'meme-ideas': PFX + '\n\n' + [
-        'SELECT ?memeName ?ideaLabel ?desc',
-        'WHERE {',
-        '  ?m a memo:MemeConcept ;',
-        '     rdfs:label ?memeName ;',
-        '     memo:conceptualizes ?idea .',
-        '  ?idea rdfs:label ?ideaLabel .',
-        '  OPTIONAL { ?idea memo:conceptDescription ?desc }',
-        '}',
-        'ORDER BY ?memeName',
-        'LIMIT 50'
-      ].join('\n'),
-
-      // wdp:P361 = isVariantOf  memo:hasTransformationDimension/Extent
-      'transformations': PFX + '\n\n' + [
-        'SELECT ?memeName ?variantTitle ?dimension ?extent',
-        'WHERE {',
-        '  ?v a memo:VariantInstance ;',
-        '     wdp:P361 ?m ;',
-        '     memo:hasTransformationDimension ?dim ;',
-        '     memo:hasTransformationExtent ?ext .',
-        '  ?m rdfs:label ?memeName .',
-        '  OPTIONAL { ?v memo:variantTitle ?variantTitle }',
-        '  BIND(STRAFTER(STR(?dim), "#") AS ?dimension)',
-        '  BIND(STRAFTER(STR(?ext), "#") AS ?extent)',
-        '}',
-        'ORDER BY ?memeName ?variantTitle',
-        'LIMIT 100'
-      ].join('\n'),
-
-      // dcterms:format = file format (FileFormat individuals)
-      'ask': PFX + '\n\n' + [
-        'ASK {',
-        '  ?m a memo:MemeConcept ;',
-        '     dcterms:format memo:GIF .',
+      'japan-imagemacro': PFX + '\n\n' + [
+        'SELECT ?meme ?label WHERE {',
+        '    ?meme a memo:MemeConcept ;',
+        '          rdfs:label ?label ;',
+        '          wdp:P495   wd:Q17 ;',
+        '          wdp:P2283  memo:ImageMacro .',
         '}'
       ].join('\n'),
 
-      'describe': PFX + '\n\n' + [
-        'DESCRIBE memo:woman-yelling-at-a-cat'
+      'publicfigure-twitter': PFX + '\n\n' + [
+        'SELECT ?meme ?label ?figure ?figureLabel WHERE {',
+        '    ?meme  a memo:MemeConcept ;',
+        '           rdfs:label ?label ;',
+        '           wdp:P123   wd:Q918 ;',
+        '           memo:hasReference ?figure .',
+        '    ?figure a memo:PublicFigure ;',
+        '            rdfs:label ?figureLabel .',
+        '}'
       ].join('\n'),
 
-      // wdp:P495 = hasRegion
-      'wikidata-regions': PFX + '\n\n' + [
-        'SELECT ?regionLabel (COUNT(DISTINCT ?m) AS ?memeCount)',
-        'WHERE {',
-        '  ?region a memo:GeographicRegion ;',
-        '          rdfs:label ?regionLabel .',
-        '  ?m a memo:MemeConcept ;',
-        '     wdp:P495 ?region .',
+      'mediumshift': PFX + '\n\n' + [
+        'SELECT ?meme ?memeLabel ?variant ?variantLabel',
+        '       ?canonicalType ?variantType WHERE {',
+        '    ?meme    a memo:MemeConcept ;',
+        '             rdfs:label ?memeLabel ;',
+        '             memo:hasImageType ?canonicalType .',
+        '    ?variant a memo:VariantInstance ;',
+        '             rdfs:label ?variantLabel ;',
+        '             wdp:P361  ?meme ;',
+        '             memo:hasImageType ?variantType .',
+        '    FILTER (?canonicalType != ?variantType)',
+        '}'
+      ].join('\n'),
+
+      'imagetype-distribution': PFX + '\n\n' + [
+        'SELECT ?type ?typeLabel (COUNT(?meme) AS ?count) WHERE {',
+        '    ?meme a memo:MemeConcept ;',
+        '          memo:hasImageType ?type .',
+        '    ?type rdfs:label ?typeLabel .',
         '}',
-        'GROUP BY ?regionLabel',
+        'GROUP BY ?type ?typeLabel',
+        'ORDER BY DESC(?count)'
+      ].join('\n'),
+
+      'frbr-work-expression': PFX + '\n\n' + [
+        'SELECT ?idea ?ideaLabel ?concept ?conceptLabel ?description WHERE {',
+        '    ?idea    a memo:MemeIdea ;',
+        '             rdfs:label ?ideaLabel ;',
+        '             memo:conceptDescription ?description ;',
+        '             memo:isConceptualizedAs ?concept .',
+        '    ?concept rdfs:label ?conceptLabel .',
+        '}',
+        'ORDER BY ?ideaLabel'
+      ].join('\n'),
+
+      'top-originworks': PFX + '\n\n' + [
+        'SELECT ?work ?workLabel (COUNT(?meme) AS ?count) WHERE {',
+        '    ?meme a memo:MemeConcept ;',
+        '          memo:hasOriginWork ?work .',
+        '    ?work rdfs:label ?workLabel .',
+        '}',
+        'GROUP BY ?work ?workLabel',
+        'ORDER BY DESC(?count)',
+        'LIMIT 20'
+      ].join('\n'),
+
+      'pre2010-monochrome-text': PFX + '\n\n' + [
+        'SELECT ?meme ?label WHERE {',
+        '    ?meme a memo:MemeConcept ;',
+        '          rdfs:label ?label ;',
+        '          memo:hasTextPresence true ;',
+        '          memo:isColor false ;',
+        '          wdp:P2408 memo:Pre2010 .',
+        '}'
+      ].join('\n'),
+
+      'variants-dim-extent': PFX + '\n\n' + [
+        'SELECT ?meme ?memeLabel ?variant ?variantLabel',
+        '       ?dimension ?dimensionLabel ?extent ?extentLabel WHERE {',
+        '    ?meme    a memo:MemeConcept ;',
+        '             rdfs:label ?memeLabel .',
+        '    ?variant a memo:VariantInstance ;',
+        '             rdfs:label ?variantLabel ;',
+        '             wdp:P361 ?meme ;',
+        '             memo:hasTransformationDimension ?dimension ;',
+        '             memo:hasTransformationExtent ?extent .',
+        '    ?dimension rdfs:label ?dimensionLabel .',
+        '    ?extent    rdfs:label ?extentLabel .',
+        '}',
+        'ORDER BY ?meme ?variant'
+      ].join('\n'),
+
+      'shared-cultural-refs': PFX + '\n\n' + [
+        'SELECT ?ref ?refLabel ?type (COUNT(?meme) AS ?memeCount) WHERE {',
+        '    ?meme a memo:MemeConcept ;',
+        '          memo:hasReference ?ref .',
+        '    ?ref  rdfs:label ?refLabel ;',
+        '          a ?type .',
+        '    FILTER (?type != owl:NamedIndividual)',
+        '}',
+        'GROUP BY ?ref ?refLabel ?type',
+        'HAVING (COUNT(?meme) > 1)',
         'ORDER BY DESC(?memeCount)'
       ].join('\n'),
 
-      // wdp:P123 = hasOriginPlatform
-      'platform-stats': PFX + '\n\n' + [
-        'SELECT ?label (COUNT(DISTINCT ?m) AS ?count)',
-        'WHERE {',
-        '  ?platform a memo:OriginPlatform ;',
-        '            rdfs:label ?label .',
-        '  ?m a memo:MemeConcept ;',
-        '     wdp:P123 ?platform .',
-        '}',
-        'GROUP BY ?label',
-        'ORDER BY DESC(?count)'
-      ].join('\n'),
-
-      // memo:isColor = boolean  memo:hasAnimationStatus = named individual
-      'color-and-animation': PFX + '\n\n' + [
-        'SELECT ?colorMode ?animationStatus (COUNT(DISTINCT ?m) AS ?count)',
-        'WHERE {',
-        '  ?m a memo:MemeConcept ;',
-        '     memo:isColor ?isColor ;',
-        '     memo:hasAnimationStatus ?anim .',
-        '  BIND(IF(?isColor, "Color", "B&W") AS ?colorMode)',
-        '  BIND(STRAFTER(STR(?anim), "#") AS ?animationStatus)',
-        '}',
-        'GROUP BY ?colorMode ?animationStatus',
-        'ORDER BY ?colorMode ?animationStatus'
-      ].join('\n'),
-
-      'transformation-analysis': PFX + '\n\n' + [
-        'SELECT ?dimension ?extent (COUNT(DISTINCT ?v) AS ?count)',
-        'WHERE {',
-        '  ?v a memo:VariantInstance ;',
-        '     memo:hasTransformationDimension ?dim ;',
-        '     memo:hasTransformationExtent ?ext .',
-        '  BIND(STRAFTER(STR(?dim), "#") AS ?dimension)',
-        '  BIND(STRAFTER(STR(?ext), "#") AS ?extent)',
-        '}',
-        'GROUP BY ?dimension ?extent',
-        'ORDER BY DESC(?count)'
+      'wikidata-federation-population': PFX + '\n\n' + [
+        'SELECT ?meme ?memeLabel ?country ?countryLabel WHERE {',
+        '    SERVICE <https://query.wikidata.org/sparql> {',
+        '        ?country wdp:P1082 ?population .',
+        '        FILTER (?population > 100000000)',
+        '        ?country rdfs:label ?countryLabel .',
+        '        FILTER (lang(?countryLabel) = "en")',
+        '    }',
+        '    ?meme a memo:MemeConcept ;',
+        '          rdfs:label ?memeLabel ;',
+        '          wdp:P495 ?country .',
+        '}'
       ].join('\n')
     };
 
