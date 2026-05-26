@@ -37,6 +37,7 @@
       var desktopHover = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
       var turtleTip = null;
       var mousePos = { x: 0, y: 0 };
+      var hasMousePos = false;
       var currentTile = null;
       var queue = [];
       var cursor = 0;
@@ -109,12 +110,11 @@
         if (turtleTip) turtleTip.style.display = 'none';
       }
 
-      function updateHoverFromPointer(e) {
+      function refreshHoverAtMouse() {
         if (!desktopHover) return;
+        if (!hasMousePos) return;
 
-        mousePos.x = e.clientX;
-        mousePos.y = e.clientY;
-        moveTooltip(e);
+        moveTooltip({ clientX: mousePos.x, clientY: mousePos.y });
 
         var node = document.elementFromPoint(mousePos.x, mousePos.y);
         var tile = node ? node.closest('.home-tile') : null;
@@ -127,7 +127,7 @@
 
         if (currentTile !== tile) {
           currentTile = tile;
-          showTooltip(tile.dataset.ttlSnippet || '', e);
+          showTooltip(tile.dataset.ttlSnippet || '', { clientX: mousePos.x, clientY: mousePos.y });
           return;
         }
 
@@ -138,6 +138,14 @@
             turtleTip.textContent = nextText;
           }
         }
+      }
+
+      function updateHoverFromPointer(e) {
+        if (!desktopHover) return;
+        mousePos.x = e.clientX;
+        mousePos.y = e.clientY;
+        hasMousePos = true;
+        refreshHoverAtMouse();
       }
 
       function shuffle(arr) {
@@ -276,12 +284,16 @@
 
       if (desktopHover) {
         document.addEventListener('mousemove', updateHoverFromPointer);
+        window.addEventListener('scroll', refreshHoverAtMouse, { passive: true });
+        window.addEventListener('resize', refreshHoverAtMouse, { passive: true });
         document.addEventListener('mouseleave', function() {
           currentTile = null;
+          hasMousePos = false;
           hideTooltip();
         });
         window.addEventListener('blur', function() {
           currentTile = null;
+          hasMousePos = false;
           hideTooltip();
         });
       }
