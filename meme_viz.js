@@ -931,13 +931,30 @@ function buildPlatformTimeStacked() {
     '#80b1d3','#fdb462','#b3de69','#fccde5','#d9d9d9','#bc80bd','#ccebc5'
   ];
   const color = d3.scaleOrdinal()
-    .domain(sortedPlatforms)
-    .range(sortedPlatforms.map((p,i) => platformColorMap[p] || pastelPalette[i%pastelPalette.length]));
+    .domain(allPlatforms)
+    .range(allPlatforms.map((p,i) => platformColorMap[p] || pastelPalette[i%pastelPalette.length]));
 
-  const stack = d3.stack().keys(sortedPlatforms);
-  const stacked = stack(rows);
+  // Stack manuale per ogni periodo: per ogni barra, ordina le piattaforme per percentuale decrescente
+  // Costruisci dati per ogni periodo
+  const stacked = [];
+  let yMax = 0;
+  rows.forEach((row, periodIdx) => {
+    const order = Object.keys(row)
+      .filter(k => k !== 'period' && k !== '_order')
+      .map(platform => ({ platform, value: row[platform] }))
+      .sort((a, b) => b.value - a.value)
+      .map(obj => obj.platform);
+    let y0 = 0;
+    order.forEach(platform => {
+      const value = row[platform];
+      const y1 = y0 + value;
+      if (!stacked[platform]) stacked[platform] = [];
+      stacked[platform][periodIdx] = { y0, y1, period: row.period, platform, value };
+      y0 = y1;
+      if (y1 > yMax) yMax = y1;
+    });
+  });
 
-  const yMax = d3.max(stacked[stacked.length - 1] || [[0, 1]], d => d[1]) || 1;
   const y = d3.scaleLinear().domain([0, yMax]).range([iH, 0]);
 
   wrap.innerHTML = '';
@@ -948,46 +965,44 @@ function buildPlatformTimeStacked() {
   const svg = d3.select(svgEl);
   const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
 
-  g.selectAll('g.layer')
-    .data(stacked)
-    .join('g')
-    .attr('class', 'layer')
-    .attr('fill', d => color(d.key))
-    .selectAll('rect')
-    .data(d => d.map(v => ({ ...v, key: d.key })))
-    .join('rect')
-    .attr('x', d => x(d.data.period))
-    .attr('y', d => y(d[1]))
-    .attr('height', d => Math.max(0, y(d[0]) - y(d[1])))
-    .attr('width', x.bandwidth())
-    .attr('stroke', '#fff')
-    .attr('stroke-width', 1)
-    // Disable pointer events on invisible segments (0-height rects still occupy the SVG layer
-    // and can receive mouse events at their stacking position, leaking phantom tooltips).
-    .attr('pointer-events', d => (d[1] - d[0]) < 0.001 ? 'none' : 'all')
-    .style('cursor', 'pointer')
-    .on('mouseover', (e, d) => {
-      const proportion = (d[1] - d[0]) * 100;
-      showTip(`<b>${d.key}</b><br>${d.data.period}: <b>${proportion.toFixed(1)}%</b><br><small>click to browse</small>`, e);
-    })
-    .on('mousemove', moveTip)
-    .on('mouseout', hideTip)
-    .on('click', (e, d) => {
-      const key = `${d.data.period}||${d.key}`;
-      let slugs = comboToMemes[key] || [];
-      if (!slugs.length && DATA && DATA.memes) {
-        const PERIOD_MAP = {
-          'Pre2010':      'Pre2010',
-          '2010-2015':    'Period2010to2015',
-          '2016-2020':    'Period2016to2020',
-          '2021-present': 'Period2021toPresent'
-        };
-        const storedPeriod = PERIOD_MAP[d.data.period] || d.data.period;
-        const namedPlatforms = new Set(platforms.filter(p => p !== 'Other'));
-        slugs = Object.keys(DATA.memes).filter(slug => {
-          const m = DATA.memes[slug];
-          if (m.hasTimePeriod !== storedPeriod) return false;
-          // Suppress impossible platform/period combinations from click-through panels.
+  // Per ogni piattaforma, disegna i rettangoli in ogni periodo
+  Object.keys(stacked).forEach(platform => {
+    g.append('g')
+      .attr('class', 'layer')
+      .attr('fill', color(platform))
+      .selectAll('rect')
+      .data(stacked[platform].map((d, i) => ({ ...d, key: platform, data: rows[i] })))
+      .join('rect')
+      .attr('x', d => x(d.period))
+      .attr('y', d => y(d.y1))
+      .attr('height', d => Math.max(0, y(d.y0) - y(d.y1)))
+      .attr('width', x.bandwidth())
+      .attr('stroke', '#fff')
+      .attr('stroke-width', 1)
+      .attr('pointer-events', d => (d.y1 - d.y0) < 0.001 ? 'none' : 'all')
+      .style('cursor', 'pointer')
+      .on('mouseover', (e, d) => {
+        const proportion = (d.y1 - d.y0) * 100;
+        showTip(`<b>${d.platform}</b><br>${d.period}: <b>${proportion.toFixed(1)}%</b><br><small>click to browse</small>`, e);
+      })
+      .on('mousemove', moveTip)
+      .on('mouseout', hideTip)
+      .on('click', (e, d) => {
+        const key = `${d.period}||${d.platform}`;
+        let slugs = comboToMemes[key] || [];
+        if (!slugs.length && DATA && DATA.memes) {
+          const PERIOD_MAP = {
+            'Pre2010':      'Pre2010',
+            '2010-2015':    'Period2010to2015',
+            '2016-2020':    'Period2016to2020',
+            '2021-present': 'Period2021toPresent'
+          };
+          const storedPeriod = PERIOD_MAP[d.period] || d.period;
+          const namedPlatforms = new Set(platforms.filter(p => p !== 'Other'));
+          slugs = Object.keys(DATA.memes).filter(slug => {
+            const m = DATA.memes[slug];
+            if (m.hasTimePeriod !== storedPeriod) return false;
+            // Suppress impossible platform/period combinations from click-through panels.
           if (storedPeriod === 'Pre2010' && MODERN_PLATFORMS.has(m.hasOriginPlatform)) return false;
           if (storedPeriod === 'Period2010to2015' && POST2015_PLATFORMS.has(m.hasOriginPlatform)) return false;
           if (d.key === 'Other') return !m.hasOriginPlatform || !namedPlatforms.has(m.hasOriginPlatform);
