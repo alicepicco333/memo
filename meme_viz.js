@@ -936,9 +936,10 @@ function buildPlatformTimeStacked() {
 
   // Stack manuale per ogni periodo: per ogni barra, ordina le piattaforme per percentuale decrescente
   // Costruisci dati per ogni periodo
-  const stacked = [];
+  const stacked = {};
   let yMax = 0;
   rows.forEach((row, periodIdx) => {
+    // Ordina piattaforme per valore decrescente in questo periodo
     const order = Object.keys(row)
       .filter(k => k !== 'period' && k !== '_order')
       .map(platform => ({ platform, value: row[platform] }))
@@ -949,9 +950,17 @@ function buildPlatformTimeStacked() {
       const value = row[platform];
       const y1 = y0 + value;
       if (!stacked[platform]) stacked[platform] = [];
-      stacked[platform][periodIdx] = { y0, y1, period: row.period, platform, value };
+      stacked[platform].push({ y0, y1, period: row.period, platform, value });
       y0 = y1;
       if (y1 > yMax) yMax = y1;
+    });
+    // Assicura che tutte le piattaforme abbiano una entry anche se 0
+    allPlatforms.forEach(platform => {
+      if (!order.includes(platform)) {
+        if (!stacked[platform]) stacked[platform] = [];
+        const y1 = y0;
+        stacked[platform].push({ y0: y1, y1: y1, period: row.period, platform, value: 0 });
+      }
     });
   });
 
