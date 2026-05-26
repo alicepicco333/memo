@@ -931,8 +931,8 @@ function buildPlatformTimeStacked() {
     '#80b1d3','#fdb462','#b3de69','#fccde5','#d9d9d9','#bc80bd','#ccebc5'
   ];
   const color = d3.scaleOrdinal()
-    .domain(allPlatforms)
-    .range(allPlatforms.map((p,i) => platformColorMap[p] || pastelPalette[i%pastelPalette.length]));
+    .domain(sortedPlatforms)
+    .range(sortedPlatforms.map((p,i) => platformColorMap[p] || pastelPalette[i%pastelPalette.length]));
 
   // Stack manuale per ogni periodo: per ogni barra, ordina le piattaforme per percentuale decrescente
   // Costruisci dati per ogni periodo
@@ -955,7 +955,7 @@ function buildPlatformTimeStacked() {
       if (y1 > yMax) yMax = y1;
     });
     // Assicura che tutte le piattaforme abbiano una entry anche se 0
-    allPlatforms.forEach(platform => {
+    sortedPlatforms.forEach(platform => {
       if (!order.includes(platform)) {
         if (!stacked[platform]) stacked[platform] = [];
         const y1 = y0;
@@ -1020,6 +1020,7 @@ function buildPlatformTimeStacked() {
         }
         openPanel(`${d.period} · ${d.platform}`, slugs, 'platformTime', 'segment');
       });
+  });
 
   g.append('g')
     .attr('transform', `translate(0,${iH})`)
