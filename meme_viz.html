@@ -26,7 +26,7 @@
       <a class="topnav-link" href="#dataset"  data-page="dataset">Dataset</a>
       <a class="topnav-link" href="#ontology" data-page="ontology">Ontology</a>
       <a class="topnav-link" href="sparql.html" target="_blank">SPARQL</a>
-      <a class="topnav-link" href="documentation.html" target="_blank">Documentation</a>
+      <a class="topnav-link" href="https://w3id.org/lode/" target="_blank" rel="noopener">LODE</a>
     </div>
   </nav>
 
@@ -193,40 +193,30 @@
 
     </div>
   </div>
-  <div id="page-ontology" class="page hidden" style="height:calc(100vh - 54px);overflow:hidden;display:flex;flex-direction:column;">
-    <!-- Tab bar -->
-    <div class="onto-tab-bar">
-      <button class="onto-tab active" id="onto-tab-vowl" onclick="switchOntoTab('vowl')">&#x1F50D; WebVOWL Visualization</button>
-      <button class="onto-tab"        id="onto-tab-lode" onclick="switchOntoTab('lode')">&#x1F4C4; Documentation</button>
-      <!-- URL input for WebVOWL (only visible on vowl tab) -->
-      <div class="onto-url-row" id="onto-url-row">
-        <span class="onto-url-label">OWL URL:</span>
-        <input id="onto-url-input" class="onto-url-input" type="url" placeholder="https://thememeontology.netlify.app/ontology" />
-        <button class="onto-url-btn" onclick="loadWebVOWL()">Load</button>
-        <a id="onto-vowl-live-link" class="onto-owl-dl" href="https://service.tib.eu/webvowl/" target="_blank" rel="noopener">Open in WebVOWL</a>
-        <a id="onto-owl-dl" class="onto-owl-dl" href="meme_ontology.owl" download>&#x2B07; Download OWL</a>
-      </div>
-    </div>
-    <!-- WebVOWL pane -->
-    <div class="onto-pane" id="onto-pane-vowl">
-      <div class="onto-vowl-hint" id="onto-vowl-hint">
-        <div class="onto-hint-box">
-          <strong>WebVOWL requires a publicly accessible URL</strong>
-          <p>Paste your deployed site URL above and click <em>Load</em> to visualize the ontology graph.<br>
-          Or <a href="meme_ontology.owl" download>download the OWL file</a> and open it at
-          <a href="https://service.tib.eu/webvowl/" target="_blank" rel="noopener">service.tib.eu/webvowl</a> manually.</p>
+  <div id="page-ontology" class="page hidden">
+    <div class="onto-doc-shell">
+      <header class="onto-doc-header">
+        <div>
+          <h1>Meme Ontology Documentation</h1>
+          <p>LODE-compatible structure rendered directly in this page from meme_ontology_unpopulated.owl.</p>
         </div>
+        <div class="onto-doc-actions">
+          <a class="onto-doc-btn" href="meme_ontology_unpopulated.owl" download>Download OWL</a>
+          <a class="onto-doc-btn" id="onto-open-lode-top" href="https://w3id.org/lode/owlapi/https://raw.githubusercontent.com/alicepicco333/memo/refs/heads/main/meme_ontology_unpopulated.owl" target="_blank" rel="noopener">Open in LODE</a>
+        </div>
+      </header>
+
+      <div class="onto-doc-layout">
+        <aside class="onto-doc-nav" id="onto-doc-nav"></aside>
+        <main class="onto-doc-main" id="onto-doc-main">
+          <div class="onto-doc-loading">Loading ontology documentation...</div>
+        </main>
       </div>
-      <div class="onto-vowl-status" id="onto-vowl-status" style="display:none"></div>
-      <iframe id="webvowl-frame" src="about:blank" style="width:100%;height:100%;border:none;display:none;" loading="lazy"></iframe>
-    </div>
-    <!-- Documentation pane (always loads local documentation.html) -->
-    <div class="onto-pane hidden" id="onto-pane-lode">
-      <div class="onto-docs-bar">
-        <a href="documentation.html" target="_blank" rel="noopener">Open local documentation in new tab</a>
-        <a id="onto-lode-live-link" href="https://w3id.org/lode/" target="_blank" rel="noopener">Open in LODE</a>
-      </div>
-      <iframe src="documentation.html" style="width:100%;height:100%;border:none;display:block;"></iframe>
+
+      <footer class="onto-doc-disclaimer">
+        <p>this is a visual restyling of ontology documentation service offered by lode. the content of this page has been remodeled visually on this platform but is provided free and open source by lode.</p>
+        <a class="onto-doc-btn" href="https://w3id.org/lode/owlapi/https://raw.githubusercontent.com/alicepicco333/memo/refs/heads/main/meme_ontology_unpopulated.owl" target="_blank" rel="noopener">Open in LODE</a>
+      </footer>
     </div>
   </div>
 

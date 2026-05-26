@@ -3,6 +3,7 @@
 const MODERN_PLATFORMS = new Set(['TikTok', 'Instagram', 'Snapchat', 'Twitch', 'Discord']);
 // Platforms that post-date 2015 — suppress from Pre2010 and 2010-2015 bars (TikTok launched Sep 2016).
 const POST2015_PLATFORMS = new Set(['TikTok']);
+const LODE_TARGET_URL = 'https://w3id.org/lode/owlapi/https://raw.githubusercontent.com/alicepicco333/memo/refs/heads/main/meme_ontology_unpopulated.owl';
 
 /* ── State ─────────────────────────────────────────────────────────────────── */
 let isMobile = () => window.innerWidth <= 768;
@@ -171,7 +172,8 @@ function route() {
     showPage('dataset');
     if (!dsBuilt) buildDatasetPage();
   } else if (hash === 'ontology') {
-    window.open('http://150.146.207.114/lode/extract?url=https%3A%2F%2Fraw.githubusercontent.com%2Falicepicco333%2Fmemo%2Frefs%2Fheads%2Fmain%2Fmeme_ontology_unpopulated.owl&owlapi=true&imported=true&closure=true&reasoner=true&lang=en', '_blank');
+    showPage('ontology');
+    initOntoPage();
   } else {
     showViz();
   }
@@ -183,112 +185,227 @@ function showPage(name, navPage) {
   document.getElementById('dot-nav').classList.add('hidden');
   document.getElementById('node-panel').classList.add('hidden');
   document.getElementById('app').classList.remove('panel-open');
-  ['about', 'disclaimer', 'dataset', 'meme', 'd0', 'variant'].forEach(p =>
+  ['about', 'disclaimer', 'dataset', 'ontology', 'meme', 'd0', 'variant'].forEach(p =>
     document.getElementById('page-' + p).classList.add('hidden'));
   document.getElementById('page-' + name).classList.remove('hidden');
   setActiveNav(navPage || name);
 }
 
-/* ── Ontology page: WebVOWL + local docs ─────────────────────────────────── */
+/* ── Ontology page: in-page LODE-like documentation ─────────────────────── */
 var ontoInited = false;
-function normalizeHttpUrl(raw) {
-  var s = (raw || '').trim();
-  if (!s) return '';
-  if (/^https?:\/\//i.test(s)) return s;
-  if (/^[\w.-]+\.[a-z]{2,}(\/.*)?$/i.test(s)) return 'https://' + s;
-  return s;
+function xmlAttr(node, ns, name, fallbackName) {
+  return node.getAttributeNS(ns, name) || node.getAttribute(fallbackName) || '';
 }
 
-function updateLiveLodeLink(owlUrl) {
-  var lodeA = document.getElementById('onto-lode-live-link');
-  var vowlA = document.getElementById('onto-vowl-live-link');
-  var lodeUrl = 'https://w3id.org/lode/';
-  var vowlUrl = 'https://service.tib.eu/webvowl/';
+function textByTag(node, ns, name) {
+  var el = node.getElementsByTagNameNS(ns, name)[0];
+  return el ? String(el.textContent || '').trim() : '';
+}
 
-  if (!owlUrl) {
-    if (lodeA) lodeA.href = lodeUrl;
-    if (vowlA) vowlA.href = vowlUrl;
-    return;
+function shortIri(iri) {
+  if (!iri) return '';
+  var prefixes = [
+    ['http://www.semanticweb.org/meme-ontology#', 'memo:'],
+    ['http://www.w3.org/2002/07/owl#', 'owl:'],
+    ['http://www.w3.org/2000/01/rdf-schema#', 'rdfs:'],
+    ['http://www.w3.org/1999/02/22-rdf-syntax-ns#', 'rdf:'],
+    ['http://www.w3.org/2001/XMLSchema#', 'xsd:'],
+    ['http://purl.org/vocab/frbr/core#', 'frbrer:'],
+    ['https://schema.org/', 'schema:'],
+    ['http://www.wikidata.org/entity/', 'wd:']
+  ];
+  for (var i = 0; i < prefixes.length; i++) {
+    var base = prefixes[i][0];
+    if (iri.indexOf(base) === 0) return prefixes[i][1] + iri.slice(base.length);
+  }
+  return iri;
+}
+
+function safeEntityId(iri) {
+  return 'onto-entity-' + String(iri || '').replace(/[^a-zA-Z0-9_-]/g, '_');
+}
+
+function toEntity(node, rdfNs, rdfsNs, kind) {
+  var iri = xmlAttr(node, rdfNs, 'about', 'rdf:about');
+  if (!iri) return null;
+  var item = {
+    iri: iri,
+    label: textByTag(node, rdfsNs, 'label') || shortIri(iri).split(':').pop(),
+    comment: textByTag(node, rdfsNs, 'comment') || '',
+    kind: kind,
+    superClasses: [],
+    domains: [],
+    ranges: [],
+    types: []
+  };
+
+  var subNodes = node.getElementsByTagNameNS(rdfsNs, 'subClassOf');
+  for (var i = 0; i < subNodes.length; i++) {
+    var sup = xmlAttr(subNodes[i], rdfNs, 'resource', 'rdf:resource');
+    if (sup) item.superClasses.push(sup);
   }
 
-  // Current LODE service endpoint pattern documented at https://essepuntato.it/lode/
-  lodeUrl = 'https://w3id.org/lode/owlapi/' + owlUrl;
-  vowlUrl = 'https://service.tib.eu/webvowl/#file=' + encodeURIComponent(owlUrl);
+  var domainNodes = node.getElementsByTagNameNS(rdfsNs, 'domain');
+  for (var j = 0; j < domainNodes.length; j++) {
+    var d = xmlAttr(domainNodes[j], rdfNs, 'resource', 'rdf:resource');
+    if (d) item.domains.push(d);
+  }
 
-  if (lodeA) lodeA.href = lodeUrl;
-  if (vowlA) vowlA.href = vowlUrl;
+  var rangeNodes = node.getElementsByTagNameNS(rdfsNs, 'range');
+  for (var k = 0; k < rangeNodes.length; k++) {
+    var r = xmlAttr(rangeNodes[k], rdfNs, 'resource', 'rdf:resource');
+    if (r) item.ranges.push(r);
+  }
+
+  var typeNodes = node.getElementsByTagNameNS(rdfNs, 'type');
+  for (var t = 0; t < typeNodes.length; t++) {
+    var typeIri = xmlAttr(typeNodes[t], rdfNs, 'resource', 'rdf:resource');
+    if (typeIri) item.types.push(typeIri);
+  }
+
+  return item;
+}
+
+function renderEntityList(title, items, typeLabel) {
+  if (!items.length) {
+    return '<section class="onto-doc-sec"><h2>' + escHtml(title) + '</h2><p class="onto-doc-empty">No entities found.</p></section>';
+  }
+
+  var html = '<section class="onto-doc-sec" id="' + escHtml(typeLabel) + '">';
+  html += '<h2>' + escHtml(title) + ' <span>' + items.length + '</span></h2>';
+  items.forEach(function(item) {
+    html += '<article class="onto-entity-block" id="' + escHtml(safeEntityId(item.iri)) + '">';
+    html += '<h3 class="onto-entity-title">' + escHtml(item.label) + '</h3>';
+    html += '<div class="onto-entity-iri">' + escHtml(item.iri) + '</div>';
+    if (item.comment) {
+      html += '<p class="onto-entity-comment">' + escHtml(item.comment) + '</p>';
+    }
+
+    if (item.superClasses.length || item.domains.length || item.ranges.length || item.types.length) {
+      html += '<table class="onto-entity-table"><tbody>';
+      if (item.superClasses.length) {
+        html += '<tr><th>Super-classes</th><td>' + escHtml(item.superClasses.map(shortIri).join(' · ')) + '</td></tr>';
+      }
+      if (item.domains.length) {
+        html += '<tr><th>Domain</th><td>' + escHtml(item.domains.map(shortIri).join(' · ')) + '</td></tr>';
+      }
+      if (item.ranges.length) {
+        html += '<tr><th>Range</th><td>' + escHtml(item.ranges.map(shortIri).join(' · ')) + '</td></tr>';
+      }
+      if (item.types.length && typeLabel === 'onto-sec-individuals') {
+        html += '<tr><th>Types</th><td>' + escHtml(item.types.map(shortIri).join(' · ')) + '</td></tr>';
+      }
+      html += '</tbody></table>';
+    }
+    html += '</article>';
+  });
+  html += '</section>';
+  return html;
+}
+
+function wireOntoNavScroll() {
+  var buttons = document.querySelectorAll('.onto-doc-nav button[data-target]');
+  buttons.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var target = document.getElementById(btn.getAttribute('data-target'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
 }
 
 function initOntoPage() {
   if (ontoInited) return;
   ontoInited = true;
 
-  var host = window.location.hostname;
-  var isLocal = !host || host === 'localhost' || host === '127.0.0.1' || host.endsWith('.local');
+  var nav = document.getElementById('onto-doc-nav');
+  var main = document.getElementById('onto-doc-main');
+  var lodeTop = document.getElementById('onto-open-lode-top');
+  if (lodeTop) lodeTop.href = LODE_TARGET_URL;
 
-  // Pre-fill the URL input
-  var input = document.getElementById('onto-url-input');
-  var status = document.getElementById('onto-vowl-status');
+  fetch('meme_ontology_unpopulated.owl', { cache: 'no-store' })
+    .then(function(res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.text();
+    })
+    .then(function(xmlText) {
+      var parser = new DOMParser();
+      var doc = parser.parseFromString(xmlText, 'application/xml');
+      if (doc.getElementsByTagName('parsererror').length) {
+        throw new Error('Cannot parse meme_ontology_unpopulated.owl');
+      }
 
-  if (!isLocal) {
-    // On deployed domains we prefill URL, but we do not auto-open a popup.
-    // Auto-open is often blocked by the browser if not user-triggered.
-    var owlUrl = window.location.origin + '/ontology';
-    input.value = owlUrl;
-    updateLiveLodeLink(owlUrl);
+      var RDF_NS = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#';
+      var RDFS_NS = 'http://www.w3.org/2000/01/rdf-schema#';
+      var OWL_NS = 'http://www.w3.org/2002/07/owl#';
 
-    if (status) {
-      var vowlUrl = 'https://service.tib.eu/webvowl/#file=' + encodeURIComponent(owlUrl);
-      status.style.display = 'block';
-      status.innerHTML = 'Ready to open WebVOWL. Click <b>Load</b> or <a href="' + vowlUrl + '" target="_blank" rel="noopener">open directly</a>.';
-    }
-  } else {
-    updateLiveLodeLink('');
-  }
-  // On localhost: show the hint overlay, leave input empty for user to fill
-}
+      var classes = Array.prototype.slice.call(doc.getElementsByTagNameNS(OWL_NS, 'Class'))
+        .map(function(n) { return toEntity(n, RDF_NS, RDFS_NS, 'Class'); })
+        .filter(Boolean)
+        .sort(function(a, b) { return a.label.localeCompare(b.label); });
 
-function loadWebVOWL() {
-  var url = normalizeHttpUrl(document.getElementById('onto-url-input').value || '');
-  if (!url) return;
-  document.getElementById('onto-url-input').value = url;
-  updateLiveLodeLink(url);
-  _loadWebVOWLUrl(url);
-}
+      var objectProps = Array.prototype.slice.call(doc.getElementsByTagNameNS(OWL_NS, 'ObjectProperty'))
+        .map(function(n) { return toEntity(n, RDF_NS, RDFS_NS, 'Object property'); })
+        .filter(Boolean)
+        .sort(function(a, b) { return a.label.localeCompare(b.label); });
 
-function _loadWebVOWLUrl(owlUrl) {
-  var vowlUrl = 'https://service.tib.eu/webvowl/#file=' + encodeURIComponent(owlUrl);
-  var status = document.getElementById('onto-vowl-status');
-  var hint  = document.getElementById('onto-vowl-hint');
-  var frame = document.getElementById('webvowl-frame');
+      var datatypeProps = Array.prototype.slice.call(doc.getElementsByTagNameNS(OWL_NS, 'DatatypeProperty'))
+        .map(function(n) { return toEntity(n, RDF_NS, RDFS_NS, 'Datatype property'); })
+        .filter(Boolean)
+        .sort(function(a, b) { return a.label.localeCompare(b.label); });
 
-  if (hint)  { hint.style.display  = 'none'; }
-  if (frame) { frame.style.display = 'none'; frame.src = 'about:blank'; }
+      var annotationProps = Array.prototype.slice.call(doc.getElementsByTagNameNS(OWL_NS, 'AnnotationProperty'))
+        .map(function(n) { return toEntity(n, RDF_NS, RDFS_NS, 'Annotation property'); })
+        .filter(Boolean)
+        .sort(function(a, b) { return a.label.localeCompare(b.label); });
 
-  var popup = window.open(vowlUrl, '_blank', 'noopener');
-  var opened = !!popup;
+      var individuals = Array.prototype.slice.call(doc.getElementsByTagNameNS(OWL_NS, 'NamedIndividual'))
+        .map(function(n) { return toEntity(n, RDF_NS, RDFS_NS, 'Named individual'); })
+        .filter(Boolean)
+        .sort(function(a, b) { return a.label.localeCompare(b.label); });
 
-  if (status) {
-    status.style.display = 'block';
-    if (opened) {
-      status.innerHTML = 'Opened WebVOWL in a new tab. If needed, <a href="' + vowlUrl + '" target="_blank" rel="noopener">open again</a>.';
-    } else {
-      status.innerHTML = 'Popup blocked by browser. Please <a href="' + vowlUrl + '" target="_blank" rel="noopener">click here to open WebVOWL</a>.';
-    }
-  }
-}
+      var ontologyNode = doc.getElementsByTagNameNS(OWL_NS, 'Ontology')[0];
+      var ontologyIri = ontologyNode ? xmlAttr(ontologyNode, RDF_NS, 'about', 'rdf:about') : '';
 
-function switchOntoTab(tab) {
-  document.getElementById('onto-pane-vowl').classList.toggle('hidden', tab !== 'vowl');
-  document.getElementById('onto-pane-lode').classList.toggle('hidden', tab !== 'lode');
-  document.getElementById('onto-tab-vowl').classList.toggle('active', tab === 'vowl');
-  document.getElementById('onto-tab-lode').classList.toggle('active', tab === 'lode');
-  var urlRow = document.getElementById('onto-url-row');
-  if (urlRow) urlRow.style.display = tab === 'vowl' ? '' : 'none';
+      nav.innerHTML = '' +
+        '<h3>Documentation</h3>' +
+        '<button data-target="onto-sec-overview">Overview</button>' +
+        '<button data-target="onto-sec-classes">Classes (' + classes.length + ')</button>' +
+        '<button data-target="onto-sec-objprops">Object properties (' + objectProps.length + ')</button>' +
+        '<button data-target="onto-sec-dataprops">Datatype properties (' + datatypeProps.length + ')</button>' +
+        '<button data-target="onto-sec-annprops">Annotation properties (' + annotationProps.length + ')</button>' +
+        '<button data-target="onto-sec-individuals">Named individuals (' + individuals.length + ')</button>';
+
+      var html = '<section class="onto-doc-sec" id="onto-sec-overview">';
+      html += '<h2>Ontology Overview</h2>';
+      if (ontologyIri) {
+        html += '<p class="onto-overview-iri">Ontology IRI: ' + escHtml(ontologyIri) + '</p>';
+      }
+      html += '<div class="onto-stats-grid">';
+      html += '<div class="onto-stat-card"><span>' + classes.length + '</span><label>Classes</label></div>';
+      html += '<div class="onto-stat-card"><span>' + objectProps.length + '</span><label>Object properties</label></div>';
+      html += '<div class="onto-stat-card"><span>' + datatypeProps.length + '</span><label>Datatype properties</label></div>';
+      html += '<div class="onto-stat-card"><span>' + annotationProps.length + '</span><label>Annotation properties</label></div>';
+      html += '<div class="onto-stat-card"><span>' + individuals.length + '</span><label>Named individuals</label></div>';
+      html += '</div>';
+      html += '</section>';
+
+      html += renderEntityList('Classes', classes, 'onto-sec-classes');
+      html += renderEntityList('Object Properties', objectProps, 'onto-sec-objprops');
+      html += renderEntityList('Datatype Properties', datatypeProps, 'onto-sec-dataprops');
+      html += renderEntityList('Annotation Properties', annotationProps, 'onto-sec-annprops');
+      html += renderEntityList('Named Individuals', individuals, 'onto-sec-individuals');
+
+      main.innerHTML = html;
+      wireOntoNavScroll();
+    })
+    .catch(function(err) {
+      main.innerHTML = '<div class="onto-doc-error">Unable to load ontology documentation here (' + escHtml(err.message) + '). Use Open in LODE.</div>';
+      nav.innerHTML = '<h3>Documentation</h3><p class="onto-doc-empty">Navigation unavailable while data fails to load.</p>';
+    });
 }
 
 function showViz() {
-  ['about', 'disclaimer', 'dataset', 'meme', 'd0', 'variant'].forEach(p =>
+  ['about', 'disclaimer', 'dataset', 'ontology', 'meme', 'd0', 'variant'].forEach(p =>
     document.getElementById('page-' + p).classList.add('hidden'));
   document.getElementById('app').classList.remove('hidden');
   document.getElementById('dot-nav').classList.remove('hidden');
