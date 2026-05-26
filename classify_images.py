@@ -743,6 +743,13 @@ CLASS_WD_SEEALSO = {
     "CulturalReference": "Q96622155",
 }
 
+# Wikidata equivalentClass QIDs for memo: classes with direct class equivalence.
+CLASS_WD_EQUIVALENT = {
+    "GeographicRegion": "Q82794",
+    "OriginPlatform": "Q3220391",
+    "FileFormat": "Q235557",
+}
+
 # Kept for reference only (no longer used to declare OWL classes)
 WD_CLASS_META = {
     "GeographicRegion":  (
@@ -911,6 +918,8 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
             g.add((MEME[c], RDFS.comment, Literal(MEMO_CLASS_COMMENTS[c], lang="en")))
         if c in CLASS_WD_SEEALSO:
             g.add((MEME[c], RDFS.seeAlso, URIRef(f"https://www.wikidata.org/wiki/{CLASS_WD_SEEALSO[c]}")))
+        if c in CLASS_WD_EQUIVALENT:
+            g.add((MEME[c], OWL.equivalentClass, WD[CLASS_WD_EQUIVALENT[c]]))
     g.add((MEME.MemeIdea,      RDFS.seeAlso, URIRef("https://www.wikidata.org/wiki/Q3249551")))
     g.add((MEME.SubjectMatter, RDFS.seeAlso, URIRef("https://www.wikidata.org/wiki/Q16334295")))
 

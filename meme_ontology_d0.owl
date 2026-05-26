@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <rdf:RDF
    xmlns:frbrer="http://iflastandards.info/ns/fr/frbr/frbrer/"
    xmlns:wd="http://www.wikidata.org/entity/"
@@ -12,6 +12,15 @@
    xmlns:schema="https://schema.org/"
    xmlns:wdp="http://www.wikidata.org/prop/direct/"
 >
+  <rdf:Description rdf:about="http://iflastandards.info/ns/fr/frbr/frbrer/C1002">
+    <rdfs:label xml:lang="en">Work (FRBRer)</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://iflastandards.info/ns/fr/frbr/frbrer/C1003">
+    <rdfs:label xml:lang="en">Expression (FRBRer)</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://iflastandards.info/ns/fr/frbr/frbrer/C1004">
+    <rdfs:label xml:lang="en">Manifestation (FRBRer)</rdfs:label>
+  </rdf:Description>
   <rdf:Description rdf:about="https://purl.org/memo#ParticipatoryMedia">
     <rdf:type rdf:resource="https://purl.org/memo#ParticipatoryFormat"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
@@ -257,7 +266,7 @@
     <schema:image rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/entries/icons/original/000/025/071/shock-758x396.jpg</schema:image>
     <dcterms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2026-04-28T07:24:43.651469Z</dcterms:modified>
     <dcterms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2017</dcterms:created>
-    <dcterms:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Logan Paul's Suicide Forest Video is a viral video by YouTuber Logan Paul in which he discovers a dead body in the Aokigahara forest in the Chūbu region of Honshu in Japan. After the video was uploaded to YouTube in late December 2017, Paul was widely criticized online for exploiting a man's suicide for clickbait and video views.</dcterms:description>
+    <dcterms:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Logan Paul's Suicide Forest Video is a viral video by YouTuber Logan Paul in which he discovers a dead body in the Aokigahara forest in the ChÅ«bu region of Honshu in Japan. After the video was uploaded to YouTube in late December 2017, Paul was widely criticized online for exploiting a man's suicide for clickbait and video views.</dcterms:description>
     <schema:keywords rdf:datatype="http://www.w3.org/2001/XMLSchema#string">logan paul</schema:keywords>
     <schema:keywords rdf:datatype="http://www.w3.org/2001/XMLSchema#string">youtube</schema:keywords>
     <schema:keywords rdf:datatype="http://www.w3.org/2001/XMLSchema#string">japan</schema:keywords>
@@ -419,7 +428,7 @@
   <rdf:Description rdf:about="https://purl.org/memo#_48293_v06">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:label>48÷2(9+3) = ? variant 6</rdfs:label>
+    <rdfs:label>48Ã·2(9+3) = ? variant 6</rdfs:label>
     <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">48-2(943)=? The answer: It's Over Nine Thousaaaaaaand!</memo:variantTitle>
     <memo:variantUploader rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ticomaza</memo:variantUploader>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/000/206/784/6de.jpg</memo:variantImageURL>
@@ -514,7 +523,7 @@
     <schema:image rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/entries/icons/original/000/055/529/itccover.jpg</schema:image>
     <dcterms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2026-04-28T09:26:09.749297Z</dcterms:modified>
     <dcterms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2025</dcterms:created>
-    <dcterms:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">I'm This Clingy is a redraw meme format based on a selfie photograph of a woman looking at her phone while a man's head is squeezed between her thighs, captioned, "Im this clingy😂." The photo without the caption originally started spreading online in 2018 and was popularized as a redraw meme in October 2025 after it was reposted by X / Twitter user @Mythicalblue_, with many of the redraws portraying popular ship pairings.</dcterms:description>
+    <dcterms:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">I'm This Clingy is a redraw meme format based on a selfie photograph of a woman looking at her phone while a man's head is squeezed between her thighs, captioned, "Im this clingyðŸ˜‚." The photo without the caption originally started spreading online in 2018 and was popularized as a redraw meme in October 2025 after it was reposted by X / Twitter user @Mythicalblue_, with many of the redraws portraying popular ship pairings.</dcterms:description>
     <schema:keywords rdf:datatype="http://www.w3.org/2001/XMLSchema#string">man crushed by thighs</schema:keywords>
     <schema:keywords rdf:datatype="http://www.w3.org/2001/XMLSchema#string">crushed by girlfriend's thighs</schema:keywords>
     <schema:keywords rdf:datatype="http://www.w3.org/2001/XMLSchema#string">girl on phone boy in thighs</schema:keywords>
@@ -583,7 +592,7 @@
     <rdf:type rdf:resource="https://purl.org/memo#VariantInstance"/>
     <rdfs:label>Me and the boys not letting you do that, Star Fox!</rdfs:label>
     <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Me and the boys not letting you do that, Star Fox!</memo:variantTitle>
-    <memo:variantUploader rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Γ Da Count Γ</memo:variantUploader>
+    <memo:variantUploader rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Î“ Da Count Î“</memo:variantUploader>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/963/907/392.jpg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">04_392.jpg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/2963907-me-and-the-boys</memo:photoURL>
@@ -1017,7 +1026,7 @@
     <schema:image rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/entries/icons/original/000/036/067/Waiting_Wash_The_Fucking_Dishes_Banner.jpg</schema:image>
     <dcterms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2026-04-26T18:39:22.356458Z</dcterms:modified>
     <dcterms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2005</dcterms:created>
-    <dcterms:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">“Wash the Fucking Dishes,” is a memorable quote uttered by the character Naomi in the 2005 comedy film Waiting… where a coworker offers her anger management counseling due to her irritable nature. In memes , the clip of Naomi yelling “just wash the fucking dishes and shut the fuck up” is used as a catchphrase and sound effect over videos of people being told to do the dishes, some of which were remixed into songs. In the fall and winter of 2020, dubbed versions of the clip on TikTok became a trend known as “Just Wash the Dishes and Shut TF up Challenge” where people exaggeratedly rushed to do the dishes, often jumping in the sink, after being yelled at.</dcterms:description>
+    <dcterms:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">â€œWash the Fucking Dishes,â€ is a memorable quote uttered by the character Naomi in the 2005 comedy film Waitingâ€¦ where a coworker offers her anger management counseling due to her irritable nature. In memes , the clip of Naomi yelling â€œjust wash the fucking dishes and shut the fuck upâ€ is used as a catchphrase and sound effect over videos of people being told to do the dishes, some of which were remixed into songs. In the fall and winter of 2020, dubbed versions of the clip on TikTok became a trend known as â€œJust Wash the Dishes and Shut TF up Challengeâ€ where people exaggeratedly rushed to do the dishes, often jumping in the sink, after being yelled at.</dcterms:description>
     <schema:keywords rdf:datatype="http://www.w3.org/2001/XMLSchema#string">wash the dishes</schema:keywords>
     <schema:keywords rdf:datatype="http://www.w3.org/2001/XMLSchema#string">waiting</schema:keywords>
     <schema:keywords rdf:datatype="http://www.w3.org/2001/XMLSchema#string">meme</schema:keywords>
@@ -1060,7 +1069,7 @@
     <schema:image rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/entries/icons/original/000/005/548/yourewrong.jpg</schema:image>
     <dcterms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2026-04-26T17:16:30.727739Z</dcterms:modified>
     <dcterms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2011</dcterms:created>
-    <dcterms:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">48÷2(9+3) = ? is a math problem that leads to two different answers depending on the order of operations [1] used. Since 2011, message board users have debated over whether 2 or 288 is the correct answer to the problem, with no conclusive answer. This and another seemingly impossible equations have been a hot topic of forum debate that are sometimes used to troll other posters who will vehemently argue that their answer is the definitive one.</dcterms:description>
+    <dcterms:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">48Ã·2(9+3) = ? is a math problem that leads to two different answers depending on the order of operations [1] used. Since 2011, message board users have debated over whether 2 or 288 is the correct answer to the problem, with no conclusive answer. This and another seemingly impossible equations have been a hot topic of forum debate that are sometimes used to troll other posters who will vehemently argue that their answer is the definitive one.</dcterms:description>
     <schema:keywords rdf:datatype="http://www.w3.org/2001/XMLSchema#string">troll</schema:keywords>
     <schema:keywords rdf:datatype="http://www.w3.org/2001/XMLSchema#string">trick</schema:keywords>
     <schema:keywords rdf:datatype="http://www.w3.org/2001/XMLSchema#string">4chan</schema:keywords>
@@ -1159,8 +1168,8 @@
   <rdf:Description rdf:about="https://purl.org/memo#npc-wojak_v03">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:label>Tension rising… | /r/memes</rdfs:label>
-    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tension rising… | /r/memes</memo:variantTitle>
+    <rdfs:label>Tension risingâ€¦ | /r/memes</rdfs:label>
+    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tension risingâ€¦ | /r/memes</memo:variantTitle>
     <memo:variantUploader rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Reddit Moments</memo:variantUploader>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/003/041/478/2e6.jpeg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">03_2e6.jpeg</memo:variantFilename>
@@ -1172,8 +1181,8 @@
   <rdf:Description rdf:about="https://purl.org/memo#big-chungus_v05">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:label>🤤🤤🤤🤤🤤🥵🤤</rdfs:label>
-    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">🤤🤤🤤🤤🤤🥵🤤</memo:variantTitle>
+    <rdfs:label>ðŸ¤¤ðŸ¤¤ðŸ¤¤ðŸ¤¤ðŸ¤¤ðŸ¥µðŸ¤¤</rdfs:label>
+    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ðŸ¤¤ðŸ¤¤ðŸ¤¤ðŸ¤¤ðŸ¤¤ðŸ¥µðŸ¤¤</memo:variantTitle>
     <memo:variantUploader rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bilbo Swaggins</memo:variantUploader>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/318/040/19b.jpg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">05_19b.jpg</memo:variantFilename>
@@ -1497,7 +1506,7 @@ Help would be appreciated to find the creator of this meme.</memo:captionText>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/003/103/321/5d3.jpg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">01_5d3.jpg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/3103321-burger-king-foot-lettuce</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Help Honor Alex's Memory with Support Co-organized Jaremy Crouse and Jackie Starr are organizing this fundraiser. Donation protected 5 days until service July 21st, 2025 $3,881 USD raised $5K goal 58 donations S (3 S (3 Share Donate now 13 people just donated Reese Civiok $100 Recent donation Dylan Chills $1,000 Top donation Jaremy Crouse $10 - First donation It brings me great sadness to come to all of you today to speak about my favorite person in the world. To some, he was known as the infinite foot lettuce guy; to me, he was a loyal friend with the best sense of humor and greatest personality in the world. He was somebody who was trustworthy, loving, and compassionate to everyone around him. He enjoyed taking his creative talents and using them to make music and YouTube videos. My best brother in the world. See all ✰ See top 78%</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Help Honor Alex's Memory with Support Co-organized Jaremy Crouse and Jackie Starr are organizing this fundraiser. Donation protected 5 days until service July 21st, 2025 $3,881 USD raised $5K goal 58 donations S (3 S (3 Share Donate now 13 people just donated Reese Civiok $100 Recent donation Dylan Chills $1,000 Top donation Jaremy Crouse $10 - First donation It brings me great sadness to come to all of you today to speak about my favorite person in the world. To some, he was known as the infinite foot lettuce guy; to me, he was a loyal friend with the best sense of humor and greatest personality in the world. He was somebody who was trustworthy, loving, and compassionate to everyone around him. He enjoyed taking his creative talents and using them to make music and YouTube videos. My best brother in the world. See all âœ° See top 78%</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#burger-king-foot-lettuce"/>
   </rdf:Description>
@@ -1729,7 +1738,7 @@ Help would be appreciated to find the creator of this meme.</memo:captionText>
   <rdf:Description rdf:about="https://purl.org/memo#_48293_v03">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:label>48÷2(9+3) = ? variant 3</rdfs:label>
+    <rdfs:label>48Ã·2(9+3) = ? variant 3</rdfs:label>
     <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Best Answer - Chosen by Voters atics is supposed to provide you with single, definitive answers. How</memo:variantTitle>
     <memo:variantUploader rdf:datatype="http://www.w3.org/2001/XMLSchema#string">amanda b.</memo:variantUploader>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/000/574/344/ec1.png</memo:variantImageURL>
@@ -1797,8 +1806,8 @@ Help would be appreciated to find the creator of this meme.</memo:captionText>
   <rdf:Description rdf:about="https://purl.org/memo#big-chungus_v07">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:label>Everything is Big Chungus 😱😱😱</rdfs:label>
-    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Everything is Big Chungus 😱😱😱</memo:variantTitle>
+    <rdfs:label>Everything is Big Chungus ðŸ˜±ðŸ˜±ðŸ˜±</rdfs:label>
+    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Everything is Big Chungus ðŸ˜±ðŸ˜±ðŸ˜±</memo:variantTitle>
     <memo:variantUploader rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bilbo Swaggins</memo:variantUploader>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/232/636/ec2.jpg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">07_ec2.jpg</memo:variantFilename>
@@ -2050,7 +2059,7 @@ Help would be appreciated to find the creator of this meme.</memo:captionText>
     <schema:image rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/entries/icons/original/000/027/475/Screen_Shot_2018-10-25_at_11.02.15_AM.png</schema:image>
     <dcterms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2026-04-27T20:43:03.404330Z</dcterms:modified>
     <dcterms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2018</dcterms:created>
-    <dcterms:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Surprised Pikachu , also known as Shocked Pikachu , refers to a screenshot from the Pokémon anime of the character Pikachu with its mouth agape, as though it were surprised at something. In the autumn of 2018, the image was used as a reaction image paired with captions where a set-up leads to a predictable outcome that nevertheless leaves one surprised.</dcterms:description>
+    <dcterms:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Surprised Pikachu , also known as Shocked Pikachu , refers to a screenshot from the PokÃ©mon anime of the character Pikachu with its mouth agape, as though it were surprised at something. In the autumn of 2018, the image was used as a reaction image paired with captions where a set-up leads to a predictable outcome that nevertheless leaves one surprised.</dcterms:description>
     <schema:keywords rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pokemon</schema:keywords>
     <schema:keywords rdf:datatype="http://www.w3.org/2001/XMLSchema#string">me_irl</schema:keywords>
     <schema:keywords rdf:datatype="http://www.w3.org/2001/XMLSchema#string">reaction image</schema:keywords>
@@ -2128,7 +2137,7 @@ Help would be appreciated to find the creator of this meme.</memo:captionText>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/003/009/258/7bc.png</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">06_7bc.png</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/3009258-saddam-husseins-hiding-place</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ITinned UrMumLastNigh⚫ 5d ago Kremówka Trebuchet Operator Entrance hidden by Bricks and rubble T | 6ft 4 ====○ | Il@ |4- Air vent❘ Fan Saddam Hussein 54 Reply Share miniguy .5d ago Entrance hidden by Saddam Hussein T | 4 Bricks and rubble 6ft 4 ====○ | |@ | 4 Air vent |Fan 17 Reply Share</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ITinned UrMumLastNighâš« 5d ago KremÃ³wka Trebuchet Operator Entrance hidden by Bricks and rubble T | 6ft 4 ====â—‹ | Il@ |4- Air ventâ˜ Fan Saddam Hussein 54 Reply Share miniguy .5d ago Entrance hidden by Saddam Hussein T | 4 Bricks and rubble 6ft 4 ====â—‹ | |@ | 4 Air vent |Fan 17 Reply Share</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#saddam-husseins-hiding-place"/>
   </rdf:Description>
@@ -2297,7 +2306,7 @@ Help would be appreciated to find the creator of this meme.</memo:captionText>
     <schema:image rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/entries/icons/original/000/027/222/Bowsette.png</schema:image>
     <dcterms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2026-04-27T09:16:23.488952Z</dcterms:modified>
     <dcterms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2018</dcterms:created>
-    <dcterms:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bowsette , also known as Koppa Hime (クッパ姫) in Japanese, is an anthropomorphised genderbend version of the Super Mario villain Bowser caused by the effects of the Super Crown power up. Following the creation of the character shortly after the release of a trailer for New Super Mario Bros. U Deluxe , it quickly gained a large amount of popularity on both the western and eastern web.</dcterms:description>
+    <dcterms:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bowsette , also known as Koppa Hime (ã‚¯ãƒƒãƒ‘å§«) in Japanese, is an anthropomorphised genderbend version of the Super Mario villain Bowser caused by the effects of the Super Crown power up. Following the creation of the character shortly after the release of a trailer for New Super Mario Bros. U Deluxe , it quickly gained a large amount of popularity on both the western and eastern web.</dcterms:description>
     <schema:keywords rdf:datatype="http://www.w3.org/2001/XMLSchema#string">bowser</schema:keywords>
     <schema:keywords rdf:datatype="http://www.w3.org/2001/XMLSchema#string">super mario</schema:keywords>
     <schema:keywords rdf:datatype="http://www.w3.org/2001/XMLSchema#string">nintendo</schema:keywords>
@@ -2656,7 +2665,7 @@ Credit and praise to the few others where due that also contributed to these wor
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/959/235/e6f.jpeg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">08_e6f.jpeg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/2959235-saddam-husseins-hiding-place</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dr. patriachatpirat @patriachat... 6h : warum served mein schnitzel lowkey sadam hussein hiding spot? 1439 UN 290 Nog Am Wegfeld 245 Tenhenlohe ESTUU 1 Min Min Norder Flughaler &amp; Min 28 Kinkum am Europakanal Neundert 20 we umietungen 14.50 1650 inton Q81 173.1K 31.1K 835K ☐ α</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dr. patriachatpirat @patriachat... 6h : warum served mein schnitzel lowkey sadam hussein hiding spot? 1439 UN 290 Nog Am Wegfeld 245 Tenhenlohe ESTUU 1 Min Min Norder Flughaler &amp; Min 28 Kinkum am Europakanal Neundert 20 we umietungen 14.50 1650 inton Q81 173.1K 31.1K 835K â˜ Î±</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#saddam-husseins-hiding-place"/>
   </rdf:Description>
@@ -2717,7 +2726,7 @@ Credit and praise to the few others where due that also contributed to these wor
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/109/517/a7a.jpg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">07_a7a.jpg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/2109517-she-looks-so-lovable</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Timothy Warner She looks so lovable, what anine 7 minutes ago · Like · Reply Rodrigo Ignacio Ortíz Berton He 6 minutes ago Like Reply Timothy Warner No 6 minutes ago Like Reply Timothy Warner NO 6 minutes ago Like Reply Timothy Warner NO0000000</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Timothy Warner She looks so lovable, what anine 7 minutes ago Â· Like Â· Reply Rodrigo Ignacio OrtÃ­z Berton He 6 minutes ago Like Reply Timothy Warner No 6 minutes ago Like Reply Timothy Warner NO 6 minutes ago Like Reply Timothy Warner NO0000000</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#she-looks-so-lovable"/>
   </rdf:Description>
@@ -2910,7 +2919,7 @@ Credit and praise to the few others where due that also contributed to these wor
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/003/221/775/bc2.jpeg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10_bc2.jpeg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/3221775-karen</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">⑪ a year ago Takeaway Dinner | £10-20 Ordered a takeaway on Wednesday evening for my wife and I, very disappointed. After spending our usual £35 found our chicken balls and salt and pepper chips completely overcooked, and the chicken curry contained so much onion and carrots there was hardly any sauce. Called them to say what we had, only received an apology. Called back the next evening to ask if they would replace the chicken balls and salt pepper chips, and only asked for a curry sauce. Even offered to bring down the food we couldn't eat, only to be informed they would only replace one item. Told them to stick it up their backside, then proceeded to dump the uneaten food on the counter in front of waiting customers. The only thing that was satisfying</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">â‘ª a year ago Takeaway Dinner | Â£10-20 Ordered a takeaway on Wednesday evening for my wife and I, very disappointed. After spending our usual Â£35 found our chicken balls and salt and pepper chips completely overcooked, and the chicken curry contained so much onion and carrots there was hardly any sauce. Called them to say what we had, only received an apology. Called back the next evening to ask if they would replace the chicken balls and salt pepper chips, and only asked for a curry sauce. Even offered to bring down the food we couldn't eat, only to be informed they would only replace one item. Told them to stick it up their backside, then proceeded to dump the uneaten food on the counter in front of waiting customers. The only thing that was satisfying</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#karen"/>
   </rdf:Description>
@@ -3049,8 +3058,8 @@ Credit and praise to the few others where due that also contributed to these wor
   <rdf:Description rdf:about="https://purl.org/memo#im-already-tracer_v03">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:label>Hahaha I lol every time 😂😂😂</rdfs:label>
-    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hahaha I lol every time 😂😂😂</memo:variantTitle>
+    <rdfs:label>Hahaha I lol every time ðŸ˜‚ðŸ˜‚ðŸ˜‚</rdfs:label>
+    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hahaha I lol every time ðŸ˜‚ðŸ˜‚ðŸ˜‚</memo:variantTitle>
     <memo:variantUploader rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bilbo Swaggins</memo:variantUploader>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/001/432/139/801.jpg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">03_801.jpg</memo:variantFilename>
@@ -3152,8 +3161,8 @@ Credit and praise to the few others where due that also contributed to these wor
   <rdf:Description rdf:about="https://purl.org/memo#im-already-tracer_v07">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:label>I’m ok</rdfs:label>
-    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">I’m ok</memo:variantTitle>
+    <rdfs:label>Iâ€™m ok</rdfs:label>
+    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Iâ€™m ok</memo:variantTitle>
     <memo:variantUploader rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cold Hard Crash</memo:variantUploader>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/001/431/330/ed7</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">07_ed7.jpg</memo:variantFilename>
@@ -3222,13 +3231,13 @@ Credit and praise to the few others where due that also contributed to these wor
   <rdf:Description rdf:about="https://purl.org/memo#weird-flex-but-ok_v01">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:label>Crêpe</rdfs:label>
-    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Crêpe</memo:variantTitle>
+    <rdfs:label>CrÃªpe</rdfs:label>
+    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CrÃªpe</memo:variantTitle>
     <memo:variantUploader rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Triplem</memo:variantUploader>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/366/511/cc3.png</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">01_cc3.png</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/2366511-weird-flex-but-ok</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">"A medicine that makes you put two dots over your letters more often is a diäretic"</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">"A medicine that makes you put two dots over your letters more often is a diÃ¤retic"</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#weird-flex-but-ok"/>
   </rdf:Description>
@@ -3263,13 +3272,13 @@ Credit and praise to the few others where due that also contributed to these wor
   <rdf:Description rdf:about="https://purl.org/memo#bowsette_v07">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:label>Bowsette in casual clothes Ink art style version🖊️ - by nonoworks</rdfs:label>
-    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bowsette in casual clothes Ink art style version🖊️ - by nonoworks</memo:variantTitle>
+    <rdfs:label>Bowsette in casual clothes Ink art style versionðŸ–Šï¸ - by nonoworks</rdfs:label>
+    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bowsette in casual clothes Ink art style versionðŸ–Šï¸ - by nonoworks</memo:variantTitle>
     <memo:variantUploader rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Moltz</memo:variantUploader>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/982/950/219</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">07_219.jpg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/2982950-bowsette</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">x いい、小い @nonoworks Oral 10</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">x ã„ã„ã€å°ã„ @nonoworks Oral 10</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#bowsette"/>
   </rdf:Description>
@@ -3370,7 +3379,7 @@ Credit and praise to the few others where due that also contributed to these wor
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/110/084/0ab.jpg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">03_0ab.jpg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/2110084-she-looks-so-lovable</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Timothy Warner She looks so lovable, what anine 7 minutes ago · Like · Reply A Rodrigo Ignacio Ortíz Berton He 6 minutes ago · Like - Reply Timothy Warner No 6 minutes ago Like Reply Timothy Warner NO 6 minutes ago Like Reply Timothy Warner NO0000000</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Timothy Warner She looks so lovable, what anine 7 minutes ago Â· Like Â· Reply A Rodrigo Ignacio OrtÃ­z Berton He 6 minutes ago Â· Like - Reply Timothy Warner No 6 minutes ago Like Reply Timothy Warner NO 6 minutes ago Like Reply Timothy Warner NO0000000</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#she-looks-so-lovable"/>
   </rdf:Description>
@@ -3659,7 +3668,7 @@ Credit and praise to the few others where due that also contributed to these wor
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/604/867/393.png</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">04_393.png</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/2604867-crazy-i-was-crazy-once-they-locked-me-in-a-room-a-rubber-room-a-rubber-room-with-rats-and-rats-make-me-crazy</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">88 I Was Crazy Once [Original 2008] (self.Poems) submitted 4 years ago * (last edited 4 years ago) by Alex_Kapranos 41 comments source share save hide give award report crosspost hide all child comments navigate by sorted by: top you are viewing a single comment's thread. view the rest of the comments → [-] Faremir 3 points 1 month ago Not the original. However, based on my research, the earliest mention of the "Crazy? I was crazy once" poem that I could find is from a Usenet group called alt.support.depression, where it was posted on January 25, 1996, by an anonymous user. The post contained a longer version of the poem that included additional verses beyond the ones that are commonly circulated today. The whole peom in that post was: "Crazy? I was crazy once. They locked me in a rubber room and told me to sit in the corner. In the corner, there was a round table and on the round table, there was a glass bowl and in the glass bowl, there was a silver key. I took the silver key and they said, 'Now you're sane.' Crazy? I was crazy once. They locked me in a padded cell and told me to make myself comfortable. So I went to sleep on the bed and when I woke up, I was in a straight-jacket. I told them I was sane and they said, 'Now you're crazy.' Crazy? I was crazy once. They put me in a maze and told me to find my way out. I found the way out in five minutes and they said, 'You're a genius!' Crazy? I was crazy once." permalink source embed save save-RES report give award reply hide child comments</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">88 I Was Crazy Once [Original 2008] (self.Poems) submitted 4 years ago * (last edited 4 years ago) by Alex_Kapranos 41 comments source share save hide give award report crosspost hide all child comments navigate by sorted by: top you are viewing a single comment's thread. view the rest of the comments â†’ [-] Faremir 3 points 1 month ago Not the original. However, based on my research, the earliest mention of the "Crazy? I was crazy once" poem that I could find is from a Usenet group called alt.support.depression, where it was posted on January 25, 1996, by an anonymous user. The post contained a longer version of the poem that included additional verses beyond the ones that are commonly circulated today. The whole peom in that post was: "Crazy? I was crazy once. They locked me in a rubber room and told me to sit in the corner. In the corner, there was a round table and on the round table, there was a glass bowl and in the glass bowl, there was a silver key. I took the silver key and they said, 'Now you're sane.' Crazy? I was crazy once. They locked me in a padded cell and told me to make myself comfortable. So I went to sleep on the bed and when I woke up, I was in a straight-jacket. I told them I was sane and they said, 'Now you're crazy.' Crazy? I was crazy once. They put me in a maze and told me to find my way out. I found the way out in five minutes and they said, 'You're a genius!' Crazy? I was crazy once." permalink source embed save save-RES report give award reply hide child comments</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#crazy-i-was-crazy-once-they-locked-me-in-a-room-a-rubber-room-a-rubber-room-with-rats-and-rats-make-me-crazy"/>
   </rdf:Description>
@@ -3705,7 +3714,7 @@ Credit and praise to the few others where due that also contributed to these wor
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/003/044/854/040.jpeg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">02_040.jpeg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/3044854-hawk-tuah-girl</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0 DiscussingFilm @DiscussingFilm. 3h Hawk Tuah Girl has been cast as Hawk Tuah Girl in Glen Powell's new comedy series 'CHAD POWERS' (Source: tmz.com/2025/04/08/hal...) 200 319 1842 8.8K ❘ 482K ☐ 1</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0 DiscussingFilm @DiscussingFilm. 3h Hawk Tuah Girl has been cast as Hawk Tuah Girl in Glen Powell's new comedy series 'CHAD POWERS' (Source: tmz.com/2025/04/08/hal...) 200 319 1842 8.8K â˜ 482K â˜ 1</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#hawk-tuah-girl"/>
   </rdf:Description>
@@ -3735,8 +3744,8 @@ Credit and praise to the few others where due that also contributed to these wor
   <rdf:Description rdf:about="https://purl.org/memo#brazzers_v07">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:label>Даниела Рангелова + Ladna</rdfs:label>
-    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Даниела Рангелова + Ladna</memo:variantTitle>
+    <rdfs:label>Ð”Ð°Ð½Ð¸ÐµÐ»Ð° Ð Ð°Ð½Ð³ÐµÐ»Ð¾Ð²Ð° + Ladna</rdfs:label>
+    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ð”Ð°Ð½Ð¸ÐµÐ»Ð° Ð Ð°Ð½Ð³ÐµÐ»Ð¾Ð²Ð° + Ladna</memo:variantTitle>
     <memo:variantUploader rdf:datatype="http://www.w3.org/2001/XMLSchema#string">B. M. S.</memo:variantUploader>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/001/892/129/757.png</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">07_757.png</memo:variantFilename>
@@ -3795,7 +3804,7 @@ Credit and praise to the few others where due that also contributed to these wor
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/604/882/c5b.png</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">02_c5b.png</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/2604882-crazy-i-was-crazy-once-they-locked-me-in-a-room-a-rubber-room-a-rubber-room-with-rats-and-rats-make-me-crazy</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt; jem 1:10 This is crazy. Crazy? I was crazy once. They locked me in a room. A rubber room. A rubber room with rats, and rats make me... Squilliam 632 likes • 502h 13m ● O She's my 9 Crazy? All the voices i was crazy once E Elsa Kennedy They Jem Locked Me In Christian &amp; Chloe Today RealYungPhil, Woesum, Yung She Home Search 冷 18 ▸ IID Your Library</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&lt; jem 1:10 This is crazy. Crazy? I was crazy once. They locked me in a room. A rubber room. A rubber room with rats, and rats make me... Squilliam 632 likes â€¢ 502h 13m â— O She's my 9 Crazy? All the voices i was crazy once E Elsa Kennedy They Jem Locked Me In Christian &amp; Chloe Today RealYungPhil, Woesum, Yung She Home Search å†· 18 â–¸ IID Your Library</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#crazy-i-was-crazy-once-they-locked-me-in-a-room-a-rubber-room-a-rubber-room-with-rats-and-rats-make-me-crazy"/>
   </rdf:Description>
@@ -3955,7 +3964,7 @@ Credit and praise to the few others where due that also contributed to these wor
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/003/030/962/030.png</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">04_030.png</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/3030962-saddam-husseins-hiding-place</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">เคยพบสภา Bashar Al Assad 6ft Air vent Fan</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">à¹€à¸„à¸¢à¸žà¸šà¸ªà¸ à¸² Bashar Al Assad 6ft Air vent Fan</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#saddam-husseins-hiding-place"/>
   </rdf:Description>
@@ -4001,8 +4010,8 @@ Credit and praise to the few others where due that also contributed to these wor
   <rdf:Description rdf:about="https://purl.org/memo#burger-king-foot-lettuce_v02">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:label>A friend of Alex’s reached out to me today. He passed away. RIP, friend.</rdfs:label>
-    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A friend of Alex’s reached out to me today. He passed away. RIP, friend.</memo:variantTitle>
+    <rdfs:label>A friend of Alexâ€™s reached out to me today. He passed away. RIP, friend.</rdfs:label>
+    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A friend of Alexâ€™s reached out to me today. He passed away. RIP, friend.</memo:variantTitle>
     <memo:variantUploader rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Phillip Hamilton</memo:variantUploader>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/003/100/541/338.jpg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">02_338.jpg</memo:variantFilename>
@@ -4112,13 +4121,13 @@ Credit and praise to the few others where due that also contributed to these wor
   <rdf:Description rdf:about="https://purl.org/memo#we-not-making-it-out-the-hood_v01">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:label>My boy just played me his unreleased, we’re not making it out the hood bro </rdfs:label>
-    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">My boy just played me his unreleased, we’re not making it out the hood bro</memo:variantTitle>
+    <rdfs:label>My boy just played me his unreleased, weâ€™re not making it out the hood bro </rdfs:label>
+    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">My boy just played me his unreleased, weâ€™re not making it out the hood bro</memo:variantTitle>
     <memo:variantUploader rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Phillip Hamilton</memo:variantUploader>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/074/163/70e.png</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">01_70e.png</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/2074163-we-not-making-it-out-the-hood</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Loladè @Lolade4PF My boy just played me his unreleased, we're not making it out the hood bro 2 3:41 PM · Apr 11, 2020 - Twitter for iPhone</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">LoladÃ¨ @Lolade4PF My boy just played me his unreleased, we're not making it out the hood bro 2 3:41 PM Â· Apr 11, 2020 - Twitter for iPhone</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#we-not-making-it-out-the-hood"/>
   </rdf:Description>
@@ -4183,13 +4192,13 @@ Credit and praise to the few others where due that also contributed to these wor
   <rdf:Description rdf:about="https://purl.org/memo#_48293_v04">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:label>48÷2(9+3) = ? variant 4</rdfs:label>
+    <rdfs:label>48Ã·2(9+3) = ? variant 4</rdfs:label>
     <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">04-07-2011, 07:21 AM Join Date Location: Dec 2007 Springfield 2,369 al _carl Christian Superhero Pri</memo:variantTitle>
     <memo:variantUploader rdf:datatype="http://www.w3.org/2001/XMLSchema#string">amanda b.</memo:variantUploader>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/000/574/334/3de.png</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">04_3de.png</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/574334-48293</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">04-07-2011, 07:21 AM Join Date Location: Dec 2007 Springfield 2,369 al _carl Christian Superhero Pride Post Thanks / Like s For Rep Power: 10 9! Math Problem My son had this problem on his homework last night. I know the answer, do you? 48+2(9+3) Blog this Post A Reply φ Reply With Quote</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">04-07-2011, 07:21 AM Join Date Location: Dec 2007 Springfield 2,369 al _carl Christian Superhero Pride Post Thanks / Like s For Rep Power: 10 9! Math Problem My son had this problem on his homework last night. I know the answer, do you? 48+2(9+3) Blog this Post A Reply Ï† Reply With Quote</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#_48293"/>
   </rdf:Description>
@@ -4279,7 +4288,7 @@ Credit and praise to the few others where due that also contributed to these wor
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/961/462/753</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">07_753.jpg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/2961462-saddam-husseins-hiding-place</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Royale 貨店 tamzyn 炭火やきとり 2F NT あでっこ 鶏肉ロワイヤル Royale つくねから北京 皿 ¥500 Import Adult Goods THE REDLIGHTS XXX Le milie Le mi Le milleu Entrance hidden by Le milleu manhole cover Air vent Fan Goro Majima 24M 営 コミック インターネット</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Royale è²¨åº— tamzyn ç‚­ç«ã‚„ãã¨ã‚Š 2F NT ã‚ã§ã£ã“ é¶è‚‰ãƒ­ãƒ¯ã‚¤ãƒ¤ãƒ« Royale ã¤ãã­ã‹ã‚‰åŒ—äº¬ çš¿ Â¥500 Import Adult Goods THE REDLIGHTS XXX Le milie Le mi Le milleu Entrance hidden by Le milleu manhole cover Air vent Fan Goro Majima 24M å–¶ ã‚³ãƒŸãƒƒã‚¯ ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆ</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#saddam-husseins-hiding-place"/>
   </rdf:Description>
@@ -4465,8 +4474,8 @@ Archive
   <rdf:Description rdf:about="https://purl.org/memo#karen_v03">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:label>Wait… | /r/FuckYouKaren</rdfs:label>
-    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wait… | /r/FuckYouKaren</memo:variantTitle>
+    <rdfs:label>Waitâ€¦ | /r/FuckYouKaren</rdfs:label>
+    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Waitâ€¦ | /r/FuckYouKaren</memo:variantTitle>
     <memo:variantUploader rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Reddit Moments</memo:variantUploader>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/003/259/767/cd6.jpeg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">03_cd6.jpeg</memo:variantFilename>
@@ -4497,7 +4506,7 @@ Archive
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/954/036/67b.png</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">04_67b.png</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/2954036-hawk-tuah-girl</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">KY @2seatlimousine 8h maybe the worst sentence I've ever fu read Dexerto @Dexerto ⚫ 14h Hawk Tuah girl launches Al-powered dating app named after her boyfriend POOKIE Pookie Tools Your Ultimate Dating Sidekick Vego Pictures LLC. Designed for Phone Free Offers In-App Purchases iPhone Screenshots YOUR PERSONAL DATING ASSISTANT HEIGHT DETECTOR</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">KY @2seatlimousine 8h maybe the worst sentence I've ever fu read Dexerto @Dexerto âš« 14h Hawk Tuah girl launches Al-powered dating app named after her boyfriend POOKIE Pookie Tools Your Ultimate Dating Sidekick Vego Pictures LLC. Designed for Phone Free Offers In-App Purchases iPhone Screenshots YOUR PERSONAL DATING ASSISTANT HEIGHT DETECTOR</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#hawk-tuah-girl"/>
   </rdf:Description>
@@ -4551,7 +4560,7 @@ Archive
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/001/442/181/d46.jpg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">09_d46.jpg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/1442181-is-die-hard-a-christmas-movie</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">YIPPEE やや KI YAY</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">YIPPEE ã‚„ã‚„ KI YAY</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">9</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#is-die-hard-a-christmas-movie"/>
   </rdf:Description>
@@ -4595,7 +4604,7 @@ Archive
     <schema:image rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/entries/icons/original/000/053/712/i-got-a-brand-new-saxophone.jpg</schema:image>
     <dcterms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2026-04-27T17:52:25.485015Z</dcterms:modified>
     <dcterms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2025</dcterms:created>
-    <dcterms:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">I Got a Brand New Saxophone , also known as I Just Jugged a Band Director, I Got a Brand New Saxophone , refers to a satirical hip-hop and meme rap song called "troy bolton" by Tockyy, in which the beat includes a saxophone solo after the rapper says he " jugged a band director" and now has a "brand new saxophone." Some mistakenly heard, "I just jumped a band director," or "I just dropped a band director." The song went viral on TikTok in March and April 2025, spawning a viral TikTok sound that was mostly used for Ashton Hall's Morning Routine memes . The meme evolved into the name That Saxophone 🔥 , which riffed on a precursor meme called 1:14 That Piano 🔥 . The joke was about a YouTube comment raving about a piano sample in a rap song. The phrasal template was applied to the I Got a Brand New Saxophone song, eventually spawning variants like That Banjo 🔥 , which concerned a spin-off song with an out-of-place banjo sample with the lyrics, "I just killed a hillbilly and took his banjo."</dcterms:description>
+    <dcterms:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">I Got a Brand New Saxophone , also known as I Just Jugged a Band Director, I Got a Brand New Saxophone , refers to a satirical hip-hop and meme rap song called "troy bolton" by Tockyy, in which the beat includes a saxophone solo after the rapper says he " jugged a band director" and now has a "brand new saxophone." Some mistakenly heard, "I just jumped a band director," or "I just dropped a band director." The song went viral on TikTok in March and April 2025, spawning a viral TikTok sound that was mostly used for Ashton Hall's Morning Routine memes . The meme evolved into the name That Saxophone ðŸ”¥ , which riffed on a precursor meme called 1:14 That Piano ðŸ”¥ . The joke was about a YouTube comment raving about a piano sample in a rap song. The phrasal template was applied to the I Got a Brand New Saxophone song, eventually spawning variants like That Banjo ðŸ”¥ , which concerned a spin-off song with an out-of-place banjo sample with the lyrics, "I just killed a hillbilly and took his banjo."</dcterms:description>
     <schema:keywords rdf:datatype="http://www.w3.org/2001/XMLSchema#string">saxophone</schema:keywords>
     <schema:keywords rdf:datatype="http://www.w3.org/2001/XMLSchema#string">that saxophone</schema:keywords>
     <schema:keywords rdf:datatype="http://www.w3.org/2001/XMLSchema#string">i got a brand new saxophone meme</schema:keywords>
@@ -4730,8 +4739,8 @@ Archive
   <rdf:Description rdf:about="https://purl.org/memo#_48293_idea">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#MemeIdea"/>
-    <rdfs:label>48÷2(9+3) = ? (idea)</rdfs:label>
-    <memo:conceptDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">48÷2(9+3) = ? is a math problem that leads to two different answers depending on the order of operations [1] used. Since 2011, message board users have debated over whether 2 or 288 is the correct answer to the problem, with no conclusive answer. This and another seemingly impossible equations have been a hot topic of forum debate that are sometimes used to troll other posters who will vehemently argue that their answer is the definitive one.</memo:conceptDescription>
+    <rdfs:label>48Ã·2(9+3) = ? (idea)</rdfs:label>
+    <memo:conceptDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">48Ã·2(9+3) = ? is a math problem that leads to two different answers depending on the order of operations [1] used. Since 2011, message board users have debated over whether 2 or 288 is the correct answer to the problem, with no conclusive answer. This and another seemingly impossible equations have been a hot topic of forum debate that are sometimes used to troll other posters who will vehemently argue that their answer is the definitive one.</memo:conceptDescription>
     <memo:isConceptualizedAs rdf:resource="https://purl.org/memo#_48293"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://purl.org/memo#ben-shapiro-joker-laugh_idea">
@@ -4750,7 +4759,7 @@ Archive
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/769/512/3be.png</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">07_3be.png</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/2769512-npc-wojak</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">You barbarians will never amount to anything 기 기 Genitorreme Oh yeah? Then why isn't this meme in Latin?</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">You barbarians will never amount to anything ê¸° ê¸° Genitorreme Oh yeah? Then why isn't this meme in Latin?</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#npc-wojak"/>
   </rdf:Description>
@@ -4843,7 +4852,7 @@ Archive
   </rdf:Description>
   <rdf:Description rdf:about="http://www.w3.org/ns/prov#wasDerivedFrom">
     <rdfs:label>wasDerivedFrom</rdfs:label>
-    <rdfs:comment xml:lang="en">Superproperty of memo:hasOriginWork. Not directly asserted in MEMO — memo:hasOriginWork is used throughout, from which reasoners infer prov:wasDerivedFrom.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Superproperty of memo:hasOriginWork. Not directly asserted in MEMO â€” memo:hasOriginWork is used throughout, from which reasoners infer prov:wasDerivedFrom.</rdfs:comment>
     <rdfs:range rdf:resource="https://purl.org/memo#OriginWork"/>
     <rdfs:domain rdf:resource="https://purl.org/memo#MemeConcept"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
@@ -4991,7 +5000,7 @@ Archive
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/127/934/b07.jpg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">03_b07.jpg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/2127934-burger-king-foot-lettuce</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jon Bernthal O @jonnybernthal Dear Em. Honored you watch brother. O. You are the King. Marshall Mathers O @Eminem DEAR @NETFLIX, REGARDING YOUR CANCELLATION OF THE PUNISHER, YOU ARE BLOWING IT!! 0:48 · 22 Feb 19 · Twitter for iPhone 578 Retweets 2,901 Likes</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jon Bernthal O @jonnybernthal Dear Em. Honored you watch brother. O. You are the King. Marshall Mathers O @Eminem DEAR @NETFLIX, REGARDING YOUR CANCELLATION OF THE PUNISHER, YOU ARE BLOWING IT!! 0:48 Â· 22 Feb 19 Â· Twitter for iPhone 578 Retweets 2,901 Likes</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#burger-king-foot-lettuce"/>
   </rdf:Description>
@@ -5075,7 +5084,7 @@ Archive
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/958/188/9f2.jpg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">09_9f2.jpg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/2958188-saddam-husseins-hiding-place</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">patriachatpirat @patriachatpirat warum served mein schnitzel lowkey sadam hussein hiding spot? 5:48 PM - Nov 22, 2024 10.8M Views 14.39 Uhr 290 Nog Am Wegfeld 295 Tenneniohe 30 ESTUV 1 Min 6 Min 14.50 201 Neundorf este.de/aktuelles-umietungen +++Infor Nog Nordost über Flughafer 8 Min 289 Kinkum am Europakanal 14.50</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">patriachatpirat @patriachatpirat warum served mein schnitzel lowkey sadam hussein hiding spot? 5:48 PM - Nov 22, 2024 10.8M Views 14.39 Uhr 290 Nog Am Wegfeld 295 Tenneniohe 30 ESTUV 1 Min 6 Min 14.50 201 Neundorf este.de/aktuelles-umietungen +++Infor Nog Nordost Ã¼ber Flughafer 8 Min 289 Kinkum am Europakanal 14.50</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">9</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#saddam-husseins-hiding-place"/>
   </rdf:Description>
@@ -5216,7 +5225,7 @@ Archive
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/003/239/812/ec6.png</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">01_ec6.png</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/3239812-bowsette</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">x ナ</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">x ãƒŠ</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#bowsette"/>
   </rdf:Description>
@@ -5253,7 +5262,7 @@ Archive
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/924/628/f65.jpg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">09_f65.jpg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/2924628-bowsette</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">า WAH!</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">à¸² WAH!</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">9</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#bowsette"/>
   </rdf:Description>
@@ -5447,7 +5456,7 @@ Archive
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/003/084/292/7ac.png</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">04_7ac.png</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/3084292-the-backrooms</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optimistic Charizard @AfroAaron1 Ø The 4chan n---- who made the original post watching this in the cinema knowing they getting absolutely zero compensation whatsoever 4 DiscussingFilm ❤ @DiscussingFilm Jun 11 'THE BACKROOMS' movie has been greenlit at A24 ⚫ Renate Reinsve and Chiwetel Ejiofor will star in the film ⚫ Kane Parsons will be the youngest director ever for A24 at 19 years old... 12:45 PM ⚫ Jun 11, 2025.4.1M Views A24</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Optimistic Charizard @AfroAaron1 Ã˜ The 4chan n---- who made the original post watching this in the cinema knowing they getting absolutely zero compensation whatsoever 4 DiscussingFilm â¤ @DiscussingFilm Jun 11 'THE BACKROOMS' movie has been greenlit at A24 âš« Renate Reinsve and Chiwetel Ejiofor will star in the film âš« Kane Parsons will be the youngest director ever for A24 at 19 years old... 12:45 PM âš« Jun 11, 2025.4.1M Views A24</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#the-backrooms"/>
   </rdf:Description>
@@ -5495,8 +5504,8 @@ Archive
   <rdf:Description rdf:about="https://purl.org/memo#whyididntreport_v08">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:label>I was four, and he said he’d kill me. #WhyIDidntReport</rdfs:label>
-    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">I was four, and he said he’d kill me. #WhyIDidntReport</memo:variantTitle>
+    <rdfs:label>I was four, and he said heâ€™d kill me. #WhyIDidntReport</rdfs:label>
+    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">I was four, and he said heâ€™d kill me. #WhyIDidntReport</memo:variantTitle>
     <memo:variantUploader rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Matt Schimkowitz</memo:variantUploader>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/001/413/784/bae.png</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">08_bae.png</memo:variantFilename>
@@ -5541,7 +5550,7 @@ Archive
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/079/434/bb0.jpg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">09_bb0.jpg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/2079434-lord-marquaad-e</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">BO0O! GET BETTER МАТERIAL! E Ü</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">BO0O! GET BETTER ÐœÐÐ¢ERIAL! E Ãœ</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">9</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#lord-marquaad-e"/>
   </rdf:Description>
@@ -5550,7 +5559,7 @@ Archive
     <rdf:type rdf:resource="https://purl.org/memo#VariantInstance"/>
     <rdfs:label>The Alexalt and Pepper Dinespacito</rdfs:label>
     <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The Alexalt and Pepper Dinespacito</memo:variantTitle>
-    <memo:variantUploader rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jokes Joestar 👌ꙮ</memo:variantUploader>
+    <memo:variantUploader rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jokes Joestar ðŸ‘Œê™®</memo:variantUploader>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/001/392/091/323.jpeg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10_323.jpeg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/1392091-this-is-so-sad-alexa-play-despacito</memo:photoURL>
@@ -5792,7 +5801,7 @@ Archive
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/000/373/445/a15.png</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">07_a15.png</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/373445-technoviking</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">thread File :1191153568884.ipg-(9 KB,234x340, technovikingln2.jpg) O Anonymous 09/30/07(Sun)07:59:2 No.41122377 All hail the technoviking! http://youtube.com/watch?v=Dqaw1 5mbcw &gt;&gt; O·Andrea. !sUIQIG2uc 9/30/07(Sun)08:00:27 No 41122415 File :1191153627635.ipg-(7 KB, 250x363, xx3Walkure.jpg) Crazy Germans.</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">thread File :1191153568884.ipg-(9 KB,234x340, technovikingln2.jpg) O Anonymous 09/30/07(Sun)07:59:2 No.41122377 All hail the technoviking! http://youtube.com/watch?v=Dqaw1 5mbcw &gt;&gt; OÂ·Andrea. !sUIQIG2uc 9/30/07(Sun)08:00:27 No 41122415 File :1191153627635.ipg-(7 KB, 250x363, xx3Walkure.jpg) Crazy Germans.</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#technoviking"/>
   </rdf:Description>
@@ -5867,13 +5876,13 @@ Archive
   <rdf:Description rdf:about="https://purl.org/memo#bowsette_v04">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:label>クッパ姫</rdfs:label>
-    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">クッパ姫</memo:variantTitle>
+    <rdfs:label>ã‚¯ãƒƒãƒ‘å§«</rdfs:label>
+    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ã‚¯ãƒƒãƒ‘å§«</memo:variantTitle>
     <memo:variantUploader rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sum Lu Zer</memo:variantUploader>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/003/144/898/21a</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">04_21a.jpg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/3144898-bowsette</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">クッパ姫</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ã‚¯ãƒƒãƒ‘å§«</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#bowsette"/>
   </rdf:Description>
@@ -5908,8 +5917,8 @@ Archive
   <rdf:Description rdf:about="https://purl.org/memo#me-and-the-boys_v10">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:label>Me and the boys about to go destroy Eggman’s new theme park.</rdfs:label>
-    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Me and the boys about to go destroy Eggman’s new theme park.</memo:variantTitle>
+    <rdfs:label>Me and the boys about to go destroy Eggmanâ€™s new theme park.</rdfs:label>
+    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Me and the boys about to go destroy Eggmanâ€™s new theme park.</memo:variantTitle>
     <memo:variantUploader rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MechWarriorNY</memo:variantUploader>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/681/340/b58</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10_b58.jpg</memo:variantFilename>
@@ -5971,9 +5980,9 @@ Archive
   <rdf:Description rdf:about="https://purl.org/memo#_48293_v08">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:label>48÷2(9+3) = ? variant 8</rdfs:label>
+    <rdfs:label>48Ã·2(9+3) = ? variant 8</rdfs:label>
     <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">You're now watching two strangers discuss your question! Question to discuss: 48-29+3) = ? Stranger</memo:variantTitle>
-    <memo:variantUploader rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Efraín</memo:variantUploader>
+    <memo:variantUploader rdf:datatype="http://www.w3.org/2001/XMLSchema#string">EfraÃ­n</memo:variantUploader>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/000/162/071/24f.png</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">08_24f.png</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/162071-48293</memo:photoURL>
@@ -6010,13 +6019,13 @@ Archive
   <rdf:Description rdf:about="https://purl.org/memo#jollibot_v03">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:label>Jollibot 🍔</rdfs:label>
-    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jollibot 🍔</memo:variantTitle>
+    <rdfs:label>Jollibot ðŸ”</rdfs:label>
+    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jollibot ðŸ”</memo:variantTitle>
     <memo:variantUploader rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jiminy</memo:variantUploader>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/441/033/e4d</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">03_e4d.jpg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/2441033-jollibot</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">OxO Jollibot @_Cookie_Joe__ Ó Ò</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">OxO Jollibot @_Cookie_Joe__ Ã“ Ã’</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#jollibot"/>
   </rdf:Description>
@@ -6091,7 +6100,7 @@ Archive
   <rdf:Description rdf:about="https://purl.org/memo#_48293_v07">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:label>48÷2(9+3) = ? variant 7</rdfs:label>
+    <rdfs:label>48Ã·2(9+3) = ? variant 7</rdfs:label>
     <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2+2+2+2+2+2+2+2+2+2+2+2+2+2-2+2 x0 ? 28 | 26 30 1,034,242 votes</memo:variantTitle>
     <memo:variantUploader rdf:datatype="http://www.w3.org/2001/XMLSchema#string">James</memo:variantUploader>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/000/185/154/szxNM.jpg</memo:variantImageURL>
@@ -6118,7 +6127,7 @@ Archive
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#MemeIdea"/>
     <rdfs:label>Surprised Pikachu (idea)</rdfs:label>
-    <memo:conceptDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Surprised Pikachu , also known as Shocked Pikachu , refers to a screenshot from the Pokémon anime of the character Pikachu with its mouth agape, as though it were surprised at something. In the autumn of 2018, the image was used as a reaction image paired with captions where a set-up leads to a predictable outcome that nevertheless leaves one surprised.</memo:conceptDescription>
+    <memo:conceptDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Surprised Pikachu , also known as Shocked Pikachu , refers to a screenshot from the PokÃ©mon anime of the character Pikachu with its mouth agape, as though it were surprised at something. In the autumn of 2018, the image was used as a reaction image paired with captions where a set-up leads to a predictable outcome that nevertheless leaves one surprised.</memo:conceptDescription>
     <memo:isConceptualizedAs rdf:resource="https://purl.org/memo#surprised-pikachu"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://purl.org/memo#big-chungus_v08">
@@ -6130,7 +6139,7 @@ Archive
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/165/591/4af.jpg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">08_4af.jpg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/2165591-big-chungus</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Punished Triple-Q @mitaknight_ · 2h ... In the Looney Tunes gacha, Big Chungus is a Legendary, the highest rarity; but he is considered to be one of the weakest due to his squishiness. But you don't use Big Chungus for the meta. No. you use him to send a message. 58 mitaknight 20111 215 1,469 Gadgets Big Chungus Power 7,608 5.6% Attack 16.5% Defense 13.0% Health EDIT GADGETS Farm, Legendary Defender, Rabbit, Rural SKILLS RELATIONSHIP WILD CARD LEVEL 50 50/13600 XP 101/125 Pieces LEVEL UP FIND TUNE-UP 7 27 32 262 Punished Triple-Q @mitaknight_ Replying to @mitaknight_ Using him to defeat your opponent is the ultimate form of humiliation in World of Mayhem. That's right: Big Chungus is the Dan Hibiki of the game 10:25 AM Aug 5, 2021 · Twitter for Android</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Punished Triple-Q @mitaknight_ Â· 2h ... In the Looney Tunes gacha, Big Chungus is a Legendary, the highest rarity; but he is considered to be one of the weakest due to his squishiness. But you don't use Big Chungus for the meta. No. you use him to send a message. 58 mitaknight 20111 215 1,469 Gadgets Big Chungus Power 7,608 5.6% Attack 16.5% Defense 13.0% Health EDIT GADGETS Farm, Legendary Defender, Rabbit, Rural SKILLS RELATIONSHIP WILD CARD LEVEL 50 50/13600 XP 101/125 Pieces LEVEL UP FIND TUNE-UP 7 27 32 262 Punished Triple-Q @mitaknight_ Replying to @mitaknight_ Using him to defeat your opponent is the ultimate form of humiliation in World of Mayhem. That's right: Big Chungus is the Dan Hibiki of the game 10:25 AM Aug 5, 2021 Â· Twitter for Android</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#big-chungus"/>
     <memo:hasTransformationDimension rdf:resource="https://purl.org/memo#MediumShift"/>
@@ -6217,7 +6226,7 @@ Archive
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/161/175/75f.png</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">02_75f.png</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/2161175-talking-to-brick-wall</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">y f &gt; TOP DEFINITION DonoWall To be completely ignored or disregarded (talking to a wall), whether in conversation or in twitch donation. Dono: "OMG I love your content so much!!! ×QCL" Streamer: ... Chat: DonoWall by Donation Station July 13, 2020 595 419 FLAG</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">y f &gt; TOP DEFINITION DonoWall To be completely ignored or disregarded (talking to a wall), whether in conversation or in twitch donation. Dono: "OMG I love your content so much!!! Ã—QCL" Streamer: ... Chat: DonoWall by Donation Station July 13, 2020 595 419 FLAG</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#talking-to-brick-wall"/>
   </rdf:Description>
@@ -6476,7 +6485,7 @@ Archive
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/798/169/c82.png</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">07_c82.png</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/2798169-me-and-the-boys</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Θ</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Î˜</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#me-and-the-boys"/>
   </rdf:Description>
@@ -6555,7 +6564,7 @@ Archive
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/003/262/418/2f4.png</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">02_2f4.png</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/3262418-karen</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2:59 Review 3 reviews 52 ☑ 9 years ago WARNING!! Poisonous SNAKES are EVERYWHERE at Cracker Creek!!! BE CAREFUL!!! We saw a large snake which looked like a rattlesnake near the restrooms!!!! AND a Poisonous Water Moccassin Cotton Mouth literally chased after my daughter. when we were near the canoes and kayak launch point by the water! she is lucky to be alive!! The place is swarming with Mosquitoes which can carry ZIKA virus so avoid this place if you're. a young woman who might want to have a baby someday because Zika Virus causes mental retardation in babies! The alligators in the creek can be very aggressive and the kayaks tip over easily! There are no warning signs about the poisonous snakes or Alligators so it's like a death trap at Cracker Creek I'd avoid this place. There is no one around to help if you're injured or need urgent medical care! A 1</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2:59 Review 3 reviews 52 â˜‘ 9 years ago WARNING!! Poisonous SNAKES are EVERYWHERE at Cracker Creek!!! BE CAREFUL!!! We saw a large snake which looked like a rattlesnake near the restrooms!!!! AND a Poisonous Water Moccassin Cotton Mouth literally chased after my daughter. when we were near the canoes and kayak launch point by the water! she is lucky to be alive!! The place is swarming with Mosquitoes which can carry ZIKA virus so avoid this place if you're. a young woman who might want to have a baby someday because Zika Virus causes mental retardation in babies! The alligators in the creek can be very aggressive and the kayaks tip over easily! There are no warning signs about the poisonous snakes or Alligators so it's like a death trap at Cracker Creek I'd avoid this place. There is no one around to help if you're injured or need urgent medical care! A 1</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#karen"/>
   </rdf:Description>
@@ -6568,7 +6577,7 @@ Archive
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/003/259/491/4cb.jpeg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">01_4cb.jpeg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/3259491-steven-crowders-change-my-mind-campus-sign</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ད་ས STEVEN CROWDER DOES NOT DESERVE A MEME FORMAT CHANGE MY MIND MERSN</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">à½‘à¼‹à½¦ STEVEN CROWDER DOES NOT DESERVE A MEME FORMAT CHANGE MY MIND MERSN</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#steven-crowders-change-my-mind-campus-sign"/>
   </rdf:Description>
@@ -6581,7 +6590,7 @@ Archive
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/127/930/2e3.jpg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">04_2e3.jpg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/2127930-burger-king-foot-lettuce</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ben Barnes O @benbarnes 6h No words necessary - @Eminem has spoken Marshall Mathers O @Eminem DEAR @NETFLIX, REGARDING YOUR CANCELLATION OF THE PUNISHER, YOU ARE BLOWING IT!. t7 1.1K 94 © Ben Barnes/Twitter 5.3К &gt;</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ben Barnes O @benbarnes 6h No words necessary - @Eminem has spoken Marshall Mathers O @Eminem DEAR @NETFLIX, REGARDING YOUR CANCELLATION OF THE PUNISHER, YOU ARE BLOWING IT!. t7 1.1K 94 Â© Ben Barnes/Twitter 5.3Ðš &gt;</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#burger-king-foot-lettuce"/>
   </rdf:Description>
@@ -6692,7 +6701,7 @@ Ankha Zone - ZONE-sama</memo:captionText>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/259/860/375.jpg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">01_375.jpg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/2259860-she-looks-so-lovable</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Timothy Warner She looks so lovable, what anine 7 minutes ago Like Reply Rodrigo Ignacio Ortíz Berton He 6 minutes ago Like Reply Timothy Warner No 6 minutes ago Like Reply Timothy Warner NO 6 minutes ago Like Reply Timothy Warner NO0000000</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Timothy Warner She looks so lovable, what anine 7 minutes ago Like Reply Rodrigo Ignacio OrtÃ­z Berton He 6 minutes ago Like Reply Timothy Warner No 6 minutes ago Like Reply Timothy Warner NO 6 minutes ago Like Reply Timothy Warner NO0000000</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#she-looks-so-lovable"/>
   </rdf:Description>
@@ -6732,14 +6741,14 @@ Ankha Zone - ZONE-sama</memo:captionText>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#MemeIdea"/>
     <rdfs:label>Bowsette (idea)</rdfs:label>
-    <memo:conceptDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bowsette , also known as Koppa Hime (クッパ姫) in Japanese, is an anthropomorphised genderbend version of the Super Mario villain Bowser caused by the effects of the Super Crown power up. Following the creation of the character shortly after the release of a trailer for New Super Mario Bros. U Deluxe , it quickly gained a large amount of popularity on both the western and eastern web.</memo:conceptDescription>
+    <memo:conceptDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bowsette , also known as Koppa Hime (ã‚¯ãƒƒãƒ‘å§«) in Japanese, is an anthropomorphised genderbend version of the Super Mario villain Bowser caused by the effects of the Super Crown power up. Following the creation of the character shortly after the release of a trailer for New Super Mario Bros. U Deluxe , it quickly gained a large amount of popularity on both the western and eastern web.</memo:conceptDescription>
     <memo:isConceptualizedAs rdf:resource="https://purl.org/memo#bowsette"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://purl.org/memo#logan-pauls-suicide-forest-video_v01">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:label>“It was the alien, I had nothing to do with it!” | /r/okbuddyretard</rdfs:label>
-    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">“It was the alien, I had nothing to do with it!” | /r/okbuddyretard</memo:variantTitle>
+    <rdfs:label>â€œIt was the alien, I had nothing to do with it!â€ | /r/okbuddyretard</rdfs:label>
+    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">â€œIt was the alien, I had nothing to do with it!â€ | /r/okbuddyretard</memo:variantTitle>
     <memo:variantUploader rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Reddit Moments</memo:variantUploader>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/003/060/736/d3a.jpeg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">01_d3a.jpeg</memo:variantFilename>
@@ -6960,7 +6969,7 @@ Ankha Zone - ZONE-sama</memo:captionText>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/109/514/a75.jpg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">08_a75.jpg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/2109514-she-looks-so-lovable</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">高 友里 Timothy She looks so lovable, what anine 7 minutes ago Like Reply Rodrigo I_ He 6 minutes ago Like Reply Timothy No 6 minutes ago Like · Reply Timothy NO</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">é«˜ å‹é‡Œ Timothy She looks so lovable, what anine 7 minutes ago Like Reply Rodrigo I_ He 6 minutes ago Like Reply Timothy No 6 minutes ago Like Â· Reply Timothy NO</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#she-looks-so-lovable"/>
   </rdf:Description>
@@ -7002,19 +7011,19 @@ Ankha Zone - ZONE-sama</memo:captionText>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#MemeIdea"/>
     <rdfs:label>I'm This Clingy (idea)</rdfs:label>
-    <memo:conceptDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">I'm This Clingy is a redraw meme format based on a selfie photograph of a woman looking at her phone while a man's head is squeezed between her thighs, captioned, "Im this clingy😂." The photo without the caption originally started spreading online in 2018 and was popularized as a redraw meme in October 2025 after it was reposted by X / Twitter user @Mythicalblue_, with many of the redraws portraying popular ship pairings.</memo:conceptDescription>
+    <memo:conceptDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">I'm This Clingy is a redraw meme format based on a selfie photograph of a woman looking at her phone while a man's head is squeezed between her thighs, captioned, "Im this clingyðŸ˜‚." The photo without the caption originally started spreading online in 2018 and was popularized as a redraw meme in October 2025 after it was reposted by X / Twitter user @Mythicalblue_, with many of the redraws portraying popular ship pairings.</memo:conceptDescription>
     <memo:isConceptualizedAs rdf:resource="https://purl.org/memo#im-this-clingy"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://purl.org/memo#jollibot_v04">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:label>J̴̳̗̤͛̄͑̃͗̀̂̉̓́o̷͉͚͕͌̅̍͋̊̑͒̅̏̃̄̿͝͠͝l̵͙͕̺͇̞̥̯̫̲̮̇̍͂̊̄͑̏̀͊̐̅̕͝͠l̵̼̜̦̳̟̂ḯ̴̲̜̝̏̏b̸͕̪̫̻̗̠͈̀̀̇̔̀̀́̌͂͜o̶͆͝...</rdfs:label>
-    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J̴̳̗̤͛̄͑̃͗̀̂̉̓́o̷͉͚͕͌̅̍͋̊̑͒̅̏̃̄̿͝͠͝l̵͙͕̺͇̞̥̯̫̲̮̇̍͂̊̄͑̏̀͊̐̅̕͝͠l̵̼̜̦̳̟̂ḯ̴̲̜̝̏̏b̸͕̪̫̻̗̠͈̀̀̇̔̀̀́̌͂͜o̶͆͝...</memo:variantTitle>
+    <rdfs:label>JÌ´Í›Ì„Í‘ÌƒÍ—Í€Ì‚Ì‰ÍƒÍÌ³Ì—Ì¤oÌ·ÍŒÌ…ÍÍ ÌÍÍ‹ÌŠÌ‘Í’Ì…ÌÌƒÌ„Ì¿Í‰ÍšÍ•lÌµÌ‡ÌÍ‚ÌŠÌ„Í‘ÌÌ•Í€ÍŠÌÍÍ Ì…Í™Í•ÌºÍ‡ÌžÌ¥Ì¯Ì«Ì²Ì®lÌµÌ‚Ì¼ÌœÌ¦Ì³ÌŸiÌ´Í„ÌÌÌ²ÌœÌbÌ¸Ì€Ì€Ì‡Ì”Ì€Ì€ÌÌŒÍ‚Í•ÌªÍœÌ«Ì»Ì—Ì ÍˆoÌ¶Í†Í...</rdfs:label>
+    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">JÌ´Í›Ì„Í‘ÌƒÍ—Í€Ì‚Ì‰ÍƒÍÌ³Ì—Ì¤oÌ·ÍŒÌ…ÍÍ ÌÍÍ‹ÌŠÌ‘Í’Ì…ÌÌƒÌ„Ì¿Í‰ÍšÍ•lÌµÌ‡ÌÍ‚ÌŠÌ„Í‘ÌÌ•Í€ÍŠÌÍÍ Ì…Í™Í•ÌºÍ‡ÌžÌ¥Ì¯Ì«Ì²Ì®lÌµÌ‚Ì¼ÌœÌ¦Ì³ÌŸiÌ´Í„ÌÌÌ²ÌœÌbÌ¸Ì€Ì€Ì‡Ì”Ì€Ì€ÌÌŒÍ‚Í•ÌªÍœÌ«Ì»Ì—Ì ÍˆoÌ¶Í†Í...</memo:variantTitle>
     <memo:variantUploader rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jiminy</memo:variantUploader>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/360/997/2ce.jpg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">04_2ce.jpg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/2360997-jollibot</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">J̴̳̗̤͛̄͑̃͗̀̂̉̓́o̷͉͚͕͌̅̍͋̊̑͒̅̏̃̄̿͝͠͝l̵͙͕̺͇̞̥̯̫̲̮̇̍͂̊̄͑̏̀͊̐̅̕͝͠l̵̼̜̦̳̟̂ḯ̴̲̜̝̏̏b̸͕̪̫̻̗̠͈̀̀̇̔̀̀́̌͂͜o̶͆͝...</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">JÌ´Í›Ì„Í‘ÌƒÍ—Í€Ì‚Ì‰ÍƒÍÌ³Ì—Ì¤oÌ·ÍŒÌ…ÍÍ ÌÍÍ‹ÌŠÌ‘Í’Ì…ÌÌƒÌ„Ì¿Í‰ÍšÍ•lÌµÌ‡ÌÍ‚ÌŠÌ„Í‘ÌÌ•Í€ÍŠÌÍÍ Ì…Í™Í•ÌºÍ‡ÌžÌ¥Ì¯Ì«Ì²Ì®lÌµÌ‚Ì¼ÌœÌ¦Ì³ÌŸiÌ´Í„ÌÌÌ²ÌœÌbÌ¸Ì€Ì€Ì‡Ì”Ì€Ì€ÌÌŒÍ‚Í•ÌªÍœÌ«Ì»Ì—Ì ÍˆoÌ¶Í†Í...</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#jollibot"/>
   </rdf:Description>
@@ -7209,7 +7218,7 @@ Ankha Zone - ZONE-sama</memo:captionText>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/003/216/536/710.jpg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">02_710.jpg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/3216536-surprised-pikachu</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">EPSON DO YOUR HOMEWORK Student: *doesn't do homework* • • Student: *fails required class* Student:</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">EPSON DO YOUR HOMEWORK Student: *doesn't do homework* â€¢ â€¢ Student: *fails required class* Student:</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#surprised-pikachu"/>
     <memo:hasTransformationDimension rdf:resource="https://purl.org/memo#CaptionChange"/>
@@ -7257,13 +7266,13 @@ Ankha Zone - ZONE-sama</memo:captionText>
   <rdf:Description rdf:about="https://purl.org/memo#_48293_v10">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:label>48÷2(9+3) = ? variant 10</rdfs:label>
+    <rdfs:label>48Ã·2(9+3) = ? variant 10</rdfs:label>
     <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Why "16 Reddit-6-2(1+2)=? reaaaaally7/ 4/27/2011" should be shot in the head link: http://www.reddit</memo:variantTitle>
     <memo:variantUploader rdf:datatype="http://www.w3.org/2001/XMLSchema#string">shuckittrabek</memo:variantUploader>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/000/119/467/hoya.jpg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10_hoya.jpg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/119467-48293</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Why "16 Reddit-6-2(1+2)=? reaaaaally7/ 4/27/2011" should be shot in the head link: http://www.reddit.com/r/W--/comments/gyrmq/6212_reaaaaally/ oh wait, is this....i think it f-----' is. 48/2(9+3)-d/a(b+c) 48/2(12)-2c/b-a (1/2 48)/2(12)-(1/2*2c) /b=a f--- yeah inverse relationship, you jelly? 24/2(12)-c/b*a 24/2-12 = c/b-a 12*12-144 = (c/b)=a"a=a^2 2a"2 is coincidentally 288. go figure. F--- YES IT IS! now how the f--- do I get rid of that 2 so my number isn't twice as big... K no more dickin' around. game time. since, (c/b=a, c/a=b, a*b=c), I can say (24/2-12, 24/12=2, 2*12-24) yup He is right in one way: No one should use the division symbol after 2nd grade PEMDAS tells us: stepı. to get rid of the brackets/parentheses, add the inside terms step2. mult/div have same priority. because of this, PEMDAS says work left to right. It doesn't say "FOLLOW THE ORDER IN WHICH MDAS LITERALLY COMES IN." Its just saying that because division comes first when working left to right, you must divide first. if it was written so that 2 12)/48 came first, the form would be a*b/2c, which again, there is no way to prioritize. (the answer is 1) step3. multiply 24*12-288. if you followed what I did and saw 2c/b-2a, all you would have to do is multiply by 2A-1, which would be 1/2 to get my answer of c/b"a=144, or just divide by 2 for s---- and giggles: 6/2(1+2)-6/2(3)-c/b a. these are the exact same problem, with different values given for a, b, and c, so long that the following hold true: (a"b-c, c/b-a, c/) PS: Teachers can now use this problem in (c/b*a) form on tests and say it is fair. AP 5/2 PPS: 5j: National Hunt a Terrorist Day. @osamahinladen #goodnightsweetprince</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Why "16 Reddit-6-2(1+2)=? reaaaaally7/ 4/27/2011" should be shot in the head link: http://www.reddit.com/r/W--/comments/gyrmq/6212_reaaaaally/ oh wait, is this....i think it f-----' is. 48/2(9+3)-d/a(b+c) 48/2(12)-2c/b-a (1/2 48)/2(12)-(1/2*2c) /b=a f--- yeah inverse relationship, you jelly? 24/2(12)-c/b*a 24/2-12 = c/b-a 12*12-144 = (c/b)=a"a=a^2 2a"2 is coincidentally 288. go figure. F--- YES IT IS! now how the f--- do I get rid of that 2 so my number isn't twice as big... K no more dickin' around. game time. since, (c/b=a, c/a=b, a*b=c), I can say (24/2-12, 24/12=2, 2*12-24) yup He is right in one way: No one should use the division symbol after 2nd grade PEMDAS tells us: stepÄ±. to get rid of the brackets/parentheses, add the inside terms step2. mult/div have same priority. because of this, PEMDAS says work left to right. It doesn't say "FOLLOW THE ORDER IN WHICH MDAS LITERALLY COMES IN." Its just saying that because division comes first when working left to right, you must divide first. if it was written so that 2 12)/48 came first, the form would be a*b/2c, which again, there is no way to prioritize. (the answer is 1) step3. multiply 24*12-288. if you followed what I did and saw 2c/b-2a, all you would have to do is multiply by 2A-1, which would be 1/2 to get my answer of c/b"a=144, or just divide by 2 for s---- and giggles: 6/2(1+2)-6/2(3)-c/b a. these are the exact same problem, with different values given for a, b, and c, so long that the following hold true: (a"b-c, c/b-a, c/) PS: Teachers can now use this problem in (c/b*a) form on tests and say it is fair. AP 5/2 PPS: 5j: National Hunt a Terrorist Day. @osamahinladen #goodnightsweetprince</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#_48293"/>
   </rdf:Description>
@@ -7308,7 +7317,7 @@ Ankha Zone - ZONE-sama</memo:captionText>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/003/190/903/85f</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">03_85f.jpg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/3190903-bowsette</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">♡ WHATRE LOOKING YOU AT PUNK? O</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">â™¡ WHATRE LOOKING YOU AT PUNK? O</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#bowsette"/>
   </rdf:Description>
@@ -7571,7 +7580,7 @@ Ankha Zone - ZONE-sama</memo:captionText>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/003/150/847/558.jpg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">06_558.jpg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/3150847-im-this-clingy</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">garter told stocking to keep me in check •</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">garter told stocking to keep me in check â€¢</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#im-this-clingy"/>
   </rdf:Description>
@@ -7592,7 +7601,7 @@ Ankha Zone - ZONE-sama</memo:captionText>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/432/278/d39.jpg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">05_d39.jpg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/2432278-gets-criticized-once-fucking-dies</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MiiyaUwU 18 (Long Overdue Comm Done: 2/6) @MiiyaUwU_EN GIANT FREAKIN ROBOT ✔ @GFRobot Taika Waititi will not be returning to direct the still-in-development Thor 5. The reason? The mixed reception to the recent Thor: Love and Thunder. giantfreakinrobot.com Exclusive: Taika Waititi Not Returning For Thor 5 22:17-30 Aug 22 - Twitter Web App onymous 1:25 AM. Aug 31, 2022. Twitter for Android 05/30/21(Sun)13:45:11 No.12 gh.jpg 13 KB JPG ets criticized once cking dies :</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MiiyaUwU 18 (Long Overdue Comm Done: 2/6) @MiiyaUwU_EN GIANT FREAKIN ROBOT âœ” @GFRobot Taika Waititi will not be returning to direct the still-in-development Thor 5. The reason? The mixed reception to the recent Thor: Love and Thunder. giantfreakinrobot.com Exclusive: Taika Waititi Not Returning For Thor 5 22:17-30 Aug 22 - Twitter Web App onymous 1:25 AM. Aug 31, 2022. Twitter for Android 05/30/21(Sun)13:45:11 No.12 gh.jpg 13 KB JPG ets criticized once cking dies :</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#gets-criticized-once-fucking-dies"/>
   </rdf:Description>
@@ -7794,7 +7803,7 @@ minus8 version: https://youtu.be/0UU4hMT-FlI</memo:captionText>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/116/071/38f.jpg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">02_38f.jpg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/2116071-she-looks-so-lovable</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regardirg his appearance, Sam looks quite attractive. The characters are similar to those in Western animated series, with a bit of a 'Asian girl' vibe.' Timothy Warner She looks so lovable, what anine 7 minutes ago Like Reply Rodrigo Ignacio Ortíz Berton He 6 minutes ago Like Reply Timothy Warner No 6 minutes ago Like Reply Timothy Warner NO 6 minutes ago Like Reply Timothy Warner NO0000000</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Regardirg his appearance, Sam looks quite attractive. The characters are similar to those in Western animated series, with a bit of a 'Asian girl' vibe.' Timothy Warner She looks so lovable, what anine 7 minutes ago Like Reply Rodrigo Ignacio OrtÃ­z Berton He 6 minutes ago Like Reply Timothy Warner No 6 minutes ago Like Reply Timothy Warner NO 6 minutes ago Like Reply Timothy Warner NO0000000</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#she-looks-so-lovable"/>
   </rdf:Description>
@@ -7830,13 +7839,13 @@ minus8 version: https://youtu.be/0UU4hMT-FlI</memo:captionText>
   <rdf:Description rdf:about="https://purl.org/memo#_48293_v09">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:label>48÷2(9+3) = ? variant 9</rdfs:label>
+    <rdfs:label>48Ã·2(9+3) = ? variant 9</rdfs:label>
     <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10 10 x 0 ( 20 10 Posts Selected Friends Others (128) Fernando Mauricio Answered 10 on Friday Like C</memo:variantTitle>
     <memo:variantUploader rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Don Caldwell</memo:variantUploader>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/000/125/932/D2A3w.png</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">09_D2A3w.png</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/125932-48293</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10 10 x 0 ( 20 10 Posts Selected Friends Others (128) Fernando Mauricio Answered 10 on Friday Like Comment Share 11 people like this. Szymon Wwaass I know dude its 10 Friday at 9:10pm-Like Hayley Sprout go to the calculator and type in 20x0 Friday at 11:39pm Like Calista Buss um no its 0 anything x 0 is 0.... Friday at 11:39pm . Like . 1 person Fernando Mauricio you multiply first....calculaters dont follow order of operations...unless you have a scientific or graphing calculater Friday at 11:41pm Like Hayley Sprout i have a scientific calculator Friday at 11:41pm Like Hayley Sprout it tells me 0 Friday at 11:41pm Like Hayley Sprout because it's smart Friday at 11:41pm Like Fernando Mauricio its wrong Friday at 11:41pm Like Hayley Sprout you're wrong Friday at 11:41pm -Like 1 person Zach Muncy Answered 0 Whoever put 10 and 20 is f----- retarded 7 hours ago Share 2 people like this. Joey Testo Answered 0 Wow, anything x 0 = 0· I can't believe how many people said '10' 13 hours ago Share 2 people like this. Quinn Arrowsmith the worst part about it was that some of those people tried to justify their answer by saying bedmas! No Brackets No Bedmas! 13 hours ago . 1 person Joey Testo It's crazy. I won't pretend to be a great mathematician, or even good, but it's the basics of mathematics. It's just sad to see really 13 hours ago</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10 10 x 0 ( 20 10 Posts Selected Friends Others (128) Fernando Mauricio Answered 10 on Friday Like Comment Share 11 people like this. Szymon Wwaass I know dude its 10 Friday at 9:10pm-Like Hayley Sprout go to the calculator and type in 20x0 Friday at 11:39pm Like Calista Buss um no its 0 anything x 0 is 0.... Friday at 11:39pm . Like . 1 person Fernando Mauricio you multiply first....calculaters dont follow order of operations...unless you have a scientific or graphing calculater Friday at 11:41pm Like Hayley Sprout i have a scientific calculator Friday at 11:41pm Like Hayley Sprout it tells me 0 Friday at 11:41pm Like Hayley Sprout because it's smart Friday at 11:41pm Like Fernando Mauricio its wrong Friday at 11:41pm Like Hayley Sprout you're wrong Friday at 11:41pm -Like 1 person Zach Muncy Answered 0 Whoever put 10 and 20 is f----- retarded 7 hours ago Share 2 people like this. Joey Testo Answered 0 Wow, anything x 0 = 0Â· I can't believe how many people said '10' 13 hours ago Share 2 people like this. Quinn Arrowsmith the worst part about it was that some of those people tried to justify their answer by saying bedmas! No Brackets No Bedmas! 13 hours ago . 1 person Joey Testo It's crazy. I won't pretend to be a great mathematician, or even good, but it's the basics of mathematics. It's just sad to see really 13 hours ago</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">9</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#_48293"/>
   </rdf:Description>
@@ -8020,7 +8029,7 @@ minus8 version: https://youtu.be/0UU4hMT-FlI</memo:captionText>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/308/357/121.png</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">06_121.png</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/2308357-30-year-old-boomer</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ERSHEY'S chav.elate Milk SHÄKE</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ERSHEY'S chav.elate Milk SHÃ„KE</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#_30-year-old-boomer"/>
   </rdf:Description>
@@ -8067,7 +8076,7 @@ minus8 version: https://youtu.be/0UU4hMT-FlI</memo:captionText>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/003/106/199/d0f.png</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">02_d0f.png</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/3106199-saddam-husseins-hiding-place</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">sex @thegojira • 10h 0 olivier 2 @olwestside Jul 21 The fact that this is the most famous silhouette in the world.</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">sex @thegojira â€¢ 10h 0 olivier 2 @olwestside Jul 21 The fact that this is the most famous silhouette in the world.</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#saddam-husseins-hiding-place"/>
   </rdf:Description>
@@ -8179,7 +8188,7 @@ I stole this from here and cropped it a little. The name is from a Conan tweet I
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/357/909/2a1.jpg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10_2a1.jpg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/2357909-jollibot</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Screengrab/Luv Del Rosario Jollibe ⓇR.F RHM &amp; O.O Jollibot ca Jollibot</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Screengrab/Luv Del Rosario Jollibe â“‡R.F RHM &amp; O.O Jollibot ca Jollibot</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#jollibot"/>
   </rdf:Description>
@@ -8285,6 +8294,7 @@ I stole this from here and cropped it a little. The name is from a Conan tweet I
     <rdfs:comment xml:lang="en">Digital file format of the meme image resource; aligned with Wikidata Q235557.</rdfs:comment>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q235557"/>
+    <owl:equivalentClass rdf:resource="http://www.wikidata.org/entity/Q235557"/>
     <rdfs:label>FileFormat</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:about="https://purl.org/memo#VideoFormat">
@@ -8352,8 +8362,8 @@ I stole this from here and cropped it a little. The name is from a Conan tweet I
   <rdf:Description rdf:about="https://purl.org/memo#jollibot_v07">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:label>JolliBot With Mah Style✨</rdfs:label>
-    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">JolliBot With Mah Style✨</memo:variantTitle>
+    <rdfs:label>JolliBot With Mah Styleâœ¨</rdfs:label>
+    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">JolliBot With Mah Styleâœ¨</memo:variantTitle>
     <memo:variantUploader rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jiminy</memo:variantUploader>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/359/695/ee4</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">07_ee4.jpg</memo:variantFilename>
@@ -8425,7 +8435,7 @@ I stole this from here and cropped it a little. The name is from a Conan tweet I
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/330/119/369.jpg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">07_369.jpg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/2330119-stonks</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">When the rumor you spread ends up causing another God to nuke humanity. And now you have more minions then you know what to do with. @dicensilverwing 0.168 %60 0.12 2.286 ▼ 1.4563 .156 0287 WAstonks 404 0.1204 3.234 0.1902 N/A 02 650 121 027</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">When the rumor you spread ends up causing another God to nuke humanity. And now you have more minions then you know what to do with. @dicensilverwing 0.168 %60 0.12 2.286 â–¼ 1.4563 .156 0287 WAstonks 404 0.1204 3.234 0.1902 N/A 02 650 121 027</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#stonks"/>
     <memo:hasTransformationDimension rdf:resource="https://purl.org/memo#CaptionChange"/>
@@ -8580,7 +8590,7 @@ I stole this from here and cropped it a little. The name is from a Conan tweet I
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#MemeIdea"/>
     <rdfs:label>i-got-a-brand-new-saxophone.jpg (idea)</rdfs:label>
-    <memo:conceptDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">I Got a Brand New Saxophone , also known as I Just Jugged a Band Director, I Got a Brand New Saxophone , refers to a satirical hip-hop and meme rap song called "troy bolton" by Tockyy, in which the beat includes a saxophone solo after the rapper says he " jugged a band director" and now has a "brand new saxophone." Some mistakenly heard, "I just jumped a band director," or "I just dropped a band director." The song went viral on TikTok in March and April 2025, spawning a viral TikTok sound that was mostly used for Ashton Hall's Morning Routine memes . The meme evolved into the name That Saxophone 🔥 , which riffed on a precursor meme called 1:14 That Piano 🔥 . The joke was about a YouTube comment raving about a piano sample in a rap song. The phrasal template was applied to the I Got a Brand New Saxophone song, eventually spawning variants like That Banjo 🔥 , which concerned a spin-off song with an out-of-place banjo sample with the lyrics, "I just killed a hillbilly and took his banjo."</memo:conceptDescription>
+    <memo:conceptDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">I Got a Brand New Saxophone , also known as I Just Jugged a Band Director, I Got a Brand New Saxophone , refers to a satirical hip-hop and meme rap song called "troy bolton" by Tockyy, in which the beat includes a saxophone solo after the rapper says he " jugged a band director" and now has a "brand new saxophone." Some mistakenly heard, "I just jumped a band director," or "I just dropped a band director." The song went viral on TikTok in March and April 2025, spawning a viral TikTok sound that was mostly used for Ashton Hall's Morning Routine memes . The meme evolved into the name That Saxophone ðŸ”¥ , which riffed on a precursor meme called 1:14 That Piano ðŸ”¥ . The joke was about a YouTube comment raving about a piano sample in a rap song. The phrasal template was applied to the I Got a Brand New Saxophone song, eventually spawning variants like That Banjo ðŸ”¥ , which concerned a spin-off song with an out-of-place banjo sample with the lyrics, "I just killed a hillbilly and took his banjo."</memo:conceptDescription>
     <memo:isConceptualizedAs rdf:resource="https://purl.org/memo#i-got-a-brand-new-saxophone"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://purl.org/memo#technoviking_v03">
@@ -8662,7 +8672,7 @@ https://www.youtube.com/watch?v=Wga5A6R9BJg</memo:captionText>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/109/544/934.jpg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">05_934.jpg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/2109544-she-looks-so-lovable</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Unlimited Moe Works shared a link. 57 mins · e Timothy Warner She looks so lovable, what anine 7 minutes ago Like · Reply A Rodrigo Ignacio Ortíz Berton He 6 minutes ago Like Reply Timothy Warner No 6 minutes ago Like Reply Timothy Warner NO 6 minutes ago · Like Reply Timothy Warner NO000000O 6 minutes ago Like · Reply</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Unlimited Moe Works shared a link. 57 mins Â· e Timothy Warner She looks so lovable, what anine 7 minutes ago Like Â· Reply A Rodrigo Ignacio OrtÃ­z Berton He 6 minutes ago Like Reply Timothy Warner No 6 minutes ago Like Reply Timothy Warner NO 6 minutes ago Â· Like Reply Timothy Warner NO000000O 6 minutes ago Like Â· Reply</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#she-looks-so-lovable"/>
   </rdf:Description>
@@ -8695,6 +8705,7 @@ https://www.youtube.com/watch?v=Wga5A6R9BJg</memo:captionText>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>OriginPlatform</rdfs:label>
     <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q3220391"/>
+    <owl:equivalentClass rdf:resource="http://www.wikidata.org/entity/Q3220391"/>
     <rdfs:comment xml:lang="en">Online platform or service where the meme was first published; aligned with Wikidata Q3220391.</rdfs:comment>
   </rdf:Description>
   <rdf:Description rdf:about="https://purl.org/memo">
@@ -8851,7 +8862,7 @@ https://www.youtube.com/watch?v=Wga5A6R9BJg</memo:captionText>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/939/233/817.jpg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">06_817.jpg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/2939233-npc-wojak</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ル IL ル</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ãƒ« IL ãƒ«</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#npc-wojak"/>
   </rdf:Description>
@@ -8877,7 +8888,7 @@ https://www.youtube.com/watch?v=Wga5A6R9BJg</memo:captionText>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/764/774/70b.jpg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">01_70b.jpg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/2764774-i-need-a-therian-girlfriend</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Amos Wonderaven I NEED A THERIAN GIRLFRIEND AAA 5d ago Reply ★amos★ Creator You too 4d ago Reply m1_p he needs a life for being normal unlike you?? 3d ago Reply Cruise I volenteer 5d ago Reply &gt;&gt; View 236 more v 2970 00:00 54 Hide A</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Amos Wonderaven I NEED A THERIAN GIRLFRIEND AAA 5d ago Reply â˜…amosâ˜… Creator You too 4d ago Reply m1_p he needs a life for being normal unlike you?? 3d ago Reply Cruise I volenteer 5d ago Reply &gt;&gt; View 236 more v 2970 00:00 54 Hide A</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#i-need-a-therian-girlfriend"/>
   </rdf:Description>
@@ -9209,8 +9220,8 @@ https://www.youtube.com/watch?v=Wga5A6R9BJg</memo:captionText>
   <rdf:Description rdf:about="https://purl.org/memo#logan-pauls-suicide-forest-video_v08">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:label>Qorygore’s new vid is disgusting and disrespectful towards Japanese people. Logan Paul wanna be.</rdfs:label>
-    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Qorygore’s new vid is disgusting and disrespectful towards Japanese people. Logan Paul wanna be.</memo:variantTitle>
+    <rdfs:label>Qorygoreâ€™s new vid is disgusting and disrespectful towards Japanese people. Logan Paul wanna be.</rdfs:label>
+    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Qorygoreâ€™s new vid is disgusting and disrespectful towards Japanese people. Logan Paul wanna be.</memo:variantTitle>
     <memo:variantUploader rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Matt Schimkowitz</memo:variantUploader>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/001/438/137/02e.png</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">08_02e.png</memo:variantFilename>
@@ -9236,7 +9247,7 @@ https://www.youtube.com/watch?v=Wga5A6R9BJg</memo:captionText>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/950/884/e80.jpeg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">05_e80.jpeg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/2950884-hawk-tuah-girl</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jacksonville Jacksonville is at it again • Follow 3d H Sandwiches Bakery oba Tea, Coffee Adam &amp; Eve IN HAWK TUAH WE TRUST TRY OUR NEW 27K Like Comment ☑ 745 comments 6K shares Send Share</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jacksonville Jacksonville is at it again â€¢ Follow 3d H Sandwiches Bakery oba Tea, Coffee Adam &amp; Eve IN HAWK TUAH WE TRUST TRY OUR NEW 27K Like Comment â˜‘ 745 comments 6K shares Send Share</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#hawk-tuah-girl"/>
   </rdf:Description>
@@ -9285,7 +9296,7 @@ https://www.youtube.com/watch?v=Wga5A6R9BJg</memo:captionText>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/001/338/031/609.png</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">01_609.png</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/1338031-technoviking</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">저쪽 가서 혼자 놀아 새키야. = Go There Play Along F-----</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ì €ìª½ ê°€ì„œ í˜¼ìž ë†€ì•„ ìƒˆí‚¤ì•¼. = Go There Play Along F-----</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#technoviking"/>
   </rdf:Description>
@@ -9349,7 +9360,7 @@ https://www.youtube.com/watch?v=Wga5A6R9BJg</memo:captionText>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#MemeIdea"/>
     <rdfs:label>Logan Paul's Suicide Forest Video (idea)</rdfs:label>
-    <memo:conceptDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Logan Paul's Suicide Forest Video is a viral video by YouTuber Logan Paul in which he discovers a dead body in the Aokigahara forest in the Chūbu region of Honshu in Japan. After the video was uploaded to YouTube in late December 2017, Paul was widely criticized online for exploiting a man's suicide for clickbait and video views.</memo:conceptDescription>
+    <memo:conceptDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Logan Paul's Suicide Forest Video is a viral video by YouTuber Logan Paul in which he discovers a dead body in the Aokigahara forest in the ChÅ«bu region of Honshu in Japan. After the video was uploaded to YouTube in late December 2017, Paul was widely criticized online for exploiting a man's suicide for clickbait and video views.</memo:conceptDescription>
     <memo:isConceptualizedAs rdf:resource="https://purl.org/memo#logan-pauls-suicide-forest-video"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://purl.org/memo#burger-king-foot-lettuce_v06">
@@ -9392,8 +9403,8 @@ https://www.youtube.com/watch?v=Wga5A6R9BJg</memo:captionText>
   <rdf:Description rdf:about="https://purl.org/memo#whyididntreport_v04">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:label>I did, it didn’t matter, I was dismissed, disparaged, &amp; I still get blamed  #WhyIDidntReport</rdfs:label>
-    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">I did, it didn’t matter, I was dismissed, disparaged, &amp; I still get blamed  #WhyIDidntReport</memo:variantTitle>
+    <rdfs:label>I did, it didnâ€™t matter, I was dismissed, disparaged, &amp; I still get blamed  #WhyIDidntReport</rdfs:label>
+    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">I did, it didnâ€™t matter, I was dismissed, disparaged, &amp; I still get blamed  #WhyIDidntReport</memo:variantTitle>
     <memo:variantUploader rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Matt Schimkowitz</memo:variantUploader>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/001/413/788/c6c.png</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">04_c6c.png</memo:variantFilename>
@@ -9481,6 +9492,7 @@ https://www.youtube.com/watch?v=Wga5A6R9BJg</memo:captionText>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>GeographicRegion</rdfs:label>
     <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q82794"/>
+    <owl:equivalentClass rdf:resource="http://www.wikidata.org/entity/Q82794"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://purl.org/memo#minecraft-video-game">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
@@ -9648,7 +9660,7 @@ https://www.youtube.com/watch?v=Wga5A6R9BJg</memo:captionText>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/002/456/196/6c0.gif</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">04_6c0.gif</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/2456196-ankha-zone</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">生 D</memo:captionText>
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ç”Ÿ D</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#ankha-zone"/>
   </rdf:Description>
@@ -9895,8 +9907,8 @@ https://www.youtube.com/watch?v=Wga5A6R9BJg</memo:captionText>
   <rdf:Description rdf:about="https://purl.org/memo#bowsette_v02">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:label>RAWR!!! 💀👑🖤</rdfs:label>
-    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">RAWR!!! 💀👑🖤</memo:variantTitle>
+    <rdfs:label>RAWR!!! ðŸ’€ðŸ‘‘ðŸ–¤</rdfs:label>
+    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">RAWR!!! ðŸ’€ðŸ‘‘ðŸ–¤</memo:variantTitle>
     <memo:variantUploader rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sum Lu Zer</memo:variantUploader>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/003/220/913/858</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">02_858.jpg</memo:variantFilename>
@@ -10002,24 +10014,24 @@ https://www.youtube.com/watch?v=Wga5A6R9BJg</memo:captionText>
   <rdf:Description rdf:about="https://purl.org/memo#_48293_v05">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#VariantInstance"/>
-    <rdfs:label>0 ÷ 10 + 10 - (0 - 10) ^ 10 × 0 = ?</rdfs:label>
-    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0 ÷ 10 + 10 - (0 - 10) ^ 10 × 0 = ?</memo:variantTitle>
+    <rdfs:label>0 Ã· 10 + 10 - (0 - 10) ^ 10 Ã— 0 = ?</rdfs:label>
+    <memo:variantTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0 Ã· 10 + 10 - (0 - 10) ^ 10 Ã— 0 = ?</memo:variantTitle>
     <memo:variantUploader rdf:datatype="http://www.w3.org/2001/XMLSchema#string">AppleChoppingNinja</memo:variantUploader>
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/000/464/964/635.png</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">05_635.png</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/464964-48293</memo:photoURL>
     <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">If we take this equation using an implied order of operations:
-0 ÷ 10 + 10 - (0 - 10) ^ 10 × 0
-0 ÷ 10 + 10 - -10 ^ 10 × 0
-0 ÷ 10 + 10 - 10000000000 × 0
-… since there is a division before any multiplication signs …
-0 + 10 - 10000000000 × 0
+0 Ã· 10 + 10 - (0 - 10) ^ 10 Ã— 0
+0 Ã· 10 + 10 - -10 ^ 10 Ã— 0
+0 Ã· 10 + 10 - 10000000000 Ã— 0
+â€¦ since there is a division before any multiplication signs â€¦
+0 + 10 - 10000000000 Ã— 0
 0 + 10 - 0
-… since there is an addition sign before any subtraction signs …
+â€¦ since there is an addition sign before any subtraction signs â€¦
 10 - 0
 10
 
-However, many people today, including stranger 1 in this Omegle chat, seem to jump to conclusions (such as that … * 0 is always 0) without thinking about how these rules only apply to a part of the equation and don’t always answer the equation as a whole.</memo:captionText>
+However, many people today, including stranger 1 in this Omegle chat, seem to jump to conclusions (such as that â€¦ * 0 is always 0) without thinking about how these rules only apply to a part of the equation and donâ€™t always answer the equation as a whole.</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#_48293"/>
   </rdf:Description>
@@ -10230,7 +10242,7 @@ However, many people today, including stranger 1 in this Omegle chat, seem to ju
     <memo:variantImageURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://i.kym-cdn.com/photos/images/original/001/376/710/c74.jpg</memo:variantImageURL>
     <memo:variantFilename rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10_c74.jpg</memo:variantFilename>
     <memo:photoURL rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://knowyourmeme.com:443/photos/1376710-burger-king-foot-lettuce</memo:photoURL>
-    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">😂😂😂WHO DID THIS 😂😂😂
+    <memo:captionText rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ðŸ˜‚ðŸ˜‚ðŸ˜‚WHO DID THIS ðŸ˜‚ðŸ˜‚ðŸ˜‚
 No, seriously. Who did this, I found this online a while ago and have completely forgotten where I found it. If anyone knows where the original came from, let me know in the comments.</memo:captionText>
     <memo:variantIndex rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</memo:variantIndex>
     <wdp:P361 rdf:resource="https://purl.org/memo#burger-king-foot-lettuce"/>
@@ -10340,7 +10352,7 @@ No, seriously. Who did this, I found this online a while ago and have completely
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://purl.org/memo#MemeIdea"/>
     <rdfs:label>Wash the Fucking Dishes (idea)</rdfs:label>
-    <memo:conceptDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">“Wash the Fucking Dishes,” is a memorable quote uttered by the character Naomi in the 2005 comedy film Waiting… where a coworker offers her anger management counseling due to her irritable nature. In memes , the clip of Naomi yelling “just wash the fucking dishes and shut the fuck up” is used as a catchphrase and sound effect over videos of people being told to do the dishes, some of which were remixed into songs. In the fall and winter of 2020, dubbed versions of the clip on TikTok became a trend known as “Just Wash the Dishes and Shut TF up Challenge” where people exaggeratedly rushed to do the dishes, often jumping in the sink, after being yelled at.</memo:conceptDescription>
+    <memo:conceptDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">â€œWash the Fucking Dishes,â€ is a memorable quote uttered by the character Naomi in the 2005 comedy film Waitingâ€¦ where a coworker offers her anger management counseling due to her irritable nature. In memes , the clip of Naomi yelling â€œjust wash the fucking dishes and shut the fuck upâ€ is used as a catchphrase and sound effect over videos of people being told to do the dishes, some of which were remixed into songs. In the fall and winter of 2020, dubbed versions of the clip on TikTok became a trend known as â€œJust Wash the Dishes and Shut TF up Challengeâ€ where people exaggeratedly rushed to do the dishes, often jumping in the sink, after being yelled at.</memo:conceptDescription>
     <memo:isConceptualizedAs rdf:resource="https://purl.org/memo#wash-the-fucking-dishes"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://purl.org/memo#anxious-attachment-discourse">
@@ -10440,3 +10452,7 @@ No, seriously. Who did this, I found this online a while ago and have completely
     <rdfs:comment xml:lang="en">A political event, controversy, or campaign that a meme iconologically references.</rdfs:comment>
   </rdf:Description>
 </rdf:RDF>
+
+
+
+

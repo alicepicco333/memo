@@ -473,14 +473,13 @@ body {
   width: 100%;
   aspect-ratio: 1 / 1;
   overflow: hidden;
-  background: #eee;
+  background: transparent;
   flex-shrink: 0;
 }
 .meme-thumb-img img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  background: #f3f3f3;
+  object-fit: cover;
   display: block;
 }
 
@@ -1908,13 +1907,49 @@ body {
   margin-bottom: 20px;
 }
 
+.transform-legend-collapsible {
+  display: block;
+}
+
+.transform-legend-collapsible > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.transform-legend-collapsible > summary::-webkit-details-marker {
+  display: none;
+}
+
 .transform-legend h3 {
   font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--accent2);
-  margin: 0 0 16px 0;
+  margin: 0;
+}
+
+.transform-legend-hint {
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.transform-legend-collapsible[open] .transform-legend-hint::before {
+  content: 'Hide explanations';
+}
+
+.transform-legend-collapsible:not([open]) .transform-legend-hint::before {
+  content: 'Show explanations';
+}
+
+.transform-legend-collapsible .legend-grid {
+  margin-top: 14px;
 }
 
 .legend-grid {
@@ -2155,7 +2190,9 @@ body {
   }
   .transform-legend h3 {
     font-size: 0.8rem;
-    margin-bottom: 6px;
+  }
+  .transform-legend-hint {
+    font-size: 0.62rem;
   }
   .legend-grid {
     grid-template-columns: 1fr;

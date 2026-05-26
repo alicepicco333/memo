@@ -267,7 +267,8 @@ wdp:P527 a owl:ObjectProperty ;
 memo:FileFormat a owl:Class ;
     rdfs:label "FileFormat" ;
     rdfs:comment "Digital file format of the meme image resource; aligned with Wikidata Q235557."@en ;
-    rdfs:seeAlso <https://www.wikidata.org/wiki/Q235557> .
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q235557> ;
+    owl:equivalentClass wd:Q235557 .
 
 memo:conceptualizes a owl:ObjectProperty ;
     rdfs:label "conceptualizes" ;
@@ -401,7 +402,8 @@ memo:AnimationStatus a owl:Class ;
 memo:GeographicRegion a owl:Class ;
     rdfs:label "GeographicRegion" ;
     rdfs:comment "Geographic region or country of meme origin; aligned with Wikidata Q82794."@en ;
-    rdfs:seeAlso <https://www.wikidata.org/wiki/Q82794> .
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q82794> ;
+    owl:equivalentClass wd:Q82794 .
 
 memo:ImageType a owl:Class ;
     rdfs:label "ImageType" ;
@@ -411,7 +413,8 @@ memo:ImageType a owl:Class ;
 memo:OriginPlatform a owl:Class ;
     rdfs:label "OriginPlatform" ;
     rdfs:comment "Online platform or service where the meme was first published; aligned with Wikidata Q3220391."@en ;
-    rdfs:seeAlso <https://www.wikidata.org/wiki/Q3220391> .
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q3220391> ;
+    owl:equivalentClass wd:Q3220391 .
 
 memo:SubjectMatter a owl:Class ;
     rdfs:label "SubjectMatter" ;
