@@ -12,10 +12,10 @@
         "variantImageType":  "Photograph",
         "transformationDimension":  [
                                         "CaptionChange",
-                                        "VisualSubstrate"
+                                        "CrossoverMerge"
                                     ],
-        "transformationExtent":  "Moderate",
-        "notes":  "Both panels replaced with real people from a TV show; template structure preserved but visual substrate entirely different",
+        "transformationExtent":  "Substantial",
+        "notes":  "Real TV personalities replace both panels; template structure preserved but both visual subjects entirely replaced with real people from a British TV show. Extent is Substantial because nothing visual from the original remains beyond the two-panel confrontation format.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/254/413/6cd.png"
     },
     {
@@ -48,11 +48,10 @@
         "canonicalImageType":  "Photograph",
         "variantImageType":  "Photograph",
         "transformationDimension":  [
-                                        "CaptionChange",
-                                        "CrossoverMerge"
+                                        "CaptionChange"
                                     ],
-        "transformationExtent":  "Substantial",
-        "notes":  "Caption draws from Puella Magi Madoka Magica dialogue and reframes the template with explicit anime crossover context",
+        "transformationExtent":  "Moderate",
+        "notes":  "Caption draws from Puella Magi Madoka Magica dialogue but the image is the original unchanged photograph. No visual integration of anime elements. The caption substantially reframes the template's cultural register without altering the image.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/225/851/742.jpeg"
     },
     {
@@ -71,7 +70,7 @@
                                         "CrossoverMerge"
                                     ],
         "transformationExtent":  "Substantial",
-        "notes":  "Template redrawn as fan art featuring characters from Kingdom Hearts and Lion King; full medium shift from photograph to drawing",
+        "notes":  "Template redrawn as fan art featuring characters from Kingdom Hearts and Lion King; full medium shift from photograph to drawing, explicit visual crossover between two fictional IPs integrated into the two-panel structure.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/212/201/274.jpg"
     },
     {
@@ -89,7 +88,7 @@
                                         "CaptionChange"
                                     ],
         "transformationExtent":  "Minimal",
-        "notes":  "Standard caption substitution with social commentary framing",
+        "notes":  "Standard caption substitution with social commentary framing; image unchanged.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/205/714/08a.jpeg"
     },
     {
@@ -104,11 +103,11 @@
         "canonicalImageType":  "Photograph",
         "variantImageType":  "Photograph",
         "transformationDimension":  [
-                                        "CaptionChange",
+                                        "MediumShift",
                                         "CompositionShift"
                                     ],
         "transformationExtent":  "Moderate",
-        "notes":  "Meme printed on a physical object and rephotographed; template applied at one remove through physical instantiation",
+        "notes":  "Meme printed on a physical object and rephotographed; medium shift from digital image to physical object photographed in the real world, with compositional reframing through the box surface as substrate.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/141/403/43d.jpg"
     },
     {
@@ -127,7 +126,7 @@
                                         "Localization"
                                     ],
         "transformationExtent":  "Minimal",
-        "notes":  "Caption localized to US Fourth of July cultural context",
+        "notes":  "Caption localized to US Fourth of July cultural context; image unchanged.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/095/640/dc5.jpg"
     },
     {
@@ -145,7 +144,7 @@
                                         "CaptionChange"
                                     ],
         "transformationExtent":  "Minimal",
-        "notes":  "Standard caption substitution with tech/science commentary",
+        "notes":  "Standard caption substitution with tech/science commentary; image unchanged.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/055/709/cf8.jpeg"
     },
     {
@@ -162,8 +161,8 @@
         "transformationDimension":  [
                                         "CaptionChange"
                                     ],
-        "transformationExtent":  "Moderate",
-        "notes":  "Caption is a self-aware pun on the word Healthy that comments on the absurdity of meme caption logic itself",
+        "transformationExtent":  "Minimal",
+        "notes":  "Self-aware pun on the word Healthy; caption-only change with no visual modification.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/050/678/5a3.jpg"
     },
     {
@@ -178,11 +177,10 @@
         "canonicalImageType":  "Photograph",
         "variantImageType":  "Photograph",
         "transformationDimension":  [
-                                        "CaptionChange",
-                                        "CrossoverMerge"
+                                        "CaptionChange"
                                     ],
-        "transformationExtent":  "Substantial",
-        "notes":  "References Dragon Ball Z character Krillin and substantially reframes the template through anime crossover semantics",
+        "transformationExtent":  "Minimal",
+        "notes":  "Caption text is minimal; title references Krillin from Dragon Ball Z but the image is the original unchanged photograph with no visual integration of anime elements.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/032/720/5cf"
     },
     {
@@ -218,7 +216,7 @@
                                         "StyleShift"
                                     ],
         "transformationExtent":  "Moderate",
-        "notes":  "Fan art reinterpretation of the original drawing in a different art style; no caption, style is the transformation",
+        "notes":  "Fan art reinterpretation of the original drawing in a different art style; no caption present, the style transformation is the sole dimension of change.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/634/604/469.jpg"
     },
     {
@@ -233,10 +231,11 @@
         "canonicalImageType":  "Drawing",
         "variantImageType":  "Drawing",
         "transformationDimension":  [
+                                        "MediumShift",
                                         "CompositionShift"
                                     ],
         "transformationExtent":  "Moderate",
-        "notes":  "Documentary image of a physical merchandise design artifact; template adapted for commercial product context",
+        "notes":  "Documentary image of a physical merchandise design artifact; template transferred to a commercial product context and photographed, constituting a medium shift from digital drawing to physical product.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/093/626/d2c.jpg"
     },
     {
@@ -253,8 +252,8 @@
         "transformationDimension":  [
                                         "CaptionChange"
                                     ],
-        "transformationExtent":  "Moderate",
-        "notes":  "Me Gusta variant using a simple captioned reaction framing",
+        "transformationExtent":  "Minimal",
+        "notes":  "Single-word caption variant; no visual change.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/001/945/179/ae2.jpeg"
     },
     {
@@ -271,8 +270,8 @@
         "transformationDimension":  [
                                         "CaptionChange"
                                     ],
-        "transformationExtent":  "Moderate",
-        "notes":  "Humorous caption variant in the classic exploitable style",
+        "transformationExtent":  "Minimal",
+        "notes":  "Absurdist caption in classic exploitable style; no visual change.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/001/941/912/504.png"
     },
     {
@@ -287,11 +286,10 @@
         "canonicalImageType":  "Drawing",
         "variantImageType":  "Drawing",
         "transformationDimension":  [
-                                        "CrossoverMerge",
-                                        "VisualSubstrate"
+                                        "StyleShift"
                                     ],
         "transformationExtent":  "Substantial",
-        "notes":  "Animal-face crossover that transfers the Me Gusta face to a different visual substrate",
+        "notes":  "Me Gusta face transplanted onto a stag animal; not a crossover with another meme or IP, not image degradation. Visual transformation of the template's subject through stylistic transposition onto an entirely different creature, departing substantially from the canonical template.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/001/484/749/a83.jpg"
     },
     {
@@ -310,7 +308,7 @@
                                         "Localization"
                                     ],
         "transformationExtent":  "Moderate",
-        "notes":  "Language-localized caption variant",
+        "notes":  "Caption localised to Italian language; genuine linguistic adaptation of the template constituting a LanguageShift embedded within the Localization dimension.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/001/265/435/b74.gif"
     },
     {
@@ -327,8 +325,8 @@
         "transformationDimension":  [
                                         "CaptionChange"
                                     ],
-        "transformationExtent":  "Moderate",
-        "notes":  "Caption variant with altered phrasing and layout",
+        "transformationExtent":  "Minimal",
+        "notes":  "Single-phrase caption variation on the template's own name; most minimal variant in the Me Gusta set.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/001/209/248/432.gif"
     },
     {
@@ -365,7 +363,7 @@
                                         "CrossoverMerge"
                                     ],
         "transformationExtent":  "Substantial",
-        "notes":  "Furry-themed reinterpretation of the Me Gusta face with a clear style crossover",
+        "notes":  "Furry art style reinterpretation of the Me Gusta face; crossover with a distinct visual tradition and subculture aesthetic register, substantially departing from the canonical drawing style.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/000/931/673/96f.png"
     },
     {
@@ -402,7 +400,7 @@
                                         "CompositionShift"
                                     ],
         "transformationExtent":  "Moderate",
-        "notes":  "Template formatted as a movie poster with title treatment; compositional reframing as promotional media",
+        "notes":  "Template formatted as a movie poster with title treatment; compositional reframing as promotional media changes the visual framing significantly while retaining the original character.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/486/383/ba7.jpg"
     },
     {
@@ -417,11 +415,10 @@
         "canonicalImageType":  "Cartoon",
         "variantImageType":  "Cartoon",
         "transformationDimension":  [
-                                        "CrossoverMerge",
-                                        "VisualSubstrate"
+                                        "CrossoverMerge"
                                     ],
         "transformationExtent":  "Substantial",
-        "notes":  "Retroactively attributes Big Chungus aesthetic to a 1997 licensed Mario product; crossover between Looney Tunes and Nintendo IP",
+        "notes":  "Retroactively attributes Big Chungus aesthetic to a 1997 licensed Mario product; crossover between Looney Tunes and Nintendo IP constitutes a substantial departure from the canonical template.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/443/355/33c"
     },
     {
@@ -440,7 +437,7 @@
                                         "CompositionShift"
                                     ],
         "transformationExtent":  "Substantial",
-        "notes":  "Screenshot of trademark application document; medium shift from cartoon to legal/documentary screenshot",
+        "notes":  "Screenshot of trademark application document; medium shift from cartoon to legal/documentary screenshot, with the meme's commercial identity foregrounded as the compositional subject.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/435/116/c75.png"
     },
     {
@@ -459,7 +456,7 @@
                                         "CrossoverMerge"
                                     ],
         "transformationExtent":  "Moderate",
-        "notes":  "Big Chungus variant framed through Pokemon-style reference language rather than the previously assumed Super Seducer context",
+        "notes":  "Ash Ketchum from Pokemon drawn into the image framing Big Chungus as a Pokemon to be seduced; explicit visual crossover between Looney Tunes and Pokemon IP with caption reinforcing the crossover logic.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/318/040/19b.jpg"
     },
     {
@@ -478,7 +475,7 @@
                                         "CrossoverMerge"
                                     ],
         "transformationExtent":  "Substantial",
-        "notes":  "Digimon character Gargomon redrawn in the Big Chungus visual style; crossover between Looney Tunes and Digimon franchises",
+        "notes":  "Digimon character Gargomon redrawn in the Big Chungus visual style; crossover between Looney Tunes and Digimon franchises with full visual replacement of the canonical character.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/276/336/f05.png"
     },
     {
@@ -497,7 +494,7 @@
                                         "CompositionShift"
                                     ],
         "transformationExtent":  "Substantial",
-        "notes":  "Caption draws attention to the proliferation of Big Chungus crossovers; self-referential commentary on the meme\u0027s spread",
+        "notes":  "Caption draws attention to the proliferation of Big Chungus crossovers in a self-referential commentary on the meme's spread; composition aggregates multiple Big Chungus variants.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/232/636/ec2.jpg"
     },
     {
@@ -516,7 +513,7 @@
                                         "CrossoverMerge"
                                     ],
         "transformationExtent":  "Substantial",
-        "notes":  "Screenshot of tweet comparing Big Chungus to Street Fighter character Dan Hibiki; medium shift to screenshot, crossover with gaming",
+        "notes":  "Screenshot of tweet comparing Big Chungus to Street Fighter character Dan Hibiki; medium shift to screenshot format, crossover with gaming IP through explicit character comparison.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/165/591/4af.jpg"
     },
     {
@@ -531,11 +528,10 @@
         "canonicalImageType":  "Cartoon",
         "variantImageType":  "Cartoon",
         "transformationDimension":  [
-                                        "StyleShift",
-                                        "CrossoverMerge"
+                                        "StyleShift"
                                     ],
         "transformationExtent":  "Moderate",
-        "notes":  "Wordplay-driven crossover variant interpreted as a Pokemon-adjacent reference rather than a jungle-themed style shift",
+        "notes":  "Wordplay-driven visual style variant; no Pokemon or other IP character visually present. Moderate extent reflects a meaningful visual departure from the canonical Bugs Bunny cartoon style.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/159/829/94f"
     },
     {
@@ -554,7 +550,7 @@
                                         "CrossoverMerge"
                                     ],
         "transformationExtent":  "Substantial",
-        "notes":  "Big Chungus recreated as an avatar in the Second Life virtual world; medium shift from cartoon to 3D game screenshot",
+        "notes":  "Big Chungus recreated as an avatar in the Second Life virtual world; medium shift from cartoon to 3D game screenshot, crossover with a specific virtual platform constituting a full departure from the canonical image.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/152/539/0f9.png"
     },
     {
@@ -569,11 +565,10 @@
         "canonicalImageType":  "Cartoon",
         "variantImageType":  "Cartoon",
         "transformationDimension":  [
-                                        "CaptionChange",
-                                        "Localization"
+                                        "CaptionChange"
                                     ],
         "transformationExtent":  "Minimal",
-        "notes":  "Caption localized to US Thanksgiving context with stock ticker visual elements",
+        "notes":  "Caption references Thanksgiving but Stonks template is already inherently US financial culture. Localization removed. Standard caption substitution with a seasonal topical frame.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/171/622/761.png"
     },
     {
@@ -591,7 +586,7 @@
                                         "StyleShift"
                                     ],
         "transformationExtent":  "Moderate",
-        "notes":  "Character-level visual change (Animal Crossing style stonks variant) beyond a purely minimal numeric tweak",
+        "notes":  "Animal Crossing style Stonks variant; character-level visual change constituting a meaningful stylistic departure from the canonical Meme Man 3D render.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/039/073/6b4.jpg"
     },
     {
@@ -610,7 +605,7 @@
                                         "StyleShift"
                                     ],
         "transformationExtent":  "Moderate",
-        "notes":  "Meme Man replaced with the Chad character; crossover between Stonks and Chad meme templates",
+        "notes":  "Meme Man replaced with the Chad character; explicit crossover between two distinct meme templates, with the visual style adapting to the Chad aesthetic register.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/849/405/004.png"
     },
     {
@@ -625,11 +620,10 @@
         "canonicalImageType":  "Cartoon",
         "variantImageType":  "Cartoon",
         "transformationDimension":  [
-                                        "CaptionChange",
-                                        "Localization"
+                                        "CaptionChange"
                                     ],
-        "transformationExtent":  "Moderate",
-        "notes":  "Caption localized to US regional economic context",
+        "transformationExtent":  "Minimal",
+        "notes":  "Caption references US regional economic context. Localization removed - Stonks is already inherently US financial culture and no genuine geographic or linguistic adaptation is present.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/694/210/156.jpeg"
     },
     {
@@ -648,7 +642,7 @@
                                         "CrossoverMerge"
                                     ],
         "transformationExtent":  "Substantial",
-        "notes":  "Screenshot of a Steam game listing using the Stonks format; medium shift to screenshot, crossover with video game culture",
+        "notes":  "Screenshot of a Steam game listing using the Stonks format; medium shift to screenshot, crossover with video game culture through the Steam platform format.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/623/851/433.png"
     },
     {
@@ -664,10 +658,10 @@
         "variantImageType":  "Drawing",
         "transformationDimension":  [
                                         "MediumShift",
-                                        "VisualSubstrate"
+                                        "StyleShift"
                                     ],
         "transformationExtent":  "Moderate",
-        "notes":  "Stonks concept redrawn in a different illustrative style by cartoonist Gudim; medium shift from 3D cartoon to flat illustration",
+        "notes":  "Stonks concept redrawn in a different illustrative style by cartoonist Gudim; medium shift from 3D cartoon to flat line illustration with a distinct authorial visual register.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/481/174/0f6"
     },
     {
@@ -682,11 +676,10 @@
         "canonicalImageType":  "Cartoon",
         "variantImageType":  "Cartoon",
         "transformationDimension":  [
-                                        "CaptionChange",
-                                        "CrossoverMerge"
+                                        "CaptionChange"
                                     ],
         "transformationExtent":  "Moderate",
-        "notes":  "Caption references events from a fantasy/mythology context; crossover with fictional/game world references",
+        "notes":  "Caption references fantasy or mythology context; no character or element from a specific IP is visually present. Caption substantially reframes the template's financial premise into a metaphysical register.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/330/119/369.jpg"
     },
     {
@@ -701,11 +694,10 @@
         "canonicalImageType":  "Cartoon",
         "variantImageType":  "Photograph",
         "transformationDimension":  [
-                                        "MediumShift",
-                                        "VisualSubstrate"
+                                        "MediumShift"
                                     ],
         "transformationExtent":  "Moderate",
-        "notes":  "Meme Man replaced with a photograph of a fox; medium shift from cartoon to photograph, visual substrate entirely replaced",
+        "notes":  "Meme Man replaced with a photograph of a fox; medium shift from cartoon to photograph with the stock market background retained, constituting a moderate visual departure.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/163/672/88d.png"
     },
     {
@@ -723,7 +715,7 @@
                                         "CaptionChange"
                                     ],
         "transformationExtent":  "Minimal",
-        "notes":  "Inverted stonks format â€” negative stock performance; standard caption inversion of the template\u0027s premise",
+        "notes":  "Inverted Stonks format showing negative stock performance; standard caption inversion of the template's premise with image unchanged.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/130/917/d0f.png"
     },
     {
@@ -743,7 +735,7 @@
                                         "CompositionShift"
                                     ],
         "transformationExtent":  "Substantial",
-        "notes":  "Formatted as a fake EA Sports video game cover featuring Bernie Madoff; complex crossover of Stonks with gaming and financial fraud",
+        "notes":  "Formatted as a fake EA Sports video game cover featuring Bernie Madoff; complex crossover of Stonks with gaming IP and financial fraud iconography, with full compositional reframing as product packaging.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/074/124/f27.jpg"
     },
     {
@@ -761,7 +753,7 @@
                                         "CaptionChange"
                                     ],
         "transformationExtent":  "Minimal",
-        "notes":  "Standard caption substitution; relatable parenting frustration format",
+        "notes":  "Standard caption substitution; relatable parenting frustration format with image unchanged.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/262/056/5c4.jpeg"
     },
     {
@@ -779,7 +771,7 @@
                                         "CaptionChange"
                                     ],
         "transformationExtent":  "Minimal",
-        "notes":  "Standard caption substitution; academic consequences format",
+        "notes":  "Standard caption substitution; academic consequences format with image unchanged.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/216/536/710.jpg"
     },
     {
@@ -797,7 +789,7 @@
                                         "StyleShift"
                                     ],
         "transformationExtent":  "Moderate",
-        "notes":  "Hand-drawn fan rendition of the Surprised Pikachu reaction image",
+        "notes":  "Hand-drawn fan rendition of the Surprised Pikachu reaction image in a different artistic style; meaningful departure from the canonical anime screenshot source.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/956/566/c79.png"
     },
     {
@@ -815,7 +807,7 @@
                                         "CaptionChange"
                                     ],
         "transformationExtent":  "Minimal",
-        "notes":  "Caption targets insurance industry; standard exploitable substitution",
+        "notes":  "Caption targets insurance industry; standard exploitable substitution with image unchanged.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/175/479/b56.png"
     },
     {
@@ -834,7 +826,7 @@
                                         "StyleShift"
                                     ],
         "transformationExtent":  "Substantial",
-        "notes":  "Pumpkin-themed remix replacing Pikachu with a Halloween visual parody",
+        "notes":  "Pumpkin-themed Halloween visual parody replacing Pikachu with a seasonal character; visual crossover with Halloween iconography and substantial departure from the canonical Pokemon character.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/943/637/064.jpeg"
     },
     {
@@ -851,8 +843,8 @@
         "transformationDimension":  [
                                         "CaptionChange"
                                     ],
-        "transformationExtent":  "Moderate",
-        "notes":  "Long-form existential caption reframing the template away from repeated short caption clusters",
+        "transformationExtent":  "Minimal",
+        "notes":  "Long-form existential caption; image unchanged. Caption length does not elevate extent beyond Minimal when no visual change is present.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/921/812/dae.png"
     },
     {
@@ -867,11 +859,10 @@
         "canonicalImageType":  "Drawing",
         "variantImageType":  "Drawing",
         "transformationDimension":  [
-                                        "CaptionChange",
-                                        "Localization"
+                                        "CaptionChange"
                                     ],
         "transformationExtent":  "Moderate",
-        "notes":  "Contemporary school-tech scenario with a distinct caption concept",
+        "notes":  "Contemporary school-tech scenario caption with a distinct conceptual reframing. Localization removed - a thematic or topical context is not a geographic or linguistic localization.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/914/754/d36.jpeg"
     },
     {
@@ -889,7 +880,7 @@
                                         "CaptionChange"
                                     ],
         "transformationExtent":  "Moderate",
-        "notes":  "Meta-commentary caption about meme lifecycle and commercialization",
+        "notes":  "Meta-commentary caption about meme lifecycle and commercialization; the caption fundamentally reframes the template's cultural position rather than substituting a standard exploitable scenario.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/880/832/f4c.jpeg"
     },
     {
@@ -908,7 +899,7 @@
                                         "Localization"
                                     ],
         "transformationExtent":  "Minimal",
-        "notes":  "Caption localized to WWII Pacific theater historical context; applies template to geopolitical history",
+        "notes":  "Caption localized to WWII Pacific theater historical context; genuine geographic and geopolitical localization applied to a minimal caption substitution.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/023/384/9b9.jpeg"
     },
     {
@@ -926,7 +917,7 @@
                                         "CaptionChange"
                                     ],
         "transformationExtent":  "Moderate",
-        "notes":  "Distinct family-relationship caption replacing duplicate caption clusters",
+        "notes":  "Emotionally weighted family-relationship caption reframing the template's premise in a register of intergenerational resentment rather than the typical cause-and-effect surprise format.",
         "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/660/720/5d7.jpg"
     }
 ]
