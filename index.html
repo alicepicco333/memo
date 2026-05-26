@@ -20,12 +20,14 @@
   </nav>
 
   <main class="home-main">
-    <section class="home-collage-wrap">
-      <header class="home-collage-header">
-        <h1>MEME ONTOLOGY ARCHIVE</h1>
-        <p>Scroll through the corpus. Open any tile to jump directly to its detail page.</p>
-      </header>
+    <section class="viz-section hero-section home-hero" id="sec-hero">
+      <div id="hero-images" class="hero-images"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">THE MEME ONTOLOGY</h1>
+      </div>
+    </section>
 
+    <section class="home-collage-wrap">
       <div id="home-collage" class="home-collage-grid" aria-live="polite"></div>
       <div id="home-collage-sentinel" class="home-collage-sentinel"></div>
     </section>
@@ -41,6 +43,7 @@
 
   <script>
     (function() {
+      var heroContainer = document.getElementById('hero-images');
       var collage = document.getElementById('home-collage');
       var sentinel = document.getElementById('home-collage-sentinel');
       var queue = [];
@@ -102,10 +105,29 @@
         isLoading = false;
       }
 
+      function fillHero(shuffledQueue) {
+        if (!heroContainer) return;
+        shuffledQueue.slice(0, 240).forEach(function(item) {
+          var img = document.createElement('img');
+          img.src = item.imageURL || ('images_flat/' + item.imageFilename);
+          img.alt = '';
+          img.loading = 'lazy';
+          if (item.imageURL && item.imageFilename) {
+            img.addEventListener('error', function() {
+              if (this.dataset.fallbackTried) return;
+              this.dataset.fallbackTried = '1';
+              this.src = 'images_flat/' + this.dataset.fallbackFilename;
+            });
+            img.dataset.fallbackFilename = item.imageFilename;
+          }
+          heroContainer.appendChild(img);
+        });
+      }
+
       function boot(data) {
         var memes = data && data.memes ? data.memes : {};
         var slugs = Object.keys(memes);
-        queue = shuffle(slugs)
+        var shuffledQueue = shuffle(slugs)
           .map(function(slug) {
             return {
               slug: slug,
@@ -114,6 +136,9 @@
             };
           })
           .filter(function(m) { return !!m.imageFilename; });
+
+        queue = shuffledQueue;
+        fillHero(shuffledQueue);
 
         appendBatch();
         appendBatch();

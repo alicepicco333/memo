@@ -727,29 +727,12 @@ body.home-page {
   padding-top: var(--nav-h);
 }
 
+.home-hero {
+  border-bottom: 1px solid var(--border);
+}
+
 .home-collage-wrap {
-  padding: 22px 18px 24px;
-}
-
-.home-collage-header {
-  margin: 0 auto 18px;
-  max-width: 1200px;
-}
-
-.home-collage-header h1 {
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  letter-spacing: .14em;
-  font-size: clamp(2rem, 5vw, 4rem);
-  color: #111;
-  margin: 0 0 6px;
-}
-
-.home-collage-header p {
-  margin: 0;
-  font-size: .78rem;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  color: #666;
+  padding: 18px 18px 24px;
 }
 
 .home-collage-grid {
