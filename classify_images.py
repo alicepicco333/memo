@@ -915,6 +915,9 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
     g.add((MEME.SubjectMatter, RDFS.seeAlso, URIRef("https://www.wikidata.org/wiki/Q16334295")))
 
     # IFLA FRBR subclass declarations
+    g.add((FRBRER.C1002, RDFS.label, Literal("Work (FRBRer)", lang="en")))
+    g.add((FRBRER.C1003, RDFS.label, Literal("Expression (FRBRer)", lang="en")))
+    g.add((FRBRER.C1004, RDFS.label, Literal("Manifestation (FRBRer)", lang="en")))
     g.add((MEME.MemeIdea,        RDFS.subClassOf, FRBRER.C1002))  # Work
     g.add((MEME.MemeConcept,     RDFS.subClassOf, FRBRER.C1003))  # Expression
     g.add((MEME.VariantInstance, RDFS.subClassOf, FRBRER.C1004))  # Manifestation

@@ -4,6 +4,10 @@ from pathlib import Path
 
 # Label replacements - from spaced to camelCase
 LABEL_FIXES = {
+    "T V Series": "TvSeries",
+    "TV Series": "TvSeries",
+    "TVSeries": "TvSeries",
+    "Comic Book": "ComicBook",
     "AI-generated": "AiGenerated",
     "Conspiracy Theory": "ConspiracyTheory",
     "Deviant Art": "DeviantArt",

@@ -10,6 +10,10 @@
 @prefix wdp: <http://www.wikidata.org/prop/direct/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+frbrer:C1002 rdfs:label "Work (FRBRer)"@en .
+frbrer:C1003 rdfs:label "Expression (FRBRer)"@en .
+frbrer:C1004 rdfs:label "Manifestation (FRBRer)"@en .
+
 dcterms:created a owl:AnnotationProperty ;
     rdfs:label "created" ;
     rdfs:domain memo:MemeConcept ;

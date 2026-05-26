@@ -12,6 +12,15 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
 >
+  <rdf:Description rdf:about="http://iflastandards.info/ns/fr/frbr/frbrer/C1002">
+    <rdfs:label xml:lang="en">Work (FRBRer)</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://iflastandards.info/ns/fr/frbr/frbrer/C1003">
+    <rdfs:label xml:lang="en">Expression (FRBRer)</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://iflastandards.info/ns/fr/frbr/frbrer/C1004">
+    <rdfs:label xml:lang="en">Manifestation (FRBRer)</rdfs:label>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.wikidata.org/prop/direct/P123">
     <rdfs:range rdf:resource="https://purl.org/memo#OriginPlatform"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
