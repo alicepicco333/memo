@@ -895,27 +895,30 @@ function buildPlatformTimeStacked() {
     .range([0, iW])
     .padding(0.22);
 
-  // Palette soft/pastello ispirata a ColorBrewer Set2/Paired
+  // Palette ispirata ai loghi delle piattaforme, armonizzata
+  const platformColorMap = {
+    'TikTok':    '#25F4EE', // TikTok azzurro
+    'Instagram':'#E1306C', // Instagram rosa
+    'YouTube':  '#FF0000', // YouTube rosso
+    'Twitter':  '#1DA1F2', // Twitter blu
+    'Reddit':   '#FF5700', // Reddit arancione
+    'Discord':  '#5865F2', // Discord blu
+    'Twitch':   '#9146FF', // Twitch viola
+    'Facebook': '#1877F2', // Facebook blu
+    'Snapchat': '#FFFC00', // Snapchat giallo
+    'Vine':     '#00B489', // Vine verde
+    'Tumblr':   '#36465D', // Tumblr blu scuro
+    '4chan':    '#98E036', // 4chan verde chiaro
+    'Other':    '#B0B0B0'  // Other grigio neutro
+  };
+  // Palette fallback per piattaforme non note
   const pastelPalette = [
-    '#66c2a5', // teal
-    '#fc8d62', // orange
-    '#8da0cb', // blue
-    '#e78ac3', // pink
-    '#a6d854', // green
-    '#ffd92f', // yellow
-    '#e5c494', // beige
-    '#b3b3b3', // gray
-    '#80b1d3', // light blue
-    '#fdb462', // light orange
-    '#b3de69', // light green
-    '#fccde5', // light pink
-    '#d9d9d9', // light gray
-    '#bc80bd', // purple
-    '#ccebc5'  // mint
+    '#66c2a5','#fc8d62','#8da0cb','#e78ac3','#a6d854','#ffd92f','#e5c494','#b3b3b3',
+    '#80b1d3','#fdb462','#b3de69','#fccde5','#d9d9d9','#bc80bd','#ccebc5'
   ];
   const color = d3.scaleOrdinal()
     .domain(platforms)
-    .range(pastelPalette);
+    .range(platforms.map((p,i) => platformColorMap[p] || pastelPalette[i%pastelPalette.length]));
 
   const stack = d3.stack().keys(platforms);
   const stacked = stack(rows);
