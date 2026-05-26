@@ -734,6 +734,8 @@ body.home-page {
   border-bottom: 1px solid var(--border);
   display: block;
   padding-bottom: 0;
+  position: relative;
+  isolation: isolate;
 }
 
 .home-hero .hero-images {
@@ -749,12 +751,14 @@ body.home-page {
   grid-auto-flow: dense;
   gap: 2px;
   overflow: visible;
+  z-index: 1;
 }
 
 .home-hero .hero-content {
-  position: absolute;
-  inset: 0;
-  z-index: 5;
+  position: sticky;
+  top: var(--nav-h);
+  height: calc(100vh - var(--nav-h));
+  z-index: 40;
   display: flex;
   align-items: center;
   justify-content: center;
