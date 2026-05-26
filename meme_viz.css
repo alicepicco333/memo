@@ -755,10 +755,12 @@ body.home-page {
 }
 
 .home-hero .hero-content {
-  position: sticky;
+  position: fixed;
+  left: 0;
+  right: 0;
   top: var(--nav-h);
   height: calc(100vh - var(--nav-h));
-  z-index: 40;
+  z-index: 320;
   display: flex;
   align-items: center;
   justify-content: center;
