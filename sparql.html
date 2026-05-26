@@ -499,6 +499,41 @@ ORDER BY DESC(?count)</textarea>
       });
     }
 
+    function stripProblematicLiteralTriples(ttlText) {
+      var out = String(ttlText || '');
+
+      // Remove long literal blocks known to carry malformed quotes in scraped captions.
+      out = out.replace(/\n\s*memo:(captionText|variantTitle)\s+"""[\s\S]*?"""\^\^xsd:string\s*;/g, '\n');
+      out = out.replace(/\n\s*memo:(captionText|variantTitle)\s+"(?:\\.|[^"\\])*"\^\^xsd:string\s*;/g, '\n');
+
+      // Last-resort cleanup: if malformed literals remain on same predicates, drop that statement chunk.
+      out = out.replace(/\n\s*memo:(captionText|variantTitle)\s+[\s\S]*?;/g, '\n');
+
+      return out;
+    }
+
+    function parseTtlToStore(ttlText) {
+      return new Promise(function(resolve, reject) {
+        var store  = new N3.Store();
+        var parser = new N3.Parser({
+          baseIRI: 'https://purl.org/memo#',
+          format:  'Turtle'
+        });
+
+        parser.parse(ttlText, function(error, quad) {
+          if (error) {
+            reject(error);
+            return;
+          }
+          if (quad) {
+            store.addQuad(quad);
+          } else {
+            resolve(store);
+          }
+        });
+      });
+    }
+
     /* ── Shared prefix block ────────────────────────────────────────────── */
     var PFX = [
       'PREFIX memo:    <https://purl.org/memo#>',
@@ -644,37 +679,35 @@ ORDER BY DESC(?count)</textarea>
           return r.text();
         })
         .then(function(ttlText) {
-          ttlText = normalizeTtlForParser(ttlText);
+          var normalized = normalizeTtlForParser(ttlText);
           owlStatus.textContent = 'Parsing…';
           owlStats.textContent = 'Building triple store…';
 
-          var store  = new N3.Store();
-          var parser = new N3.Parser({
-            baseIRI: 'https://purl.org/memo#',
-            format:  'Turtle'
-          });
+          return parseTtlToStore(normalized)
+            .then(function(store) {
+              return { store: store, safeMode: false };
+            })
+            .catch(function() {
+              owlStatus.textContent = 'Parsing (safe mode)…';
+              var safeText = stripProblematicLiteralTriples(normalized);
+              return parseTtlToStore(safeText).then(function(store) {
+                return { store: store, safeMode: true };
+              });
+            });
+        })
+        .then(function(parsed) {
+          ontologyStore = parsed.store;
+          engine  = new Comunica.QueryEngine();
+          isReady = true;
 
-          parser.parse(ttlText, function(error, quad) {
-            if (error) {
-              setError('Parse error: ' + error.message);
-              return;
-            }
-            if (quad) {
-              store.addQuad(quad);
-            } else {
-              // null quad = parsing complete
-              ontologyStore = store;
-              engine  = new Comunica.QueryEngine();
-              isReady = true;
-
-              owlDot.className    = 'owl-dot ready';
-              owlStatus.textContent = 'Ready';
-              owlStats.textContent  = store.size.toLocaleString() + ' triples indexed';
-              runBtn.disabled = false;
-              queryStatus.textContent = 'Ontology loaded — ready to parse queries';
-              queryStatus.className   = 'query-status ok';
-            }
-          });
+          owlDot.className    = 'owl-dot ready';
+          owlStatus.textContent = 'Ready';
+          owlStats.textContent  = parsed.store.size.toLocaleString() + ' triples indexed' + (parsed.safeMode ? ' (safe mode)' : '');
+          runBtn.disabled = false;
+          queryStatus.textContent = parsed.safeMode
+            ? 'Ontology loaded in safe mode — ready to parse queries'
+            : 'Ontology loaded — ready to parse queries';
+          queryStatus.className   = 'query-status ok';
         })
         .catch(function(err) {
           setError(err.message);
