@@ -908,31 +908,20 @@ function buildPlatformTimeStacked() {
     .range([0, iW])
     .padding(0.22);
 
-  // Palette ispirata ai loghi delle piattaforme, armonizzata
-  // Colori ispirati ai loghi, saturazione media (soft vibrante)
   const platformColorMap = {
-    'TikTok':    '#4fdde9', // TikTok azzurro medio
-    'Instagram':'#f77cae', // Instagram rosa medio
-    'YouTube':  '#ff6666', // YouTube rosso medio
-    'Twitter':  '#5ecbfa', // Twitter blu medio
-    'Reddit':   '#ffb366', // Reddit arancione medio
-    'Discord':  '#8e9cf7', // Discord blu medio
-    'Twitch':   '#c59cff', // Twitch viola medio
-    'Facebook': '#6ea8fa', // Facebook blu medio
-    'Snapchat': '#fff066', // Snapchat giallo medio
-    'Vine':     '#66e6c7', // Vine verde medio
-    'Tumblr':   '#8a9bb8', // Tumblr blu scuro medio
-    '4chan':    '#b6e66a', // 4chan verde chiaro medio
-    'Other':    '#cccccc'  // Other grigio medio
+    '4chan':     '#5aaa78',  // sage green   — 4chan's green
+    'Facebook':  '#6080d4',  // cornflower   — Facebook blue
+    'Instagram': '#c46fa0',  // dusty rose   — Instagram gradient midpoint
+    'Reddit':    '#d47a58',  // terra cotta  — Reddit orange
+    'TikTok':    '#45bec4',  // teal         — TikTok accent
+    'Tumblr':    '#7391b0',  // slate        — Tumblr navy softened
+    'TwitterX':  '#5aabdc',  // sky blue     — Twitter classic
+    'YouTube':   '#d45a55',  // coral red    — YouTube red
+    'Other':     '#9aabb8',  // neutral      — gray-blue
   };
-  // Palette fallback per piattaforme non note
-  const pastelPalette = [
-    '#66c2a5','#fc8d62','#8da0cb','#e78ac3','#a6d854','#ffd92f','#e5c494','#b3b3b3',
-    '#80b1d3','#fdb462','#b3de69','#fccde5','#d9d9d9','#bc80bd','#ccebc5'
-  ];
-  const color = d3.scaleOrdinal()
-    .domain(sortedPlatforms)
-    .range(sortedPlatforms.map((p,i) => platformColorMap[p] || pastelPalette[i%pastelPalette.length]));
+  const color = platform =>
+    platformColorMap[platform] || '#b0b8c8';
+
 
   // Stack manuale per ogni periodo: per ogni barra, ordina le piattaforme per percentuale decrescente
   // Costruisci dati per ogni periodo
