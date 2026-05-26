@@ -724,15 +724,18 @@ body.home-page {
 }
 
 .home-main {
-  padding-top: var(--nav-h);
+  padding-top: 0;
 }
 
 .home-hero {
+  height: 100vh;
+  min-height: 100vh;
+  overflow: hidden;
   border-bottom: 1px solid var(--border);
 }
 
 .home-collage-wrap {
-  padding: 18px 18px 24px;
+  padding: 0 18px 24px;
 }
 
 .home-collage-grid {
