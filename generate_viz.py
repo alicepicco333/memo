@@ -44,6 +44,7 @@ for entry in data:
         "slug": slug,
         "title": entry.get("title", slug),
         "imageFilename": entry.get("image_filename", ""),
+        "imageURL": entry.get("image_url", "") or "",
         "memeUrl": entry.get("meme_url", ""),
         "year": entry.get("year"),
         "tags": entry.get("tags") or [],

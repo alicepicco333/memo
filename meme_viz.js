@@ -952,7 +952,7 @@ function buildVariantBubble() {
   var g = svg.append('g').attr('transform', 'translate(' + M.left + ',' + M.top + ')');
 
   // Fixed image size — popularity is already encoded by the X axis, not image size.
-  var IMG_SIZE = 44;
+  var IMG_SIZE = 32;
 
   // Pad scale ranges by half the image size so no image is clipped at the edges
   var PAD = IMG_SIZE / 2 + 4;
