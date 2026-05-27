@@ -254,7 +254,6 @@
   <rdf:Description rdf:about="https://purl.org/memo#MemeIdea">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:comment xml:lang="en">The abstract creative idea underlying a meme template; the Work level of the FRBR hierarchy. Represents the core concept, emotional register, or rhetorical function of a meme, independent of any specific image or format.</rdfs:comment>
-    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q3249551"/>
     <rdfs:subClassOf rdf:resource="http://iflastandards.info/ns/fr/frbr/frbrer/C1002"/>
     <memo:frbrLevel>Work</memo:frbrLevel>
     <rdfs:label>MemeIdea</rdfs:label>
@@ -365,7 +364,6 @@
     <memo:semanticLevel>PreIconographical</memo:semanticLevel>
     <rdfs:comment xml:lang="en">The primary visual subject category depicted in a meme image (e.g. PersonPresent, AnimalPresent, ObjectOnly). Corresponds to Panofsky's pre-iconographic description level.</rdfs:comment>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q16334295"/>
     <rdfs:label>SubjectMatter</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:about="https://purl.org/memo#isSubjectMatterOf">
@@ -610,15 +608,15 @@
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.wikidata.org/entity/Q235557">
-    <rdfs:label>file format</rdfs:label>
+    <rdfs:label xml:lang="en">FileFormat</rdfs:label>
     <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q235557"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.wikidata.org/entity/Q82794">
-    <rdfs:label>geographic region</rdfs:label>
+    <rdfs:label xml:lang="en">GeographicRegion</rdfs:label>
     <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q82794"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.wikidata.org/entity/Q3220391">
-    <rdfs:label>online service</rdfs:label>
+    <rdfs:label xml:lang="en">OnlineService</rdfs:label>
     <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q3220391"/>
   </rdf:Description>
 </rdf:RDF>

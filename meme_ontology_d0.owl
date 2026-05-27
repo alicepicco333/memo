@@ -5392,7 +5392,6 @@ Archive
   <rdf:Description rdf:about="https://purl.org/memo#MemeIdea">
     <memo:frbrLevel>Work</memo:frbrLevel>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q3249551"/>
     <rdfs:subClassOf rdf:resource="http://iflastandards.info/ns/fr/frbr/frbrer/C1002"/>
     <rdfs:comment xml:lang="en">The abstract creative idea underlying a meme template; the Work level of the FRBR hierarchy. Represents the core concept, emotional register, or rhetorical function of a meme, independent of any specific image or format.</rdfs:comment>
     <rdfs:label>MemeIdea</rdfs:label>
@@ -6527,7 +6526,6 @@ Archive
   <rdf:Description rdf:about="https://purl.org/memo#SubjectMatter">
     <rdfs:label>SubjectMatter</rdfs:label>
     <memo:semanticLevel>PreIconographical</memo:semanticLevel>
-    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q16334295"/>
     <rdfs:comment xml:lang="en">The primary visual subject category depicted in a meme image (e.g. PersonPresent, AnimalPresent, ObjectOnly). Corresponds to Panofsky's pre-iconographic description level.</rdfs:comment>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>

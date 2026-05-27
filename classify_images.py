@@ -919,10 +919,8 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
             g.add((MEME[c], RDFS.seeAlso, URIRef(f"https://www.wikidata.org/wiki/{CLASS_WD_SEEALSO[c]}")))
         if c in CLASS_WD_EQUIVALENT:
             g.add((MEME[c], OWL.equivalentClass, WD[CLASS_WD_EQUIVALENT[c]]))
-    g.add((MEME.MemeIdea,      RDFS.seeAlso, URIRef("https://www.wikidata.org/wiki/Q3249551")))
-    g.add((MEME.SubjectMatter, RDFS.seeAlso, URIRef("https://www.wikidata.org/wiki/Q16334295")))
     # Labels and seeAlso for the Wikidata entities used as owl:equivalentClass targets.
-    WD_EQUIV_ENTITY_LABELS = {"Q235557": "file format", "Q82794": "geographic region", "Q3220391": "online service"}
+    WD_EQUIV_ENTITY_LABELS = {"Q235557": "FileFormat", "Q82794": "GeographicRegion", "Q3220391": "OnlineService"}
     for _qid, _lbl in WD_EQUIV_ENTITY_LABELS.items():
         g.add((WD[_qid], RDFS.label,   Literal(_lbl, lang="en")))
         g.add((WD[_qid], RDFS.seeAlso, URIRef(f"https://www.wikidata.org/wiki/{_qid}")))

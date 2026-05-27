@@ -6837,7 +6837,6 @@ memo:StyleShift a owl:NamedIndividual,
 memo:SubjectMatter a owl:Class ;
     rdfs:label "SubjectMatter" ;
     rdfs:comment "The primary visual subject category depicted in a meme image (e.g. PersonPresent, AnimalPresent, ObjectOnly). Corresponds to Panofsky's pre-iconographic description level."@en ;
-    rdfs:seeAlso <https://www.wikidata.org/wiki/Q16334295> ;
     memo:semanticLevel "PreIconographical" .
 
 memo:TransformationDimension a owl:Class ;
@@ -9603,7 +9602,6 @@ memo:Static a owl:NamedIndividual,
 memo:MemeIdea a owl:Class ;
     rdfs:label "MemeIdea" ;
     rdfs:comment "The abstract creative idea underlying a meme template; the Work level of the FRBR hierarchy. Represents the core concept, emotional register, or rhetorical function of a meme, independent of any specific image or format."@en ;
-    rdfs:seeAlso <https://www.wikidata.org/wiki/Q3249551> ;
     rdfs:subClassOf frbrer:C1002 ;
     memo:frbrLevel "Work" .
 
