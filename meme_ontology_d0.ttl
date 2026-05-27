@@ -356,7 +356,8 @@ memo:Visual_Effect a owl:NamedIndividual,
 
 memo:_30-year-old-boomer_idea a owl:NamedIndividual,
         memo:MemeIdea ;
-    rdfs:label "_30-year-old-boomer (idea)" ;
+    rdfs:label "928d8a9a57515320068a2c339e88fd28.jpg (idea)" ;
+    memo:conceptDescription "30-Year-Old Boomer is a character spread on 4chan mocking older millennials who enjoy things that are considered to be out of touch with younger millennials, particularly in regards to video games . The phrase generally appears in a greentext story based on a snowclone reading \"that 30 year old boomer who X,\" accompanied by a specific Brainlet Wojak variation."^^xsd:string ;
     memo:isConceptualizedAs memo:_30-year-old-boomer .
 
 memo:_3d-animation-culture a owl:NamedIndividual,
@@ -368,7 +369,8 @@ memo:_3d-animation-culture a owl:NamedIndividual,
 
 memo:_48293_idea a owl:NamedIndividual,
         memo:MemeIdea ;
-    rdfs:label "_48293 (idea)" ;
+    rdfs:label "yourewrong.jpg (idea)" ;
+    memo:conceptDescription "48÷2(9+3) = ? is a math problem that leads to two different answers depending on the order of operations [1] used. Since 2011, message board users have debated over whether 2 or 288 is the correct answer to the problem, with no conclusive answer. This and another seemingly impossible equations have been a hot topic of forum debate that are sometimes used to troll other posters who will vehemently argue that their answer is the definitive one."^^xsd:string ;
     memo:isConceptualizedAs memo:_48293 .
 
 memo:_4chan-paranormal-board a owl:NamedIndividual,
@@ -1846,7 +1848,7 @@ memo:me-and-the-boys_v05 a owl:NamedIndividual,
     wdp:P361 memo:me-and-the-boys ;
     memo:captionText "Me and the boys outside the local Arby's after taking 14 tabs of acid @World war meme_ii ifunny.co"^^xsd:string ;
     memo:hasTransformationDimension memo:CrossoverMerge ;
-    memo:hasTransformationExtent memo:Moderate ;
+    memo:hasTransformationExtent memo:Substantial ;
     memo:photoURL "https://knowyourmeme.com:443/photos/2884868-me-and-the-boys"^^xsd:string ;
     memo:variantFilename "05_876.jpg"^^xsd:string ;
     memo:variantImageURL "https://i.kym-cdn.com/photos/images/original/002/884/868/876.jpg"^^xsd:string ;
@@ -2217,7 +2219,7 @@ memo:surprised-pikachu_v08 a owl:NamedIndividual,
     wdp:P361 memo:surprised-pikachu ;
     memo:captionText "Do you ever realize suddenly, and with awful clarity, that we've become incapable of communicating with each other except through corporate-owned fandoms curated to subsume our identities, expressed via corporate-owned social networks designed to behaviorally addict us? BING! patreon.com.com/Zach Weinersmith smbc-comics.com"^^xsd:string ;
     memo:hasTransformationDimension memo:CompositionShift ;
-    memo:hasTransformationExtent memo:Moderate ;
+    memo:hasTransformationExtent memo:Substantial ;
     memo:photoURL "https://knowyourmeme.com:443/photos/2921812-surprised-pikachu"^^xsd:string ;
     memo:variantFilename "08_dae.png"^^xsd:string ;
     memo:variantImageURL "https://i.kym-cdn.com/photos/images/original/002/921/812/dae.png"^^xsd:string ;
@@ -2245,7 +2247,7 @@ memo:surprised-pikachu_v10 a owl:NamedIndividual,
     wdp:P361 memo:surprised-pikachu ;
     memo:captionText "TCM Internet: We've seen all the surpised Pikachus we are ever going to see. This meme is dead. Japan's toy industry:"^^xsd:string ;
     memo:hasTransformationDimension memo:MediumShift ;
-    memo:hasTransformationExtent memo:Substantial ;
+    memo:hasTransformationExtent memo:Moderate ;
     memo:photoURL "https://knowyourmeme.com:443/photos/2880832-surprised-pikachu"^^xsd:string ;
     memo:variantFilename "10_f4c.jpeg"^^xsd:string ;
     memo:variantImageURL "https://i.kym-cdn.com/photos/images/original/002/880/832/f4c.jpeg"^^xsd:string ;
@@ -2332,7 +2334,7 @@ memo:npc-wojak_v05 a owl:NamedIndividual,
     memo:captionText "Naruto did it first, in 2002."^^xsd:string ;
     memo:hasTransformationDimension memo:CrossoverMerge,
         memo:StyleShift ;
-    memo:hasTransformationExtent memo:Moderate ;
+    memo:hasTransformationExtent memo:Substantial ;
     memo:photoURL "https://knowyourmeme.com:443/photos/2995566-npc-wojak"^^xsd:string ;
     memo:variantFilename "05_9ad.png"^^xsd:string ;
     memo:variantImageURL "https://i.kym-cdn.com/photos/images/original/002/995/566/9ad.png"^^xsd:string ;
@@ -2347,7 +2349,7 @@ memo:npc-wojak_v08 a owl:NamedIndividual,
     memo:captionText "E GP @ElijahSchaffer Hope you all enjoyed your circus 11:52 PM Feb 11, 2024 2.8M Views . :"^^xsd:string ;
     memo:hasTransformationDimension memo:MediumShift,
         memo:StyleShift ;
-    memo:hasTransformationExtent memo:Moderate ;
+    memo:hasTransformationExtent memo:Substantial ;
     memo:photoURL "https://knowyourmeme.com:443/photos/2755458-npc-wojak"^^xsd:string ;
     memo:variantFilename "08_303.png"^^xsd:string ;
     memo:variantImageURL "https://i.kym-cdn.com/photos/images/original/002/755/458/303.png"^^xsd:string ;
@@ -3012,20 +3014,6 @@ memo:Character a owl:NamedIndividual,
         memo:npc-wojak,
         memo:stonks,
         memo:weird-flex-but-ok .
-
-memo:Substantial a owl:NamedIndividual,
-        memo:TransformationExtent ;
-    rdfs:label "Substantial" ;
-    memo:isTransformationExtentOf memo:me-and-the-boys_v08,
-        memo:me-and-the-boys_v09,
-        memo:npc-wojak_v06,
-        memo:steven-crowders-change-my-mind-campus-sign_v01,
-        memo:steven-crowders-change-my-mind-campus-sign_v09,
-        memo:stonks_v02,
-        memo:stonks_v05,
-        memo:stonks_v10,
-        memo:surprised-pikachu_v07,
-        memo:surprised-pikachu_v10 .
 
 memo:ankha-zone a owl:NamedIndividual,
         memo:MemeConcept ;
@@ -4417,6 +4405,23 @@ memo:MultipleSubjects a owl:NamedIndividual,
         memo:wash-the-fucking-dishes,
         memo:woman-yelling-at-a-cat .
 
+memo:Substantial a owl:NamedIndividual,
+        memo:TransformationExtent ;
+    rdfs:label "Substantial" ;
+    memo:isTransformationExtentOf memo:me-and-the-boys_v05,
+        memo:me-and-the-boys_v08,
+        memo:me-and-the-boys_v09,
+        memo:npc-wojak_v05,
+        memo:npc-wojak_v06,
+        memo:npc-wojak_v08,
+        memo:steven-crowders-change-my-mind-campus-sign_v01,
+        memo:steven-crowders-change-my-mind-campus-sign_v09,
+        memo:stonks_v02,
+        memo:stonks_v05,
+        memo:stonks_v10,
+        memo:surprised-pikachu_v07,
+        memo:surprised-pikachu_v08 .
+
 memo:big-chungus a owl:NamedIndividual,
         memo:MemeConcept ;
     rdfs:label "big-chungus" ;
@@ -4838,6 +4843,31 @@ memo:Cartoon a owl:NamedIndividual,
         memo:tiny-tiktok-im-so-small-and-petite,
         memo:we-not-making-it-out-the-hood .
 
+memo:Moderate a owl:NamedIndividual,
+        memo:TransformationExtent ;
+    rdfs:label "Moderate" ;
+    memo:isTransformationExtentOf memo:me-and-the-boys_v01,
+        memo:me-and-the-boys_v03,
+        memo:me-and-the-boys_v04,
+        memo:me-and-the-boys_v06,
+        memo:me-and-the-boys_v07,
+        memo:me-and-the-boys_v10,
+        memo:npc-wojak_v01,
+        memo:npc-wojak_v03,
+        memo:npc-wojak_v04,
+        memo:npc-wojak_v07,
+        memo:npc-wojak_v09,
+        memo:npc-wojak_v10,
+        memo:steven-crowders-change-my-mind-campus-sign_v10,
+        memo:stonks_v03,
+        memo:stonks_v04,
+        memo:stonks_v06,
+        memo:stonks_v07,
+        memo:stonks_v08,
+        memo:surprised-pikachu_v02,
+        memo:surprised-pikachu_v06,
+        memo:surprised-pikachu_v10 .
+
 memo:Unknown a owl:NamedIndividual,
         memo:GeographicRegion,
         memo:MemeFormat,
@@ -4968,34 +4998,6 @@ memo:MediaProperty a owl:Class ;
     rdfs:label "MediaProperty" ;
     rdfs:comment "A media franchise, film, TV series, game, or other creative property referenced by a meme."@en ;
     rdfs:subClassOf memo:CulturalReference .
-
-memo:Moderate a owl:NamedIndividual,
-        memo:TransformationExtent ;
-    rdfs:label "Moderate" ;
-    memo:isTransformationExtentOf memo:me-and-the-boys_v01,
-        memo:me-and-the-boys_v03,
-        memo:me-and-the-boys_v04,
-        memo:me-and-the-boys_v05,
-        memo:me-and-the-boys_v06,
-        memo:me-and-the-boys_v07,
-        memo:me-and-the-boys_v10,
-        memo:npc-wojak_v01,
-        memo:npc-wojak_v03,
-        memo:npc-wojak_v04,
-        memo:npc-wojak_v05,
-        memo:npc-wojak_v07,
-        memo:npc-wojak_v08,
-        memo:npc-wojak_v09,
-        memo:npc-wojak_v10,
-        memo:steven-crowders-change-my-mind-campus-sign_v10,
-        memo:stonks_v03,
-        memo:stonks_v04,
-        memo:stonks_v06,
-        memo:stonks_v07,
-        memo:stonks_v08,
-        memo:surprised-pikachu_v02,
-        memo:surprised-pikachu_v06,
-        memo:surprised-pikachu_v08 .
 
 memo:Photograph a owl:NamedIndividual,
         memo:ImageType ;

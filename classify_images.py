@@ -1248,6 +1248,25 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
         for row in variant_rows:
             variants_by_meme[row["meme_name"]].append(row)
 
+        # Helper: add MemeIdea for a MemeConcept if not already added
+        ideas_added = set()
+        def _ensure_idea(meme_uri, meta_entry, meme_name_label):
+            meme_local = str(meme_uri).split("#")[-1]
+            idea_local = f"{meme_local}_idea"
+            if idea_local in ideas_added:
+                return MEME[idea_local]
+            idea_uri = MEME[idea_local]
+            g.add((idea_uri, RDF.type,   OWL.NamedIndividual))
+            g.add((idea_uri, RDF.type,   MEME.MemeIdea))
+            g.add((idea_uri, RDFS.label, Literal(f"{meme_name_label} (idea)")))
+            desc = (meta_entry.get("description") or "").strip()
+            if desc:
+                g.add((idea_uri, MEME.conceptDescription, Literal(desc, datatype=XSD.string)))
+            g.add((meme_uri, MEME.conceptualizes,     idea_uri))
+            g.add((idea_uri, MEME.isConceptualizedAs, meme_uri))
+            ideas_added.add(idea_local)
+            return idea_uri
+
         n_ideas = n_variants = 0
         for meme_name, rows in variants_by_meme.items():
             url_slug = _meme_slug_from_name(meme_name)
@@ -1264,17 +1283,7 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
             meme_uri, meta_entry = match
             meme_local = str(meme_uri).split("#")[-1]
 
-            # MemeIdea individual
-            idea_local = f"{meme_local}_idea"
-            idea_uri   = MEME[idea_local]
-            g.add((idea_uri, RDF.type,   OWL.NamedIndividual))
-            g.add((idea_uri, RDF.type,   MEME.MemeIdea))
-            g.add((idea_uri, RDFS.label, Literal(f"{meme_name} (idea)")))
-            desc = (meta_entry.get("description") or "").strip()
-            if desc:
-                g.add((idea_uri, MEME.conceptDescription, Literal(desc, datatype=XSD.string)))
-            g.add((meme_uri, MEME.conceptualizes,     idea_uri))
-            g.add((idea_uri, MEME.isConceptualizedAs, meme_uri))
+            _ensure_idea(meme_uri, meta_entry, meme_name)
             n_ideas += 1
 
             # VariantInstance individuals
@@ -1315,6 +1324,21 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
                         g.add((_ext_ind,  MEME.isTransformationExtentOf, v_uri))
 
                 n_variants += 1
+
+        # MemeIdea for the remaining D0 memes (those with cultural references)
+        if cultural_refs_path and Path(cultural_refs_path).exists():
+            with open(cultural_refs_path, encoding="utf-8") as _crf:
+                _cr_slugs = sorted({e["slug"] for e in json.load(_crf)})
+            for _slug in _cr_slugs:
+                _match = url_slug_to_meme_uri.get(_slug)
+                if _match is None:
+                    continue
+                _uri, _me = _match
+                _local = str(_uri).split("#")[-1]
+                if f"{_local}_idea" not in ideas_added:
+                    _label = _me.get("title") or _slug.replace("-", " ").title()
+                    _ensure_idea(_uri, _me, _label)
+                    n_ideas += 1
 
         print(f"  MemeIdea individuals added: {n_ideas}")
         print(f"  VariantInstance individuals added: {n_variants}")

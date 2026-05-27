@@ -15,6 +15,7 @@ let D0_DATA     = null;
 let VARIANTS_DATA = null;
 let TRANSFORM_MAP = {};   /* photoId  → transformation annotation */
 let CULTURAL_MAP  = {};   /* slug     → cultural reference annotation */
+let prevVizHash   = 'sec-variant-gallery'; /* last viz section before entering a detail page */
 let panelSlugs  = [];
 let panelShown  = 0;
 let dsPage      = 0;
@@ -180,7 +181,12 @@ function route() {
     showViz();
   }
 }
-window.addEventListener('hashchange', route);
+window.addEventListener('hashchange', function(e) {
+  const oldHash = (e.oldURL || '').split('#')[1] || '';
+  const isDetailPage = oldHash.startsWith('variant/') || oldHash.startsWith('d0/') || oldHash.startsWith('meme/');
+  if (!isDetailPage && oldHash) prevVizHash = oldHash;
+  route();
+});
 
 function showPage(name, navPage) {
   var app = document.getElementById('app');
@@ -1126,7 +1132,6 @@ function buildVariantGallery() {
     html += '<div class="vg-row">';
     html += '<div class="vg-label">';
     html += '<span class="vg-meme-name">' + escHtml(memeName) + '</span>';
-    html += '<span class="vg-canon-badge" style="color:' + canonColor + '">Original: ' + escHtml(originalType) + '</span>';
     html += '</div>';
     html += '<div class="vg-thumbs">';
 
@@ -1135,11 +1140,11 @@ function buildVariantGallery() {
     var originalImg = originalMeme ? (memeRemoteSrc(originalMeme) || memeLocalSrc(originalMeme)) : '';
     html += '<a class="vg-thumb vg-thumb-original" href="' + escHtml(originalHref) + '" title="Original template · ' + escHtml(originalType) + '">';
     if (originalImg) {
-      html += '<img src="' + escHtml(originalImg) + '" alt="' + escHtml(memeName + ' original') + '" loading="lazy" style="border:2px solid ' + canonColor + '">';
+      html += '<img src="' + escHtml(originalImg) + '" alt="' + escHtml(memeName + ' original') + '" loading="lazy" style="border:2px solid #222">';
     } else {
       html += '<div class="vg-thumb-missing">?</div>';
     }
-    html += '<span class="vg-ext-label" style="color:' + canonColor + '">ORIGINAL</span>';
+    html += '<span class="vg-ext-label" style="color:#222">ORIGINAL</span>';
     html += '</a>';
 
     uniqueVariants.forEach(function(a) {
@@ -1542,7 +1547,7 @@ function showD0Page(id) {
   const img     = m.image_url || m.image_path || '';
 
   document.getElementById('d0-page-content').innerHTML = `
-    <button class="meme-page-back" onclick="history.back()">&#8592; Back to Datasets</button>
+    <button class="meme-page-back" onclick="location.hash='#'+prevVizHash">&#8592; Back to Visualizations</button>
     <div class="meme-page-layout">
       <div class="meme-page-img-col">
         <img src="${escHtml(img)}" alt="${escHtml(title)}"/>
@@ -1638,7 +1643,7 @@ function showVariantPage(photoId) {
     : '';
 
   document.getElementById('variant-page-content').innerHTML = `
-    <button class="meme-page-back" onclick="history.back()">&#8592; Back to Datasets</button>
+    <button class="meme-page-back" onclick="location.hash='#'+prevVizHash">&#8592; Back to Visualizations</button>
     <div class="meme-page-layout">
       <div class="meme-page-img-col">
         <img src="${img}" alt="${escHtml(title)}"${onError}/>
