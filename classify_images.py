@@ -733,13 +733,11 @@ MEMO_CLASS_COMMENTS = {
     "CulturalReference": "Cultural artefact, event, or phenomenon that a meme iconologically references; aligned with Wikidata Q96622155.",
 }
 
-# Wikidata seeAlso QIDs for memo: classes that have a WD equivalent
+# Wikidata seeAlso QIDs for memo: classes that have a WD equivalent.
+# GeographicRegion, OriginPlatform, FileFormat are omitted — they have owl:equivalentClass instead.
 CLASS_WD_SEEALSO = {
-    "GeographicRegion":  "Q82794",
     "TimePeriod":        "Q11471",
-    "OriginPlatform":    "Q3220391",
     "OriginWork":        "Q386724",
-    "FileFormat":        "Q235557",
     "CulturalReference": "Q96622155",
 }
 
@@ -813,6 +811,7 @@ SEMANTIC_LEVELS = {
     "MemeFormat":        "Iconographical",
     "SubjectMatter":     "PreIconographical",
     "ImageType":         "PreIconographical",
+    "AnimationStatus":   "PreIconographical",
     "CulturalReference": "Iconological",
 }
 
@@ -922,6 +921,11 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
             g.add((MEME[c], OWL.equivalentClass, WD[CLASS_WD_EQUIVALENT[c]]))
     g.add((MEME.MemeIdea,      RDFS.seeAlso, URIRef("https://www.wikidata.org/wiki/Q3249551")))
     g.add((MEME.SubjectMatter, RDFS.seeAlso, URIRef("https://www.wikidata.org/wiki/Q16334295")))
+    # Labels and seeAlso for the Wikidata entities used as owl:equivalentClass targets.
+    WD_EQUIV_ENTITY_LABELS = {"Q235557": "file format", "Q82794": "geographic region", "Q3220391": "online service"}
+    for _qid, _lbl in WD_EQUIV_ENTITY_LABELS.items():
+        g.add((WD[_qid], RDFS.label,   Literal(_lbl, lang="en")))
+        g.add((WD[_qid], RDFS.seeAlso, URIRef(f"https://www.wikidata.org/wiki/{_qid}")))
 
     # IFLA FRBR subclass declarations
     g.add((FRBRER.C1002, RDFS.label, Literal("Work (FRBRer)", lang="en")))

@@ -274,7 +274,6 @@ wdp:P527 a owl:ObjectProperty ;
 memo:FileFormat a owl:Class ;
     rdfs:label "FileFormat" ;
     rdfs:comment "Digital file format of the meme image resource; aligned with Wikidata Q235557."@en ;
-    rdfs:seeAlso <https://www.wikidata.org/wiki/Q235557> ;
     owl:equivalentClass wd:Q235557 .
 
 memo:conceptualizes a owl:ObjectProperty ;
@@ -404,12 +403,12 @@ memo:isTransformationExtentOf a owl:ObjectProperty ;
 
 memo:AnimationStatus a owl:Class ;
     rdfs:label "AnimationStatus" ;
-    rdfs:comment "Whether a meme image is animated (Animated, i.e. a GIF) or static (Static). Derived from file extension."@en .
+    rdfs:comment "Whether a meme image is animated (Animated, i.e. a GIF) or static (Static). Derived from file extension."@en ;
+    memo:semanticLevel "PreIconographical" .
 
 memo:GeographicRegion a owl:Class ;
     rdfs:label "GeographicRegion" ;
     rdfs:comment "Geographic region or country of meme origin; aligned with Wikidata Q82794."@en ;
-    rdfs:seeAlso <https://www.wikidata.org/wiki/Q82794> ;
     owl:equivalentClass wd:Q82794 .
 
 memo:ImageType a owl:Class ;
@@ -420,7 +419,6 @@ memo:ImageType a owl:Class ;
 memo:OriginPlatform a owl:Class ;
     rdfs:label "OriginPlatform" ;
     rdfs:comment "Online platform or service where the meme was first published; aligned with Wikidata Q3220391."@en ;
-    rdfs:seeAlso <https://www.wikidata.org/wiki/Q3220391> ;
     owl:equivalentClass wd:Q3220391 .
 
 memo:SubjectMatter a owl:Class ;
@@ -476,4 +474,16 @@ memo:MemeConcept a owl:Class ;
     rdfs:comment "A meme template or canonical format; the Expression level of the FRBR hierarchy. Represents the stable, recognisable form of a meme as documented on Know Your Meme."@en ;
     rdfs:subClassOf frbrer:C1003 ;
     memo:frbrLevel "Expression" .
+
+wd:Q235557
+    rdfs:label "file format"@en ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q235557> .
+
+wd:Q82794
+    rdfs:label "geographic region"@en ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q82794> .
+
+wd:Q3220391
+    rdfs:label "online service"@en ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q3220391> .
 

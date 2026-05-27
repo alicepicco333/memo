@@ -196,7 +196,6 @@
   <rdf:Description rdf:about="https://purl.org/memo#FileFormat">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>FileFormat</rdfs:label>
-    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q235557"/>
     <owl:equivalentClass rdf:resource="http://www.wikidata.org/entity/Q235557"/>
     <rdfs:comment xml:lang="en">Digital file format of the meme image resource; aligned with Wikidata Q235557.</rdfs:comment>
   </rdf:Description>
@@ -353,6 +352,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:comment xml:lang="en">Whether a meme image is animated (Animated, i.e. a GIF) or static (Static). Derived from file extension.</rdfs:comment>
     <rdfs:label>AnimationStatus</rdfs:label>
+    <memo:semanticLevel>PreIconographical</memo:semanticLevel>
   </rdf:Description>
   <rdf:Description rdf:about="https://purl.org/memo#VariantInstance">
     <rdfs:subClassOf rdf:resource="http://iflastandards.info/ns/fr/frbr/frbrer/C1004"/>
@@ -488,7 +488,6 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>OriginPlatform</rdfs:label>
     <rdfs:comment xml:lang="en">Online platform or service where the meme was first published; aligned with Wikidata Q3220391.</rdfs:comment>
-    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q3220391"/>
     <owl:equivalentClass rdf:resource="http://www.wikidata.org/entity/Q3220391"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://schema.org/MusicAlbum">
@@ -529,7 +528,6 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>GeographicRegion</rdfs:label>
     <rdfs:comment xml:lang="en">Geographic region or country of meme origin; aligned with Wikidata Q82794.</rdfs:comment>
-    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q82794"/>
     <owl:equivalentClass rdf:resource="http://www.wikidata.org/entity/Q82794"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://purl.org/memo#HistoricalEvent">
@@ -610,6 +608,18 @@
   <rdf:Description rdf:nodeID="Nbb66711984e84f2e914674b0c8d2434e">
     <rdf:first rdf:resource="https://purl.org/memo#VariantInstance"/>
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.wikidata.org/entity/Q235557">
+    <rdfs:label>file format</rdfs:label>
+    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q235557"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.wikidata.org/entity/Q82794">
+    <rdfs:label>geographic region</rdfs:label>
+    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q82794"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.wikidata.org/entity/Q3220391">
+    <rdfs:label>online service</rdfs:label>
+    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q3220391"/>
   </rdf:Description>
 </rdf:RDF>
 

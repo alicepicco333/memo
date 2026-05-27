@@ -6183,7 +6183,8 @@ memo:woman-yelling-at-a-cat_v09 a owl:NamedIndividual,
 
 memo:AnimationStatus a owl:Class ;
     rdfs:label "AnimationStatus" ;
-    rdfs:comment "Whether a meme image is animated (Animated, i.e. a GIF) or static (Static). Derived from file extension."@en .
+    rdfs:comment "Whether a meme image is animated (Animated, i.e. a GIF) or static (Static). Derived from file extension."@en ;
+    memo:semanticLevel "PreIconographical" .
 
 memo:Drawing a owl:NamedIndividual,
         memo:ImageType ;
@@ -6664,7 +6665,6 @@ memo:CharacterPresent a owl:NamedIndividual,
 memo:GeographicRegion a owl:Class ;
     rdfs:label "GeographicRegion" ;
     rdfs:comment "Geographic region or country of meme origin; aligned with Wikidata Q82794."@en ;
-    rdfs:seeAlso <https://www.wikidata.org/wiki/Q82794>  ;
     owl:equivalentClass wd:Q82794 .
 
 memo:NarrativeFormat a owl:Class ;
@@ -6757,7 +6757,6 @@ memo:CompositionShift a owl:NamedIndividual,
 memo:FileFormat a owl:Class ;
     rdfs:label "FileFormat" ;
     rdfs:comment "Digital file format of the meme image resource; aligned with Wikidata Q235557."@en ;
-    rdfs:seeAlso <https://www.wikidata.org/wiki/Q235557>  ;
     owl:equivalentClass wd:Q235557 .
 
 memo:Localization a owl:NamedIndividual,
@@ -7136,7 +7135,6 @@ memo:Exploitable a owl:NamedIndividual,
 memo:OriginPlatform a owl:Class ;
     rdfs:label "OriginPlatform" ;
     rdfs:comment "Online platform or service where the meme was first published; aligned with Wikidata Q3220391."@en ;
-    rdfs:seeAlso <https://www.wikidata.org/wiki/Q3220391>  ;
     owl:equivalentClass wd:Q3220391 .
 
 memo:PublicFigure a owl:Class ;

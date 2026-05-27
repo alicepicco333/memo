@@ -8296,7 +8296,6 @@ I stole this from here and cropped it a little. The name is from a Conan tweet I
   <rdf:Description rdf:about="https://purl.org/memo#FileFormat">
     <rdfs:comment xml:lang="en">Digital file format of the meme image resource; aligned with Wikidata Q235557.</rdfs:comment>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q235557"/>
     <owl:equivalentClass rdf:resource="http://www.wikidata.org/entity/Q235557"/>
     <rdfs:label>FileFormat</rdfs:label>
   </rdf:Description>
@@ -8708,7 +8707,6 @@ https://www.youtube.com/watch?v=Wga5A6R9BJg</memo:captionText>
   <rdf:Description rdf:about="https://purl.org/memo#OriginPlatform">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>OriginPlatform</rdfs:label>
-    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q3220391"/>
     <owl:equivalentClass rdf:resource="http://www.wikidata.org/entity/Q3220391"/>
     <rdfs:comment xml:lang="en">Online platform or service where the meme was first published; aligned with Wikidata Q3220391.</rdfs:comment>
   </rdf:Description>
@@ -9495,7 +9493,6 @@ https://www.youtube.com/watch?v=Wga5A6R9BJg</memo:captionText>
     <rdfs:comment xml:lang="en">Geographic region or country of meme origin; aligned with Wikidata Q82794.</rdfs:comment>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>GeographicRegion</rdfs:label>
-    <rdfs:seeAlso rdf:resource="https://www.wikidata.org/wiki/Q82794"/>
     <owl:equivalentClass rdf:resource="http://www.wikidata.org/entity/Q82794"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://purl.org/memo#minecraft-video-game">
