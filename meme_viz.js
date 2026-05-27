@@ -909,15 +909,15 @@ function buildPlatformTimeStacked() {
     .padding(0.22);
 
   const platformColorMap = {
-    '4chan':     '#7dc497',  // sage green   — 4chan's green
-    'Facebook':  '#839de0',  // cornflower   — Facebook blue
-    'Instagram': '#d68fba',  // dusty rose   — Instagram gradient midpoint
-    'Reddit':    '#e09a7e',  // terra cotta  — Reddit orange
-    'TikTok':    '#68cfd4',  // teal         — TikTok accent
-    'Tumblr':    '#93adc4',  // slate        — Tumblr navy softened
-    'TwitterX':  '#7ec0e8',  // sky blue     — Twitter classic
-    'YouTube':   '#e07e7a',  // coral red    — YouTube red
-    'Other':     '#b0c0cc',  // neutral      — gray-blue
+    '4chan':     '#5cb87a',  // medium green  — 4chan green
+    'Facebook':  '#7090d4',  // cornflower    — Facebook blue
+    'Instagram': '#d06eb4',  // rose pink     — Instagram gradient
+    'Reddit':    '#e08c68',  // warm orange   — Reddit orange
+    'TikTok':    '#3ec4c4',  // teal          — TikTok cyan
+    'Tumblr':    '#6898bc',  // steel blue    — Tumblr navy
+    'TwitterX':  '#52b2e6',  // sky blue      — Twitter classic
+    'YouTube':   '#e06464',  // coral red     — YouTube red
+    'Other':     '#98afbf',  // neutral       — grey-blue
   };
   const color = platform =>
     platformColorMap[platform] || '#b0b8c8';
@@ -1228,8 +1228,8 @@ function buildVariantBubble() {
   // Pad scale ranges by half the image size so no image is clipped at the edges
   var PAD = IMG_SIZE / 2 + 4;
 
-  // X = Number of Views (linear scale)
-  var xScale = d3.scaleLinear()
+  // X = Number of Views (log scale)
+  var xScale = d3.scaleLog()
     .domain([d3.min(points, function(p) { return Math.max(1, p.views); }),
              d3.max(points, function(p) { return p.views; })])
     .range([PAD, w - PAD]).nice();

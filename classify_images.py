@@ -988,20 +988,19 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
         lang="en")))
     # dcterms: metadata properties
     for _prop, _label, _rng, _ptype in [
-        (DCTERMS.created,     "created",     XSD.integer,  OWL.AnnotationProperty),
-        (DCTERMS.description, "description", XSD.string,   OWL.AnnotationProperty),
-        (DCTERMS.modified,    "modified",    XSD.string,   OWL.AnnotationProperty),
-        (DCTERMS["format"],      "format",      MEME.FileFormat, OWL.ObjectProperty),
+        (DCTERMS.created,     "created",     XSD.integer,       OWL.AnnotationProperty),
+        (DCTERMS.description, "description", XSD.string,        OWL.AnnotationProperty),
+        (DCTERMS.modified,    "modified",    XSD.string,        OWL.AnnotationProperty),
+        (DCTERMS["format"],   "format",      MEME.FileFormat,   OWL.ObjectProperty),
     ]:
         g.add((_prop, RDF.type,    _ptype))
         g.add((_prop, RDFS.domain, MEME.MemeConcept))
         g.add((_prop, RDFS.range,  _rng))
-        g.add((_prop, RDFS.label,  Literal(_label)))
+        g.add((_prop, RDFS.label,  Literal(_label, lang="en")))
     g.add((DCTERMS["format"], RDFS.comment, Literal(
         "File format of the meme image (JPEG, PNG, GIF, etc.), "
-        "linked to a FileFormat individual (wd:Q235557). "
-        "Uses dcterms:format rather than a memo: property to align with Dublin Core usage.",
-        lang="en")))
+        "linked to a FileFormat individual. "
+        "Uses dcterms:format to align with Dublin Core usage.")))
     # schema: annotation properties
     for _prop, _label in [
         (SCHEMA.url,      "url"),

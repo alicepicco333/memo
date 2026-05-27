@@ -1,923 +1,871 @@
-﻿[
-    {
-        "photoId":  "3254413",
-        "variantIndex":  1,
-        "memeName":  "Woman Yelling at a Cat",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#woman-yelling-at-a-cat",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_3254413",
-        "variantTitle":  "Adam Thomas vs. Jimmy Bullard",
-        "variantUploader":  "SheevenMemehern",
-        "captionText":  "Adam Thomas yells at Jimmy Bullard for quitting a trial in the season of...",
-        "canonicalImageType":  "Photograph",
-        "variantImageType":  "Photograph",
-        "transformationDimension":  [
-                                        "CaptionChange",
-                                        "CrossoverMerge"
-                                    ],
-        "transformationExtent":  "Substantial",
-        "notes":  "Real TV personalities replace both panels; template structure preserved but both visual subjects entirely replaced with real people from a British TV show. Extent is Substantial because nothing visual from the original remains beyond the two-panel confrontation format.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/254/413/6cd.png"
-    },
-    {
-        "photoId":  "3226206",
-        "variantIndex":  2,
-        "memeName":  "Woman Yelling at a Cat",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#woman-yelling-at-a-cat",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_3226206",
-        "variantTitle":  "True for 99% of redditors",
-        "variantUploader":  "Reddit Moments",
-        "captionText":  "Redditors / An opinion that contradicts theirs even slightly",
-        "canonicalImageType":  "Photograph",
-        "variantImageType":  "Photograph",
-        "transformationDimension":  [
-                                        "CaptionChange"
-                                    ],
-        "transformationExtent":  "Minimal",
-        "notes":  "Standard caption substitution, original two-panel photograph unchanged",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/226/206/327.jpeg"
-    },
-    {
-        "photoId":  "3225851",
-        "variantIndex":  3,
-        "memeName":  "Woman Yelling at a Cat",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#woman-yelling-at-a-cat",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_3225851",
-        "variantTitle":  "A good old Madoka meme",
-        "variantUploader":  "Reddit Moments",
-        "captionText":  "You motherfucker, you didn\u0027t tell us this would happen! You signed...",
-        "canonicalImageType":  "Photograph",
-        "variantImageType":  "Photograph",
-        "transformationDimension":  [
-                                        "CaptionChange"
-                                    ],
-        "transformationExtent":  "Moderate",
-        "notes":  "Caption draws from Puella Magi Madoka Magica dialogue but the image is the original unchanged photograph. No visual integration of anime elements. The caption substantially reframes the template's cultural register without altering the image.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/225/851/742.jpeg"
-    },
-    {
-        "photoId":  "3212201",
-        "variantIndex":  4,
-        "memeName":  "Woman Yelling at a Cat",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#woman-yelling-at-a-cat",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_3212201",
-        "variantTitle":  "This isn\u0027t the Pride Lands, Sora!",
-        "variantUploader":  "Adam DeLand",
-        "captionText":  "coshi-dragonite deviantart.com",
-        "canonicalImageType":  "Photograph",
-        "variantImageType":  "Drawing",
-        "transformationDimension":  [
-                                        "MediumShift",
-                                        "CrossoverMerge"
-                                    ],
-        "transformationExtent":  "Substantial",
-        "notes":  "Template redrawn as fan art featuring characters from Kingdom Hearts and Lion King; full medium shift from photograph to drawing, explicit visual crossover between two fictional IPs integrated into the two-panel structure.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/212/201/274.jpg"
-    },
-    {
-        "photoId":  "3205714",
-        "variantIndex":  5,
-        "memeName":  "Woman Yelling at a Cat",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#woman-yelling-at-a-cat",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_3205714",
-        "variantTitle":  "Bruh the last 6 years have sucked",
-        "variantUploader":  "Reddit Moments",
-        "captionText":  "The world for 6 years / Me just wanting to exist",
-        "canonicalImageType":  "Photograph",
-        "variantImageType":  "Photograph",
-        "transformationDimension":  [
-                                        "CaptionChange"
-                                    ],
-        "transformationExtent":  "Minimal",
-        "notes":  "Standard caption substitution with social commentary framing; image unchanged.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/205/714/08a.jpeg"
-    },
-    {
-        "photoId":  "3141403",
-        "variantIndex":  6,
-        "memeName":  "Woman Yelling at a Cat",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#woman-yelling-at-a-cat",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_3141403",
-        "variantTitle":  "A meme on this box",
-        "variantUploader":  "Jaimie Hamilton",
-        "captionText":  "It\u0027s a meticulously designed and perfectly balanced piece of playable art.",
-        "canonicalImageType":  "Photograph",
-        "variantImageType":  "Photograph",
-        "transformationDimension":  [
-                                        "MediumShift",
-                                        "CompositionShift"
-                                    ],
-        "transformationExtent":  "Moderate",
-        "notes":  "Meme printed on a physical object and rephotographed; medium shift from digital image to physical object photographed in the real world, with compositional reframing through the box surface as substrate.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/141/403/43d.jpg"
-    },
-    {
-        "photoId":  "3095640",
-        "variantIndex":  7,
-        "memeName":  "Woman Yelling at a Cat",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#woman-yelling-at-a-cat",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_3095640",
-        "variantTitle":  "What did you expect?",
-        "variantUploader":  "Jaimie Hamilton",
-        "captionText":  "MY NEIGHBORS COMPLAINING ABOUT FIREWORK NOISE / ME JUST CELEBRATING AMERICA\u0027S BDAY",
-        "canonicalImageType":  "Photograph",
-        "variantImageType":  "Photograph",
-        "transformationDimension":  [
-                                        "CaptionChange",
-                                        "Localization"
-                                    ],
-        "transformationExtent":  "Minimal",
-        "notes":  "Caption localized to US Fourth of July cultural context; image unchanged.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/095/640/dc5.jpg"
-    },
-    {
-        "photoId":  "3055709",
-        "variantIndex":  8,
-        "memeName":  "Woman Yelling at a Cat",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#woman-yelling-at-a-cat",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_3055709",
-        "variantTitle":  "Well, it Just Ruins your life",
-        "variantUploader":  "Reddit Moments",
-        "captionText":  "If we are so technologically advanced, why isn\u0027t there any artificial dopamine?",
-        "canonicalImageType":  "Photograph",
-        "variantImageType":  "Photograph",
-        "transformationDimension":  [
-                                        "CaptionChange"
-                                    ],
-        "transformationExtent":  "Minimal",
-        "notes":  "Standard caption substitution with tech/science commentary; image unchanged.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/055/709/cf8.jpeg"
-    },
-    {
-        "photoId":  "3050678",
-        "variantIndex":  9,
-        "memeName":  "Woman Yelling at a Cat",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#woman-yelling-at-a-cat",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_3050678",
-        "variantTitle":  "Heal Thy Burgers",
-        "variantUploader":  "Jaimie Hamilton",
-        "captionText":  "HEAL THY BURGERS / Healthy Burgers! Heal Thy Burgers",
-        "canonicalImageType":  "Photograph",
-        "variantImageType":  "Photograph",
-        "transformationDimension":  [
-                                        "CaptionChange"
-                                    ],
-        "transformationExtent":  "Minimal",
-        "notes":  "Self-aware pun on the word Healthy; caption-only change with no visual modification.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/050/678/5a3.jpg"
-    },
-    {
-        "photoId":  "3032720",
-        "variantIndex":  10,
-        "memeName":  "Woman Yelling at a Cat",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#woman-yelling-at-a-cat",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_3032720",
-        "variantTitle":  "Krillin know the truth",
-        "variantUploader":  "Sum Lu Zer",
-        "captionText":  "C / C",
-        "canonicalImageType":  "Photograph",
-        "variantImageType":  "Photograph",
-        "transformationDimension":  [
-                                        "CaptionChange"
-                                    ],
-        "transformationExtent":  "Minimal",
-        "notes":  "Caption text is minimal; title references Krillin from Dragon Ball Z but the image is the original unchanged photograph with no visual integration of anime elements.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/032/720/5cf"
-    },
-    {
-        "photoId":  "3055187",
-        "variantIndex":  1,
-        "memeName":  "Me Gusta",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#me-gusta",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_3055187",
-        "variantTitle":  "The revolution has begun!",
-        "variantUploader":  "Reddit Moments",
-        "captionText":  "SEES OLD MEMES / ME GUSTA",
-        "canonicalImageType":  "Drawing",
-        "variantImageType":  "Drawing",
-        "transformationDimension":  [
-                                        "CaptionChange"
-                                    ],
-        "transformationExtent":  "Minimal",
-        "notes":  "Standard caption substitution on original drawing; self-referential caption about old memes",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/055/187/ec9.jpeg"
-    },
-    {
-        "photoId":  "2634604",
-        "variantIndex":  2,
-        "memeName":  "Me Gusta",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#me-gusta",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2634604",
-        "variantTitle":  "Me Gusta Fan Art",
-        "variantUploader":  "Unknown",
-        "captionText":  "",
-        "canonicalImageType":  "Drawing",
-        "variantImageType":  "Drawing",
-        "transformationDimension":  [
-                                        "StyleShift"
-                                    ],
-        "transformationExtent":  "Moderate",
-        "notes":  "Fan art reinterpretation of the original drawing in a different art style; no caption present, the style transformation is the sole dimension of change.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/634/604/469.jpg"
-    },
-    {
-        "photoId":  "2093626",
-        "variantIndex":  3,
-        "memeName":  "Me Gusta",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#me-gusta",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2093626",
-        "variantTitle":  "Me Gusta rejected Hot Topic T-shirt design",
-        "variantUploader":  "Unknown",
-        "captionText":  "Me Gusta rejected Hot Topic T-shirt design from the original creator",
-        "canonicalImageType":  "Drawing",
-        "variantImageType":  "Drawing",
-        "transformationDimension":  [
-                                        "MediumShift",
-                                        "CompositionShift"
-                                    ],
-        "transformationExtent":  "Moderate",
-        "notes":  "Documentary image of a physical merchandise design artifact; template transferred to a commercial product context and photographed, constituting a medium shift from digital drawing to physical product.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/093/626/d2c.jpg"
-    },
-    {
-        "photoId":  "1945179",
-        "variantIndex":  4,
-        "memeName":  "Me Gusta",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#me-gusta",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_1945179",
-        "variantTitle":  "Boo!",
-        "variantUploader":  "Unknown",
-        "captionText":  "Boo!",
-        "canonicalImageType":  "Drawing",
-        "variantImageType":  "Drawing",
-        "transformationDimension":  [
-                                        "CaptionChange"
-                                    ],
-        "transformationExtent":  "Minimal",
-        "notes":  "Single-word caption variant; no visual change.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/001/945/179/ae2.jpeg"
-    },
-    {
-        "photoId":  "1941912",
-        "variantIndex":  5,
-        "memeName":  "Me Gusta",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#me-gusta",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_1941912",
-        "variantTitle":  "Helicopter! Helicopter!",
-        "variantUploader":  "Unknown",
-        "captionText":  "I have become the helicopter",
-        "canonicalImageType":  "Drawing",
-        "variantImageType":  "Drawing",
-        "transformationDimension":  [
-                                        "CaptionChange"
-                                    ],
-        "transformationExtent":  "Minimal",
-        "notes":  "Absurdist caption in classic exploitable style; no visual change.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/001/941/912/504.png"
-    },
-    {
-        "photoId":  "1484749",
-        "variantIndex":  6,
-        "memeName":  "Me Gusta",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#me-gusta",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_1484749",
-        "variantTitle":  "Me Gusta Face Stag",
-        "variantUploader":  "Unknown",
-        "captionText":  "Stag with me gusta face",
-        "canonicalImageType":  "Drawing",
-        "variantImageType":  "Drawing",
-        "transformationDimension":  [
-                                        "StyleShift"
-                                    ],
-        "transformationExtent":  "Substantial",
-        "notes":  "Me Gusta face transplanted onto a stag animal; not a crossover with another meme or IP, not image degradation. Visual transformation of the template's subject through stylistic transposition onto an entirely different creature, departing substantially from the canonical template.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/001/484/749/a83.jpg"
-    },
-    {
-        "photoId":  "1265435",
-        "variantIndex":  7,
-        "memeName":  "Me Gusta",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#me-gusta",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_1265435",
-        "variantTitle":  "G-Dragon Me Gusta",
-        "variantUploader":  "Unknown",
-        "captionText":  "IL MEGUSTA",
-        "canonicalImageType":  "Drawing",
-        "variantImageType":  "Drawing",
-        "transformationDimension":  [
-                                        "CaptionChange",
-                                        "Localization"
-                                    ],
-        "transformationExtent":  "Moderate",
-        "notes":  "Caption localised to Italian language; genuine linguistic adaptation of the template constituting a LanguageShift embedded within the Localization dimension.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/001/265/435/b74.gif"
-    },
-    {
-        "photoId":  "1209248",
-        "variantIndex":  8,
-        "memeName":  "Me Gusta",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#me-gusta",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_1209248",
-        "variantTitle":  "What can save us from this?",
-        "variantUploader":  "Unknown",
-        "captionText":  "U GUSTA?",
-        "canonicalImageType":  "Drawing",
-        "variantImageType":  "Drawing",
-        "transformationDimension":  [
-                                        "CaptionChange"
-                                    ],
-        "transformationExtent":  "Minimal",
-        "notes":  "Single-phrase caption variation on the template's own name; most minimal variant in the Me Gusta set.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/001/209/248/432.gif"
-    },
-    {
-        "photoId":  "1111309",
-        "variantIndex":  9,
-        "memeName":  "Me Gusta",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#me-gusta",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_1111309",
-        "variantTitle":  "No Me Gusta",
-        "variantUploader":  "Unknown",
-        "captionText":  "GUSTA",
-        "canonicalImageType":  "Drawing",
-        "variantImageType":  "Drawing",
-        "transformationDimension":  [
-                                        "CaptionChange"
-                                    ],
-        "transformationExtent":  "Minimal",
-        "notes":  "Minimal caption and framing change in a standard Me Gusta image macro",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/001/111/309/d02.png"
-    },
-    {
-        "photoId":  "931673",
-        "variantIndex":  10,
-        "memeName":  "Me Gusta",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#me-gusta",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_931673",
-        "variantTitle":  "Furry Me Gusta",
-        "variantUploader":  "Unknown",
-        "captionText":  "Furry Me Gusta",
-        "canonicalImageType":  "Drawing",
-        "variantImageType":  "Drawing",
-        "transformationDimension":  [
-                                        "StyleShift",
-                                        "CrossoverMerge"
-                                    ],
-        "transformationExtent":  "Substantial",
-        "notes":  "Furry art style reinterpretation of the Me Gusta face; crossover with a distinct visual tradition and subculture aesthetic register, substantially departing from the canonical drawing style.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/000/931/673/96f.png"
-    },
-    {
-        "photoId":  "3223636",
-        "variantIndex":  1,
-        "memeName":  "Big Chungus",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#big-chungus",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_3223636",
-        "variantTitle":  "Stay safe",
-        "variantUploader":  "Unknown",
-        "captionText":  "BIG CHUNGUS SAYS NO TO VAPING / Follow the chung, don\u0027t ruin your lung",
-        "canonicalImageType":  "Cartoon",
-        "variantImageType":  "Cartoon",
-        "transformationDimension":  [
-                                        "CaptionChange"
-                                    ],
-        "transformationExtent":  "Minimal",
-        "notes":  "Standard caption substitution using Big Chungus as a public health mascot figure",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/223/636/0e2.jpg"
-    },
-    {
-        "photoId":  "2486383",
-        "variantIndex":  2,
-        "memeName":  "Big Chungus",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#big-chungus",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2486383",
-        "variantTitle":  "Chungus All the Way",
-        "variantUploader":  "Unknown",
-        "captionText":  "COMING THIS WINTER / Chungus All the Way",
-        "canonicalImageType":  "Cartoon",
-        "variantImageType":  "Cartoon",
-        "transformationDimension":  [
-                                        "CaptionChange",
-                                        "CompositionShift"
-                                    ],
-        "transformationExtent":  "Moderate",
-        "notes":  "Template formatted as a movie poster with title treatment; compositional reframing as promotional media changes the visual framing significantly while retaining the original character.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/486/383/ba7.jpg"
-    },
-    {
-        "photoId":  "2443355",
-        "variantIndex":  3,
-        "memeName":  "Big Chungus",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#big-chungus",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2443355",
-        "variantTitle":  "An edited render of Mario from Super Mario 64 Quiz Buch",
-        "variantUploader":  "Unknown",
-        "captionText":  "An officially licensed 1997 Super Mario quiz book from Germany most likely inspired by Big Chungus",
-        "canonicalImageType":  "Cartoon",
-        "variantImageType":  "Cartoon",
-        "transformationDimension":  [
-                                        "CrossoverMerge"
-                                    ],
-        "transformationExtent":  "Substantial",
-        "notes":  "Retroactively attributes Big Chungus aesthetic to a 1997 licensed Mario product; crossover between Looney Tunes and Nintendo IP constitutes a substantial departure from the canonical template.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/443/355/33c"
-    },
-    {
-        "photoId":  "2435116",
-        "variantIndex":  4,
-        "memeName":  "Big Chungus",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#big-chungus",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2435116",
-        "variantTitle":  "Big Chungus Application",
-        "variantUploader":  "Unknown",
-        "captionText":  "Warner Bros. trademark Big Chungus for use of a video game",
-        "canonicalImageType":  "Cartoon",
-        "variantImageType":  "Photograph",
-        "transformationDimension":  [
-                                        "MediumShift",
-                                        "CompositionShift"
-                                    ],
-        "transformationExtent":  "Substantial",
-        "notes":  "Screenshot of trademark application document; medium shift from cartoon to legal/documentary screenshot, with the meme's commercial identity foregrounded as the compositional subject.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/435/116/c75.png"
-    },
-    {
-        "photoId":  "2318040",
-        "variantIndex":  5,
-        "memeName":  "Big Chungus",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#big-chungus",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2318040",
-        "variantTitle":  "Big Chungus seduce him!",
-        "variantUploader":  "Unknown",
-        "captionText":  "Super Seducer @Zainmation Big Chungus seduce him!",
-        "canonicalImageType":  "Cartoon",
-        "variantImageType":  "Cartoon",
-        "transformationDimension":  [
-                                        "CaptionChange",
-                                        "CrossoverMerge"
-                                    ],
-        "transformationExtent":  "Moderate",
-        "notes":  "Ash Ketchum from Pokemon drawn into the image framing Big Chungus as a Pokemon to be seduced; explicit visual crossover between Looney Tunes and Pokemon IP with caption reinforcing the crossover logic.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/318/040/19b.jpg"
-    },
-    {
-        "photoId":  "2276336",
-        "variantIndex":  6,
-        "memeName":  "Big Chungus",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#big-chungus",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2276336",
-        "variantTitle":  "Gargomon but Big Chungus",
-        "variantUploader":  "Unknown",
-        "captionText":  "Gargomon but Big Chungus",
-        "canonicalImageType":  "Cartoon",
-        "variantImageType":  "Cartoon",
-        "transformationDimension":  [
-                                        "StyleShift",
-                                        "CrossoverMerge"
-                                    ],
-        "transformationExtent":  "Substantial",
-        "notes":  "Digimon character Gargomon redrawn in the Big Chungus visual style; crossover between Looney Tunes and Digimon franchises with full visual replacement of the canonical character.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/276/336/f05.png"
-    },
-    {
-        "photoId":  "2232636",
-        "variantIndex":  7,
-        "memeName":  "Big Chungus",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#big-chungus",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2232636",
-        "variantTitle":  "Everything is Big Chungus",
-        "variantUploader":  "Unknown",
-        "captionText":  "HOLY CRAP Everything in this picture is Big Chungus",
-        "canonicalImageType":  "Cartoon",
-        "variantImageType":  "Cartoon",
-        "transformationDimension":  [
-                                        "CaptionChange",
-                                        "CompositionShift"
-                                    ],
-        "transformationExtent":  "Substantial",
-        "notes":  "Caption draws attention to the proliferation of Big Chungus crossovers in a self-referential commentary on the meme's spread; composition aggregates multiple Big Chungus variants.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/232/636/ec2.jpg"
-    },
-    {
-        "photoId":  "2165591",
-        "variantIndex":  8,
-        "memeName":  "Big Chungus",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#big-chungus",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2165591",
-        "variantTitle":  "Big Chungus is the Dan Hibiki of Looney Tunes World of Mayhem",
-        "variantUploader":  "Unknown",
-        "captionText":  "In the Looney Tunes gacha, Big Chungus is considered the Dan Hibiki...",
-        "canonicalImageType":  "Cartoon",
-        "variantImageType":  "Photograph",
-        "transformationDimension":  [
-                                        "MediumShift",
-                                        "CrossoverMerge"
-                                    ],
-        "transformationExtent":  "Substantial",
-        "notes":  "Screenshot of tweet comparing Big Chungus to Street Fighter character Dan Hibiki; medium shift to screenshot format, crossover with gaming IP through explicit character comparison.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/165/591/4af.jpg"
-    },
-    {
-        "photoId":  "2159829",
-        "variantIndex":  9,
-        "memeName":  "Big Chungus",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#big-chungus",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2159829",
-        "variantTitle":  "Big Jungus",
-        "variantUploader":  "Unknown",
-        "captionText":  "Big Jungus",
-        "canonicalImageType":  "Cartoon",
-        "variantImageType":  "Cartoon",
-        "transformationDimension":  [
-                                        "StyleShift"
-                                    ],
-        "transformationExtent":  "Moderate",
-        "notes":  "Wordplay-driven visual style variant; no Pokemon or other IP character visually present. Moderate extent reflects a meaningful visual departure from the canonical Bugs Bunny cartoon style.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/159/829/94f"
-    },
-    {
-        "photoId":  "2152539",
-        "variantIndex":  10,
-        "memeName":  "Big Chungus",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#big-chungus",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2152539",
-        "variantTitle":  "Second Life Big Chungus (Original)",
-        "variantUploader":  "Unknown",
-        "captionText":  "BigChungus *The Sexy* SarahMinaj007 Omg you have women outfit!!!",
-        "canonicalImageType":  "Cartoon",
-        "variantImageType":  "Photograph",
-        "transformationDimension":  [
-                                        "MediumShift",
-                                        "CrossoverMerge"
-                                    ],
-        "transformationExtent":  "Substantial",
-        "notes":  "Big Chungus recreated as an avatar in the Second Life virtual world; medium shift from cartoon to 3D game screenshot, crossover with a specific virtual platform constituting a full departure from the canonical image.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/152/539/0f9.png"
-    },
-    {
-        "photoId":  "3171622",
-        "variantIndex":  1,
-        "memeName":  "Stonks",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#stonks",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_3171622",
-        "variantTitle":  "Giving thanks",
-        "variantUploader":  "Unknown",
-        "captionText":  "When you realise it\u0027s almost thanksgiving: 70.9% 560 0.12% 286...",
-        "canonicalImageType":  "Cartoon",
-        "variantImageType":  "Cartoon",
-        "transformationDimension":  [
-                                        "CaptionChange"
-                                    ],
-        "transformationExtent":  "Minimal",
-        "notes":  "Caption references Thanksgiving but Stonks template is already inherently US financial culture. Localization removed. Standard caption substitution with a seasonal topical frame.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/171/622/761.png"
-    },
-    {
-        "photoId":  "3039073",
-        "variantIndex":  2,
-        "memeName":  "Stonks",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#stonks",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_3039073",
-        "variantTitle":  "Oh Stonks",
-        "variantUploader":  "Unknown",
-        "captionText":  "10%2.17 1 4.3 10.421 stalks 17",
-        "canonicalImageType":  "Cartoon",
-        "variantImageType":  "Cartoon",
-        "transformationDimension":  [
-                                        "StyleShift"
-                                    ],
-        "transformationExtent":  "Moderate",
-        "notes":  "Animal Crossing style Stonks variant; character-level visual change constituting a meaningful stylistic departure from the canonical Meme Man 3D render.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/039/073/6b4.jpg"
-    },
-    {
-        "photoId":  "2849405",
-        "variantIndex":  3,
-        "memeName":  "Stonks",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#stonks",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2849405",
-        "variantTitle":  "Chad Bull Stonks",
-        "variantUploader":  "Unknown",
-        "captionText":  "Chad Bull Stonks",
-        "canonicalImageType":  "Cartoon",
-        "variantImageType":  "Cartoon",
-        "transformationDimension":  [
-                                        "CrossoverMerge",
-                                        "StyleShift"
-                                    ],
-        "transformationExtent":  "Moderate",
-        "notes":  "Meme Man replaced with the Chad character; explicit crossover between two distinct meme templates, with the visual style adapting to the Chad aesthetic register.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/849/405/004.png"
-    },
-    {
-        "photoId":  "2694210",
-        "variantIndex":  4,
-        "memeName":  "Stonks",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#stonks",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2694210",
-        "variantTitle":  "U.S. Stonks",
-        "variantUploader":  "Unknown",
-        "captionText":  "CLE Stonks",
-        "canonicalImageType":  "Cartoon",
-        "variantImageType":  "Cartoon",
-        "transformationDimension":  [
-                                        "CaptionChange"
-                                    ],
-        "transformationExtent":  "Minimal",
-        "notes":  "Caption references US regional economic context. Localization removed - Stonks is already inherently US financial culture and no genuine geographic or linguistic adaptation is present.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/694/210/156.jpeg"
-    },
-    {
-        "photoId":  "2623851",
-        "variantIndex":  5,
-        "memeName":  "Stonks",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#stonks",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2623851",
-        "variantTitle":  "And it\u0027s a game",
-        "variantUploader":  "Unknown",
-        "captionText":  "ALL REVIEWS: RELEASE DATE: 2861 286 Simulator of an 80s Japanese stock market bubble",
-        "canonicalImageType":  "Cartoon",
-        "variantImageType":  "Photograph",
-        "transformationDimension":  [
-                                        "MediumShift",
-                                        "CrossoverMerge"
-                                    ],
-        "transformationExtent":  "Substantial",
-        "notes":  "Screenshot of a Steam game listing using the Stonks format; medium shift to screenshot, crossover with video game culture through the Steam platform format.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/623/851/433.png"
-    },
-    {
-        "photoId":  "2481174",
-        "variantIndex":  6,
-        "memeName":  "Stonks",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#stonks",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2481174",
-        "variantTitle":  "We\u0027re going to the moon... eventually",
-        "variantUploader":  "Unknown",
-        "captionText":  "YES, BUT / O_yes_but Gudim",
-        "canonicalImageType":  "Cartoon",
-        "variantImageType":  "Drawing",
-        "transformationDimension":  [
-                                        "MediumShift",
-                                        "StyleShift"
-                                    ],
-        "transformationExtent":  "Moderate",
-        "notes":  "Stonks concept redrawn in a different illustrative style by cartoonist Gudim; medium shift from 3D cartoon to flat line illustration with a distinct authorial visual register.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/481/174/0f6"
-    },
-    {
-        "photoId":  "2330119",
-        "variantIndex":  7,
-        "memeName":  "Stonks",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#stonks",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2330119",
-        "variantTitle":  "All the souls",
-        "variantUploader":  "Unknown",
-        "captionText":  "When the rumor you spread ends up causing another God to nuke humanity. And now all the souls...",
-        "canonicalImageType":  "Cartoon",
-        "variantImageType":  "Cartoon",
-        "transformationDimension":  [
-                                        "CaptionChange"
-                                    ],
-        "transformationExtent":  "Moderate",
-        "notes":  "Caption references fantasy or mythology context; no character or element from a specific IP is visually present. Caption substantially reframes the template's financial premise into a metaphysical register.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/330/119/369.jpg"
-    },
-    {
-        "photoId":  "2163672",
-        "variantIndex":  8,
-        "memeName":  "Stonks",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#stonks",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2163672",
-        "variantTitle":  "fonks",
-        "variantUploader":  "Unknown",
-        "captionText":  "fox from https://unsplash.com/photos/J-jC4-SjrqU",
-        "canonicalImageType":  "Cartoon",
-        "variantImageType":  "Photograph",
-        "transformationDimension":  [
-                                        "MediumShift"
-                                    ],
-        "transformationExtent":  "Moderate",
-        "notes":  "Meme Man replaced with a photograph of a fox; medium shift from cartoon to photograph with the stock market background retained, constituting a moderate visual departure.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/163/672/88d.png"
-    },
-    {
-        "photoId":  "2130917",
-        "variantIndex":  9,
-        "memeName":  "Stonks",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#stonks",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2130917",
-        "variantTitle":  "Really Not Stonks",
-        "variantUploader":  "Unknown",
-        "captionText":  "wwreally not stonks 7635 797.7 1474 7174...",
-        "canonicalImageType":  "Cartoon",
-        "variantImageType":  "Cartoon",
-        "transformationDimension":  [
-                                        "CaptionChange"
-                                    ],
-        "transformationExtent":  "Minimal",
-        "notes":  "Inverted Stonks format showing negative stock performance; standard caption inversion of the template's premise with image unchanged.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/130/917/d0f.png"
-    },
-    {
-        "photoId":  "2074124",
-        "variantIndex":  10,
-        "memeName":  "Stonks",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#stonks",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2074124",
-        "variantTitle":  "Madoff NFL 2021",
-        "variantUploader":  "Unknown",
-        "captionText":  "EA SPORTS MADOFFD 21 38 151 11111 RATING PENDING RP NFLPA ESRB SUPER STAR EDITION",
-        "canonicalImageType":  "Cartoon",
-        "variantImageType":  "Cartoon",
-        "transformationDimension":  [
-                                        "CaptionChange",
-                                        "CrossoverMerge",
-                                        "CompositionShift"
-                                    ],
-        "transformationExtent":  "Substantial",
-        "notes":  "Formatted as a fake EA Sports video game cover featuring Bernie Madoff; complex crossover of Stonks with gaming IP and financial fraud iconography, with full compositional reframing as product packaging.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/074/124/f27.jpg"
-    },
-    {
-        "photoId":  "3262056",
-        "variantIndex":  1,
-        "memeName":  "Surprised Pikachu",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#surprised-pikachu",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_3262056",
-        "variantTitle":  "Gasp",
-        "variantUploader":  "Unknown",
-        "captionText":  "Me: Can I have friends over? Parents: No / Me: Can I go to my friend\u0027s party? Parents: No",
-        "canonicalImageType":  "Drawing",
-        "variantImageType":  "Drawing",
-        "transformationDimension":  [
-                                        "CaptionChange"
-                                    ],
-        "transformationExtent":  "Minimal",
-        "notes":  "Standard caption substitution; relatable parenting frustration format with image unchanged.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/262/056/5c4.jpeg"
-    },
-    {
-        "photoId":  "3216536",
-        "variantIndex":  2,
-        "memeName":  "Surprised Pikachu",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#surprised-pikachu",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_3216536",
-        "variantTitle":  "Gasp",
-        "variantUploader":  "Unknown",
-        "captionText":  "EPSON DO YOUR HOMEWORK Student: doesn\u0027t do homework / Student: fails required class",
-        "canonicalImageType":  "Drawing",
-        "variantImageType":  "Drawing",
-        "transformationDimension":  [
-                                        "CaptionChange"
-                                    ],
-        "transformationExtent":  "Minimal",
-        "notes":  "Standard caption substitution; academic consequences format with image unchanged.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/216/536/710.jpg"
-    },
-    {
-        "photoId":  "2956566",
-        "variantIndex":  3,
-        "memeName":  "Surprised Pikachu",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#surprised-pikachu",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2956566",
-        "variantTitle":  "Felt like drawing a surprised Pikachu",
-        "variantUploader":  "Unknown",
-        "captionText":  "KRAZY-Ch:6:",
-        "canonicalImageType":  "Drawing",
-        "variantImageType":  "Drawing",
-        "transformationDimension":  [
-                                        "StyleShift"
-                                    ],
-        "transformationExtent":  "Moderate",
-        "notes":  "Hand-drawn fan rendition of the Surprised Pikachu reaction image in a different artistic style; meaningful departure from the canonical anime screenshot source.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/956/566/c79.png"
-    },
-    {
-        "photoId":  "3175479",
-        "variantIndex":  4,
-        "memeName":  "Surprised Pikachu",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#surprised-pikachu",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_3175479",
-        "variantTitle":  "Like it\u0027s not their job",
-        "variantUploader":  "Unknown",
-        "captionText":  "insurance companies when they have to insure something",
-        "canonicalImageType":  "Drawing",
-        "variantImageType":  "Drawing",
-        "transformationDimension":  [
-                                        "CaptionChange"
-                                    ],
-        "transformationExtent":  "Minimal",
-        "notes":  "Caption targets insurance industry; standard exploitable substitution with image unchanged.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/175/479/b56.png"
-    },
-    {
-        "photoId":  "2943637",
-        "variantIndex":  5,
-        "memeName":  "Surprised Pikachu",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#surprised-pikachu",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2943637",
-        "variantTitle":  "Shocked Pumpkachu",
-        "variantUploader":  "Unknown",
-        "captionText":  "Shocked Pumpkachu",
-        "canonicalImageType":  "Drawing",
-        "variantImageType":  "Drawing",
-        "transformationDimension":  [
-                                        "CrossoverMerge",
-                                        "StyleShift"
-                                    ],
-        "transformationExtent":  "Substantial",
-        "notes":  "Pumpkin-themed Halloween visual parody replacing Pikachu with a seasonal character; visual crossover with Halloween iconography and substantial departure from the canonical Pokemon character.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/943/637/064.jpeg"
-    },
-    {
-        "photoId":  "2921812",
-        "variantIndex":  6,
-        "memeName":  "Surprised Pikachu",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#surprised-pikachu",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2921812",
-        "variantTitle":  "Realize",
-        "variantUploader":  "Unknown",
-        "captionText":  "Do you ever realize suddenly, and with awful clarity...",
-        "canonicalImageType":  "Drawing",
-        "variantImageType":  "Drawing",
-        "transformationDimension":  [
-                                        "CaptionChange"
-                                    ],
-        "transformationExtent":  "Minimal",
-        "notes":  "Long-form existential caption; image unchanged. Caption length does not elevate extent beyond Minimal when no visual change is present.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/921/812/dae.png"
-    },
-    {
-        "photoId":  "2914754",
-        "variantIndex":  7,
-        "memeName":  "Surprised Pikachu",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#surprised-pikachu",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2914754",
-        "variantTitle":  "It doesn\u0027t even work",
-        "variantUploader":  "Unknown",
-        "captionText":  "AI detector contradiction in school assignment checking",
-        "canonicalImageType":  "Drawing",
-        "variantImageType":  "Drawing",
-        "transformationDimension":  [
-                                        "CaptionChange"
-                                    ],
-        "transformationExtent":  "Moderate",
-        "notes":  "Contemporary school-tech scenario caption with a distinct conceptual reframing. Localization removed - a thematic or topical context is not a geographic or linguistic localization.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/914/754/d36.jpeg"
-    },
-    {
-        "photoId":  "2880832",
-        "variantIndex":  8,
-        "memeName":  "Surprised Pikachu",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#surprised-pikachu",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2880832",
-        "variantTitle":  "It looks ghastly from the side, I\u0027ll tell you",
-        "variantUploader":  "Unknown",
-        "captionText":  "TCM Internet says the meme is dead; toy industry proves otherwise",
-        "canonicalImageType":  "Drawing",
-        "variantImageType":  "Drawing",
-        "transformationDimension":  [
-                                        "CaptionChange"
-                                    ],
-        "transformationExtent":  "Moderate",
-        "notes":  "Meta-commentary caption about meme lifecycle and commercialization; the caption fundamentally reframes the template's cultural position rather than substituting a standard exploitable scenario.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/880/832/f4c.jpeg"
-    },
-    {
-        "photoId":  "3023384",
-        "variantIndex":  9,
-        "memeName":  "Surprised Pikachu",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#surprised-pikachu",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_3023384",
-        "variantTitle":  "WWII Japan when it gets what it asked for",
-        "variantUploader":  "Unknown",
-        "captionText":  "Japan: *Wants decisive naval battle with the USA* / USA: *Decisively defeats Japan*",
-        "canonicalImageType":  "Drawing",
-        "variantImageType":  "Drawing",
-        "transformationDimension":  [
-                                        "CaptionChange",
-                                        "Localization"
-                                    ],
-        "transformationExtent":  "Minimal",
-        "notes":  "Caption localized to WWII Pacific theater historical context; genuine geographic and geopolitical localization applied to a minimal caption substitution.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/003/023/384/9b9.jpeg"
-    },
-    {
-        "photoId":  "2660720",
-        "variantIndex":  10,
-        "memeName":  "Surprised Pikachu",
-        "memeConceptIRI":  "http://www.semanticweb.org/meme-ontology#surprised-pikachu",
-        "variantInstanceIRI":  "http://www.semanticweb.org/meme-ontology#photo_2660720",
-        "variantTitle":  "Either that or stick them in a filthy nursing home",
-        "variantUploader":  "Unknown",
-        "captionText":  "Abusive parents when their kids no longer want contact",
-        "canonicalImageType":  "Drawing",
-        "variantImageType":  "Drawing",
-        "transformationDimension":  [
-                                        "CaptionChange"
-                                    ],
-        "transformationExtent":  "Moderate",
-        "notes":  "Emotionally weighted family-relationship caption reframing the template's premise in a register of intergenerational resentment rather than the typical cause-and-effect surprise format.",
-        "imageURL":  "https://i.kym-cdn.com/photos/images/original/002/660/720/5d7.jpg"
-    }
+[
+  {
+    "photoId": "3171622",
+    "variantIndex": 1,
+    "memeName": "Stonks",
+    "memeConceptIRI": "https://purl.org/memo#stonks",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3171622",
+    "variantTitle": "Giving thanks",
+    "variantUploader": "Jaimie Hamilton",
+    "captionText": "When you realise it's almost thanksgiving: 70 .9% 560 0.12% 286 0168 2.286 14563 156 0287 Wathonks",
+    "canonicalImageType": "Cartoon",
+    "variantImageType": "Painting",
+    "transformationDimension": [
+      "CaptionChange"
+    ],
+    "transformationExtent": "Minimal",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/171/622/761.png"
+  },
+  {
+    "photoId": "3039073",
+    "variantIndex": 2,
+    "memeName": "Stonks",
+    "memeConceptIRI": "https://purl.org/memo#stonks",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3039073",
+    "variantTitle": "Oh Stonks",
+    "variantUploader": "TheAnt",
+    "captionText": "10%2.17 1 4.3 10.421 stalks 17",
+    "canonicalImageType": "Cartoon",
+    "variantImageType": "Illustration",
+    "transformationDimension": [
+      "CrossoverMerge",
+      "StyleShift",
+      "CaptionChange"
+    ],
+    "transformationExtent": "Substantial",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/039/073/6b4.jpg"
+  },
+  {
+    "photoId": "2849405",
+    "variantIndex": 3,
+    "memeName": "Stonks",
+    "memeConceptIRI": "https://purl.org/memo#stonks",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2849405",
+    "variantTitle": "Chad Bull Stonks",
+    "variantUploader": "deperpmemes",
+    "captionText": "Chad Bull Stonks",
+    "canonicalImageType": "Cartoon",
+    "variantImageType": "Cartoon",
+    "transformationDimension": [
+      "CrossoverMerge",
+      "StyleShift"
+    ],
+    "transformationExtent": "Moderate",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/849/405/004.png"
+  },
+  {
+    "photoId": "2694210",
+    "variantIndex": 4,
+    "memeName": "Stonks",
+    "memeConceptIRI": "https://purl.org/memo#stonks",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2694210",
+    "variantTitle": "U.S. Stonks",
+    "variantUploader": "memeunk",
+    "captionText": "CLE Stonks",
+    "canonicalImageType": "Cartoon",
+    "variantImageType": "Painting",
+    "transformationDimension": [
+      "CrossoverMerge",
+      "CompositionShift"
+    ],
+    "transformationExtent": "Moderate",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/694/210/156.jpeg"
+  },
+  {
+    "photoId": "2623851",
+    "variantIndex": 5,
+    "memeName": "Stonks",
+    "memeConceptIRI": "https://purl.org/memo#stonks",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2623851",
+    "variantTitle": "And it's a game",
+    "variantUploader": "Evilthing",
+    "captionText": "ALL REVIEWS: RELEASE DATE: 2861 286 Simulator of an 80s Japanese stock market businessman. Chill, catch a retro vibe and watch your profits grow in the text-based game STONKS-9800. DEVELOPER: PUBLISHER: 4563 STONKS 9800 NIA No user reviews 17 Jul, 2023 TERNOX TERNOX Popular user-defined tags for this product: Early Access Simulation Economy Anime 2D",
+    "canonicalImageType": "Cartoon",
+    "variantImageType": "Cartoon",
+    "transformationDimension": [
+      "MediumShift",
+      "StyleShift",
+      "CrossoverMerge"
+    ],
+    "transformationExtent": "Substantial",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/623/851/433.png"
+  },
+  {
+    "photoId": "2481174",
+    "variantIndex": 6,
+    "memeName": "Stonks",
+    "memeConceptIRI": "https://purl.org/memo#stonks",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2481174",
+    "variantTitle": "We're going to the moon... eventually",
+    "variantUploader": "Raul Satisacro",
+    "captionText": "YES, BUT Mam O_yes_but Gudim.",
+    "canonicalImageType": "Cartoon",
+    "variantImageType": "Cartoon",
+    "transformationDimension": [
+      "MediumShift",
+      "StyleShift"
+    ],
+    "transformationExtent": "Moderate",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/481/174/0f6"
+  },
+  {
+    "photoId": "2330119",
+    "variantIndex": 7,
+    "memeName": "Stonks",
+    "memeConceptIRI": "https://purl.org/memo#stonks",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2330119",
+    "variantTitle": "All the souls",
+    "variantUploader": "Cold Hard Crash",
+    "captionText": "When the rumor you spread ends up causing another God to nuke humanity. And now you have more minions then you know what to do with. @dicensilverwing 0.168 %60 0.12 2.286 ▼ 1.4563 .156 0287 WAstonks 404 0.1204 3.234 0.1902 N/A 02 650 121 027",
+    "canonicalImageType": "Cartoon",
+    "variantImageType": "Photograph",
+    "transformationDimension": [
+      "CaptionChange",
+      "StyleShift"
+    ],
+    "transformationExtent": "Moderate",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/330/119/369.jpg"
+  },
+  {
+    "photoId": "2163672",
+    "variantIndex": 8,
+    "memeName": "Stonks",
+    "memeConceptIRI": "https://purl.org/memo#stonks",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2163672",
+    "variantTitle": "fonks",
+    "variantUploader": "Sobsz",
+    "captionText": "fox from https://unsplash.com/photos/J-jC4-SjrqU",
+    "canonicalImageType": "Cartoon",
+    "variantImageType": "Photograph",
+    "transformationDimension": [
+      "MediumShift"
+    ],
+    "transformationExtent": "Moderate",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/163/672/88d.png"
+  },
+  {
+    "photoId": "2130917",
+    "variantIndex": 9,
+    "memeName": "Stonks",
+    "memeConceptIRI": "https://purl.org/memo#stonks",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2130917",
+    "variantTitle": "Really Not Stonks",
+    "variantUploader": "wignut",
+    "captionText": "wwreally not stonks 7635 797.7 1474 7174. 080. 39.05 16 2.9 11444 326.2 1529 23 0.85% 0.39%",
+    "canonicalImageType": "Cartoon",
+    "variantImageType": "Photograph",
+    "transformationDimension": [
+      "CaptionChange"
+    ],
+    "transformationExtent": "Minimal",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/130/917/d0f.png"
+  },
+  {
+    "photoId": "2074124",
+    "variantIndex": 10,
+    "memeName": "Stonks",
+    "memeConceptIRI": "https://purl.org/memo#stonks",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2074124",
+    "variantTitle": "Madoff NFL 2021",
+    "variantUploader": "cfjulian",
+    "captionText": "EA SPORTS MADOFFD 21 38 151 11111 RATING PENDING RP NFLPA ESRB SUPER STAR EDITIO N STONKSI",
+    "canonicalImageType": "Cartoon",
+    "variantImageType": "Illustration",
+    "transformationDimension": [
+      "CrossoverMerge",
+      "CompositionShift"
+    ],
+    "transformationExtent": "Substantial",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/074/124/f27.jpg"
+  },
+  {
+    "photoId": "3157255",
+    "variantIndex": 1,
+    "memeName": "Surprised Pikachu",
+    "memeConceptIRI": "https://purl.org/memo#surprised-pikachu",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3157255",
+    "variantTitle": "Isn't that your whole job?",
+    "variantUploader": "Jaimie Hamilton",
+    "captionText": "insurance companies when they have to insure something",
+    "canonicalImageType": "Drawing",
+    "variantImageType": "Painting",
+    "transformationDimension": [
+      "CaptionChange"
+    ],
+    "transformationExtent": "Minimal",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/157/255/566.jpeg"
+  },
+  {
+    "photoId": "3099494",
+    "variantIndex": 2,
+    "memeName": "Surprised Pikachu",
+    "memeConceptIRI": "https://purl.org/memo#surprised-pikachu",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3099494",
+    "variantTitle": "On the first day of school...",
+    "variantUploader": "Jaimie Hamilton",
+    "captionText": "• DO YOUR HOMEWORK Student: *doesn't do homework* Student: *fails required class* Student:",
+    "canonicalImageType": "Drawing",
+    "variantImageType": "Cartoon",
+    "transformationDimension": [
+      "CaptionChange",
+      "CompositionShift"
+    ],
+    "transformationExtent": "Moderate",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/099/494/8c6.jpg"
+  },
+  {
+    "photoId": "3037094",
+    "variantIndex": 3,
+    "memeName": "Surprised Pikachu",
+    "memeConceptIRI": "https://purl.org/memo#surprised-pikachu",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3037094",
+    "variantTitle": "Gasp...",
+    "variantUploader": "Jaimie Hamilton",
+    "captionText": "Me: Can I have friends over? Parents: No Me: Can I go to my friend's party? Parents: No Me: *Grows up antisocial and shy* Parents:",
+    "canonicalImageType": "Drawing",
+    "variantImageType": "Photograph",
+    "transformationDimension": [
+      "CaptionChange"
+    ],
+    "transformationExtent": "Minimal",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/037/094/098.jpeg"
+  },
+  {
+    "photoId": "3023384",
+    "variantIndex": 4,
+    "memeName": "Surprised Pikachu",
+    "memeConceptIRI": "https://purl.org/memo#surprised-pikachu",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3023384",
+    "variantTitle": "WWII Japan when it gets what it asked for",
+    "variantUploader": "Jaimie Hamilton",
+    "captionText": "Japan: *Wants decisive naval battle with the USA* USA: *Decisively defeats Japan at Midway* Japan: imgflip.com",
+    "canonicalImageType": "Drawing",
+    "variantImageType": "Cartoon",
+    "transformationDimension": [
+      "CaptionChange"
+    ],
+    "transformationExtent": "Minimal",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/023/384/9b9.jpeg"
+  },
+  {
+    "photoId": "2970115",
+    "variantIndex": 5,
+    "memeName": "Surprised Pikachu",
+    "memeConceptIRI": "https://purl.org/memo#surprised-pikachu",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2970115",
+    "variantTitle": "Cyberpunk 2077 mods",
+    "variantUploader": "Nyazilla",
+    "captionText": "Inspired by\n !https://i.kym-cdn.com/photos/images/newsfeed/001/424/530/0d7.jpg!\n",
+    "canonicalImageType": "Drawing",
+    "variantImageType": "Drawing",
+    "transformationDimension": [
+      "CaptionChange"
+    ],
+    "transformationExtent": "Minimal",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/970/115/01d.jpg"
+  },
+  {
+    "photoId": "2956566",
+    "variantIndex": 6,
+    "memeName": "Surprised Pikachu",
+    "memeConceptIRI": "https://purl.org/memo#surprised-pikachu",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2956566",
+    "variantTitle": "Felt like drawing a surprised Pikachu.",
+    "variantUploader": "Krazy-Chibi",
+    "captionText": "KRAZY-Ch:6:",
+    "canonicalImageType": "Drawing",
+    "variantImageType": "Cartoon",
+    "transformationDimension": [
+      "StyleShift"
+    ],
+    "transformationExtent": "Moderate",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/956/566/c79.png"
+  },
+  {
+    "photoId": "2943637",
+    "variantIndex": 7,
+    "memeName": "Surprised Pikachu",
+    "memeConceptIRI": "https://purl.org/memo#surprised-pikachu",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2943637",
+    "variantTitle": "Shocked Pumpkachu",
+    "variantUploader": "Adam Downer",
+    "captionText": "Shocked Pumpkachu",
+    "canonicalImageType": "Drawing",
+    "variantImageType": "Drawing",
+    "transformationDimension": [
+      "StyleShift",
+      "MediumShift"
+    ],
+    "transformationExtent": "Substantial",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/943/637/064.jpeg"
+  },
+  {
+    "photoId": "2921812",
+    "variantIndex": 8,
+    "memeName": "Surprised Pikachu",
+    "memeConceptIRI": "https://purl.org/memo#surprised-pikachu",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2921812",
+    "variantTitle": "Realize",
+    "variantUploader": "Triplem",
+    "captionText": "Do you ever realize suddenly, and with awful clarity, that we've become incapable of communicating with each other except through corporate-owned fandoms curated to subsume our identities, expressed via corporate-owned social networks designed to behaviorally addict us? BING! patreon.com.com/Zach Weinersmith smbc-comics.com",
+    "canonicalImageType": "Drawing",
+    "variantImageType": "Cartoon",
+    "transformationDimension": [
+      "CompositionShift"
+    ],
+    "transformationExtent": "Moderate",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/921/812/dae.png"
+  },
+  {
+    "photoId": "2914754",
+    "variantIndex": 9,
+    "memeName": "Surprised Pikachu",
+    "memeConceptIRI": "https://purl.org/memo#surprised-pikachu",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2914754",
+    "variantTitle": "It doesn't even work",
+    "variantUploader": "Jaimie Hamilton",
+    "captionText": "Al detector: This text is 83% Al! Teacher: *yells at me and shows me the results* Me: *plugs in the Declaration of Independence in the exact same software* Al detector: This text is 79% Al! Teacher: made with mematic",
+    "canonicalImageType": "Drawing",
+    "variantImageType": "Photograph",
+    "transformationDimension": [
+      "CaptionChange"
+    ],
+    "transformationExtent": "Minimal",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/914/754/d36.jpeg"
+  },
+  {
+    "photoId": "2880832",
+    "variantIndex": 10,
+    "memeName": "Surprised Pikachu",
+    "memeConceptIRI": "https://purl.org/memo#surprised-pikachu",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2880832",
+    "variantTitle": "It looks ghastly from the side, I'll tell you",
+    "variantUploader": "Autumn Able",
+    "captionText": "TCM Internet: We've seen all the surpised Pikachus we are ever going to see. This meme is dead. Japan's toy industry:",
+    "canonicalImageType": "Drawing",
+    "variantImageType": "Photograph",
+    "transformationDimension": [
+      "MediumShift"
+    ],
+    "transformationExtent": "Substantial",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/880/832/f4c.jpeg"
+  },
+  {
+    "photoId": "3259491",
+    "variantIndex": 1,
+    "memeName": "Steven Crowders Change My Mind Campus Sign",
+    "memeConceptIRI": "https://purl.org/memo#steven-crowders-change-my-mind-campus-sign",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3259491",
+    "variantTitle": "Calvin Variant",
+    "variantUploader": "Salnax",
+    "captionText": "ད་ས STEVEN CROWDER DOES NOT DESERVE A MEME FORMAT CHANGE MY MIND MERSN",
+    "canonicalImageType": "Photograph",
+    "variantImageType": "Cartoon",
+    "transformationDimension": [
+      "CrossoverMerge",
+      "MediumShift"
+    ],
+    "transformationExtent": "Substantial",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/259/491/4cb.jpeg"
+  },
+  {
+    "photoId": "3183766",
+    "variantIndex": 2,
+    "memeName": "Steven Crowders Change My Mind Campus Sign",
+    "memeConceptIRI": "https://purl.org/memo#steven-crowders-change-my-mind-campus-sign",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3183766",
+    "variantTitle": "It feels the best",
+    "variantUploader": "Jaimie Hamilton",
+    "captionText": "The best part of a weekend is Friday night CHANGE MY MIND",
+    "canonicalImageType": "Photograph",
+    "variantImageType": "Photograph",
+    "transformationDimension": [
+      "CaptionChange"
+    ],
+    "transformationExtent": "Minimal",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/183/766/ea8.png"
+  },
+  {
+    "photoId": "3177961",
+    "variantIndex": 3,
+    "memeName": "Steven Crowders Change My Mind Campus Sign",
+    "memeConceptIRI": "https://purl.org/memo#steven-crowders-change-my-mind-campus-sign",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3177961",
+    "variantTitle": "Let the weekend absorb it",
+    "variantUploader": "Jaimie Hamilton",
+    "captionText": "imgflip.com Monday shouldn't exist CHANGE MY MIND",
+    "canonicalImageType": "Photograph",
+    "variantImageType": "Painting",
+    "transformationDimension": [
+      "CaptionChange"
+    ],
+    "transformationExtent": "Minimal",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/177/961/f8a.png"
+  },
+  {
+    "photoId": "3144027",
+    "variantIndex": 4,
+    "memeName": "Steven Crowders Change My Mind Campus Sign",
+    "memeConceptIRI": "https://purl.org/memo#steven-crowders-change-my-mind-campus-sign",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3144027",
+    "variantTitle": "So true",
+    "variantUploader": "Jaimie Hamilton",
+    "captionText": "CROWDE QUDER SHOWDER There are too many Christmas songs and not enough Halloween songs CHANGE MY MIND",
+    "canonicalImageType": "Photograph",
+    "variantImageType": "Photograph",
+    "transformationDimension": [
+      "CaptionChange"
+    ],
+    "transformationExtent": "Minimal",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/144/027/2b0.jpg"
+  },
+  {
+    "photoId": "3109813",
+    "variantIndex": 5,
+    "memeName": "Steven Crowders Change My Mind Campus Sign",
+    "memeConceptIRI": "https://purl.org/memo#steven-crowders-change-my-mind-campus-sign",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3109813",
+    "variantTitle": "Gonna be a good day",
+    "variantUploader": "Jaimie Hamilton",
+    "captionText": "made with mematic Encu CHOWDER Today is gonna be a good day Don't Change my Mind",
+    "canonicalImageType": "Photograph",
+    "variantImageType": "Photograph",
+    "transformationDimension": [
+      "CaptionChange"
+    ],
+    "transformationExtent": "Minimal",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/109/813/13a.jpeg"
+  },
+  {
+    "photoId": "3105752",
+    "variantIndex": 6,
+    "memeName": "Steven Crowders Change My Mind Campus Sign",
+    "memeConceptIRI": "https://purl.org/memo#steven-crowders-change-my-mind-campus-sign",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3105752",
+    "variantTitle": "Seems fair to me",
+    "variantUploader": "Jaimie Hamilton",
+    "captionText": "LOUDER CROW LOUDER CROWDER IF COMPANIES CAN USE AI TO REJECT ME, I CAN USE AI TO APPLY CHANGE MY MIND",
+    "canonicalImageType": "Photograph",
+    "variantImageType": "Photograph",
+    "transformationDimension": [
+      "CaptionChange"
+    ],
+    "transformationExtent": "Minimal",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/105/752/32a.jpeg"
+  },
+  {
+    "photoId": "3093681",
+    "variantIndex": 7,
+    "memeName": "Steven Crowders Change My Mind Campus Sign",
+    "memeConceptIRI": "https://purl.org/memo#steven-crowders-change-my-mind-campus-sign",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3093681",
+    "variantTitle": "A hot take",
+    "variantUploader": "Jaimie Hamilton",
+    "captionText": "Tuesdays are worse than Mondays CHANGE MY MIND",
+    "canonicalImageType": "Photograph",
+    "variantImageType": "Photograph",
+    "transformationDimension": [
+      "CaptionChange"
+    ],
+    "transformationExtent": "Minimal",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/093/681/e78.jpg"
+  },
+  {
+    "photoId": "3045918",
+    "variantIndex": 8,
+    "memeName": "Steven Crowders Change My Mind Campus Sign",
+    "memeConceptIRI": "https://purl.org/memo#steven-crowders-change-my-mind-campus-sign",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3045918",
+    "variantTitle": "Change my Mind | /r/memes",
+    "variantUploader": "Reddit Moments",
+    "captionText": "imgflip.com Every Youtube reaction video is just a fake overreaction video CHANGE MY MIND",
+    "canonicalImageType": "Photograph",
+    "variantImageType": "Photograph",
+    "transformationDimension": [
+      "CaptionChange"
+    ],
+    "transformationExtent": "Minimal",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/045/918/5fa.png"
+  },
+  {
+    "photoId": "2977772",
+    "variantIndex": 9,
+    "memeName": "Steven Crowders Change My Mind Campus Sign",
+    "memeConceptIRI": "https://purl.org/memo#steven-crowders-change-my-mind-campus-sign",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2977772",
+    "variantTitle": "Change Luigi's Mind",
+    "variantUploader": "funnyfaceking",
+    "captionText": "chowor OUDER CROWDER That CEO was actively murdering people purely for profit. CHANGE MY MIND",
+    "canonicalImageType": "Photograph",
+    "variantImageType": "Photograph",
+    "transformationDimension": [
+      "CrossoverMerge",
+      "MediumShift"
+    ],
+    "transformationExtent": "Substantial",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/977/772/a9c"
+  },
+  {
+    "photoId": "2963518",
+    "variantIndex": 10,
+    "memeName": "Steven Crowders Change My Mind Campus Sign",
+    "memeConceptIRI": "https://purl.org/memo#steven-crowders-change-my-mind-campus-sign",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2963518",
+    "variantTitle": "nomamoto",
+    "variantUploader": "Ulysses Smith",
+    "captionText": "F--- Aliens taste good CHANGE MY MINI",
+    "canonicalImageType": "Photograph",
+    "variantImageType": "Photograph",
+    "transformationDimension": [
+      "CrossoverMerge",
+      "MediumShift"
+    ],
+    "transformationExtent": "Moderate",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/963/518/975"
+  },
+  {
+    "photoId": "3079818",
+    "variantIndex": 1,
+    "memeName": "Npc Wojak",
+    "memeConceptIRI": "https://purl.org/memo#npc-wojak",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3079818",
+    "variantTitle": "Sums it up",
+    "variantUploader": "Jaimie Hamilton",
+    "captionText": "HR using auto-reject filters that disquality 99,9% of candidates so they have to do fraction of the work recruiter Candidates using auto-tailroed Al resumes and job applying bots to have a chance against those filters recruiter A KANA",
+    "canonicalImageType": "Photograph",
+    "variantImageType": "Cartoon",
+    "transformationDimension": [
+      "CompositionShift"
+    ],
+    "transformationExtent": "Moderate",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/079/818/94d.jpeg"
+  },
+  {
+    "photoId": "3056413",
+    "variantIndex": 2,
+    "memeName": "Npc Wojak",
+    "memeConceptIRI": "https://purl.org/memo#npc-wojak",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3056413",
+    "variantTitle": "I wonder why.. | /r/memes",
+    "variantUploader": "Reddit Moments",
+    "captionText": "Geez, why is there so much traffic today?",
+    "canonicalImageType": "Photograph",
+    "variantImageType": "Cartoon",
+    "transformationDimension": [
+      "CaptionChange",
+      "CompositionShift"
+    ],
+    "transformationExtent": "Minimal",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/056/413/730.png"
+  },
+  {
+    "photoId": "3041478",
+    "variantIndex": 3,
+    "memeName": "Npc Wojak",
+    "memeConceptIRI": "https://purl.org/memo#npc-wojak",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3041478",
+    "variantTitle": "Tension rising… | /r/memes",
+    "variantUploader": "Reddit Moments",
+    "captionText": "I shaved my eyebrows It looks horrible",
+    "canonicalImageType": "Photograph",
+    "variantImageType": "Cartoon",
+    "transformationDimension": [
+      "CaptionChange",
+      "CompositionShift"
+    ],
+    "transformationExtent": "Moderate",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/041/478/2e6.jpeg"
+  },
+  {
+    "photoId": "3019094",
+    "variantIndex": 4,
+    "memeName": "Npc Wojak",
+    "memeConceptIRI": "https://purl.org/memo#npc-wojak",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3019094",
+    "variantTitle": "You should have left our video games alone...",
+    "variantUploader": "Mr. Nobody Returns",
+    "captionText": "WHY DID YOU VOTE FOR THE BAD ORANGE MAN? Because you went after my f------ video games... You deserve what you get.",
+    "canonicalImageType": "Photograph",
+    "variantImageType": "Cartoon",
+    "transformationDimension": [
+      "CompositionShift"
+    ],
+    "transformationExtent": "Moderate",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/019/094/716.png"
+  },
+  {
+    "photoId": "2995566",
+    "variantIndex": 5,
+    "memeName": "Npc Wojak",
+    "memeConceptIRI": "https://purl.org/memo#npc-wojak",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2995566",
+    "variantTitle": "Sakura NPC Wojak",
+    "variantUploader": "weathersalesman",
+    "captionText": "Naruto did it first, in 2002.",
+    "canonicalImageType": "Photograph",
+    "variantImageType": "Cartoon",
+    "transformationDimension": [
+      "CrossoverMerge",
+      "StyleShift"
+    ],
+    "transformationExtent": "Moderate",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/995/566/9ad.png"
+  },
+  {
+    "photoId": "2939233",
+    "variantIndex": 6,
+    "memeName": "Npc Wojak",
+    "memeConceptIRI": "https://purl.org/memo#npc-wojak",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2939233",
+    "variantTitle": "Does free will even exist?",
+    "variantUploader": "Triplem",
+    "captionText": "ル IL ル",
+    "canonicalImageType": "Photograph",
+    "variantImageType": "Painting",
+    "transformationDimension": [
+      "StyleShift"
+    ],
+    "transformationExtent": "Substantial",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/939/233/817.jpg"
+  },
+  {
+    "photoId": "2769512",
+    "variantIndex": 7,
+    "memeName": "Npc Wojak",
+    "memeConceptIRI": "https://purl.org/memo#npc-wojak",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2769512",
+    "variantTitle": "Smart mouth for a Celt | History Memes",
+    "variantUploader": "Reddit Moments",
+    "captionText": "You barbarians will never amount to anything 기 기 Genitorreme Oh yeah? Then why isn't this meme in Latin?",
+    "canonicalImageType": "Photograph",
+    "variantImageType": "Cartoon",
+    "transformationDimension": [
+      "CompositionShift"
+    ],
+    "transformationExtent": "Moderate",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/769/512/3be.png"
+  },
+  {
+    "photoId": "2755458",
+    "variantIndex": 8,
+    "memeName": "Npc Wojak",
+    "memeConceptIRI": "https://purl.org/memo#npc-wojak",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2755458",
+    "variantTitle": "NPC Circus Super Bowl LVIII",
+    "variantUploader": "Aidan Walker",
+    "captionText": "E GP @ElijahSchaffer Hope you all enjoyed your circus 11:52 PM Feb 11, 2024 2.8M Views . :",
+    "canonicalImageType": "Photograph",
+    "variantImageType": "Cartoon",
+    "transformationDimension": [
+      "StyleShift",
+      "MediumShift"
+    ],
+    "transformationExtent": "Moderate",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/755/458/303.png"
+  },
+  {
+    "photoId": "2719952",
+    "variantIndex": 9,
+    "memeName": "Npc Wojak",
+    "memeConceptIRI": "https://purl.org/memo#npc-wojak",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2719952",
+    "variantTitle": "Another Fat Shaming Joke!",
+    "variantUploader": "Marwan Sallam",
+    "captionText": "Fat is beautiful! Lizzo is beautiful! NO!!!!!!!!! 7 No it's not, name a beautiful fat woman... Ok, you look like Lizzo... Based! MAKING GMEMES GREAT AGAIN",
+    "canonicalImageType": "Photograph",
+    "variantImageType": "Cartoon",
+    "transformationDimension": [
+      "CompositionShift"
+    ],
+    "transformationExtent": "Moderate",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/719/952/cd1.jpg"
+  },
+  {
+    "photoId": "2712445",
+    "variantIndex": 10,
+    "memeName": "Npc Wojak",
+    "memeConceptIRI": "https://purl.org/memo#npc-wojak",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2712445",
+    "variantTitle": "Tradcaths vs. Neo-Mafia - Who will win?",
+    "variantUploader": "Mr. Nobody Returns",
+    "captionText": "P---, HENTAI, AND ECCHI IS EVIL AND SHOULD BE BANNED. REPENT FOR YOUR SINS YOU SINNER. 11 Will God protect you from the Neo-Mafia if you start another prohibiton?",
+    "canonicalImageType": "Photograph",
+    "variantImageType": "Cartoon",
+    "transformationDimension": [
+      "CompositionShift"
+    ],
+    "transformationExtent": "Moderate",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/712/445/b27.png"
+  },
+  {
+    "photoId": "3234426",
+    "variantIndex": 1,
+    "memeName": "Me And The Boys",
+    "memeConceptIRI": "https://purl.org/memo#me-and-the-boys",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3234426",
+    "variantTitle": "Me and the boys about to play Ogres & Oubliettes",
+    "variantUploader": "DreamlanderJ",
+    "captionText": "Me and the boys about to play Ogres & Oubliettes",
+    "canonicalImageType": "Cartoon",
+    "variantImageType": "Cartoon",
+    "transformationDimension": [
+      "CompositionShift"
+    ],
+    "transformationExtent": "Moderate",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/234/426/eb1.jpg"
+  },
+  {
+    "photoId": "3055475",
+    "variantIndex": 2,
+    "memeName": "Me And The Boys",
+    "memeConceptIRI": "https://purl.org/memo#me-and-the-boys",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3055475",
+    "variantTitle": "I miss the boys | /r/dankmemes",
+    "variantUploader": "Reddit Moments",
+    "captionText": "Me and the boys waiting for more classic memes to post",
+    "canonicalImageType": "Cartoon",
+    "variantImageType": "Photograph",
+    "transformationDimension": [
+      "CaptionChange"
+    ],
+    "transformationExtent": "Minimal",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/055/475/48a.jpeg"
+  },
+  {
+    "photoId": "2984526",
+    "variantIndex": 3,
+    "memeName": "Me And The Boys",
+    "memeConceptIRI": "https://purl.org/memo#me-and-the-boys",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2984526",
+    "variantTitle": "The Charlie Gang Boys Redraw",
+    "variantUploader": "Triplem",
+    "captionText": "J",
+    "canonicalImageType": "Cartoon",
+    "variantImageType": "Cartoon",
+    "transformationDimension": [
+      "StyleShift"
+    ],
+    "transformationExtent": "Moderate",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/984/526/328.png"
+  },
+  {
+    "photoId": "2963907",
+    "variantIndex": 4,
+    "memeName": "Me And The Boys",
+    "memeConceptIRI": "https://purl.org/memo#me-and-the-boys",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2963907",
+    "variantTitle": "Me and the boys not letting you do that, Star Fox!",
+    "variantUploader": "Γ Da Count Γ",
+    "captionText": "This is badge",
+    "canonicalImageType": "Cartoon",
+    "variantImageType": "Cartoon",
+    "transformationDimension": [
+      "CrossoverMerge"
+    ],
+    "transformationExtent": "Moderate",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/963/907/392.jpg"
+  },
+  {
+    "photoId": "2884868",
+    "variantIndex": 5,
+    "memeName": "Me And The Boys",
+    "memeConceptIRI": "https://purl.org/memo#me-and-the-boys",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2884868",
+    "variantTitle": "Me and the boys outside the local Arby's after taking 14 tabs of acid",
+    "variantUploader": "GG Channel",
+    "captionText": "Me and the boys outside the local Arby's after taking 14 tabs of acid @World war meme_ii ifunny.co",
+    "canonicalImageType": "Cartoon",
+    "variantImageType": "Painting",
+    "transformationDimension": [
+      "CrossoverMerge"
+    ],
+    "transformationExtent": "Moderate",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/884/868/876.jpg"
+  },
+  {
+    "photoId": "2801960",
+    "variantIndex": 6,
+    "memeName": "Me And The Boys",
+    "memeConceptIRI": "https://purl.org/memo#me-and-the-boys",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2801960",
+    "variantTitle": "Bryan and the Boys",
+    "variantUploader": "Edgar Weebling",
+    "captionText": "Bryan and the Boys",
+    "canonicalImageType": "Cartoon",
+    "variantImageType": "Drawing",
+    "transformationDimension": [
+      "CrossoverMerge"
+    ],
+    "transformationExtent": "Moderate",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/801/960/4a4"
+  },
+  {
+    "photoId": "2798169",
+    "variantIndex": 7,
+    "memeName": "Me And The Boys",
+    "memeConceptIRI": "https://purl.org/memo#me-and-the-boys",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2798169",
+    "variantTitle": "Me and the girls about to play a game",
+    "variantUploader": "PhilSunderland",
+    "captionText": "Θ",
+    "canonicalImageType": "Cartoon",
+    "variantImageType": "Cartoon",
+    "transformationDimension": [
+      "StyleShift"
+    ],
+    "transformationExtent": "Moderate",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/798/169/c82.png"
+  },
+  {
+    "photoId": "2788822",
+    "variantIndex": 8,
+    "memeName": "Me And The Boys",
+    "memeConceptIRI": "https://purl.org/memo#me-and-the-boys",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2788822",
+    "variantTitle": "Me and the Indie Devs",
+    "variantUploader": "Hysteria98",
+    "captionText": "A Short Hike (2019) by Adam Robinson-Yu\nReturn of the Obra Dinn (2018) by Lucas Pope\nStardew Valley (2016) by ConcernedApe\nUndertale (2015) by Toby Fox\n\nCredit and praise to the few others where due that also contributed to these works.",
+    "canonicalImageType": "Cartoon",
+    "variantImageType": "Cartoon",
+    "transformationDimension": [
+      "CrossoverMerge"
+    ],
+    "transformationExtent": "Substantial",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/788/822/d5a.png"
+  },
+  {
+    "photoId": "2769556",
+    "variantIndex": 9,
+    "memeName": "Me And The Boys",
+    "memeConceptIRI": "https://purl.org/memo#me-and-the-boys",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2769556",
+    "variantTitle": "Four Horsemen of New Great Games | /r/memes",
+    "variantUploader": "Reddit Moments",
+    "captionText": "Me and the Boys showing other Big Corporations that they just make s--- games LETHAL COMPANY HELLDIVERS imgflip.com Baldur's Gate PALWORLD-",
+    "canonicalImageType": "Cartoon",
+    "variantImageType": "Cartoon",
+    "transformationDimension": [
+      "CrossoverMerge",
+      "CaptionChange"
+    ],
+    "transformationExtent": "Substantial",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/769/556/983.png"
+  },
+  {
+    "photoId": "2681340",
+    "variantIndex": 10,
+    "memeName": "Me And The Boys",
+    "memeConceptIRI": "https://purl.org/memo#me-and-the-boys",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2681340",
+    "variantTitle": "Me and the boys about to go destroy Eggman’s new theme park.",
+    "variantUploader": "MechWarriorNY",
+    "captionText": "C",
+    "canonicalImageType": "Cartoon",
+    "variantImageType": "Drawing",
+    "transformationDimension": [
+      "CrossoverMerge"
+    ],
+    "transformationExtent": "Moderate",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/681/340/b58"
+  }
 ]

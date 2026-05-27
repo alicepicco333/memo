@@ -11,28 +11,24 @@
 @prefix wdp: <http://www.wikidata.org/prop/direct/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-frbrer:C1002 rdfs:label "Work (FRBRer)"@en .
-frbrer:C1003 rdfs:label "Expression (FRBRer)"@en .
-frbrer:C1004 rdfs:label "Manifestation (FRBRer)"@en .
-
 dcterms:created a owl:AnnotationProperty ;
-    rdfs:label "created" ;
+    rdfs:label "created"@en ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range xsd:integer .
 
 dcterms:description a owl:AnnotationProperty ;
-    rdfs:label "description" ;
+    rdfs:label "description"@en ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range xsd:string .
 
 dcterms:format a owl:ObjectProperty ;
-    rdfs:label "format" ;
-    rdfs:comment "File format of the meme image (JPEG, PNG, GIF, etc.), linked to a FileFormat individual (wd:Q235557). Uses dcterms:format rather than a memo: property to align with Dublin Core usage."@en ;
+    rdfs:label "format"@en ;
+    rdfs:comment "File format of the meme image (JPEG, PNG, GIF, etc.), linked to a FileFormat individual. Uses dcterms:format to align with Dublin Core usage." ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range memo:FileFormat .
 
 dcterms:modified a owl:AnnotationProperty ;
-    rdfs:label "modified" ;
+    rdfs:label "modified"@en ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range xsd:string .
 
@@ -229,11 +225,26 @@ schema:url a owl:AnnotationProperty ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range xsd:string .
 
+frbrer:C1002 rdfs:label "Work (FRBRer)"@en .
+
+frbrer:C1003 rdfs:label "Expression (FRBRer)"@en .
+
+frbrer:C1004 rdfs:label "Manifestation (FRBRer)"@en .
+
 prov:wasDerivedFrom a owl:ObjectProperty ;
     rdfs:label "wasDerivedFrom" ;
     rdfs:comment "Superproperty of memo:hasOriginWork. Not directly asserted in MEMO — memo:hasOriginWork is used throughout, from which reasoners infer prov:wasDerivedFrom."@en ;
     rdfs:domain memo:MemeConcept ;
     rdfs:range memo:OriginWork .
+
+wd:Q235557 rdfs:label "FileFormat"@en ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q235557> .
+
+wd:Q3220391 rdfs:label "OnlineService"@en ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q3220391> .
+
+wd:Q82794 rdfs:label "GeographicRegion"@en ;
+    rdfs:seeAlso <https://www.wikidata.org/wiki/Q82794> .
 
 wdp:P123 a owl:ObjectProperty ;
     rdfs:label "hasOriginPlatform" ;
@@ -472,16 +483,4 @@ memo:MemeConcept a owl:Class ;
     rdfs:comment "A meme template or canonical format; the Expression level of the FRBR hierarchy. Represents the stable, recognisable form of a meme as documented on Know Your Meme."@en ;
     rdfs:subClassOf frbrer:C1003 ;
     memo:frbrLevel "Expression" .
-
-wd:Q235557
-    rdfs:label "FileFormat"@en ;
-    rdfs:seeAlso <https://www.wikidata.org/wiki/Q235557> .
-
-wd:Q82794
-    rdfs:label "GeographicRegion"@en ;
-    rdfs:seeAlso <https://www.wikidata.org/wiki/Q82794> .
-
-wd:Q3220391
-    rdfs:label "OnlineService"@en ;
-    rdfs:seeAlso <https://www.wikidata.org/wiki/Q3220391> .
 

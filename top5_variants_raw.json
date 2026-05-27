@@ -1,0 +1,871 @@
+[
+  {
+    "photoId": "3171622",
+    "variantIndex": 1,
+    "memeSlug": "stonks",
+    "memeName": "Stonks",
+    "memeConceptIRI": "https://purl.org/memo#stonks",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3171622",
+    "variantTitle": "Giving thanks",
+    "variantUploader": "Jaimie Hamilton",
+    "img_alt": "When you realise it's almost thanksgiving: 70 .9% 560 0.12% 286 0168 2.286 14563 156 0287 Wathonks",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/171/622/761.png",
+    "localFile": "sampled_variants\\stonks\\01_761.png",
+    "transformationDimension": [
+      "CaptionChange"
+    ],
+    "transformationExtent": "Minimal"
+  },
+  {
+    "photoId": "3039073",
+    "variantIndex": 2,
+    "memeSlug": "stonks",
+    "memeName": "Stonks",
+    "memeConceptIRI": "https://purl.org/memo#stonks",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3039073",
+    "variantTitle": "Oh Stonks",
+    "variantUploader": "TheAnt",
+    "img_alt": "10%2.17 1 4.3 10.421 stalks 17",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/039/073/6b4.jpg",
+    "localFile": "sampled_variants\\stonks\\02_6b4.jpg",
+    "transformationDimension": [
+      "CrossoverMerge",
+      "StyleShift",
+      "CaptionChange"
+    ],
+    "transformationExtent": "Substantial"
+  },
+  {
+    "photoId": "2849405",
+    "variantIndex": 3,
+    "memeSlug": "stonks",
+    "memeName": "Stonks",
+    "memeConceptIRI": "https://purl.org/memo#stonks",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2849405",
+    "variantTitle": "Chad Bull Stonks",
+    "variantUploader": "deperpmemes",
+    "img_alt": "Chad Bull Stonks",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/849/405/004.png",
+    "localFile": "sampled_variants\\stonks\\03_004.png",
+    "transformationDimension": [
+      "CrossoverMerge",
+      "StyleShift"
+    ],
+    "transformationExtent": "Moderate"
+  },
+  {
+    "photoId": "2694210",
+    "variantIndex": 4,
+    "memeSlug": "stonks",
+    "memeName": "Stonks",
+    "memeConceptIRI": "https://purl.org/memo#stonks",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2694210",
+    "variantTitle": "U.S. Stonks",
+    "variantUploader": "memeunk",
+    "img_alt": "CLE Stonks",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/694/210/156.jpeg",
+    "localFile": "sampled_variants\\stonks\\04_156.jpeg",
+    "transformationDimension": [
+      "CrossoverMerge",
+      "CompositionShift"
+    ],
+    "transformationExtent": "Moderate"
+  },
+  {
+    "photoId": "2623851",
+    "variantIndex": 5,
+    "memeSlug": "stonks",
+    "memeName": "Stonks",
+    "memeConceptIRI": "https://purl.org/memo#stonks",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2623851",
+    "variantTitle": "And it's a game",
+    "variantUploader": "Evilthing",
+    "img_alt": "ALL REVIEWS: RELEASE DATE: 2861 286 Simulator of an 80s Japanese stock market businessman. Chill, catch a retro vibe and watch your profits grow in the text-based game STONKS-9800. DEVELOPER: PUBLISHER: 4563 STONKS 9800 NIA No user reviews 17 Jul, 2023 TERNOX TERNOX Popular user-defined tags for this product: Early Access Simulation Economy Anime 2D",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/623/851/433.png",
+    "localFile": "sampled_variants\\stonks\\05_433.png",
+    "transformationDimension": [
+      "MediumShift",
+      "StyleShift",
+      "CrossoverMerge"
+    ],
+    "transformationExtent": "Substantial"
+  },
+  {
+    "photoId": "2481174",
+    "variantIndex": 6,
+    "memeSlug": "stonks",
+    "memeName": "Stonks",
+    "memeConceptIRI": "https://purl.org/memo#stonks",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2481174",
+    "variantTitle": "We're going to the moon... eventually",
+    "variantUploader": "Raul Satisacro",
+    "img_alt": "YES, BUT Mam O_yes_but Gudim.",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/481/174/0f6",
+    "localFile": "sampled_variants\\stonks\\06_0f6.jpg",
+    "transformationDimension": [
+      "MediumShift",
+      "StyleShift"
+    ],
+    "transformationExtent": "Moderate"
+  },
+  {
+    "photoId": "2330119",
+    "variantIndex": 7,
+    "memeSlug": "stonks",
+    "memeName": "Stonks",
+    "memeConceptIRI": "https://purl.org/memo#stonks",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2330119",
+    "variantTitle": "All the souls",
+    "variantUploader": "Cold Hard Crash",
+    "img_alt": "When the rumor you spread ends up causing another God to nuke humanity. And now you have more minions then you know what to do with. @dicensilverwing 0.168 %60 0.12 2.286 ▼ 1.4563 .156 0287 WAstonks 404 0.1204 3.234 0.1902 N/A 02 650 121 027",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/330/119/369.jpg",
+    "localFile": "sampled_variants\\stonks\\07_369.jpg",
+    "transformationDimension": [
+      "CaptionChange",
+      "StyleShift"
+    ],
+    "transformationExtent": "Moderate"
+  },
+  {
+    "photoId": "2163672",
+    "variantIndex": 8,
+    "memeSlug": "stonks",
+    "memeName": "Stonks",
+    "memeConceptIRI": "https://purl.org/memo#stonks",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2163672",
+    "variantTitle": "fonks",
+    "variantUploader": "Sobsz",
+    "img_alt": "fox from https://unsplash.com/photos/J-jC4-SjrqU",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/163/672/88d.png",
+    "localFile": "sampled_variants\\stonks\\08_88d.png",
+    "transformationDimension": [
+      "MediumShift"
+    ],
+    "transformationExtent": "Moderate"
+  },
+  {
+    "photoId": "2130917",
+    "variantIndex": 9,
+    "memeSlug": "stonks",
+    "memeName": "Stonks",
+    "memeConceptIRI": "https://purl.org/memo#stonks",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2130917",
+    "variantTitle": "Really Not Stonks",
+    "variantUploader": "wignut",
+    "img_alt": "wwreally not stonks 7635 797.7 1474 7174. 080. 39.05 16 2.9 11444 326.2 1529 23 0.85% 0.39%",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/130/917/d0f.png",
+    "localFile": "sampled_variants\\stonks\\09_d0f.png",
+    "transformationDimension": [
+      "CaptionChange"
+    ],
+    "transformationExtent": "Minimal"
+  },
+  {
+    "photoId": "2074124",
+    "variantIndex": 10,
+    "memeSlug": "stonks",
+    "memeName": "Stonks",
+    "memeConceptIRI": "https://purl.org/memo#stonks",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2074124",
+    "variantTitle": "Madoff NFL 2021",
+    "variantUploader": "cfjulian",
+    "img_alt": "EA SPORTS MADOFFD 21 38 151 11111 RATING PENDING RP NFLPA ESRB SUPER STAR EDITIO N STONKSI",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/074/124/f27.jpg",
+    "localFile": "sampled_variants\\stonks\\10_f27.jpg",
+    "transformationDimension": [
+      "CrossoverMerge",
+      "CompositionShift"
+    ],
+    "transformationExtent": "Substantial"
+  },
+  {
+    "photoId": "3157255",
+    "variantIndex": 1,
+    "memeSlug": "surprised-pikachu",
+    "memeName": "Surprised Pikachu",
+    "memeConceptIRI": "https://purl.org/memo#surprised-pikachu",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3157255",
+    "variantTitle": "Isn't that your whole job?",
+    "variantUploader": "Jaimie Hamilton",
+    "img_alt": "insurance companies when they have to insure something",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/157/255/566.jpeg",
+    "localFile": "sampled_variants\\surprised-pikachu\\01_566.jpeg",
+    "transformationDimension": [
+      "CaptionChange"
+    ],
+    "transformationExtent": "Minimal"
+  },
+  {
+    "photoId": "3099494",
+    "variantIndex": 2,
+    "memeSlug": "surprised-pikachu",
+    "memeName": "Surprised Pikachu",
+    "memeConceptIRI": "https://purl.org/memo#surprised-pikachu",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3099494",
+    "variantTitle": "On the first day of school...",
+    "variantUploader": "Jaimie Hamilton",
+    "img_alt": "• DO YOUR HOMEWORK Student: *doesn't do homework* Student: *fails required class* Student:",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/099/494/8c6.jpg",
+    "localFile": "sampled_variants\\surprised-pikachu\\02_8c6.jpg",
+    "transformationDimension": [
+      "CaptionChange",
+      "CompositionShift"
+    ],
+    "transformationExtent": "Moderate"
+  },
+  {
+    "photoId": "3037094",
+    "variantIndex": 3,
+    "memeSlug": "surprised-pikachu",
+    "memeName": "Surprised Pikachu",
+    "memeConceptIRI": "https://purl.org/memo#surprised-pikachu",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3037094",
+    "variantTitle": "Gasp...",
+    "variantUploader": "Jaimie Hamilton",
+    "img_alt": "Me: Can I have friends over? Parents: No Me: Can I go to my friend's party? Parents: No Me: *Grows up antisocial and shy* Parents:",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/037/094/098.jpeg",
+    "localFile": "sampled_variants\\surprised-pikachu\\03_098.jpeg",
+    "transformationDimension": [
+      "CaptionChange"
+    ],
+    "transformationExtent": "Minimal"
+  },
+  {
+    "photoId": "3023384",
+    "variantIndex": 4,
+    "memeSlug": "surprised-pikachu",
+    "memeName": "Surprised Pikachu",
+    "memeConceptIRI": "https://purl.org/memo#surprised-pikachu",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3023384",
+    "variantTitle": "WWII Japan when it gets what it asked for",
+    "variantUploader": "Jaimie Hamilton",
+    "img_alt": "Japan: *Wants decisive naval battle with the USA* USA: *Decisively defeats Japan at Midway* Japan: imgflip.com",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/023/384/9b9.jpeg",
+    "localFile": "sampled_variants\\surprised-pikachu\\04_9b9.jpeg",
+    "transformationDimension": [
+      "CaptionChange"
+    ],
+    "transformationExtent": "Minimal"
+  },
+  {
+    "photoId": "2970115",
+    "variantIndex": 5,
+    "memeSlug": "surprised-pikachu",
+    "memeName": "Surprised Pikachu",
+    "memeConceptIRI": "https://purl.org/memo#surprised-pikachu",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2970115",
+    "variantTitle": "Cyberpunk 2077 mods",
+    "variantUploader": "Nyazilla",
+    "img_alt": "Inspired by\n !https://i.kym-cdn.com/photos/images/newsfeed/001/424/530/0d7.jpg!\n",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/970/115/01d.jpg",
+    "localFile": "sampled_variants\\surprised-pikachu\\05_01d.jpg",
+    "transformationDimension": [
+      "CaptionChange"
+    ],
+    "transformationExtent": "Minimal"
+  },
+  {
+    "photoId": "2956566",
+    "variantIndex": 6,
+    "memeSlug": "surprised-pikachu",
+    "memeName": "Surprised Pikachu",
+    "memeConceptIRI": "https://purl.org/memo#surprised-pikachu",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2956566",
+    "variantTitle": "Felt like drawing a surprised Pikachu.",
+    "variantUploader": "Krazy-Chibi",
+    "img_alt": "KRAZY-Ch:6:",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/956/566/c79.png",
+    "localFile": "sampled_variants\\surprised-pikachu\\06_c79.png",
+    "transformationDimension": [
+      "StyleShift"
+    ],
+    "transformationExtent": "Moderate"
+  },
+  {
+    "photoId": "2943637",
+    "variantIndex": 7,
+    "memeSlug": "surprised-pikachu",
+    "memeName": "Surprised Pikachu",
+    "memeConceptIRI": "https://purl.org/memo#surprised-pikachu",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2943637",
+    "variantTitle": "Shocked Pumpkachu",
+    "variantUploader": "Adam Downer",
+    "img_alt": "Shocked Pumpkachu",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/943/637/064.jpeg",
+    "localFile": "sampled_variants\\surprised-pikachu\\07_064.jpeg",
+    "transformationDimension": [
+      "StyleShift",
+      "MediumShift"
+    ],
+    "transformationExtent": "Substantial"
+  },
+  {
+    "photoId": "2921812",
+    "variantIndex": 8,
+    "memeSlug": "surprised-pikachu",
+    "memeName": "Surprised Pikachu",
+    "memeConceptIRI": "https://purl.org/memo#surprised-pikachu",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2921812",
+    "variantTitle": "Realize",
+    "variantUploader": "Triplem",
+    "img_alt": "Do you ever realize suddenly, and with awful clarity, that we've become incapable of communicating with each other except through corporate-owned fandoms curated to subsume our identities, expressed via corporate-owned social networks designed to behaviorally addict us? BING! patreon.com.com/Zach Weinersmith smbc-comics.com",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/921/812/dae.png",
+    "localFile": "sampled_variants\\surprised-pikachu\\08_dae.png",
+    "transformationDimension": [
+      "CompositionShift"
+    ],
+    "transformationExtent": "Moderate"
+  },
+  {
+    "photoId": "2914754",
+    "variantIndex": 9,
+    "memeSlug": "surprised-pikachu",
+    "memeName": "Surprised Pikachu",
+    "memeConceptIRI": "https://purl.org/memo#surprised-pikachu",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2914754",
+    "variantTitle": "It doesn't even work",
+    "variantUploader": "Jaimie Hamilton",
+    "img_alt": "Al detector: This text is 83% Al! Teacher: *yells at me and shows me the results* Me: *plugs in the Declaration of Independence in the exact same software* Al detector: This text is 79% Al! Teacher: made with mematic",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/914/754/d36.jpeg",
+    "localFile": "sampled_variants\\surprised-pikachu\\09_d36.jpeg",
+    "transformationDimension": [
+      "CaptionChange"
+    ],
+    "transformationExtent": "Minimal"
+  },
+  {
+    "photoId": "2880832",
+    "variantIndex": 10,
+    "memeSlug": "surprised-pikachu",
+    "memeName": "Surprised Pikachu",
+    "memeConceptIRI": "https://purl.org/memo#surprised-pikachu",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2880832",
+    "variantTitle": "It looks ghastly from the side, I'll tell you",
+    "variantUploader": "Autumn Able",
+    "img_alt": "TCM Internet: We've seen all the surpised Pikachus we are ever going to see. This meme is dead. Japan's toy industry:",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/880/832/f4c.jpeg",
+    "localFile": "sampled_variants\\surprised-pikachu\\10_f4c.jpeg",
+    "transformationDimension": [
+      "MediumShift"
+    ],
+    "transformationExtent": "Substantial"
+  },
+  {
+    "photoId": "3259491",
+    "variantIndex": 1,
+    "memeSlug": "steven-crowders-change-my-mind-campus-sign",
+    "memeName": "Steven Crowders Change My Mind Campus Sign",
+    "memeConceptIRI": "https://purl.org/memo#steven-crowders-change-my-mind-campus-sign",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3259491",
+    "variantTitle": "Calvin Variant",
+    "variantUploader": "Salnax",
+    "img_alt": "ད་ས STEVEN CROWDER DOES NOT DESERVE A MEME FORMAT CHANGE MY MIND MERSN",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/259/491/4cb.jpeg",
+    "localFile": "sampled_variants\\steven-crowders-change-my-mind-campus-sign\\01_4cb.jpeg",
+    "transformationDimension": [
+      "CrossoverMerge",
+      "MediumShift"
+    ],
+    "transformationExtent": "Substantial"
+  },
+  {
+    "photoId": "3183766",
+    "variantIndex": 2,
+    "memeSlug": "steven-crowders-change-my-mind-campus-sign",
+    "memeName": "Steven Crowders Change My Mind Campus Sign",
+    "memeConceptIRI": "https://purl.org/memo#steven-crowders-change-my-mind-campus-sign",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3183766",
+    "variantTitle": "It feels the best",
+    "variantUploader": "Jaimie Hamilton",
+    "img_alt": "The best part of a weekend is Friday night CHANGE MY MIND",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/183/766/ea8.png",
+    "localFile": "sampled_variants\\steven-crowders-change-my-mind-campus-sign\\02_ea8.png",
+    "transformationDimension": [
+      "CaptionChange"
+    ],
+    "transformationExtent": "Minimal"
+  },
+  {
+    "photoId": "3177961",
+    "variantIndex": 3,
+    "memeSlug": "steven-crowders-change-my-mind-campus-sign",
+    "memeName": "Steven Crowders Change My Mind Campus Sign",
+    "memeConceptIRI": "https://purl.org/memo#steven-crowders-change-my-mind-campus-sign",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3177961",
+    "variantTitle": "Let the weekend absorb it",
+    "variantUploader": "Jaimie Hamilton",
+    "img_alt": "imgflip.com Monday shouldn't exist CHANGE MY MIND",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/177/961/f8a.png",
+    "localFile": "sampled_variants\\steven-crowders-change-my-mind-campus-sign\\03_f8a.png",
+    "transformationDimension": [
+      "CaptionChange"
+    ],
+    "transformationExtent": "Minimal"
+  },
+  {
+    "photoId": "3144027",
+    "variantIndex": 4,
+    "memeSlug": "steven-crowders-change-my-mind-campus-sign",
+    "memeName": "Steven Crowders Change My Mind Campus Sign",
+    "memeConceptIRI": "https://purl.org/memo#steven-crowders-change-my-mind-campus-sign",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3144027",
+    "variantTitle": "So true",
+    "variantUploader": "Jaimie Hamilton",
+    "img_alt": "CROWDE QUDER SHOWDER There are too many Christmas songs and not enough Halloween songs CHANGE MY MIND",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/144/027/2b0.jpg",
+    "localFile": "sampled_variants\\steven-crowders-change-my-mind-campus-sign\\04_2b0.jpg",
+    "transformationDimension": [
+      "CaptionChange"
+    ],
+    "transformationExtent": "Minimal"
+  },
+  {
+    "photoId": "3109813",
+    "variantIndex": 5,
+    "memeSlug": "steven-crowders-change-my-mind-campus-sign",
+    "memeName": "Steven Crowders Change My Mind Campus Sign",
+    "memeConceptIRI": "https://purl.org/memo#steven-crowders-change-my-mind-campus-sign",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3109813",
+    "variantTitle": "Gonna be a good day",
+    "variantUploader": "Jaimie Hamilton",
+    "img_alt": "made with mematic Encu CHOWDER Today is gonna be a good day Don't Change my Mind",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/109/813/13a.jpeg",
+    "localFile": "sampled_variants\\steven-crowders-change-my-mind-campus-sign\\05_13a.jpeg",
+    "transformationDimension": [
+      "CaptionChange"
+    ],
+    "transformationExtent": "Minimal"
+  },
+  {
+    "photoId": "3105752",
+    "variantIndex": 6,
+    "memeSlug": "steven-crowders-change-my-mind-campus-sign",
+    "memeName": "Steven Crowders Change My Mind Campus Sign",
+    "memeConceptIRI": "https://purl.org/memo#steven-crowders-change-my-mind-campus-sign",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3105752",
+    "variantTitle": "Seems fair to me",
+    "variantUploader": "Jaimie Hamilton",
+    "img_alt": "LOUDER CROW LOUDER CROWDER IF COMPANIES CAN USE AI TO REJECT ME, I CAN USE AI TO APPLY CHANGE MY MIND",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/105/752/32a.jpeg",
+    "localFile": "sampled_variants\\steven-crowders-change-my-mind-campus-sign\\06_32a.jpeg",
+    "transformationDimension": [
+      "CaptionChange"
+    ],
+    "transformationExtent": "Minimal"
+  },
+  {
+    "photoId": "3093681",
+    "variantIndex": 7,
+    "memeSlug": "steven-crowders-change-my-mind-campus-sign",
+    "memeName": "Steven Crowders Change My Mind Campus Sign",
+    "memeConceptIRI": "https://purl.org/memo#steven-crowders-change-my-mind-campus-sign",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3093681",
+    "variantTitle": "A hot take",
+    "variantUploader": "Jaimie Hamilton",
+    "img_alt": "Tuesdays are worse than Mondays CHANGE MY MIND",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/093/681/e78.jpg",
+    "localFile": "sampled_variants\\steven-crowders-change-my-mind-campus-sign\\07_e78.jpg",
+    "transformationDimension": [
+      "CaptionChange"
+    ],
+    "transformationExtent": "Minimal"
+  },
+  {
+    "photoId": "3045918",
+    "variantIndex": 8,
+    "memeSlug": "steven-crowders-change-my-mind-campus-sign",
+    "memeName": "Steven Crowders Change My Mind Campus Sign",
+    "memeConceptIRI": "https://purl.org/memo#steven-crowders-change-my-mind-campus-sign",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3045918",
+    "variantTitle": "Change my Mind | /r/memes",
+    "variantUploader": "Reddit Moments",
+    "img_alt": "imgflip.com Every Youtube reaction video is just a fake overreaction video CHANGE MY MIND",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/045/918/5fa.png",
+    "localFile": "sampled_variants\\steven-crowders-change-my-mind-campus-sign\\08_5fa.png",
+    "transformationDimension": [
+      "CaptionChange"
+    ],
+    "transformationExtent": "Minimal"
+  },
+  {
+    "photoId": "2977772",
+    "variantIndex": 9,
+    "memeSlug": "steven-crowders-change-my-mind-campus-sign",
+    "memeName": "Steven Crowders Change My Mind Campus Sign",
+    "memeConceptIRI": "https://purl.org/memo#steven-crowders-change-my-mind-campus-sign",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2977772",
+    "variantTitle": "Change Luigi's Mind",
+    "variantUploader": "funnyfaceking",
+    "img_alt": "chowor OUDER CROWDER That CEO was actively murdering people purely for profit. CHANGE MY MIND",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/977/772/a9c",
+    "localFile": "sampled_variants\\steven-crowders-change-my-mind-campus-sign\\09_a9c.jpg",
+    "transformationDimension": [
+      "CrossoverMerge",
+      "MediumShift"
+    ],
+    "transformationExtent": "Substantial"
+  },
+  {
+    "photoId": "2963518",
+    "variantIndex": 10,
+    "memeSlug": "steven-crowders-change-my-mind-campus-sign",
+    "memeName": "Steven Crowders Change My Mind Campus Sign",
+    "memeConceptIRI": "https://purl.org/memo#steven-crowders-change-my-mind-campus-sign",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2963518",
+    "variantTitle": "nomamoto",
+    "variantUploader": "Ulysses Smith",
+    "img_alt": "F--- Aliens taste good CHANGE MY MINI",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/963/518/975",
+    "localFile": "sampled_variants\\steven-crowders-change-my-mind-campus-sign\\10_975.jpg",
+    "transformationDimension": [
+      "CrossoverMerge",
+      "MediumShift"
+    ],
+    "transformationExtent": "Moderate"
+  },
+  {
+    "photoId": "3079818",
+    "variantIndex": 1,
+    "memeSlug": "npc-wojak",
+    "memeName": "Npc Wojak",
+    "memeConceptIRI": "https://purl.org/memo#npc-wojak",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3079818",
+    "variantTitle": "Sums it up",
+    "variantUploader": "Jaimie Hamilton",
+    "img_alt": "HR using auto-reject filters that disquality 99,9% of candidates so they have to do fraction of the work recruiter Candidates using auto-tailroed Al resumes and job applying bots to have a chance against those filters recruiter A KANA",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/079/818/94d.jpeg",
+    "localFile": "sampled_variants\\npc-wojak\\01_94d.jpeg",
+    "transformationDimension": [
+      "CompositionShift"
+    ],
+    "transformationExtent": "Moderate"
+  },
+  {
+    "photoId": "3056413",
+    "variantIndex": 2,
+    "memeSlug": "npc-wojak",
+    "memeName": "Npc Wojak",
+    "memeConceptIRI": "https://purl.org/memo#npc-wojak",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3056413",
+    "variantTitle": "I wonder why.. | /r/memes",
+    "variantUploader": "Reddit Moments",
+    "img_alt": "Geez, why is there so much traffic today?",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/056/413/730.png",
+    "localFile": "sampled_variants\\npc-wojak\\02_730.png",
+    "transformationDimension": [
+      "CaptionChange",
+      "CompositionShift"
+    ],
+    "transformationExtent": "Minimal"
+  },
+  {
+    "photoId": "3041478",
+    "variantIndex": 3,
+    "memeSlug": "npc-wojak",
+    "memeName": "Npc Wojak",
+    "memeConceptIRI": "https://purl.org/memo#npc-wojak",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3041478",
+    "variantTitle": "Tension rising… | /r/memes",
+    "variantUploader": "Reddit Moments",
+    "img_alt": "I shaved my eyebrows It looks horrible",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/041/478/2e6.jpeg",
+    "localFile": "sampled_variants\\npc-wojak\\03_2e6.jpeg",
+    "transformationDimension": [
+      "CaptionChange",
+      "CompositionShift"
+    ],
+    "transformationExtent": "Moderate"
+  },
+  {
+    "photoId": "3019094",
+    "variantIndex": 4,
+    "memeSlug": "npc-wojak",
+    "memeName": "Npc Wojak",
+    "memeConceptIRI": "https://purl.org/memo#npc-wojak",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3019094",
+    "variantTitle": "You should have left our video games alone...",
+    "variantUploader": "Mr. Nobody Returns",
+    "img_alt": "WHY DID YOU VOTE FOR THE BAD ORANGE MAN? Because you went after my f------ video games... You deserve what you get.",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/019/094/716.png",
+    "localFile": "sampled_variants\\npc-wojak\\04_716.png",
+    "transformationDimension": [
+      "CompositionShift"
+    ],
+    "transformationExtent": "Moderate"
+  },
+  {
+    "photoId": "2995566",
+    "variantIndex": 5,
+    "memeSlug": "npc-wojak",
+    "memeName": "Npc Wojak",
+    "memeConceptIRI": "https://purl.org/memo#npc-wojak",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2995566",
+    "variantTitle": "Sakura NPC Wojak",
+    "variantUploader": "weathersalesman",
+    "img_alt": "Naruto did it first, in 2002.",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/995/566/9ad.png",
+    "localFile": "sampled_variants\\npc-wojak\\05_9ad.png",
+    "transformationDimension": [
+      "CrossoverMerge",
+      "StyleShift"
+    ],
+    "transformationExtent": "Moderate"
+  },
+  {
+    "photoId": "2939233",
+    "variantIndex": 6,
+    "memeSlug": "npc-wojak",
+    "memeName": "Npc Wojak",
+    "memeConceptIRI": "https://purl.org/memo#npc-wojak",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2939233",
+    "variantTitle": "Does free will even exist?",
+    "variantUploader": "Triplem",
+    "img_alt": "ル IL ル",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/939/233/817.jpg",
+    "localFile": "sampled_variants\\npc-wojak\\06_817.jpg",
+    "transformationDimension": [
+      "StyleShift"
+    ],
+    "transformationExtent": "Substantial"
+  },
+  {
+    "photoId": "2769512",
+    "variantIndex": 7,
+    "memeSlug": "npc-wojak",
+    "memeName": "Npc Wojak",
+    "memeConceptIRI": "https://purl.org/memo#npc-wojak",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2769512",
+    "variantTitle": "Smart mouth for a Celt | History Memes",
+    "variantUploader": "Reddit Moments",
+    "img_alt": "You barbarians will never amount to anything 기 기 Genitorreme Oh yeah? Then why isn't this meme in Latin?",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/769/512/3be.png",
+    "localFile": "sampled_variants\\npc-wojak\\07_3be.png",
+    "transformationDimension": [
+      "CompositionShift"
+    ],
+    "transformationExtent": "Moderate"
+  },
+  {
+    "photoId": "2755458",
+    "variantIndex": 8,
+    "memeSlug": "npc-wojak",
+    "memeName": "Npc Wojak",
+    "memeConceptIRI": "https://purl.org/memo#npc-wojak",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2755458",
+    "variantTitle": "NPC Circus Super Bowl LVIII",
+    "variantUploader": "Aidan Walker",
+    "img_alt": "E GP @ElijahSchaffer Hope you all enjoyed your circus 11:52 PM Feb 11, 2024 2.8M Views . :",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/755/458/303.png",
+    "localFile": "sampled_variants\\npc-wojak\\08_303.png",
+    "transformationDimension": [
+      "StyleShift",
+      "MediumShift"
+    ],
+    "transformationExtent": "Moderate"
+  },
+  {
+    "photoId": "2719952",
+    "variantIndex": 9,
+    "memeSlug": "npc-wojak",
+    "memeName": "Npc Wojak",
+    "memeConceptIRI": "https://purl.org/memo#npc-wojak",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2719952",
+    "variantTitle": "Another Fat Shaming Joke!",
+    "variantUploader": "Marwan Sallam",
+    "img_alt": "Fat is beautiful! Lizzo is beautiful! NO!!!!!!!!! 7 No it's not, name a beautiful fat woman... Ok, you look like Lizzo... Based! MAKING GMEMES GREAT AGAIN",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/719/952/cd1.jpg",
+    "localFile": "sampled_variants\\npc-wojak\\09_cd1.jpg",
+    "transformationDimension": [
+      "CompositionShift"
+    ],
+    "transformationExtent": "Moderate"
+  },
+  {
+    "photoId": "2712445",
+    "variantIndex": 10,
+    "memeSlug": "npc-wojak",
+    "memeName": "Npc Wojak",
+    "memeConceptIRI": "https://purl.org/memo#npc-wojak",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2712445",
+    "variantTitle": "Tradcaths vs. Neo-Mafia - Who will win?",
+    "variantUploader": "Mr. Nobody Returns",
+    "img_alt": "P---, HENTAI, AND ECCHI IS EVIL AND SHOULD BE BANNED. REPENT FOR YOUR SINS YOU SINNER. 11 Will God protect you from the Neo-Mafia if you start another prohibiton?",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/712/445/b27.png",
+    "localFile": "sampled_variants\\npc-wojak\\10_b27.png",
+    "transformationDimension": [
+      "CompositionShift"
+    ],
+    "transformationExtent": "Moderate"
+  },
+  {
+    "photoId": "3234426",
+    "variantIndex": 1,
+    "memeSlug": "me-and-the-boys",
+    "memeName": "Me And The Boys",
+    "memeConceptIRI": "https://purl.org/memo#me-and-the-boys",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3234426",
+    "variantTitle": "Me and the boys about to play Ogres & Oubliettes",
+    "variantUploader": "DreamlanderJ",
+    "img_alt": "Me and the boys about to play Ogres & Oubliettes",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/234/426/eb1.jpg",
+    "localFile": "sampled_variants\\me-and-the-boys\\01_eb1.jpg",
+    "transformationDimension": [
+      "CompositionShift"
+    ],
+    "transformationExtent": "Moderate"
+  },
+  {
+    "photoId": "3055475",
+    "variantIndex": 2,
+    "memeSlug": "me-and-the-boys",
+    "memeName": "Me And The Boys",
+    "memeConceptIRI": "https://purl.org/memo#me-and-the-boys",
+    "variantInstanceIRI": "https://purl.org/memo#photo_3055475",
+    "variantTitle": "I miss the boys | /r/dankmemes",
+    "variantUploader": "Reddit Moments",
+    "img_alt": "Me and the boys waiting for more classic memes to post",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/003/055/475/48a.jpeg",
+    "localFile": "sampled_variants\\me-and-the-boys\\02_48a.jpeg",
+    "transformationDimension": [
+      "CaptionChange"
+    ],
+    "transformationExtent": "Minimal"
+  },
+  {
+    "photoId": "2984526",
+    "variantIndex": 3,
+    "memeSlug": "me-and-the-boys",
+    "memeName": "Me And The Boys",
+    "memeConceptIRI": "https://purl.org/memo#me-and-the-boys",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2984526",
+    "variantTitle": "The Charlie Gang Boys Redraw",
+    "variantUploader": "Triplem",
+    "img_alt": "J",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/984/526/328.png",
+    "localFile": "sampled_variants\\me-and-the-boys\\03_328.png",
+    "transformationDimension": [
+      "StyleShift"
+    ],
+    "transformationExtent": "Moderate"
+  },
+  {
+    "photoId": "2963907",
+    "variantIndex": 4,
+    "memeSlug": "me-and-the-boys",
+    "memeName": "Me And The Boys",
+    "memeConceptIRI": "https://purl.org/memo#me-and-the-boys",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2963907",
+    "variantTitle": "Me and the boys not letting you do that, Star Fox!",
+    "variantUploader": "Γ Da Count Γ",
+    "img_alt": "This is badge",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/963/907/392.jpg",
+    "localFile": "sampled_variants\\me-and-the-boys\\04_392.jpg",
+    "transformationDimension": [
+      "CrossoverMerge"
+    ],
+    "transformationExtent": "Moderate"
+  },
+  {
+    "photoId": "2884868",
+    "variantIndex": 5,
+    "memeSlug": "me-and-the-boys",
+    "memeName": "Me And The Boys",
+    "memeConceptIRI": "https://purl.org/memo#me-and-the-boys",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2884868",
+    "variantTitle": "Me and the boys outside the local Arby's after taking 14 tabs of acid",
+    "variantUploader": "GG Channel",
+    "img_alt": "Me and the boys outside the local Arby's after taking 14 tabs of acid @World war meme_ii ifunny.co",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/884/868/876.jpg",
+    "localFile": "sampled_variants\\me-and-the-boys\\05_876.jpg",
+    "transformationDimension": [
+      "CrossoverMerge"
+    ],
+    "transformationExtent": "Moderate"
+  },
+  {
+    "photoId": "2801960",
+    "variantIndex": 6,
+    "memeSlug": "me-and-the-boys",
+    "memeName": "Me And The Boys",
+    "memeConceptIRI": "https://purl.org/memo#me-and-the-boys",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2801960",
+    "variantTitle": "Bryan and the Boys",
+    "variantUploader": "Edgar Weebling",
+    "img_alt": "Bryan and the Boys",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/801/960/4a4",
+    "localFile": "sampled_variants\\me-and-the-boys\\06_4a4.jpg",
+    "transformationDimension": [
+      "CrossoverMerge"
+    ],
+    "transformationExtent": "Moderate"
+  },
+  {
+    "photoId": "2798169",
+    "variantIndex": 7,
+    "memeSlug": "me-and-the-boys",
+    "memeName": "Me And The Boys",
+    "memeConceptIRI": "https://purl.org/memo#me-and-the-boys",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2798169",
+    "variantTitle": "Me and the girls about to play a game",
+    "variantUploader": "PhilSunderland",
+    "img_alt": "Θ",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/798/169/c82.png",
+    "localFile": "sampled_variants\\me-and-the-boys\\07_c82.png",
+    "transformationDimension": [
+      "StyleShift"
+    ],
+    "transformationExtent": "Moderate"
+  },
+  {
+    "photoId": "2788822",
+    "variantIndex": 8,
+    "memeSlug": "me-and-the-boys",
+    "memeName": "Me And The Boys",
+    "memeConceptIRI": "https://purl.org/memo#me-and-the-boys",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2788822",
+    "variantTitle": "Me and the Indie Devs",
+    "variantUploader": "Hysteria98",
+    "img_alt": "A Short Hike (2019) by Adam Robinson-Yu\nReturn of the Obra Dinn (2018) by Lucas Pope\nStardew Valley (2016) by ConcernedApe\nUndertale (2015) by Toby Fox\n\nCredit and praise to the few others where due that also contributed to these works.",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/788/822/d5a.png",
+    "localFile": "sampled_variants\\me-and-the-boys\\08_d5a.png",
+    "transformationDimension": [
+      "CrossoverMerge"
+    ],
+    "transformationExtent": "Substantial"
+  },
+  {
+    "photoId": "2769556",
+    "variantIndex": 9,
+    "memeSlug": "me-and-the-boys",
+    "memeName": "Me And The Boys",
+    "memeConceptIRI": "https://purl.org/memo#me-and-the-boys",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2769556",
+    "variantTitle": "Four Horsemen of New Great Games | /r/memes",
+    "variantUploader": "Reddit Moments",
+    "img_alt": "Me and the Boys showing other Big Corporations that they just make s--- games LETHAL COMPANY HELLDIVERS imgflip.com Baldur's Gate PALWORLD-",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/769/556/983.png",
+    "localFile": "sampled_variants\\me-and-the-boys\\09_983.png",
+    "transformationDimension": [
+      "CrossoverMerge",
+      "CaptionChange"
+    ],
+    "transformationExtent": "Substantial"
+  },
+  {
+    "photoId": "2681340",
+    "variantIndex": 10,
+    "memeSlug": "me-and-the-boys",
+    "memeName": "Me And The Boys",
+    "memeConceptIRI": "https://purl.org/memo#me-and-the-boys",
+    "variantInstanceIRI": "https://purl.org/memo#photo_2681340",
+    "variantTitle": "Me and the boys about to go destroy Eggman’s new theme park.",
+    "variantUploader": "MechWarriorNY",
+    "img_alt": "C",
+    "imageURL": "https://i.kym-cdn.com/photos/images/original/002/681/340/b58",
+    "localFile": "sampled_variants\\me-and-the-boys\\10_b58.jpg",
+    "transformationDimension": [
+      "CrossoverMerge"
+    ],
+    "transformationExtent": "Moderate"
+  }
+]
