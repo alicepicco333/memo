@@ -441,8 +441,15 @@ def classify_image(model, preprocess, device, image_path, text_threshold, subj_t
 ONTO_BASE = "https://purl.org/memo#"
 ONTO_URI  = URIRef("https://purl.org/memo")
 
-# All classes are now in the memo: namespace; WD QIDs kept as rdfs:seeAlso only
-WD_CLASS_MAP = {}  # empty — class_uri() always returns MEME[name]
+# Six classes replaced directly by their Wikidata equivalents — no memo: wrapper
+WD_CLASS_MAP = {
+    "GeographicRegion":  WD["Q82794"],
+    "OriginPlatform":    WD["Q3220391"],
+    "FileFormat":        WD["Q235557"],
+    "OriginWork":        WD["Q386724"],
+    "TimePeriod":        WD["Q11471"],
+    "CulturalReference": WD["Q96622155"],
+}
 
 # P3 — Wikidata P-item properties that replace memo: object property declarations
 WD_PROP_MAP = {
@@ -733,20 +740,9 @@ MEMO_CLASS_COMMENTS = {
     "CulturalReference": "Cultural artefact, event, or phenomenon that a meme iconologically references; aligned with Wikidata Q96622155.",
 }
 
-# Wikidata seeAlso QIDs for memo: classes that have a WD equivalent.
-# GeographicRegion, OriginPlatform, FileFormat are omitted — they have owl:equivalentClass instead.
-CLASS_WD_SEEALSO = {
-    "TimePeriod":        "Q11471",
-    "OriginWork":        "Q386724",
-    "CulturalReference": "Q96622155",
-}
-
-# Wikidata equivalentClass QIDs for memo: classes with direct class equivalence.
-CLASS_WD_EQUIVALENT = {
-    "GeographicRegion": "Q82794",
-    "OriginPlatform": "Q3220391",
-    "FileFormat": "Q235557",
-}
+# No memo: class alignment declarations needed — the six WD classes ARE the classes now.
+CLASS_WD_SEEALSO    = {}
+CLASS_WD_EQUIVALENT = {}
 
 # Kept for reference only (no longer used to declare OWL classes)
 WD_CLASS_META = {
@@ -902,28 +898,34 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
         g.add((bn, OWL.unionOf, lst))
         return bn
 
-    # All classes now in memo: namespace (six formerly-WD classes merged in)
+    # memo: classes that remain in the MEMO namespace
     memo_only_classes = [
         "MemeConcept", "MemeIdea", "SubjectMatter", "ImageType",
         "MemeFormat", "AnimationStatus",
         "VariantInstance", "TransformationDimension", "TransformationExtent",
-        "GeographicRegion", "TimePeriod", "OriginPlatform",
-        "OriginWork", "FileFormat", "CulturalReference",
     ]
     for c in memo_only_classes:
         g.add((MEME[c], RDF.type,   OWL.Class))
         g.add((MEME[c], RDFS.label, Literal(c)))
         if c in MEMO_CLASS_COMMENTS:
             g.add((MEME[c], RDFS.comment, Literal(MEMO_CLASS_COMMENTS[c], lang="en")))
-        if c in CLASS_WD_SEEALSO:
-            g.add((MEME[c], RDFS.seeAlso, URIRef(f"https://www.wikidata.org/wiki/{CLASS_WD_SEEALSO[c]}")))
-        if c in CLASS_WD_EQUIVALENT:
-            g.add((MEME[c], OWL.equivalentClass, WD[CLASS_WD_EQUIVALENT[c]]))
-    # Labels and seeAlso for the Wikidata entities used as owl:equivalentClass targets.
-    WD_EQUIV_ENTITY_LABELS = {"Q235557": "FileFormat", "Q82794": "GeographicRegion", "Q3220391": "OnlineService"}
-    for _qid, _lbl in WD_EQUIV_ENTITY_LABELS.items():
-        g.add((WD[_qid], RDFS.label,   Literal(_lbl, lang="en")))
-        g.add((WD[_qid], RDFS.seeAlso, URIRef(f"https://www.wikidata.org/wiki/{_qid}")))
+
+    # Six classes represented directly as Wikidata entities
+    WD_CLASS_DECLS = {
+        "Q82794":    ("GeographicRegion",  MEMO_CLASS_COMMENTS.get("GeographicRegion",  "")),
+        "Q3220391":  ("OriginPlatform",    MEMO_CLASS_COMMENTS.get("OriginPlatform",    "")),
+        "Q235557":   ("FileFormat",        MEMO_CLASS_COMMENTS.get("FileFormat",        "")),
+        "Q386724":   ("OriginWork",        MEMO_CLASS_COMMENTS.get("OriginWork",        "")),
+        "Q11471":    ("TimePeriod",        MEMO_CLASS_COMMENTS.get("TimePeriod",        "")),
+        "Q96622155": ("CulturalReference", MEMO_CLASS_COMMENTS.get("CulturalReference", "")),
+    }
+    for _qid, (_lbl, _cmt) in WD_CLASS_DECLS.items():
+        _wd_cls = WD[_qid]
+        g.add((_wd_cls, RDF.type,   OWL.Class))
+        g.add((_wd_cls, RDFS.label, Literal(_lbl, lang="en")))
+        g.add((_wd_cls, RDFS.seeAlso, URIRef(f"https://www.wikidata.org/wiki/{_qid}")))
+        if _cmt:
+            g.add((_wd_cls, RDFS.comment, Literal(_cmt, lang="en")))
 
     # IFLA FRBR subclass declarations
     g.add((FRBRER.C1002, RDFS.label, Literal("Work (FRBRer)", lang="en")))
@@ -933,18 +935,18 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
     g.add((MEME.MemeConcept,     RDFS.subClassOf, FRBRER.C1003))  # Expression
     g.add((MEME.VariantInstance, RDFS.subClassOf, FRBRER.C1004))  # Manifestation
 
-    # schema.org OriginWork subtypes — declared as subclasses of memo:OriginWork
+    # schema.org OriginWork subtypes — declared as subclasses of wd:Q386724
     for schema_cls, label, comment, wd_qid in [
-        (SCHEMA.TVSeries,    "TvSeries",   "Television or web series from which the meme derives; subclass of memo:OriginWork.", "Q5398426"),
-        (SCHEMA.Movie,       "Movie",      "Film from which the meme derives; subclass of memo:OriginWork.",                    "Q11424"),
-        (SCHEMA.VideoGame,   "VideoGame",  "Video game from which the meme derives; subclass of memo:OriginWork.",              "Q7889"),
-        (SCHEMA.ComicSeries, "ComicBook",  "Comic strip, webcomic or graphic novel from which the meme derives; subclass of memo:OriginWork.", "Q25379"),
-        (SCHEMA.MusicAlbum,  "MusicAlbum", "Song, album or music video from which the meme derives; subclass of memo:OriginWork.", "Q482994"),
-        (SCHEMA.Book,        "Book",       "Book, novel or short story from which the meme derives; subclass of memo:OriginWork.", "Q571"),
+        (SCHEMA.TVSeries,    "TvSeries",   "Television or web series from which the meme derives; subclass of wd:Q386724.", "Q5398426"),
+        (SCHEMA.Movie,       "Movie",      "Film from which the meme derives; subclass of wd:Q386724.",                    "Q11424"),
+        (SCHEMA.VideoGame,   "VideoGame",  "Video game from which the meme derives; subclass of wd:Q386724.",              "Q7889"),
+        (SCHEMA.ComicSeries, "ComicBook",  "Comic strip, webcomic or graphic novel from which the meme derives; subclass of wd:Q386724.", "Q25379"),
+        (SCHEMA.MusicAlbum,  "MusicAlbum", "Song, album or music video from which the meme derives; subclass of wd:Q386724.", "Q482994"),
+        (SCHEMA.Book,        "Book",       "Book, novel or short story from which the meme derives; subclass of wd:Q386724.", "Q571"),
     ]:
         g.add((schema_cls, RDF.type,        OWL.Class))
         g.add((schema_cls, RDFS.label,       Literal(label)))
-        g.add((schema_cls, RDFS.subClassOf, MEME.OriginWork))
+        g.add((schema_cls, RDFS.subClassOf, WD.Q386724))
         g.add((schema_cls, RDFS.comment,    Literal(comment, lang="en")))
         g.add((schema_cls, RDFS.seeAlso,    URIRef(f"https://www.wikidata.org/wiki/{wd_qid}")))
 
@@ -980,7 +982,7 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
     # prov:wasDerivedFrom — superproperty of memo:hasOriginWork; not directly asserted in MEMO
     g.add((PROV.wasDerivedFrom, RDF.type,     OWL.ObjectProperty))
     g.add((PROV.wasDerivedFrom, RDFS.domain,  MEME.MemeConcept))
-    g.add((PROV.wasDerivedFrom, RDFS.range,   MEME.OriginWork))
+    g.add((PROV.wasDerivedFrom, RDFS.range,   WD.Q386724))
     g.add((PROV.wasDerivedFrom, RDFS.label,   Literal("wasDerivedFrom")))
     g.add((PROV.wasDerivedFrom, RDFS.comment, Literal(
         "Superproperty of memo:hasOriginWork. Not directly asserted in MEMO — "
@@ -991,7 +993,7 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
         (DCTERMS.created,     "created",     XSD.integer,       OWL.AnnotationProperty),
         (DCTERMS.description, "description", XSD.string,        OWL.AnnotationProperty),
         (DCTERMS.modified,    "modified",    XSD.string,        OWL.AnnotationProperty),
-        (DCTERMS["format"],   "format",      MEME.FileFormat,   OWL.ObjectProperty),
+        (DCTERMS["format"],   "format",      WD.Q235557,        OWL.ObjectProperty),
     ]:
         g.add((_prop, RDF.type,    _ptype))
         g.add((_prop, RDFS.domain, MEME.MemeConcept))
@@ -1043,13 +1045,13 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
     for _qid, _label in WD_REGION_INDIVIDUALS.items():
         _ind = WD[_qid]
         g.add((_ind, RDF.type,     OWL.NamedIndividual))
-        g.add((_ind, RDF.type,     MEME.GeographicRegion))
+        g.add((_ind, RDF.type,     WD.Q82794))
         g.add((_ind, RDFS.label,   Literal(_label)))
         g.add((_ind, RDFS.seeAlso, URIRef(f"https://www.wikidata.org/wiki/{_qid}")))
     for _qid, _label in WD_PLATFORM_INDIVIDUALS.items():
         _ind = WD[_qid]
         g.add((_ind, RDF.type,     OWL.NamedIndividual))
-        g.add((_ind, RDF.type,     MEME.OriginPlatform))
+        g.add((_ind, RDF.type,     WD.Q3220391))
         g.add((_ind, RDFS.label,   Literal(_label)))
         g.add((_ind, RDFS.seeAlso, URIRef(f"https://www.wikidata.org/wiki/{_qid}")))
 
@@ -1058,7 +1060,7 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
         sub_uri = MEME[subtype]
         g.add((sub_uri, RDF.type,        OWL.Class))
         g.add((sub_uri, RDFS.label,      Literal(subtype)))
-        g.add((sub_uri, RDFS.subClassOf, MEME.CulturalReference))
+        g.add((sub_uri, RDFS.subClassOf, WD.Q96622155))
         if subtype in MEMO_CLASS_COMMENTS:
             g.add((sub_uri, RDFS.comment, Literal(MEMO_CLASS_COMMENTS[subtype], lang="en")))
 

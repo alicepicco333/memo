@@ -39,8 +39,8 @@ DATA_CLASSES = {
     MEME.MemeConcept,
     MEME.MemeIdea,
     MEME.VariantInstance,
-    MEME.CulturalReference,   # was WD.Q96622155
-    MEME.OriginWork,           # was WD.Q386724
+    WD.Q96622155,   # CulturalReference
+    WD.Q386724,     # OriginWork
     SCHEMA.TVSeries, SCHEMA.Movie, SCHEMA.VideoGame,
     SCHEMA.ComicSeries, SCHEMA.MusicAlbum, SCHEMA.Book,
 }
@@ -48,7 +48,7 @@ for _sub in ["PoliticalEvent", "MediaProperty", "WebCulture",
              "PublicFigure", "HistoricalEvent", "SocialPhenomenon"]:
     DATA_CLASSES.add(MEME[_sub])
 
-GEO_PLAT_TYPES = {MEME.GeographicRegion, MEME.OriginPlatform}  # was WD.Q82794 / WD.Q3220391
+GEO_PLAT_TYPES = {WD.Q82794, WD.Q3220391}  # GeographicRegion / OriginPlatform
 
 
 def _inject_owl_xmlns(xml_str: str) -> str:
