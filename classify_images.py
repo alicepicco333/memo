@@ -1147,6 +1147,11 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
             origin_ind  = ensure_individual("OriginWork", ow, normalize=True)
             if schema_type:
                 g.add((origin_ind, RDF.type, schema_type))
+            else:
+                g.add((origin_ind, RDFS.comment, Literal(
+                    "Typed as OriginWork (wd:Q386724) only. "
+                    "No schema.org media subclass could be automatically inferred from the KYM origin string.",
+                    lang="en")))
             g.add((meme_uri, MEME.hasOriginWork, origin_ind))
             g.add((origin_ind, MEME.isOriginWorkOf, meme_uri))
         region_raw = rec.get("hasRegion", "")
@@ -1384,8 +1389,11 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
     owl_path.write_text(_inject_owl_xmlns(g.serialize(format="xml")), encoding="utf-8")
     print(f"OWL ontology written -> {owl_path}  ({len(g)} triples)")
     if ttl_path:
-        g.serialize(destination=str(ttl_path), format="turtle")
-        print(f"TTL ontology written -> {ttl_path}  ({len(g)} triples)")
+        # Re-parse the OWL so TTL and OWL represent identical triple sets
+        _g_reparsed = Graph()
+        _g_reparsed.parse(str(owl_path), format="xml")
+        _g_reparsed.serialize(destination=str(ttl_path), format="turtle")
+        print(f"TTL ontology written -> {ttl_path}  ({len(_g_reparsed)} triples)")
 
     if unpopulated_owl_path or unpopulated_ttl_path:
         # Schema-only (TBox): strip every owl:NamedIndividual from the populated graph.
@@ -1403,8 +1411,11 @@ def build_ontology(results, owl_path, meta_lookup=None, variants_path=None,
             Path(unpopulated_owl_path).write_text(_inject_owl_xmlns(ug.serialize(format="xml")), encoding="utf-8")
             print(f"Unpopulated OWL written -> {unpopulated_owl_path}  ({len(ug)} triples)")
         if unpopulated_ttl_path:
-            ug.serialize(destination=str(unpopulated_ttl_path), format="turtle")
-            print(f"Unpopulated TTL written -> {unpopulated_ttl_path}  ({len(ug)} triples)")
+            # Re-parse the unpopulated OWL so TTL and OWL represent identical triple sets
+            _ug_reparsed = Graph()
+            _ug_reparsed.parse(str(unpopulated_owl_path), format="xml")
+            _ug_reparsed.serialize(destination=str(unpopulated_ttl_path), format="turtle")
+            print(f"Unpopulated TTL written -> {unpopulated_ttl_path}  ({len(_ug_reparsed)} triples)")
 
 
 # Fields that belong exclusively to classifications (not scraping data)

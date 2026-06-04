@@ -36,8 +36,8 @@ ANNOTATIONS = {
     # Stonks
     "3171622": (["CaptionChange"],                              "Minimal"),
     "3039073": (["CrossoverMerge","StyleShift","CaptionChange"],"Substantial"),
-    "2849405": (["CrossoverMerge","StyleShift"],                "Moderate"),
-    "2694210": (["CrossoverMerge","CompositionShift"],          "Moderate"),
+    "2849405": (["CrossoverMerge","StyleShift"],                "Substantial"),
+    "2694210": (["CrossoverMerge","CompositionShift"],          "Substantial"),
     "2623851": (["MediumShift","StyleShift","CrossoverMerge"],  "Substantial"),
     "2481174": (["MediumShift","StyleShift"],                   "Moderate"),
     "2330119": (["CaptionChange","StyleShift"],                 "Moderate"),

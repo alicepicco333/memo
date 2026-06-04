@@ -1,19 +1,15 @@
-"""Rebuild variants_metadata.json from the 5 selected sampled_variants folders."""
+"""Rebuild variants_metadata.json from all sampled_variants folders."""
 import json, os
 
-SLUGS = [
-    "stonks",
-    "surprised-pikachu",
-    "steven-crowders-change-my-mind-campus-sign",
-    "npc-wojak",
-    "me-and-the-boys",
-]
 SRC_BASE = "sampled_variants"
+SLUGS = sorted(os.listdir(SRC_BASE))
 
 records = []
 for slug in SLUGS:
     meta_path = os.path.join(SRC_BASE, slug, "metadata.json")
-    with open(meta_path, encoding="utf-8") as f:
+    if not os.path.exists(meta_path):
+        continue
+    with open(meta_path, encoding="utf-8", errors="replace") as f:
         meta = json.load(f)
     for m in meta:
         rec = dict(m)
