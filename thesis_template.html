@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thesis · The Meme Ontology</title>
+  <meta name="description" content="Towards an Ontology of Memes: A Cultural Analytics Study on Viral Images — full dissertation text."/>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23111%22/%3E%3Ctext x=%2216%22 y=%2223%22 font-family=%22Impact,sans-serif%22 font-size=%2220%22 text-anchor=%22middle%22 fill=%22%23fff%22%3EM%3C/text%3E%3C/svg%3E"/>
+  <link rel="stylesheet" href="meme_viz.css"/>
+  <style>
+    /* ── Thesis reader ───────────────────────────────────────────────── */
+    :root { --toc-w: 300px; --read: #1b1b1b; }
+    body.thesis-page { background: var(--surface); }
+
+    .th-progress {
+      position: fixed; top: var(--nav-h); left: 0; height: 3px; width: 0;
+      background: var(--accent2); z-index: 310; transition: width .1s linear;
+    }
+
+    .th-layout { padding-top: var(--nav-h); display: grid; grid-template-columns: var(--toc-w) minmax(0, 1fr); }
+
+    .th-toc {
+      position: sticky; top: var(--nav-h); height: calc(100vh - var(--nav-h));
+      overflow-y: auto; border-right: 1px solid var(--border); background: var(--bg);
+      padding: 18px 14px 40px;
+    }
+    .th-toc-head { font-size: .62rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin: 14px 4px 8px; }
+    .th-search { position: relative; }
+    .th-search input {
+      width: 100%; padding: 8px 10px 8px 30px; border: 1px solid var(--border); border-radius: 4px;
+      font: inherit; font-size: .82rem; background: var(--surface);
+    }
+    .th-search svg { position: absolute; left: 9px; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; stroke: var(--muted); fill: none; stroke-width: 2; }
+    .th-results { margin-top: 8px; display: none; }
+    .th-results.show { display: block; }
+    .th-results-count { font-size: .72rem; color: var(--muted); margin: 0 4px 6px; }
+    .th-result {
+      display: block; width: 100%; text-align: left; font: inherit; font-size: .76rem; line-height: 1.45;
+      border: 1px solid transparent; background: none; padding: 6px 8px; border-radius: 4px; cursor: pointer; color: var(--text);
+    }
+    .th-result:hover, .th-result:focus-visible { background: var(--surface); border-color: var(--border); }
+    .th-result small { display: block; color: var(--muted); font-size: .66rem; letter-spacing: .04em; text-transform: uppercase; margin-bottom: 2px; }
+    .th-result mark, .th-body mark { background: #ffe066; color: inherit; padding: 0 1px; border-radius: 2px; }
+    .th-body mark.current { background: #ff9f1c; }
+
+    .th-toc-list, .th-toc-list ol { list-style: none; margin: 0; padding: 0; }
+    .th-toc-list a {
+      display: block; text-decoration: none; color: var(--muted); font-size: .8rem; line-height: 1.35;
+      padding: 5px 8px; border-left: 2px solid transparent; border-radius: 0 3px 3px 0;
+    }
+    .th-toc-list a:hover { color: var(--accent2); background: var(--surface); }
+    .th-toc-list a.active { color: var(--accent2); border-left-color: var(--accent2); background: var(--surface); font-weight: 600; }
+    .toc-ch > a { color: var(--text); font-weight: 700; margin-top: 6px; }
+    .toc-l3 > a { padding-left: 18px; }
+    .toc-l4 > a { padding-left: 30px; font-size: .74rem; }
+
+    .th-main { min-width: 0; padding: 48px 40px 120px; }
+    .th-body { max-width: 72ch; margin: 0 auto; color: var(--read); font-family: Charter, 'Iowan Old Style', 'Palatino Linotype', Georgia, serif; font-size: 1.12rem; line-height: 1.75; }
+    .th-title { font-family: 'Segoe UI', system-ui, sans-serif; margin-bottom: 36px; padding-bottom: 28px; border-bottom: 1px solid var(--border); }
+    .th-kicker { font-size: .66rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+    .th-title h1 { font-size: clamp(1.7rem, 3.2vw, 2.4rem); line-height: 1.15; margin: 10px 0 8px; color: var(--accent2); font-weight: 900; }
+    .th-title p { font-size: .95rem; color: var(--muted); line-height: 1.5; }
+    .th-meta { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 14px; font-size: .78rem; color: var(--muted); }
+    .th-meta b { color: var(--text); }
+
+    .th-body h2, .th-body h3, .th-body h4 { font-family: 'Segoe UI', system-ui, sans-serif; color: var(--accent2); scroll-margin-top: calc(var(--nav-h) + 16px); position: relative; }
+    .th-body h2 { font-size: 1.7rem; font-weight: 900; margin: 72px 0 20px; padding-top: 28px; border-top: 3px solid var(--accent2); }
+    .th-chapter:first-of-type h2 { margin-top: 0; }
+    .th-body h3 { font-size: 1.25rem; font-weight: 800; margin: 44px 0 14px; }
+    .th-body h4 { font-size: 1.02rem; font-weight: 700; margin: 32px 0 10px; }
+    .th-anchor { position: absolute; left: -1.1em; color: var(--border); text-decoration: none; font-weight: 400; opacity: 0; transition: opacity .15s; }
+    .th-body h2:hover .th-anchor, .th-body h3:hover .th-anchor, .th-body h4:hover .th-anchor { opacity: 1; }
+    .th-body p { margin: 0 0 1.05em; hyphens: auto; }
+    .th-body ul { margin: 0 0 1.1em 1.2em; }
+    .th-body li { margin-bottom: .35em; }
+    .th-body code { font-family: Consolas, 'Cascadia Code', monospace; font-size: .86em; background: var(--bg); padding: 1px 5px; border-radius: 3px; }
+    .th-body pre { background: var(--bg); border: 1px solid var(--border); border-left: 3px solid var(--accent2); color: var(--text); padding: 12px 16px; border-radius: 3px; overflow-x: auto; margin: 0 0 1.2em; font-size: .85rem; line-height: 1.55; }
+    .th-term { margin: 1.6em 0 .35em !important; }
+    .th-term code { font-size: .92rem; font-weight: 700; background: none; padding: 0; color: var(--accent2); }
+    .th-body pre code { background: none; padding: 0; color: inherit; }
+    .th-body figure { margin: 28px 0; }
+    .th-body figure img { display: block; max-width: 100%; height: auto; margin: 0 auto; border: 1px solid var(--border); border-radius: 3px; }
+    .th-body figcaption, .th-caption { font-family: 'Segoe UI', system-ui, sans-serif; font-size: .82rem; color: var(--muted); text-align: center; margin-top: 8px; line-height: 1.5; }
+    .th-bib { padding-left: 2em; text-indent: -2em; font-size: .95rem; }
+    .th-bib a { color: inherit; word-break: break-all; }
+    .pg {
+      float: right; margin: 0 -3.4em 0 .8em; font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: .64rem; color: var(--muted); border: 1px solid var(--border); border-radius: 999px; padding: 0 7px;
+      line-height: 1.6; scroll-margin-top: calc(var(--nav-h) + 16px);
+    }
+    .pg::before { content: 'p. '; }
+
+    .th-toc-toggle {
+      display: none; position: fixed; right: 16px; bottom: 16px; z-index: 320;
+      border: none; border-radius: 999px; background: #111; color: #fff; font: inherit; font-size: .8rem; font-weight: 700;
+      padding: 10px 16px; box-shadow: 0 6px 18px rgba(0,0,0,.25); cursor: pointer;
+    }
+    .th-top { position: fixed; right: 18px; bottom: 18px; z-index: 300; opacity: 0; pointer-events: none; transition: opacity .2s;
+      border: 1px solid var(--border); background: var(--surface); border-radius: 999px; width: 38px; height: 38px; cursor: pointer; font-size: 1rem; }
+    .th-top.show { opacity: 1; pointer-events: auto; }
+
+    @media (max-width: 1024px) {
+      .pg { float: none; margin: 0 0 .6em; display: inline-block; }
+    }
+    @media (max-width: 900px) {
+      .th-layout { grid-template-columns: 1fr; }
+      .th-toc {
+        position: fixed; left: 0; right: 0; bottom: 0; top: var(--nav-h); height: auto; z-index: 315;
+        transform: translateX(-100%); transition: transform .25s ease; border-right: none; width: min(88vw, 340px);
+        box-shadow: 8px 0 24px rgba(0,0,0,.15);
+      }
+      .th-toc.open { transform: none; }
+      .th-toc-toggle { display: block; }
+      .th-top { bottom: 70px; }
+      .th-main { padding: 28px 16px 100px; }
+      .th-body { font-size: 1.04rem; }
+      .th-anchor { display: none; }
+    }
+  </style>
+</head>
+<body class="thesis-page">
+  <nav class="topnav" id="topnav">
+    <a class="topnav-brand" href="index.html">The Meme Ontology</a>
+    <div class="topnav-links">
+      <a class="topnav-link" href="index.html">Home</a>
+      <a class="topnav-link" href="visualizations.html">Visualizations</a>
+      <a class="topnav-link active" href="thesis.html" aria-current="page">Thesis</a>
+      <a class="topnav-link" href="visualizations.html#about">About</a>
+      <a class="topnav-link" href="visualizations.html#disclaimer">Disclaimer</a>
+      <a class="topnav-link" href="visualizations.html#dataset">Dataset</a>
+      <a class="topnav-link" href="visualizations.html#ontology">Ontology</a>
+      <a class="topnav-link" href="sparql.html">SPARQL</a>
+    </div>
+  </nav>
+  <div class="th-progress" id="th-progress" aria-hidden="true"></div>
+
+  <div class="th-layout">
+    <aside class="th-toc" id="th-toc" aria-label="Thesis index">
+      <form class="th-search" role="search" onsubmit="return false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+        <input type="search" id="th-q" placeholder="Search the thesis…" aria-label="Search the thesis" autocomplete="off"/>
+      </form>
+      <div class="th-results" id="th-results" aria-live="polite"></div>
+      <div class="th-toc-head">Index</div>
+      <nav id="th-toc-nav">
+{{TOC}}
+      </nav>
+    </aside>
+
+    <main class="th-main" id="th-main">
+      <article class="th-body" id="th-body">
+        <header class="th-title">
+          <div class="th-kicker">Master's dissertation · Digital Humanities and Digital Knowledge · Università di Bologna</div>
+          <h1>Towards an Ontology of Memes: A Cultural Analytics Study on Viral Images</h1>
+          <p>Alice Picco · Supervisor Fabio Vitali · Co-supervisors Tommaso Campagna, Carlo Teo Pedretti · Session I, A.Y. 2025–2026</p>
+          <div class="th-meta"><span><b>{{WORDS}}</b> words</span><span><b>~{{MINUTES}}</b> min read</span><span><b>{{PAGES}}</b> pages</span><span><b>{{FIGS}}</b> figures</span><span>Page numbers match the printed edition</span></div>
+        </header>
+{{BODY}}
+      </article>
+    </main>
+  </div>
+
+  <button class="th-toc-toggle" id="th-toc-toggle" aria-controls="th-toc" aria-expanded="false">Index &amp; search</button>
+  <button class="th-top" id="th-top" aria-label="Back to top">↑</button>
+
+  <script>
+  (function() {
+    var body = document.getElementById('th-body');
+    var toc = document.getElementById('th-toc');
+    var tocLinks = Array.prototype.slice.call(document.querySelectorAll('#th-toc-nav a'));
+    var headings = tocLinks.map(function(a) { return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+    var progress = document.getElementById('th-progress');
+    var topBtn = document.getElementById('th-top');
+    var toggle = document.getElementById('th-toc-toggle');
+
+    /* Scroll-spy + progress */
+    var ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function() {
+        ticking = false;
+        var cur = headings[0];
+        for (var i = 0; i < headings.length; i++) {
+          if (headings[i].getBoundingClientRect().top <= 140) cur = headings[i]; else break;
+        }
+        tocLinks.forEach(function(a) {
+          var on = cur && a.getAttribute('href') === '#' + cur.id;
+          if (on && !a.classList.contains('active')) {
+            a.classList.add('active');
+            var r = a.getBoundingClientRect(), tr = toc.getBoundingClientRect();
+            if (r.top < tr.top + 60 || r.bottom > tr.bottom - 20) toc.scrollTop += r.top - tr.top - tr.height / 3;
+          } else if (!on) a.classList.remove('active');
+        });
+        var max = document.documentElement.scrollHeight - window.innerHeight;
+        progress.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+        topBtn.classList.toggle('show', window.scrollY > 1200);
+      });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    topBtn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+    /* Mobile drawer */
+    function setDrawer(open) {
+      toc.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.textContent = open ? 'Close' : 'Index & search';
+    }
+    toggle.addEventListener('click', function() { setDrawer(!toc.classList.contains('open')); });
+    tocLinks.forEach(function(a) {
+      a.addEventListener('click', function() {
+        tocLinks.forEach(function(x) { x.classList.toggle('active', x === a); });
+        setDrawer(false);
+      });
+    });
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') setDrawer(false); });
+
+    /* Full-text search */
+    var blocks = Array.prototype.slice.call(body.querySelectorAll('p, li, figcaption, pre, h2, h3, h4'));
+    var sectionOf = new Map();
+    var curH = null;
+    blocks.forEach(function(el) {
+      if (/^H[234]$/.test(el.tagName)) curH = el.textContent.replace(/^#/, '');
+      sectionOf.set(el, curH || 'Front matter');
+    });
+    var input = document.getElementById('th-q');
+    var results = document.getElementById('th-results');
+    var marked = [];
+    var timer;
+
+    function esc(s) { return s.replace(/[&<>"]/g, function(c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+    function clearMarks() {
+      marked.forEach(function(m) {
+        var parent = m.parentNode;
+        if (!parent) return;
+        parent.replaceChild(document.createTextNode(m.textContent), m);
+        parent.normalize();
+      });
+      marked = [];
+    }
+    function markIn(el, q) {
+      var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
+      var nodes = [], n;
+      while ((n = walker.nextNode())) nodes.push(n);
+      var ql = q.toLowerCase(), first = null;
+      nodes.forEach(function(node) {
+        var text = node.nodeValue, lower = text.toLowerCase(), idx = lower.indexOf(ql);
+        if (idx < 0) return;
+        var frag = document.createDocumentFragment(), last = 0;
+        while (idx >= 0) {
+          frag.appendChild(document.createTextNode(text.slice(last, idx)));
+          var m = document.createElement('mark');
+          m.textContent = text.slice(idx, idx + q.length);
+          frag.appendChild(m);
+          marked.push(m);
+          if (!first) first = m;
+          last = idx + q.length;
+          idx = lower.indexOf(ql, last);
+        }
+        frag.appendChild(document.createTextNode(text.slice(last)));
+        node.parentNode.replaceChild(frag, node);
+      });
+      return first;
+    }
+    function search() {
+      var q = input.value.trim();
+      clearMarks();
+      if (q.length < 3) { results.classList.remove('show'); results.innerHTML = ''; return; }
+      var ql = q.toLowerCase(), hits = [];
+      blocks.forEach(function(el) {
+        var t = el.textContent, i = t.toLowerCase().indexOf(ql);
+        if (i >= 0) hits.push({ el: el, t: t, i: i });
+      });
+      var html = '<div class="th-results-count">' + hits.length + ' passage' + (hits.length === 1 ? '' : 's') + '</div>';
+      hits.slice(0, 60).forEach(function(h, k) {
+        var a = Math.max(0, h.i - 60), b = Math.min(h.t.length, h.i + q.length + 80);
+        var snip = (a ? '…' : '') + esc(h.t.slice(a, h.i)) + '<mark>' + esc(h.t.slice(h.i, h.i + q.length)) + '</mark>' + esc(h.t.slice(h.i + q.length, b)) + (b < h.t.length ? '…' : '');
+        html += '<button type="button" class="th-result" data-k="' + k + '"><small>' + esc(sectionOf.get(h.el)) + '</small>' + snip + '</button>';
+      });
+      if (hits.length > 60) html += '<div class="th-results-count">Showing the first 60</div>';
+      results.innerHTML = html;
+      results.classList.add('show');
+      results.querySelectorAll('.th-result').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          clearMarks();
+          var el = hits[+btn.dataset.k].el;
+          var m = markIn(el, q);
+          if (m) m.classList.add('current');
+          (m || el).scrollIntoView({ behavior: 'smooth', block: 'center' });
+          setDrawer(false);
+        });
+      });
+    }
+    input.addEventListener('input', function() { clearTimeout(timer); timer = setTimeout(search, 180); });
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') { var f = results.querySelector('.th-result'); if (f) f.click(); }
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === '/' && document.activeElement !== input && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) {
+        e.preventDefault();
+        if (window.innerWidth <= 900) setDrawer(true);
+        input.focus();
+      }
+    });
+  })();
+  </script>
+</body>
+</html>
