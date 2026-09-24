@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SPARQL Explorer · The Meme Ontology</title>
   <link rel="stylesheet" href="meme_viz.css"/>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23111%22/%3E%3Ctext x=%2216%22 y=%2223%22 font-family=%22Impact,sans-serif%22 font-size=%2220%22 text-anchor=%22middle%22 fill=%22%23fff%22%3EM%3C/text%3E%3C/svg%3E"/>
   <style>
     /* ── SPARQL page layout ─────────────────────────────────────────────── */
     body { overflow: hidden; }
@@ -308,6 +309,29 @@
       font-family: 'Consolas', monospace;
       white-space: pre-wrap;
     }
+
+    /* ── Mobile: stack editor above the sidebar and let the page scroll ─── */
+    @media (max-width: 768px) {
+      body { overflow: auto; }
+      .sparql-page {
+        position: static;
+        flex-direction: column;
+        padding-top: var(--nav-h);
+        min-height: 100vh;
+      }
+      .sparql-editor-area {
+        order: -1;
+        overflow: visible;
+        padding: 20px 16px;
+      }
+      .sparql-sidebar {
+        width: auto;
+        border-right: none;
+        border-top: 1px solid var(--border);
+        overflow: visible;
+      }
+      .sparql-results { min-height: 260px; }
+    }
   </style>
 </head>
 <body>
@@ -316,12 +340,13 @@
     <a class="topnav-brand" href="index.html">The Meme Ontology</a>
     <div class="topnav-links">
       <a class="topnav-link" href="index.html">Home</a>
-      <a class="topnav-link" href="visualizations.html" data-page="viz">Visualizations</a>
+      <a class="topnav-link" href="visualizations.html">Visualizations</a>
       <a class="topnav-link" href="visualizations.html#about">About</a>
+      <a class="topnav-link" href="visualizations.html#disclaimer">Disclaimer</a>
       <a class="topnav-link" href="visualizations.html#dataset">Dataset</a>
       <a class="topnav-link" href="visualizations.html#ontology">Ontology</a>
-      <a class="topnav-link active" href="sparql.html">SPARQL</a>
-      <a class="topnav-link" href="https://w3id.org/lode/" target="_blank" rel="noopener">LODE</a>
+      <a class="topnav-link active" aria-current="page" href="sparql.html">SPARQL</a>
+      <a class="topnav-link topnav-ext" href="https://w3id.org/lode/" target="_blank" rel="noopener" aria-label="LODE (opens in a new tab)">LODE</a>
     </div>
   </nav>
 

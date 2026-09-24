@@ -524,8 +524,11 @@ function showViz() {
 }
 
 function setActiveNav(page) {
-  document.querySelectorAll('.topnav-link').forEach(l =>
-    l.classList.toggle('active', l.dataset.page === page));
+  document.querySelectorAll('.topnav-link').forEach(l => {
+    const on = l.dataset.page === page;
+    l.classList.toggle('active', on);
+    if (on) l.setAttribute('aria-current', 'page'); else l.removeAttribute('aria-current');
+  });
 }
 
 /* ── Shared tooltip ────────────────────────────────────────────────────────── */
@@ -779,7 +782,7 @@ function buildTimeline() {
 
   const mobile = isMobile();
   const margin = mobile
-    ? { top: 16, right: 16, bottom: 50, left: 60 }
+    ? { top: 16, right: 8, bottom: 44, left: 112 }
     : { top: 36, right: 56, bottom: 80, left: 180 };
   const iW = W - margin.left - margin.right;
   const iH = H - margin.top  - margin.bottom;
@@ -838,14 +841,15 @@ function buildTimeline() {
     });
 
   g.append('g').attr('transform', `translate(0,${iH})`)
-    .call(d3.axisBottom(xScale).tickFormat(d3.format('d')))
+    .call(d3.axisBottom(xScale).tickFormat(d3.format('d'))
+      .tickValues(mobile ? years.filter(y => y % 5 === 0) : years))
     .selectAll('text')
     .attr('transform', 'rotate(-45)').style('text-anchor', 'end')
     .attr('dy', '.15em').attr('dx', '-.4em')
-    .style('font-size', '11px').style('fill', '#1a1a3a');
+    .style('font-size', mobile ? '10px' : '11px').style('fill', '#1a1a3a');
 
   g.append('g').call(d3.axisLeft(yScale))
-    .selectAll('text').style('font-size', '11px').style('fill', '#1a1a3a');
+    .selectAll('text').style('font-size', mobile ? '10px' : '11px').style('fill', '#1a1a3a');
 
   g.selectAll('.domain, .tick line').attr('stroke', '#d0d0e0');
 }

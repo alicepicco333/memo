@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>The Meme Ontology</title>
+  <title>Visualizations · The Meme Ontology</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23111%22/%3E%3Ctext x=%2216%22 y=%2223%22 font-family=%22Impact,sans-serif%22 font-size=%2220%22 text-anchor=%22middle%22 fill=%22%23fff%22%3EM%3C/text%3E%3C/svg%3E"/>
   <link rel="stylesheet" href="meme_viz.css"/>
 </head>
 <body>
@@ -27,8 +28,8 @@
       <a class="topnav-link" href="#disclaimer" data-page="disclaimer">Disclaimer</a>
       <a class="topnav-link" href="#dataset"  data-page="dataset">Dataset</a>
       <a class="topnav-link" href="#ontology" data-page="ontology">Ontology</a>
-      <a class="topnav-link" href="sparql.html" target="_blank">SPARQL</a>
-      <a class="topnav-link" href="https://w3id.org/lode/" target="_blank" rel="noopener">LODE</a>
+      <a class="topnav-link" href="sparql.html">SPARQL</a>
+      <a class="topnav-link topnav-ext" href="https://w3id.org/lode/" target="_blank" rel="noopener" aria-label="LODE (opens in a new tab)">LODE</a>
     </div>
   </nav>
 
@@ -142,7 +143,7 @@
         <h3 id="panel-title"></h3>
         <div class="panel-count" id="panel-count"></div>
       </div>
-      <button class="icon-btn" id="panel-close" title="Close">&#x2715;</button>
+      <button class="icon-btn" id="panel-close" title="Close" aria-label="Close panel">&#x2715;</button>
     </div>
     <div class="meme-grid" id="meme-grid"></div>
     <div class="panel-more hidden" id="panel-more">
@@ -158,30 +159,26 @@
       <h1>Datasets</h1>
       <p class="page-sub">Three interrelated datasets used in the Meme Ontology project.</p>
 
-      <!-- Jump bar -->
-      <div class="ds-jump-bar">
-        <button class="ds-jump-btn" onclick="dsScrollTo('ds-sec-global')">Global Dataset <span>5,000</span></button>
-        <button class="ds-jump-btn" onclick="dsScrollTo('ds-sec-d0')">D0 Sample <span>50</span></button>
-        <button class="ds-jump-btn" onclick="dsScrollTo('ds-sec-variants')">Variants <span>391</span></button>
-      </div>
-
-      <!-- Overview stats row -->
+      <!-- Overview cards (also jump to each section) -->
       <div class="ds-overview-row">
-        <div class="ds-overview-card">
+        <button type="button" class="ds-overview-card" onclick="dsScrollTo('ds-sec-global')">
           <span class="ds-ov-num">5,000</span>
           <span class="ds-ov-label">Global Dataset</span>
           <span class="ds-ov-sub">Full meme collection · KYM</span>
-        </div>
-        <div class="ds-overview-card">
+          <span class="ds-ov-go" aria-hidden="true">Browse ↓</span>
+        </button>
+        <button type="button" class="ds-overview-card" onclick="dsScrollTo('ds-sec-d0')">
           <span class="ds-ov-num">50</span>
           <span class="ds-ov-label">D0 Sample</span>
           <span class="ds-ov-sub">Richly annotated subset</span>
-        </div>
-        <div class="ds-overview-card">
+          <span class="ds-ov-go" aria-hidden="true">Browse ↓</span>
+        </button>
+        <button type="button" class="ds-overview-card" onclick="dsScrollTo('ds-sec-variants')">
           <span class="ds-ov-num">391</span>
           <span class="ds-ov-label">Variant Dataset</span>
           <span class="ds-ov-sub">50 with full annotations</span>
-        </div>
+          <span class="ds-ov-go" aria-hidden="true">Browse ↓</span>
+        </button>
       </div>
 
       <!-- ── Section 1: Global Dataset ── -->
@@ -191,12 +188,11 @@
             <h2 class="ds-sec-title">Global Dataset</h2>
             <p class="ds-sec-desc">5,000 memes sourced from Know Your Meme, enriched with CLIP-based image classification and structured using the Meme Ontology OWL ontology.</p>
           </div>
-          <span class="ds-badge">5,000 memes</span>
         </div>
         <div class="dataset-toolbar">
-          <input  class="dataset-search" id="ds-search"      type="text" placeholder="Search memes…" autocomplete="off"/>
-          <select class="dataset-select"  id="ds-filter-fmt"><option value="">All formats</option></select>
-          <select class="dataset-select"  id="ds-filter-plat"><option value="">All platforms</option></select>
+          <input  class="dataset-search" id="ds-search"      type="search" placeholder="Search memes…" autocomplete="off" aria-label="Search memes"/>
+          <select class="dataset-select"  id="ds-filter-fmt" aria-label="Filter by format"><option value="">All formats</option></select>
+          <select class="dataset-select"  id="ds-filter-plat" aria-label="Filter by platform"><option value="">All platforms</option></select>
           <span   class="dataset-count"   id="ds-count"></span>
         </div>
         <div class="dataset-grid" id="ds-grid"></div>
@@ -210,7 +206,6 @@
             <h2 class="ds-sec-title">D0 — Annotated Sample</h2>
             <p class="ds-sec-desc">50 memes sampled from the global dataset with enriched metadata: descriptions, view counts, tags, and full ontology property annotations including image type, format, platform, region and time period.</p>
           </div>
-          <span class="ds-badge">50 memes</span>
         </div>
         <div class="dataset-grid ds-d0-grid" id="ds-d0-grid"></div>
       </section>
