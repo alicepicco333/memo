@@ -22,8 +22,15 @@
           <a class="topnav-dropdown-item" href="#sec-platform-time">Platform Origin × TimePeriod</a>
           <a class="topnav-dropdown-item topnav-dropdown-divider" href="#sec-variant-bubble">Creative Productivity × Cultural Prominence</a>
           <a class="topnav-dropdown-item" href="#sec-variant-gallery">Variant Gallery</a>
+          <a class="topnav-dropdown-item topnav-dropdown-divider" href="#sec-family">Variant Family Tree</a>
+          <a class="topnav-dropdown-item" href="#sec-spectrum">Colour Spectrum</a>
+          <a class="topnav-dropdown-item" href="#sec-walk">Knowledge-Graph Walk</a>
+          <a class="topnav-dropdown-item" href="#sec-story">Platform Story</a>
+          <a class="topnav-dropdown-item" href="#sec-confidence">Classifier Confidence</a>
+          <a class="topnav-dropdown-item" href="#sec-flow">Property Flow</a>
         </div>
       </div>
+      <a class="topnav-link" href="thesis.html">Thesis</a>
       <a class="topnav-link" href="#about"    data-page="about">About</a>
       <a class="topnav-link" href="#disclaimer" data-page="disclaimer">Disclaimer</a>
       <a class="topnav-link" href="#dataset"  data-page="dataset">Dataset</a>
@@ -39,6 +46,12 @@
     <a class="dot"        href="#sec-platform-time"  data-label="Platform × TimePeriod"></a>
     <a class="dot"        href="#sec-variant-bubble" data-label="Creative Productivity × Cultural Prominence"></a>
     <a class="dot"        href="#sec-variant-gallery" data-label="Variant Gallery"></a>
+    <a class="dot"        href="#sec-family"         data-label="Variant Family Tree"></a>
+    <a class="dot"        href="#sec-spectrum"       data-label="Colour Spectrum"></a>
+    <a class="dot"        href="#sec-walk"           data-label="Knowledge-Graph Walk"></a>
+    <a class="dot"        href="#sec-story"          data-label="Platform Story"></a>
+    <a class="dot"        href="#sec-confidence"     data-label="Classifier Confidence"></a>
+    <a class="dot"        href="#sec-flow"           data-label="Property Flow"></a>
   </nav>
 
   <!-- Main scrollable viz page -->
@@ -130,6 +143,63 @@
       </div>
 
       <div class="graph-wrap" id="graph-variant-gallery"></div>
+    </section>
+
+    <section class="viz-section" id="sec-family">
+      <div class="viz-group-label">Interactive Explorations</div>
+      <header class="sec-header">
+        <h2>Variant Family Tree</h2>
+        <p>The original template sits at the centre; each annotated variant branches out to the ring of its transformation extent, grouped by its main transformation dimension. Hover a variant to morph the centre into it.</p>
+      </header>
+      <div class="viz-controls" id="family-controls"></div>
+      <div class="graph-wrap" id="graph-family"></div>
+    </section>
+
+    <section class="viz-section" id="sec-spectrum">
+      <header class="sec-header">
+        <h2>Colour Spectrum</h2>
+        <p>All 5,000 memes drawn as their average colour. Rearrange them, or scrub and play through the years to watch the palette of meme culture fill in. Click any square to open the meme.</p>
+      </header>
+      <div class="viz-controls" id="spectrum-controls"></div>
+      <div class="graph-wrap graph-wrap-dark" id="graph-spectrum"></div>
+    </section>
+
+    <section class="viz-section" id="sec-walk">
+      <header class="sec-header">
+        <h2>Knowledge-Graph Walk</h2>
+        <p>Walk the ontology one hop at a time: a meme opens into its properties, a property pulls in other memes that share it. Every node can be sent to the SPARQL explorer as a query.</p>
+      </header>
+      <div class="viz-controls" id="walk-controls"></div>
+      <div class="graph-wrap" id="graph-walk"></div>
+    </section>
+
+    <section class="viz-section story-section" id="sec-story">
+      <header class="sec-header">
+        <h2>Platform Story</h2>
+        <p>Where attributed memes came from, year by year (2004–2025). Scroll through the chapters; memes dated before their platform existed are excluded, as in Platform × TimePeriod.</p>
+      </header>
+      <div class="viz-controls" id="story-controls"></div>
+      <div class="story-body">
+        <div class="story-sticky"><div class="graph-wrap" id="graph-story"></div></div>
+        <div class="story-steps" id="story-steps"></div>
+      </div>
+    </section>
+
+    <section class="viz-section" id="sec-confidence">
+      <header class="sec-header">
+        <h2>Classifier Confidence</h2>
+        <p>Every meme placed by how confident CLIP was about its image type. Raise the threshold to see which labels would not survive a stricter classifier.</p>
+      </header>
+      <div class="viz-controls" id="confidence-controls"></div>
+      <div class="graph-wrap" id="graph-confidence"></div>
+    </section>
+
+    <section class="viz-section" id="sec-flow">
+      <header class="sec-header">
+        <h2>Property Flow</h2>
+        <p>How the 5,000 memes flow from origin platform to primary format, image type and text presence. Hover a node to trace every meme that passes through it; click to browse them.</p>
+      </header>
+      <div class="graph-wrap" id="graph-flow"></div>
     </section>
 
   </main>
@@ -273,6 +343,8 @@
   </div>
 
   <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
   <script src="meme_viz.js"></script>
+  <script src="meme_viz_extra.js"></script>
 </body>
 </html>

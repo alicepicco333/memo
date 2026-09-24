@@ -341,6 +341,7 @@
     <div class="topnav-links">
       <a class="topnav-link" href="index.html">Home</a>
       <a class="topnav-link" href="visualizations.html">Visualizations</a>
+      <a class="topnav-link" href="thesis.html">Thesis</a>
       <a class="topnav-link" href="visualizations.html#about">About</a>
       <a class="topnav-link" href="visualizations.html#disclaimer">Disclaimer</a>
       <a class="topnav-link" href="visualizations.html#dataset">Dataset</a>
@@ -484,6 +485,11 @@ ORDER BY DESC(?count)</textarea>
     var queryInput  = document.getElementById('sparql-query');
     var queryStatus = document.getElementById('query-status');
     var resultsDiv  = document.getElementById('sparql-results');
+
+    // Deep link: sparql.html?q=<query> pre-fills the editor and runs once the ontology is ready
+    var initialQuery = null;
+    try { initialQuery = new URLSearchParams(location.search).get('q'); } catch (e) {}
+    if (initialQuery) queryInput.value = initialQuery;
 
     function normalizeTtlForParser(ttlText) {
       // Normalize malformed memo: local names (mojibake / invalid chars) globally.
@@ -749,6 +755,7 @@ ORDER BY DESC(?count)</textarea>
             ? 'Ontology loaded in safe mode — ready to parse queries'
             : 'Ontology loaded — ready to parse queries';
           queryStatus.className   = 'query-status ok';
+          if (initialQuery && initialQuery.trim()) runQuery(initialQuery.trim());
         })
         .catch(function(err) {
           setError(err.message);

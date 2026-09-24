@@ -14,6 +14,7 @@
     <div class="topnav-links">
       <a class="topnav-link active" aria-current="page" href="index.html">Home</a>
       <a class="topnav-link" href="visualizations.html">Visualizations</a>
+      <a class="topnav-link" href="thesis.html">Thesis</a>
       <a class="topnav-link" href="visualizations.html#about">About</a>
       <a class="topnav-link" href="visualizations.html#disclaimer">Disclaimer</a>
       <a class="topnav-link" href="visualizations.html#dataset">Dataset</a>
@@ -31,6 +32,13 @@
         <p class="hero-tagline">5,000 Know Your Meme entries, modelled as an OWL&nbsp;2 knowledge graph</p>
         <a class="hero-cta" href="visualizations.html">Explore the visualizations <span aria-hidden="true">→</span></a>
         <p class="hero-hover-hint">Hover any tile to read its RDF</p>
+      </div>
+      <div class="collage-sort" role="group" aria-label="Arrange the collage">
+        <span class="collage-sort-title">Arrange</span>
+        <button type="button" data-sort="shuffle" class="active" aria-pressed="true">Shuffle</button>
+        <button type="button" data-sort="year" aria-pressed="false">Year</button>
+        <button type="button" data-sort="colour" aria-pressed="false">Colour</button>
+        <button type="button" data-sort="format" aria-pressed="false">Format</button>
       </div>
     </section>
 
@@ -50,6 +58,11 @@
       var BATCH = 120;
       var isLoading = false;
       var exhausted = false;
+      var allItems = [];
+      var sortMode = 'shuffle';
+      var lastGroupLabel = null;
+      var colours = null;
+      var sentinelObs = null;
 
       function toMemoLocal(str) {
         return String(str || '')
@@ -206,6 +219,17 @@
           }
 
           a.appendChild(img);
+          a.dataset.key = item.type + ':' + (item.photoId || item.slug);
+
+          var group = sortMode === 'year' ? (item.year || null)
+            : sortMode === 'format' ? (item.format || null) : null;
+          if (group && group !== lastGroupLabel) {
+            var chip = document.createElement('span');
+            chip.className = 'home-tile-label';
+            chip.textContent = group;
+            a.appendChild(chip);
+          }
+          lastGroupLabel = group;
           heroContainer.appendChild(a);
         }
 
@@ -225,6 +249,8 @@
               slug: slug,
               label: slug.replace(/[-_]+/g, ' '),
               memoLocal: slug,
+              year: /^\d{4}$/.test(String(m.year || '')) ? String(m.year) : null,
+              format: (m.hasFormat || []).filter(function(f) { return f && f !== 'Unknown'; })[0] || null,
               imageFilename: m.imageFilename,
               imageURL: m.imageURL
             };
@@ -256,27 +282,104 @@
         var shuffledQueue = buildQueue(memeData, variantData);
 
         queue = shuffledQueue;
+        allItems = shuffledQueue.slice();
 
         appendBatch();
         appendBatch();
 
-        var obs = new IntersectionObserver(function(entries) {
+        sentinelObs = new IntersectionObserver(function(entries) {
           entries.forEach(function(entry) {
             if (entry.isIntersecting) {
               appendBatch();
-              if (exhausted) obs.disconnect();
+              if (exhausted) sentinelObs.disconnect();
             }
           });
         }, { rootMargin: '1100px 0px 1100px 0px' });
-        obs.observe(sentinel);
+        sentinelObs.observe(sentinel);
       }
 
+      /* ── Arrange: re-sort the collage with a FLIP animation ── */
+      function hueOf(item) {
+        var c = colours && colours[item.slug];
+        if (!c) return 999;
+        // push greys to the end so the spectrum reads cleanly
+        return c.s < 12 ? 400 + (100 - c.l) : c.h;
+      }
+      function sortedItems(mode) {
+        if (mode === 'shuffle') return shuffle(allItems);
+        var memesOnly = allItems.filter(function(i) { return i.type === 'meme'; });
+        var rest = shuffle(allItems.filter(function(i) { return i.type !== 'meme'; }));
+        var key = mode === 'year' ? function(i) { return i.year || '9999'; }
+          : mode === 'format' ? function(i) { return i.format || '~'; }
+          : null;
+        memesOnly.sort(mode === 'colour'
+          ? function(a, b) { return hueOf(a) - hueOf(b); }
+          : function(a, b) { var ka = key(a), kb = key(b); return ka < kb ? -1 : ka > kb ? 1 : 0; });
+        return memesOnly.concat(rest);
+      }
+      function applySort(mode) {
+        if (window.scrollY > 0) window.scrollTo(0, 0);
+        var first = {};
+        heroContainer.querySelectorAll('.home-tile').forEach(function(t) {
+          var r = t.getBoundingClientRect();
+          if (r.top < window.innerHeight * 2) first[t.dataset.key] = r;
+        });
+        sortMode = mode;
+        lastGroupLabel = null;
+        queue = sortedItems(mode);
+        cursor = 0;
+        exhausted = false;
+        heroContainer.innerHTML = '';
+        appendBatch();
+        appendBatch();
+        if (sentinelObs) { sentinelObs.disconnect(); sentinelObs.observe(sentinel); }
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce) return;
+        heroContainer.querySelectorAll('.home-tile').forEach(function(t, i) {
+          var r = t.getBoundingClientRect();
+          if (r.top > window.innerHeight * 1.5) return;
+          var f = first[t.dataset.key];
+          t.style.transition = 'none';
+          if (f) {
+            t.style.transform = 'translate(' + (f.left - r.left) + 'px,' + (f.top - r.top) + 'px)';
+          } else {
+            t.style.opacity = '0';
+            t.style.transform = 'scale(.85)';
+          }
+          requestAnimationFrame(function() {
+            requestAnimationFrame(function() {
+              t.style.transition = 'transform .7s cubic-bezier(.2,.7,.2,1), opacity .5s ease ' + Math.min(i * 3, 400) + 'ms';
+              t.style.transform = '';
+              t.style.opacity = '';
+            });
+          });
+        });
+      }
+      document.querySelectorAll('.collage-sort button').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var mode = btn.dataset.sort;
+          document.querySelectorAll('.collage-sort button').forEach(function(b) {
+            var on = b === btn;
+            b.classList.toggle('active', on);
+            b.setAttribute('aria-pressed', String(on));
+          });
+          if (mode === 'colour' && !colours) {
+            btn.disabled = true;
+            fetch('color_data.json').then(function(r) { return r.ok ? r.json() : {}; })
+              .catch(function() { return {}; })
+              .then(function(d) { colours = d; btn.disabled = false; applySort('colour'); });
+            return;
+          }
+          applySort(mode);
+        });
+      });
+
       Promise.all([
-        fetch('meme_data.json', { cache: 'no-store' }).then(function(r) {
+        fetch('meme_data.json').then(function(r) {
           if (!r.ok) throw new Error('HTTP ' + r.status + ' for meme_data.json');
           return r.json();
         }),
-        fetch('variants_metadata.json', { cache: 'no-store' })
+        fetch('variants_metadata.json')
           .then(function(r) {
             if (!r.ok) return [];
             return r.json();

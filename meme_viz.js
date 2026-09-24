@@ -130,6 +130,7 @@ window.addEventListener('resize', function() {
 /* ── Live reload (polls while scraper runs) ──────────────────────────────── */
 let _lastDataSize = 0;
 function startLiveReload() {
+  if (!/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) return;
   setInterval(() => {
     fetch('meme_data.json', { cache: 'no-store' })
       .then(r => {
@@ -137,8 +138,10 @@ function startLiveReload() {
         return r.json().then(d => ({ d, size }));
       })
       .then(({ d, size }) => {
-        if (size && size === _lastDataSize) return;
+        if (!size || size === _lastDataSize) return;
+        const first = _lastDataSize === 0;
         _lastDataSize = size;
+        if (first) return;
         DATA = d;
         // reset and re-render all graphs
         document.getElementById('graph-time').innerHTML = '';
@@ -582,6 +585,18 @@ function memeImgTag(meme, altText) {
   return '<img src="' + src + '" alt="' + escHtml(altText || '') + '" loading="lazy"' + onerr + '/>';
 }
 
+/* Run fn once, the first time el scrolls into view (entrance animations). */
+function revealOnView(el, fn) {
+  if (!el || !('IntersectionObserver' in window)) { fn(); return; }
+  const obs = new IntersectionObserver(entries => {
+    if (entries.some(e => e.isIntersecting)) { obs.disconnect(); fn(); }
+  }, { threshold: 0.2 });
+  obs.observe(el);
+}
+
+/* Platforms toggled off in the Platform × TimePeriod legend */
+const hiddenPlatforms = new Set();
+
 /* ── Hero image collage ────────────────────────────────────────────────────── */
 function shuffle(arr) {
   const a = [...arr];
@@ -698,8 +713,8 @@ function buildPopularityByFormat() {
     .join('circle')
     .attr('class', 'pop')
     .attr('cx', d => x(d.format) + x.bandwidth() / 2)
-    .attr('cy', d => y(d.avgViews || 0))
-    .attr('r', d => r(d.entries || 0))
+    .attr('cy', iH)
+    .attr('r', 0)
     .attr('fill', d => color(d.avgViews || 0))
     .attr('stroke', '#fff')
     .attr('stroke-width', 1.5)
@@ -718,7 +733,11 @@ function buildPopularityByFormat() {
     .on('mouseout', hideTip)
     .on('click', (e, d) => {
       openPanel(d.format, nodeToMemes[d.format] || [], 'popularity', 'format');
-    });
+    })
+    .call(sel => revealOnView(wrap, () => sel.transition()
+      .delay((d, i) => i * 28).duration(650).ease(d3.easeCubicOut)
+      .attr('cy', d => y(d.avgViews || 0))
+      .attr('r', d => r(d.entries || 0))));
 
   // ── Size legend ──────────────────────────────────────────────────────────
   // Vertical stack in top-right: largest circle first, count labels to the left.
@@ -822,10 +841,11 @@ function buildTimeline() {
     if (count > 0) bubbles.push({ fmt, year, count });
   }));
 
-  g.selectAll('circle.bubble').data(bubbles).join('circle')
+  const bubbleSel = g.selectAll('circle.bubble').data(bubbles).join('circle')
+    .attr('class', 'bubble')
     .attr('cx', d => xScale(d.year) + xScale.bandwidth() / 2)
     .attr('cy', d => yScale(d.fmt)  + yScale.bandwidth() / 2)
-    .attr('r',  d => rScale(d.count))
+    .attr('r',  0)
     .attr('fill', d => color(d.fmt))
     .attr('opacity', .82)
     .attr('stroke', 'white').attr('stroke-width', 1.5)
@@ -849,9 +869,17 @@ function buildTimeline() {
     .style('font-size', mobile ? '10px' : '11px').style('fill', '#1a1a3a');
 
   g.append('g').call(d3.axisLeft(yScale))
-    .selectAll('text').style('font-size', mobile ? '10px' : '11px').style('fill', '#1a1a3a');
+    .selectAll('text').style('font-size', mobile ? '10px' : '11px').style('fill', '#1a1a3a')
+    .style('cursor', 'pointer')
+    .on('mouseenter', (e, fmt) => bubbleSel.transition().duration(150).attr('opacity', d => d.fmt === fmt ? .95 : .08))
+    .on('mouseleave', () => bubbleSel.transition().duration(150).attr('opacity', .82))
+    .on('click', (e, fmt) => openPanel(fmt, nodeToMemes[fmt] || [], 'time', 'format'));
 
   g.selectAll('.domain, .tick line').attr('stroke', '#d0d0e0');
+
+  revealOnView(wrap, () => bubbleSel.transition()
+    .delay(d => years.indexOf(d.year) * 22).duration(450).ease(d3.easeBackOut)
+    .attr('r', d => rScale(d.count)));
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -908,8 +936,13 @@ function buildPlatformTimeStacked() {
     (periodRow.segments || []).forEach(seg => {
       if (periodRow.period === 'Pre2010' && MODERN_PLATFORMS.has(seg.platform)) return;
       if (periodRow.period === '2010-2015' && POST2015_PLATFORMS.has(seg.platform)) return;
+      if (hiddenPlatforms.has(seg.platform)) return;
       row[seg.platform] = seg.ratio || 0;
     });
+    if (hiddenPlatforms.size) {
+      const sum = sortedPlatforms.reduce((acc, p) => acc + row[p], 0);
+      if (sum > 0) sortedPlatforms.forEach(p => { row[p] /= sum; });
+    }
     return row;
   });
 
@@ -982,8 +1015,8 @@ function buildPlatformTimeStacked() {
       .data(stacked[platform].map((d, i) => ({ ...d, key: platform, data: rows[i] })))
       .join('rect')
       .attr('x', d => x(d.period))
-      .attr('y', d => y(d.y1))
-      .attr('height', d => Math.max(0, y(d.y0) - y(d.y1)))
+      .attr('y', iH)
+      .attr('height', 0)
       .attr('width', x.bandwidth())
       .attr('stroke', '#fff')
       .attr('stroke-width', 1)
@@ -1021,6 +1054,11 @@ function buildPlatformTimeStacked() {
       });
   });
 
+  revealOnView(wrap, () => g.selectAll('.layer rect').transition()
+    .delay(d => x.domain().indexOf(d.period) * 90).duration(600).ease(d3.easeCubicOut)
+    .attr('y', d => y(d.y1))
+    .attr('height', d => Math.max(0, y(d.y0) - y(d.y1))));
+
   g.append('g')
     .attr('transform', `translate(0,${iH})`)
     .call(d3.axisBottom(x))
@@ -1039,19 +1077,40 @@ function buildPlatformTimeStacked() {
   const legend = svg.append('g').attr('transform', `translate(${W - margin.right + 20},${margin.top})`);
   platforms.forEach((platform, i) => {
     const y0 = i * 20;
-    legend.append('rect')
+    const off = hiddenPlatforms.has(platform);
+    const item = legend.append('g')
+      .attr('class', 'legend-toggle' + (off ? ' off' : ''))
+      .attr('tabindex', 0)
+      .attr('role', 'button')
+      .attr('aria-pressed', String(!off))
+      .attr('aria-label', `${off ? 'Show' : 'Hide'} ${platform}`)
+      .style('cursor', 'pointer')
+      .on('click', () => togglePlatform(platform))
+      .on('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); togglePlatform(platform); } });
+    item.append('rect')
       .attr('x', 0)
       .attr('y', y0)
       .attr('width', 12)
       .attr('height', 12)
-      .attr('fill', color(platform));
-    legend.append('text')
+      .attr('fill', off ? 'none' : color(platform))
+      .attr('stroke', color(platform));
+    item.append('text')
       .attr('x', 18)
       .attr('y', y0 + 10)
       .attr('fill', '#1a1a3a')
       .attr('font-size', 11)
       .text(platform);
   });
+  legend.append('text')
+    .attr('x', 0).attr('y', platforms.length * 20 + 10)
+    .attr('fill', '#666').attr('font-size', 10).attr('font-style', 'italic')
+    .text(hiddenPlatforms.size ? 'shares re-normalised · click to toggle' : 'click to hide a platform');
+}
+
+function togglePlatform(platform) {
+  if (hiddenPlatforms.has(platform)) hiddenPlatforms.delete(platform);
+  else hiddenPlatforms.add(platform);
+  buildPlatformTimeStacked();
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -1063,6 +1122,7 @@ function buildGraphs() {
   buildPlatformTimeStacked();
   buildVariantGallery();
   buildVariantBubble();
+  if (typeof buildExtraGraphs === 'function') buildExtraGraphs();
 }
 
 /* ── Variant Gallery (Viz B) ─────────────────────────────────────────────── */
@@ -1248,24 +1308,22 @@ function buildVariantBubble() {
     .domain([1, d3.max(points, function(p) { return Math.max(1, p.photos); })])
     .range([h - PAD, PAD]).nice();
 
-  // Gridlines
-  g.append('g')
-    .call(d3.axisLeft(yScale).ticks(5, '.0s').tickSize(-w).tickFormat(''))
-    .call(function(sel) {
+  // Gridlines + axes (redrawn on zoom)
+  var gridY = g.append('g');
+  var gridX = g.append('g').attr('transform', 'translate(0,' + h + ')');
+  var axY = g.append('g').attr('color', '#888');
+  var axX = g.append('g').attr('transform', 'translate(0,' + h + ')').attr('color', '#888');
+  function drawAxes(zx, zy) {
+    var gridStyle = function(sel) {
       sel.selectAll('line').attr('stroke', 'rgba(0,0,0,.07)').attr('stroke-width', 0.6);
       sel.select('.domain').remove();
-    });
-  g.append('g').attr('transform', 'translate(0,' + h + ')')
-    .call(d3.axisBottom(xScale).ticks(6, '.0s').tickSize(-h).tickFormat(''))
-    .call(function(sel) {
-      sel.selectAll('line').attr('stroke', 'rgba(0,0,0,.07)').attr('stroke-width', 0.6);
-      sel.select('.domain').remove();
-    });
-
-  // Axes
-  g.append('g').call(d3.axisLeft(yScale).ticks(5, '.0s')).attr('color', '#888');
-  g.append('g').attr('transform', 'translate(0,' + h + ')')
-    .call(d3.axisBottom(xScale).ticks(6, '.0s')).attr('color', '#888');
+    };
+    gridY.call(d3.axisLeft(zy).ticks(5, '.0s').tickSize(-w).tickFormat('')).call(gridStyle);
+    gridX.call(d3.axisBottom(zx).ticks(6, '.0s').tickSize(-h).tickFormat('')).call(gridStyle);
+    axY.call(d3.axisLeft(zy).ticks(5, '.0s'));
+    axX.call(d3.axisBottom(zx).ticks(6, '.0s'));
+  }
+  drawAxes(xScale, yScale);
 
   // Axis labels
   g.append('text').attr('x', w / 2).attr('y', h + 48)
@@ -1278,7 +1336,7 @@ function buildVariantBubble() {
     .text('Number of Variants');
 
   // Meme images — all 50 entries, uniform size (popularity on X axis, variants on Y axis)
-  g.append('g').attr('clip-path', 'url(#bubble-clip)')
+  var imgs = g.append('g').attr('clip-path', 'url(#bubble-clip)')
     .selectAll('image').data(points).join('image')
       .attr('x', function(p) { return xScale(Math.max(1, p.views)) - IMG_SIZE / 2; })
       .attr('y', function(p) { return yScale(Math.max(1, p.photos)) - IMG_SIZE / 2; })
@@ -1296,6 +1354,40 @@ function buildVariantBubble() {
       .on('click', function(evt, p) {
         if (p.id != null) location.hash = '#d0/' + encodeURIComponent(String(p.id));
       });
+
+  // Zoom & pan: drag to pan, Ctrl/⌘ + wheel or the buttons to zoom (plain wheel keeps scrolling the page)
+  var zoom = d3.zoom()
+    .scaleExtent([1, 16])
+    .extent([[0, 0], [w, h]])
+    .translateExtent([[0, 0], [w, h]])
+    .filter(function(e) { return e.type === 'wheel' ? (e.ctrlKey || e.metaKey) : !e.button; })
+    .on('zoom', function(e) {
+      var zx = e.transform.rescaleX(xScale);
+      var zy = e.transform.rescaleY(yScale);
+      drawAxes(zx, zy);
+      imgs.attr('x', function(p) { return zx(Math.max(1, p.views)) - IMG_SIZE / 2; })
+          .attr('y', function(p) { return zy(Math.max(1, p.photos)) - IMG_SIZE / 2; });
+    });
+  var zoomRect = g.insert('rect', ':first-child').attr('width', w).attr('height', h)
+    .attr('fill', 'transparent').style('cursor', 'grab');
+  svg.call(zoom).on('dblclick.zoom', null);
+  zoomRect.lower();
+
+  var tools = document.createElement('div');
+  tools.className = 'zoom-tools';
+  tools.innerHTML = '<button type="button" data-z="in" aria-label="Zoom in">+</button>' +
+    '<button type="button" data-z="out" aria-label="Zoom out">−</button>' +
+    '<button type="button" data-z="reset" aria-label="Reset zoom">Reset</button>' +
+    '<span>drag to pan · Ctrl/⌘ + scroll to zoom</span>';
+  tools.addEventListener('click', function(e) {
+    var z = e.target.getAttribute('data-z');
+    if (!z) return;
+    var t = svg.transition().duration(350);
+    if (z === 'in') zoom.scaleBy(t, 1.8);
+    else if (z === 'out') zoom.scaleBy(t, 1 / 1.8);
+    else zoom.transform(t, d3.zoomIdentity);
+  });
+  wrap.appendChild(tools);
 }
 
 /* ── MediumShift Matrix (Viz D) ──────────────────────────────────────────── */
@@ -1993,12 +2085,12 @@ function buildNav() {
   const dots = [...document.querySelectorAll('.dot')];
   const obs = new IntersectionObserver(entries => {
     entries.forEach(en => {
-      if (en.isIntersecting && en.intersectionRatio > .4) {
+      if (en.isIntersecting) {
         dots.forEach(d => d.classList.remove('active'));
         document.querySelector(`.dot[href="#${en.target.id}"]`)?.classList.add('active');
       }
     });
-  }, { threshold: .4 });
+  }, { rootMargin: '-50% 0px -50% 0px' });
 
   document.querySelectorAll('.viz-section').forEach(s => obs.observe(s));
   dots.forEach(dot => dot.addEventListener('click', e => {
