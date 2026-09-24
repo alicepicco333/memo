@@ -85,10 +85,6 @@ body {
   background: var(--bg);
   border-color: var(--border);
 }
-.topnav-ext::after {
-  content: ' ↗';
-  font-size: .7em;
-}
 .topnav-link.active {
   color: var(--accent2);
   border-color: var(--border);
