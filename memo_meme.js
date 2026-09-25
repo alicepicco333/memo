@@ -110,6 +110,8 @@
       var m;
       do { m = pool[Math.floor(Math.random() * pool.length)]; } while (pool.length > 1 && m === current);
       current = m;
+      var pigments = ['--blue', '--amber', '--plum', '--green', '--teal'];
+      card.style.setProperty('--c', 'var(' + pigments[Math.floor(Math.random() * pigments.length)] + ')');
       var img = document.getElementById('rm-img');
       img.onload = function() { card.classList.remove('loading'); };
       img.onerror = function() { card.classList.remove('loading'); };

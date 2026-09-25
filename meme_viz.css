@@ -2711,9 +2711,9 @@ body.home-page {
   --text:      #1a1a1a;
   --muted:     #67625a;   /* 5.6:1 on --bg */
   --ink:       #141414;
-  --up:        #d93a00;   /* upvote orange, 4.6:1 on --bg: links, active states, small marks */
-  --up-soft:   #fbe3d8;
-  --focus:     #d93a00;
+  --up:        #3f6a9a;   /* link / default accent = wojak blue (5.3:1); see PALETTE below */
+  --up-soft:   #dde7f3;
+  --focus:     #3f6a9a;
   --impact:    Impact, 'Anton', Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   --serif:     'Newsreader', 'Iowan Old Style', Georgia, serif;
   --ui:        'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
@@ -3051,7 +3051,7 @@ body.home-page { background: var(--ink); }
 .story-step { border: 1px solid var(--border); border-left: 2px solid var(--border); border-radius: 0; box-shadow: none; background: var(--surface); }
 .story-step.active { border-left-color: var(--up); }
 .story-step h3 { font-size: 1.4rem; }
-.story-band { fill: rgba(217, 58, 0, .07); }
+.story-band { fill: rgba(63, 106, 154, .08); }
 .fam-caption { font-family: var(--impact); font-size: 13px; letter-spacing: .04em; paint-order: stroke; stroke: var(--surface); stroke-width: 4px; }
 .fam-ring-label, .flow-stage { font-family: var(--ui); font-weight: 600; }
 
@@ -3076,3 +3076,124 @@ body.home-page { background: var(--ink); }
   .home-ticker-track { animation: none; padding-left: 16px; }
   .meme-banner-strip img { animation: none; }
 }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   PALETTE — five muted "meme pigments", each with a job
+     wojak blue  → global dataset (5,000) · links
+     doge amber  → D0 sample (50)
+     plum        → variants (391)
+     pepe green  → method / classification
+     teal        → ontology & thesis
+   Every text colour is ≥ 4.5:1 on the paper background; the -soft tints are
+   for fills only. Sections, cards, nav marks and title banners pick theirs
+   up through --c.
+   ══════════════════════════════════════════════════════════════════════════ */
+:root {
+  --blue:  #3f6a9a;  --blue-soft:  #dde7f3;
+  --amber: #8f5d10;  --amber-soft: #f5e6c6;  --amber-fill: #d9a441;
+  --plum:  #7b4d8a;  --plum-soft:  #ece0f0;
+  --green: #4a7a36;  --green-soft: #e1eed8;
+  --teal:  #2d7470;  --teal-soft:  #d8ecea;
+  --c: var(--blue);
+  --c-soft: var(--blue-soft);
+}
+
+/* Context colours */
+#sec-time, #sec-popularity, #sec-platform-time, #sec-spectrum, #sec-story,
+#ds-sec-global, #page-dataset, .ds-overview-card:nth-child(1) { --c: var(--blue);  --c-soft: var(--blue-soft); }
+#sec-variant-bubble, #ds-sec-d0, #page-disclaimer, .ds-overview-card:nth-child(2) { --c: var(--amber); --c-soft: var(--amber-soft); }
+#sec-variant-gallery, #sec-family, #ds-sec-variants, .ds-overview-card:nth-child(3),
+body:has(.sparql-page) { --c: var(--plum);  --c-soft: var(--plum-soft); }
+#sec-confidence, #sec-flow, #page-about { --c: var(--green); --c-soft: var(--green-soft); }
+#sec-walk, #page-ontology, body.thesis-page { --c: var(--teal);  --c-soft: var(--teal-soft); }
+
+/* Navbar: each destination has its colour */
+.topnav-link[href$="index.html"], .topnav-link[href="/"] { --c: var(--blue); }
+.topnav-link[href*="visualizations.html"]:not([href*="#"]) { --c: var(--green); }
+.topnav-link[href*="thesis"] { --c: var(--teal); }
+.topnav-link[href*="#about"] { --c: var(--green); }
+.topnav-link[href*="#disclaimer"] { --c: var(--amber); }
+.topnav-link[href*="#dataset"] { --c: var(--blue); }
+.topnav-link[href*="#ontology"] { --c: var(--teal); }
+.topnav-link[href*="sparql"] { --c: var(--plum); }
+.topnav-link.active::after { background: var(--c); height: 3px; }
+.topnav-link:hover { color: var(--c); }
+
+/* Section headers: coloured group label, a pigment bar under the Impact title */
+.viz-group-label { color: var(--c); }
+.sec-header h2 { position: relative; padding-bottom: 6px; }
+.sec-header h2::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 48px; height: 4px;
+  background: var(--c);
+}
+.viz-controls-label, .panel-label { color: var(--c); }
+.viz-btn.active, .ds-vtoggle.active { background: var(--c); border-color: var(--c); color: #fff; }
+.viz-slider input { accent-color: var(--c); }
+.story-step.active { border-left-color: var(--c); border-left-width: 4px; }
+.story-band { fill: var(--c-soft); fill-opacity: .7; }
+.legend-item { border-left-color: var(--c); }
+
+/* Side contents: numbers carry the colour of their section */
+.dot:nth-of-type(-n+3), .dot:nth-of-type(7), .dot:nth-of-type(9) { --c: var(--blue); }
+.dot:nth-of-type(4) { --c: var(--amber); }
+.dot:nth-of-type(5), .dot:nth-of-type(6) { --c: var(--plum); }
+.dot:nth-of-type(8) { --c: var(--teal); }
+.dot:nth-of-type(10), .dot:nth-of-type(11) { --c: var(--green); }
+.dot::before { color: var(--c); opacity: .55; }
+.dot:hover::before, .dot.active::before { opacity: 1; color: var(--c); }
+.dot.active { border-left: 3px solid var(--c); }
+
+/* Caption banners: memes toned in the page's pigment (duotone-ish) */
+.meme-banner-strip img { filter: grayscale(1) contrast(1.1) brightness(.95); }
+.meme-banner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--c);
+  mix-blend-mode: multiply;
+  opacity: .9;
+  pointer-events: none;
+}
+.meme-banner .meme-caption { z-index: 2; }
+
+/* Cards & labels */
+.about-section h2, .detail-section-title { color: var(--c); }
+.about-stats .stat-card { border-top: 4px solid var(--c); }
+.about-stats .stat-card:nth-child(1) { --c: var(--blue); }
+.about-stats .stat-card:nth-child(2) { --c: var(--teal); }
+.about-stats .stat-card:nth-child(3) { --c: var(--green); }
+.about-stats .stat-card:nth-child(4) { --c: var(--amber); }
+.pipeline-step { border-top: 4px solid var(--c); }
+.pipeline-step:nth-child(1) { --c: var(--blue); }
+.pipeline-step:nth-child(2) { --c: var(--green); }
+.pipeline-step:nth-child(3) { --c: var(--teal); }
+.pipeline-step:nth-child(4) { --c: var(--plum); }
+.pipeline-num { color: var(--c); }
+.ds-overview-card { border-top: 4px solid var(--c); }
+.ds-overview-card:hover { border-color: var(--c); border-top-color: var(--c); background: var(--c-soft); }
+.ds-ov-go { color: var(--c); }
+.ds-sec-title { box-shadow: inset 0 -6px 0 var(--c-soft); display: inline; }
+.onto-entity-block { border-left-color: var(--teal); }
+.onto-doc-nav button:hover { color: var(--teal); }
+.meme-page-back:hover, .detail-val.accent { color: var(--blue); }
+.onto-doc-sec h2 { border-bottom-color: var(--teal); }
+.loader-spinner { border-top-color: var(--blue); border-right-color: var(--amber-fill); border-bottom-color: var(--green); }
+
+/* Home ticker: counts in soft pigments on the dark strip */
+.home-ticker-track span:nth-child(5n+1) i { color: #a9c4e4; }
+.home-ticker-track span:nth-child(5n+2) i { color: #e8c77f; }
+.home-ticker-track span:nth-child(5n+3) i { color: #cfb0da; }
+.home-ticker-track span:nth-child(5n+4) i { color: #b3d49f; }
+.home-ticker-track span:nth-child(5n+5) i { color: #9fd1cc; }
+.collage-sort button.active { background: var(--ink); }
+
+/* Random meme card takes a pigment per meme (set by memo_meme.js) */
+.rm-open { background: var(--c); border-color: var(--c); color: #fff; }
+.rm-open:hover { background: var(--ink); border-color: var(--ink); }
+.rm-card { border-top: 4px solid var(--c); }
+.rm-btn:hover, .rm-btn[aria-expanded="true"] { background: var(--ink); }
+
+:focus-visible { outline-color: var(--blue); }

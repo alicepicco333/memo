@@ -121,17 +121,26 @@
 
     /* ── Identity ─────────────────────────────────────────────────────── */
     body.thesis-page { background: var(--surface); }
-    .th-progress { background: var(--up); height: 2px; }
+    .th-progress { background: var(--c); height: 3px; }
     .th-toc { background: var(--bg); border-right: 1px solid var(--border); }
-    .th-toc-head { font-size: .62rem; color: var(--up); }
+    .th-toc-head { font-size: .62rem; color: var(--c); }
     .th-search input { border: 1px solid #b9b1a2; border-radius: 2px; }
     .th-toc-list a { color: var(--muted); border-radius: 0; }
     .th-toc-list a:hover { background: none; color: var(--ink); }
-    .th-toc-list a.active { background: none; color: var(--ink); border-left-color: var(--up); font-weight: 600; }
+    .th-toc-list a.active { background: none; color: var(--ink); border-left-color: var(--c); font-weight: 600; }
     .toc-ch > a { color: var(--ink); font-family: var(--impact); font-size: 1rem; font-weight: 400; letter-spacing: .03em; text-transform: uppercase; }
-    .th-kicker { font-size: .62rem; color: var(--up); }
+    .th-kicker { font-size: .62rem; color: var(--c); }
     .th-title { border-bottom: 1px solid var(--rule); }
     .th-title .meme-banner { margin: 14px 0 20px; min-height: 220px; }
+    .th-toc-head { color: var(--c); }
+    .th-body h2::after { content: ''; display: block; width: 56px; height: 5px; background: var(--c); margin-top: 12px; }
+    .th-chapter:nth-of-type(5n+1) { --c: var(--teal); }
+    .th-chapter:nth-of-type(5n+2) { --c: var(--blue); }
+    .th-chapter:nth-of-type(5n+3) { --c: var(--amber); }
+    .th-chapter:nth-of-type(5n+4) { --c: var(--plum); }
+    .th-chapter:nth-of-type(5n+5) { --c: var(--green); }
+    .th-body a { color: var(--blue); }
+    .th-body figure img { border-bottom: 4px solid var(--c); }
     .th-toc-head { font-family: var(--impact); font-size: .95rem; letter-spacing: .06em; }
     .th-title h1 { font-family: var(--serif); font-weight: 400; letter-spacing: -.02em; font-size: clamp(2.1rem, 4vw, 3.1rem); line-height: 1.08; }
     .th-title p { font-family: var(--serif); font-style: italic; font-size: 1.05rem; }
@@ -146,7 +155,7 @@
     .th-body figure img { border: 1px solid var(--border); border-radius: 0; }
     .th-body figcaption, .th-caption { font-family: var(--mono); font-size: .7rem; letter-spacing: .02em; }
     .th-body code, .th-body pre { font-family: var(--mono); }
-    .th-body pre { border: 1px solid var(--border); border-left: 2px solid var(--up); border-radius: 0; }
+    .th-body pre { border: 1px solid var(--border); border-left: 3px solid var(--c); border-radius: 0; }
     .th-term code { color: var(--ink); background: none; }
     .pg { font-family: var(--mono); border: none; color: #a39a8b; background: none; padding: 0; }
     .th-result small { font-family: var(--mono); }
