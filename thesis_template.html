@@ -8,7 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23111%22/%3E%3Ctext x=%2216%22 y=%2223%22 font-family=%22Impact,sans-serif%22 font-size=%2220%22 text-anchor=%22middle%22 fill=%22%23fff%22%3EM%3C/text%3E%3C/svg%3E"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&display=swap"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"/>
   <link rel="stylesheet" href="meme_viz.css"/>
   <style>
     /* ── Thesis reader ───────────────────────────────────────────────── */
@@ -110,9 +110,8 @@
       .th-toc {
         position: fixed; left: 0; right: 0; bottom: 0; top: var(--nav-h); height: auto; z-index: 315;
         transform: translateX(-100%); transition: transform .25s ease; border-right: none; width: min(88vw, 340px);
-        box-shadow: 8px 0 24px rgba(0,0,0,.15);
       }
-      .th-toc.open { transform: none; }
+      .th-toc.open { transform: none; box-shadow: 8px 0 24px rgba(0,0,0,.15); }
       .th-toc-toggle { display: block; }
       .th-top { bottom: 70px; }
       .th-main { padding: 28px 16px 100px; }
@@ -122,32 +121,38 @@
 
     /* ── Identity ─────────────────────────────────────────────────────── */
     body.thesis-page { background: var(--surface); }
-    .th-progress { background: var(--pink); height: 4px; }
-    .th-toc { background: var(--bg); border-right: 2px solid var(--ink); }
-    .th-toc-head { font-family: var(--display); font-weight: 400; font-size: .9rem; letter-spacing: .1em; color: var(--ink); }
-    .th-search input { border: 2px solid var(--ink); border-radius: 0; box-shadow: var(--shadow-sm); }
+    .th-progress { background: var(--red); height: 2px; }
+    .th-toc { background: var(--bg); border-right: 1px solid var(--border); }
+    .th-toc-head { font-size: .62rem; color: var(--red); }
+    .th-search input { border: 1px solid #b9b1a2; border-radius: 2px; }
     .th-toc-list a { color: var(--muted); border-radius: 0; }
-    .th-toc-list a:hover { background: var(--yellow); color: var(--ink); }
-    .th-toc-list a.active { background: var(--pink); color: #fff; border-left-color: var(--ink); }
-    .toc-ch > a { color: var(--ink); }
-    .th-kicker { color: var(--ink); background: var(--yellow); border: 2px solid var(--ink); display: inline-block; padding: 3px 10px; transform: rotate(-1deg); box-shadow: var(--shadow-sm); }
-    .th-title { border-bottom: 2px solid var(--ink); }
+    .th-toc-list a:hover { background: none; color: var(--ink); }
+    .th-toc-list a.active { background: none; color: var(--ink); border-left-color: var(--red); font-weight: 600; }
+    .toc-ch > a { color: var(--ink); font-family: var(--serif); font-size: .95rem; font-weight: 500; }
+    .th-kicker { font-size: .62rem; color: var(--red); }
+    .th-title { border-bottom: 1px solid var(--rule); }
+    .th-title h1 { font-family: var(--serif); font-weight: 400; letter-spacing: -.02em; font-size: clamp(2.1rem, 4vw, 3.1rem); line-height: 1.08; }
+    .th-title p { font-family: var(--serif); font-style: italic; font-size: 1.05rem; }
+    .th-meta { font-family: var(--mono); font-size: .68rem; letter-spacing: .04em; }
+    .th-meta b { font-weight: 600; }
+    .th-body { font-family: var(--serif); font-size: 1.16rem; line-height: 1.72; }
     .th-chapter:first-of-type h2 { border-top: none; padding-top: 0; }
-    .th-title h1 { font-family: var(--display); font-weight: 400; letter-spacing: .01em; font-size: clamp(2.2rem, 4.4vw, 3.4rem); line-height: 1.02; }
-    .th-meta b { font-family: var(--display); font-weight: 400; font-size: 1.05rem; letter-spacing: .02em; }
-    .th-body h2 { font-family: var(--display); font-weight: 400; font-size: 2.4rem; letter-spacing: .01em; border-top: 4px solid var(--ink); }
-    .th-body h2::after { content: ''; display: block; width: 72px; height: 10px; background: var(--yellow); border: 2px solid var(--ink); margin-top: 12px; transform: rotate(-2deg); }
-    .th-body h3, .th-body h4 { font-family: var(--ui); }
-    .th-body h3 { font-weight: 700; }
-    .th-body a { color: var(--blue); }
-    .th-body figure img { border: 2px solid var(--ink); border-radius: 0; box-shadow: var(--shadow); }
-    .th-body pre { border: 2px solid var(--ink); border-left: 6px solid var(--pink); border-radius: 0; }
-    .th-term code { color: var(--ink); background: linear-gradient(transparent 55%, #ffc2d6 55%); }
-    .pg { border: 1.5px solid var(--ink); color: var(--ink); background: var(--yellow); }
-    .th-body figcaption, .th-caption { font-family: var(--ui); }
-    .th-result:hover, .th-result:focus-visible { background: var(--yellow); border-color: var(--ink); }
-    .th-toc-toggle { background: var(--pink); border: 2px solid var(--ink); box-shadow: var(--shadow-sm); font-family: var(--display); font-weight: 400; letter-spacing: .05em; font-size: .95rem; }
-    .th-top { border: 2px solid var(--ink); box-shadow: var(--shadow-sm); background: var(--yellow); }
+    .th-body h2 { font-family: var(--serif); font-weight: 400; font-size: 2.3rem; letter-spacing: -.02em; line-height: 1.12; border-top: 1px solid var(--rule); }
+    .th-body h3 { font-family: var(--serif); font-weight: 600; font-size: 1.35rem; letter-spacing: -.01em; }
+    .th-body h4 { font-family: var(--ui); font-weight: 600; font-size: .98rem; }
+    .th-body a { color: var(--red); }
+    .th-body figure img { border: 1px solid var(--border); border-radius: 0; }
+    .th-body figcaption, .th-caption { font-family: var(--mono); font-size: .7rem; letter-spacing: .02em; }
+    .th-body code, .th-body pre { font-family: var(--mono); }
+    .th-body pre { border: 1px solid var(--border); border-left: 2px solid var(--red); border-radius: 0; }
+    .th-term code { color: var(--ink); background: none; }
+    .pg { font-family: var(--mono); border: none; color: #a39a8b; background: none; padding: 0; }
+    .th-result small { font-family: var(--mono); }
+    .th-result:hover, .th-result:focus-visible { background: var(--surface); border-color: var(--border); }
+    .th-body mark, .th-result mark { background: var(--red-soft); }
+    .th-body mark.current { background: #f0b7a8; }
+    .th-toc-toggle { background: var(--ink); color: var(--bg); border: none; border-radius: 2px; font-family: var(--mono); font-weight: 500; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; }
+    .th-top { border: 1px solid #b9b1a2; background: var(--surface); border-radius: 2px; }
   </style>
 </head>
 <body class="thesis-page">
