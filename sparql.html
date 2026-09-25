@@ -6,7 +6,7 @@
   <title>SPARQL Explorer · The Meme Ontology</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"/>
   <link rel="stylesheet" href="meme_viz.css"/>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23111%22/%3E%3Ctext x=%2216%22 y=%2223%22 font-family=%22Impact,sans-serif%22 font-size=%2220%22 text-anchor=%22middle%22 fill=%22%23fff%22%3EM%3C/text%3E%3C/svg%3E"/>
   <style>
@@ -339,23 +339,23 @@
     /* ── Identity ─────────────────────────────────────────────────────── */
     .sparql-sidebar { border-right: 1px solid var(--border); background: var(--bg); }
     .sidebar-section { border-bottom: 1px solid var(--border); }
-    .sidebar-label { font-size: .62rem; color: var(--red); }
+    .sidebar-label { font-size: .62rem; color: var(--up); }
     .editor-title { font-family: var(--serif); font-weight: 500; font-size: 1.9rem; letter-spacing: -.01em; }
     .editor-subtitle { font-family: var(--mono); font-size: .68rem; }
     .sparql-textarea { font-family: var(--mono); border: 1px solid var(--rule); border-radius: 0; background: var(--surface); }
     .sparql-results { border: 1px solid var(--border); border-radius: 0; background: var(--surface); }
-    .sparql-textarea:focus { border-color: var(--red); }
+    .sparql-textarea:focus { border-color: var(--up); }
     .run-btn { background: var(--ink); color: var(--bg); border: 1px solid var(--ink); border-radius: 2px;
       font-family: var(--mono); font-weight: 500; font-size: .74rem; letter-spacing: .1em; text-transform: uppercase; }
-    .run-btn:hover { opacity: 1; background: var(--red); border-color: var(--red); }
+    .run-btn:hover { opacity: 1; background: var(--up); border-color: var(--up); }
     .clear-btn { border: 1px solid #b9b1a2; border-radius: 2px; color: var(--ink); background: var(--surface); }
     .clear-btn:hover { border-color: var(--ink); color: var(--ink); }
     .example-btn { border: 1px solid var(--border); border-left: 2px solid var(--border); border-radius: 0; background: var(--surface); transition: border-color .15s; }
-    .example-btn:hover { background: var(--surface); border-color: var(--border); border-left-color: var(--red); }
-    .ex-title { font-family: var(--serif); font-weight: 500; font-size: .95rem; }
+    .example-btn:hover { background: var(--surface); border-color: var(--border); border-left-color: var(--up); }
+    .ex-title { font-family: var(--ui); font-weight: 600; font-size: .86rem; }
     .ns-pill { font-family: var(--mono); border: 1px solid var(--border); border-radius: 0; background: var(--surface); }
     .results-table th { font-family: var(--mono); font-weight: 500; letter-spacing: .06em; background: var(--bg); color: var(--ink); border-bottom: 1px solid var(--rule); }
-    .td-uri { font-family: var(--mono); color: var(--red); }
+    .td-uri { font-family: var(--mono); color: var(--up); }
   </style>
 </head>
 <body>
@@ -1013,5 +1013,6 @@ ORDER BY DESC(?count)</textarea>
     loadOntology();
   </script>
 
+  <script src="memo_meme.js" defer></script>
 </body>
 </html>

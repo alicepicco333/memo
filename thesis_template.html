@@ -8,7 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23111%22/%3E%3Ctext x=%2216%22 y=%2223%22 font-family=%22Impact,sans-serif%22 font-size=%2220%22 text-anchor=%22middle%22 fill=%22%23fff%22%3EM%3C/text%3E%3C/svg%3E"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"/>
   <link rel="stylesheet" href="meme_viz.css"/>
   <style>
     /* ── Thesis reader ───────────────────────────────────────────────── */
@@ -121,35 +121,37 @@
 
     /* ── Identity ─────────────────────────────────────────────────────── */
     body.thesis-page { background: var(--surface); }
-    .th-progress { background: var(--red); height: 2px; }
+    .th-progress { background: var(--up); height: 2px; }
     .th-toc { background: var(--bg); border-right: 1px solid var(--border); }
-    .th-toc-head { font-size: .62rem; color: var(--red); }
+    .th-toc-head { font-size: .62rem; color: var(--up); }
     .th-search input { border: 1px solid #b9b1a2; border-radius: 2px; }
     .th-toc-list a { color: var(--muted); border-radius: 0; }
     .th-toc-list a:hover { background: none; color: var(--ink); }
-    .th-toc-list a.active { background: none; color: var(--ink); border-left-color: var(--red); font-weight: 600; }
-    .toc-ch > a { color: var(--ink); font-family: var(--serif); font-size: .95rem; font-weight: 500; }
-    .th-kicker { font-size: .62rem; color: var(--red); }
+    .th-toc-list a.active { background: none; color: var(--ink); border-left-color: var(--up); font-weight: 600; }
+    .toc-ch > a { color: var(--ink); font-family: var(--impact); font-size: 1rem; font-weight: 400; letter-spacing: .03em; text-transform: uppercase; }
+    .th-kicker { font-size: .62rem; color: var(--up); }
     .th-title { border-bottom: 1px solid var(--rule); }
+    .th-title .meme-banner { margin: 14px 0 20px; min-height: 220px; }
+    .th-toc-head { font-family: var(--impact); font-size: .95rem; letter-spacing: .06em; }
     .th-title h1 { font-family: var(--serif); font-weight: 400; letter-spacing: -.02em; font-size: clamp(2.1rem, 4vw, 3.1rem); line-height: 1.08; }
     .th-title p { font-family: var(--serif); font-style: italic; font-size: 1.05rem; }
     .th-meta { font-family: var(--mono); font-size: .68rem; letter-spacing: .04em; }
     .th-meta b { font-weight: 600; }
     .th-body { font-family: var(--serif); font-size: 1.16rem; line-height: 1.72; }
     .th-chapter:first-of-type h2 { border-top: none; padding-top: 0; }
-    .th-body h2 { font-family: var(--serif); font-weight: 400; font-size: 2.3rem; letter-spacing: -.02em; line-height: 1.12; border-top: 1px solid var(--rule); }
+    .th-body h2 { font-family: var(--impact); font-weight: 400; font-size: 2.6rem; letter-spacing: .02em; text-transform: uppercase; line-height: 1.02; border-top: 1px solid var(--rule); }
     .th-body h3 { font-family: var(--serif); font-weight: 600; font-size: 1.35rem; letter-spacing: -.01em; }
     .th-body h4 { font-family: var(--ui); font-weight: 600; font-size: .98rem; }
-    .th-body a { color: var(--red); }
+    .th-body a { color: var(--up); }
     .th-body figure img { border: 1px solid var(--border); border-radius: 0; }
     .th-body figcaption, .th-caption { font-family: var(--mono); font-size: .7rem; letter-spacing: .02em; }
     .th-body code, .th-body pre { font-family: var(--mono); }
-    .th-body pre { border: 1px solid var(--border); border-left: 2px solid var(--red); border-radius: 0; }
+    .th-body pre { border: 1px solid var(--border); border-left: 2px solid var(--up); border-radius: 0; }
     .th-term code { color: var(--ink); background: none; }
     .pg { font-family: var(--mono); border: none; color: #a39a8b; background: none; padding: 0; }
     .th-result small { font-family: var(--mono); }
     .th-result:hover, .th-result:focus-visible { background: var(--surface); border-color: var(--border); }
-    .th-body mark, .th-result mark { background: var(--red-soft); }
+    .th-body mark, .th-result mark { background: var(--up-soft); }
     .th-body mark.current { background: #f0b7a8; }
     .th-toc-toggle { background: var(--ink); color: var(--bg); border: none; border-radius: 2px; font-family: var(--mono); font-weight: 500; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; }
     .th-top { border: 1px solid #b9b1a2; background: var(--surface); border-radius: 2px; }
@@ -342,5 +344,6 @@
     });
   })();
   </script>
+  <script src="memo_meme.js" defer></script>
 </body>
 </html>
