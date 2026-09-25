@@ -6,6 +6,9 @@
   <title>The Meme Ontology</title>
   <meta name="description" content="5,000 internet memes from Know Your Meme, modelled as an OWL 2 knowledge graph."/>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23111%22/%3E%3Ctext x=%2216%22 y=%2223%22 font-family=%22Impact,sans-serif%22 font-size=%2220%22 text-anchor=%22middle%22 fill=%22%23fff%22%3EM%3C/text%3E%3C/svg%3E"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&display=swap"/>
   <link rel="stylesheet" href="meme_viz.css"/>
 </head>
 <body class="home-page">
@@ -23,11 +26,19 @@
     </div>
   </nav>
 
+  <div class="home-ticker" aria-hidden="true"><div class="home-ticker-track" id="home-ticker"></div></div>
+
   <main class="home-main">
     <section class="viz-section hero-section home-hero" id="sec-hero">
       <div id="hero-images" class="hero-images"></div>
       <div id="hero-collage-sentinel" class="home-collage-sentinel"></div>
       <div class="hero-content">
+        <div class="hero-stickers" aria-hidden="true">
+          <span class="hero-sticker s1"><b>5,000</b>memes</span>
+          <span class="hero-sticker s2"><b>391</b>variants</span>
+          <span class="hero-sticker s3"><b>50</b>annotated</span>
+          <span class="hero-sticker s4"><b>OWL 2</b>knowledge graph</span>
+        </div>
         <h1 class="hero-title"><span>THE MEME</span><span>ONTOLOGY</span></h1>
         <p class="hero-tagline">5,000 Know Your Meme entries, modelled as an OWL&nbsp;2 knowledge graph</p>
         <a class="hero-cta" href="visualizations.html">Explore the visualizations <span aria-hidden="true">→</span></a>
@@ -276,12 +287,28 @@
         return shuffle(memeEntries.concat(variantEntries));
       }
 
+      /* Ticker: every meme format with its entry count, straight from the data */
+      function buildTicker(memeData) {
+        var el = document.getElementById('home-ticker');
+        if (!el || !memeData || !memeData.memes) return;
+        var counts = {};
+        Object.keys(memeData.memes).forEach(function(slug) {
+          (memeData.memes[slug].hasFormat || []).forEach(function(f) {
+            if (f && f !== 'Unknown') counts[f] = (counts[f] || 0) + 1;
+          });
+        });
+        el.innerHTML = Object.keys(counts).sort(function(a, b) { return counts[b] - counts[a]; })
+          .map(function(f) { return '<span>' + f.toUpperCase() + ' <i>' + counts[f].toLocaleString() + '</i></span>✦'; })
+          .join('');
+      }
+
       function boot(allData) {
         var memeData = allData && allData[0] ? allData[0] : {};
         var variantData = allData && allData[1] ? allData[1] : [];
         var shuffledQueue = buildQueue(memeData, variantData);
 
         queue = shuffledQueue;
+        buildTicker(memeData);
         allItems = shuffledQueue.slice();
 
         appendBatch();

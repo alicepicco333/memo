@@ -6,6 +6,9 @@
   <title>Thesis · The Meme Ontology</title>
   <meta name="description" content="Towards an Ontology of Memes: A Cultural Analytics Study on Viral Images — full dissertation text."/>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23111%22/%3E%3Ctext x=%2216%22 y=%2223%22 font-family=%22Impact,sans-serif%22 font-size=%2220%22 text-anchor=%22middle%22 fill=%22%23fff%22%3EM%3C/text%3E%3C/svg%3E"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&display=swap"/>
   <link rel="stylesheet" href="meme_viz.css"/>
   <style>
     /* ── Thesis reader ───────────────────────────────────────────────── */
@@ -116,6 +119,35 @@
       .th-body { font-size: 1.04rem; }
       .th-anchor { display: none; }
     }
+
+    /* ── Identity ─────────────────────────────────────────────────────── */
+    body.thesis-page { background: var(--surface); }
+    .th-progress { background: var(--pink); height: 4px; }
+    .th-toc { background: var(--bg); border-right: 2px solid var(--ink); }
+    .th-toc-head { font-family: var(--display); font-weight: 400; font-size: .9rem; letter-spacing: .1em; color: var(--ink); }
+    .th-search input { border: 2px solid var(--ink); border-radius: 0; box-shadow: var(--shadow-sm); }
+    .th-toc-list a { color: var(--muted); border-radius: 0; }
+    .th-toc-list a:hover { background: var(--yellow); color: var(--ink); }
+    .th-toc-list a.active { background: var(--pink); color: #fff; border-left-color: var(--ink); }
+    .toc-ch > a { color: var(--ink); }
+    .th-kicker { color: var(--ink); background: var(--yellow); border: 2px solid var(--ink); display: inline-block; padding: 3px 10px; transform: rotate(-1deg); box-shadow: var(--shadow-sm); }
+    .th-title { border-bottom: 2px solid var(--ink); }
+    .th-chapter:first-of-type h2 { border-top: none; padding-top: 0; }
+    .th-title h1 { font-family: var(--display); font-weight: 400; letter-spacing: .01em; font-size: clamp(2.2rem, 4.4vw, 3.4rem); line-height: 1.02; }
+    .th-meta b { font-family: var(--display); font-weight: 400; font-size: 1.05rem; letter-spacing: .02em; }
+    .th-body h2 { font-family: var(--display); font-weight: 400; font-size: 2.4rem; letter-spacing: .01em; border-top: 4px solid var(--ink); }
+    .th-body h2::after { content: ''; display: block; width: 72px; height: 10px; background: var(--yellow); border: 2px solid var(--ink); margin-top: 12px; transform: rotate(-2deg); }
+    .th-body h3, .th-body h4 { font-family: var(--ui); }
+    .th-body h3 { font-weight: 700; }
+    .th-body a { color: var(--blue); }
+    .th-body figure img { border: 2px solid var(--ink); border-radius: 0; box-shadow: var(--shadow); }
+    .th-body pre { border: 2px solid var(--ink); border-left: 6px solid var(--pink); border-radius: 0; }
+    .th-term code { color: var(--ink); background: linear-gradient(transparent 55%, #ffc2d6 55%); }
+    .pg { border: 1.5px solid var(--ink); color: var(--ink); background: var(--yellow); }
+    .th-body figcaption, .th-caption { font-family: var(--ui); }
+    .th-result:hover, .th-result:focus-visible { background: var(--yellow); border-color: var(--ink); }
+    .th-toc-toggle { background: var(--pink); border: 2px solid var(--ink); box-shadow: var(--shadow-sm); font-family: var(--display); font-weight: 400; letter-spacing: .05em; font-size: .95rem; }
+    .th-top { border: 2px solid var(--ink); box-shadow: var(--shadow-sm); background: var(--yellow); }
   </style>
 </head>
 <body class="thesis-page">

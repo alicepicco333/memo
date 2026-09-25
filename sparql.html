@@ -4,6 +4,9 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SPARQL Explorer · The Meme Ontology</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&display=swap"/>
   <link rel="stylesheet" href="meme_viz.css"/>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23111%22/%3E%3Ctext x=%2216%22 y=%2223%22 font-family=%22Impact,sans-serif%22 font-size=%2220%22 text-anchor=%22middle%22 fill=%22%23fff%22%3EM%3C/text%3E%3C/svg%3E"/>
   <style>
@@ -332,6 +335,26 @@
       }
       .sparql-results { min-height: 260px; }
     }
+
+    /* ── Identity ─────────────────────────────────────────────────────── */
+    .sparql-sidebar { border-right: 2px solid var(--ink); }
+    .sidebar-section { border-bottom: 2px dashed var(--border); }
+    .sidebar-label { font-family: var(--display); font-weight: 400; font-size: .85rem; letter-spacing: .08em; color: var(--ink); }
+    .editor-title { font-family: var(--display); font-weight: 400; font-size: 2rem; letter-spacing: .02em;
+      background: linear-gradient(transparent 60%, var(--yellow) 60%, var(--yellow) 90%, transparent 90%); display: inline-block; }
+    .sparql-textarea, .sparql-results { border: 2px solid var(--ink); border-radius: 0; box-shadow: var(--shadow); background: var(--surface); }
+    .sparql-textarea:focus { border-color: var(--blue); }
+    .run-btn { background: var(--pink); color: #fff; border: 2px solid var(--ink); border-radius: 0; box-shadow: var(--shadow-sm);
+      font-family: var(--display); font-weight: 400; font-size: 1.05rem; letter-spacing: .05em; transition: transform .08s, box-shadow .08s; }
+    .run-btn:hover { opacity: 1; background: var(--blue); }
+    .run-btn:active { transform: translate(2px, 2px); box-shadow: none; }
+    .clear-btn { border: 2px solid var(--ink); border-radius: 0; color: var(--ink); background: var(--surface); font-weight: 600; }
+    .clear-btn:hover { background: var(--yellow); color: var(--ink); border-color: var(--ink); }
+    .example-btn { border: 2px solid var(--ink); border-radius: 0; background: var(--surface); box-shadow: var(--shadow-sm); transition: transform .1s, background .15s; }
+    .example-btn:hover { background: var(--yellow); transform: rotate(-1deg); border-color: var(--ink); }
+    .ns-pill { border: 1.5px solid var(--ink); border-radius: 0; background: var(--surface); }
+    .example-btn, .ex-title, .ex-desc, .clear-btn, .query-status { font-family: var(--ui); }
+    .results-table th { background: var(--yellow); color: var(--ink); border-bottom: 2px solid var(--ink); }
   </style>
 </head>
 <body>
