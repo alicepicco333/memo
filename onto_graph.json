@@ -1,0 +1,516 @@
+{
+ "nodes": [
+  {
+   "id": "memo:AudioFormat",
+   "label": "AudioFormat",
+   "kind": "class",
+   "comment": "MemeFormat subclass grouping audio-primary formats: Song, SoundEffect."
+  },
+  {
+   "id": "memo:HistoricalEvent",
+   "label": "HistoricalEvent",
+   "kind": "class",
+   "comment": "A historical event, period, or crisis referenced by a meme."
+  },
+  {
+   "id": "memo:ImageManipulationFormat",
+   "label": "ImageManipulationFormat",
+   "kind": "class",
+   "comment": "MemeFormat subclass grouping image manipulation formats: Exploitable, ImageMacro, Photoshop, Remix."
+  },
+  {
+   "id": "memo:MediaProperty",
+   "label": "MediaProperty",
+   "kind": "class",
+   "comment": "A media franchise, film, TV series, game, or other creative property referenced by a meme."
+  },
+  {
+   "id": "memo:NarrativeFormat",
+   "label": "NarrativeFormat",
+   "kind": "class",
+   "comment": "MemeFormat subclass grouping character- and narrative-based formats: Character, FanArt, Parody, PopCultureReference, Reaction."
+  },
+  {
+   "id": "memo:ParticipatoryFormat",
+   "label": "ParticipatoryFormat",
+   "kind": "class",
+   "comment": "MemeFormat subclass grouping participatory formats: ParticipatoryMedia, Dance, SocialGame."
+  },
+  {
+   "id": "memo:PoliticalEvent",
+   "label": "PoliticalEvent",
+   "kind": "class",
+   "comment": "A political event, controversy, or campaign that a meme iconologically references."
+  },
+  {
+   "id": "memo:PublicFigure",
+   "label": "PublicFigure",
+   "kind": "class",
+   "comment": "A public figure, celebrity, politician, or historical person referenced by a meme."
+  },
+  {
+   "id": "memo:SocialPhenomenon",
+   "label": "SocialPhenomenon",
+   "kind": "class",
+   "comment": "A social movement, behavioural trend, or cultural practice referenced by a meme."
+  },
+  {
+   "id": "memo:TextFormat",
+   "label": "TextFormat",
+   "kind": "class",
+   "comment": "MemeFormat subclass grouping text-based formats: Catchphrase, Copypasta, Slang, Snowclone, Hashtag."
+  },
+  {
+   "id": "memo:VideoFormat",
+   "label": "VideoFormat",
+   "kind": "class",
+   "comment": "MemeFormat subclass grouping video-based formats: ViralVideo, ViralDebate, LipDub."
+  },
+  {
+   "id": "memo:WebCulture",
+   "label": "WebCulture",
+   "kind": "class",
+   "comment": "A web-native cultural phenomenon, community, or trend referenced by a meme."
+  },
+  {
+   "id": "schema:Book",
+   "label": "Book",
+   "kind": "external",
+   "comment": "Book, novel or short story from which the meme derives; subclass of wd:Q386724."
+  },
+  {
+   "id": "schema:ComicSeries",
+   "label": "ComicBook",
+   "kind": "external",
+   "comment": "Comic strip, webcomic or graphic novel from which the meme derives; subclass of wd:Q386724."
+  },
+  {
+   "id": "schema:Movie",
+   "label": "Movie",
+   "kind": "external",
+   "comment": "Film from which the meme derives; subclass of wd:Q386724."
+  },
+  {
+   "id": "schema:MusicAlbum",
+   "label": "MusicAlbum",
+   "kind": "external",
+   "comment": "Song, album or music video from which the meme derives; subclass of wd:Q386724."
+  },
+  {
+   "id": "schema:TVSeries",
+   "label": "TvSeries",
+   "kind": "external",
+   "comment": "Television or web series from which the meme derives; subclass of wd:Q386724."
+  },
+  {
+   "id": "schema:VideoGame",
+   "label": "VideoGame",
+   "kind": "external",
+   "comment": "Video game from which the meme derives; subclass of wd:Q386724."
+  },
+  {
+   "id": "wd:Q235557",
+   "label": "FileFormat",
+   "kind": "external",
+   "comment": "Digital file format of the meme image resource; aligned with Wikidata Q235557."
+  },
+  {
+   "id": "wd:Q11471",
+   "label": "TimePeriod",
+   "kind": "external",
+   "comment": "Chronological period in which the meme originated or peaked; aligned with Wikidata Q11471."
+  },
+  {
+   "id": "wd:Q3220391",
+   "label": "OriginPlatform",
+   "kind": "external",
+   "comment": "Online platform or service where the meme was first published; aligned with Wikidata Q3220391."
+  },
+  {
+   "id": "wd:Q82794",
+   "label": "GeographicRegion",
+   "kind": "external",
+   "comment": "Geographic region or country of meme origin; aligned with Wikidata Q82794."
+  },
+  {
+   "id": "memo:AnimationStatus",
+   "label": "AnimationStatus",
+   "kind": "class",
+   "comment": "Whether a meme image is animated (Animated, i.e. a GIF) or static (Static). Derived from file extension."
+  },
+  {
+   "id": "memo:ImageType",
+   "label": "ImageType",
+   "kind": "class",
+   "comment": "The visual medium or rendering technique of a meme image (e.g. Photograph, Drawing, Cartoon). Corresponds to Panofsky's pre-iconographic description."
+  },
+  {
+   "id": "memo:SubjectMatter",
+   "label": "SubjectMatter",
+   "kind": "class",
+   "comment": "The primary visual subject category depicted in a meme image (e.g. PersonPresent, AnimalPresent, ObjectOnly). Corresponds to Panofsky's pre-iconographic description level."
+  },
+  {
+   "id": "memo:TransformationDimension",
+   "label": "TransformationDimension",
+   "kind": "class",
+   "comment": "The primary dimension along which a VariantInstance transforms the source template (e.g. textual, visual, contextual). Enables typological analysis of meme variation."
+  },
+  {
+   "id": "memo:TransformationExtent",
+   "label": "TransformationExtent",
+   "kind": "class",
+   "comment": "The degree to which a VariantInstance diverges from its source template (e.g. Minimal, Moderate, Major). Enables quantitative analysis of meme mutation."
+  },
+  {
+   "id": "memo:MemeIdea",
+   "label": "MemeIdea",
+   "kind": "class",
+   "comment": "The abstract creative idea underlying a meme template; the Work level of the FRBR hierarchy. Represents the core concept, emotional register, or rhetorical function of a meme, independent of any specific image or format."
+  },
+  {
+   "id": "wd:Q96622155",
+   "label": "CulturalReference",
+   "kind": "external",
+   "comment": "Cultural artefact, event, or phenomenon that a meme iconologically references; aligned with Wikidata Q96622155."
+  },
+  {
+   "id": "memo:MemeFormat",
+   "label": "MemeFormat",
+   "kind": "class",
+   "comment": "The genre or structural format of a meme (e.g. ImageMacro, Copypasta, ViralVideo). Drawn from Know Your Meme's type taxonomy."
+  },
+  {
+   "id": "wd:Q386724",
+   "label": "OriginWork",
+   "kind": "external",
+   "comment": "Creative work (film, TV series, game, etc.) from which the meme derives; aligned with Wikidata Q386724."
+  },
+  {
+   "id": "memo:VariantInstance",
+   "label": "VariantInstance",
+   "kind": "class",
+   "comment": "A specific image derived from a meme template; the Manifestation level of the FRBR hierarchy. Represents a single scraped or documented instantiation of a MemeConcept."
+  },
+  {
+   "id": "memo:MemeConcept",
+   "label": "MemeConcept",
+   "kind": "class",
+   "comment": "A meme template or canonical format; the Expression level of the FRBR hierarchy. Represents the stable, recognisable form of a meme as documented on Know Your Meme."
+  },
+  {
+   "id": "frbrer:C1002",
+   "label": "Work (FRBRer)",
+   "kind": "external",
+   "comment": ""
+  },
+  {
+   "id": "frbrer:C1004",
+   "label": "Manifestation (FRBRer)",
+   "kind": "external",
+   "comment": ""
+  },
+  {
+   "id": "frbrer:C1003",
+   "label": "Expression (FRBRer)",
+   "kind": "external",
+   "comment": ""
+  }
+ ],
+ "links": [
+  {
+   "source": "memo:AudioFormat",
+   "target": "memo:MemeFormat",
+   "type": "sub",
+   "label": "subClassOf"
+  },
+  {
+   "source": "memo:ImageManipulationFormat",
+   "target": "memo:MemeFormat",
+   "type": "sub",
+   "label": "subClassOf"
+  },
+  {
+   "source": "memo:NarrativeFormat",
+   "target": "memo:MemeFormat",
+   "type": "sub",
+   "label": "subClassOf"
+  },
+  {
+   "source": "memo:ParticipatoryFormat",
+   "target": "memo:MemeFormat",
+   "type": "sub",
+   "label": "subClassOf"
+  },
+  {
+   "source": "memo:TextFormat",
+   "target": "memo:MemeFormat",
+   "type": "sub",
+   "label": "subClassOf"
+  },
+  {
+   "source": "memo:VideoFormat",
+   "target": "memo:MemeFormat",
+   "type": "sub",
+   "label": "subClassOf"
+  },
+  {
+   "source": "memo:HistoricalEvent",
+   "target": "wd:Q96622155",
+   "type": "sub",
+   "label": "subClassOf"
+  },
+  {
+   "source": "memo:MediaProperty",
+   "target": "wd:Q96622155",
+   "type": "sub",
+   "label": "subClassOf"
+  },
+  {
+   "source": "memo:PoliticalEvent",
+   "target": "wd:Q96622155",
+   "type": "sub",
+   "label": "subClassOf"
+  },
+  {
+   "source": "memo:PublicFigure",
+   "target": "wd:Q96622155",
+   "type": "sub",
+   "label": "subClassOf"
+  },
+  {
+   "source": "memo:SocialPhenomenon",
+   "target": "wd:Q96622155",
+   "type": "sub",
+   "label": "subClassOf"
+  },
+  {
+   "source": "memo:WebCulture",
+   "target": "wd:Q96622155",
+   "type": "sub",
+   "label": "subClassOf"
+  },
+  {
+   "source": "schema:Book",
+   "target": "wd:Q386724",
+   "type": "sub",
+   "label": "subClassOf"
+  },
+  {
+   "source": "schema:ComicSeries",
+   "target": "wd:Q386724",
+   "type": "sub",
+   "label": "subClassOf"
+  },
+  {
+   "source": "schema:Movie",
+   "target": "wd:Q386724",
+   "type": "sub",
+   "label": "subClassOf"
+  },
+  {
+   "source": "schema:MusicAlbum",
+   "target": "wd:Q386724",
+   "type": "sub",
+   "label": "subClassOf"
+  },
+  {
+   "source": "schema:TVSeries",
+   "target": "wd:Q386724",
+   "type": "sub",
+   "label": "subClassOf"
+  },
+  {
+   "source": "schema:VideoGame",
+   "target": "wd:Q386724",
+   "type": "sub",
+   "label": "subClassOf"
+  },
+  {
+   "source": "memo:MemeIdea",
+   "target": "frbrer:C1002",
+   "type": "sub",
+   "label": "subClassOf"
+  },
+  {
+   "source": "memo:VariantInstance",
+   "target": "frbrer:C1004",
+   "type": "sub",
+   "label": "subClassOf"
+  },
+  {
+   "source": "memo:MemeConcept",
+   "target": "frbrer:C1003",
+   "type": "sub",
+   "label": "subClassOf"
+  },
+  {
+   "source": "memo:MemeConcept",
+   "target": "wd:Q235557",
+   "type": "prop",
+   "label": "format",
+   "id": "dcterms:format"
+  },
+  {
+   "source": "memo:MemeConcept",
+   "target": "wd:Q386724",
+   "type": "prop",
+   "label": "wasDerivedFrom",
+   "id": "prov:wasDerivedFrom"
+  },
+  {
+   "source": "memo:MemeConcept",
+   "target": "wd:Q3220391",
+   "type": "prop",
+   "label": "hasOriginPlatform",
+   "id": "wdp:P123"
+  },
+  {
+   "source": "memo:MemeConcept",
+   "target": "memo:MemeFormat",
+   "type": "prop",
+   "label": "hasFormat",
+   "id": "wdp:P2283"
+  },
+  {
+   "source": "memo:MemeConcept",
+   "target": "wd:Q11471",
+   "type": "prop",
+   "label": "hasTimePeriod",
+   "id": "wdp:P2408"
+  },
+  {
+   "source": "memo:VariantInstance",
+   "target": "memo:MemeConcept",
+   "type": "prop",
+   "label": "isVariantOf",
+   "id": "wdp:P361"
+  },
+  {
+   "source": "memo:MemeConcept",
+   "target": "wd:Q82794",
+   "type": "prop",
+   "label": "hasRegion",
+   "id": "wdp:P495"
+  },
+  {
+   "source": "memo:MemeConcept",
+   "target": "memo:VariantInstance",
+   "type": "prop",
+   "label": "hasVariant",
+   "id": "wdp:P527"
+  },
+  {
+   "source": "memo:MemeConcept",
+   "target": "memo:MemeIdea",
+   "type": "prop",
+   "label": "conceptualizes",
+   "id": "memo:conceptualizes"
+  },
+  {
+   "source": "memo:MemeConcept",
+   "target": "memo:AnimationStatus",
+   "type": "prop",
+   "label": "hasAnimationStatus",
+   "id": "memo:hasAnimationStatus"
+  },
+  {
+   "source": "memo:MemeConcept",
+   "target": "wd:Q386724",
+   "type": "prop",
+   "label": "hasOriginWork",
+   "id": "memo:hasOriginWork"
+  },
+  {
+   "source": "memo:MemeConcept",
+   "target": "wd:Q96622155",
+   "type": "prop",
+   "label": "hasReference",
+   "id": "memo:hasReference"
+  },
+  {
+   "source": "memo:VariantInstance",
+   "target": "memo:TransformationDimension",
+   "type": "prop",
+   "label": "hasTransformationDimension",
+   "id": "memo:hasTransformationDimension"
+  },
+  {
+   "source": "memo:VariantInstance",
+   "target": "memo:TransformationExtent",
+   "type": "prop",
+   "label": "hasTransformationExtent",
+   "id": "memo:hasTransformationExtent"
+  },
+  {
+   "source": "memo:AnimationStatus",
+   "target": "memo:MemeConcept",
+   "type": "prop",
+   "label": "isAnimationStatusOf",
+   "id": "memo:isAnimationStatusOf"
+  },
+  {
+   "source": "memo:MemeIdea",
+   "target": "memo:MemeConcept",
+   "type": "prop",
+   "label": "isConceptualizedAs",
+   "id": "memo:isConceptualizedAs"
+  },
+  {
+   "source": "memo:MemeFormat",
+   "target": "memo:MemeConcept",
+   "type": "prop",
+   "label": "isFormatOf",
+   "id": "memo:isFormatOf"
+  },
+  {
+   "source": "wd:Q3220391",
+   "target": "memo:MemeConcept",
+   "type": "prop",
+   "label": "isOriginPlatformOf",
+   "id": "memo:isOriginPlatformOf"
+  },
+  {
+   "source": "wd:Q386724",
+   "target": "memo:MemeConcept",
+   "type": "prop",
+   "label": "isOriginWorkOf",
+   "id": "memo:isOriginWorkOf"
+  },
+  {
+   "source": "wd:Q96622155",
+   "target": "memo:MemeConcept",
+   "type": "prop",
+   "label": "isReferencedIn",
+   "id": "memo:isReferencedIn"
+  },
+  {
+   "source": "wd:Q82794",
+   "target": "memo:MemeConcept",
+   "type": "prop",
+   "label": "isRegionOf",
+   "id": "memo:isRegionOf"
+  },
+  {
+   "source": "wd:Q11471",
+   "target": "memo:MemeConcept",
+   "type": "prop",
+   "label": "isTimePeriodOf",
+   "id": "memo:isTimePeriodOf"
+  },
+  {
+   "source": "memo:TransformationDimension",
+   "target": "memo:VariantInstance",
+   "type": "prop",
+   "label": "isTransformationDimensionOf",
+   "id": "memo:isTransformationDimensionOf"
+  },
+  {
+   "source": "memo:TransformationExtent",
+   "target": "memo:VariantInstance",
+   "type": "prop",
+   "label": "isTransformationExtentOf",
+   "id": "memo:isTransformationExtentOf"
+  }
+ ]
+}

@@ -3197,3 +3197,72 @@ body:has(.sparql-page) { --c: var(--plum);  --c-soft: var(--plum-soft); }
 .rm-btn:hover, .rm-btn[aria-expanded="true"] { background: var(--ink); }
 
 :focus-visible { outline-color: var(--blue); }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   ONE ACCENT — the five pigments are retired: every mark, bar, active state
+   and link uses ink on paper, so the memes are the only colour on the site.
+   Data colours inside charts are unchanged. To reintroduce a single accent,
+   change --one below.
+   ══════════════════════════════════════════════════════════════════════════ */
+:root {
+  --one: #141414;
+  --one-soft: #e8e4dc;
+  --blue: var(--one);  --blue-soft: var(--one-soft);
+  --amber: var(--one); --amber-soft: var(--one-soft); --amber-fill: #8a8378;
+  --plum: var(--one);  --plum-soft: var(--one-soft);
+  --green: var(--one); --green-soft: var(--one-soft);
+  --teal: var(--one);  --teal-soft: var(--one-soft);
+  --c: var(--one); --c-soft: var(--one-soft);
+}
+body.home-page, body.thesis-page, body:has(.sparql-page) { --up: #141414; --up-soft: #e8e4dc; --focus: #141414; }
+:root { --up: #141414; --up-soft: #e8e4dc; --focus: #141414; }
+a { text-underline-offset: 3px; }
+/* banners: plain greyscale memes instead of pigment duotones */
+.meme-banner::after { background: #000; mix-blend-mode: normal; opacity: .35; }
+.home-hero .hero-cta:hover { background: #141414; color: #fff; }
+
+/* ── Calmer hero: a dark radial veil behind the title; memes muted until hovered ── */
+.home-hero .hero-content::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 55% 50% at 50% 50%, rgba(12,12,12,.82) 0%, rgba(12,12,12,.62) 45%, rgba(12,12,12,.38) 100%);
+  pointer-events: none;
+}
+.home-hero .home-tile img { filter: saturate(.55); transition: filter .25s; }
+.home-hero .home-tile:hover img { filter: none; }
+.home-hero .hero-title { text-shadow: 0 4px 24px rgba(0,0,0,.6); }
+.home-hero .hero-tagline { background: none; font-size: 1.05rem; color: #f2efe8; }
+
+/* ── Ontology graph (Ontology page) ── */
+.onto-graph {
+  margin: 0 0 28px;
+  border: 1px solid var(--border, #ddd);
+  background: var(--surface, #fff);
+}
+.onto-graph-head {
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 24px;
+  padding: 16px 20px 0;
+}
+.onto-graph-head h2 { font-family: var(--impact); font-weight: 400; font-size: 1.6rem; letter-spacing: .03em; margin: 0; }
+.onto-graph-head p { margin: 0; color: var(--muted); font-size: .9rem; max-width: 60ch; }
+.onto-graph-legend { display: flex; gap: 18px; padding: 10px 20px 0; font-family: var(--mono, monospace); font-size: .75rem; color: var(--muted); flex-wrap: wrap; }
+.onto-graph-legend i { display: inline-block; vertical-align: middle; margin-right: 6px; }
+.onto-graph svg { display: block; width: 100%; height: 640px; cursor: grab; }
+.onto-graph svg:active { cursor: grabbing; }
+.onto-graph .og-node text { font-family: var(--ui); font-size: 12px; paint-order: stroke; stroke: #fff; stroke-width: 4px; stroke-linejoin: round; pointer-events: none; }
+.onto-graph .og-node.memo rect { fill: #141414; }
+.onto-graph .og-node.memo text { font-weight: 600; }
+.onto-graph .og-node.external rect { fill: #fff; stroke: #141414; stroke-dasharray: 3 2; }
+.onto-graph .og-link.sub { stroke: #141414; stroke-width: 1.4; }
+.onto-graph .og-link.prop { stroke: #8a8378; stroke-width: 1; }
+.onto-graph .og-plabel { font-family: var(--mono, monospace); font-size: 10px; fill: #67625a; paint-order: stroke; stroke: #fff; stroke-width: 3px; pointer-events: none; opacity: 0; transition: opacity .2s; }
+.onto-graph.focus .og-link, .onto-graph.focus .og-node { opacity: .15; transition: opacity .2s; }
+.onto-graph.focus .og-link.on, .onto-graph.focus .og-node.on { opacity: 1; }
+.onto-graph.focus .og-plabel.on { opacity: 1; }
+.onto-graph-info { padding: 0 20px 16px; min-height: 2.6em; font-size: .9rem; color: var(--text); }
+.onto-graph-info b { font-family: var(--mono, monospace); }
+@media (max-width: 768px) { .onto-graph svg { height: 460px; } }
+.home-ticker-track i { color: #fff; }

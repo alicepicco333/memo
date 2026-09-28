@@ -313,6 +313,21 @@
         </div>
       </header>
 
+      <section class="onto-graph" id="onto-graph" aria-labelledby="onto-graph-title">
+        <div class="onto-graph-head">
+          <h2 id="onto-graph-title">The ontology as a graph</h2>
+          <p>Every class in MEMO and how it connects: solid lines are subclass links, grey arrows are object properties. Hover or tap a class to follow its connections; drag to rearrange.</p>
+        </div>
+        <div class="onto-graph-legend" aria-hidden="true">
+          <span><i style="width:12px;height:12px;background:#141414"></i>MEMO class</span>
+          <span><i style="width:12px;height:12px;border:1px dashed #141414"></i>reused class (FRBR, schema.org, Wikidata)</span>
+          <span><i style="width:22px;height:0;border-top:1.4px solid #141414"></i>subclass of</span>
+          <span><i style="width:22px;height:0;border-top:1px solid #8a8378"></i>object property</span>
+        </div>
+        <svg id="onto-graph-svg" role="img" aria-label="Graph of the MEMO ontology's classes, subclass links and object properties"></svg>
+        <div class="onto-graph-info" id="onto-graph-info" aria-live="polite">Select a class to see its description and properties.</div>
+      </section>
+
       <div class="onto-doc-layout">
         <aside class="onto-doc-nav" id="onto-doc-nav"></aside>
         <main class="onto-doc-main" id="onto-doc-main">
@@ -350,5 +365,6 @@
   <script src="meme_viz.js"></script>
   <script src="meme_viz_extra.js"></script>
   <script src="memo_meme.js" defer></script>
+  <script src="onto_graph.js" defer></script>
 </body>
 </html>
