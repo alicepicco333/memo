@@ -3266,3 +3266,92 @@ a { text-underline-offset: 3px; }
 .onto-graph-info b { font-family: var(--mono, monospace); }
 @media (max-width: 768px) { .onto-graph svg { height: 460px; } }
 .home-ticker-track i { color: #fff; }
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   READABILITY — Impact stays for display sizes only (titles, the hero, meme
+   captions) with a little more tracking; small labels, numbers, buttons and
+   chart captions move to the UI face in spaced capitals.
+   ══════════════════════════════════════════════════════════════════════════ */
+.sec-header h2, .page-inner h1, .collage-title, .ds-sec-title, .onto-doc-header h1, .onto-doc-sec h2,
+.transform-legend h3, .panel-top h3, .meme-page-info h1, .story-step h3, .walk-card-body b,
+.stat-num, .ds-ov-num, .onto-stat-card span, .editor-title, .loader-text, .pipeline-label,
+.onto-graph-head h2, .topnav-brand { letter-spacing: .045em; line-height: 1.08; }
+.home-hero .hero-title { letter-spacing: .08em; }
+.home-hero .hero-title span + span { margin-top: .08em; }
+.dot-nav::before, .dot::before, .home-ticker, .collage-sort-title, .home-hero .hero-cta,
+.fam-caption, .transform-legend h3, .panel-top h3, .walk-card-body b, .pipeline-label, .home-tile-label {
+  font-family: var(--ui) !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  letter-spacing: .08em !important;
+}
+.dot::before { font-size: .78rem; color: #8a8378; }
+.home-ticker { font-size: .72rem; }
+.home-hero .hero-cta { font-size: .9rem; padding: 12px 22px; }
+.home-tile-label { font-size: .8rem; -webkit-text-stroke: 0; text-shadow: none; background: rgba(0,0,0,.72); padding: 4px 8px; }
+.fam-caption { font-size: 11px; }
+.panel-top h3, .transform-legend h3, .walk-card-body b { font-size: .95rem; line-height: 1.25; }
+
+/* ── Footer (all pages) ── */
+.site-footer {
+  position: relative;
+  z-index: 400;
+  background: #141414;
+  color: #d9d4ca;
+  font-family: var(--ui, 'IBM Plex Sans', system-ui, sans-serif);
+  font-size: .9rem;
+  line-height: 1.55;
+  margin-left: var(--dot-nav-w, 0);
+}
+body.home-page .site-footer, body.thesis-page .site-footer, body:has(.sparql-page) .site-footer { margin-left: 0; }
+.site-footer-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  padding: 40px 32px 28px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.site-footer-brand {
+  display: inline-block;
+  font-family: var(--impact, Impact, sans-serif);
+  font-size: 1.6rem;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+  margin-bottom: 8px;
+}
+.site-footer-about p { margin: 0; max-width: 48ch; color: #bdb6a9; }
+.site-footer-col { display: flex; flex-direction: column; gap: 6px; }
+.site-footer-col span { font-weight: 600; text-transform: uppercase; letter-spacing: .08em; font-size: .72rem; color: #8a8378; margin-bottom: 4px; }
+.site-footer a { color: #f2efe8; text-decoration: none; }
+.site-footer-col a:hover, .site-footer-col a:focus-visible { text-decoration: underline; text-underline-offset: 3px; }
+.site-footer-base {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px;
+  border-top: 1px solid #2c2c2c;
+  padding: 14px 32px 22px;
+  max-width: 1280px; margin: 0 auto;
+  font-size: .78rem; color: #8a8378;
+}
+@media (max-width: 768px) {
+  .site-footer { margin-left: 0; }
+  .site-footer-inner { grid-template-columns: 1fr 1fr; padding: 32px 16px 20px; gap: 24px; }
+  .site-footer-about { grid-column: 1 / -1; }
+  .site-footer-base { padding: 14px 16px 20px; }
+}
+
+/* home: the collage ends, then a link and the footer; the fixed title and Arrange bar step aside */
+.collage-more { position: relative; z-index: 400; background: #141414; text-align: center; padding: 36px 16px; border-top: 1px solid #2c2c2c; }
+.collage-more a { color: #fff; font-family: var(--ui); font-weight: 600; text-transform: uppercase; letter-spacing: .08em; font-size: .85rem; text-decoration: none; border-bottom: 1px solid #fff; padding-bottom: 3px; }
+.home-hero .hero-content, .collage-sort { transition: opacity .3s; }
+body.footer-in-view .home-hero .hero-content, body.footer-in-view .collage-sort { opacity: 0; pointer-events: none; }
+body.footer-in-view .home-hero .hero-content * { pointer-events: none !important; }
+
+.page > .site-footer { margin-left: 0; margin-top: 48px; }
+.page > .site-footer { z-index: auto; }
+.site-footer { z-index: 1; }
+body.home-page .site-footer { z-index: 400; }
+#page-ontology .onto-doc-shell { height: auto; min-height: 100%; }
+body:has(.page:not(.hidden)) > .site-footer { display: none; }
