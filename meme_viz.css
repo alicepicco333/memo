@@ -3759,3 +3759,70 @@ body:not(.home-page):not(.thesis-page) > .site-footer { margin-left: 0; position
   50% { transform: rotate(2.5deg); }
 }
 @media (max-width: 760px) { .home-hero .hero-content { padding-bottom: 20px; } }
+
+
+/* ── Hero characters v2: shorter hero so the meme grid peeks on landing;
+      characters sink below the ground line so their cut edge never shows ── */
+.home-hero .hero-content {
+  min-height: 0;
+  height: min(calc(100vh - 240px), 620px);
+  padding-top: 24px;
+  padding-bottom: 0;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+.home-hero .hero-cta { margin-bottom: 110px; }
+.hero-hover-hint { display: none !important; }
+.collage-sort { margin-bottom: 16px; }
+
+/* the image is taller than what shows: 18% of it always stays below the line,
+   and hover moves never lift it by more than that */
+.hero-char { bottom: 0; }
+.char-pepe  { width: clamp(190px, 18vw, 260px); transform: translateY(24%); }
+.char-doge  { width: clamp(150px, 13vw, 190px); right: 22%; transform: translateY(26%); }
+.char-mememan { width: clamp(150px, 13vw, 190px); transform: translateY(22%); }
+.char-pepe:hover { transform: translateY(16%); animation: pepe-sob2 .5s ease-in-out infinite; }
+@keyframes pepe-sob2 {
+  0%, 100% { transform: translateY(16%) rotate(-2.5deg); }
+  50% { transform: translateY(16%) rotate(2.5deg); }
+}
+.char-doge:hover { transform: translateY(20%) rotate(-8deg); }
+.char-mememan:hover { transform: translateY(10%); }
+.char-bubble { top: -6%; }
+.char-stonks { top: 6%; }
+
+@media (max-width: 1099px) {
+  .home-hero .hero-content { height: min(calc(100vh - 220px), 560px); }
+  .home-hero .hero-cta { margin-bottom: 90px; }
+}
+@media (max-width: 760px) {
+  .home-hero .hero-content { height: auto; padding-bottom: 20px; }
+  .home-hero .hero-cta { margin-bottom: 0; }
+}
+
+
+/* ── Hero characters v3: sink and lift measured in the character's own width,
+      so the cut bottom edge always stays below the ground line ── */
+.hero-char { line-height: 0; transform-origin: 50% 100%; }
+.char-pepe    { --cw: clamp(190px, 18vw, 260px); }
+.char-doge    { --cw: clamp(150px, 13vw, 190px); }
+.char-mememan { --cw: clamp(150px, 13vw, 190px); }
+.char-pepe, .char-doge, .char-mememan { width: var(--cw); transform: none; }
+.char-pepe    { bottom: calc(var(--cw) * -0.22); }
+.char-doge    { bottom: calc(var(--cw) * -0.34); }
+.char-mememan { bottom: calc(var(--cw) * -0.32); }
+
+.char-pepe:hover { transform: translateY(calc(var(--cw) * -0.06)); animation: pepe-sob3 .5s ease-in-out infinite; }
+@keyframes pepe-sob3 {
+  0%, 100% { transform: translateY(calc(var(--cw) * -0.06)) rotate(-2.5deg); }
+  50% { transform: translateY(calc(var(--cw) * -0.06)) rotate(2.5deg); }
+}
+.char-doge:hover { transform: translateY(calc(var(--cw) * -0.1)) rotate(-8deg); }
+.char-mememan:hover { transform: translateY(calc(var(--cw) * -0.14)); }
+.char-bubble { top: -14%; }
+.char-stonks { top: 0; }
+.char-mememan:hover .char-stonks { transform: translate(-50%, -115%); }
+@media (prefers-reduced-motion: reduce) {
+  .char-pepe:hover, .char-doge:hover, .char-mememan:hover { transform: none; animation: none; }
+}
+.hero-chars { overflow: clip; }
