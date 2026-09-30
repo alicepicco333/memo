@@ -3355,3 +3355,181 @@ body.footer-in-view .home-hero .hero-content * { pointer-events: none !important
 body.home-page .site-footer { z-index: 400; }
 #page-ontology .onto-doc-shell { height: auto; min-height: 100%; }
 body:has(.page:not(.hidden)) > .site-footer { display: none; }
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   LIGHT & CONSISTENT — final layer
+   · Home: a light hero. The title sits on paper above the collage instead of
+     over a darkened wall; the memes keep their own colours, on an airy grid.
+   · One type system: Impact for display titles only, IBM Plex Sans for
+     everything else, mono only for code and IRIs, a serif only for the thesis.
+   · Title banners: black Impact title on paper with a thin strip of memes in
+     full colour underneath, instead of white text over dimmed images.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Home ─────────────────────────────────────────────────────────────── */
+body.home-page { background: var(--bg); }
+.home-ticker {
+  background: var(--surface);
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+}
+.home-ticker-track i { color: var(--ink); }
+.home-hero { background: var(--bg); padding-top: 28px; }
+.home-hero .hero-content {
+  position: relative;
+  top: auto; left: auto; right: auto;
+  height: auto;
+  z-index: 2;
+  padding: clamp(56px, 10vh, 110px) 20px 28px;
+  gap: 20px;
+  pointer-events: auto;
+}
+.home-hero .hero-content::before { display: none; }
+.home-hero .hero-title {
+  color: var(--ink);
+  -webkit-text-stroke: 0;
+  text-shadow: none;
+  font-size: clamp(3.4rem, 9vw, 8rem);
+  line-height: .95;
+  letter-spacing: .05em;
+}
+.home-hero .hero-tagline {
+  background: none;
+  color: var(--muted);
+  font-size: 1.1rem;
+  font-weight: 400;
+  padding: 0;
+  max-width: 44ch;
+}
+.home-hero .hero-cta {
+  background: var(--ink);
+  color: #fff;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  padding: 12px 24px;
+}
+.home-hero .hero-cta:hover { background: #3a3733; color: #fff; }
+.hero-hover-hint {
+  display: none;
+  background: none;
+  color: var(--muted);
+  font-family: var(--ui);
+  font-size: .8rem;
+  padding: 0;
+}
+@media (hover: hover) and (pointer: fine) { .hero-hover-hint { display: block; } }
+
+.collage-sort {
+  position: relative;
+  left: auto; bottom: auto;
+  transform: none;
+  width: max-content;
+  margin: 0 auto 28px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: none;
+}
+.collage-sort button { color: var(--muted); }
+.collage-sort button.active { background: var(--ink); color: #fff; }
+
+.home-hero .hero-images {
+  margin: 0 auto;
+  padding: 0 28px 40px;
+  max-width: 1480px;
+  gap: 10px;
+  grid-auto-rows: 150px;
+}
+.home-tile { border-radius: 4px; background: var(--border); }
+.home-hero .home-tile img { filter: none; transition: transform .35s ease; }
+.home-hero .home-tile:hover img { transform: scale(1.04); }
+.home-tile-label {
+  background: var(--ink);
+  color: #fff;
+  border-radius: 3px;
+  margin: 6px;
+  font-size: .72rem;
+}
+.collage-more { background: var(--bg); border-top: 1px solid var(--border); }
+.collage-more a { color: var(--ink); border-bottom-color: var(--ink); }
+body.footer-in-view .home-hero .hero-content,
+body.footer-in-view .collage-sort { opacity: 1; pointer-events: auto; }
+body.footer-in-view .home-hero .hero-content * { pointer-events: auto !important; }
+
+@media (max-width: 980px) {
+  .home-hero .hero-images { padding: 0 16px 32px; gap: 8px; grid-auto-rows: 130px; }
+}
+@media (max-width: 640px) {
+  .home-hero { padding-top: 20px; }
+  .home-hero .hero-content { padding: 40px 16px 20px; gap: 14px; }
+  .home-hero .hero-title { font-size: clamp(2.8rem, 15vw, 4rem); -webkit-text-stroke: 0; }
+  .home-hero .hero-tagline { font-size: .98rem; }
+  .collage-sort { margin-bottom: 20px; }
+  .home-hero .hero-images { gap: 6px; grid-auto-rows: 120px; }
+}
+
+/* ── Title banners: title on paper, a strip of memes in colour below ── */
+.meme-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+  min-height: 0;
+  padding: 0;
+  margin: 0 0 22px;
+  background: none;
+  overflow: visible;
+}
+.meme-banner::after { display: none; }
+.meme-banner-strip {
+  position: static;
+  order: 2;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(14, 1fr);
+  grid-auto-rows: 64px;
+  gap: 4px;
+}
+.meme-banner-strip img {
+  filter: none;
+  border-radius: 3px;
+}
+.meme-banner-strip img:nth-child(n+15) { display: none; }
+.meme-caption,
+.page-inner .meme-banner h1.meme-caption,
+.th-title .meme-banner h1.meme-caption {
+  order: 1;
+  text-align: left;
+  color: var(--ink) !important;
+  -webkit-text-stroke: 0;
+  text-shadow: none;
+  font-size: clamp(2.4rem, 5vw, 3.6rem) !important;
+}
+.th-title .meme-banner { min-height: 0; }
+.th-title .meme-banner h1.meme-caption { font-size: clamp(1.9rem, 3.6vw, 2.8rem) !important; }
+.editor-topbar .meme-banner { min-height: 0; gap: 10px; }
+.editor-topbar .meme-banner-strip { grid-auto-rows: 44px; }
+.editor-title.meme-caption { font-size: clamp(1.8rem, 3vw, 2.4rem) !important; }
+@media (max-width: 768px) {
+  .meme-banner-strip { grid-template-columns: repeat(7, 1fr); grid-auto-rows: 48px; }
+  .meme-banner-strip img:nth-child(n+8) { display: none; }
+}
+
+/* ── One type system ─────────────────────────────────────────────────── */
+.viz-note, .rm-meta, .meme-thumb-name, .ds-card-name, .walk-hint, .walk-step,
+.hero-hover-hint, .th-meta, .th-body figcaption, .th-caption, .th-result small,
+.legend-item strong, .onto-graph-legend, .editor-subtitle, .detail-key {
+  font-family: var(--ui) !important;
+  letter-spacing: 0;
+}
+.th-meta { font-size: .8rem; }
+.home-ticker { font-family: var(--ui) !important; }
+.home-hero { padding-top: calc(var(--nav-h) + 28px); }
+.home-ticker-track span i { color: var(--ink) !important; }
+@media (max-width: 640px) {
+  .home-hero { padding-top: calc(var(--nav-h) + 24px); }
+  .home-hero .hero-content { padding-top: 20px; }
+}
+@media (max-width: 768px) {
+  .viz-section.home-hero { padding: calc(var(--nav-h) + 28px) 0 0 !important; }
+}
