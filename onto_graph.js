@@ -44,7 +44,23 @@
       .attr('markerWidth', 7).attr('markerHeight', 7).attr('orient', 'auto')
       .append('path').attr('d', 'M0,-4L8,0L0,4').attr('fill', '#8a8378');
     var root = svg.append('g');
-    svg.call(d3.zoom().scaleExtent([0.4, 3]).on('zoom', function (e) { root.attr('transform', e.transform); }));
+    // plain wheel scrolls the page; Ctrl/Cmd + wheel (or pinch) zooms, drag pans
+    var zoom = d3.zoom().scaleExtent([0.4, 3])
+      .filter(function (e) { return e.type === 'wheel' ? (e.ctrlKey || e.metaKey) : !e.button; })
+      .on('zoom', function (e) { root.attr('transform', e.transform); });
+    svg.call(zoom).on('dblclick.zoom', null);
+    var tools = document.createElement('div');
+    tools.className = 'onto-graph-zoom';
+    tools.innerHTML = '<button type="button" data-z="in" aria-label="Zoom in">+</button>' +
+      '<button type="button" data-z="out" aria-label="Zoom out">\u2212</button>' +
+      '<button type="button" data-z="reset">Reset</button>' +
+      '<span>Ctrl/\u2318 + scroll to zoom \u00b7 drag to pan</span>';
+    tools.addEventListener('click', function (e) {
+      var z = e.target.getAttribute('data-z'); if (!z) return;
+      var t = svg.transition().duration(300);
+      if (z === 'in') zoom.scaleBy(t, 1.5); else if (z === 'out') zoom.scaleBy(t, 1 / 1.5); else zoom.transform(t, d3.zoomIdentity);
+    });
+    svgEl.parentNode.insertBefore(tools, svgEl);
 
     var sim = d3.forceSimulation(nodes)
       .force('link', d3.forceLink(links).id(function (d) { return d.id; })
