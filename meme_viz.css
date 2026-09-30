@@ -4051,3 +4051,9 @@ body:not(.home-page):not(.thesis-page) > .site-footer { margin-left: 0; position
 .char-wojak { bottom: calc(var(--cw) * -0.18); }
 .char-wojak .char-bubble { left: 44%; bottom: calc(100% - 2px); }
 .char-troll { left: calc(var(--edge) + (var(--wojak) + var(--gap) + var(--pepe) - var(--troll)) / 2 - 2vw); }
+
+/* ticker: two copies side by side, shifted by one copy, so it is full on landing and loops without a gap */
+.home-ticker-track { display: inline-flex; padding-left: 0; animation: ticker-loop 120s linear infinite; }
+.ticker-run { display: inline-block; flex-shrink: 0; }
+@keyframes ticker-loop { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .home-ticker-track { animation: none; } }

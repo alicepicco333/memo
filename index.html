@@ -323,9 +323,10 @@
             if (f && f !== 'Unknown') counts[f] = (counts[f] || 0) + 1;
           });
         });
-        el.innerHTML = Object.keys(counts).sort(function(a, b) { return counts[b] - counts[a]; })
+        var run = Object.keys(counts).sort(function(a, b) { return counts[b] - counts[a]; })
           .map(function(f) { return '<span>' + f.toUpperCase() + ' <i>' + counts[f].toLocaleString() + '</i></span>✦'; })
           .join('');
+        el.innerHTML = '<div class="ticker-run">' + run + '</div><div class="ticker-run" aria-hidden="true">' + run + '</div>';
       }
 
       /* Hero graph: faint dashed edges from the title to each character, labelled with a real property */
@@ -408,7 +409,8 @@
         return memesOnly.concat(rest);
       }
       function applySort(mode) {
-        if (window.scrollY > 0) window.scrollTo(0, 0);
+        var keepY = window.scrollY;
+        var loaded = heroContainer.querySelectorAll('.home-tile').length;
         var first = {};
         heroContainer.querySelectorAll('.home-tile').forEach(function(t) {
           var r = t.getBoundingClientRect();
@@ -419,9 +421,13 @@
         queue = sortedItems(mode);
         cursor = 0;
         exhausted = false;
+        heroContainer.style.minHeight = heroContainer.offsetHeight + 'px';
         heroContainer.innerHTML = '';
         appendBatch();
         appendBatch();
+        while (!exhausted && heroContainer.querySelectorAll('.home-tile').length < loaded) appendBatch();
+        heroContainer.style.minHeight = '';
+        if (window.scrollY !== keepY) window.scrollTo(0, keepY);
         if (sentinelObs) { sentinelObs.disconnect(); sentinelObs.observe(sentinel); }
         var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (reduce) return;
