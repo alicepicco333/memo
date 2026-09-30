@@ -3826,3 +3826,91 @@ body:not(.home-page):not(.thesis-page) > .site-footer { margin-left: 0; position
   .char-pepe:hover, .char-doge:hover, .char-mememan:hover { transform: none; animation: none; }
 }
 .hero-chars { overflow: clip; }
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   HERO BALANCE — two mirrored groups around the centred title.
+   Left: Pepe on the ground, Trollface floating above him (a tall column).
+   Right: Doge and Meme Man side by side (a wide pair).
+   Both groups sit the same distance (--edge) from the page edge, visible
+   heights above the ground line are close, sizes scale with the viewport.
+   ══════════════════════════════════════════════════════════════════════════ */
+.hero-chars {
+  --edge: 5vw;
+  --gap: 1vw;
+  --pepe: clamp(190px, 17vw, 270px);
+  --doge: clamp(140px, 12.5vw, 200px);
+  --mm:   clamp(140px, 12vw, 195px);
+  --troll: clamp(110px, 10vw, 165px);
+}
+.char-pepe    { --cw: var(--pepe); left: var(--edge); right: auto; }
+.char-mememan { --cw: var(--mm);   right: var(--edge); left: auto; }
+.char-doge    { --cw: var(--doge); right: calc(var(--edge) + var(--mm) + var(--gap)); left: auto; }
+/* visible part above the line: Pepe ~0.56w, Doge ~0.74w, Meme Man ~0.78w, so they end up within ~10% of each other */
+.char-pepe    { bottom: calc(var(--cw) * -0.20); }
+.char-doge    { bottom: calc(var(--cw) * -0.33); }
+.char-mememan { bottom: calc(var(--cw) * -0.32); }
+
+/* Trollface: floats over Pepe, centred on his column, at the height of the title */
+.char-troll {
+  --cw: var(--troll);
+  width: var(--cw);
+  left: calc(var(--edge) + (var(--pepe) - var(--troll)) / 2);
+  bottom: auto;
+  top: 30%;
+  transform-origin: 50% 50%;
+  animation: troll-float 5s ease-in-out infinite;
+  transition: none;
+}
+.char-troll img { filter: drop-shadow(0 10px 14px rgba(0, 0, 0, .12)); }
+@keyframes troll-float {
+  0%, 100% { transform: translateY(0) rotate(-4deg); }
+  50% { transform: translateY(-12px) rotate(3deg); }
+}
+.char-troll:hover { animation: troll-spin .9s cubic-bezier(.5, 0, .3, 1) 1; }
+@keyframes troll-spin {
+  0% { transform: rotate(0) scale(1); }
+  60% { transform: rotate(360deg) scale(1.12); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+.char-problem {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translate(-50%, 4px);
+  font-family: var(--impact);
+  font-size: 1.5rem;
+  letter-spacing: .03em;
+  color: #fff;
+  -webkit-text-stroke: 1.5px #000;
+  paint-order: stroke fill;
+  text-shadow: 0 2px 0 #000;
+  white-space: nowrap;
+  line-height: 1;
+  opacity: 0;
+  transition: opacity .2s .3s;
+}
+.char-troll:hover .char-problem { opacity: 1; }
+
+@media (max-width: 1099px) {
+  .hero-chars { --edge: 4vw; --pepe: clamp(170px, 20vw, 220px); --mm: clamp(140px, 16vw, 180px); --troll: clamp(100px, 12vw, 140px); }
+  .char-troll { top: 22%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .char-troll, .char-troll:hover { animation: none; }
+}
+
+/* balance pass 2: both groups ~20vw wide, so each sits equally far from the page edge and from the title */
+.hero-chars {
+  --pepe: clamp(200px, 19vw, 300px);
+  --doge: clamp(128px, 10vw, 175px);
+  --mm:   clamp(122px, 9.5vw, 168px);
+  --gap: .5vw;
+  --troll: clamp(108px, 9.5vw, 160px);
+}
+.char-pepe { bottom: calc(var(--cw) * -0.27); }
+.char-troll img { filter: none; }
+.char-troll { top: 27%; }
+/* balance pass 3: matching visible heights (~8vw) for the three ground characters */
+.hero-chars { --pepe: clamp(170px, 15vw, 240px); }
+.char-pepe { bottom: calc(var(--cw) * -0.19); }
