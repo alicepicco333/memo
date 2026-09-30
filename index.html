@@ -34,23 +34,28 @@
         <h1 class="hero-title"><span>THE MEME</span><span>ONTOLOGY</span></h1>
         <p class="hero-tagline">5,000 Know Your Meme entries, modelled as an OWL&nbsp;2 knowledge graph</p>
         <a class="hero-cta" href="visualizations.html">Explore the visualizations <span aria-hidden="true">→</span></a>
+        <svg class="hero-graph" id="hero-graph" aria-hidden="true"></svg>
         <div class="hero-chars" aria-hidden="true">
-          <a class="hero-char char-troll" href="visualizations.html#meme/trollface-incidents" tabindex="-1">
+          <a class="hero-char char-megusta" href="visualizations.html#meme/me-gusta" tabindex="-1" data-edge="views · 9,259,700" data-side="right">
+            <img src="img/hero/megusta.webp" alt="" width="420" height="427">
+            <span class="char-problem">ME GUSTA</span>
+          </a>
+          <a class="hero-char char-troll" href="visualizations.html#meme/trollface-incidents" tabindex="-1" data-edge="hasFormat · Parody" data-side="left">
             <img src="img/hero/troll.webp" alt="" width="420" height="340">
             <span class="char-problem">PROBLEM?</span>
           </a>
-          <a class="hero-char char-pepe" href="visualizations.html#meme/pepehands" tabindex="-1">
+          <a class="hero-char char-pepe" href="visualizations.html#meme/pepehands" tabindex="-1" data-edge="originPlatform · Twitch" data-side="left">
             <img src="img/hero/pepe.webp" alt="" width="520" height="395">
             <span class="char-bubble">feels bad man</span>
           </a>
-          <a class="hero-char char-doge" href="visualizations.html#meme/ironic-doge-memes" tabindex="-1">
+          <a class="hero-char char-doge" href="visualizations.html#meme/ironic-doge-memes" tabindex="-1" data-edge="hasFormat · Photoshop" data-side="right">
             <img src="img/hero/doge.webp" alt="" width="460" height="494">
             <span class="doge-wow w1">such ontology</span>
             <span class="doge-wow w2">much graph</span>
             <span class="doge-wow w3">very triple</span>
             <span class="doge-wow w4">wow</span>
           </a>
-          <a class="hero-char char-mememan" href="visualizations.html#meme/stonks" tabindex="-1">
+          <a class="hero-char char-mememan" href="visualizations.html#meme/stonks" tabindex="-1" data-edge="created · 2017" data-side="right">
             <img src="img/hero/meme-man.webp" alt="" width="360" height="396">
             <span class="char-stonks">STONKS <b>&#x2197;</b></span>
           </a>
@@ -318,6 +323,43 @@
           .map(function(f) { return '<span>' + f.toUpperCase() + ' <i>' + counts[f].toLocaleString() + '</i></span>✦'; })
           .join('');
       }
+
+      /* Hero graph: faint dashed edges from the title to each character, labelled with a real property */
+      function drawHeroGraph() {
+        var svg = document.getElementById('hero-graph');
+        var title = document.querySelector('.home-hero .hero-title');
+        if (!svg || !title || !svg.getBoundingClientRect().width) return;
+        var box = svg.getBoundingClientRect(), t = title.getBoundingClientRect();
+        var NS = 'http://www.w3.org/2000/svg', out = '';
+        var chars = document.querySelectorAll('.hero-char[data-edge]');
+        var sides = { left: [], right: [] };
+        chars.forEach(function(c) { if (getComputedStyle(c).display !== 'none') sides[c.dataset.side].push(c); });
+        ['left', 'right'].forEach(function(side) {
+          // order by the angle from the title edge, so outer characters take higher anchors and edges never cross
+          var edgeX = side === 'left' ? t.left : t.right, midY = t.top + t.height / 2;
+          var list = sides[side].sort(function(a, b) {
+            function ang(el) { var r = el.querySelector('img').getBoundingClientRect(); return Math.atan2(r.top + r.height * .3 - midY, Math.abs(r.left + r.width / 2 - edgeX)); }
+            return ang(a) - ang(b);
+          });
+          list.forEach(function(c, i) {
+            var r = c.querySelector('img').getBoundingClientRect();
+            var visBottom = Math.min(r.bottom, box.bottom - 6);
+            var cx = r.left + r.width / 2 - box.left, cy = r.top + (visBottom - r.top) * 0.42 - box.top;
+            var tx = (side === 'left' ? t.left - 18 : t.right + 18) - box.left;
+            var ty = t.top + t.height * (0.28 + 0.44 * (list.length > 1 ? i / (list.length - 1) : .5)) - box.top;
+            var sx = side === 'left' ? cx + r.width * 0.42 : cx - r.width * 0.42;
+            var mx = (sx + tx) / 2, my = (cy + ty) / 2 - 18;
+            out += '<path d="M' + sx + ',' + cy + ' Q' + mx + ',' + my + ' ' + tx + ',' + ty + '"/>';
+            out += '<circle cx="' + tx + '" cy="' + ty + '" r="3"/><circle cx="' + sx + '" cy="' + cy + '" r="3"/>';
+            var lx = (sx + 2 * mx + tx) / 4, ly = (cy + 2 * my + ty) / 4 - 7;
+            out += '<text x="' + lx + '" y="' + ly + '" text-anchor="middle">' + c.dataset.edge + '</text>';
+          });
+        });
+        svg.innerHTML = out;
+      }
+      window.addEventListener('load', drawHeroGraph);
+      window.addEventListener('resize', function() { clearTimeout(window._hg); window._hg = setTimeout(drawHeroGraph, 120); });
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(drawHeroGraph);
 
       function boot(allData) {
         var memeData = allData && allData[0] ? allData[0] : {};

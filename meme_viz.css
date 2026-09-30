@@ -3914,3 +3914,41 @@ body:not(.home-page):not(.thesis-page) > .site-footer { margin-left: 0; position
 /* balance pass 3: matching visible heights (~8vw) for the three ground characters */
 .hero-chars { --pepe: clamp(170px, 15vw, 240px); }
 .char-pepe { bottom: calc(var(--cw) * -0.19); }
+
+
+/* ── Hero v5: Me Gusta mirrors the Trollface; a faint ontology graph links
+      the title to each character; the text block sits lower ── */
+.home-hero .hero-content { justify-content: flex-end; padding-top: 0; }
+.home-hero .hero-cta { margin-bottom: clamp(120px, 15vh, 170px); }
+.hero-chars { --megusta: clamp(104px, 9vw, 150px); }
+.char-megusta {
+  --cw: var(--megusta);
+  width: var(--cw);
+  right: calc(var(--edge) + (var(--mm) + var(--gap) + var(--doge) - var(--megusta)) / 2);
+  left: auto;
+  bottom: auto;
+  top: 16%;
+  transform-origin: 50% 50%;
+  animation: troll-float 6s ease-in-out -2.5s infinite reverse;
+  transition: none;
+}
+.char-megusta:hover { animation: gusta-nod .7s ease-in-out 2; }
+@keyframes gusta-nod {
+  0%, 100% { transform: rotate(0) scale(1); }
+  30% { transform: rotate(8deg) scale(1.08); }
+  70% { transform: rotate(-6deg) scale(1.08); }
+}
+.char-megusta:hover .char-problem { opacity: 1; }
+.char-troll { top: 22%; }
+.hero-graph { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; overflow: visible; }
+.hero-graph path { fill: none; stroke: #b5ad9f; stroke-width: 1; stroke-dasharray: 3 4; }
+.hero-graph circle { fill: #b5ad9f; }
+.hero-graph text { font-family: var(--mono); font-size: 11px; fill: #8a8378; letter-spacing: .02em; }
+@media (max-width: 1099px) { .char-megusta { top: 12%; } }
+@media (max-width: 760px) { .hero-graph { display: none; } .home-hero .hero-cta { margin-bottom: 0; } }
+@media (prefers-reduced-motion: reduce) { .char-megusta, .char-megusta:hover { animation: none; } }
+
+/* hero v5b: text block closer to the characters; labels get a paper halo */
+.home-hero .hero-cta { margin-bottom: clamp(56px, 7vh, 84px); }
+.hero-graph text { paint-order: stroke; stroke: var(--bg); stroke-width: 5px; stroke-linejoin: round; }
+@media (max-width: 1299px) { .hero-graph text { display: none; } .char-megusta { right: calc(var(--edge) + 1vw); } }
