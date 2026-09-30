@@ -13,9 +13,9 @@
   const DIM_ORDER = ['CaptionChange', 'VisualSubstrate', 'MediumShift', 'StyleShift',
                      'CompositionShift', 'CrossoverMerge', 'LanguageShift', 'Localization'];
   const PLATFORM_COLOR = {
-    TwitterX: '#52b2e6', YouTube: '#e06464', TikTok: '#3ec4c4', Reddit: '#e08c68',
-    Instagram: '#d06eb4', Facebook: '#7090d4', Tumblr: '#6898bc', '4chan': '#5cb87a',
-    iFunny: '#e0b050', Vine: '#2fb58f', Other: '#98afbf', Unattributed: '#c8ccd2'
+    TwitterX: '#2f5f98', YouTube: '#d1543a', TikTok: '#1f9e8f', Reddit: '#eda03a',
+    Instagram: '#9d4e8c', Facebook: '#8aa5d6', Tumblr: '#2c3a57', '4chan': '#6b9a4b',
+    iFunny: '#c9a227', Vine: '#4f8f6e', Other: '#cbc3b3', Unattributed: '#e2ddd2'
   };
   /* Wikidata items as they appear in meme_ontology.ttl (wdp:P123 / wdp:P495) */
   const PLATFORM_QID = {
