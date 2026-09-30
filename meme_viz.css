@@ -3634,3 +3634,128 @@ body:not(.home-page):not(.thesis-page) > .site-footer { margin-left: 0; position
 .onto-graph.no-individuals .og-node.individual, .onto-graph.no-individuals .og-link.inst { display: none; }
 .onto-graph-toggle { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
 @media (max-width: 768px) { .onto-graph svg { height: 520px; } #page-ontology .onto-doc-layout { height: auto; } }
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   HERO CHARACTERS — Pepe, Doge and Meme Man peek up from the bottom edge of
+   the hero and react on hover (cut-outs from the Know Your Meme entries).
+   ══════════════════════════════════════════════════════════════════════════ */
+.home-hero .hero-content {
+  min-height: min(calc(100vh - 28px), 760px);
+  padding-bottom: 0;
+  border-bottom: 1px solid var(--ink);
+  margin-bottom: 28px;
+  overflow: visible;
+}
+.home-hero .hero-hover-hint { margin-bottom: 150px; }
+.home-hero .hero-title, .home-hero .hero-tagline, .home-hero .hero-cta, .home-hero .hero-hover-hint { position: relative; z-index: 3; }
+.hero-chars { position: absolute; inset: 0; pointer-events: none; z-index: 2; overflow: hidden; }
+.hero-char {
+  position: absolute;
+  bottom: -1px;
+  display: block;
+  pointer-events: auto;
+  cursor: pointer;
+  transform-origin: 50% 100%;
+  transition: transform .35s cubic-bezier(.3, 1.5, .5, 1);
+}
+.hero-char img { display: block; width: 100%; height: auto; user-select: none; -webkit-user-drag: none; }
+
+.char-pepe { left: 3%; width: clamp(200px, 20vw, 290px); transform: translateY(8%); }
+.char-doge { right: 21%; width: clamp(170px, 15vw, 220px); transform: translateY(12%); }
+.char-mememan { right: 4%; width: clamp(170px, 15vw, 215px); transform: translateY(10%); }
+
+/* Pepe: sobs (wobble) with a speech bubble */
+.char-pepe:hover { transform: translateY(0); animation: pepe-sob .5s ease-in-out infinite; }
+@keyframes pepe-sob {
+  0%, 100% { transform: translateY(0) rotate(-2.5deg); }
+  50% { transform: translateY(-4px) rotate(2.5deg); }
+}
+.char-bubble {
+  position: absolute;
+  left: 58%;
+  top: -18%;
+  padding: 7px 12px;
+  background: #fff;
+  border: 1.5px solid var(--ink);
+  font-family: var(--ui);
+  font-weight: 600;
+  font-size: .9rem;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(8px) scale(.9);
+  transition: opacity .2s, transform .25s;
+}
+.char-bubble::after {
+  content: '';
+  position: absolute;
+  left: 14px; bottom: -8px;
+  width: 12px; height: 12px;
+  background: #fff;
+  border-right: 1.5px solid var(--ink);
+  border-bottom: 1.5px solid var(--ink);
+  transform: rotate(45deg);
+}
+.char-pepe:hover .char-bubble { opacity: 1; transform: none; }
+
+/* Doge: head tilt and "such / much / very / wow" in Comic Sans */
+.char-doge:hover { transform: translateY(0) rotate(-9deg); }
+.doge-wow {
+  position: absolute;
+  font-family: 'Comic Sans MS', 'Comic Neue', 'Chalkboard SE', cursive;
+  font-size: 1.05rem;
+  white-space: nowrap;
+  opacity: 0;
+  transform: scale(.6);
+  transition: opacity .2s, transform .3s cubic-bezier(.3, 1.6, .5, 1);
+  text-shadow: 0 1px 0 #fff;
+}
+.doge-wow.w1 { left: -48%; top: 8%; color: #d10fd1; }
+.doge-wow.w2 { right: -30%; top: -14%; color: #1a9e1a; }
+.doge-wow.w3 { left: -38%; top: 52%; color: #1f4fe0; }
+.doge-wow.w4 { right: -12%; top: 34%; color: #e0781a; font-size: 1.3rem; }
+.char-doge:hover .doge-wow { opacity: 1; transform: none; }
+.char-doge:hover .w2 { transition-delay: .08s; }
+.char-doge:hover .w3 { transition-delay: .16s; }
+.char-doge:hover .w4 { transition-delay: .24s; }
+
+/* Meme Man: rises, STONKS */
+.char-mememan:hover { transform: translateY(-6%); }
+.char-stonks {
+  position: absolute;
+  left: 50%;
+  top: 4%;
+  transform: translate(-50%, 10px);
+  font-family: var(--impact);
+  font-size: 1.9rem;
+  letter-spacing: .03em;
+  color: #fff;
+  -webkit-text-stroke: 1.5px #000;
+  paint-order: stroke fill;
+  text-shadow: 0 2px 0 #000;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity .2s, transform .3s;
+}
+.char-stonks b { color: #2fbf4f; font-weight: 400; }
+.char-mememan:hover .char-stonks { opacity: 1; transform: translate(-50%, -110%); }
+
+@media (max-width: 1099px) {
+  .char-doge { display: none; }
+  .home-hero .hero-hover-hint { margin-bottom: 120px; }
+}
+@media (max-width: 760px) {
+  .hero-chars { display: none; }
+  .home-hero .hero-content { min-height: 0; border-bottom: 0; margin-bottom: 0; }
+  .home-hero .hero-hover-hint { margin-bottom: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-char, .hero-char:hover { animation: none; transition: none; }
+}
+.char-bubble, .doge-wow, .char-stonks { text-decoration: none; }
+.char-bubble { color: var(--ink); }
+@keyframes pepe-sob {
+  0%, 100% { transform: rotate(-2.5deg); }
+  50% { transform: rotate(2.5deg); }
+}
+@media (max-width: 760px) { .home-hero .hero-content { padding-bottom: 20px; } }
