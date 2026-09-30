@@ -1125,6 +1125,62 @@
    "type": "prop",
    "label": "isTransformationExtentOf",
    "id": "memo:isTransformationExtentOf"
+  },
+  {
+   "source": "memo:MemeConcept",
+   "target": "memo:ImageType",
+   "type": "prop",
+   "label": "hasImageType",
+   "id": "memo:hasImageType"
+  },
+  {
+   "source": "memo:VariantInstance",
+   "target": "memo:ImageType",
+   "type": "prop",
+   "label": "hasImageType",
+   "id": "memo:hasImageType"
+  },
+  {
+   "source": "memo:MemeConcept",
+   "target": "memo:SubjectMatter",
+   "type": "prop",
+   "label": "hasSubjectMatter",
+   "id": "memo:hasSubjectMatter"
+  },
+  {
+   "source": "memo:VariantInstance",
+   "target": "memo:SubjectMatter",
+   "type": "prop",
+   "label": "hasSubjectMatter",
+   "id": "memo:hasSubjectMatter"
+  },
+  {
+   "source": "memo:ImageType",
+   "target": "memo:MemeConcept",
+   "type": "prop",
+   "label": "isImageTypeOf",
+   "id": "memo:isImageTypeOf"
+  },
+  {
+   "source": "memo:ImageType",
+   "target": "memo:VariantInstance",
+   "type": "prop",
+   "label": "isImageTypeOf",
+   "id": "memo:isImageTypeOf"
+  },
+  {
+   "source": "memo:SubjectMatter",
+   "target": "memo:MemeConcept",
+   "type": "prop",
+   "label": "isSubjectMatterOf",
+   "id": "memo:isSubjectMatterOf"
+  },
+  {
+   "source": "memo:SubjectMatter",
+   "target": "memo:VariantInstance",
+   "type": "prop",
+   "label": "isSubjectMatterOf",
+   "id": "memo:isSubjectMatterOf"
   }
  ]
 }

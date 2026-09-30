@@ -66,6 +66,42 @@ for node in data['nodes']:
         inds = picked
     node['sample'] = [{'id': str(s), 'label': label(s)} for s in inds[:MAX_SAMPLE]]
 
+# Object properties: expand owl:unionOf domains/ranges (e.g. hasImageType and hasSubjectMatter
+# apply to MemeConcept or VariantInstance) so every class the ontology links is linked in the graph.
+from rdflib import OWL
+from rdflib.collection import Collection
+onto = Graph()
+onto.parse(os.path.join(HERE, 'meme_ontology_unpopulated.ttl'), format='turtle')
+
+
+def members(node):
+    union = onto.value(node, OWL.unionOf)
+    return list(Collection(onto, union)) if union is not None else [node]
+
+
+def compact(iri):
+    for p, ns in PREFIXES.items():
+        if str(iri).startswith(ns):
+            return p + str(iri)[len(ns):]
+    return str(iri)
+
+
+node_ids = {n['id'] for n in data['nodes']}
+have = {(l['source'], l['target'], l['label']) for l in data['links']}
+added = []
+for prop in onto.subjects(RDF.type, OWL.ObjectProperty):
+    label = str(onto.value(prop, RDFS.label) or compact(prop).split(':')[-1])
+    for dom in onto.objects(prop, RDFS.domain):
+        for rng in onto.objects(prop, RDFS.range):
+            for d in members(dom):
+                for r in members(rng):
+                    s_id, t_id = compact(d), compact(r)
+                    if s_id in node_ids and t_id in node_ids and (s_id, t_id, label) not in have:
+                        data['links'].append({'source': s_id, 'target': t_id, 'type': 'prop', 'label': label, 'id': compact(prop)})
+                        have.add((s_id, t_id, label))
+                        added.append(f'{s_id} -{label}-> {t_id}')
+print('added links:', *added, sep='\n  ')
+
 json.dump(data, open(path, 'w', encoding='utf-8', newline='\n'), ensure_ascii=False, indent=1)
 total = sum(n['count'] for n in data['nodes'])
 print(f"onto_graph.json: {total} typed individuals across {sum(1 for n in data['nodes'] if n['count'])} classes")
