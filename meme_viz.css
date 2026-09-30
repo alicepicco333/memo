@@ -4028,3 +4028,26 @@ body:not(.home-page):not(.thesis-page) > .site-footer { margin-left: 0; position
 
 @media (max-width: 1099px) { .char-wojak { display: none; } .char-pepe { left: var(--edge); } .char-troll { left: calc(var(--edge) + (var(--pepe) - var(--troll)) / 2); } }
 @media (prefers-reduced-motion: reduce) { .char-pepe:hover, .char-wojak:hover, .char-wojak:hover img { animation: none; transform: none; } }
+
+
+/* NPC Wojak: shoulders meet the image edges ~88% down, so that band always stays below the ground line */
+.hero-chars { --wojak: clamp(100px, 8.2vw, 135px); }
+.char-wojak { bottom: calc(var(--cw) * -0.2); }
+.char-wojak:hover { transform: translateY(calc(var(--cw) * -0.05)); }
+.char-wojak img { transform-origin: 50% 90%; }
+.char-wojak:hover img { transform: rotate(-4deg); }
+
+
+/* Pointing Soyjak: the cut left edge starts ~76% down the image, so that band stays below the ground line */
+.hero-chars { --wojak: clamp(120px, 10.5vw, 175px); }
+.char-wojak { bottom: calc(var(--cw) * -0.2); }
+.char-wojak:hover { transform: translateY(calc(var(--cw) * -0.04)); }
+.char-wojak img { transform-origin: 30% 90%; }
+.char-wojak:hover img { transform: rotate(3deg); }
+.char-wojak .char-bubble { left: 38%; }
+
+/* pointing Soyjak v2: only the bottom edge is cut, so it can stand taller */
+.hero-chars { --wojak: clamp(128px, 11vw, 180px); }
+.char-wojak { bottom: calc(var(--cw) * -0.18); }
+.char-wojak .char-bubble { left: 44%; bottom: calc(100% - 2px); }
+.char-troll { left: calc(var(--edge) + (var(--wojak) + var(--gap) + var(--pepe) - var(--troll)) / 2 - 2vw); }

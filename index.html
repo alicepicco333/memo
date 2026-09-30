@@ -44,9 +44,9 @@
             <img src="img/hero/troll.webp" alt="" width="420" height="340">
             <span class="char-problem">PROBLEM?</span>
           </a>
-          <a class="hero-char char-wojak" href="visualizations.html#meme/crying-wojak" tabindex="-1" data-edge="views · 166,065" data-side="left">
-            <img src="img/hero/wojak.webp" alt="" width="360" height="374">
-            <span class="char-bubble wojak-bubble">i'm fine</span>
+          <a class="hero-char char-wojak" href="visualizations.html#meme/two-soyjaks-pointing" tabindex="-1" data-edge="views · 760,754" data-side="left">
+            <img src="img/hero/wojak.webp" alt="" width="320" height="291">
+            <span class="char-bubble wojak-bubble">look, an ontology!</span>
           </a>
           <a class="hero-char char-pepe" href="visualizations.html#meme/pepehands" tabindex="-1" data-edge="originPlatform · Twitch" data-side="left">
             <img src="img/hero/pepe.webp" alt="" width="520" height="395">
@@ -356,7 +356,7 @@
             out += '<path d="M' + sx + ',' + cy + ' Q' + mx + ',' + my + ' ' + tx + ',' + ty + '"/>';
             out += '<circle cx="' + tx + '" cy="' + ty + '" r="3"/><circle cx="' + sx + '" cy="' + cy + '" r="3"/>';
             var k = 0.64, lx = (1-k)*(1-k)*sx + 2*k*(1-k)*mx + k*k*tx, ly = (1-k)*(1-k)*cy + 2*k*(1-k)*my + k*k*ty - 7;
-            out += '<text x="' + lx + '" y="' + ly + '" text-anchor="middle">' + c.dataset.edge + '</text>';
+            var gapX = 14, anchor = 'middle'; if (side === 'left' && lx + 70 > t.left - box.left - gapX) { lx = t.left - box.left - gapX; anchor = 'end'; } if (side === 'right' && lx - 70 < t.right - box.left + gapX) { lx = t.right - box.left + gapX; anchor = 'start'; } out += '<text x="' + lx + '" y="' + ly + '" text-anchor="' + anchor + '">' + c.dataset.edge + '</text>';
           });
         });
         svg.innerHTML = out;
