@@ -21,6 +21,20 @@
     links = links.filter(function (l) { return byId[l.source] && byId[l.target]; }).map(function (l) { return Object.assign({}, l); });
     links.forEach(function (l) { byId[l.source].deg++; byId[l.target].deg++; });
 
+    // Individuals: up to six examples per class (from build_onto_individuals.py), drawn as dots
+    var classNodes = nodes.slice();
+    classNodes.forEach(function (c) {
+      (c.sample || []).forEach(function (ind, i) {
+        var lab = String(ind.label || '');
+        if (/\ufffd/.test(lab)) return;
+        if (c.id === 'memo:MemeConcept') lab = lab.replace(/^_+/, '').replace(/-/g, ' ');
+        var id = 'ind:' + c.id + ':' + i;
+        var n = { id: id, label: lab, kind: 'individual', cls: c };
+        nodes.push(n); byId[id] = n;
+        links.push({ source: c.id, target: id, type: 'inst', label: 'rdf:type' });
+      });
+    });
+
     var box = document.getElementById('onto-graph');
     var info = document.getElementById('onto-graph-info');
     var W = svgEl.clientWidth, H = svgEl.clientHeight;
@@ -34,9 +48,10 @@
 
     var sim = d3.forceSimulation(nodes)
       .force('link', d3.forceLink(links).id(function (d) { return d.id; })
-        .distance(function (l) { return l.type === 'sub' ? 60 : 130; }).strength(function (l) { return l.type === 'sub' ? 0.9 : 0.25; }))
-      .force('charge', d3.forceManyBody().strength(-520))
-      .force('collide', d3.forceCollide().radius(function (d) { return 10 + d.label.length * 3.4; }))
+        .distance(function (l) { return l.type === 'sub' ? 60 : l.type === 'inst' ? 34 : 130; })
+        .strength(function (l) { return l.type === 'sub' ? 0.9 : l.type === 'inst' ? 1 : 0.25; }))
+      .force('charge', d3.forceManyBody().strength(function (d) { return d.kind === 'individual' ? -24 : -520; }))
+      .force('collide', d3.forceCollide().radius(function (d) { return d.kind === 'individual' ? 7 : 10 + d.label.length * 3.4; }))
       .force('x', d3.forceX(W / 2).strength(0.04))
       .force('y', d3.forceY(H / 2).strength(0.06));
 
@@ -48,18 +63,27 @@
       .attr('class', 'og-plabel').attr('text-anchor', 'middle').text(function (l) { return l.label; });
 
     var node = root.append('g').selectAll('g').data(nodes).join('g')
-      .attr('class', function (d) { return 'og-node ' + (d.kind === 'external' ? 'external' : 'memo'); })
+      .attr('class', function (d) { return 'og-node ' + (d.kind === 'individual' ? 'individual' : d.kind === 'external' ? 'external' : 'memo'); })
       .attr('tabindex', 0).attr('role', 'button')
       .attr('aria-label', function (d) { return d.label; })
       .call(d3.drag()
         .on('start', function (e, d) { if (!e.active) sim.alphaTarget(0.2).restart(); d.fx = d.x; d.fy = d.y; })
         .on('drag', function (e, d) { d.fx = e.x; d.fy = e.y; })
         .on('end', function (e, d) { if (!e.active) sim.alphaTarget(0); d.fx = null; d.fy = null; }));
-    node.append('rect').attr('x', -6).attr('y', -6).attr('width', 12).attr('height', 12);
-    node.append('text').attr('x', 10).attr('y', 4).text(function (d) { return d.label; });
+    node.filter(function (d) { return d.kind !== 'individual'; })
+      .append('rect').attr('x', -6).attr('y', -6).attr('width', 12).attr('height', 12);
+    node.filter(function (d) { return d.kind === 'individual'; }).append('circle').attr('r', 3.5);
+    node.append('text').attr('x', function (d) { return d.kind === 'individual' ? 6 : 10; }).attr('y', 4)
+      .text(function (d) { return d.label; });
+    node.filter(function (d) { return d.count; }).select('text').append('tspan')
+      .attr('class', 'og-count').text(function (d) { return ' ' + d.count.toLocaleString(); });
+
+    var toggle = document.getElementById('onto-graph-individuals');
+    if (toggle) toggle.addEventListener('change', function () { box.classList.toggle('no-individuals', !toggle.checked); });
 
     function focus(d) {
       if (!d) { box.classList.remove('focus'); info.textContent = 'Select a class to see its description and properties.'; return; }
+      if (d.kind === 'individual') d = d.cls;
       var near = new Set([d.id]);
       links.forEach(function (l) { if (l.source.id === d.id || l.target.id === d.id) { near.add(l.source.id); near.add(l.target.id); } });
       box.classList.add('focus');
@@ -67,8 +91,11 @@
       link.classed('on', function (l) { return l.source.id === d.id || l.target.id === d.id; });
       plabel.classed('on', function (l) { return l.source.id === d.id || l.target.id === d.id; });
       var props = links.filter(function (l) { return l.type === 'prop' && l.source.id === d.id; }).map(function (l) { return l.label; });
+      var examples = (d.sample || []).map(function (x) { return x.label; }).filter(function (x) { return !/\ufffd/.test(x); });
       info.innerHTML = '<b>' + d.id + '</b> ' + (d.comment ? '— ' + d.comment.replace(/</g, '&lt;') : '') +
-        (props.length ? '<br><span style="color:var(--muted)">Properties: ' + props.join(', ') + '</span>' : '');
+        (props.length ? '<br><span style="color:var(--muted)">Properties: ' + props.join(', ') + '</span>' : '') +
+        (d.count ? '<br><span style="color:var(--muted)">' + d.count.toLocaleString() + ' individual' + (d.count === 1 ? '' : 's') +
+          (examples.length ? ', e.g. ' + examples.slice(0, 4).join(', ').replace(/</g, '&lt;') : '') + '</span>' : '');
     }
     node.on('mouseenter focus', function (e, d) { focus(d); })
       .on('mouseleave blur', function () { focus(null); })

@@ -3608,3 +3608,29 @@ body { font-optical-sizing: auto; }
 
 /* Square corners everywhere */
 *, *::before, *::after { border-radius: 0 !important; }
+
+
+/* round exceptions to the square rule */
+.loader-spinner { border-radius: 50% !important; }
+.onto-graph-legend i[style*="border-radius"] { border-radius: 50% !important; }
+
+/* visualizations: the footer spans the page; the contents list scrolls away above it */
+body:not(.home-page):not(.thesis-page) > .site-footer { margin-left: 0; position: relative; z-index: 60; }
+.dot-nav { will-change: transform; }
+
+/* ontology page scrolls to its footer; the docs keep their own two-pane scroll */
+#page-ontology { height: auto; overflow-y: auto; }
+#page-ontology .onto-doc-layout { flex: none; height: calc(100vh - var(--nav-h) - 40px); min-height: 520px; }
+#page-ontology > .site-footer { margin-top: 0; }
+
+/* ontology graph: individuals */
+.onto-graph svg { height: 760px; }
+.onto-graph .og-node.individual circle { fill: #8a8378; }
+.onto-graph .og-node.individual text { font-size: 10.5px; font-weight: 400; fill: #4a463f; opacity: 0; transition: opacity .2s; }
+.onto-graph .og-node.individual:hover text,
+.onto-graph.focus .og-node.individual.on text { opacity: 1; }
+.onto-graph .og-link.inst { stroke: #cfc8ba; stroke-width: .8; stroke-dasharray: 2 2; }
+.onto-graph .og-count { fill: #8a8378; font-weight: 400; font-size: 10.5px; }
+.onto-graph.no-individuals .og-node.individual, .onto-graph.no-individuals .og-link.inst { display: none; }
+.onto-graph-toggle { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
+@media (max-width: 768px) { .onto-graph svg { height: 520px; } #page-ontology .onto-doc-layout { height: auto; } }

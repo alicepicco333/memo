@@ -4,217 +4,831 @@
    "id": "memo:AudioFormat",
    "label": "AudioFormat",
    "kind": "class",
-   "comment": "MemeFormat subclass grouping audio-primary formats: Song, SoundEffect."
+   "comment": "MemeFormat subclass grouping audio-primary formats: Song, SoundEffect.",
+   "count": 2,
+   "sample": [
+    {
+     "id": "https://purl.org/memo#Song",
+     "label": "Song"
+    },
+    {
+     "id": "https://purl.org/memo#SoundEffect",
+     "label": "SoundEffect"
+    }
+   ]
   },
   {
    "id": "memo:HistoricalEvent",
    "label": "HistoricalEvent",
    "kind": "class",
-   "comment": "A historical event, period, or crisis referenced by a meme."
+   "comment": "A historical event, period, or crisis referenced by a meme.",
+   "count": 3,
+   "sample": [
+    {
+     "id": "https://purl.org/memo#aokigahara-forest-incident-2018",
+     "label": "Aokigahara Forest Incident 2018"
+    },
+    {
+     "id": "https://purl.org/memo#capture-of-saddam-hussein-2003",
+     "label": "Capture of Saddam Hussein 2003"
+    },
+    {
+     "id": "https://purl.org/memo#fuckparade-berlin-2000",
+     "label": "Fuckparade Berlin 2000"
+    }
+   ]
   },
   {
    "id": "memo:ImageManipulationFormat",
    "label": "ImageManipulationFormat",
    "kind": "class",
-   "comment": "MemeFormat subclass grouping image manipulation formats: Exploitable, ImageMacro, Photoshop, Remix."
+   "comment": "MemeFormat subclass grouping image manipulation formats: Exploitable, ImageMacro, Photoshop, Remix.",
+   "count": 4,
+   "sample": [
+    {
+     "id": "https://purl.org/memo#Exploitable",
+     "label": "Exploitable"
+    },
+    {
+     "id": "https://purl.org/memo#ImageMacro",
+     "label": "ImageMacro"
+    },
+    {
+     "id": "https://purl.org/memo#Photoshop",
+     "label": "Photoshop"
+    },
+    {
+     "id": "https://purl.org/memo#Remix",
+     "label": "Remix"
+    }
+   ]
   },
   {
    "id": "memo:MediaProperty",
    "label": "MediaProperty",
    "kind": "class",
-   "comment": "A media franchise, film, TV series, game, or other creative property referenced by a meme."
+   "comment": "A media franchise, film, TV series, game, or other creative property referenced by a meme.",
+   "count": 24,
+   "sample": [
+    {
+     "id": "https://purl.org/memo#amazon-alexa",
+     "label": "Amazon Alexa"
+    },
+    {
+     "id": "https://purl.org/memo#animal-crossing-video-game",
+     "label": "Animal Crossing (Video Game)"
+    },
+    {
+     "id": "https://purl.org/memo#brazzers-entertainment",
+     "label": "Brazzers Entertainment"
+    },
+    {
+     "id": "https://purl.org/memo#breaking-bad-television-series",
+     "label": "Breaking Bad (Television Series)"
+    },
+    {
+     "id": "https://purl.org/memo#burger-king-corporation",
+     "label": "Burger King"
+    },
+    {
+     "id": "https://purl.org/memo#despacito-song",
+     "label": "Despacito (Song)"
+    }
+   ]
   },
   {
    "id": "memo:NarrativeFormat",
    "label": "NarrativeFormat",
    "kind": "class",
-   "comment": "MemeFormat subclass grouping character- and narrative-based formats: Character, FanArt, Parody, PopCultureReference, Reaction."
+   "comment": "MemeFormat subclass grouping character- and narrative-based formats: Character, FanArt, Parody, PopCultureReference, Reaction.",
+   "count": 5,
+   "sample": [
+    {
+     "id": "https://purl.org/memo#Character",
+     "label": "Character"
+    },
+    {
+     "id": "https://purl.org/memo#FanArt",
+     "label": "FanArt"
+    },
+    {
+     "id": "https://purl.org/memo#Parody",
+     "label": "Parody"
+    },
+    {
+     "id": "https://purl.org/memo#PopCultureReference",
+     "label": "PopCultureReference"
+    },
+    {
+     "id": "https://purl.org/memo#Reaction",
+     "label": "Reaction"
+    }
+   ]
   },
   {
    "id": "memo:ParticipatoryFormat",
    "label": "ParticipatoryFormat",
    "kind": "class",
-   "comment": "MemeFormat subclass grouping participatory formats: ParticipatoryMedia, Dance, SocialGame."
+   "comment": "MemeFormat subclass grouping participatory formats: ParticipatoryMedia, Dance, SocialGame.",
+   "count": 3,
+   "sample": [
+    {
+     "id": "https://purl.org/memo#Dance",
+     "label": "Dance"
+    },
+    {
+     "id": "https://purl.org/memo#ParticipatoryMedia",
+     "label": "ParticipatoryMedia"
+    },
+    {
+     "id": "https://purl.org/memo#Social_Game",
+     "label": "Social Game"
+    }
+   ]
   },
   {
    "id": "memo:PoliticalEvent",
    "label": "PoliticalEvent",
    "kind": "class",
-   "comment": "A political event, controversy, or campaign that a meme iconologically references."
+   "comment": "A political event, controversy, or campaign that a meme iconologically references.",
+   "count": 6,
+   "sample": [
+    {
+     "id": "https://purl.org/memo#brett-kavanaugh-hearings-2018",
+     "label": "Brett Kavanaugh Hearings 2018"
+    },
+    {
+     "id": "https://purl.org/memo#campus-free-speech-debates-2018",
+     "label": "Campus free speech debates 2018"
+    },
+    {
+     "id": "https://purl.org/memo#conservative-media-culture-wars",
+     "label": "Conservative media culture wars"
+    },
+    {
+     "id": "https://purl.org/memo#covid-19-stimulus-packages-2020",
+     "label": "COVID-19 Stimulus Packages 2020"
+    },
+    {
+     "id": "https://purl.org/memo#iraq-war",
+     "label": "Iraq War"
+    },
+    {
+     "id": "https://purl.org/memo#overwatch-tracer-pose-controversy-2016",
+     "label": "Overwatch Tracer Pose Controversy 2016"
+    }
+   ]
   },
   {
    "id": "memo:PublicFigure",
    "label": "PublicFigure",
    "kind": "class",
-   "comment": "A public figure, celebrity, politician, or historical person referenced by a meme."
+   "comment": "A public figure, celebrity, politician, or historical person referenced by a meme.",
+   "count": 11,
+   "sample": [
+    {
+     "id": "https://purl.org/memo#ben-shapiro",
+     "label": "Ben Shapiro"
+    },
+    {
+     "id": "https://purl.org/memo#bruce-willis",
+     "label": "Bruce Willis"
+    },
+    {
+     "id": "https://purl.org/memo#christine-blasey-ford",
+     "label": "Christine Blasey Ford"
+    },
+    {
+     "id": "https://purl.org/memo#hailey-welch",
+     "label": "Hailey Welch"
+    },
+    {
+     "id": "https://purl.org/memo#kylie-jenner",
+     "label": "Kylie Jenner"
+    },
+    {
+     "id": "https://purl.org/memo#logan-paul",
+     "label": "Logan Paul"
+    }
+   ]
   },
   {
    "id": "memo:SocialPhenomenon",
    "label": "SocialPhenomenon",
    "kind": "class",
-   "comment": "A social movement, behavioural trend, or cultural practice referenced by a meme."
+   "comment": "A social movement, behavioural trend, or cultural practice referenced by a meme.",
+   "count": 30,
+   "sample": [
+    {
+     "id": "https://purl.org/memo#academic-deadline-anxiety",
+     "label": "Academic deadline anxiety"
+    },
+    {
+     "id": "https://purl.org/memo#anxious-attachment-discourse",
+     "label": "Anxious attachment discourse"
+    },
+    {
+     "id": "https://purl.org/memo#consumerism-and-acquisition-joy",
+     "label": "Consumerism and acquisition joy"
+    },
+    {
+     "id": "https://purl.org/memo#cryptocurrency-and-inflation-discourse",
+     "label": "Cryptocurrency and inflation discourse"
+    },
+    {
+     "id": "https://purl.org/memo#domestic-labor-division",
+     "label": "Domestic labor division"
+    },
+    {
+     "id": "https://purl.org/memo#gamer-culture-representation-debates",
+     "label": "Gamer culture representation debates"
+    }
+   ]
   },
   {
    "id": "memo:TextFormat",
    "label": "TextFormat",
    "kind": "class",
-   "comment": "MemeFormat subclass grouping text-based formats: Catchphrase, Copypasta, Slang, Snowclone, Hashtag."
+   "comment": "MemeFormat subclass grouping text-based formats: Catchphrase, Copypasta, Slang, Snowclone, Hashtag.",
+   "count": 5,
+   "sample": [
+    {
+     "id": "https://purl.org/memo#Catchphrase",
+     "label": "Catchphrase"
+    },
+    {
+     "id": "https://purl.org/memo#Copypasta",
+     "label": "Copypasta"
+    },
+    {
+     "id": "https://purl.org/memo#Hashtag",
+     "label": "Hashtag"
+    },
+    {
+     "id": "https://purl.org/memo#Slang",
+     "label": "Slang"
+    },
+    {
+     "id": "https://purl.org/memo#Snowclone",
+     "label": "Snowclone"
+    }
+   ]
   },
   {
    "id": "memo:VideoFormat",
    "label": "VideoFormat",
    "kind": "class",
-   "comment": "MemeFormat subclass grouping video-based formats: ViralVideo, ViralDebate, LipDub."
+   "comment": "MemeFormat subclass grouping video-based formats: ViralVideo, ViralDebate, LipDub.",
+   "count": 3,
+   "sample": [
+    {
+     "id": "https://purl.org/memo#Lip_Dub",
+     "label": "Lip Dub"
+    },
+    {
+     "id": "https://purl.org/memo#ViralDebate",
+     "label": "ViralDebate"
+    },
+    {
+     "id": "https://purl.org/memo#ViralVideo",
+     "label": "ViralVideo"
+    }
+   ]
   },
   {
    "id": "memo:WebCulture",
    "label": "WebCulture",
    "kind": "class",
-   "comment": "A web-native cultural phenomenon, community, or trend referenced by a meme."
+   "comment": "A web-native cultural phenomenon, community, or trend referenced by a meme.",
+   "count": 42,
+   "sample": [
+    {
+     "id": "https://purl.org/memo#_3d-animation-culture",
+     "label": "3D animation culture"
+    },
+    {
+     "id": "https://purl.org/memo#_4chan-imageboard-culture",
+     "label": "4chan imageboard culture"
+    },
+    {
+     "id": "https://purl.org/memo#_4chan-paranormal-board",
+     "label": "4chan /x/ paranormal board"
+    },
+    {
+     "id": "https://purl.org/memo#_4chan-pol-board-culture",
+     "label": "4chan /pol/ board culture"
+    },
+    {
+     "id": "https://purl.org/memo#aave-slang-adoption",
+     "label": "AAVE slang adoption"
+    },
+    {
+     "id": "https://purl.org/memo#black-twitter",
+     "label": "Black Twitter"
+    }
+   ]
   },
   {
    "id": "schema:Book",
    "label": "Book",
    "kind": "external",
-   "comment": "Book, novel or short story from which the meme derives; subclass of wd:Q386724."
+   "comment": "Book, novel or short story from which the meme derives; subclass of wd:Q386724.",
+   "count": 0,
+   "sample": []
   },
   {
    "id": "schema:ComicSeries",
    "label": "ComicBook",
    "kind": "external",
-   "comment": "Comic strip, webcomic or graphic novel from which the meme derives; subclass of wd:Q386724."
+   "comment": "Comic strip, webcomic or graphic novel from which the meme derives; subclass of wd:Q386724.",
+   "count": 0,
+   "sample": []
   },
   {
    "id": "schema:Movie",
    "label": "Movie",
    "kind": "external",
-   "comment": "Film from which the meme derives; subclass of wd:Q386724."
+   "comment": "Film from which the meme derives; subclass of wd:Q386724.",
+   "count": 0,
+   "sample": []
   },
   {
    "id": "schema:MusicAlbum",
    "label": "MusicAlbum",
    "kind": "external",
-   "comment": "Song, album or music video from which the meme derives; subclass of wd:Q386724."
+   "comment": "Song, album or music video from which the meme derives; subclass of wd:Q386724.",
+   "count": 0,
+   "sample": []
   },
   {
    "id": "schema:TVSeries",
    "label": "TvSeries",
    "kind": "external",
-   "comment": "Television or web series from which the meme derives; subclass of wd:Q386724."
+   "comment": "Television or web series from which the meme derives; subclass of wd:Q386724.",
+   "count": 0,
+   "sample": []
   },
   {
    "id": "schema:VideoGame",
    "label": "VideoGame",
    "kind": "external",
-   "comment": "Video game from which the meme derives; subclass of wd:Q386724."
+   "comment": "Video game from which the meme derives; subclass of wd:Q386724.",
+   "count": 0,
+   "sample": []
   },
   {
    "id": "wd:Q235557",
    "label": "FileFormat",
    "kind": "external",
-   "comment": "Digital file format of the meme image resource; aligned with Wikidata Q235557."
+   "comment": "Digital file format of the meme image resource; aligned with Wikidata Q235557.",
+   "count": 5,
+   "sample": [
+    {
+     "id": "https://purl.org/memo#BMP",
+     "label": "BMP"
+    },
+    {
+     "id": "https://purl.org/memo#GIF",
+     "label": "GIF"
+    },
+    {
+     "id": "https://purl.org/memo#JPEG",
+     "label": "JPEG"
+    },
+    {
+     "id": "https://purl.org/memo#PNG",
+     "label": "PNG"
+    },
+    {
+     "id": "https://purl.org/memo#WebP",
+     "label": "WebP"
+    }
+   ]
   },
   {
    "id": "wd:Q11471",
    "label": "TimePeriod",
    "kind": "external",
-   "comment": "Chronological period in which the meme originated or peaked; aligned with Wikidata Q11471."
+   "comment": "Chronological period in which the meme originated or peaked; aligned with Wikidata Q11471.",
+   "count": 5,
+   "sample": [
+    {
+     "id": "https://purl.org/memo#Period2010to2015",
+     "label": "Period2010to2015"
+    },
+    {
+     "id": "https://purl.org/memo#Period2016to2020",
+     "label": "Period2016to2020"
+    },
+    {
+     "id": "https://purl.org/memo#Period2021toPresent",
+     "label": "Period2021toPresent"
+    },
+    {
+     "id": "https://purl.org/memo#Pre2010",
+     "label": "Pre2010"
+    },
+    {
+     "id": "https://purl.org/memo#Unknown",
+     "label": "Unknown"
+    }
+   ]
   },
   {
    "id": "wd:Q3220391",
    "label": "OriginPlatform",
    "kind": "external",
-   "comment": "Online platform or service where the meme was first published; aligned with Wikidata Q3220391."
+   "comment": "Online platform or service where the meme was first published; aligned with Wikidata Q3220391.",
+   "count": 22,
+   "sample": [
+    {
+     "id": "http://www.wikidata.org/entity/Q1048635",
+     "label": "Something Awful"
+    },
+    {
+     "id": "http://www.wikidata.org/entity/Q1136",
+     "label": "Reddit"
+    },
+    {
+     "id": "http://www.wikidata.org/entity/Q2071334",
+     "label": "Know Your Meme"
+    },
+    {
+     "id": "http://www.wikidata.org/entity/Q209330",
+     "label": "Instagram"
+    },
+    {
+     "id": "http://www.wikidata.org/entity/Q22907849",
+     "label": "Discord"
+    },
+    {
+     "id": "http://www.wikidata.org/entity/Q238330",
+     "label": "4chan"
+    }
+   ]
   },
   {
    "id": "wd:Q82794",
    "label": "GeographicRegion",
    "kind": "external",
-   "comment": "Geographic region or country of meme origin; aligned with Wikidata Q82794."
+   "comment": "Geographic region or country of meme origin; aligned with Wikidata Q82794.",
+   "count": 50,
+   "sample": [
+    {
+     "id": "http://www.wikidata.org/entity/Q1036",
+     "label": "Uganda"
+    },
+    {
+     "id": "http://www.wikidata.org/entity/Q117",
+     "label": "Ghana"
+    },
+    {
+     "id": "http://www.wikidata.org/entity/Q142",
+     "label": "France"
+    },
+    {
+     "id": "http://www.wikidata.org/entity/Q145",
+     "label": "United Kingdom"
+    },
+    {
+     "id": "http://www.wikidata.org/entity/Q148",
+     "label": "China"
+    },
+    {
+     "id": "http://www.wikidata.org/entity/Q155",
+     "label": "Brazil"
+    }
+   ]
   },
   {
    "id": "memo:AnimationStatus",
    "label": "AnimationStatus",
    "kind": "class",
-   "comment": "Whether a meme image is animated (Animated, i.e. a GIF) or static (Static). Derived from file extension."
+   "comment": "Whether a meme image is animated (Animated, i.e. a GIF) or static (Static). Derived from file extension.",
+   "count": 2,
+   "sample": [
+    {
+     "id": "https://purl.org/memo#Animated",
+     "label": "Animated"
+    },
+    {
+     "id": "https://purl.org/memo#Static",
+     "label": "Static"
+    }
+   ]
   },
   {
    "id": "memo:ImageType",
    "label": "ImageType",
    "kind": "class",
-   "comment": "The visual medium or rendering technique of a meme image (e.g. Photograph, Drawing, Cartoon). Corresponds to Panofsky's pre-iconographic description."
+   "comment": "The visual medium or rendering technique of a meme image (e.g. Photograph, Drawing, Cartoon). Corresponds to Panofsky's pre-iconographic description.",
+   "count": 5,
+   "sample": [
+    {
+     "id": "https://purl.org/memo#Cartoon",
+     "label": "Cartoon"
+    },
+    {
+     "id": "https://purl.org/memo#Drawing",
+     "label": "Drawing"
+    },
+    {
+     "id": "https://purl.org/memo#Illustration",
+     "label": "Illustration"
+    },
+    {
+     "id": "https://purl.org/memo#Painting",
+     "label": "Painting"
+    },
+    {
+     "id": "https://purl.org/memo#Photograph",
+     "label": "Photograph"
+    }
+   ]
   },
   {
    "id": "memo:SubjectMatter",
    "label": "SubjectMatter",
    "kind": "class",
-   "comment": "The primary visual subject category depicted in a meme image (e.g. PersonPresent, AnimalPresent, ObjectOnly). Corresponds to Panofsky's pre-iconographic description level."
+   "comment": "The primary visual subject category depicted in a meme image (e.g. PersonPresent, AnimalPresent, ObjectOnly). Corresponds to Panofsky's pre-iconographic description level.",
+   "count": 7,
+   "sample": [
+    {
+     "id": "https://purl.org/memo#AnimalPresent",
+     "label": "AnimalPresent"
+    },
+    {
+     "id": "https://purl.org/memo#CharacterPresent",
+     "label": "CharacterPresent"
+    },
+    {
+     "id": "https://purl.org/memo#MultipleSubjects",
+     "label": "MultipleSubjects"
+    },
+    {
+     "id": "https://purl.org/memo#ObjectOnly",
+     "label": "ObjectOnly"
+    },
+    {
+     "id": "https://purl.org/memo#PersonPresent",
+     "label": "PersonPresent"
+    },
+    {
+     "id": "https://purl.org/memo#TextOnly",
+     "label": "TextOnly"
+    }
+   ]
   },
   {
    "id": "memo:TransformationDimension",
    "label": "TransformationDimension",
    "kind": "class",
-   "comment": "The primary dimension along which a VariantInstance transforms the source template (e.g. textual, visual, contextual). Enables typological analysis of meme variation."
+   "comment": "The primary dimension along which a VariantInstance transforms the source template (e.g. textual, visual, contextual). Enables typological analysis of meme variation.",
+   "count": 7,
+   "sample": [
+    {
+     "id": "https://purl.org/memo#CaptionChange",
+     "label": "CaptionChange"
+    },
+    {
+     "id": "https://purl.org/memo#CompositionShift",
+     "label": "CompositionShift"
+    },
+    {
+     "id": "https://purl.org/memo#CrossoverMerge",
+     "label": "CrossoverMerge"
+    },
+    {
+     "id": "https://purl.org/memo#Localization",
+     "label": "Localization"
+    },
+    {
+     "id": "https://purl.org/memo#MediumShift",
+     "label": "MediumShift"
+    },
+    {
+     "id": "https://purl.org/memo#StyleShift",
+     "label": "StyleShift"
+    }
+   ]
   },
   {
    "id": "memo:TransformationExtent",
    "label": "TransformationExtent",
    "kind": "class",
-   "comment": "The degree to which a VariantInstance diverges from its source template (e.g. Minimal, Moderate, Major). Enables quantitative analysis of meme mutation."
+   "comment": "The degree to which a VariantInstance diverges from its source template (e.g. Minimal, Moderate, Major). Enables quantitative analysis of meme mutation.",
+   "count": 3,
+   "sample": [
+    {
+     "id": "https://purl.org/memo#Minimal",
+     "label": "Minimal"
+    },
+    {
+     "id": "https://purl.org/memo#Moderate",
+     "label": "Moderate"
+    },
+    {
+     "id": "https://purl.org/memo#Substantial",
+     "label": "Substantial"
+    }
+   ]
   },
   {
    "id": "memo:MemeIdea",
    "label": "MemeIdea",
    "kind": "class",
-   "comment": "The abstract creative idea underlying a meme template; the Work level of the FRBR hierarchy. Represents the core concept, emotional register, or rhetorical function of a meme, independent of any specific image or format."
+   "comment": "The abstract creative idea underlying a meme template; the Work level of the FRBR hierarchy. Represents the core concept, emotional register, or rhetorical function of a meme, independent of any specific image or format.",
+   "count": 50,
+   "sample": [
+    {
+     "id": "https://purl.org/memo#_30-year-old-boomer_idea",
+     "label": "30-Year-Old Boomer (idea)"
+    },
+    {
+     "id": "https://purl.org/memo#_48293_idea",
+     "label": "48÷2(9+3) = ? (idea)"
+    },
+    {
+     "id": "https://purl.org/memo#always-go-for-this-only-villains-do-that_idea",
+     "label": "Always Go For This / Only Villains Do That (idea)"
+    },
+    {
+     "id": "https://purl.org/memo#ankha-zone_idea",
+     "label": "Ankha Zone (idea)"
+    },
+    {
+     "id": "https://purl.org/memo#ben-shapiro-joker-laugh_idea",
+     "label": "ben.jpg (idea)"
+    },
+    {
+     "id": "https://purl.org/memo#big-chungus_idea",
+     "label": "Big Chungus (idea)"
+    }
+   ]
   },
   {
    "id": "wd:Q96622155",
    "label": "CulturalReference",
    "kind": "external",
-   "comment": "Cultural artefact, event, or phenomenon that a meme iconologically references; aligned with Wikidata Q96622155."
+   "comment": "Cultural artefact, event, or phenomenon that a meme iconologically references; aligned with Wikidata Q96622155.",
+   "count": 0,
+   "sample": []
   },
   {
    "id": "memo:MemeFormat",
    "label": "MemeFormat",
    "kind": "class",
-   "comment": "The genre or structural format of a meme (e.g. ImageMacro, Copypasta, ViralVideo). Drawn from Know Your Meme's type taxonomy."
+   "comment": "The genre or structural format of a meme (e.g. ImageMacro, Copypasta, ViralVideo). Drawn from Know Your Meme's type taxonomy.",
+   "count": 36,
+   "sample": [
+    {
+     "id": "https://purl.org/memo#AI-generated",
+     "label": "AI-generated"
+    },
+    {
+     "id": "https://purl.org/memo#Advertisement",
+     "label": "Advertisement"
+    },
+    {
+     "id": "https://purl.org/memo#Animal",
+     "label": "Animal"
+    },
+    {
+     "id": "https://purl.org/memo#Axiom",
+     "label": "Axiom"
+    },
+    {
+     "id": "https://purl.org/memo#Catchphrase",
+     "label": "Catchphrase"
+    },
+    {
+     "id": "https://purl.org/memo#Character",
+     "label": "Character"
+    }
+   ]
   },
   {
    "id": "wd:Q386724",
    "label": "OriginWork",
    "kind": "external",
-   "comment": "Creative work (film, TV series, game, etc.) from which the meme derives; aligned with Wikidata Q386724."
+   "comment": "Creative work (film, TV series, game, etc.) from which the meme derives; aligned with Wikidata Q386724.",
+   "count": 910,
+   "sample": [
+    {
+     "id": "https://purl.org/memo#_2006",
+     "label": "2006"
+    },
+    {
+     "id": "https://purl.org/memo#_2018_nato_summit",
+     "label": "2018 NATO Summit"
+    },
+    {
+     "id": "https://purl.org/memo#_2018_russian_presidential_elections",
+     "label": "2018 Russian Presidential Elections"
+    },
+    {
+     "id": "https://purl.org/memo#_2018_world_cup",
+     "label": "2018 World Cup"
+    },
+    {
+     "id": "https://purl.org/memo#_2020_nintendo_source_code_leaks",
+     "label": "2020 Nintendo Source Code Leaks"
+    },
+    {
+     "id": "https://purl.org/memo#_2022_oscars",
+     "label": "2022 Oscars"
+    }
+   ]
   },
   {
    "id": "memo:VariantInstance",
    "label": "VariantInstance",
    "kind": "class",
-   "comment": "A specific image derived from a meme template; the Manifestation level of the FRBR hierarchy. Represents a single scraped or documented instantiation of a MemeConcept."
+   "comment": "A specific image derived from a meme template; the Manifestation level of the FRBR hierarchy. Represents a single scraped or documented instantiation of a MemeConcept.",
+   "count": 391,
+   "sample": [
+    {
+     "id": "https://purl.org/memo#_30-year-old-boomer_v01",
+     "label": "Boomer chad"
+    },
+    {
+     "id": "https://purl.org/memo#_48293_v01",
+     "label": "Google's Answer"
+    },
+    {
+     "id": "https://purl.org/memo#always-go-for-this-only-villains-do-that_v01",
+     "label": "Archive of Villhut's Art Tweet"
+    },
+    {
+     "id": "https://purl.org/memo#ankha-zone_v01",
+     "label": "Spinosaurus Version"
+    },
+    {
+     "id": "https://purl.org/memo#big-chungus_v01",
+     "label": "Stay safe"
+    },
+    {
+     "id": "https://purl.org/memo#bowsette_v01",
+     "label": "yearly bowsette doodle"
+    }
+   ]
   },
   {
    "id": "memo:MemeConcept",
    "label": "MemeConcept",
    "kind": "class",
-   "comment": "A meme template or canonical format; the Expression level of the FRBR hierarchy. Represents the stable, recognisable form of a meme as documented on Know Your Meme."
+   "comment": "A meme template or canonical format; the Expression level of the FRBR hierarchy. Represents the stable, recognisable form of a meme as documented on Know Your Meme.",
+   "count": 5000,
+   "sample": [
+    {
+     "id": "https://purl.org/memo#me-gusta",
+     "label": "me-gusta"
+    },
+    {
+     "id": "https://purl.org/memo#big-chungus",
+     "label": "big-chungus"
+    },
+    {
+     "id": "https://purl.org/memo#woman-yelling-at-a-cat",
+     "label": "woman-yelling-at-a-cat"
+    },
+    {
+     "id": "https://purl.org/memo#brazzers",
+     "label": "brazzers"
+    },
+    {
+     "id": "https://purl.org/memo#stonks",
+     "label": "stonks"
+    },
+    {
+     "id": "https://purl.org/memo#lord-marquaad-e",
+     "label": "lord-marquaad-e"
+    }
+   ]
   },
   {
    "id": "frbrer:C1002",
    "label": "Work (FRBRer)",
    "kind": "external",
-   "comment": ""
+   "comment": "",
+   "count": 0,
+   "sample": []
   },
   {
    "id": "frbrer:C1004",
    "label": "Manifestation (FRBRer)",
    "kind": "external",
-   "comment": ""
+   "comment": "",
+   "count": 0,
+   "sample": []
   },
   {
    "id": "frbrer:C1003",
    "label": "Expression (FRBRer)",
    "kind": "external",
-   "comment": ""
+   "comment": "",
+   "count": 0,
+   "sample": []
   }
  ],
  "links": [

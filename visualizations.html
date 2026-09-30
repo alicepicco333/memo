@@ -316,13 +316,15 @@
       <section class="onto-graph" id="onto-graph" aria-labelledby="onto-graph-title">
         <div class="onto-graph-head">
           <h2 id="onto-graph-title">The ontology as a graph</h2>
-          <p>Every class in MEMO and how it connects: solid lines are subclass links, grey arrows are object properties. Hover or tap a class to follow its connections; drag to rearrange.</p>
+          <p>Every class in MEMO and how it connects: solid lines are subclass links, grey arrows are object properties. Dots are individuals of each class. Hover or tap a class to follow its connections and name its individuals; drag to rearrange.</p>
         </div>
         <div class="onto-graph-legend" aria-hidden="true">
           <span><i style="width:12px;height:12px;background:#141414"></i>MEMO class</span>
           <span><i style="width:12px;height:12px;border:1px dashed #141414"></i>reused class (FRBR, schema.org, Wikidata)</span>
           <span><i style="width:22px;height:0;border-top:1.4px solid #141414"></i>subclass of</span>
           <span><i style="width:22px;height:0;border-top:1px solid #8a8378"></i>object property</span>
+          <span><i style="width:8px;height:8px;background:#8a8378;border-radius:50%"></i>individual (examples; the number is the total)</span>
+          <label class="onto-graph-toggle"><input type="checkbox" id="onto-graph-individuals" checked> show individuals</label>
         </div>
         <svg id="onto-graph-svg" role="img" aria-label="Graph of the MEMO ontology's classes, subclass links and object properties"></svg>
         <div class="onto-graph-info" id="onto-graph-info" aria-live="polite">Select a class to see its description and properties.</div>
@@ -373,6 +375,20 @@
       var f = document.querySelector('body > .site-footer');
       if (!f) return;
       document.querySelectorAll('.page').forEach(function (p) { p.appendChild(f.cloneNode(true)); });
+
+      // at the end of the page the left contents list scrolls up with the page, so the footer gets the full width
+      var nav = document.getElementById('dot-nav');
+      if (!nav) return;
+      var ticking = false;
+      function sync() {
+        ticking = false;
+        var top = f.getBoundingClientRect().top;
+        var overlap = Math.max(0, window.innerHeight - top);
+        nav.style.transform = overlap ? 'translateY(' + (-overlap) + 'px)' : '';
+      }
+      window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(sync); } }, { passive: true });
+      window.addEventListener('resize', sync);
+      sync();
     });
   </script>
   <footer class="site-footer">
