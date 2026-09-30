@@ -4057,3 +4057,29 @@ body:not(.home-page):not(.thesis-page) > .site-footer { margin-left: 0; position
 .ticker-run { display: inline-block; flex-shrink: 0; }
 @keyframes ticker-loop { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .home-ticker-track { animation: none; } }
+
+
+/* Arrange: say what the order is */
+.collage-sort { margin-bottom: 8px; }
+.collage-sort-note {
+  text-align: center;
+  margin: 0 auto 18px;
+  max-width: 70ch;
+  padding: 0 16px;
+  font-size: .82rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+/* group labels: a clear marker where a new year / format starts */
+.home-tile-label {
+  top: 0; left: 0;
+  margin: 0;
+  padding: 5px 9px;
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--impact) !important;
+  font-size: 1.05rem !important;
+  letter-spacing: .04em !important;
+  box-shadow: 0 0 0 2px var(--bg);
+}
+.home-tile-swatch { position: absolute; left: 0; right: 0; bottom: 0; height: 8px; }

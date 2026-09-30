@@ -68,10 +68,11 @@
       <div class="collage-sort" role="group" aria-label="Arrange the collage">
         <span class="collage-sort-title">Arrange</span>
         <button type="button" data-sort="shuffle" class="active" aria-pressed="true">Shuffle</button>
-        <button type="button" data-sort="year" aria-pressed="false">Year</button>
+        <button type="button" data-sort="year" aria-pressed="false">Year &uarr;</button>
         <button type="button" data-sort="colour" aria-pressed="false">Colour</button>
-        <button type="button" data-sort="format" aria-pressed="false">Format</button>
+        <button type="button" data-sort="format" aria-pressed="false">Format A&ndash;Z</button>
       </div>
+      <p class="collage-sort-note" id="collage-sort-note" aria-live="polite">A random mix of memes and their variants &middot; hover a tile to read its RDF</p>
       <div id="hero-images" class="hero-images"></div>
       <div id="hero-collage-sentinel" class="home-collage-sentinel"></div>
     </section>
@@ -266,6 +267,12 @@
             a.appendChild(chip);
           }
           lastGroupLabel = group;
+          if (sortMode === 'colour' && colours && colours[item.slug]) {
+            var c = colours[item.slug], sw = document.createElement('span');
+            sw.className = 'home-tile-swatch';
+            sw.style.background = 'hsl(' + c.h + ',' + c.s + '%,' + c.l + '%)';
+            a.appendChild(sw);
+          }
           heroContainer.appendChild(a);
         }
 
@@ -454,6 +461,13 @@
       document.querySelectorAll('.collage-sort button').forEach(function(btn) {
         btn.addEventListener('click', function() {
           var mode = btn.dataset.sort;
+          var NOTES = {
+            shuffle: 'A random mix of memes and their variants &middot; hover a tile to read its RDF',
+            year: 'Oldest to newest by the year the meme appeared &middot; a label marks where each year starts; variants follow at the end',
+            colour: 'By average colour: reds &rarr; yellows &rarr; greens &rarr; blues &rarr; purples, then greys and black &amp; white &middot; the strip on each tile is its colour',
+            format: 'Grouped by main format, A to Z &middot; a label marks where each format starts; variants follow at the end'
+          };
+          document.getElementById('collage-sort-note').innerHTML = NOTES[mode];
           document.querySelectorAll('.collage-sort button').forEach(function(b) {
             var on = b === btn;
             b.classList.toggle('active', on);
