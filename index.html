@@ -31,7 +31,6 @@
   <main class="home-main">
     <section class="viz-section hero-section home-hero" id="sec-hero">
       <div class="hero-content">
-        <div class="hero-floats" id="hero-floats" aria-hidden="true"></div>
         <h1 class="hero-title"><span>THE MEME</span><span>ONTOLOGY</span></h1>
         <p class="hero-tagline">5,000 Know Your Meme entries, modelled as an OWL&nbsp;2 knowledge graph</p>
         <a class="hero-cta" href="visualizations.html">Explore the visualizations <span aria-hidden="true">→</span></a>
@@ -300,42 +299,6 @@
           .join('');
       }
 
-      /* Floating meme cards around the title: recognisable memes, captioned like memes */
-      var FLOAT_SPOTS = [
-        [2, 7, 150, -6], [13, 31, 118, 5], [3, 52, 168, -2], [12, 76, 128, 4],
-        [79, 5, 138, 5], [87, 27, 122, -6], [77, 48, 160, 3], [86, 73, 132, -4]
-      ];
-      function buildFloats(memeData) {
-        var box = document.getElementById('hero-floats');
-        if (!box || !memeData || !memeData.memes) return;
-        var pool = Object.keys(memeData.memes).map(function(slug) { return memeData.memes[slug]; })
-          .filter(function(m) { return m.imageURL && m.hasAnimationStatus !== 'Animated'; })
-          .sort(function(a, b) { return (b.popularityViews || 0) - (a.popularityViews || 0); })
-          .slice(0, 160);
-        shuffle(pool).slice(0, FLOAT_SPOTS.length).forEach(function(m, i) {
-          var spot = FLOAT_SPOTS[i];
-          var a = document.createElement('a');
-          a.className = 'hero-float';
-          a.href = 'visualizations.html#meme/' + encodeURIComponent(m.slug);
-          a.tabIndex = -1;
-          a.style.left = spot[0] + '%';
-          a.style.top = spot[1] + '%';
-          a.style.width = spot[2] + 'px';
-          a.style.setProperty('--r', spot[3] + 'deg');
-          a.style.animationDelay = (-i * 0.7) + 's';
-          var img = document.createElement('img');
-          img.src = m.imageURL;
-          img.alt = '';
-          img.loading = 'eager';
-          img.onerror = function() { a.remove(); };
-          var cap = document.createElement('span');
-          cap.textContent = String(m.slug).replace(/^_+/, '').replace(/-/g, ' ');
-          a.appendChild(img);
-          a.appendChild(cap);
-          box.appendChild(a);
-        });
-      }
-
       function boot(allData) {
         var memeData = allData && allData[0] ? allData[0] : {};
         var variantData = allData && allData[1] ? allData[1] : [];
@@ -343,7 +306,6 @@
 
         queue = shuffledQueue;
         buildTicker(memeData);
-        buildFloats(memeData);
         allItems = shuffledQueue.slice();
 
         appendBatch();
