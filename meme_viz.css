@@ -147,8 +147,11 @@ a { text-underline-offset: 3px; }
 }
 
 .topnav-dropdown { position: relative; }
+/* inline-block, so the current page's underline stops at the word */
 .topnav-dropdown-trigger::after {
-  content: ' ▾';
+  content: '▾';
+  display: inline-block;
+  margin-left: 4px;
   font-size: .6rem;
   vertical-align: middle;
 }
@@ -301,7 +304,7 @@ a { text-underline-offset: 3px; }
   font-size: .9rem;
   line-height: 1.55;
 }
-body.home-page .site-footer { z-index: 400; }
+body.home-page .site-footer { z-index: 290; }   /* above the wall, below the bar (300) */
 /* the visualizations app's overlay views (about, dataset, ontology...) carry their own copy */
 .page > .site-footer { z-index: auto; margin-top: 48px; }
 #page-ontology > .site-footer { margin-top: 0; }
@@ -902,7 +905,7 @@ body.collage-done .home-hero .hero-images {
   -webkit-mask-image: linear-gradient(#000 calc(100% - 320px), transparent);
   mask-image: linear-gradient(#000 calc(100% - 320px), transparent);
 }
-.collage-more { position: relative; z-index: 400; padding: 48px 16px 128px; text-align: center; }
+.collage-more { position: relative; z-index: 5; padding: 48px 16px 128px; text-align: center; }
 body.collage-done .collage-more { margin-top: -96px; padding-top: 0; }
 .collage-more a {
   padding: 12px 0;
@@ -1104,20 +1107,23 @@ body.collage-done .collage-more { margin-top: -96px; padding-top: 0; }
   .viz-section > .graph-wrap, .viz-section > .viz-hscroll > .graph-wrap { flex: none; height: clamp(480px, calc(100vh - 220px), 760px); }
   .viz-hscroll-hint { display: none; }
 }
-/* from 1100 px the split sections put a 360 px text column beside a taller chart */
+/* from 1100 px the split sections put a 360 px text column beside a taller chart; both columns end at
+   the same height: the row is as tall as the taller of the two, the chart fills it and "How to read"
+   sits at the foot of the text column */
 @media (min-width: 1100px) {
   .viz-section.viz-split {
     display: grid;
     grid-template-columns: 360px minmax(0, 1fr);
     column-gap: 48px;
-    align-items: start;
+    align-items: stretch;
   }
-  .viz-split > .viz-col { display: block; grid-column: 1; grid-row: 1; }
-  .viz-split > .graph-wrap { grid-column: 2; grid-row: 1; height: clamp(560px, calc(100vh - 120px), 820px); }
+  .viz-split > .viz-col { display: flex; flex-direction: column; grid-column: 1; grid-row: 1; }
+  .viz-split > .graph-wrap { grid-column: 2; grid-row: 1; height: auto; min-height: clamp(560px, calc(100vh - 120px), 820px); }
   .viz-split .sec-header { padding-right: 0; }
   .viz-split .viz-finding { flex-direction: column; }
-  .viz-col > .viz-howto { padding: 0 0 0 32px; }
+  .viz-col > .viz-howto { margin: auto 0 0; padding: 0 0 0 32px; }
   .viz-col > .viz-controls { flex-direction: column; align-items: flex-start; padding: 0 0 24px 22px; }
+  #sec-family .viz-col > .viz-controls { flex-direction: row; flex-wrap: wrap; align-items: center; }
 }
 /* charts stop 48 px short of the window edge; the colour spectrum alone runs to it */
 @media (min-width: 1025px) {
@@ -1149,7 +1155,7 @@ body.collage-done .collage-more { margin-top: -96px; padding-top: 0; }
 .viz-slider input { width: 160px; accent-color: var(--ink); }
 .viz-note { margin-left: auto; font-size: .82rem; color: var(--muted); }
 .viz-empty { padding: 24px; color: var(--muted); font-size: .85rem; }
-.viz-legend { display: inline-flex; flex-wrap: wrap; gap: 4px 12px; margin-left: auto; font-size: .72rem; color: var(--muted); }
+.viz-legend { display: inline-flex; flex-wrap: wrap; gap: 4px 12px; margin-left: auto; font-size: .75rem; color: var(--muted); }
 .viz-legend span { display: inline-flex; align-items: center; gap: 5px; }
 .viz-legend i { display: inline-block; width: 9px; height: 9px; }
 .viz-legend-note { font-style: italic; }
@@ -1304,7 +1310,7 @@ body.collage-done .collage-more { margin-top: -96px; padding-top: 0; }
 .walk-node:focus { outline: none; }
 .walk-node:focus-visible circle, .walk-node:focus-visible rect { stroke: var(--focus); stroke-width: 3; }
 /* the trail is text with its arrows; the property in 600 ink */
-.walk-trail { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; margin-left: auto; font-size: .72rem; }
+.walk-trail { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; margin-left: auto; font-size: .75rem; }
 .walk-step { padding: 2px; font-size: .68rem; white-space: nowrap; }
 .walk-step-prop { color: var(--ink); font-weight: 600; }
 .walk-arrow { color: var(--muted); }
@@ -1490,9 +1496,10 @@ body.collage-done .collage-more { margin-top: -96px; padding-top: 0; }
   .viz-finding-text { font-size: 1.25rem; }
   .viz-howto { padding: 12px 0 0; }
   #sec-variant-gallery > .viz-howto { padding: 0 0 16px; }
-  .viz-controls { padding: 0 0 16px; }
-  .viz-note, .viz-legend, .walk-trail { flex-basis: 100%; margin-left: 0; }
-  .viz-slider { margin-left: 0; }
+  /* the buttons keep their padding, so the row moves 10 px left and their text lands on the title edge */
+  .viz-controls { margin-left: -10px; padding: 0 0 16px; }
+  .viz-note, .viz-legend, .walk-trail { flex-basis: 100%; margin-left: 10px; }
+  .viz-slider { margin-left: 10px; }
   .viz-slider input { width: 120px; }
 
   .graph-wrap { flex: none; height: 380px; }
@@ -1554,9 +1561,9 @@ body.collage-done .collage-more { margin-top: -96px; padding-top: 0; }
 .stat-card { text-align: left; }
 .stat-num { display: block; margin-bottom: 6px; font-size: 2.4rem; }
 .stat-label { font-size: var(--label); font-weight: 600; color: var(--muted); }
-.about-pipeline { display: flex; gap: 32px; margin-top: 8px; overflow: hidden; }
+/* an ordered list without visible numbers: the order reads left to right, screen readers still get it */
+.about-pipeline { display: flex; gap: 32px; margin: 8px 0 0; padding: 0; list-style: none; overflow: hidden; }
 .pipeline-step { flex: 1; }
-.pipeline-num { margin-bottom: 6px; font-size: var(--label); font-weight: 600; color: var(--muted); }
 .pipeline-label { margin-bottom: 4px; font-size: 1.05rem; font-weight: 600; line-height: 1.25; color: var(--ink); }
 .pipeline-desc { font-size: .85rem; line-height: 1.5; color: var(--muted); }
 
