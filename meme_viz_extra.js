@@ -210,8 +210,9 @@
 
   function renderFamily(wrap, group) {
     const { W, H } = wrapSize(wrap, 620);
-    const S = Math.min(W, H);
-    const R = S / 2 - (isMobile() ? 44 : 64);   // room outside the rings for two rows of sector labels
+    // room outside the rings for two rows of sector labels, and under them for the caption
+    const side = isMobile() ? 44 : 64;
+    const R = Math.min(W / 2 - side, H / 2 - side - 24);
     const ringR = { Minimal: R * 0.44, Moderate: R * 0.63, Substantial: R * 0.82, Parody: R };
     const coreR = R * 0.24;
 
@@ -335,18 +336,12 @@
       .attr('width', coreR * 2).attr('height', coreR * 2)
       .attr('clip-path', 'url(#fam-clip)').attr('preserveAspectRatio', 'xMidYMid slice')
       .style('opacity', 0);
-    // The caption names the centre image; where it would touch a variant circle it moves to the chart's
-    // top-left corner instead. It sits above the circles on a paper halo, so the longer hover text
-    // stays readable.
-    const capHalf = textWidth(svg.node(), ['Original: ' + group.name], TICK_PX) / 2 + 6;
-    const capY = coreR + 20;
-    const capHits = group.variants.some(v => {
-      const [x, y] = polar(v.angle, v.r);
-      return Math.abs(x) < capHalf + thumbR + 2.5 && Math.abs(y - (capY - 4)) < 10 + thumbR + 2.5;
-    });
+    // The caption names the centre image (or the hovered variant) under the outer ring and its labels,
+    // where no variant circle can reach it; it sits on a paper halo.
+    const sectBox = sectG.node().getBBox();
+    const capTop = Math.min(Math.max(R + 14, sectBox.y + sectBox.height) + 8, H / 2 - TICK_PX - 6);
     const caption = svg.append('text').attr('class', 'fam-caption')
-      .attr('x', capHits ? -W / 2 + 2 : 0).attr('y', capHits ? -H / 2 + 4 : capY)
-      .attr('dy', capHits ? '.71em' : null).attr('text-anchor', capHits ? 'start' : 'middle')
+      .attr('x', 0).attr('y', capTop).attr('dy', '.71em').attr('text-anchor', 'middle')
       .style('font-size', TICK_PX + 'px').style('letter-spacing', '0').style('text-transform', 'none')
       .style('paint-order', 'stroke').style('stroke', 'var(--bg, #f7f5f0)').style('stroke-width', '4px')
       .style('stroke-linejoin', 'round').style('pointer-events', 'none')
@@ -659,6 +654,9 @@
   const MAX_NODES = 140;
   let walk = null;
 
+  // a property value as shown (platform names as people write them); the data value stays for queries
+  function valueLabel(field, value) { return field === 'hasOriginPlatform' ? platformLabel(value) : value; }
+
   function propValues(m, field) {
     const v = m[field];
     const arr = Array.isArray(v) ? v : [v];
@@ -833,7 +831,7 @@
     if (!el) return;
     el.innerHTML = walk.trail.slice(-6).map((t, i, arr) =>
       `<span class="walk-step walk-step-${t.type}"${t.type === 'prop' ? ` style="--c:${PROP_FIELDS[t.field].color}"` : ''}>` +
-      escHtml(t.type === 'meme' ? slugToName(t.slug) : t.value) + '</span>' + (i < arr.length - 1 ? '<span class="walk-arrow">→</span>' : '')).join('');
+      escHtml(t.type === 'meme' ? slugToName(t.slug) : valueLabel(t.field, t.value)) + '</span>' + (i < arr.length - 1 ? '<span class="walk-arrow">→</span>' : '')).join('');
   }
 
   function selectNode(n) {
@@ -852,7 +850,7 @@
       const total = (walk.index[n.field][n.value] || []).length;
       const q = propSparql(n.field, n.value);
       card.innerHTML =
-        `<div class="walk-card-body"><small>${escHtml(PROP_FIELDS[n.field].label)}</small><b>${escHtml(n.value)}</b>` +
+        `<div class="walk-card-body"><small>${escHtml(PROP_FIELDS[n.field].label)}</small><b>${escHtml(valueLabel(n.field, n.value))}</b>` +
         `<small>${total.toLocaleString()} memes share this</small>` +
         `<div class="walk-card-actions"><button type="button" id="walk-more">Pull in 6 more</button>` +
         (q ? `<a href="${sparqlHref(q)}" target="_blank" rel="noopener">SPARQL ↗</a>` : '') + '</div></div>';
@@ -886,7 +884,7 @@
       propG.append('rect').attr('rx', 13).attr('height', 26).attr('y', -13)
         .attr('fill', d => PROP_FIELDS[d.field].color);
       propG.append('text').attr('dy', '.35em').attr('text-anchor', 'middle')
-        .style('font-size', LABEL_PX + 'px').style('fill', d => PROP_FIELDS[d.field].text).text(d => d.value);
+        .style('font-size', LABEL_PX + 'px').style('fill', d => PROP_FIELDS[d.field].text).text(d => valueLabel(d.field, d.value));
       propG.each(function() {
         const t = d3.select(this).select('text').node();
         const w = Math.max(40, t.getComputedTextLength() + 18);
@@ -900,7 +898,7 @@
         .on('keydown', (e, d) => { if (e.key === 'Enter') d.type === 'meme' ? expandMeme(d) : expandProp(d); })
         .on('mouseenter', (e, d) => showTip(d.type === 'meme'
           ? tipWithImage(d.m, `${(d.m.popularityViews || 0).toLocaleString()} views`)
-          : `<small>${escHtml(PROP_FIELDS[d.field].label)}</small><br><b>${escHtml(d.value)}</b>`, e))
+          : `<small>${escHtml(PROP_FIELDS[d.field].label)}</small><br><b>${escHtml(valueLabel(d.field, d.value))}</b>`, e))
         .on('mousemove', moveTip)
         .on('mouseleave', hideTip);
       return g;
@@ -975,19 +973,19 @@
     const e1 = topIn(Y0, 2012, 2);
     steps.push({ range: [Y0, 2012], hi: e1.map(d => d.k),
       title: 'Before 2013',
-      text: `${e1.map(d => `${d.k} (${pct(d.s)})`).join(' and ')} dominate the early record of attributed memes.`,
+      text: `${e1.map(d => `${platformLabel(d.k)} (${pct(d.s)})`).join(' and ')} dominate the early record of attributed memes.`,
       memes: topMemes(Y0, 2012, e1.map(d => d.k)) });
     const vineYears = rows.filter(m => m.hasOriginPlatform === 'Vine').map(yearOf);
     const e2 = topIn(2013, 2017, 1);
     steps.push({ range: [2013, 2017], hi: vineYears.length ? [e2[0].k, 'Vine'] : [e2[0].k],
       title: '2013–2017',
-      text: `${e2[0].k} leads with ${pct(e2[0].s)}.` + (vineYears.length
+      text: `${platformLabel(e2[0].k)} leads with ${pct(e2[0].s)}.` + (vineYears.length
         ? ` Vine, the six-second video app, accounts for ${vineYears.length} memes dated ${d3.min(vineYears)}–${d3.max(vineYears)}.` : ''),
       memes: topMemes(2013, 2017, vineYears.length ? ['Vine'] : [e2[0].k]) });
     const e3 = topIn(2018, 2021, 2);
     steps.push({ range: [2018, 2021], hi: e3.map(d => d.k),
       title: '2018–2021',
-      text: `${e3.map(d => `${d.k} (${pct(d.s)})`).join(' and ')} carry the busiest years of the dataset.`,
+      text: `${e3.map(d => `${platformLabel(d.k)} (${pct(d.s)})`).join(' and ')} carry the busiest years of the dataset.`,
       memes: topMemes(2018, 2021, e3.map(d => d.k)) });
     if (keys.includes('TikTok')) {
       const early = share(2013, 2017, 'TikTok'), late = share(2022, Y1, 'TikTok');
@@ -1071,14 +1069,14 @@
       .attr('fill', s => PLATFORM_COLOR[s.key] || '#b0b8c8')
       .on('mouseenter', (e, s) => {
         const tot = d3.sum(table, r => r[s.key]);
-        showTip(`<b>${escHtml(s.key)}</b><br>${tot.toLocaleString()} memes 2004–2025<br><small>Click to browse</small>`, e);
+        showTip(`<b>${escHtml(platformLabel(s.key))}</b><br>${tot.toLocaleString()} memes 2004–2025<br><small>Click to browse</small>`, e);
       })
       .on('mousemove', moveTip).on('mouseleave', hideTip)
       .on('click', (e, s) => {
         const slugs = storyData().rows.filter(m =>
           s.key === 'Other' ? !keys.includes(m.hasOriginPlatform) : m.hasOriginPlatform === s.key
         ).map(m => m.slug);
-        openPanel(s.key, slugs, 'platform story', 'platform');
+        openPanel(platformLabel(s.key), slugs, 'platform story', 'platform');
       })
       .transition().duration(animate ? DUR * 700 : 0).attr('d', area);
 
@@ -1090,7 +1088,7 @@
     g.select('.story-labels').selectAll('text').data(labels, l => l.key).join('text')
       .attr('text-anchor', 'middle').attr('dy', '.35em').style('font-size', LABEL_PX + 'px')
       .transition().duration(animate ? DUR * 700 : 0)
-      .attr('x', l => Math.min(iw - 30, Math.max(30, l.x))).attr('y', l => l.y).text(l => l.key);
+      .attr('x', l => Math.min(iw - 30, Math.max(30, l.x))).attr('y', l => l.y).text(l => platformLabel(l.key));
 
     story.x = x;
     updateStory();
@@ -1291,7 +1289,7 @@
     const linkMap = new Map();
     const node = (si, name) => {
       const id = si + ':' + name;
-      if (!nodeMap.has(id)) nodeMap.set(id, { id, name, stage: si, memes: new Set() });
+      if (!nodeMap.has(id)) nodeMap.set(id, { id, name, label: si === 0 ? platformLabel(name) : name, stage: si, memes: new Set() });
       return nodeMap.get(id);
     };
     all.forEach(m => {
@@ -1313,7 +1311,7 @@
       .attr('role', 'img').attr('aria-label', 'Flow from origin platform to format, image type and text presence');
     // The first column starts on the section title's edge; the right margin fits the last column's labels
     const lastLabels = [...nodeMap.values()].filter(n => n.stage === stages.length - 1)
-      .map(n => `${n.name} ${n.memes.size.toLocaleString()}`);
+      .map(n => `${n.label} ${n.memes.size.toLocaleString()}`);
     const M = { t: 30, r: textWidth(svg.node(), lastLabels, LABEL_PX) + 12, b: 10, l: titleInset(wrap) };
     const sankey = d3.sankey().nodeId(d => d.id).nodeWidth(12).nodePadding(mobile ? 8 : 10)
       .extent([[M.l, M.t], [W - M.r, H - M.b]]);
@@ -1349,7 +1347,7 @@
       .attr('x', d => d.stage === stages.length - 1 ? d.x1 + 6 : d.x1 + 5)
       .attr('y', d => (d.y0 + d.y1) / 2).attr('dy', '.35em')
       .style('font-size', LABEL_PX + 'px')
-      .text(d => (d.y1 - d.y0 > 7 ? d.name : '') + (d.y1 - d.y0 > 7 && !mobile ? ` ${d.value.toLocaleString()}` : ''));
+      .text(d => (d.y1 - d.y0 > 7 ? d.label : '') + (d.y1 - d.y0 > 7 && !mobile ? ` ${d.value.toLocaleString()}` : ''));
 
     function highlight(n) {
       hiG.selectAll('path').remove();
@@ -1368,15 +1366,15 @@
     }
     nodes.on('mouseenter focus', (e, n) => {
       highlight(n);
-      showTip(`<b>${escHtml(n.name)}</b><br>${n.value.toLocaleString()} memes<br><small>Click to browse</small>`,
+      showTip(`<b>${escHtml(n.label)}</b><br>${n.value.toLocaleString()} memes<br><small>Click to browse</small>`,
         e.clientX != null ? e : { clientX: innerWidth / 2, clientY: innerHeight / 2 });
     })
       .on('mousemove', moveTip)
       .on('mouseleave blur', () => { highlight(null); hideTip(); })
-      .on('click', (e, n) => openPanel(n.name, [...n.memes].sort((a, b) =>
+      .on('click', (e, n) => openPanel(n.label, [...n.memes].sort((a, b) =>
         (memes()[b].popularityViews || 0) - (memes()[a].popularityViews || 0)), 'flow', stages[n.stage].label));
-    base.on('mouseenter', (e, l) => showTip(`${escHtml(l.source.name)} → ${escHtml(l.target.name)}<br><b>${l.value.toLocaleString()}</b> memes`, e))
+    base.on('mouseenter', (e, l) => showTip(`${escHtml(l.source.label)} → ${escHtml(l.target.label)}<br><b>${l.value.toLocaleString()}</b> memes`, e))
       .on('mousemove', moveTip).on('mouseleave', hideTip)
-      .on('click', (e, l) => openPanel(`${l.source.name} → ${l.target.name}`, [...l.memes], 'flow', 'link'));
+      .on('click', (e, l) => openPanel(`${l.source.label} → ${l.target.label}`, [...l.memes], 'flow', 'link'));
   }
 })();

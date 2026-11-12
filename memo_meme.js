@@ -30,7 +30,11 @@
   }
   function imgUrl(m) { return /^https?:/.test(m.i) ? m.i : CDN + m.i; }
   function nameOf(slug) {
-    return String(slug || '').replace(/^_+/, '').split('-').map(function(w) {
+    // some slugs keep the URL encoding of their title: decode it, and leave out emoji
+    var s = String(slug || '').replace(/^_+/, '');
+    try { s = decodeURIComponent(s); } catch (e) { /* not encoded: keep as is */ }
+    s = s.replace(/[\p{Extended_Pictographic}‍️]/gu, '');
+    return s.split('-').filter(Boolean).map(function(w) {
       return w.charAt(0).toUpperCase() + w.slice(1);
     }).join(' ');
   }

@@ -26,10 +26,19 @@ const PAGE_SIZE = 30;
 const DS_PER_PAGE = 60;
 
 function slugToName(slug) {
-  return String(slug || '').split('-').map(function(w) {
+  // some slugs keep the URL encoding of their title ("super-idol-%E7%9A%84..."): decode it, and leave
+  // out emoji, so names read as words
+  var s = String(slug || '');
+  try { s = decodeURIComponent(s); } catch (e) { /* not encoded: keep as is */ }
+  s = s.replace(/[\p{Extended_Pictographic}‍️]/gu, '');
+  return s.split('-').filter(Boolean).map(function(w) {
     return w.charAt(0).toUpperCase() + w.slice(1);
   }).join(' ');
 }
+
+/* Platform names as people write them; the data keeps its own values (TwitterX) for filters and queries. */
+const PLATFORM_LABEL = { TwitterX: 'Twitter/X' };
+function platformLabel(p) { return PLATFORM_LABEL[p] || p; }
 
 function hasBlockedKeyword(text) {
   return /\bnft\b/i.test(String(text || ''));
@@ -210,6 +219,10 @@ function route() {
     initOntoPage();
   } else {
     showViz();
+    // a section link from the top bar (#sec-flow): charts building on the way can move the section,
+    // so finish the trip the way the contents links do
+    const section = hash && document.getElementById(hash);
+    if (section && section.classList.contains('viz-section')) scrollToSection(section, 3);
   }
 }
 window.addEventListener('hashchange', function(e) {
@@ -742,7 +755,7 @@ function buildPopularityByFormat() {
   // Margins from the labels themselves: the axis title starts on the section title's edge, then the
   // ticks; under the axis only as much room as the format names need.
   const yMax = d3.max(points, d => d.avgViews || 0) || 1;
-  const yFormat = d3.format('.2s');
+  const yFormat = d3.format('~s');   // 0, 20k, 140k: no trailing ".0"
   const yTickW = textWidth(svgEl, d3.scaleLinear().domain([0, yMax * 1.08]).ticks(6).map(yFormat), TICK_PX);
   const fmtW = textWidth(svgEl, points.map(d => d.format), TICK_PX);
   const inset = titleInset(wrap);
@@ -963,14 +976,35 @@ function buildTimeline() {
     .attr('dy', '.15em').attr('dx', '-.4em')
     .style('font-size', TICK_PX + 'px').style('fill', '#1a1a3a');
 
-  g.append('g').call(d3.axisLeft(yScale))
-    .selectAll('text').style('font-size', TICK_PX + 'px').style('fill', '#1a1a3a')
-    .style('cursor', 'pointer')
-    .on('mouseenter', (e, fmt) => bubbleSel.transition().duration(150).attr('opacity', d => d.fmt === fmt ? .95 : .08))
-    .on('mouseleave', () => bubbleSel.transition().duration(150).attr('opacity', .82))
-    .on('click', (e, fmt) => openPanel(fmt, nodeToMemes[fmt] || [], 'time', 'format'));
+  function formatAxis(sel) {
+    sel.call(d3.axisLeft(yScale))
+      .selectAll('text').style('font-size', TICK_PX + 'px').style('fill', '#1a1a3a')
+      .style('cursor', 'pointer')
+      .on('mouseenter', (e, fmt) => bubbleSel.transition().duration(150).attr('opacity', d => d.fmt === fmt ? .95 : .08))
+      .on('mouseleave', () => bubbleSel.transition().duration(150).attr('opacity', .82))
+      .on('click', (e, fmt) => openPanel(fmt, nodeToMemes[fmt] || [], 'time', 'format'));
+  }
+  g.append('g').call(formatAxis);
 
   g.selectAll('.domain, .tick line').attr('stroke', '#d0d0e0');
+
+  // Phones: the chart scrolls sideways in its box. The format names stay in a column on the left (a
+  // copy of the axis that sticks to the box's edge) and the box opens on the most recent years.
+  const box = wrap.parentElement;
+  const sideways = mobile && box.classList.contains('viz-hscroll');
+  wrap.style.overflow = sideways ? 'visible' : '';   // the sticky column needs the box as its scroller
+  if (sideways) {
+    const colW = margin.left + 1, colH = H;
+    const column = document.createElement('div');
+    column.className = 'viz-hscroll-labels';
+    column.setAttribute('aria-hidden', 'true');
+    column.style.cssText = `position:sticky;left:0;z-index:1;width:${colW}px;height:${colH}px;margin-top:${-H}px;background:var(--bg)`;
+    wrap.appendChild(column);
+    d3.select(column).append('svg').attr('viewBox', `0 0 ${colW} ${colH}`)
+      .append('g').attr('transform', `translate(${margin.left},${margin.top})`).call(formatAxis)
+      .selectAll('.domain, .tick line').attr('stroke', '#d0d0e0');
+    box.scrollLeft = box.scrollWidth;
+  }
 
   revealOnView(wrap, () => bubbleSel.transition()
     .delay(d => years.indexOf(d.year) * 22).duration(450).ease(d3.easeBackOut)
@@ -1030,7 +1064,7 @@ function buildPlatformTimeStacked() {
   const legendNote = hiddenPlatforms.size
     ? ['Shares re-normalised.', 'Click to show or hide.']
     : ['Click a platform', 'to hide it.'];
-  const legendW = Math.max(18 + textWidth(svgEl, platforms, TICK_PX), textWidth(svgEl, legendNote, LABEL_PX));
+  const legendW = Math.max(18 + textWidth(svgEl, platforms.map(platformLabel), TICK_PX), textWidth(svgEl, legendNote, LABEL_PX));
   const periodW = textWidth(svgEl, periods.map(p => p.period), TICK_PX);
   const left = titleInset(wrap) + textWidth(svgEl, ['100%'], TICK_PX) + 9;
   const right = legendW + 24;
@@ -1127,7 +1161,7 @@ function buildPlatformTimeStacked() {
       .style('cursor', 'pointer')
       .on('mouseover', (e, d) => {
         const proportion = (d.y1 - d.y0) * 100;
-        showTip(`<b>${d.platform}</b><br>${d.period}: <b>${proportion.toFixed(1)}%</b><br><small>Click to browse</small>`, e);
+        showTip(`<b>${platformLabel(d.platform)}</b><br>${d.period}: <b>${proportion.toFixed(1)}%</b><br><small>Click to browse</small>`, e);
       })
       .on('mousemove', moveTip)
       .on('mouseout', hideTip)
@@ -1153,7 +1187,7 @@ function buildPlatformTimeStacked() {
             return m.hasOriginPlatform === d.key;
           });
         }
-        openPanel(`${d.platform} in ${d.period}`, slugs, 'platformTime', 'segment');
+        openPanel(`${platformLabel(d.platform)} in ${d.period}`, slugs, 'platformTime', 'segment');
       });
   });
 
@@ -1187,7 +1221,7 @@ function buildPlatformTimeStacked() {
       .attr('tabindex', 0)
       .attr('role', 'button')
       .attr('aria-pressed', String(!off))
-      .attr('aria-label', `${off ? 'Show' : 'Hide'} ${platform}`)
+      .attr('aria-label', `${off ? 'Show' : 'Hide'} ${platformLabel(platform)}`)
       .style('cursor', 'pointer')
       .on('click', () => togglePlatform(platform))
       .on('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); togglePlatform(platform); } });
@@ -1208,7 +1242,7 @@ function buildPlatformTimeStacked() {
       .attr('dy', '.35em')
       .attr('fill', '#1a1a3a')
       .style('font-size', TICK_PX + 'px')
-      .text(platform);
+      .text(platformLabel(platform));
   });
   legend.append('text')
     .attr('y', platforms.length * pitch + 12)
@@ -1398,7 +1432,7 @@ function buildVariantBubble() {
     .attr('preserveAspectRatio', 'xMidYMid meet');
 
   // Fixed image size — popularity is already encoded by the X axis, not image size.
-  var IMG_SIZE = mobile ? 40 : 64;
+  var IMG_SIZE = mobile ? 28 : 64;
 
   // Pad scale ranges by half the image size so no image is clipped at the edges
   var PAD = IMG_SIZE / 2 + 4;
@@ -1448,7 +1482,11 @@ function buildVariantBubble() {
     gridY.call(d3.axisLeft(zy).ticks(5, '.0s').tickSize(-w).tickFormat('')).call(gridStyle);
     gridX.call(d3.axisBottom(zx).ticks(6, '.0s').tickSize(-h).tickFormat('')).call(gridStyle);
     axY.call(d3.axisLeft(zy).ticks(5, '.0s')).selectAll('text').style('font-size', TICK_PX + 'px');
-    axX.call(d3.axisBottom(zx).ticks(6, '.0s')).selectAll('text').style('font-size', TICK_PX + 'px');
+    // on phones only the decades in view are labelled (10k, 100k, 1M, 10M), so the labels do not collide
+    var decades = zx.ticks().filter(function(v) { return Math.abs(Math.log10(v) % 1) < 1e-9; });
+    var xAxis = d3.axisBottom(zx).ticks(6, '.0s');
+    if (mobile && decades.length >= 2) xAxis.tickValues(decades).tickFormat(d3.format('.0s'));
+    axX.call(xAxis).selectAll('text').style('font-size', TICK_PX + 'px');
   }
   drawAxes(xScale, yScale);
 
@@ -2014,28 +2052,24 @@ function buildAboutPage() {
 
     <div class="about-section">
       <h2>Pipeline</h2>
-      <div class="about-pipeline">
-        <div class="pipeline-step">
-          <div class="pipeline-num">01</div>
+      <ol class="about-pipeline">
+        <li class="pipeline-step">
           <div class="pipeline-label">Data collection</div>
           <div class="pipeline-desc">Metadata and images scraped from Know Your Meme via the public API and image archives with rate-limiting compliance.</div>
-        </div>
-        <div class="pipeline-step">
-          <div class="pipeline-num">02</div>
+        </li>
+        <li class="pipeline-step">
           <div class="pipeline-label">CLIP classification</div>
           <div class="pipeline-desc">Each image is classified across six ontology dimensions using OpenAI CLIP zero-shot inference.</div>
-        </div>
-        <div class="pipeline-step">
-          <div class="pipeline-num">03</div>
+        </li>
+        <li class="pipeline-step">
           <div class="pipeline-label">OWL generation</div>
           <div class="pipeline-desc">Classifications are serialised into an OWL 2 DL/RDF ontology using rdflib with FRBR-aligned hierarchy.</div>
-        </div>
-        <div class="pipeline-step">
-          <div class="pipeline-num">04</div>
+        </li>
+        <li class="pipeline-step">
           <div class="pipeline-label">Visualisation</div>
           <div class="pipeline-desc">Interactive D3.js visualisations expose co-occurrence patterns across tags, formats, and platforms on mobile and desktop.</div>
-        </div>
-      </div>
+        </li>
+      </ol>
     </div>
 
     <div class="about-section">
@@ -2128,7 +2162,7 @@ function buildGlobalSection() {
     const o = document.createElement('option'); o.value = f; o.textContent = f; fmtSel.appendChild(o);
   });
   [...platSet].sort().forEach(p => {
-    const o = document.createElement('option'); o.value = p; o.textContent = p; platSel.appendChild(o);
+    const o = document.createElement('option'); o.value = p; o.textContent = platformLabel(p); platSel.appendChild(o);
   });
 
   function refilter() {
@@ -2286,16 +2320,17 @@ function buildNav() {
 }
 
 /* Charts build as they come near the screen and can change the page height while a smooth scroll is
-   on its way, which stops it short: once scrolling ends, finish the trip if the section is not there. */
+   on its way, which stops it short: once scrolling ends, finish the trip if the section is not there.
+   The section's scroll-margin-top (the bar's height) is applied here: scrollIntoView leaves it out. */
 function scrollToSection(target, tries) {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+  const offset = () => target.getBoundingClientRect().top - (parseFloat(getComputedStyle(target).scrollMarginTop) || 0);
+  window.scrollTo({ top: window.scrollY + offset(), behavior: reduce ? 'auto' : 'smooth' });
   let timer;
   const settle = () => {
     window.removeEventListener('scrollend', settle);
     clearTimeout(timer);
-    const off = target.getBoundingClientRect().top - (parseFloat(getComputedStyle(target).scrollMarginTop) || 0);
-    if (Math.abs(off) > 4 && tries > 1) scrollToSection(target, tries - 1);
+    if (Math.abs(offset()) > 4 && tries > 1) scrollToSection(target, tries - 1);
   };
   window.addEventListener('scrollend', settle);
   timer = setTimeout(settle, 1500);
