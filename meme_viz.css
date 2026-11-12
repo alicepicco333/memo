@@ -89,7 +89,7 @@ a { text-underline-offset: 3px; }
 
 /* Titles: Impact, in capitals, like a meme caption */
 .sec-header h2, .page-inner h1, .ds-sec-title, .onto-doc-header h1, .onto-doc-sec h2, .meme-page-info h1,
-.story-step h3, .stat-num, .ds-ov-num, .onto-stat-card span, .loader-text {
+.story-step h3, .stat-num, .ds-ov-num, .loader-text {
   font-family: var(--impact);
   font-weight: 400;
   letter-spacing: .045em;
@@ -1787,130 +1787,154 @@ body:has(#page-ontology:not(.hidden)) .loader { display: none; }
 .detail-val.score { font-family: monospace; font-weight: 400; color: #555; }
 
 /* ── Ontology documentation ───────────────────────────────────────────────── */
+/* Below the graph the documentation reads as a page: no cards, bands or rules. Its text edge is the graph
+   block's edge (--onto-edge, the graph's side margin); a contents list on the left like the visualizations
+   page's, the entries in two columns from 1100 px, sections 96 px apart. */
 #page-ontology { overflow-x: hidden; }
-#page-ontology .onto-doc-layout { flex: none; height: calc(100vh - var(--nav-h) - 40px); min-height: 520px; }
-.onto-doc-shell { display: flex; flex-direction: column; height: 100%; background: var(--bg); }
-#page-ontology .onto-doc-shell { height: auto; min-height: 100%; }
-/* header and graph without bands or frames, on the graph's text edge */
+.onto-doc-shell { --onto-edge: clamp(16px, 5vw, 64px); display: flex; flex-direction: column; min-height: 100%; background: var(--bg); }
+/* header: title, the LODE line and the two actions on one baseline */
 .onto-doc-header {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 28px calc(clamp(16px, 5vw, 64px) + 20px) 0;
+  align-items: baseline;
+  gap: 8px 24px;
+  padding: 48px var(--onto-edge) 0;
 }
-.onto-doc-header h1 { margin: 0; font-size: 1.7rem; }
-.onto-doc-header p { margin: 4px 0 0; font-size: .75rem; color: var(--muted); }
-.onto-doc-actions { display: flex; flex-wrap: wrap; gap: 8px; }
-.onto-doc-layout { flex: 1; min-height: 0; display: grid; grid-template-columns: 250px 1fr; }
-.onto-doc-nav { display: flex; flex-direction: column; gap: 6px; padding: 14px 10px; overflow-y: auto; background: var(--bg); }
-.onto-doc-nav h3 { margin: 0 0 6px; padding: 0 6px; font-size: .62rem; font-weight: 600; color: var(--muted); }
+.onto-doc-header h1 { margin: 0; font-size: clamp(2rem, 3vw, 2.5rem); }
+.onto-doc-header p { flex: 1 1 32ch; margin: 0; font-size: .875rem; line-height: 1.5; color: var(--muted); }
+.onto-doc-header code { font-family: var(--mono); font-size: .8125rem; }
+.onto-doc-actions { display: flex; flex-wrap: wrap; margin: 0 -10px 0 auto; }   /* link text ends on the right edge */
+/* contents on the left, entries on the right */
+.onto-doc-layout {
+  display: grid;
+  grid-template-columns: 208px minmax(0, 1fr);
+  column-gap: 48px;
+  align-items: start;
+  padding: 0 var(--onto-edge);
+}
+.onto-doc-nav { position: sticky; top: 24px; display: flex; flex-direction: column; margin-top: 96px; }
+.onto-doc-nav h3 { margin: 0 0 8px; font-size: var(--label); font-weight: 600; color: var(--ink); }
 .onto-doc-nav button {
-  padding: 7px 8px;
-  border: 1px solid transparent;
-  background: transparent;
-  color: var(--text);
-  font-size: .72rem;
+  min-height: 44px;
+  padding: 10px 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: .8125rem;
+  line-height: 1.3;
   text-align: left;
+  color: var(--muted);
   cursor: pointer;
 }
 .onto-doc-nav button:hover { color: var(--ink); }
-.onto-doc-main { padding: 18px 22px 28px; overflow-y: auto; }
-.onto-doc-loading, .onto-doc-error, .onto-doc-empty { font-size: .78rem; color: var(--muted); }
-.onto-doc-sec { margin-bottom: 24px; }
-.onto-doc-sec h2 { margin: 0 0 10px; padding-bottom: 6px; font-size: 1.35rem; }
-.onto-doc-sec h2 span { margin-left: 8px; font-size: .7rem; color: var(--muted); }
-.onto-overview-iri { margin: 0 0 12px; font-size: .72rem; color: var(--muted); word-break: break-all; }
-.onto-stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; }
-.onto-stat-card { padding: 10px; background: var(--surface); }
-.onto-stat-card span { display: block; font-size: 1.6rem; }
-.onto-stat-card label { display: block; margin-top: 5px; font-size: .66rem; font-weight: 600; color: var(--muted); }
-.onto-entity-block { margin-bottom: 10px; padding: 10px 12px; background: var(--surface); }
-.onto-entity-title { margin: 0; font-family: var(--mono); font-size: .84rem; font-weight: 500; color: var(--text); }
-.onto-entity-iri { margin-top: 3px; font-family: monospace; font-size: .69rem; color: var(--muted); word-break: break-all; }
-.onto-entity-comment { margin: 8px 0 0; font-size: .75rem; color: var(--text); }
-/* the entity tables keep their rules: there they carry the rows */
-.onto-entity-table { width: 100%; margin-top: 9px; border-collapse: collapse; font-size: .74rem; }
-.onto-entity-table th {
-  width: 140px;
-  padding: 5px 8px 5px 0;
-  border-top: 1px solid var(--border);
-  font-size: .65rem;
-  font-weight: 600;
-  text-align: left;
-  color: var(--muted);
-  vertical-align: top;
+.onto-doc-nav button.active {   /* the site's selected state, as .viz-btn.active */
+  font-family: var(--impact);
+  font-size: .9rem;
+  font-weight: 400;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--ink);
 }
-.onto-entity-table td { padding: 5px 0; border-top: 1px solid var(--border); color: var(--text); word-break: break-word; }
-.onto-doc-disclaimer {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 10px 18px;
+.onto-doc-main { min-width: 0; }
+.onto-doc-loading, .onto-doc-error { padding-top: 96px; font-size: .875rem; color: var(--muted); }
+.onto-doc-empty { margin: 0; font-size: .875rem; color: var(--muted); }
+.onto-doc-sec { padding-top: 96px; }
+.onto-doc-sec:focus { outline: none; }   /* a place to read from, not a control */
+.onto-doc-sec h2 { margin: 0 0 32px; font-size: clamp(1.75rem, 2.4vw, 2.25rem); }
+.onto-doc-sec h2 span { margin-left: .2em; color: var(--muted); }
+/* overview: one sentence, the figures in ink */
+.onto-overview-text { max-width: 60ch; margin: 0; font-size: 1.125rem; line-height: 1.55; color: var(--text); }
+.onto-overview-text b { font-weight: 600; color: var(--ink); }
+.onto-overview-iri { margin: 12px 0 0; font-family: var(--mono); font-size: .8125rem; color: var(--muted); overflow-wrap: anywhere; }
+/* entries: the name, its IRI, the description, then label and value pairs; held apart by space */
+.onto-entity-list { display: grid; grid-template-columns: minmax(0, 1fr); gap: 36px 48px; align-items: start; }
+.onto-entity-block { scroll-margin-top: 24px; }
+.onto-entity-block:focus-visible { outline-offset: 8px; }
+.onto-entity-title { margin: 0; font-family: var(--mono); font-size: 1rem; font-weight: 600; line-height: 1.35; color: var(--ink); overflow-wrap: anywhere; }
+.onto-entity-iri { margin-top: 2px; font-family: var(--mono); font-size: .75rem; line-height: 1.4; color: var(--muted); overflow-wrap: anywhere; }
+.onto-entity-comment { max-width: 65ch; margin: 12px 0 0; font-size: .9375rem; line-height: 1.55; color: var(--text); }
+.onto-entity-facts { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 16px; margin: 12px 0 0; font-size: .8125rem; line-height: 1.5; }
+.onto-entity-facts div { display: contents; }
+.onto-entity-facts dt { color: var(--muted); }
+.onto-entity-facts dd { margin: 0; font-family: var(--mono); color: var(--text); overflow-wrap: anywhere; }
+.onto-entity-facts a { color: var(--ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.onto-entity-facts a:hover { text-decoration-thickness: 2px; }
+@media (min-width: 1100px) {
+  .onto-entity-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
-.onto-doc-disclaimer p { max-width: 980px; margin: 0; font-size: .7rem; color: var(--muted); }
+/* the LODE note: a small paragraph with its link */
+.onto-doc-disclaimer { padding: 96px var(--onto-edge) 48px; }
+.onto-doc-disclaimer p { max-width: 72ch; margin: 0; font-size: .8125rem; line-height: 1.55; color: var(--muted); }
+.onto-doc-disclaimer a { color: var(--ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
 
 /* ── Ontology graph: no frame; the drawing keeps its lighter surface, so dragging has an area ── */
-.onto-graph { position: relative; margin: 32px clamp(16px, 5vw, 64px) 40px; }
+/* The graph block sits on the paper like the rest of the view; every line of text in it starts on the
+   documentation's edge (--onto-edge, set on .onto-doc-shell) */
+.onto-graph { position: relative; margin: 32px var(--onto-edge, clamp(16px, 5vw, 64px)) 40px; }
 .onto-graph-head {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   justify-content: space-between;
   gap: 8px 24px;
-  padding: 16px 20px 0;
+  padding: 16px 0 0;
 }
 .onto-graph-head h2 { margin: 0; font-family: var(--impact); font-size: 1.6rem; font-weight: 400; line-height: 1.08; letter-spacing: .045em; }
 .onto-graph-head p { max-width: 60ch; margin: 0; font-size: .9rem; color: var(--muted); }
-.onto-graph-legend { display: flex; flex-wrap: wrap; gap: 18px; padding: 10px 20px 0; font-size: .75rem; color: var(--muted); }
-.onto-graph-legend i { display: inline-block; margin-right: 6px; vertical-align: middle; }
+/* the key: one quiet run of marks, each drawn the way the graph draws it */
+.onto-graph-legend { display: flex; flex-wrap: wrap; gap: 8px 24px; padding: 16px 0 0; font-size: .8125rem; color: var(--muted); }
+.onto-graph-legend > span { display: inline-flex; align-items: center; }
+.onto-graph-legend i { display: inline-block; flex: none; margin-right: 8px; vertical-align: middle; }
 .onto-graph-legend .onto-graph-walk { display: inline-flex; gap: 2px; }
 .onto-graph-legend .onto-graph-walk b { width: 8px; height: 8px; }
-.onto-graph-toggle { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
-.onto-graph-zoom { display: flex; align-items: center; gap: 4px; padding: 10px 20px 8px 2px; }   /* first glyph on the heading's edge */
-.onto-graph-zoom span { margin-left: 8px; font-size: .75rem; color: var(--muted); }
+/* controls: zoom, reset and the individuals toggle; the hint at the far end */
+.onto-graph-zoom { display: flex; flex-wrap: wrap; align-items: center; gap: 0 4px; margin-left: -9px; padding: 16px 0 4px; }
+.onto-graph-toggle { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 10px; font-size: .8125rem; color: var(--ink); cursor: pointer; }
+.onto-graph-toggle input { width: 16px; height: 16px; margin: 0; accent-color: var(--ink); cursor: pointer; }
+.onto-graph-hint { margin-left: auto; font-size: .8125rem; color: var(--muted); }
 .onto-graph svg {
   display: block;
   width: 100%;
   height: clamp(560px, calc(100vh - 180px), 820px);   /* tall enough to show the whole ontology at full size */
-  background: var(--surface);
+  background: none;
   touch-action: pan-y;
   cursor: grab;
 }
 .onto-graph svg:active { cursor: grabbing; }
 
-/* The graph radiates from the meme (onto_graph.js): ink on the reading surface, the walk's colours on the
-   six classes it walks, class names in mono (they are ontology terms), MemeConcept as a meme caption */
-.onto-graph .og-root { animation: og-in 420ms cubic-bezier(.23, 1, .32, 1) both; }   /* one entrance, opacity only */
+/* The graph radiates from the meme (onto_graph.js): ink on paper, the walk's colours on the six classes it
+   walks, class names in mono (they are ontology terms), MemeConcept as a meme caption */
+.onto-graph .og-root { animation: og-in 420ms cubic-bezier(.23, 1, .32, 1) both; }   /* one entrance: a fade, slightly blurred */
 @keyframes og-in { from { opacity: 0; filter: blur(3px); } }
-.onto-graph .og-rings ellipse { fill: none; stroke: #ebe6dc; stroke-width: 1; }
+.onto-graph .og-rings ellipse { fill: none; stroke: #e6e0d5; stroke-width: 1; }
 .onto-graph .og-link { transition: opacity 160ms cubic-bezier(.23, 1, .32, 1); }
 .onto-graph .og-link.sub { stroke: var(--ink); stroke-width: 1.2; }
 .onto-graph .og-link.prop { stroke: #8a8378; stroke-width: 1; stroke-dasharray: 3 4; }   /* the site's graph edge */
-.onto-graph .og-link.inst { stroke: #d6cfc2; stroke-width: .8; stroke-dasharray: 1 3; }
-.onto-graph .og-node { cursor: grab; outline: none; transition: opacity 160ms cubic-bezier(.23, 1, .32, 1); }
+.onto-graph .og-link.inst { stroke: #d1cabd; stroke-width: .8; stroke-dasharray: 1 3; }
+.onto-graph .og-node { outline: none; transition: opacity 160ms cubic-bezier(.23, 1, .32, 1); }
+.onto-graph .og-classes .og-node { cursor: grab; }
 .onto-graph .og-node text {
   font-family: var(--mono); font-size: 12px; font-weight: 500; fill: var(--ink);
-  paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; pointer-events: none;
+  paint-order: stroke; stroke: var(--bg); stroke-width: 4px; stroke-linejoin: round; pointer-events: none;
 }
 .onto-graph .og-node.external text { font-weight: 400; }
-.onto-graph .og-node.memo rect { fill: var(--ink); }
-.onto-graph .og-node.external rect { fill: var(--surface); stroke: var(--ink); stroke-width: 1; stroke-dasharray: 3 2; }
-.onto-graph .og-node.memo.tinted rect { fill: var(--c); }
-.onto-graph .og-node.external.tinted rect { stroke: var(--c); stroke-width: 1.6; }
+.onto-graph .og-mark { fill: var(--ink); }
+.onto-graph .og-node.external .og-mark { fill: var(--bg); stroke: var(--ink); stroke-width: 1; stroke-dasharray: 3 2; }
+.onto-graph .og-node.memo.tinted .og-mark { fill: var(--c); }
+.onto-graph .og-node.external.tinted .og-mark { stroke: var(--c); stroke-width: 1.6; }
+.onto-graph .og-hit { fill: transparent; }   /* the square and its name answer the pointer */
+.onto-graph .og-focus, .onto-graph .og-node.og-meme .og-meme-focus { fill: none; stroke: none; }
+.onto-graph .og-node:focus-visible .og-focus,
+.onto-graph .og-node.og-meme:focus-visible .og-meme-focus,
+.onto-graph .og-hub-node:focus-visible .og-hub-hit { stroke: var(--focus); stroke-width: 2; }
 .onto-graph .og-node.individual circle { fill: #8a8378; }
 .onto-graph .og-node.individual.tinted circle { fill: var(--c); }
-.onto-graph .og-node.individual text { font-weight: 400; fill: var(--muted); opacity: 0; transition: opacity 160ms ease-out; }
-.onto-graph .og-node.individual:hover text,
-.onto-graph.focus .og-node.individual.on text { opacity: 1; }
-.onto-graph .og-node:focus-visible rect, .onto-graph .og-node:focus-visible .og-hub-hit { stroke: var(--focus); stroke-width: 2; stroke-dasharray: none; }
+.onto-graph .og-dots .og-node text { font-weight: 400; fill: var(--muted); opacity: 0; transition: opacity 160ms ease-out; }
+.onto-graph .og-dots .og-node:hover text { opacity: 1; }
 .onto-graph .og-count { font-weight: 400; fill: var(--muted); }
-.onto-graph .og-plabel { font-family: var(--mono); font-size: 12px; fill: var(--muted); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; pointer-events: none; opacity: 0; transition: opacity 160ms ease-out; }
-/* MemeConcept: a paper halo, the class name as top and bottom text, its memes on the ring */
-.onto-graph .og-halo { fill: var(--surface); }
+.onto-graph .og-plabel { font-family: var(--mono); font-size: 12px; fill: var(--muted); paint-order: stroke; stroke: var(--bg); stroke-width: 3px; pointer-events: none; opacity: 0; transition: opacity 160ms ease-out; }
+/* MemeConcept: a paper disc inside the meme ring, the class name as top and bottom text, its memes on the ring */
+.onto-graph .og-halo { fill: var(--bg); }
 .onto-graph .og-hub-ring { fill: none; stroke: var(--ink); stroke-width: 1; stroke-dasharray: 3 4; }
 .onto-graph .og-hub-hit { fill: transparent; }
 .onto-graph .og-node .og-caption {
@@ -1920,21 +1944,21 @@ body:has(#page-ontology:not(.hidden)) .loader { display: none; }
 .onto-graph .og-meme { cursor: pointer; }
 .onto-graph .og-node.og-meme .og-meme-bg { fill: #ecebe6; }
 .onto-graph .og-node.og-meme .og-meme-ring { fill: none; stroke: var(--ink); stroke-width: 1.5; transition: stroke-width 160ms ease-out; }
-.onto-graph .og-node.og-meme:hover .og-meme-ring, .onto-graph .og-node.og-meme:focus-visible .og-meme-ring { stroke-width: 3; }
-.onto-graph .og-meme:focus-visible { outline: none; }
+.onto-graph .og-node.og-meme:hover .og-meme-ring { stroke-width: 3; }
 .onto-graph.focus .og-link, .onto-graph.focus .og-node { opacity: .15; }
 .onto-graph.focus .og-link.on, .onto-graph.focus .og-node.on { opacity: 1; }
 .onto-graph.focus .og-plabel.on { opacity: 1; }
-.onto-graph.no-individuals .og-node.individual, .onto-graph.no-individuals .og-link.inst { display: none; }
-.onto-graph-info { min-height: 2.6em; padding: 0 20px 16px; font-size: .9rem; color: var(--text); }
-.onto-graph-info b { font-family: var(--mono); }
+.onto-graph.no-individuals .og-node.individual:not(.og-meme), .onto-graph.no-individuals .og-link.inst { display: none; }
+.onto-graph-info { min-height: 4.5em; max-width: 80ch; padding: 12px 0 16px; font-size: .9rem; color: var(--text); }
+.onto-graph-info b { font-family: var(--mono); font-weight: 600; }
+.onto-graph-info .og-info-iri { font-family: var(--mono); font-size: .8rem; color: var(--muted); }
+.onto-graph-info .og-info-more { color: var(--muted); }
 
 /* ── In-page views on tablets and phones ──────────────────────────────────── */
 @media (min-width: 769px) and (max-width: 1024px) {
   .page-inner { padding: 20px 14px 60px; }
   .dataset-toolbar { flex-direction: column; gap: 8px; }
   .dataset-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 8px; }
-  .onto-doc-layout { grid-template-columns: 220px 1fr; }
 }
 @media (max-width: 768px) {
   .page-inner { padding: 20px 16px 40px; }
@@ -1949,16 +1973,16 @@ body:has(#page-ontology:not(.hidden)) .loader { display: none; }
   .dataset-toolbar { flex-direction: column; gap: 6px; }
   .dataset-grid { grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 6px; }
   .ds-d0-grid { grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); }
-  .onto-doc-header { padding: 20px 32px 0; }
-  .onto-doc-header p { font-size: .68rem; }
-  .onto-doc-layout { grid-template-columns: 1fr; }
-  #page-ontology .onto-doc-layout { height: auto; }
-  .onto-doc-nav { max-height: 170px; border-bottom: 1px solid var(--border); }
-  .onto-doc-main { padding: 12px 10px 20px; }
-  .onto-entity-table th { width: 92px; }
-  .onto-doc-disclaimer { padding: 10px; }
-  .onto-doc-disclaimer p { font-size: .64rem; }
-  .onto-graph { margin: 20px 12px 28px; }
+  .onto-doc-shell { --onto-edge: 12px; }   /* the graph's side margin on phones */
+  .onto-doc-header { flex-direction: column; gap: 8px; padding-top: 32px; }   /* stacked: title, line, actions */
+  .onto-doc-header p { flex: none; }
+  .onto-doc-actions { margin: 4px 0 0 -10px; }
+  .onto-doc-layout { grid-template-columns: minmax(0, 1fr); }
+  .onto-doc-nav { position: static; flex-flow: row wrap; column-gap: 20px; margin-top: 48px; }
+  .onto-doc-nav h3 { flex-basis: 100%; }
+  .onto-doc-sec { padding-top: 64px; }
+  .onto-doc-disclaimer { padding: 64px var(--onto-edge) 40px; }
+  .onto-graph { margin: 20px var(--onto-edge, 12px) 28px; }
   .onto-graph svg { height: 460px; }
-  .onto-graph-zoom span { display: none; }
+  .onto-graph-hint { flex-basis: 100%; margin: 4px 0 0 9px; }   /* its own line, on the text edge */
 }

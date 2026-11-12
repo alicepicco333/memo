@@ -267,6 +267,7 @@ function textByTag(node, ns, name) {
 function shortIri(iri) {
   if (!iri) return '';
   var prefixes = [
+    ['https://purl.org/memo#', 'memo:'],
     ['http://www.semanticweb.org/meme-ontology#', 'memo:'],
     ['http://www.w3.org/2002/07/owl#', 'owl:'],
     ['http://www.w3.org/2000/01/rdf-schema#', 'rdfs:'],
@@ -412,51 +413,83 @@ function toEntity(node, rdfNs, rdfsNs, kind) {
   return item;
 }
 
-function renderEntityList(title, items, typeLabel) {
-  if (!items.length) {
-    return '<section class="onto-doc-sec"><h2>' + escHtml(title) + '</h2><p class="onto-doc-empty">No entities found.</p></section>';
-  }
+/* A value in an entry's facts: a link to that entity's own entry when it is documented on this page. */
+function entityRef(iri, known) {
+  var label = escHtml(shortIri(iri));
+  if (!known[iri]) return label;
+  var id = escHtml(safeEntityId(iri));
+  return '<a href="#' + id + '" data-target="' + id + '">' + label + '</a>';
+}
 
-  var html = '<section class="onto-doc-sec" id="' + escHtml(typeLabel) + '">';
+function renderEntityList(title, items, typeLabel, known) {
+  var html = '<section class="onto-doc-sec" id="' + escHtml(typeLabel) + '" tabindex="-1">';
   html += '<h2>' + escHtml(title) + ' <span>' + items.length + '</span></h2>';
+  if (!items.length) return html + '<p class="onto-doc-empty">No entities found.</p></section>';
+
+  html += '<div class="onto-entity-list">';
   items.forEach(function(item) {
-    html += '<article class="onto-entity-block" id="' + escHtml(safeEntityId(item.iri)) + '">';
+    html += '<article class="onto-entity-block" id="' + escHtml(safeEntityId(item.iri)) + '" tabindex="-1">';
     html += '<h3 class="onto-entity-title">' + escHtml(item.label) + '</h3>';
     html += '<div class="onto-entity-iri">' + escHtml(item.iri) + '</div>';
     if (item.comment) {
       html += '<p class="onto-entity-comment">' + escHtml(item.comment) + '</p>';
     }
 
-    if (item.superClasses.length || item.domains.length || item.ranges.length || item.types.length) {
-      html += '<table class="onto-entity-table"><tbody>';
-      if (item.superClasses.length) {
-        html += '<tr><th>Super-classes</th><td>' + escHtml(item.superClasses.map(shortIri).join(', ')) + '</td></tr>';
-      }
-      if (item.domains.length) {
-        html += '<tr><th>Domain</th><td>' + escHtml(item.domains.map(shortIri).join(', ')) + '</td></tr>';
-      }
-      if (item.ranges.length) {
-        html += '<tr><th>Range</th><td>' + escHtml(item.ranges.map(shortIri).join(', ')) + '</td></tr>';
-      }
-      if (item.types.length && typeLabel === 'onto-sec-individuals') {
-        html += '<tr><th>Types</th><td>' + escHtml(item.types.map(shortIri).join(', ')) + '</td></tr>';
-      }
-      html += '</tbody></table>';
+    var facts = [];
+    if (item.superClasses.length) facts.push(['Super-classes', item.superClasses]);
+    if (item.domains.length) facts.push(['Domain', item.domains]);
+    if (item.ranges.length) facts.push(['Range', item.ranges]);
+    if (item.types.length && typeLabel === 'onto-sec-individuals') facts.push(['Types', item.types]);
+    if (facts.length) {
+      html += '<dl class="onto-entity-facts">' + facts.map(function(f) {
+        return '<div><dt>' + f[0] + '</dt><dd>' + f[1].map(function(iri) { return entityRef(iri, known); }).join(', ') + '</dd></div>';
+      }).join('') + '</dl>';
     }
     html += '</article>';
   });
-  html += '</section>';
-  return html;
+  return html + '</div></section>';
 }
 
+/* The side list and the links between entries move within the documentation without changing the address
+   (the hash is the site's router); the side list marks the section being read. */
 function wireOntoNavScroll() {
-  var buttons = document.querySelectorAll('.onto-doc-nav button[data-target]');
+  var page = document.getElementById('page-ontology');
+  var nav = document.getElementById('onto-doc-nav');
+  var main = document.getElementById('onto-doc-main');
+  function go(id) {
+    var target = document.getElementById(id);
+    if (!target) return;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    target.focus({ preventScroll: true });   // keyboard reading continues from there
+  }
+  var buttons = Array.prototype.slice.call(nav.querySelectorAll('button[data-target]'));
   buttons.forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      var target = document.getElementById(btn.getAttribute('data-target'));
-      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
+    btn.addEventListener('click', function() { go(btn.getAttribute('data-target')); });
   });
+  main.addEventListener('click', function(e) {
+    var a = e.target.closest('a[data-target]');
+    if (!a) return;
+    e.preventDefault();
+    go(a.getAttribute('data-target'));
+  });
+  if (!('IntersectionObserver' in window)) return;
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(en) {
+      if (!en.isIntersecting) return;
+      buttons.forEach(function(b) {
+        var on = b.getAttribute('data-target') === en.target.id;
+        b.classList.toggle('active', on);
+        if (on) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current');
+      });
+    });
+  }, { root: page, rootMargin: '-30% 0px -69% 0px' });
+  main.querySelectorAll('.onto-doc-sec').forEach(function(s) { obs.observe(s); });
+}
+
+/* "33 classes" with the figure in ink 600 (singular for 1) */
+function ontoCount(n, one, many) {
+  return '<b>' + n + '</b> ' + (n === 1 ? one : many);
 }
 
 function initOntoPage() {
@@ -518,32 +551,39 @@ function initOntoPage() {
 
       nav.innerHTML = '' +
         '<h3>Documentation</h3>' +
-        '<button data-target="onto-sec-overview">Overview</button>' +
-        '<button data-target="onto-sec-classes">Classes (' + classes.length + ')</button>' +
-        '<button data-target="onto-sec-objprops">Object properties (' + objectProps.length + ')</button>' +
-        '<button data-target="onto-sec-dataprops">Datatype properties (' + datatypeProps.length + ')</button>' +
-        '<button data-target="onto-sec-annprops">Annotation properties (' + annotationProps.length + ')</button>' +
-        '<button data-target="onto-sec-individuals">Named individuals (' + individuals.length + ')</button>';
+        '<button type="button" data-target="onto-sec-overview">Overview</button>' +
+        '<button type="button" data-target="onto-sec-classes">Classes (' + classes.length + ')</button>' +
+        '<button type="button" data-target="onto-sec-objprops">Object properties (' + objectProps.length + ')</button>' +
+        '<button type="button" data-target="onto-sec-dataprops">Datatype properties (' + datatypeProps.length + ')</button>' +
+        '<button type="button" data-target="onto-sec-annprops">Annotation properties (' + annotationProps.length + ')</button>' +
+        '<button type="button" data-target="onto-sec-individuals">Named individuals (' + individuals.length + ')</button>';
 
-      var html = '<section class="onto-doc-sec" id="onto-sec-overview">';
+      // the overview is one sentence, not a row of figures
+      var html = '<section class="onto-doc-sec" id="onto-sec-overview" tabindex="-1">';
       html += '<h2>Ontology overview</h2>';
+      html += '<p class="onto-overview-text">' + [
+        ontoCount(classes.length, 'class', 'classes'),
+        ontoCount(objectProps.length, 'object property', 'object properties'),
+        ontoCount(datatypeProps.length, 'datatype property', 'datatype properties'),
+        ontoCount(annotationProps.length, 'annotation property', 'annotation properties')
+      ].join(', ') + ' and ' + (individuals.length
+        ? ontoCount(individuals.length, 'named individual', 'named individuals')
+        : 'no named individuals (this is the unpopulated ontology)') + '.</p>';
       if (ontologyIri) {
         html += '<p class="onto-overview-iri">Ontology IRI: ' + escHtml(ontologyIri) + '</p>';
       }
-      html += '<div class="onto-stats-grid">';
-      html += '<div class="onto-stat-card"><span>' + classes.length + '</span><label>Classes</label></div>';
-      html += '<div class="onto-stat-card"><span>' + objectProps.length + '</span><label>Object properties</label></div>';
-      html += '<div class="onto-stat-card"><span>' + datatypeProps.length + '</span><label>Datatype properties</label></div>';
-      html += '<div class="onto-stat-card"><span>' + annotationProps.length + '</span><label>Annotation properties</label></div>';
-      html += '<div class="onto-stat-card"><span>' + individuals.length + '</span><label>Named individuals</label></div>';
-      html += '</div>';
       html += '</section>';
 
-      html += renderEntityList('Classes', classes, 'onto-sec-classes');
-      html += renderEntityList('Object properties', objectProps, 'onto-sec-objprops');
-      html += renderEntityList('Datatype properties', datatypeProps, 'onto-sec-dataprops');
-      html += renderEntityList('Annotation properties', annotationProps, 'onto-sec-annprops');
-      html += renderEntityList('Named individuals', individuals, 'onto-sec-individuals');
+      // values that are entities of this page link to their entries
+      var known = {};
+      [classes, objectProps, datatypeProps, annotationProps, individuals].forEach(function(list) {
+        list.forEach(function(item) { known[item.iri] = true; });
+      });
+      html += renderEntityList('Classes', classes, 'onto-sec-classes', known);
+      html += renderEntityList('Object properties', objectProps, 'onto-sec-objprops', known);
+      html += renderEntityList('Datatype properties', datatypeProps, 'onto-sec-dataprops', known);
+      html += renderEntityList('Annotation properties', annotationProps, 'onto-sec-annprops', known);
+      html += renderEntityList('Named individuals', individuals, 'onto-sec-individuals', known);
 
       main.innerHTML = html;
       wireOntoNavScroll();

@@ -3,11 +3,11 @@
    object properties (inverse properties are left out so each relation is drawn once).
 
    The graph radiates from the meme: MemeConcept sits in the middle, captioned like a meme and ringed by
-   its sample memes; every other class settles on a ring set by how many steps it is from MemeConcept.
+   its sample memes; every other class sits on a ring set by how many steps it is from MemeConcept.
    Class squares grow with the number of individuals. The six classes the Knowledge-graph walk uses
    carry the walk's colours (meme_viz_extra.js PROP_FIELDS), so the two views read as one; the rest is ink.
-   The layout is worked out before anything is drawn, so the graph appears once, still, fitted to its box;
-   it only moves again when someone drags a class. */
+   The layout is worked out once, from a fixed seed, before anything is drawn: every visitor gets the same
+   picture, it appears still and fitted to its box, and dragging a class moves only that class. */
 (function () {
   var svgEl = document.getElementById('onto-graph-svg');
   if (!svgEl || !window.d3) return;
@@ -15,14 +15,18 @@
 
   // the walk's property colours, on the classes those properties point to (subclasses inherit them)
   var WALK = {
-    MemeFormat: '#e0873a', OriginPlatform: '#3a8fd8', ImageType: '#8e5cc9',
+    MemeFormat: '#c8742a', OriginPlatform: '#3a8fd8', ImageType: '#8e5cc9',
     TimePeriod: '#2a9d6f', SubjectMatter: '#b03a4b', GeographicRegion: '#7a7a2e'
   };
   var HUB = 'memo:MemeConcept';
-  var HUB_R = 100;         // the hub's halo: caption inside, sample memes on its edge
+  var HUB_R = 100;         // the meme ring: caption inside, sample memes on it
   var THUMB_R = 23;        // a sample meme's round thumbnail
+  var SEED = 0.42;         // the layout's fixed seed
   // sample memes kept out of the hub's showcase (they stay in the dataset): an adult-site logo on minors
   var NOT_SHOWN = { brazzers: 1 };
+  var CH = 7.3;            // IBM Plex Mono 12 px: about 7.3 px a character
+  var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var COARSE = window.matchMedia('(pointer: coarse)').matches;
 
   function start() {
     if (started || svgEl.getBoundingClientRect().width === 0) return;
@@ -37,8 +41,10 @@
     try { s = decodeURIComponent(s); } catch (e) { /* keep as is */ }
     return s.replace(/[-_]+/g, ' ').replace(/\b\w/g, function (c) { return c.toUpperCase(); }).trim();
   }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
 
   function draw(data) {
+    var rand = d3.randomLcg(SEED);
     var INVERSE = /^is[A-Z]/;
     var links = data.links.filter(function (l) { return l.type === 'sub' || !INVERSE.test(l.label); });
     var nodes = data.nodes.map(function (n) { return Object.assign({}, n); });
@@ -87,7 +93,7 @@
     var LW = Math.max(W, 1100), LH = Math.max(H, 640);
     var cx = LW / 2, cy = LH / 2;
     var ax = LW / 2 - 170, ay = LH / 2 - 48;          // the outer ellipse, with room for labels
-    // the first ring clears the hub's halo; the last one leaves room for individuals and labels outside it
+    // the first ring clears the meme ring; the last one leaves room for individuals and labels outside it
     var R1 = Math.max(0.46, (HUB_R + THUMB_R + 46) / ay);
     var ringR = function (h) { return h <= 0 ? 0 : R1 + (0.9 - R1) * (h - 1) / Math.max(1, maxHop - 1); };
 
@@ -105,18 +111,17 @@
         var a = parents.length ? placed[parents[0]] + (i % 3 - 1) * 0.22 : (i / ring.length) * Math.PI * 2;
         if (h === 1) a = (i / ring.length) * Math.PI * 2 - Math.PI / 2;
         placed[c.id] = a;
-        var r = ringR(h);
-        c.x = cx + Math.cos(a) * r * ax; c.y = cy + Math.sin(a) * r * ay;
+        c.x = cx + Math.cos(a) * ringR(h) * ax; c.y = cy + Math.sin(a) * ringR(h) * ay;
       });
     }
-    // MemeConcept's memes sit on the hub's edge, fixed
+    // MemeConcept's memes sit on the meme ring, fixed
     var memes = nodes.filter(function (n) { return n.meme; });
     memes.forEach(function (m, i) {
       var a = (i / memes.length) * Math.PI * 2 - Math.PI / 2;
       m.x = m.fx = cx + Math.cos(a) * HUB_R; m.y = m.fy = cy + Math.sin(a) * HUB_R;
     });
     nodes.forEach(function (n) {
-      if (n.kind === 'individual' && !n.meme) { n.x = n.cls.x + (Math.random() - 0.5) * 20; n.y = n.cls.y + (Math.random() - 0.5) * 20; }
+      if (n.kind === 'individual' && !n.meme) { n.x = n.cls.x + (rand() - 0.5) * 20; n.y = n.cls.y + (rand() - 0.5) * 20; }
     });
 
     // a soft pull onto each class's ring (an ellipse, to use the wide box)
@@ -129,6 +134,76 @@
       });
     }
 
+    var s = Math.max(0.85, Math.min(1.15, Math.sqrt((LW * LH) / (1312 * 720))));
+    var sim = d3.forceSimulation(nodes)
+      .randomSource(rand)
+      .force('link', d3.forceLink(links).id(function (d) { return d.id; })
+        .distance(function (l) { return (l.type === 'sub' ? 56 : l.type === 'inst' ? 28 : 150) * s; })
+        .strength(function (l) { return l.type === 'sub' ? 0.5 : l.type === 'inst' ? 1 : 0.06; }))
+      .force('charge', d3.forceManyBody().strength(function (d) { return d.kind === 'individual' ? -18 : -200 * s; }).distanceMax(300))
+      // labels point outward, so a class needs room for part of its label, not all of it
+      .force('collide', d3.forceCollide().radius(function (d) {
+        return d.meme ? THUMB_R + 2 : d.kind === 'individual' ? 6 : d.id === HUB ? HUB_R + THUMB_R + 8 : d.side / 2 + 10 + Math.min(d.label.length * 2.2, 36);
+      }).strength(0.9))
+      .force('ring', ringForce)
+      .stop();
+    for (var i = 0, n = Math.ceil(Math.log(sim.alphaMin()) / Math.log(1 - sim.alphaDecay())); i < n; i++) sim.tick();
+
+    // every class exactly on its ring (keeping its angle), so the ring says how far it is from the meme
+    classNodes.forEach(function (d) {
+      if (d.id === HUB) return;
+      var a = Math.atan2((d.y - cy) / ay, (d.x - cx) / ax);
+      d.x = cx + Math.cos(a) * ringR(d.hop) * ax; d.y = cy + Math.sin(a) * ringR(d.hop) * ay;
+    });
+
+    // individuals hang as a small fan, above their class on the upper half and below it on the lower half
+    var fans = {};
+    nodes.forEach(function (n) { if (n.kind === 'individual' && !n.meme) (fans[n.cls.id] = fans[n.cls.id] || []).push(n); });
+    function placeFan(c) {
+      var g = fans[c.id]; if (!g) return;
+      var base = c.y < cy ? -Math.PI / 2 : Math.PI / 2, spread = Math.min(1.9, 0.38 * (g.length - 1)), r = c.side / 2 + 16;
+      g.forEach(function (m, j) {
+        var a = base + (g.length === 1 ? 0 : -spread / 2 + spread * j / (g.length - 1));
+        m.x = c.x + Math.cos(a) * r; m.y = c.y + Math.sin(a) * r;
+      });
+    }
+    function labelWidth(d) { return (d.label.length + (d.count ? d.count.toLocaleString().length + 1 : 0)) * CH; }
+
+    // labels are wide and the forces see round nodes, so a last pass treats each label (with the fan it
+    // carries) as the box it is: overlapping classes move apart up and down, never into the meme ring
+    (function relaxLabels() {
+      var HALF = 9, movable = classNodes.filter(function (c) { return c.id !== HUB; });
+      function boxOf(d) {
+        var w = labelWidth(d), off = d.side / 2 + 6, left = d.x < cx - 4;
+        var fan = fans[d.id] ? d.side / 2 + 22 : HALF, up = d.y < cy;
+        var y0 = d.y - (up ? Math.max(HALF, fan) : HALF), y1 = d.y + (up ? HALF : Math.max(HALF, fan));
+        return left ? { x0: d.x - off - w - 3, x1: d.x + d.side / 2 + 3, y0: y0, y1: y1 }
+                    : { x0: d.x - d.side / 2 - 3, x1: d.x + off + w + 3, y0: y0, y1: y1 };
+      }
+      var clear = HUB_R + THUMB_R + 10;
+      for (var it = 0; it < 160; it++) {
+        var moved = false;
+        for (var a = 0; a < movable.length; a++) {
+          for (var b = a + 1; b < movable.length; b++) {
+            var p = movable[a], q = movable[b], A = boxOf(p), B = boxOf(q);
+            if (A.x1 <= B.x0 || B.x1 <= A.x0 || A.y1 <= B.y0 || B.y1 <= A.y0) continue;
+            var push = Math.min(A.y1 - B.y0, B.y1 - A.y0) / 2 + 1;
+            if (p.y <= q.y) { p.y -= push; q.y += push; } else { p.y += push; q.y -= push; }
+            moved = true;
+          }
+        }
+        movable.forEach(function (d) {
+          var B = boxOf(d), nx = Math.max(B.x0, Math.min(cx, B.x1)), ny = Math.max(B.y0, Math.min(cy, B.y1));
+          var dist = Math.hypot(nx - cx, ny - cy);
+          if (dist < clear) { d.y += (d.y >= cy ? 1 : -1) * (clear - dist + 1); moved = true; }
+        });
+        if (!moved) break;
+      }
+    })();
+    classNodes.forEach(placeFan);
+    nodes.forEach(function (n) { n.hx = n.x; n.hy = n.y; });   // the layout, for Reset
+
+    // ── drawing ──────────────────────────────────────────────────────────
     var svg = d3.select(svgEl).attr('viewBox', [0, 0, W, H]);
     var defs = svg.append('defs');
     defs.append('marker')
@@ -143,83 +218,29 @@
       .filter(function (e) { return e.type === 'wheel' ? (e.ctrlKey || e.metaKey) : !e.button; })
       .on('zoom', function (e) { root.attr('transform', e.transform); });
     svg.call(zoom).on('dblclick.zoom', null);
+
+    // controls: zoom, reset, the individuals toggle and a hint, on one row above the graph
+    var home = d3.zoomIdentity;
     var tools = document.createElement('div');
     tools.className = 'onto-graph-zoom';
     tools.innerHTML = '<button type="button" data-z="in" aria-label="Zoom in">+</button>' +
       '<button type="button" data-z="out" aria-label="Zoom out">−</button>' +
-      '<button type="button" data-z="reset">Reset</button>' +
-      '<span>Ctrl/⌘ + scroll to zoom. Drag to pan.</span>';
-    var home = d3.zoomIdentity;   // the fitted view, set once the layout is done
+      '<button type="button" data-z="reset">Reset</button>';
+    var toggleLabel = document.querySelector('#onto-graph .onto-graph-toggle');
+    if (toggleLabel) tools.appendChild(toggleLabel);
+    var hint = document.createElement('span');
+    hint.className = 'onto-graph-hint';
+    hint.textContent = COARSE ? 'Drag sideways to move, pinch to zoom, tap a class to read it.'
+      : 'Ctrl/⌘ + scroll to zoom. Drag to pan or to move a class.';
+    tools.appendChild(hint);
     tools.addEventListener('click', function (e) {
-      var z = e.target.getAttribute('data-z'); if (!z) return;
-      var t = svg.transition().duration(240).ease(d3.easeCubicOut);
-      if (z === 'in') zoom.scaleBy(t, 1.5); else if (z === 'out') zoom.scaleBy(t, 1 / 1.5); else zoom.transform(t, home);
+      var z = e.target.getAttribute && e.target.getAttribute('data-z'); if (!z) return;
+      var t = svg.transition().duration(REDUCED ? 0 : 240).ease(d3.easeCubicOut);
+      if (z === 'in') zoom.scaleBy(t, 1.5);
+      else if (z === 'out') zoom.scaleBy(t, 1 / 1.5);
+      else { nodes.forEach(function (d) { d.x = d.hx; d.y = d.hy; }); render(); zoom.transform(t, home); }
     });
     svgEl.parentNode.insertBefore(tools, svgEl);
-
-    var s = Math.max(0.85, Math.min(1.15, Math.sqrt((LW * LH) / (1312 * 720))));
-    var sim = d3.forceSimulation(nodes)
-      .force('link', d3.forceLink(links).id(function (d) { return d.id; })
-        .distance(function (l) { return (l.type === 'sub' ? 56 : l.type === 'inst' ? 28 : 150) * s; })
-        .strength(function (l) { return l.type === 'sub' ? 0.5 : l.type === 'inst' ? 1 : 0.06; }))
-      .force('charge', d3.forceManyBody().strength(function (d) { return d.kind === 'individual' ? -18 : -200 * s; }).distanceMax(300))
-      // labels point outward, so a class needs room for part of its label, not all of it
-      .force('collide', d3.forceCollide().radius(function (d) {
-        return d.meme ? THUMB_R + 2 : d.kind === 'individual' ? 6 : d.id === HUB ? HUB_R + THUMB_R + 8 : d.side / 2 + 10 + Math.min(d.label.length * 2.2, 36);
-      }).strength(0.9))
-      .force('ring', ringForce)
-      .stop();
-    for (var i = 0, n = Math.ceil(Math.log(sim.alphaMin()) / Math.log(1 - sim.alphaDecay())); i < n; i++) sim.tick();
-
-    // labels are wide and the forces see round nodes, so a last pass treats each label as the box it is:
-    // classes whose labels overlap move apart up and down (staying near their ring), never into the hub,
-    // and take their individuals with them
-    (function relaxLabels() {
-      var CH = 7.3, HALF = 9;   // IBM Plex Mono 12 px: about 7.3 px a character; half a line
-      var movable = classNodes.filter(function (c) { return c.id !== HUB; });
-      var kids = {};
-      nodes.forEach(function (n) { if (n.kind === 'individual' && !n.meme) kids[n.cls.id] = true; });
-      // a class's box: its label, plus the fan of individuals it carries above or below (see below)
-      function boxOf(d) {
-        var chars = d.label.length + (d.count ? d.count.toLocaleString().length + 1 : 0);
-        var w = chars * CH, off = d.side / 2 + 6, left = d.x < cx - 4;
-        var fan = kids[d.id] ? d.side / 2 + 22 : HALF, up = d.y < cy;
-        var y0 = d.y - (up ? Math.max(HALF, fan) : HALF), y1 = d.y + (up ? HALF : Math.max(HALF, fan));
-        return left ? { x0: d.x - off - w - 3, x1: d.x + d.side / 2 + 3, y0: y0, y1: y1 }
-                    : { x0: d.x - d.side / 2 - 3, x1: d.x + off + w + 3, y0: y0, y1: y1 };
-      }
-      var clear = HUB_R + THUMB_R + 10;
-      for (var it = 0; it < 160; it++) {
-        var moved = false;
-        for (var a = 0; a < movable.length; a++) {
-          for (var b = a + 1; b < movable.length; b++) {
-            var p = movable[a], q = movable[b], A = boxOf(p), B = boxOf(q);
-            if (A.x1 <= B.x0 || B.x1 <= A.x0 || A.y1 <= B.y0 || B.y1 <= A.y0) continue;
-            var push = (Math.min(A.y1 - B.y0, B.y1 - A.y0)) / 2 + 1;
-            if (p.y <= q.y) { p.y -= push; q.y += push; } else { p.y += push; q.y -= push; }
-            moved = true;
-          }
-        }
-        movable.forEach(function (d) {   // keep every label box out of the hub's halo
-          var B = boxOf(d), nx = Math.max(B.x0, Math.min(cx, B.x1)), ny = Math.max(B.y0, Math.min(cy, B.y1));
-          var dist = Math.hypot(nx - cx, ny - cy);
-          if (dist < clear) { var dy = (d.y >= cy ? 1 : -1) * (clear - dist + 1); d.y += dy; moved = true; }
-        });
-        if (!moved) break;
-      }
-      // individuals hang as a small fan, above their class on the upper half and below it on the lower
-      // half, so they never sit on the label's line
-      var fans = {};
-      nodes.forEach(function (n) { if (n.kind === 'individual' && !n.meme) (fans[n.cls.id] = fans[n.cls.id] || []).push(n); });
-      Object.keys(fans).forEach(function (id) {
-        var c = byId[id], g = fans[id], base = c.y < cy ? -Math.PI / 2 : Math.PI / 2;
-        var spread = Math.min(1.9, 0.38 * (g.length - 1)), r = c.side / 2 + 16;
-        g.forEach(function (n, j) {
-          var a = base + (g.length === 1 ? 0 : -spread / 2 + spread * j / (g.length - 1));
-          n.x = c.x + Math.cos(a) * r; n.y = c.y + Math.sin(a) * r;
-        });
-      });
-    })();
 
     // the rings: faint guides, because a class's ring says how far it is from the meme
     root.append('g').attr('class', 'og-rings').attr('aria-hidden', 'true').selectAll('ellipse')
@@ -231,39 +252,53 @@
       .attr('class', function (l) { return 'og-link ' + l.type; })
       .attr('fill', 'none')
       .attr('marker-end', function (l) { return l.type === 'prop' ? 'url(#og-arrow)' : null; });
-    var plabel = root.append('g').attr('aria-hidden', 'true').selectAll('text').data(links.filter(function (l) { return l.type === 'prop'; })).join('text')
-      .attr('class', 'og-plabel').attr('text-anchor', 'middle').text(function (l) { return l.label; });
 
-    // the hub: a paper halo over the links' ends, the class name as a meme caption, its count, its memes
+    // MemeConcept: a paper disc inside the meme ring (the lines end on the ring), the caption, the count
     var hubG = root.append('g').attr('class', 'og-hub');
     if (hub) {
-      hubG.append('circle').attr('class', 'og-halo').attr('cx', cx).attr('cy', cy).attr('r', HUB_R + THUMB_R + 6);
+      hubG.append('circle').attr('class', 'og-halo').attr('cx', cx).attr('cy', cy).attr('r', HUB_R);
       hubG.append('circle').attr('class', 'og-hub-ring').attr('cx', cx).attr('cy', cy).attr('r', HUB_R);
     }
 
-    var node = root.append('g').selectAll('g').data(nodes.filter(function (d) { return !d.meme && d.id !== HUB; })).join('g')
-      .attr('class', function (d) {
-        return 'og-node ' + (d.kind === 'individual' ? 'individual' : d.kind === 'external' ? 'external' : 'memo') + (d.color ? ' tinted' : '');
-      })
-      .attr('tabindex', function (d) { return d.kind === 'individual' ? null : 0; })
-      .attr('role', function (d) { return d.kind === 'individual' ? null : 'button'; })
-      .attr('aria-label', function (d) { return d.kind === 'individual' ? null : d.label + (d.count ? ', ' + d.count.toLocaleString() + ' individuals' : ''); })
+    // classes, in reading order for the keyboard: ring by ring, clockwise from the top
+    function clockwise(d) { var a = Math.atan2(d.y - cy, d.x - cx) + Math.PI / 2; return a < 0 ? a + Math.PI * 2 : a; }
+    var classData = classNodes.filter(function (d) { return d.id !== HUB; })
+      .sort(function (a, b) { return a.hop - b.hop || clockwise(a) - clockwise(b); });
+    var dotData = nodes.filter(function (d) { return d.kind === 'individual' && !d.meme; });
+
+    var dot = root.append('g').attr('class', 'og-dots').selectAll('g').data(dotData).join('g')
+      .attr('class', function (d) { return 'og-node individual' + (d.color ? ' tinted' : ''); })
+      .style('--c', function (d) { return d.color; });
+    dot.append('circle').attr('r', 3.5);
+    dot.append('text').attr('y', 4).text(function (d) { return d.label; });
+
+    var node = root.append('g').attr('class', 'og-classes').selectAll('g').data(classData).join('g')
+      .attr('class', function (d) { return 'og-node ' + (d.kind === 'external' ? 'external' : 'memo') + (d.color ? ' tinted' : ''); })
+      .attr('tabindex', 0).attr('role', 'button')
+      .attr('aria-label', function (d) { return d.label + (d.count ? ', ' + d.count.toLocaleString() + ' individuals' : ''); })
       .style('--c', function (d) { return d.color; })
       .call(d3.drag()
-        .on('start', function (e, d) { if (!e.active) sim.alphaTarget(0.08).restart(); d.fx = d.x; d.fy = d.y; })
-        .on('drag', function (e, d) { d.fx = e.x; d.fy = e.y; })
-        .on('end', function (e, d) { if (!e.active) sim.alphaTarget(0); d.fx = null; d.fy = null; }));
-    node.filter(function (d) { return d.kind !== 'individual'; }).append('rect')
+        .on('drag', function (e, d) {
+          d.x += e.dx; d.y += e.dy;
+          (fans[d.id] || []).forEach(function (m) { m.x += e.dx; m.y += e.dy; });
+          render();
+        }));
+    // a hit area over the square and its name (44 px tall on touch screens), then the focus ring
+    node.append('rect').attr('class', 'og-hit');
+    node.append('rect').attr('class', 'og-focus')
+      .attr('x', function (d) { return -d.side / 2 - 5; }).attr('y', function (d) { return -d.side / 2 - 5; })
+      .attr('width', function (d) { return d.side + 10; }).attr('height', function (d) { return d.side + 10; });
+    node.append('rect').attr('class', 'og-mark')
       .attr('x', function (d) { return -d.side / 2; }).attr('y', function (d) { return -d.side / 2; })
       .attr('width', function (d) { return d.side; }).attr('height', function (d) { return d.side; });
-    node.filter(function (d) { return d.kind === 'individual'; }).append('circle').attr('r', 3.5);
     var label = node.append('text').attr('y', 4).text(function (d) { return d.label; });
     label.filter(function (d) { return d.count; }).append('tspan')
       .attr('class', 'og-count').text(function (d) { return ' ' + d.count.toLocaleString(); });
 
-    // MemeConcept: the caption in the middle (top text, bottom text), then its memes on the ring
+    // the caption in the middle (top text, bottom text) and the memes on the ring
+    var cap = null;
     if (hub) {
-      var cap = hubG.append('g').attr('class', 'og-node memo og-hub-node').datum(hub)
+      cap = hubG.append('g').attr('class', 'og-node memo og-hub-node').datum(hub)
         .attr('tabindex', 0).attr('role', 'button')
         .attr('aria-label', 'MemeConcept, ' + (hub.count || 0).toLocaleString() + ' individuals');
       cap.append('circle').attr('class', 'og-hub-hit').attr('cx', cx).attr('cy', cy).attr('r', HUB_R - THUMB_R - 4);
@@ -271,67 +306,94 @@
       cap.append('text').attr('class', 'og-caption').attr('x', cx).attr('y', cy + 20).attr('text-anchor', 'middle').text('CONCEPT');
       cap.append('text').attr('class', 'og-hub-count').attr('x', cx).attr('y', cy + 40).attr('text-anchor', 'middle')
         .text((hub.count || 0).toLocaleString());
-      var thumb = hubG.append('g').attr('class', 'og-memes').selectAll('a').data(memes).join('a')
-        .attr('class', 'og-node individual og-meme')
-        .attr('href', function (d) { return '#meme/' + encodeURIComponent(d.slug); })
-        .attr('aria-label', function (d) { return 'Open ' + d.label; });
-      thumb.append('circle').attr('class', 'og-meme-bg').attr('cx', function (d) { return d.x; }).attr('cy', function (d) { return d.y; }).attr('r', THUMB_R);
-      thumb.append('image')
-        .attr('href', function (d) { return thumbFor(d.slug); })
-        .attr('x', function (d) { return d.x - THUMB_R; }).attr('y', function (d) { return d.y - THUMB_R; })
-        .attr('width', THUMB_R * 2).attr('height', THUMB_R * 2)
-        .attr('preserveAspectRatio', 'xMidYMid slice').attr('clip-path', 'url(#og-thumb-clip)')
-        .on('error', function () { this.remove(); });
-      thumb.append('circle').attr('class', 'og-meme-ring').attr('cx', function (d) { return d.x; }).attr('cy', function (d) { return d.y; }).attr('r', THUMB_R);
-      thumb.append('title').text(function (d) { return d.label; });
     }
+    var thumb = hubG.append('g').attr('class', 'og-memes').selectAll('a').data(memes).join('a')
+      .attr('class', 'og-node individual og-meme')
+      .attr('href', function (d) { return '#meme/' + encodeURIComponent(d.slug); })
+      .attr('aria-label', function (d) { return 'Open ' + d.label; });
+    thumb.append('circle').attr('class', 'og-meme-focus').attr('cx', function (d) { return d.x; }).attr('cy', function (d) { return d.y; }).attr('r', THUMB_R + 4);
+    thumb.append('circle').attr('class', 'og-meme-bg').attr('cx', function (d) { return d.x; }).attr('cy', function (d) { return d.y; }).attr('r', THUMB_R);
+    thumb.append('image')
+      .attr('href', function (d) { return thumbFor(d.slug); })
+      .attr('x', function (d) { return d.x - THUMB_R; }).attr('y', function (d) { return d.y - THUMB_R; })
+      .attr('width', THUMB_R * 2).attr('height', THUMB_R * 2)
+      .attr('preserveAspectRatio', 'xMidYMid slice').attr('clip-path', 'url(#og-thumb-clip)')
+      .on('error', function () { this.remove(); });
+    thumb.append('circle').attr('class', 'og-meme-ring').attr('cx', function (d) { return d.x; }).attr('cy', function (d) { return d.y; }).attr('r', THUMB_R);
+
+    // property names sit on the visible part of each line, above the meme disc
+    var plabel = root.append('g').attr('aria-hidden', 'true').selectAll('text').data(links.filter(function (l) { return l.type === 'prop'; })).join('text')
+      .attr('class', 'og-plabel').attr('text-anchor', 'middle').text(function (l) { return l.label; });
 
     var toggle = document.getElementById('onto-graph-individuals');
     if (toggle) toggle.addEventListener('change', function () { box.classList.toggle('no-individuals', !toggle.checked); });
 
-    var allNodes = root.selectAll('.og-node');
+    var DEFAULT_INFO = 'Select a class to see its description and properties.';
     function focus(d) {
-      if (!d) { box.classList.remove('focus'); info.textContent = 'Select a class to see its description and properties.'; return; }
+      if (!d) { box.classList.remove('focus'); info.textContent = DEFAULT_INFO; return; }
+      var meme = d.meme ? d : null;
       if (d.kind === 'individual') d = d.cls;
       var near = new Set([d.id]);
       links.forEach(function (l) { if (l.source.id === d.id || l.target.id === d.id) { near.add(l.source.id); near.add(l.target.id); } });
       box.classList.add('focus');
-      allNodes.classed('on', function (n) { return near.has(n.id); });
+      root.selectAll('.og-node').classed('on', function (m) { return m && near.has(m.id); });
       link.classed('on', function (l) { return l.source.id === d.id || l.target.id === d.id; });
       plabel.classed('on', function (l) { return l.source.id === d.id || l.target.id === d.id; });
+      if (meme) { info.innerHTML = '<b>' + esc(meme.label) + '</b>. Opens the meme page.'; return; }
       var props = links.filter(function (l) { return l.type === 'prop' && l.source.id === d.id; }).map(function (l) { return l.label; });
       var examples = (d.sample || []).filter(function (x) { return !(d.id === HUB && NOT_SHOWN[String(x.label).replace(/^_+/, '')]); })
         .map(function (x) { return d.id === HUB ? nameFor(x.label) : x.label; }).filter(function (x) { return !/�/.test(x); });
-      info.innerHTML = '<b>' + d.id + '</b>' + (d.comment ? ': ' + d.comment.replace(/</g, '&lt;') : '') +
-        (props.length ? '<br><span style="color:var(--muted)">Properties: ' + props.join(', ') + '</span>' : '') +
-        (d.count ? '<br><span style="color:var(--muted)">' + d.count.toLocaleString() + ' individual' + (d.count === 1 ? '' : 's') +
-          (examples.length ? ', e.g. ' + examples.slice(0, 4).join(', ').replace(/</g, '&lt;') : '') + '</span>' : '');
+      info.innerHTML = '<b>' + esc(d.label) + '</b> <span class="og-info-iri">' + esc(d.id) + '</span>' +
+        (d.comment ? '<br>' + esc(d.comment) : '') +
+        (props.length ? '<br><span class="og-info-more">Properties: ' + esc(props.join(', ')) + '</span>' : '') +
+        (d.count ? '<br><span class="og-info-more">' + d.count.toLocaleString() + ' individual' + (d.count === 1 ? '' : 's') +
+          (examples.length ? ', e.g. ' + esc(examples.slice(0, 4).join(', ')) : '') + '</span>' : '');
     }
-    allNodes.on('mouseenter focus', function (e, d) { focus(d); })
-      .on('mouseleave blur', function () { focus(null); })
-      .on('click', function (e, d) { if (!d.meme) focus(d); });
+    // pointer: classes, the caption and the dots; keyboard: classes, the caption and the memes only
+    node.on('mouseenter focus', function (e, d) { focus(d); }).on('mouseleave blur', function () { focus(null); })
+      .on('click', function (e, d) { focus(d); });
+    if (cap) cap.on('mouseenter focus', function (e, d) { focus(d); }).on('mouseleave blur', function () { focus(null); });
+    dot.on('mouseenter', function (e, d) { focus(d); }).on('mouseleave', function () { focus(null); });
+    thumb.on('mouseenter focus', function (e, d) { focus(d); }).on('mouseleave blur', function () { focus(null); });
 
+    // a point at distance r from a node's centre towards another point (lines end on shapes, not inside)
+    function edgePoint(n, toward, r) {
+      var dx = toward.x - n.x, dy = toward.y - n.y, dist = Math.hypot(dx, dy) || 1;
+      return { x: n.x + dx / dist * r, y: n.y + dy / dist * r };
+    }
+    function radiusOf(n, isTarget) {
+      if (n.id === HUB) return HUB_R + 2;
+      if (n.kind === 'individual') return 3.5;
+      return isTarget ? n.side / 2 + 3 : 0;
+    }
     function render() {
-      link.attr('d', function (l) {
-        var sx = l.source.x, sy = l.source.y, tx = l.target.x, ty = l.target.y;
-        if (l.type !== 'prop') return 'M' + sx + ',' + sy + 'L' + tx + ',' + ty;
-        var dx = tx - sx, dy = ty - sy, dist = Math.hypot(dx, dy) || 1;
-        var stop = (l.target.id === HUB ? HUB_R + THUMB_R + 6 : (l.target.side || 8) / 2 + 3);
-        var ex = tx - (dx / dist) * stop, ey = ty - (dy / dist) * stop;   // stop at the target's edge
-        return 'M' + sx + ',' + sy + 'Q' + ((sx + ex) / 2 - dy * 0.12) + ',' + ((sy + ey) / 2 + dx * 0.12) + ' ' + ex + ',' + ey;
+      link.each(function (l) {
+        var a = edgePoint(l.source, l.target, radiusOf(l.source, false)), b = edgePoint(l.target, l.source, radiusOf(l.target, true));
+        l.a = a; l.b = b;
+        var d;
+        if (l.type !== 'prop') d = 'M' + a.x + ',' + a.y + 'L' + b.x + ',' + b.y;
+        else {
+          var dx = b.x - a.x, dy = b.y - a.y;
+          l.mx = (a.x + b.x) / 2 - dy * 0.06; l.my = (a.y + b.y) / 2 + dx * 0.06;
+          d = 'M' + a.x + ',' + a.y + 'Q' + ((a.x + b.x) / 2 - dy * 0.12) + ',' + ((a.y + b.y) / 2 + dx * 0.12) + ' ' + b.x + ',' + b.y;
+        }
+        this.setAttribute('d', d);
       });
-      plabel.attr('x', function (l) { return (l.source.x + l.target.x) / 2 - (l.target.y - l.source.y) * 0.06; })
-        .attr('y', function (l) { return (l.source.y + l.target.y) / 2 + (l.target.x - l.source.x) * 0.06; });
+      plabel.attr('x', function (l) { return l.mx; }).attr('y', function (l) { return l.my; });
       node.attr('transform', function (d) { return 'translate(' + d.x + ',' + d.y + ')'; });
-      // labels point away from the meme: right of the class on the right half, left of it on the left half
+      dot.attr('transform', function (d) { return 'translate(' + d.x + ',' + d.y + ')'; });
+      // names point away from the meme: right of the class on the right half, left of it on the left half
       label.attr('text-anchor', function (d) { return d.x < cx - 4 ? 'end' : 'start'; })
-        .attr('x', function (d) {
-          var off = (d.kind === 'individual' ? 3.5 : d.side / 2) + 6;
-          return d.x < cx - 4 ? -off : off;
-        });
+        .attr('x', function (d) { var off = d.side / 2 + 6; return d.x < cx - 4 ? -off : off; });
+      dot.select('text').attr('x', 7);
+      node.select('.og-hit').each(function (d) {
+        var w = labelWidth(d), off = d.side / 2 + 6, left = d.x < cx - 4, hh = COARSE ? 44 : 26;
+        var x0 = left ? -off - w - 4 : -d.side / 2 - 4, x1 = left ? d.side / 2 + 4 : off + w + 4;
+        this.setAttribute('x', x0); this.setAttribute('width', x1 - x0);
+        this.setAttribute('y', -hh / 2); this.setAttribute('height', hh);
+      });
     }
     render();
-    sim.on('tick', render);   // only runs while a class is dragged
 
     // fit the finished drawing (labels included) into the box, centred, never enlarged; Reset returns here.
     // Where it would have to shrink below 80 % it opens at full size on MemeConcept instead, and people pan

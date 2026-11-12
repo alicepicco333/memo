@@ -445,10 +445,8 @@
   <div id="page-ontology" class="page hidden">
     <div class="onto-doc-shell">
       <header class="onto-doc-header">
-        <div>
-          <h1>Meme Ontology documentation</h1>
-          <p>LODE-compatible structure rendered directly in this page from meme_ontology_unpopulated.owl.</p>
-        </div>
+        <h1>Meme Ontology documentation</h1>
+        <p>LODE-compatible structure rendered directly in this page from <code>meme_ontology_unpopulated.owl</code>.</p>
         <div class="onto-doc-actions">
           <a class="onto-doc-btn" href="meme_ontology_unpopulated.owl" download>Download OWL</a>
           <a class="onto-doc-btn" id="onto-open-lode-top" href="http://150.146.207.114/lode/extract?url=https%3A%2F%2Fraw.githubusercontent.com%2Falicepicco333%2Fmemo%2Frefs%2Fheads%2Fmain%2Fmeme_ontology_unpopulated.owl&owlapi=true&imported=true&closure=true&reasoner=true&lang=en" target="_blank" rel="noopener">Open in LODE</a>
@@ -464,8 +462,10 @@
           <span><i aria-hidden="true" style="width:12px;height:12px;border:1px dashed #141414"></i>Reused class (FRBR, schema.org, Wikidata)</span>
           <span><i aria-hidden="true" style="width:22px;height:0;border-top:1.2px solid #141414"></i>Subclass of</span>
           <span><i aria-hidden="true" style="width:22px;height:0;border-top:1px dashed #8a8378"></i>Object property</span>
-          <span><i aria-hidden="true" style="width:8px;height:8px;background:#8a8378;border-radius:50%"></i>Individual (examples; the number is the total)</span>
-          <span><i class="onto-graph-walk" aria-hidden="true"><b style="background:#e0873a"></b><b style="background:#3a8fd8"></b><b style="background:#8e5cc9"></b><b style="background:#2a9d6f"></b><b style="background:#b03a4b"></b><b style="background:#7a7a2e"></b></i>The classes the Knowledge-graph walk uses, in its colours</span>
+          <span><i aria-hidden="true" style="width:8px;height:8px;background:#8a8378;border-radius:50%"></i>Individual: examples, the number is the total</span>
+          <span><i aria-hidden="true" style="width:22px;height:12px;border:1px solid #d1cabd;border-radius:50%"></i>Rings: steps from MemeConcept</span>
+          <span><i aria-hidden="true" style="width:14px;height:14px;border:1.5px solid #141414;background:#ecebe6;border-radius:50%"></i>Sample memes, open their page</span>
+          <span><i class="onto-graph-walk" aria-hidden="true"><b style="background:#c8742a"></b><b style="background:#3a8fd8"></b><b style="background:#8e5cc9"></b><b style="background:#2a9d6f"></b><b style="background:#b03a4b"></b><b style="background:#7a7a2e"></b></i>Classes the Knowledge-graph walk uses, in its colours</span>
           <label class="onto-graph-toggle"><input type="checkbox" id="onto-graph-individuals" checked> Show individuals</label>
         </div>
         <svg id="onto-graph-svg" role="group" aria-label="Graph of the MEMO ontology's classes, subclass links and object properties, radiating from MemeConcept"></svg>
@@ -474,14 +474,13 @@
 
       <div class="onto-doc-layout">
         <aside class="onto-doc-nav" id="onto-doc-nav"></aside>
-        <main class="onto-doc-main" id="onto-doc-main">
+        <div class="onto-doc-main" id="onto-doc-main">
           <div class="onto-doc-loading">Loading ontology documentation...</div>
-        </main>
+        </div>
       </div>
 
       <footer class="onto-doc-disclaimer">
-        <p>This is a visual restyling of the ontology documentation service offered by LODE. The content of this page has been remodeled visually on this platform but is provided free and open source by LODE.</p>
-        <a class="onto-doc-btn" id="onto-open-lode-bottom" href="http://150.146.207.114/lode/extract?url=https%3A%2F%2Fraw.githubusercontent.com%2Falicepicco333%2Fmemo%2Frefs%2Fheads%2Fmain%2Fmeme_ontology_unpopulated.owl&owlapi=true&imported=true&closure=true&reasoner=true&lang=en" target="_blank" rel="noopener">Open in LODE</a>
+        <p>This is a visual restyling of the ontology documentation service offered by LODE. The content of this page has been remodeled visually on this platform but is provided free and open source by LODE. <a id="onto-open-lode-bottom" href="http://150.146.207.114/lode/extract?url=https%3A%2F%2Fraw.githubusercontent.com%2Falicepicco333%2Fmemo%2Frefs%2Fheads%2Fmain%2Fmeme_ontology_unpopulated.owl&owlapi=true&imported=true&closure=true&reasoner=true&lang=en" target="_blank" rel="noopener">Open in LODE</a></p>
       </footer>
     </div>
   </div>

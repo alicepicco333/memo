@@ -666,7 +666,7 @@
      ═════════════════════════════════════════════════════════════════════════ */
   // `text`: the pill's label colour, ink or white, whichever reads at 4.5:1 or more on that fill
   const PROP_FIELDS = {
-    hasFormat:          { label: 'format',       color: '#e0873a', text: '#141414' },
+    hasFormat:          { label: 'format',       color: '#c8742a', text: '#141414' },   /* 3:1 on paper, like the ontology graph */
     hasOriginPlatform:  { label: 'platform',     color: '#3a8fd8', text: '#141414' },
     hasImageType:       { label: 'image type',   color: '#8e5cc9', text: '#fff' },
     hasTimePeriod:      { label: 'period',       color: '#2a9d6f', text: '#141414' },
