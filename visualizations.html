@@ -432,8 +432,8 @@
             <p class="ds-sec-desc">Meme variants scraped from Know Your Meme. A subset of 50 variants is annotated with transformation dimensions, extents, captions, and cultural references.</p>
           </div>
           <div class="ds-vtoggle-bar">
-            <button class="ds-vtoggle active" data-v="annotated" onclick="showVariants('annotated')">Annotated <span>50</span></button>
-            <button class="ds-vtoggle" data-v="all" onclick="showVariants('all')">All variants <span>391</span></button>
+            <button class="ds-vtoggle active" data-v="annotated" aria-pressed="true" onclick="showVariants('annotated')">Annotated <span>50</span></button>
+            <button class="ds-vtoggle" data-v="all" aria-pressed="false" onclick="showVariants('all')">All variants <span>391</span></button>
           </div>
         </div>
         <div class="dataset-grid" id="ds-variants-grid"></div>
@@ -459,15 +459,16 @@
         <div class="onto-graph-head">
           <h2 id="onto-graph-title">The ontology as a graph</h2>
         </div>
-        <div class="onto-graph-legend" aria-hidden="true">
-          <span><i style="width:12px;height:12px;background:#141414"></i>MEMO class</span>
-          <span><i style="width:12px;height:12px;border:1px dashed #141414"></i>Reused class (FRBR, schema.org, Wikidata)</span>
-          <span><i style="width:22px;height:0;border-top:1.4px solid #141414"></i>Subclass of</span>
-          <span><i style="width:22px;height:0;border-top:1px solid #8a8378"></i>Object property</span>
-          <span><i style="width:8px;height:8px;background:#8a8378;border-radius:50%"></i>Individual (examples; the number is the total)</span>
+        <div class="onto-graph-legend">
+          <span><i aria-hidden="true" style="width:12px;height:12px;background:#141414"></i>MEMO class, sized by its individuals</span>
+          <span><i aria-hidden="true" style="width:12px;height:12px;border:1px dashed #141414"></i>Reused class (FRBR, schema.org, Wikidata)</span>
+          <span><i aria-hidden="true" style="width:22px;height:0;border-top:1.2px solid #141414"></i>Subclass of</span>
+          <span><i aria-hidden="true" style="width:22px;height:0;border-top:1px dashed #8a8378"></i>Object property</span>
+          <span><i aria-hidden="true" style="width:8px;height:8px;background:#8a8378;border-radius:50%"></i>Individual (examples; the number is the total)</span>
+          <span><i class="onto-graph-walk" aria-hidden="true"><b style="background:#e0873a"></b><b style="background:#3a8fd8"></b><b style="background:#8e5cc9"></b><b style="background:#2a9d6f"></b><b style="background:#b03a4b"></b><b style="background:#7a7a2e"></b></i>The classes the Knowledge-graph walk uses, in its colours</span>
           <label class="onto-graph-toggle"><input type="checkbox" id="onto-graph-individuals" checked> Show individuals</label>
         </div>
-        <svg id="onto-graph-svg" role="img" aria-label="Graph of the MEMO ontology's classes, subclass links and object properties"></svg>
+        <svg id="onto-graph-svg" role="group" aria-label="Graph of the MEMO ontology's classes, subclass links and object properties, radiating from MemeConcept"></svg>
         <div class="onto-graph-info" id="onto-graph-info" aria-live="polite">Select a class to see its description and properties.</div>
       </section>
 

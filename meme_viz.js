@@ -2218,6 +2218,7 @@ function buildVariantsSection(mode) {
   dsVariantMode = mode;
   document.querySelectorAll('.ds-vtoggle').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.v === mode);
+    btn.setAttribute('aria-pressed', String(btn.dataset.v === mode));
   });
 
   const grid = document.getElementById('ds-variants-grid');

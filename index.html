@@ -46,7 +46,7 @@
             <img src="img/hero/wojak.webp" alt="" width="320" height="291">
             <span class="char-bubble wojak-bubble">look, an ontology!</span>
           </a>
-          <a class="hero-char char-pepe" href="visualizations.html#meme/pepehands" tabindex="-1" data-edge="originPlatform · Twitch" data-side="left">
+          <a class="hero-char char-pepe" href="visualizations.html#meme/pepehands" tabindex="-1" data-edge="hasOriginPlatform · Twitch" data-side="left">
             <img src="img/hero/pepe.webp" alt="" width="520" height="395">
             <span class="char-bubble">feels bad man</span>
           </a>
@@ -558,11 +558,16 @@
           });
         });
       }
+      // the hover graph only exists where there is hover; on touch a tap opens the meme
+      var SHUFFLE_NOTE = desktopHover
+        ? 'A random mix of memes and their variants. Hover a tile to see its properties.'
+        : 'A random mix of memes and their variants. Tap a tile to open it.';
+      document.getElementById('collage-sort-note').textContent = SHUFFLE_NOTE;
       document.querySelectorAll('.collage-sort button').forEach(function(btn) {
         btn.addEventListener('click', function() {
           var mode = btn.dataset.sort;
           var NOTES = {
-            shuffle: 'A random mix of memes and their variants. Hover a tile to see its properties.',
+            shuffle: SHUFFLE_NOTE,
             year: 'Oldest to newest, by the year each meme appeared. A label marks where each year starts. Variants follow at the end.',
             colour: 'By average colour, from red through yellow, green and blue to purple, then greys and black and white. The strip on each tile is its colour.',
             format: 'Grouped by main format, A to Z. A label marks where each format starts. Variants follow at the end.'

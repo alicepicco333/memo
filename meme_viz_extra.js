@@ -127,7 +127,9 @@
   }
   function setActive(container, btn) {
     container.querySelectorAll('.viz-btn[data-group]').forEach(b => {
-      if (b.dataset.group === btn.dataset.group) b.classList.toggle('active', b === btn);
+      if (b.dataset.group !== btn.dataset.group) return;
+      b.classList.toggle('active', b === btn);
+      b.setAttribute('aria-pressed', String(b === btn));   // the selected choice is only a change of face: say it
     });
   }
 
@@ -183,7 +185,8 @@
         drawFamily(wrap, groups.find(x => x.name === familyCurrent), true);
       });
       b.dataset.group = 'meme';
-      if (g.name === familyCurrent) b.classList.add('active');
+      b.classList.toggle('active', g.name === familyCurrent);
+      b.setAttribute('aria-pressed', String(g.name === familyCurrent));
       bar.appendChild(b);
     });
     const legend = document.createElement('span');
@@ -445,7 +448,8 @@
         .forEach(([mode, text]) => {
           const b = controlBtn(text, () => { spectrum.mode = mode; setActive(bar, b); layoutSpectrum(true); });
           b.dataset.group = 'mode';
-          if (mode === spectrum.mode) b.classList.add('active');
+          b.classList.toggle('active', mode === spectrum.mode);
+          b.setAttribute('aria-pressed', String(mode === spectrum.mode));
           bar.appendChild(b);
         });
       const slider = document.createElement('label');
@@ -636,8 +640,13 @@
     ctx.fillStyle = MUTED_INK;
     ctx.font = `${TICK_PX}px ${chartFont()}`;
     ctx.textBaseline = 'middle';
+    // labels inside the field (the wheel's "grey", "saturated →") sit on a paper halo over the squares
+    ctx.lineWidth = 3;
+    ctx.lineJoin = 'round';
+    ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim() || '#f7f5f0';
     spectrum.labels.forEach(l => {
       ctx.textAlign = l.align === 'right' ? 'right' : 'center';
+      ctx.strokeText(l.text, l.x, l.y);
       ctx.fillText(l.text, l.x, l.y);
     });
     ctx.textAlign = 'right';
@@ -1038,7 +1047,8 @@
         [['count', 'Memes per year'], ['share', 'Share of year']].forEach(([mode, text]) => {
           const b = controlBtn(text, () => { story.mode = mode; setActive(bar, b); drawStory(true); });
           b.dataset.group = 'mode';
-          if (mode === story.mode) b.classList.add('active');
+          b.classList.toggle('active', mode === story.mode);
+          b.setAttribute('aria-pressed', String(mode === story.mode));
           bar.appendChild(b);
         });
       }
