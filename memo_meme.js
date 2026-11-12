@@ -12,6 +12,7 @@
   var CDN = 'https://i.kym-cdn.com/';
   var memesPromise = null;
   var BANNER_SELECTOR = [
+    '#viz-opener h1',            // written as a banner in visualizations.html: only its strip is filled
     '#page-about .page-inner > h1',
     '#page-disclaimer .page-inner > h1',
     '#page-dataset .page-inner > h1',
@@ -126,10 +127,32 @@
   }
 
   /* ── Caption banners ──────────────────────────────────────────────────── */
+  function fillStrip(strip) {
+    strip.setAttribute('data-filled', '');
+    loadMemes().then(function(list) {
+      var pics = list.filter(function(m) { return !m.a && m.v > 5000; });
+      pick(pics.length ? pics : list, 14).forEach(function(m) {
+        var img = document.createElement('img');
+        img.src = imgUrl(m);
+        img.alt = '';
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.onerror = function() { img.remove(); };
+        strip.appendChild(img);
+      });
+    });
+  }
+
   function decorate(root) {
     var titles = (root || document).querySelectorAll ? (root || document).querySelectorAll(BANNER_SELECTOR) : [];
     Array.prototype.forEach.call(titles, function(h) {
-      if (h.closest('.meme-banner')) return;
+      var banner = h.closest('.meme-banner');
+      if (banner) {
+        // a banner already in the page's markup (the visualizations opener): fill its strip once
+        var own = banner.querySelector('.meme-banner-strip');
+        if (own && !own.hasAttribute('data-filled')) fillStrip(own);
+        return;
+      }
       var wrap = document.createElement('div');
       wrap.className = 'meme-banner';
       var strip = document.createElement('div');
@@ -139,18 +162,7 @@
       wrap.appendChild(strip);
       wrap.appendChild(h);
       h.classList.add('meme-caption');
-      loadMemes().then(function(list) {
-        var pics = list.filter(function(m) { return !m.a && m.v > 5000; });
-        pick(pics.length ? pics : list, 14).forEach(function(m) {
-          var img = document.createElement('img');
-          img.src = imgUrl(m);
-          img.alt = '';
-          img.loading = 'lazy';
-          img.decoding = 'async';
-          img.onerror = function() { img.remove(); };
-          strip.appendChild(img);
-        });
-      });
+      fillStrip(strip);
     });
   }
 

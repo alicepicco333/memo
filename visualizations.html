@@ -20,17 +20,17 @@
       <div class="topnav-dropdown">
         <a class="topnav-link topnav-dropdown-trigger" href="visualizations.html" data-page="viz">Visualizations</a>
         <div class="topnav-dropdown-menu">
-          <a class="topnav-dropdown-item" href="#sec-time">Temporal Distribution of Format</a>
-          <a class="topnav-dropdown-item" href="#sec-popularity">Popularity × Format</a>
-          <a class="topnav-dropdown-item" href="#sec-platform-time">Platform Origin × TimePeriod</a>
-          <a class="topnav-dropdown-item topnav-dropdown-divider" href="#sec-variant-bubble">Creative Productivity × Cultural Prominence</a>
-          <a class="topnav-dropdown-item" href="#sec-variant-gallery">Variant Gallery</a>
-          <a class="topnav-dropdown-item topnav-dropdown-divider" href="#sec-family">Variant Family Tree</a>
-          <a class="topnav-dropdown-item" href="#sec-spectrum">Colour Spectrum</a>
-          <a class="topnav-dropdown-item" href="#sec-walk">Knowledge-Graph Walk</a>
-          <a class="topnav-dropdown-item" href="#sec-story">Platform Story</a>
-          <a class="topnav-dropdown-item" href="#sec-confidence">Classifier Confidence</a>
-          <a class="topnav-dropdown-item" href="#sec-flow">Property Flow</a>
+          <a class="topnav-dropdown-item" href="#sec-time">Temporal distribution of format</a>
+          <a class="topnav-dropdown-item" href="#sec-popularity">Popularity × format</a>
+          <a class="topnav-dropdown-item" href="#sec-platform-time">Platform origin × TimePeriod</a>
+          <a class="topnav-dropdown-item topnav-dropdown-divider" href="#sec-variant-bubble">Creative productivity × cultural prominence</a>
+          <a class="topnav-dropdown-item" href="#sec-variant-gallery">Variant gallery</a>
+          <a class="topnav-dropdown-item topnav-dropdown-divider" href="#sec-family">Variant family tree</a>
+          <a class="topnav-dropdown-item" href="#sec-spectrum">Colour spectrum</a>
+          <a class="topnav-dropdown-item" href="#sec-walk">Knowledge-graph walk</a>
+          <a class="topnav-dropdown-item" href="#sec-story">Platform story</a>
+          <a class="topnav-dropdown-item" href="#sec-confidence">Classifier confidence</a>
+          <a class="topnav-dropdown-item" href="#sec-flow">Property flow</a>
         </div>
       </div>
       <a class="topnav-link" href="#dataset"  data-page="dataset">Dataset</a>
@@ -43,69 +43,137 @@
   </nav>
 
   <!-- Side navigation (viz only) -->
-  <nav class="dot-nav" id="dot-nav">
-    <a class="dot active" href="#sec-time"           data-label="Temporal Format Distribution"></a>
-    <a class="dot"        href="#sec-popularity"     data-label="Popularity × Format"></a>
-    <a class="dot"        href="#sec-platform-time"  data-label="Platform × TimePeriod"></a>
-    <a class="dot"        href="#sec-variant-bubble" data-label="Creative Productivity × Cultural Prominence"></a>
-    <a class="dot"        href="#sec-variant-gallery" data-label="Variant Gallery"></a>
-    <a class="dot"        href="#sec-family"         data-label="Variant Family Tree"></a>
-    <a class="dot"        href="#sec-spectrum"       data-label="Colour Spectrum"></a>
-    <a class="dot"        href="#sec-walk"           data-label="Knowledge-Graph Walk"></a>
-    <a class="dot"        href="#sec-story"          data-label="Platform Story"></a>
-    <a class="dot"        href="#sec-confidence"     data-label="Classifier Confidence"></a>
-    <a class="dot"        href="#sec-flow"           data-label="Property Flow"></a>
+  <nav class="dot-nav" id="dot-nav" aria-label="Contents">
+    <span class="dot-group">Global dataset</span>
+    <a class="dot active" href="#sec-time" aria-current="location">Temporal format distribution</a>
+    <a class="dot" href="#sec-popularity">Popularity × format</a>
+    <a class="dot" href="#sec-platform-time">Platform × TimePeriod</a>
+    <span class="dot-group">D0 sample</span>
+    <a class="dot" href="#sec-variant-bubble">Creative productivity × cultural prominence</a>
+    <span class="dot-group">Variants</span>
+    <a class="dot" href="#sec-variant-gallery">Variant gallery</a>
+    <span class="dot-group">Interactive explorations</span>
+    <a class="dot" href="#sec-family">Variant family tree</a>
+    <a class="dot" href="#sec-spectrum">Colour spectrum</a>
+    <a class="dot" href="#sec-walk">Knowledge-graph walk</a>
+    <a class="dot" href="#sec-story">Platform story</a>
+    <a class="dot" href="#sec-confidence">Classifier confidence</a>
+    <a class="dot" href="#sec-flow">Property flow</a>
   </nav>
 
   <!-- Main scrollable viz page -->
   <main id="app">
 
+    <!-- Opener: the site's caption banner (memo_meme.js fills the strip), then what the eleven views cover -->
+    <header id="viz-opener" class="viz-opener">
+      <div class="meme-banner">
+        <div class="meme-banner-strip" aria-hidden="true"></div>
+        <h1 class="meme-caption">Visualizations</h1>
+      </div>
+      <p class="viz-opener-text">Eleven views of 5,000 Know Your Meme entries: when memes appear, where they come from, how they change and how sure the labels are.</p>
+    </header>
+
+    <!-- Each section: title, one finding with the memes that show it, the chart, then how to read it.
+         The three sideways boxes (.viz-hscroll) only scroll on phones, where those charts draw at 640 px. -->
     <section class="viz-section" id="sec-time">
-      <div class="viz-group-label">Global Dataset Visualizations</div>
+      <div class="viz-group-label">Global dataset</div>
       <header class="sec-header">
-        <h2>Temporal Distribution of Format</h2>
-        <p>Year on X, meme format on Y, bubble size = entries. Click a bubble to browse matching memes.</p>
+        <h2>Temporal distribution of format</h2>
+        <div class="viz-finding">
+          <p class="viz-finding-text">In 2019, the busiest year, Exploitable leads with 155 of the 665 entries.</p>
+          <ul class="viz-finding-memes" aria-label="Memes that show it">
+            <li><a href="#meme/woman-yelling-at-a-cat" title="Woman Yelling At A Cat"><img src="img/findings/woman-yelling-at-a-cat.webp" alt="Woman Yelling At A Cat" width="64" height="64" loading="lazy" decoding="async"></a></li>
+            <li><a href="#meme/average-fan-vs-average-enjoyer" title="Average Fan Vs Average Enjoyer"><img src="img/findings/average-fan-vs-average-enjoyer.webp" alt="Average Fan Vs Average Enjoyer" width="64" height="64" loading="lazy" decoding="async"></a></li>
+            <li><a href="#meme/staring-hamster" title="Staring Hamster"><img src="img/findings/staring-hamster.webp" alt="Staring Hamster" width="64" height="64" loading="lazy" decoding="async"></a></li>
+            <li><a href="#meme/unbothered-moisturized-happy-in-my-lane-focused-flourishing" title="Unbothered Moisturized Happy In My Lane Focused Flourishing"><img src="img/findings/unbothered-moisturized-happy-in-my-lane-focused.webp" alt="Unbothered Moisturized Happy In My Lane Focused Flourishing" width="64" height="64" loading="lazy" decoding="async"></a></li>
+          </ul>
+        </div>
       </header>
-      <div class="graph-wrap" id="graph-time"></div>
+      <div class="viz-hscroll" tabindex="0" role="region" aria-label="Chart, scrolls sideways">
+        <div class="graph-wrap" id="graph-time"></div>
+      </div>
+      <p class="viz-hscroll-hint">Scroll sideways to see the whole chart.</p>
+      <p class="viz-howto"><span class="viz-howto-label">How to read </span>Year on X, meme format on Y, bubble size = entries. Click a bubble to browse matching memes.</p>
     </section>
 
     <section class="viz-section" id="sec-popularity">
       <header class="sec-header">
-        <h2>Popularity × Format</h2>
-        <p>X = MemeFormat, Y = average views per format, bubble size = number of entries in that format.</p>
+        <h2>Popularity × format</h2>
+        <div class="viz-finding">
+          <p class="viz-finding-text">Creepypasta has only 22 entries but draws the most views per entry: 142,377.</p>
+          <ul class="viz-finding-memes" aria-label="Memes that show it">
+            <li><a href="#meme/the-backrooms" title="The Backrooms"><img src="img/findings/the-backrooms.webp" alt="The Backrooms" width="64" height="64" loading="lazy" decoding="async"></a></li>
+            <li><a href="#meme/typing-into-youtube-full-stop-punctuation" title="Typing Into Youtube Full Stop Punctuation"><img src="img/findings/typing-into-youtube-full-stop-punctuation.webp" alt="Typing Into Youtube Full Stop Punctuation" width="64" height="64" loading="lazy" decoding="async"></a></li>
+            <li><a href="#meme/siren-head" title="Siren Head"><img src="img/findings/siren-head.webp" alt="Siren Head" width="64" height="64" loading="lazy" decoding="async"></a></li>
+            <li><a href="#meme/the-lamp-story-reddit-creepypasta" title="The Lamp Story Reddit Creepypasta"><img src="img/findings/the-lamp-story-reddit-creepypasta.webp" alt="The Lamp Story Reddit Creepypasta" width="64" height="64" loading="lazy" decoding="async"></a></li>
+          </ul>
+        </div>
       </header>
-      <div class="graph-wrap" id="graph-popularity"></div>
+      <div class="viz-hscroll" tabindex="0" role="region" aria-label="Chart, scrolls sideways">
+        <div class="graph-wrap" id="graph-popularity"></div>
+      </div>
+      <p class="viz-hscroll-hint">Scroll sideways to see the whole chart.</p>
+      <p class="viz-howto"><span class="viz-howto-label">How to read </span>X = MemeFormat, Y = average views per format, bubble size = number of entries in that format.</p>
     </section>
 
-    <section class="viz-section" id="sec-platform-time">
-      <header class="sec-header">
-        <h2>Platform Origin × TimePeriod</h2>
-        <p>Stacked proportions by period to show platform succession over meme history.</p>
-      </header>
+    <section class="viz-section viz-split" id="sec-platform-time">
+      <div class="viz-col">
+        <header class="sec-header">
+          <h2>Platform origin × TimePeriod</h2>
+          <div class="viz-finding">
+            <p class="viz-finding-text">Since 2021, TikTok is the source of 33% of attributed memes, YouTube of 10%.</p>
+            <ul class="viz-finding-memes" aria-label="Memes that show it">
+              <li><a href="#meme/super-idol-%25E7%259A%2584%25E7%25AC%2591%25E5%25AE%25B9" title="Super Idol 的笑容"><img src="img/findings/super-idol.webp" alt="Super Idol 的笑容" width="64" height="64" loading="lazy" decoding="async"></a></li>
+              <li><a href="#meme/italian-brainrot-ai-italian-animals" title="Italian Brainrot Ai Italian Animals"><img src="img/findings/italian-brainrot-ai-italian-animals.webp" alt="Italian Brainrot Ai Italian Animals" width="64" height="64" loading="lazy" decoding="async"></a></li>
+              <li><a href="#meme/shadow-wizard-money-gang" title="Shadow Wizard Money Gang"><img src="img/findings/shadow-wizard-money-gang.webp" alt="Shadow Wizard Money Gang" width="64" height="64" loading="lazy" decoding="async"></a></li>
+              <li><a href="#meme/tralalero-tralala" title="Tralalero Tralala"><img src="img/findings/tralalero-tralala.webp" alt="Tralalero Tralala" width="64" height="64" loading="lazy" decoding="async"></a></li>
+            </ul>
+          </div>
+        </header>
+        <p class="viz-howto"><span class="viz-howto-label">How to read </span>Stacked proportions by period to show platform succession over meme history.</p>
+      </div>
       <div class="graph-wrap" id="graph-platform-time"></div>
     </section>
 
     <section class="viz-section" id="sec-variant-bubble">
-      <div class="viz-group-label">D0 Visualization</div>
+      <div class="viz-group-label">D0 sample</div>
       <header class="sec-header">
-        <h2>Creative Productivity × Cultural Prominence</h2>
-        <p>Each of the 50 sampled memes is shown as its image, sized by popularity. X = Number of Views, Y = Number of Variants.</p>
+        <h2>Creative productivity × cultural prominence</h2>
+        <div class="viz-finding">
+          <p class="viz-finding-text">Me Gusta draws the most views, 9,259,700, from only 532 variant photos.</p>
+          <ul class="viz-finding-memes" aria-label="Memes that show it">
+            <li><a href="#d0/3370" title="Karen"><img src="img/findings/karen.webp" alt="Karen" width="64" height="64" loading="lazy" decoding="async"></a></li>
+            <li><a href="#d0/71" title="Me Gusta"><img src="img/findings/me-gusta.webp" alt="Me Gusta" width="64" height="64" loading="lazy" decoding="async"></a></li>
+            <li><a href="#d0/796" title="Bowsette"><img src="img/findings/bowsette.webp" alt="Bowsette" width="64" height="64" loading="lazy" decoding="async"></a></li>
+            <li><a href="#d0/2343" title="Big Chungus"><img src="img/findings/big-chungus.webp" alt="Big Chungus" width="64" height="64" loading="lazy" decoding="async"></a></li>
+          </ul>
+        </div>
       </header>
       <div class="graph-wrap" id="graph-variant-bubble"></div>
+      <p class="viz-howto"><span class="viz-howto-label">How to read </span>Each of the 50 sampled memes is shown as its image, sized by popularity. X = Number of Views, Y = Number of Variants.</p>
     </section>
 
     <section class="viz-section" id="sec-variant-gallery">
-      <div class="viz-group-label">Variant Visualization</div>
+      <div class="viz-group-label">Variants</div>
       <header class="sec-header">
-        <h2>Variant Gallery by Transformation Extent</h2>
-        <p>50 annotated variants across 5 memes, sorted left→right from Minimal to Parody. Each row shows how a template's visual identity changes under transformation.</p>
+        <h2>Variant gallery by transformation extent</h2>
+        <div class="viz-finding">
+          <p class="viz-finding-text">Moderate changes lead: 19 of the 50 annotated variants.</p>
+          <ul class="viz-finding-memes" aria-label="Memes that show it">
+            <li><a href="#variant/3171622" title="Giving thanks"><img src="img/findings/variant-3171622.webp" alt="Giving thanks" width="64" height="64" loading="lazy" decoding="async"></a></li>
+            <li><a href="#variant/2481174" title="We're going to the moon... eventually"><img src="img/findings/variant-2481174.webp" alt="We're going to the moon... eventually" width="64" height="64" loading="lazy" decoding="async"></a></li>
+            <li><a href="#variant/3039073" title="Oh Stonks"><img src="img/findings/variant-3039073.webp" alt="Oh Stonks" width="64" height="64" loading="lazy" decoding="async"></a></li>
+          </ul>
+        </div>
       </header>
+      <!-- the gallery is about 2,000 px tall, so How to read stays above it -->
+      <p class="viz-howto"><span class="viz-howto-label">How to read </span>50 annotated variants across 5 memes, sorted left→right from Minimal to Parody. Each row shows how a template's visual identity changes under transformation.</p>
 
       <!-- Transformation Dimension Legend -->
       <div class="transform-legend">
         <details class="transform-legend-collapsible">
           <summary>
-            <h3>Eight Transformation Dimensions</h3>
+            <h3>Eight transformation dimensions</h3>
             <span class="transform-legend-hint" aria-hidden="true"></span>
           </summary>
           <div class="legend-grid">
@@ -115,15 +183,15 @@
             </div>
             <div class="legend-item">
               <strong>VisualSubstrate</strong>
-              <p>The original image has been subjected to deliberate degradation, heavy compression artefacts, extreme saturation manipulation or distortion — the so-called fried meme aesthetic — preserving the template's formal structure while corrupting or altering its visual quality.</p>
+              <p>The original image has been subjected to deliberate degradation, heavy compression artefacts, extreme saturation manipulation or distortion (the so-called fried meme aesthetic), preserving the template's formal structure while corrupting or altering its visual quality.</p>
             </div>
             <div class="legend-item">
               <strong>MediumShift</strong>
-              <p>The representational medium changes - photographic to drawn or vice versa.</p>
+              <p>The representational medium changes: photographic to drawn or vice versa.</p>
             </div>
             <div class="legend-item">
               <strong>StyleShift</strong>
-              <p>Visual style changes without a full medium shift — the visual register changes but the representational medium remains the same.</p>
+              <p>Visual style changes without a full medium shift: the visual register changes but the representational medium remains the same.</p>
             </div>
             <div class="legend-item">
               <strong>CompositionShift</strong>
@@ -131,7 +199,7 @@
             </div>
             <div class="legend-item">
               <strong>CrossoverMerge</strong>
-              <p>Characters or visual elements from another identifiable meme template or fictional intellectual property — film, television series, video game, book, or other media franchise — are visually integrated into the image. Caption-only references to external IP do not qualify.</p>
+              <p>Characters or visual elements from another identifiable meme template or fictional intellectual property (film, television series, video game, book, or other media franchise) are visually integrated into the image. Caption-only references to external IP do not qualify.</p>
             </div>
             <div class="legend-item">
               <strong>LanguageShift</strong>
@@ -148,61 +216,122 @@
       <div class="graph-wrap" id="graph-variant-gallery"></div>
     </section>
 
-    <section class="viz-section" id="sec-family">
-      <div class="viz-group-label">Interactive Explorations</div>
-      <header class="sec-header">
-        <h2>Variant Family Tree</h2>
-        <p>The original template sits at the centre; each annotated variant branches out to the ring of its transformation extent, grouped by its main transformation dimension. Hover a variant to morph the centre into it.</p>
-      </header>
-      <div class="viz-controls" id="family-controls"></div>
+    <section class="viz-section viz-split" id="sec-family">
+      <div class="viz-col">
+        <div class="viz-group-label">Interactive explorations</div>
+        <header class="sec-header">
+          <h2>Variant family tree</h2>
+          <div class="viz-finding">
+            <p class="viz-finding-text">A new caption is the most common change, in 21 of the 50 variants.</p>
+            <ul class="viz-finding-memes" aria-label="Memes that show it">
+              <li><a href="#variant/3171622" title="Giving thanks"><img src="img/findings/variant-3171622.webp" alt="Giving thanks" width="64" height="64" loading="lazy" decoding="async"></a></li>
+              <li><a href="#variant/3039073" title="Oh Stonks"><img src="img/findings/variant-3039073.webp" alt="Oh Stonks" width="64" height="64" loading="lazy" decoding="async"></a></li>
+              <li><a href="#variant/2330119" title="All the souls"><img src="img/findings/variant-2330119.webp" alt="All the souls" width="64" height="64" loading="lazy" decoding="async"></a></li>
+              <li><a href="#variant/2130917" title="Really Not Stonks"><img src="img/findings/variant-2130917.webp" alt="Really Not Stonks" width="64" height="64" loading="lazy" decoding="async"></a></li>
+            </ul>
+          </div>
+        </header>
+        <div class="viz-controls" id="family-controls"></div>
+        <p class="viz-howto"><span class="viz-howto-label">How to read </span>The original template sits at the centre; each annotated variant branches out to the ring of its transformation extent, grouped by its main transformation dimension. Hover a variant to morph the centre into it.</p>
+      </div>
       <div class="graph-wrap" id="graph-family"></div>
     </section>
 
     <section class="viz-section" id="sec-spectrum">
       <header class="sec-header">
-        <h2>Colour Spectrum</h2>
-        <p>All 5,000 memes drawn as their average colour. Rearrange them, or scrub and play through the years to watch the palette of meme culture fill in. Click any square to open the meme.</p>
+        <h2>Colour spectrum</h2>
+        <div class="viz-finding">
+          <p class="viz-finding-text">Memes lose colour: average saturation falls from 19.6% up to 2011 to 15.8% from 2018.</p>
+          <ul class="viz-finding-memes" aria-label="Memes that show it">
+            <li><a href="#meme/%25F0%259F%2591%2589%25F0%259F%2591%2588-two-fingers-touching" title="Two Fingers Touching"><img src="img/findings/two-fingers-touching.webp" alt="Two Fingers Touching" width="64" height="64" loading="lazy" decoding="async"></a></li>
+            <li><a href="#meme/freddie-freaker" title="Freddie Freaker"><img src="img/findings/freddie-freaker.webp" alt="Freddie Freaker" width="64" height="64" loading="lazy" decoding="async"></a></li>
+            <li><a href="#meme/big-chungus" title="Big Chungus"><img src="img/findings/big-chungus.webp" alt="Big Chungus" width="64" height="64" loading="lazy" decoding="async"></a></li>
+            <li><a href="#meme/crazy-i-was-crazy-once-they-locked-me-in-a-room-a-rubber-room-a-rubber-room-with-rats-and-rats-make-me-crazy" title="Crazy I Was Crazy Once They Locked Me In A Room A Rubber Room A Rubber Room With Rats And Rats Make Me Crazy"><img src="img/findings/crazy-i-was-crazy-once-they-locked-me-in-a-room.webp" alt="Crazy I Was Crazy Once They Locked Me In A Room A Rubber Room A Rubber Room With Rats And Rats Make Me Crazy" width="64" height="64" loading="lazy" decoding="async"></a></li>
+          </ul>
+        </div>
       </header>
       <div class="viz-controls" id="spectrum-controls"></div>
       <div class="graph-wrap graph-wrap-dark" id="graph-spectrum"></div>
+      <p class="viz-howto"><span class="viz-howto-label">How to read </span>All 5,000 memes drawn as their average colour. Rearrange them, or scrub and play through the years to watch the palette of meme culture fill in. Click any square to open the meme.</p>
     </section>
 
-    <section class="viz-section" id="sec-walk">
-      <header class="sec-header">
-        <h2>Knowledge-Graph Walk</h2>
-        <p>Walk the ontology one hop at a time: a meme opens into its properties, a property pulls in other memes that share it. Every node can be sent to the SPARQL explorer as a query.</p>
-      </header>
-      <div class="viz-controls" id="walk-controls"></div>
+    <section class="viz-section viz-split" id="sec-walk">
+      <div class="viz-col">
+        <header class="sec-header">
+          <h2>Knowledge-graph walk</h2>
+          <div class="viz-finding">
+            <p class="viz-finding-text">The image type Cartoon links the most memes: 2,265 of the 5,000.</p>
+            <ul class="viz-finding-memes" aria-label="Memes that show it">
+              <li><a href="#meme/big-chungus" title="Big Chungus"><img src="img/findings/big-chungus.webp" alt="Big Chungus" width="64" height="64" loading="lazy" decoding="async"></a></li>
+              <li><a href="#meme/stonks" title="Stonks"><img src="img/findings/stonks.webp" alt="Stonks" width="64" height="64" loading="lazy" decoding="async"></a></li>
+              <li><a href="#meme/lord-marquaad-e" title="Lord Marquaad E"><img src="img/findings/lord-marquaad-e.webp" alt="Lord Marquaad E" width="64" height="64" loading="lazy" decoding="async"></a></li>
+              <li><a href="#meme/ankha-zone" title="Ankha Zone"><img src="img/findings/ankha-zone.webp" alt="Ankha Zone" width="64" height="64" loading="lazy" decoding="async"></a></li>
+            </ul>
+          </div>
+        </header>
+        <div class="viz-controls" id="walk-controls"></div>
+        <p class="viz-howto"><span class="viz-howto-label">How to read </span>Walk the ontology one hop at a time: a meme opens into its properties, a property pulls in other memes that share it. Every node can be sent to the SPARQL explorer as a query.</p>
+      </div>
       <div class="graph-wrap" id="graph-walk"></div>
     </section>
 
     <section class="viz-section story-section" id="sec-story">
       <header class="sec-header">
-        <h2>Platform Story</h2>
-        <p>Where attributed memes came from, year by year (2004–2025). Scroll through the chapters; memes dated before their platform existed are excluded, as in Platform × TimePeriod.</p>
+        <h2>Platform story</h2>
+        <div class="viz-finding">
+          <p class="viz-finding-text">Of the 5,000 memes, 3,610 name the platform they came from.</p>
+          <ul class="viz-finding-memes" aria-label="Memes that show it">
+            <li><a href="#meme/woman-yelling-at-a-cat" title="Woman Yelling At A Cat"><img src="img/findings/woman-yelling-at-a-cat.webp" alt="Woman Yelling At A Cat" width="64" height="64" loading="lazy" decoding="async"></a></li>
+            <li><a href="#meme/me-and-the-boys" title="Me And The Boys"><img src="img/findings/me-and-the-boys.webp" alt="Me And The Boys" width="64" height="64" loading="lazy" decoding="async"></a></li>
+            <li><a href="#meme/i-aint-reading-all-that" title="I Aint Reading All That"><img src="img/findings/i-aint-reading-all-that.webp" alt="I Aint Reading All That" width="64" height="64" loading="lazy" decoding="async"></a></li>
+            <li><a href="#meme/mike-wazowski-sulley-face-swap" title="Mike Wazowski Sulley Face Swap"><img src="img/findings/mike-wazowski-sulley-face-swap.webp" alt="Mike Wazowski Sulley Face Swap" width="64" height="64" loading="lazy" decoding="async"></a></li>
+          </ul>
+        </div>
       </header>
       <div class="viz-controls" id="story-controls"></div>
       <div class="story-body">
         <div class="story-sticky"><div class="graph-wrap" id="graph-story"></div></div>
         <div class="story-steps" id="story-steps"></div>
       </div>
+      <p class="viz-howto"><span class="viz-howto-label">How to read </span>Where attributed memes came from, year by year (2004–2025). Scroll through the chapters; memes dated before their platform existed are excluded, as in Platform × TimePeriod.</p>
     </section>
 
     <section class="viz-section" id="sec-confidence">
       <header class="sec-header">
-        <h2>Classifier Confidence</h2>
-        <p>Every meme placed by how confident CLIP was about its image type. Raise the threshold to see which labels would not survive a stricter classifier.</p>
+        <h2>Classifier confidence</h2>
+        <div class="viz-finding">
+          <p class="viz-finding-text">Painting is the least certain image type, with a mean score of 0.47.</p>
+          <ul class="viz-finding-memes" aria-label="Memes that show it">
+            <li><a href="#meme/cheems" title="Cheems"><img src="img/findings/cheems.webp" alt="Cheems" width="64" height="64" loading="lazy" decoding="async"></a></li>
+            <li><a href="#meme/would-you-still-love-me-if-i-was-a-worm" title="Would You Still Love Me If I Was A Worm"><img src="img/findings/would-you-still-love-me-if-i-was-a-worm.webp" alt="Would You Still Love Me If I Was A Worm" width="64" height="64" loading="lazy" decoding="async"></a></li>
+            <li><a href="#meme/james-barretts-wife" title="James Barretts Wife"><img src="img/findings/james-barretts-wife.webp" alt="James Barretts Wife" width="64" height="64" loading="lazy" decoding="async"></a></li>
+            <li><a href="#meme/best-by-07-sep-18-043-40" title="Best By 07 Sep 18 043 40"><img src="img/findings/best-by-07-sep-18-043-40.webp" alt="Best By 07 Sep 18 043 40" width="64" height="64" loading="lazy" decoding="async"></a></li>
+          </ul>
+        </div>
       </header>
       <div class="viz-controls" id="confidence-controls"></div>
       <div class="graph-wrap" id="graph-confidence"></div>
+      <p class="viz-howto"><span class="viz-howto-label">How to read </span>Every meme placed by how confident CLIP was about its image type. Raise the threshold to see which labels would not survive a stricter classifier.</p>
     </section>
 
     <section class="viz-section" id="sec-flow">
       <header class="sec-header">
-        <h2>Property Flow</h2>
-        <p>How the 5,000 memes flow from origin platform to primary format, image type and text presence. Hover a node to trace every meme that passes through it; click to browse them.</p>
+        <h2>Property flow</h2>
+        <div class="viz-finding">
+          <p class="viz-finding-text">The widest flow runs from Twitter/X to the Catchphrase format: 262 memes.</p>
+          <ul class="viz-finding-memes" aria-label="Memes that show it">
+            <li><a href="#meme/leopards-eating-peoples-faces-party" title="Leopards Eating Peoples Faces Party"><img src="img/findings/leopards-eating-peoples-faces-party.webp" alt="Leopards Eating Peoples Faces Party" width="64" height="64" loading="lazy" decoding="async"></a></li>
+            <li><a href="#meme/i-aint-reading-all-that" title="I Aint Reading All That"><img src="img/findings/i-aint-reading-all-that.webp" alt="I Aint Reading All That" width="64" height="64" loading="lazy" decoding="async"></a></li>
+            <li><a href="#meme/dont-kill-yourself-youre-so-sexy-aha" title="Dont Kill Yourself Youre So Sexy Aha"><img src="img/findings/dont-kill-yourself-youre-so-sexy-aha.webp" alt="Dont Kill Yourself Youre So Sexy Aha" width="64" height="64" loading="lazy" decoding="async"></a></li>
+            <li><a href="#meme/sir-this-is-an-arbys" title="Sir This Is An Arbys"><img src="img/findings/sir-this-is-an-arbys.webp" alt="Sir This Is An Arbys" width="64" height="64" loading="lazy" decoding="async"></a></li>
+          </ul>
+        </div>
       </header>
-      <div class="graph-wrap" id="graph-flow"></div>
+      <div class="viz-hscroll" tabindex="0" role="region" aria-label="Chart, scrolls sideways">
+        <div class="graph-wrap" id="graph-flow"></div>
+      </div>
+      <p class="viz-hscroll-hint">Scroll sideways to see the whole chart.</p>
+      <p class="viz-howto"><span class="viz-howto-label">How to read </span>How the 5,000 memes flow from origin platform to primary format, image type and text presence. Hover a node to trace every meme that passes through it; click to browse them.</p>
     </section>
 
   </main>
@@ -235,29 +364,29 @@
       <div class="ds-overview-row">
         <button type="button" class="ds-overview-card" onclick="dsScrollTo('ds-sec-global')">
           <span class="ds-ov-num">5,000</span>
-          <span class="ds-ov-label">Global Dataset</span>
-          <span class="ds-ov-sub">Full meme collection · KYM</span>
+          <span class="ds-ov-label">Global dataset</span>
+          <span class="ds-ov-sub">Full meme collection from Know Your Meme</span>
           <span class="ds-ov-go" aria-hidden="true">Browse ↓</span>
         </button>
         <button type="button" class="ds-overview-card" onclick="dsScrollTo('ds-sec-d0')">
           <span class="ds-ov-num">50</span>
-          <span class="ds-ov-label">D0 Sample</span>
+          <span class="ds-ov-label">D0 sample</span>
           <span class="ds-ov-sub">Richly annotated subset</span>
           <span class="ds-ov-go" aria-hidden="true">Browse ↓</span>
         </button>
         <button type="button" class="ds-overview-card" onclick="dsScrollTo('ds-sec-variants')">
           <span class="ds-ov-num">391</span>
-          <span class="ds-ov-label">Variant Dataset</span>
+          <span class="ds-ov-label">Variant dataset</span>
           <span class="ds-ov-sub">50 with full annotations</span>
           <span class="ds-ov-go" aria-hidden="true">Browse ↓</span>
         </button>
       </div>
 
-      <!-- ── Section 1: Global Dataset ── -->
+      <!-- ── Section 1: Global dataset ── -->
       <section class="ds-section" id="ds-sec-global">
         <div class="ds-sec-hd">
           <div class="ds-sec-hd-left">
-            <h2 class="ds-sec-title">Global Dataset</h2>
+            <h2 class="ds-sec-title">Global dataset</h2>
             <p class="ds-sec-desc">5,000 memes sourced from Know Your Meme, enriched with CLIP-based image classification and structured using the Meme Ontology OWL ontology.</p>
           </div>
         </div>
@@ -271,22 +400,22 @@
         <div class="ds-pagination" id="ds-pagination"></div>
       </section>
 
-      <!-- ── Section 2: D0 Annotated Sample ── -->
+      <!-- ── Section 2: D0 annotated sample ── -->
       <section class="ds-section" id="ds-sec-d0">
         <div class="ds-sec-hd">
           <div class="ds-sec-hd-left">
-            <h2 class="ds-sec-title">D0 — Annotated Sample</h2>
+            <h2 class="ds-sec-title">D0: annotated sample</h2>
             <p class="ds-sec-desc">50 memes sampled from the global dataset with enriched metadata: descriptions, view counts, tags, and full ontology property annotations including image type, format, platform, region and time period.</p>
           </div>
         </div>
         <div class="dataset-grid ds-d0-grid" id="ds-d0-grid"></div>
       </section>
 
-      <!-- ── Section 3: Variant Dataset ── -->
+      <!-- ── Section 3: Variant dataset ── -->
       <section class="ds-section" id="ds-sec-variants">
         <div class="ds-sec-hd">
           <div class="ds-sec-hd-left">
-            <h2 class="ds-sec-title">Variant Dataset</h2>
+            <h2 class="ds-sec-title">Variant dataset</h2>
             <p class="ds-sec-desc">Meme variants scraped from Know Your Meme. A subset of 50 variants is annotated with transformation dimensions, extents, captions, and cultural references.</p>
           </div>
           <div class="ds-vtoggle-bar">
@@ -304,7 +433,7 @@
     <div class="onto-doc-shell">
       <header class="onto-doc-header">
         <div>
-          <h1>Meme Ontology Documentation</h1>
+          <h1>Meme Ontology documentation</h1>
           <p>LODE-compatible structure rendered directly in this page from meme_ontology_unpopulated.owl.</p>
         </div>
         <div class="onto-doc-actions">
@@ -319,11 +448,11 @@
         </div>
         <div class="onto-graph-legend" aria-hidden="true">
           <span><i style="width:12px;height:12px;background:#141414"></i>MEMO class</span>
-          <span><i style="width:12px;height:12px;border:1px dashed #141414"></i>reused class (FRBR, schema.org, Wikidata)</span>
-          <span><i style="width:22px;height:0;border-top:1.4px solid #141414"></i>subclass of</span>
-          <span><i style="width:22px;height:0;border-top:1px solid #8a8378"></i>object property</span>
-          <span><i style="width:8px;height:8px;background:#8a8378;border-radius:50%"></i>individual (examples; the number is the total)</span>
-          <label class="onto-graph-toggle"><input type="checkbox" id="onto-graph-individuals" checked> show individuals</label>
+          <span><i style="width:12px;height:12px;border:1px dashed #141414"></i>Reused class (FRBR, schema.org, Wikidata)</span>
+          <span><i style="width:22px;height:0;border-top:1.4px solid #141414"></i>Subclass of</span>
+          <span><i style="width:22px;height:0;border-top:1px solid #8a8378"></i>Object property</span>
+          <span><i style="width:8px;height:8px;background:#8a8378;border-radius:50%"></i>Individual (examples; the number is the total)</span>
+          <label class="onto-graph-toggle"><input type="checkbox" id="onto-graph-individuals" checked> Show individuals</label>
         </div>
         <svg id="onto-graph-svg" role="img" aria-label="Graph of the MEMO ontology's classes, subclass links and object properties"></svg>
         <div class="onto-graph-info" id="onto-graph-info" aria-live="polite">Select a class to see its description and properties.</div>
@@ -337,7 +466,7 @@
       </div>
 
       <footer class="onto-doc-disclaimer">
-        <p>this is a visual restyling of ontology documentation service offered by lode. the content of this page has been remodeled visually on this platform but is provided free and open source by lode.</p>
+        <p>This is a visual restyling of the ontology documentation service offered by LODE. The content of this page has been remodeled visually on this platform but is provided free and open source by LODE.</p>
         <a class="onto-doc-btn" id="onto-open-lode-bottom" href="http://150.146.207.114/lode/extract?url=https%3A%2F%2Fraw.githubusercontent.com%2Falicepicco333%2Fmemo%2Frefs%2Fheads%2Fmain%2Fmeme_ontology_unpopulated.owl&owlapi=true&imported=true&closure=true&reasoner=true&lang=en" target="_blank" rel="noopener">Open in LODE</a>
       </footer>
     </div>

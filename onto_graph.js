@@ -108,7 +108,7 @@
       plabel.classed('on', function (l) { return l.source.id === d.id || l.target.id === d.id; });
       var props = links.filter(function (l) { return l.type === 'prop' && l.source.id === d.id; }).map(function (l) { return l.label; });
       var examples = (d.sample || []).map(function (x) { return x.label; }).filter(function (x) { return !/\ufffd/.test(x); });
-      info.innerHTML = '<b>' + d.id + '</b> ' + (d.comment ? '— ' + d.comment.replace(/</g, '&lt;') : '') +
+      info.innerHTML = '<b>' + d.id + '</b>' + (d.comment ? ': ' + d.comment.replace(/</g, '&lt;') : '') +
         (props.length ? '<br><span style="color:var(--muted)">Properties: ' + props.join(', ') + '</span>' : '') +
         (d.count ? '<br><span style="color:var(--muted)">' + d.count.toLocaleString() + ' individual' + (d.count === 1 ? '' : 's') +
           (examples.length ? ', e.g. ' + examples.slice(0, 4).join(', ').replace(/</g, '&lt;') : '') + '</span>' : '');

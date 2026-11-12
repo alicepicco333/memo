@@ -9,7 +9,8 @@
   'use strict';
 
   const EXTENT_ORDER = ['Minimal', 'Moderate', 'Substantial', 'Parody'];
-  const EXTENT_COLOR = { Minimal: '#4caf50', Moderate: '#ff9800', Substantial: '#f44336', Parody: '#9c27b0' };
+  // EXTENT_COLOR (rings, frames) and EXTENT_TEXT (labels), TICK_PX, LABEL_PX, MUTED_INK, titleInset()
+  // and textWidth() come from meme_viz.js
   const DIM_ORDER = ['CaptionChange', 'VisualSubstrate', 'MediumShift', 'StyleShift',
                      'CompositionShift', 'CrossoverMerge', 'LanguageShift', 'Localization'];
   const PLATFORM_COLOR = {
@@ -63,6 +64,12 @@
       `<b>${escHtml(slugToName(m.slug))}</b>` + (extra ? `<br>${extra}` : '');
   }
   function sparqlHref(query) { return 'sparql.html?q=' + encodeURIComponent(query); }
+  // canvas text in the same face as the SVG chart text (the page's interface font)
+  let fontFamily = null;
+  function chartFont() {
+    if (!fontFamily) fontFamily = getComputedStyle(document.body).fontFamily || 'system-ui, sans-serif';
+    return fontFamily;
+  }
   const SPARQL_PREFIXES =
     'PREFIX memo: <https://purl.org/memo#>\n' +
     'PREFIX wdp:  <http://www.wikidata.org/prop/direct/>\n' +
@@ -183,7 +190,7 @@
     legend.className = 'viz-legend';
     legend.innerHTML = EXTENT_ORDER.map(e =>
       `<span><i style="background:${EXTENT_COLOR[e]}"></i>${e}</span>`).join('') +
-      '<span class="viz-legend-note">ring = extent · sector = main dimension</span>';
+      '<span class="viz-legend-note">Ring: extent. Sector: main dimension.</span>';
     bar.appendChild(legend);
 
     drawFamily(wrap, groups.find(g => g.name === familyCurrent), false);
@@ -204,10 +211,22 @@
   function renderFamily(wrap, group) {
     const { W, H } = wrapSize(wrap, 620);
     const S = Math.min(W, H);
-    const R = S / 2 - (isMobile() ? 34 : 64);
+    const R = S / 2 - (isMobile() ? 44 : 64);   // room outside the rings for two rows of sector labels
     const ringR = { Minimal: R * 0.44, Moderate: R * 0.63, Substantial: R * 0.82, Parody: R };
     const coreR = R * 0.24;
-    const thumbR = Math.max(12, Math.min(26, R * 0.085));
+
+    wrap.innerHTML = '';
+    const svg = d3.select(wrap).append('svg')
+      .attr('viewBox', `${-W / 2} ${-H / 2} ${W} ${H}`)
+      .attr('class', 'fam-svg')
+      .attr('role', 'img')
+      .attr('aria-label', `Variant family tree for ${group.name}`);
+
+    // Variant circles 56 px across (smaller on small charts). The top of the circle stays free for the
+    // ring labels, so the sectors share what is left of the turn.
+    let thumbR = Math.max(12, Math.min(28, R * 0.12));
+    const gapHalf = Math.min(0.6, d3.max(EXTENT_ORDER, e =>
+      Math.asin(Math.min(1, (textWidth(svg.node(), [e], LABEL_PX) / 2 + 8 + thumbR + 2.5) / ringR[e]))));
 
     // Sectors: primary dimension of each variant; angular span ∝ count
     const bySector = {};
@@ -219,10 +238,10 @@
       .sort((a, b) => DIM_ORDER.indexOf(a) - DIM_ORDER.indexOf(b))
       .map(dim => ({ dim, items: bySector[dim].sort((a, b) => EXTENT_ORDER.indexOf(a.extent) - EXTENT_ORDER.indexOf(b.extent)) }));
     const total = group.variants.length;
-    let a0 = 0;
+    let a0 = gapHalf;
     sectors.forEach(s => {
       s.start = a0;
-      s.span = (Math.PI * 2) * (s.items.length / total);
+      s.span = (Math.PI * 2 - 2 * gapHalf) * (s.items.length / total);
       s.mid = s.start + s.span / 2;
       s.items.forEach((v, k) => {
         v.angle = s.start + s.span * (k + 0.5) / s.items.length;
@@ -232,13 +251,14 @@
       a0 += s.span;
     });
     const polar = (ang, r) => [r * Math.sin(ang), -r * Math.cos(ang)];
+    // smaller circles only where two would touch
+    let gap = Infinity;
+    group.variants.forEach((a, i) => group.variants.slice(i + 1).forEach(b => {
+      const [ax, ay] = polar(a.angle, a.r), [bx, by] = polar(b.angle, b.r);
+      gap = Math.min(gap, Math.hypot(ax - bx, ay - by));
+    }));
+    thumbR = Math.max(12, Math.min(thumbR, (gap - 6) / 2 - 2.5));
 
-    wrap.innerHTML = '';
-    const svg = d3.select(wrap).append('svg')
-      .attr('viewBox', `${-W / 2} ${-H / 2} ${W} ${H}`)
-      .attr('class', 'fam-svg')
-      .attr('role', 'img')
-      .attr('aria-label', `Variant family tree for ${group.name}`);
     const defs = svg.append('defs');
     defs.append('clipPath').attr('id', 'fam-clip').attr('clipPathUnits', 'objectBoundingBox')
       .append('circle').attr('cx', .5).attr('cy', .5).attr('r', .5);
@@ -249,22 +269,40 @@
       ringG.append('circle').attr('r', ringR[e]).attr('fill', 'none')
         .attr('stroke', EXTENT_COLOR[e]).attr('stroke-opacity', .35).attr('stroke-dasharray', '3 5');
       ringG.append('text').attr('y', -ringR[e] - 5).attr('text-anchor', 'middle')
-        .attr('class', 'fam-ring-label').attr('fill', EXTENT_COLOR[e]).text(e.toUpperCase());
+        .attr('class', 'fam-ring-label').attr('fill', EXTENT_TEXT[e])
+        .style('font-size', LABEL_PX + 'px').style('letter-spacing', '0').text(e);
+    });
+
+    // Sector labels follow the circle; where one would run into its neighbour it moves out a row
+    const labelRows = [];
+    sectors.forEach(s => {
+      s.label = `${s.dim} (${s.items.length})`;
+      const w = textWidth(svg.node(), [s.label], LABEL_PX) / 2 + 6;
+      let row = 0;
+      for (; row < 2; row++) {
+        const r = R + (isMobile() ? 20 : 34) + row * 16;
+        const span = [s.mid - w / r, s.mid + w / r];
+        const taken = labelRows[row] || (labelRows[row] = []);
+        if (!taken.some(([a, b]) => span[0] < b && a < span[1])) { taken.push(span); break; }
+      }
+      s.labelR = R + (isMobile() ? 20 : 34) + Math.min(row, 1) * 16;
     });
 
     // Sector dividers + labels
     const sectG = svg.append('g');
-    sectors.forEach(s => {
+    sectors.concat({ start: Math.PI * 2 - gapHalf, end: true }).forEach(s => {
       const [x1, y1] = polar(s.start, coreR + 6);
       const [x2, y2] = polar(s.start, R + 14);
       sectG.append('line').attr('class', 'fam-sector').attr('x1', x1).attr('y1', y1).attr('x2', x2).attr('y2', y2);
-      const [lx, ly] = polar(s.mid, R + (isMobile() ? 20 : 34));
+      if (s.end) return;
+      const [lx, ly] = polar(s.mid, s.labelR);
       const deg = s.mid * 180 / Math.PI;
       const flip = deg > 90 && deg < 270;
       sectG.append('text').attr('class', 'fam-sector fam-sector-label')
         .attr('transform', `translate(${lx},${ly}) rotate(${flip ? deg - 180 : deg})`)
         .attr('text-anchor', 'middle').attr('dy', '.35em')
-        .text(s.dim + ' · ' + s.items.length);
+        .style('font-size', LABEL_PX + 'px').style('fill', MUTED_INK)
+        .text(s.label);
     });
 
     // Branches: core → sector hub → variant
@@ -297,8 +335,22 @@
       .attr('width', coreR * 2).attr('height', coreR * 2)
       .attr('clip-path', 'url(#fam-clip)').attr('preserveAspectRatio', 'xMidYMid slice')
       .style('opacity', 0);
-    const caption = svg.append('text').attr('class', 'fam-caption').attr('y', coreR + 20).attr('text-anchor', 'middle')
-      .text('ORIGINAL · ' + group.name);
+    // The caption names the centre image; where it would touch a variant circle it moves to the chart's
+    // top-left corner instead. It sits above the circles on a paper halo, so the longer hover text
+    // stays readable.
+    const capHalf = textWidth(svg.node(), ['Original: ' + group.name], TICK_PX) / 2 + 6;
+    const capY = coreR + 20;
+    const capHits = group.variants.some(v => {
+      const [x, y] = polar(v.angle, v.r);
+      return Math.abs(x) < capHalf + thumbR + 2.5 && Math.abs(y - (capY - 4)) < 10 + thumbR + 2.5;
+    });
+    const caption = svg.append('text').attr('class', 'fam-caption')
+      .attr('x', capHits ? -W / 2 + 2 : 0).attr('y', capHits ? -H / 2 + 4 : capY)
+      .attr('dy', capHits ? '.71em' : null).attr('text-anchor', capHits ? 'start' : 'middle')
+      .style('font-size', TICK_PX + 'px').style('letter-spacing', '0').style('text-transform', 'none')
+      .style('paint-order', 'stroke').style('stroke', 'var(--bg, #f7f5f0)').style('stroke-width', '4px')
+      .style('stroke-linejoin', 'round').style('pointer-events', 'none')
+      .text('Original: ' + group.name);
     core.style('cursor', 'pointer').on('click', () => {
       if (group.slug && memes()[group.slug]) openDetail(group.slug);
     });
@@ -318,24 +370,25 @@
       .attr('href', v => v.img);
     nodes.transition().delay(v => DUR * (500 + EXTENT_ORDER.indexOf(v.extent) * 160))
       .duration(DUR * 380).style('opacity', 1);
+    caption.raise();
 
     function focus(v, on) {
       nodes.classed('dim', on ? (d => d !== v) : false);
       links.classed('hot', on ? (d => d === v) : false).classed('dim', on ? (d => d !== v) : false);
       if (on) {
         hoverImg.attr('href', v.img).interrupt().transition().duration(DUR * 220).style('opacity', 1);
-        caption.text(v.extent.toUpperCase() + ' · ' + v.dims.join(' + '));
+        caption.text(v.extent + ': ' + v.dims.join(' + '));
       } else {
         hoverImg.interrupt().transition().duration(DUR * 220).style('opacity', 0);
-        caption.text('ORIGINAL · ' + group.name);
+        caption.text('Original: ' + group.name);
       }
     }
     nodes
       .on('mouseenter focus', (e, v) => {
         focus(v, true);
-        showTip(`<b>${escHtml(v.title)}</b><br>${escHtml(v.extent)} · ${escHtml(v.dims.join(', '))}` +
+        showTip(`<b>${escHtml(v.title)}</b><br>${escHtml(v.extent)}: ${escHtml(v.dims.join(', '))}` +
           (v.type ? `<br><small>variant image type: ${escHtml(v.type)}</small>` : '') +
-          '<br><small>click to open</small>', e.clientX != null ? e : { clientX: innerWidth / 2, clientY: innerHeight / 2 });
+          '<br><small>Click to open</small>', e.clientX != null ? e : { clientX: innerWidth / 2, clientY: innerHeight / 2 });
       })
       .on('mousemove', moveTip)
       .on('mouseleave blur', (e, v) => { focus(v, false); hideTip(); })
@@ -436,7 +489,7 @@
       const d = spectrum.tree.find(e.clientX - r.left, e.clientY - r.top, 14);
       canvas.style.cursor = d ? 'pointer' : 'default';
       if (d) {
-        showTip(tipWithImage(d.m, `${d.year || 'year unknown'} · hsl(${Math.round(d.h)}°, ${Math.round(d.s)}%, ${Math.round(d.l)}%)`), e);
+        showTip(tipWithImage(d.m, `${d.year || 'year unknown'}, hsl(${Math.round(d.h)}°, ${Math.round(d.s)}%, ${Math.round(d.l)}%)`), e);
       } else hideTip();
     });
     canvas.addEventListener('mouseleave', hideTip);
@@ -488,7 +541,7 @@
         d.size = cell - 1;
         const yLabel = known(d.year) ? d.year : 'n/a';
         if (yLabel !== lastYear && (i % cols) < cols) {
-          if (!spectrum.labels.length || d.y - spectrum.labels[spectrum.labels.length - 1].y > 12) {
+          if (!spectrum.labels.length || d.y - spectrum.labels[spectrum.labels.length - 1].y > TICK_PX + 3) {
             spectrum.labels.push({ x: pad.l - 6, y: d.y, text: String(yLabel), align: 'right' });
           }
           lastYear = yLabel;
@@ -572,16 +625,16 @@
       ctx.fillRect(d.cx - s / 2, d.cy - s / 2, s, s);
     });
     ctx.globalAlpha = 1;
-    ctx.fillStyle = 'rgba(255,255,255,.6)';
-    ctx.font = '10px system-ui, sans-serif';
+    ctx.fillStyle = 'rgba(255,255,255,.72)';
+    ctx.font = `${TICK_PX}px ${chartFont()}`;
     ctx.textBaseline = 'middle';
     spectrum.labels.forEach(l => {
       ctx.textAlign = l.align === 'right' ? 'right' : 'center';
       ctx.fillText(l.text, l.x, l.y);
     });
     ctx.textAlign = 'right';
-    ctx.fillStyle = 'rgba(255,255,255,.75)';
-    ctx.font = '11px system-ui, sans-serif';
+    ctx.fillStyle = 'rgba(255,255,255,.8)';
+    ctx.font = `${LABEL_PX}px ${chartFont()}`;
     ctx.fillText(`${shown.toLocaleString()} memes`, W - 12, 12);
   }
 
@@ -594,13 +647,14 @@
   /* ═════════════════════════════════════════════════════════════════════════
      3. KNOWLEDGE-GRAPH WALK — expand a meme into its properties and back
      ═════════════════════════════════════════════════════════════════════════ */
+  // `text`: the pill's label colour, ink or white, whichever reads at 4.5:1 or more on that fill
   const PROP_FIELDS = {
-    hasFormat:          { label: 'format',       color: '#e0873a' },
-    hasOriginPlatform:  { label: 'platform',     color: '#3a8fd8' },
-    hasImageType:       { label: 'image type',   color: '#8e5cc9' },
-    hasTimePeriod:      { label: 'period',       color: '#2a9d6f' },
-    hasSubjectMatter:   { label: 'subject',      color: '#c9505f' },
-    hasRegion:          { label: 'region',       color: '#7a7a2e' }
+    hasFormat:          { label: 'format',       color: '#e0873a', text: '#141414' },
+    hasOriginPlatform:  { label: 'platform',     color: '#3a8fd8', text: '#141414' },
+    hasImageType:       { label: 'image type',   color: '#8e5cc9', text: '#fff' },
+    hasTimePeriod:      { label: 'period',       color: '#2a9d6f', text: '#141414' },
+    hasSubjectMatter:   { label: 'subject',      color: '#b03a4b', text: '#fff' },
+    hasRegion:          { label: 'region',       color: '#7a7a2e', text: '#fff' }
   };
   const MAX_NODES = 140;
   let walk = null;
@@ -696,13 +750,15 @@
     wrap.appendChild(card);
     const hint = document.createElement('div');
     hint.className = 'walk-hint';
-    hint.textContent = 'Click a meme to reveal its properties · click a property to pull in more memes that share it · drag to move · Ctrl/⌘ + scroll to zoom';
+    hint.textContent = 'Click a meme to reveal its properties. Click a property to pull in more memes that share it. Drag to move. Ctrl/⌘ + scroll to zoom.';
     wrap.appendChild(hint);
 
+    // meme nodes 64 px across (48 on phones), with room around them
+    walk.r = isMobile() ? 24 : 32;
     walk.sim = d3.forceSimulation(walk.nodes)
-      .force('link', d3.forceLink(walk.links).id(d => d.id).distance(l => l.target.type === 'prop' || l.source.type === 'prop' ? 78 : 60).strength(.7))
-      .force('charge', d3.forceManyBody().strength(-280))
-      .force('collide', d3.forceCollide(d => d.type === 'meme' ? 30 : 26))
+      .force('link', d3.forceLink(walk.links).id(d => d.id).distance(walk.r * 2 + 30).strength(.7))
+      .force('charge', d3.forceManyBody().strength(-340))
+      .force('collide', d3.forceCollide(d => d.type === 'meme' ? walk.r + 6 : 30))
       .force('x', d3.forceX(0).strength(.04))
       .force('y', d3.forceY(0).strength(.06))
       .on('tick', walkTick);
@@ -789,7 +845,7 @@
       card.innerHTML =
         `<img src="${escHtml(memeImg(m))}" alt="">` +
         `<div class="walk-card-body"><b>${escHtml(slugToName(n.slug))}</b>` +
-        `<small>${(m.popularityViews || 0).toLocaleString()} views · ${escHtml(m.year || 'n/a')}</small>` +
+        `<small>${(m.popularityViews || 0).toLocaleString()} views, ${m.year ? 'from ' + escHtml(m.year) : 'year unknown'}</small>` +
         `<div class="walk-card-actions"><a href="#meme/${encodeURIComponent(n.slug)}">Open meme</a>` +
         `<a href="${sparqlHref(memeSparql(n.slug))}" target="_blank" rel="noopener">SPARQL ↗</a></div></div>`;
     } else {
@@ -821,14 +877,16 @@
         .attr('tabindex', 0).style('cursor', 'pointer').style('opacity', 0).call(drag);
       g.transition().duration(DUR * 400).style('opacity', 1);
       const memeG = g.filter(d => d.type === 'meme');
-      memeG.append('circle').attr('r', 24);
-      memeG.append('image').attr('x', -22).attr('y', -22).attr('width', 44).attr('height', 44)
+      const r = walk.r;
+      memeG.append('circle').attr('r', r);
+      memeG.append('image').attr('x', 2 - r).attr('y', 2 - r).attr('width', 2 * r - 4).attr('height', 2 * r - 4)
         .attr('clip-path', 'url(#walk-clip)').attr('preserveAspectRatio', 'xMidYMid slice')
         .attr('href', d => memeImg(d.m));
       const propG = g.filter(d => d.type === 'prop');
-      propG.append('rect').attr('rx', 11).attr('height', 22).attr('y', -11)
+      propG.append('rect').attr('rx', 13).attr('height', 26).attr('y', -13)
         .attr('fill', d => PROP_FIELDS[d.field].color);
-      propG.append('text').attr('dy', '.35em').attr('text-anchor', 'middle').text(d => d.value);
+      propG.append('text').attr('dy', '.35em').attr('text-anchor', 'middle')
+        .style('font-size', LABEL_PX + 'px').style('fill', d => PROP_FIELDS[d.field].text).text(d => d.value);
       propG.each(function() {
         const t = d3.select(this).select('text').node();
         const w = Math.max(40, t.getComputedTextLength() + 18);
@@ -1004,7 +1062,8 @@
       g.append('g').attr('class', 'story-layers');
       g.append('g').attr('class', 'story-axis').attr('transform', `translate(0,${ih + 6})`)
         .call(d3.axisBottom(x).ticks(mobile ? 5 : 11).tickFormat(d3.format('d')).tickSize(0))
-        .call(s => s.select('.domain').remove());
+        .call(s => s.select('.domain').remove())
+        .call(s => s.selectAll('text').style('font-size', TICK_PX + 'px'));
       g.append('g').attr('class', 'story-labels');
     }
     const g = svg.select('.story-g');
@@ -1012,7 +1071,7 @@
       .attr('fill', s => PLATFORM_COLOR[s.key] || '#b0b8c8')
       .on('mouseenter', (e, s) => {
         const tot = d3.sum(table, r => r[s.key]);
-        showTip(`<b>${escHtml(s.key)}</b><br>${tot.toLocaleString()} memes 2004–2025<br><small>click to browse</small>`, e);
+        showTip(`<b>${escHtml(s.key)}</b><br>${tot.toLocaleString()} memes 2004–2025<br><small>Click to browse</small>`, e);
       })
       .on('mousemove', moveTip).on('mouseleave', hideTip)
       .on('click', (e, s) => {
@@ -1029,7 +1088,7 @@
       return { key: s.key, x: x(best.data.year), y: y((best[0] + best[1]) / 2), th: y(best[0]) - y(best[1]) };
     }).filter(l => l.th > 14);
     g.select('.story-labels').selectAll('text').data(labels, l => l.key).join('text')
-      .attr('text-anchor', 'middle').attr('dy', '.35em')
+      .attr('text-anchor', 'middle').attr('dy', '.35em').style('font-size', LABEL_PX + 'px')
       .transition().duration(animate ? DUR * 700 : 0)
       .attr('x', l => Math.min(iw - 30, Math.max(30, l.x))).attr('y', l => l.y).text(l => l.key);
 
@@ -1086,7 +1145,17 @@
     canvas.setAttribute('role', 'img');
     canvas.setAttribute('aria-label', 'Dot plot of CLIP classifier confidence per image type');
     const mobile = isMobile();
-    const pad = { l: mobile ? 12 : 120, r: mobile ? 12 : 170, t: 18, b: 34 };
+    // the type names start on the section title's edge; the right column is as wide as its counts
+    const measure = (font, strings) => {
+      ctx.font = `${font} ${chartFont()}`;
+      return Math.ceil(d3.max(strings, s => ctx.measureText(s).width) || 0);
+    };
+    const counts = types.map(t => items.filter(it => it.type === t).length.toLocaleString() + ' memes');
+    const nameW = Math.max(measure(`600 ${TICK_PX}px`, types), measure(`${LABEL_PX}px`, counts));
+    const belowW = measure(`${LABEL_PX}px`, ['9,999 below (100.0%)']);
+    const pad = mobile
+      ? { l: 12, r: 12, t: 18, b: 40 }
+      : { l: titleInset(wrap) + nameW + 12, r: belowW + 30, t: 18, b: 40 };
     const iw = W - pad.l - pad.r, ih = H - pad.t - pad.b;
     const rowH = ih / types.length;
     const x = d3.scaleLinear().domain([0.25, 1]).range([pad.l, pad.l + iw]);
@@ -1128,7 +1197,7 @@
       const r = canvas.getBoundingClientRect();
       const it = conf.tree.find(e.clientX - r.left, e.clientY - r.top, Math.max(6, conf.d * 2));
       canvas.style.cursor = it ? 'pointer' : 'default';
-      if (it) showTip(tipWithImage(it.m, `${escHtml(it.type)} · CLIP score <b>${it.score.toFixed(3)}</b>`), e);
+      if (it) showTip(tipWithImage(it.m, `${escHtml(it.type)}, CLIP score <b>${it.score.toFixed(3)}</b>`), e);
       else hideTip();
     });
     canvas.addEventListener('mouseleave', hideTip);
@@ -1153,14 +1222,14 @@
       const all = items.filter(it => it.type === ty);
       const below = all.filter(it => it.score < t).length;
       ctx.fillStyle = '#111';
-      ctx.font = '600 12px system-ui, sans-serif';
+      ctx.font = `600 ${TICK_PX}px ${chartFont()}`;
       ctx.textAlign = mobile ? 'left' : 'right';
-      ctx.fillText(ty, mobile ? pad.l + 2 : pad.l - 12, mobile ? y0 + 10 : y0 + rowH / 2 - 7);
-      ctx.font = '11px system-ui, sans-serif';
-      ctx.fillStyle = '#666';
-      if (!mobile) ctx.fillText(all.length.toLocaleString() + ' memes', pad.l - 12, y0 + rowH / 2 + 8);
+      ctx.fillText(ty, mobile ? pad.l + 2 : pad.l - 12, mobile ? y0 + 10 : y0 + rowH / 2 - 8);
+      ctx.font = `${LABEL_PX}px ${chartFont()}`;
+      ctx.fillStyle = MUTED_INK;
+      if (!mobile) ctx.fillText(all.length.toLocaleString() + ' memes', pad.l - 12, y0 + rowH / 2 + 9);
       ctx.textAlign = mobile ? 'right' : 'left';
-      ctx.fillStyle = below ? '#c0392b' : '#666';
+      ctx.fillStyle = below ? '#c0392b' : MUTED_INK;
       ctx.fillText(`${below.toLocaleString()} below (${(below / all.length * 100).toFixed(1)}%)`,
         mobile ? W - pad.r - 2 : W - pad.r + 14, mobile ? y0 + 10 : y0 + rowH / 2);
     });
@@ -1181,11 +1250,12 @@
     ctx.setLineDash([]);
 
     // Axis
-    ctx.fillStyle = '#666';
-    ctx.font = '10px system-ui, sans-serif';
+    ctx.fillStyle = MUTED_INK;
+    ctx.font = `${TICK_PX}px ${chartFont()}`;
     ctx.textAlign = 'center';
     x.ticks(mobile ? 4 : 8).forEach(v => ctx.fillText(v.toFixed(1), x(v), H - pad.b + 16));
-    ctx.fillText('CLIP zero-shot confidence for the assigned image type', pad.l + (W - pad.l - pad.r) / 2, H - 6);
+    ctx.font = `${LABEL_PX}px ${chartFont()}`;
+    ctx.fillText('CLIP zero-shot confidence for the assigned image type', pad.l + (W - pad.l - pad.r) / 2, H - 8);
 
     const belowAll = items.filter(it => it.score < t).length;
     const sum = document.getElementById('conf-summary');
@@ -1239,8 +1309,13 @@
     wrap.innerHTML = '';
     const { W, H } = wrapSize(wrap, 560);
     const mobile = isMobile();
-    const M = { t: 26, r: mobile ? 62 : 120, b: 10, l: mobile ? 8 : 12 };
-    const sankey = d3.sankey().nodeId(d => d.id).nodeWidth(12).nodePadding(mobile ? 6 : 9)
+    const svg = d3.select(wrap).append('svg').attr('viewBox', `0 0 ${W} ${H}`)
+      .attr('role', 'img').attr('aria-label', 'Flow from origin platform to format, image type and text presence');
+    // The first column starts on the section title's edge; the right margin fits the last column's labels
+    const lastLabels = [...nodeMap.values()].filter(n => n.stage === stages.length - 1)
+      .map(n => `${n.name} ${n.memes.size.toLocaleString()}`);
+    const M = { t: 30, r: textWidth(svg.node(), lastLabels, LABEL_PX) + 12, b: 10, l: titleInset(wrap) };
+    const sankey = d3.sankey().nodeId(d => d.id).nodeWidth(12).nodePadding(mobile ? 8 : 10)
       .extent([[M.l, M.t], [W - M.r, H - M.b]]);
     const graph = sankey({
       nodes: [...nodeMap.values()].map(d => ({ ...d })),
@@ -1254,11 +1329,10 @@
       return '#e0873a';
     };
 
-    const svg = d3.select(wrap).append('svg').attr('viewBox', `0 0 ${W} ${H}`)
-      .attr('role', 'img').attr('aria-label', 'Flow from origin platform to format, image type and text presence');
     const colX = d3.rollup(graph.nodes, v => v[0].x0, d => d.stage);
     stages.forEach((s, si) => {
-      svg.append('text').attr('class', 'flow-stage').attr('x', colX.get(si)).attr('y', 12).text(s.label.toUpperCase());
+      svg.append('text').attr('class', 'flow-stage').attr('x', colX.get(si)).attr('y', 4).attr('dy', '.71em')
+        .style('font-size', LABEL_PX + 'px').style('letter-spacing', '0').style('fill', MUTED_INK).text(s.label);
     });
     const pathGen = d3.sankeyLinkHorizontal();
     const base = svg.append('g').attr('class', 'flow-links').selectAll('path').data(graph.links).join('path')
@@ -1274,6 +1348,7 @@
     nodes.filter(d => d.y1 - d.y0 > 9 || !mobile).append('text')
       .attr('x', d => d.stage === stages.length - 1 ? d.x1 + 6 : d.x1 + 5)
       .attr('y', d => (d.y0 + d.y1) / 2).attr('dy', '.35em')
+      .style('font-size', LABEL_PX + 'px')
       .text(d => (d.y1 - d.y0 > 7 ? d.name : '') + (d.y1 - d.y0 > 7 && !mobile ? ` ${d.value.toLocaleString()}` : ''));
 
     function highlight(n) {
@@ -1293,7 +1368,7 @@
     }
     nodes.on('mouseenter focus', (e, n) => {
       highlight(n);
-      showTip(`<b>${escHtml(n.name)}</b><br>${n.value.toLocaleString()} memes<br><small>click to browse</small>`,
+      showTip(`<b>${escHtml(n.name)}</b><br>${n.value.toLocaleString()} memes<br><small>Click to browse</small>`,
         e.clientX != null ? e : { clientX: innerWidth / 2, clientY: innerHeight / 2 });
     })
       .on('mousemove', moveTip)
