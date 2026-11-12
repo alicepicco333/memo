@@ -44,15 +44,11 @@
 
   <!-- Side navigation (viz only) -->
   <nav class="dot-nav" id="dot-nav" aria-label="Contents">
-    <span class="dot-group">Global dataset</span>
     <a class="dot active" href="#sec-time" aria-current="location">Temporal format distribution</a>
     <a class="dot" href="#sec-popularity">Popularity × format</a>
     <a class="dot" href="#sec-platform-time">Platform × TimePeriod</a>
-    <span class="dot-group">D0 sample</span>
     <a class="dot" href="#sec-variant-bubble">Creative productivity × cultural prominence</a>
-    <span class="dot-group">Variants</span>
     <a class="dot" href="#sec-variant-gallery">Variant gallery</a>
-    <span class="dot-group">Interactive explorations</span>
     <a class="dot" href="#sec-family">Variant family tree</a>
     <a class="dot" href="#sec-spectrum">Colour spectrum</a>
     <a class="dot" href="#sec-walk">Knowledge-graph walk</a>
@@ -75,7 +71,13 @@
 
     <!-- Each section: title, one finding with the memes that show it, the chart, then how to read it.
          The three sideways boxes (.viz-hscroll) only scroll on phones, where those charts draw at 640 px. -->
+    <!-- .viz-trail holds the sections and draws the trail beside them (meme_viz.css, from 1025 px): the hero's
+         dashed graph edge continued down the page, a node at each title and, above each section, a triple
+         from its finding (.viz-trail-edge). -->
+    <div class="viz-trail">
+
     <section class="viz-section" id="sec-time">
+      <span class="viz-trail-edge" aria-hidden="true">hasFormat · Exploitable</span>
       <div class="viz-group-label">Global dataset</div>
       <header class="sec-header">
         <h2>Temporal distribution of format</h2>
@@ -97,6 +99,7 @@
     </section>
 
     <section class="viz-section" id="sec-popularity">
+      <span class="viz-trail-edge" aria-hidden="true">hasFormat · Creepypasta</span>
       <header class="sec-header">
         <h2>Popularity × format</h2>
         <div class="viz-finding">
@@ -117,6 +120,7 @@
     </section>
 
     <section class="viz-section viz-split" id="sec-platform-time">
+      <span class="viz-trail-edge" aria-hidden="true">hasOriginPlatform · TikTok</span>
       <div class="viz-col">
         <header class="sec-header">
           <h2>Platform origin × TimePeriod</h2>
@@ -136,6 +140,7 @@
     </section>
 
     <section class="viz-section" id="sec-variant-bubble">
+      <span class="viz-trail-edge" aria-hidden="true">views · 9,259,700</span>
       <div class="viz-group-label">D0 sample</div>
       <header class="sec-header">
         <h2>Creative productivity × cultural prominence</h2>
@@ -154,6 +159,7 @@
     </section>
 
     <section class="viz-section" id="sec-variant-gallery">
+      <span class="viz-trail-edge" aria-hidden="true">hasTransformationExtent · Moderate</span>
       <div class="viz-group-label">Variants</div>
       <header class="sec-header">
         <h2>Variant gallery by transformation extent</h2>
@@ -217,6 +223,7 @@
     </section>
 
     <section class="viz-section viz-split" id="sec-family">
+      <span class="viz-trail-edge" aria-hidden="true">hasTransformationDimension · CaptionChange</span>
       <div class="viz-col">
         <div class="viz-group-label">Interactive explorations</div>
         <header class="sec-header">
@@ -251,11 +258,12 @@
         </div>
       </header>
       <div class="viz-controls" id="spectrum-controls"></div>
-      <div class="graph-wrap graph-wrap-dark" id="graph-spectrum"></div>
+      <div class="graph-wrap" id="graph-spectrum"></div>
       <p class="viz-howto"><span class="viz-howto-label">How to read </span>All 5,000 memes drawn as their average colour. Rearrange them, or scrub and play through the years to watch the palette of meme culture fill in. Click any square to open the meme.</p>
     </section>
 
     <section class="viz-section viz-split" id="sec-walk">
+      <span class="viz-trail-edge" aria-hidden="true">hasImageType · Cartoon</span>
       <div class="viz-col">
         <header class="sec-header">
           <h2>Knowledge-graph walk</h2>
@@ -276,6 +284,7 @@
     </section>
 
     <section class="viz-section story-section" id="sec-story">
+      <span class="viz-trail-edge" aria-hidden="true">hasOriginPlatform · Twitter/X</span>
       <header class="sec-header">
         <h2>Platform story</h2>
         <div class="viz-finding">
@@ -297,6 +306,7 @@
     </section>
 
     <section class="viz-section" id="sec-confidence">
+      <span class="viz-trail-edge" aria-hidden="true">hasImageType · Painting</span>
       <header class="sec-header">
         <h2>Classifier confidence</h2>
         <div class="viz-finding">
@@ -315,6 +325,7 @@
     </section>
 
     <section class="viz-section" id="sec-flow">
+      <span class="viz-trail-edge" aria-hidden="true">hasFormat · Catchphrase</span>
       <header class="sec-header">
         <h2>Property flow</h2>
         <div class="viz-finding">
@@ -333,6 +344,8 @@
       <p class="viz-hscroll-hint">Scroll sideways to see the whole chart.</p>
       <p class="viz-howto"><span class="viz-howto-label">How to read </span>How the 5,000 memes flow from origin platform to primary format, image type and text presence. Hover a node to trace every meme that passes through it; click to browse them.</p>
     </section>
+
+    </div>
 
   </main>
 

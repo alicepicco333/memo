@@ -64,10 +64,21 @@ button, input, select, textarea { font-family: inherit; }
 a { text-underline-offset: 3px; }
 ::selection { background: var(--tint); color: var(--ink); }
 
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #c4bdb0; }
-::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+/* Scrollbars: a square grey thumb set into the paper (3.4:1, like the input lines), ink while in use.
+   Chromium and Safari read the ::-webkit- rules; Firefox reads the standard properties (kept out of
+   Chromium, where they would switch the ::-webkit- styling off). */
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track, ::-webkit-scrollbar-corner { background: transparent; }
+::-webkit-scrollbar-thumb {
+  min-height: 40px;
+  border: 3px solid transparent;
+  background: var(--line) padding-box;
+}
+::-webkit-scrollbar-thumb:hover { border-width: 2px; background-color: var(--muted); }
+::-webkit-scrollbar-thumb:active { border-width: 2px; background-color: var(--ink); }
+@supports (-moz-appearance: none) {
+  * { scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+}
 
 /* round exceptions to the square rule */
 .loader-spinner { border-radius: 50% !important; }
@@ -125,29 +136,45 @@ a { text-underline-offset: 3px; }
   align-items: center;
   gap: 4px;
   margin-left: auto;
+  padding-left: 24px;   /* never closer than this to the brand */
+}
+/* the bar's destinations in capitals, lightly tracked (the dropdown's chart names stay in sentence case) */
+.topnav-link, .rm-btn span {
+  font-size: .75rem;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+/* tablets: the same bar, tighter, and Random meme as its icon alone */
+@media (min-width: 769px) and (max-width: 1179px) {
+  .topnav-links { gap: 0; }
+  .topnav-link { padding: 0 7px; letter-spacing: .03em; }
+}
+@media (min-width: 769px) and (max-width: 999px) {
+  .rm-btn { width: 44px; padding: 0; justify-content: center; }
+  .rm-btn span { display: none; }
 }
 .topnav-link {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
   padding: 0 11px;
-  font-size: .8rem;
   font-weight: 500;
   color: var(--muted);
   text-decoration: none;
   transition: color .15s;
 }
 .topnav-link:hover { color: var(--ink); }
+/* the current page (and, below, the current choice in Arrange and the chart toggles) is set in Impact,
+   the site's caption face, in ink; no underline */
 .topnav-link.active {
+  font-family: var(--impact);
+  font-size: .85rem;
+  font-weight: 400;
+  letter-spacing: .05em;
   color: var(--ink);
-  font-weight: 600;
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 7px;
 }
 
 .topnav-dropdown { position: relative; }
-/* inline-block, so the current page's underline stops at the word */
 .topnav-dropdown-trigger::after {
   content: '▾';
   display: inline-block;
@@ -194,7 +221,6 @@ a { text-underline-offset: 3px; }
   border: 0;
   background: none;
   color: var(--ink);
-  font-size: .8rem;
   font-weight: 600;
   white-space: nowrap;
   cursor: pointer;
@@ -280,7 +306,6 @@ a { text-underline-offset: 3px; }
   }
   .topnav-links::-webkit-scrollbar { display: none; }
   .topnav-link { flex-shrink: 0; justify-content: center; white-space: nowrap; }
-  .topnav-link.active { text-underline-offset: 6px; }
   /* the scrolling row would clip the dropdown; the sections are one scroll away on phones */
   .topnav-dropdown-trigger::after { content: none; }
   .topnav-dropdown:hover .topnav-dropdown-menu,
@@ -291,7 +316,10 @@ a { text-underline-offset: 3px; }
 }
 @media (min-width: 769px) and (max-width: 1024px) {
   .topnav { padding: 0 16px; }
-  .topnav-links { gap: 6px; }
+}
+@media (min-width: 769px) and (max-width: 859px) {
+  .topnav-brand { font-size: 1.1rem; }
+  .topnav-link { padding: 0 5px; letter-spacing: .02em; }
 }
 
 
@@ -351,7 +379,7 @@ body:has(.page:not(.hidden)) > .site-footer { display: none; }
 
 
 /* ── Controls and fields ──────────────────────────────────────────────────── */
-/* toggles: text choices; the current one is ink, 600 and underlined */
+/* toggles: text choices; the current one is in Impact capitals, in ink */
 .viz-btn, .ds-vtoggle, .ds-page-btn {
   min-height: 44px;
   padding: 0 10px;
@@ -366,11 +394,12 @@ body:has(.page:not(.hidden)) > .site-footer { display: none; }
 }
 .viz-btn:hover, .ds-vtoggle:hover, .ds-page-btn:hover { background: var(--hover); color: var(--ink); }
 .viz-btn.active, .ds-vtoggle.active, .ds-page-btn.cur {
+  font-family: var(--impact);
+  font-size: .9rem;
+  font-weight: 400;
+  letter-spacing: .05em;
+  text-transform: uppercase;
   color: var(--ink);
-  font-weight: 600;
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 6px;
 }
 .viz-btn-play { min-width: 84px; font-variant-numeric: tabular-nums; }
 .ds-vtoggle span { margin-left: 4px; opacity: .6; }
@@ -541,19 +570,22 @@ body:has(.page:not(.hidden)) > .site-footer { display: none; }
   background: var(--bg);
 }
 
-/* hero: title, tagline and button 24 / 32 apart, standing on the ground line, then a 64 px pause */
+/* hero: the first screen is the poster alone. Title, tagline and button (24 / 32 apart) sit in the
+   middle, lifted above the characters' heads; the characters stand on the ground line 32 px above the
+   foot of the screen; after a 64 px pause Arrange and the wall start below the fold */
 .home-hero .hero-content {
   position: relative;
   z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 24px;
-  height: min(calc(100vh - 240px), 620px);
-  min-height: 0;
+  height: calc(100vh - var(--nav-h) - 36px);    /* 4 px under the bar, 32 px of paper under the line */
+  height: calc(100svh - var(--nav-h) - 36px);
+  min-height: 520px;                             /* short windows scroll rather than squeeze the poster */
   margin-bottom: 64px;
-  padding: 0 20px;
+  padding: 0 20px 72px;
   border-bottom: 1px solid var(--ink);   /* the ground line: the floor the characters stand on */
   overflow: visible;
   text-align: center;
@@ -583,7 +615,7 @@ body:has(.page:not(.hidden)) > .site-footer { display: none; }
   align-items: center;
   gap: 10px;
   min-height: 48px;
-  margin: 8px 0 clamp(56px, 7vh, 84px);
+  margin: 8px 0 0;
   padding: 0 24px;
   border: 1px solid var(--ink);
   background: var(--ink);
@@ -780,16 +812,20 @@ body:has(.page:not(.hidden)) > .site-footer { display: none; }
 .hero-graph circle { fill: #b5ad9f; }
 .hero-graph text {
   font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: .02em;
+  font-size: 12px;
   fill: var(--muted);
   paint-order: stroke;
   stroke: var(--bg);
   stroke-width: 5px;
   stroke-linejoin: round;
+  opacity: 0;                 /* a triple shows while its character is hovered */
+  transition: opacity .2s;
 }
+.hero-graph .on text { opacity: 1; }
+.hero-graph .on path { stroke: #8a8378; }
+.hero-graph .on circle { fill: #8a8378; }
 
-/* Arrange: a line of text choices; the current order is ink and underlined */
+/* Arrange: a line of text choices; the current order is in Impact capitals, in ink */
 .collage-sort {
   position: relative;
   z-index: 330;
@@ -814,11 +850,12 @@ body:has(.page:not(.hidden)) > .site-footer { display: none; }
 }
 .collage-sort button:hover { color: var(--ink); }
 .collage-sort button.active {
+  font-family: var(--impact);
+  font-size: 1.05rem;
+  font-weight: 400;
+  letter-spacing: .05em;
+  text-transform: uppercase;
   color: var(--ink);
-  font-weight: 600;
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 7px;
 }
 .collage-sort button:disabled { opacity: .5; cursor: progress; }
 /* what the current order is */
@@ -853,6 +890,7 @@ body:has(.page:not(.hidden)) > .site-footer { display: none; }
   overflow: hidden;
   background: var(--border);
   will-change: transform;
+  scroll-margin: calc(var(--nav-h) + 16px) 0 16px;   /* a tile reached by Tab never lands under the bar */
 }
 .home-tile img { display: block; width: 100%; height: 100%; object-fit: cover; cursor: pointer; transition: transform .35s ease; }
 .home-tile:hover img { position: relative; z-index: 2; opacity: .7; transform: scale(1.04); }
@@ -882,23 +920,29 @@ body:has(.page:not(.hidden)) > .site-footer { display: none; }
 .home-tile-swatch { position: absolute; left: 0; right: 0; bottom: 0; height: 8px; }
 .home-collage-sentinel { width: 100%; height: 1px; margin: 0; }
 
-/* RDF tooltips on the wall: white card, black text, thin black stroke */
-.home-ttl-tooltip {
+/* the hover graph on the wall (drawTip in index.html): the tile's meme as a round node with edges to
+   a few property values, like the Knowledge-graph walk but static; white card, thin black stroke,
+   in greys and ink so it stays calm over the colourful wall */
+.home-graph-tip {
   position: fixed;
+  top: 0;
+  left: 0;
   z-index: 250;
-  display: none;
-  max-width: 340px;
-  padding: 7px 8px;
   border: 1px solid var(--ink);
   background: #fff;
-  color: var(--ink);
   box-shadow: 0 6px 18px -8px rgba(0, 0, 0, .25);
-  font-family: Consolas, 'Courier New', monospace;
-  font-size: .66rem;
-  line-height: 1.35;
-  white-space: pre-wrap;
   pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .12s ease, visibility 0s linear .12s;
 }
+.home-graph-tip.show { opacity: 1; visibility: visible; transition: opacity .12s ease; }
+.home-graph-tip svg { display: block; }
+.home-graph-tip .hg-edge { stroke: #8a8378; stroke-width: 1.2; }
+.home-graph-tip .hg-node { fill: var(--surface); stroke: var(--ink); stroke-width: 1.5; }
+.home-graph-tip .hg-prop { font-family: var(--mono); font-size: 12px; fill: var(--muted); }
+.home-graph-tip .hg-pill { fill: var(--border); }
+.home-graph-tip .hg-value { font-family: var(--ui); font-size: 12px; font-weight: 600; fill: var(--ink); }
 
 /* the end of the wall fades out and the link sits in the fade (until every tile is in, it stays below) */
 body.collage-done .home-hero .hero-images {
@@ -932,7 +976,6 @@ body.collage-done .collage-more { margin-top: -96px; padding-top: 0; }
   .hero-graph { display: none; }
 }
 @media (max-width: 1099px) {
-  .home-hero .hero-content { height: min(calc(100vh - 220px), 560px); }
   .hero-chars { --edge: 4vw; }
   .char-wojak, .char-doge { display: none; }
   .char-pepe { left: var(--edge); }
@@ -959,7 +1002,8 @@ body.collage-done .collage-more { margin-top: -96px; padding-top: 0; }
 .hero-images:not(:has(.home-tile-label, .home-tile-swatch)) .home-tile:nth-last-child(-n+13) { grid-column: auto; grid-row: auto; }
 @media (max-width: 768px) {
   .home-hero { padding: calc(var(--nav-h) + 32px) 0 0; }
-  .home-hero .hero-cta { margin-bottom: 0; }     /* button to Arrange: 64 */
+  /* phones: the title block stands on the ground line; button to Arrange: 64 */
+  .home-hero .hero-content { height: min(calc(100vh - 220px), 560px); min-height: 0; justify-content: flex-end; padding-bottom: 0; }
   .collage-sort-note { margin-bottom: 24px; }    /* note to wall: 24 */
 }
 @media (max-width: 760px) {
@@ -981,15 +1025,17 @@ body.collage-done .collage-more { margin-top: -96px; padding-top: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-char, .hero-char:hover, .hero-char:hover img { animation: none; transition: none; transform: none; }
+  .hero-graph text, .home-graph-tip, .home-graph-tip.show { transition: none; }
 }
 
 
 /* ══ VISUALIZATIONS ═════════════════════════════════════════════════════════
    A sequence with a beat: wide charts alternate with split sections where one
-   finding and its memes sit beside the chart; the dark colour spectrum is the
-   single full-width image. */
+   finding and its memes sit beside the chart; a dashed trail, the hero's graph
+   edge, runs down the page beside the titles. */
 
-/* ── Contents: the four groups as grey headings, the names inside the links ── */
+/* ── Contents: one list of the eleven views, the names inside the links; no visible scrollbar
+   (it still scrolls on very short windows) ── */
 .dot-nav {
   position: fixed;
   top: var(--nav-h);
@@ -1001,9 +1047,11 @@ body.collage-done .collage-more { margin-top: -96px; padding-top: 0; }
   flex-direction: column;
   padding: 32px 0 16px;
   overflow-y: auto;
+  scrollbar-width: none;
   background: var(--bg);
   will-change: transform;   /* the page script lifts it as the footer comes in */
 }
+.dot-nav::-webkit-scrollbar { display: none; }
 .dot-nav::before {
   content: 'Contents';
   display: block;
@@ -1014,7 +1062,6 @@ body.collage-done .collage-more { margin-top: -96px; padding-top: 0; }
   color: var(--ink);
 }
 .dot-nav.hidden { display: none; }
-.dot-group { display: block; padding: 24px 16px 4px 26px; font-size: .8125rem; color: var(--muted); }
 .dot {
   display: flex;
   align-items: center;
@@ -1033,15 +1080,22 @@ body.collage-done .collage-more { margin-top: -96px; padding-top: 0; }
 .dot.active { border-left-color: var(--ink); color: var(--ink); font-weight: 600; }
 
 /* ── Page layout ──────────────────────────────────────────────────────────── */
+/* the two edges of the content right of the contents column, defined once: --gutter-l is where text,
+   titles and charts start inside each section (the title edge), --gutter-r the space after the charts.
+   Equal from 1025 px, where the contents column shows; tablets and phones keep their own paddings */
 #app {
-  padding: var(--nav-h) 0 0 var(--dot-nav-w);
+  --gutter-l: 32px;
+  --gutter-r: 0px;
+  padding: var(--nav-h) var(--gutter-r) 0 var(--dot-nav-w);
   transition: padding-right .3s ease;
 }
+@media (min-width: 1025px) { #app { --gutter-l: 64px; --gutter-r: 64px; } }
+@media (min-width: 1600px) { #app { --gutter-l: 96px; --gutter-r: 96px; } }
 #app.panel-open { padding-right: var(--panel-w); }
 #app.hidden { display: none; }
 
 /* opener: the site's caption banner, then one sentence */
-.viz-opener { margin-bottom: 96px; padding: 64px 32px 0; }
+.viz-opener { margin-bottom: 96px; padding: 64px max(0px, 32px - var(--gutter-r)) 0 var(--gutter-l); }   /* the strip ends on the chart edge */
 .viz-opener .meme-banner { margin: 0 0 24px; }
 .viz-opener-text { max-width: 46ch; margin: 0; font-size: 1.25rem; line-height: 1.45; color: var(--ink); text-wrap: pretty; }
 
@@ -1050,7 +1104,7 @@ body.collage-done .collage-more { margin-top: -96px; padding-top: 0; }
 .viz-section + .viz-section { margin-top: 96px; }
 .viz-section:is(:has(> .viz-group-label), :has(> .viz-col > .viz-group-label)):not(:first-of-type) { margin-top: 192px; }
 #sec-flow { margin-bottom: 128px; }
-.viz-group-label { flex-shrink: 0; padding: 32px 32px 0; font-size: 1rem; font-weight: 600; color: var(--ink); }
+.viz-group-label { flex-shrink: 0; padding: 32px 32px 0 var(--gutter-l); font-size: 1rem; font-weight: 600; color: var(--ink); }
 .sec-header {
   flex-shrink: 0;
   z-index: 1;
@@ -1058,7 +1112,7 @@ body.collage-done .collage-more { margin-top: -96px; padding-top: 0; }
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
-  padding: 32px;
+  padding: 32px 32px 32px var(--gutter-l);
 }
 .viz-group-label + .sec-header { padding-top: 8px; }
 .sec-header h2 { font-size: clamp(2rem, 2.8vw, 2.5rem); letter-spacing: .01em; }
@@ -1080,9 +1134,9 @@ body.collage-done .collage-more { margin-top: -96px; padding-top: 0; }
 .viz-finding-memes img { display: block; width: 64px; height: 64px; object-fit: cover; background: #ecebe6; }
 .viz-finding-memes a:hover img { opacity: .85; }
 /* how the chart encodes the data, under the chart */
-.viz-howto { max-width: calc(72ch + 64px); margin: 0; padding: 16px 32px 0; font-size: .875rem; line-height: 1.5; color: var(--muted); }
+.viz-howto { max-width: calc(72ch + 32px + var(--gutter-l)); margin: 0; padding: 16px 32px 0 var(--gutter-l); font-size: .875rem; line-height: 1.5; color: var(--muted); }
 .viz-howto-label { font-weight: 600; color: var(--ink); }
-#sec-variant-gallery > .viz-howto { padding: 0 32px 24px; }   /* the gallery is 2,000 px tall: the line stays under its header */
+#sec-variant-gallery > .viz-howto { padding: 0 32px 24px var(--gutter-l); }   /* the gallery is 2,000 px tall: the line stays under its header */
 
 /* split sections (platform x time, family tree, walk): below 1100 px the text column dissolves into the
    section, so the order reads group, title, finding, memes, controls, chart, then How to read */
@@ -1098,7 +1152,6 @@ body.collage-done .collage-more { margin-top: -96px; padding-top: 0; }
 }
 .graph-wrap svg { display: block; width: 100%; height: 100%; }
 .graph-wrap canvas { display: block; }
-.graph-wrap-dark { background: #121212; }    /* the colour field keeps its dark ground: it is the canvas */
 .viz-hscroll-hint { margin: 8px 0 0; font-size: .875rem; color: var(--muted); }
 
 /* sections grow to their content; charts get one height that follows the window (they read their
@@ -1107,13 +1160,13 @@ body.collage-done .collage-more { margin-top: -96px; padding-top: 0; }
   .viz-section > .graph-wrap, .viz-section > .viz-hscroll > .graph-wrap { flex: none; height: clamp(480px, calc(100vh - 220px), 760px); }
   .viz-hscroll-hint { display: none; }
 }
-/* from 1100 px the split sections put a 360 px text column beside a taller chart; both columns end at
+/* from 1100 px the split sections put a 328 px text column (after the left gutter) beside a taller chart; both columns end at
    the same height: the row is as tall as the taller of the two, the chart fills it and "How to read"
    sits at the foot of the text column */
 @media (min-width: 1100px) {
   .viz-section.viz-split {
     display: grid;
-    grid-template-columns: 360px minmax(0, 1fr);
+    grid-template-columns: calc(328px + var(--gutter-l)) minmax(0, 1fr);
     column-gap: 48px;
     align-items: stretch;
   }
@@ -1121,15 +1174,73 @@ body.collage-done .collage-more { margin-top: -96px; padding-top: 0; }
   .viz-split > .graph-wrap { grid-column: 2; grid-row: 1; height: auto; min-height: clamp(560px, calc(100vh - 120px), 820px); }
   .viz-split .sec-header { padding-right: 0; }
   .viz-split .viz-finding { flex-direction: column; }
-  .viz-col > .viz-howto { margin: auto 0 0; padding: 0 0 0 32px; }
-  .viz-col > .viz-controls { flex-direction: column; align-items: flex-start; padding: 0 0 24px 22px; }
+  .viz-col > .viz-howto { margin: auto 0 0; padding: 0 0 0 var(--gutter-l); }
+  .viz-col > .viz-controls { flex-direction: column; align-items: flex-start; padding: 0 0 24px calc(var(--gutter-l) - 10px); }
   #sec-family .viz-col > .viz-controls { flex-direction: row; flex-wrap: wrap; align-items: center; }
 }
-/* charts stop 48 px short of the window edge; the colour spectrum alone runs to it */
+
+/* ── Trail: the hero's dashed graph edge continued down the page ─────────────
+   From 1025 px, where the contents column and the left gutter (--gutter-l) exist. One dashed line
+   in the middle of that gutter, between the contents column and the titles, from the first section's triple
+   to the end of Property flow, with an end circle at both ends; a node at each chart title with a short
+   connector to it; and on the stretch above each section, in its 96 or 192 px gap, a triple from the
+   chart's finding (.viz-trail-edge in visualizations.html). Static and decorative: the line, the circles
+   and the nodes are pseudo-elements, the triples are aria-hidden. Charts, the story and the spectrum
+   start on the title edge, so the line crosses nothing; the charts read that edge when they draw. */
+.viz-trail-edge { display: none; }
 @media (min-width: 1025px) {
-  #app:not(.panel-open) { padding-right: 48px; }
-  #sec-spectrum { overflow: visible; }
-  #sec-spectrum .graph-wrap-dark { margin-right: -48px; }
+  .viz-trail { position: relative; }
+  .viz-trail::before {
+    content: '';
+    position: absolute;
+    top: -51.5px;              /* the first triple sits in the opener's 96 px gap, 48 px above the section */
+    bottom: -3.5px;
+    left: calc(var(--gutter-l) / 2 - 3.5px);
+    width: 7px;
+    background:
+      radial-gradient(circle, #b5ad9f 3px, transparent 3.5px) top / 7px 7px no-repeat,
+      radial-gradient(circle, #b5ad9f 3px, transparent 3.5px) bottom / 7px 7px no-repeat,
+      linear-gradient(#b5ad9f 3px, transparent 3px) center top / 1px 7px repeat-y;   /* dashes 3, gaps 4 */
+    pointer-events: none;
+  }
+  .viz-trail > .viz-section { position: relative; overflow: visible; --gap: 96px; }
+  .viz-trail > .viz-section:is(:has(> .viz-group-label), :has(> .viz-col > .viz-group-label)):not(:first-of-type) { --gap: 192px; }
+  .viz-trail-edge {
+    display: block;
+    position: absolute;
+    top: calc(var(--gap) / -2 - .75em);   /* centred in the gap above the section */
+    left: var(--gutter-l);
+    font: 12px/1.5 var(--mono);
+    letter-spacing: .02em;
+    color: var(--muted);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+  .viz-trail .sec-header h2 { position: relative; }
+  .viz-trail .sec-header h2::before {   /* the node, centred on the title's first line */
+    content: '';
+    position: absolute;
+    top: calc(.54em - 3.5px);
+    left: calc(var(--gutter-l) / -2 - 3.5px);
+    width: 7px;
+    height: 7px;
+    background: radial-gradient(circle, #b5ad9f 3px, transparent 3.5px);   /* a circle: corners are reset site-wide */
+  }
+  .viz-trail .sec-header h2::after {    /* the connector from the node to the title */
+    content: '';
+    position: absolute;
+    top: calc(.54em - .5px);
+    left: calc(var(--gutter-l) / -2 + 5.5px);   /* from the node to 1.5 px before the title */
+    width: calc(var(--gutter-l) / 2 - 7px);
+    height: 1px;
+    background: linear-gradient(to right, #b5ad9f 3px, transparent 3px) 0 0 / 7px 1px repeat-x;
+  }
+  /* the gutter stays clear: chart boxes, the sideways boxes and the story start on the title edge (the
+     gallery pads its rows to that edge itself) */
+  .viz-trail > .viz-section > :is(.graph-wrap, .viz-hscroll, .story-body):not(:where(#graph-variant-gallery)) { margin-left: var(--gutter-l); }
+}
+@media (min-width: 1100px) {
+  .viz-trail > .viz-split > .graph-wrap { margin-left: 0; }   /* beside the text column, clear of the gutter */
 }
 
 /* ── Chart controls ───────────────────────────────────────────────────────── */
@@ -1139,7 +1250,7 @@ body.collage-done .collage-more { margin-top: -96px; padding-top: 0; }
   flex-wrap: wrap;
   align-items: center;
   gap: 4px 6px;
-  padding: 0 22px 16px;   /* buttons start on the title's edge */
+  padding: 0 22px 16px calc(var(--gutter-l) - 10px);   /* button text starts on the title's edge */
 }
 .viz-controls:empty { display: none; }
 .viz-controls-label { margin: 0 4px 0 10px; font-size: var(--label); font-weight: 500; color: var(--muted); }
@@ -1197,7 +1308,7 @@ body.collage-done .collage-more { margin-top: -96px; padding-top: 0; }
 
 /* ── Variant gallery: rows of templates, held apart by space ─────────────── */
 #sec-variant-gallery { overflow: visible; }
-#graph-variant-gallery { flex: none; height: auto; overflow: visible; padding: 0 32px 20px; }   /* rows on the title's edge */
+#graph-variant-gallery { flex: none; height: auto; overflow: visible; padding: 0 32px 20px var(--gutter-l); }   /* rows on the title's edge */
 .vg-container { width: 100%; }
 .vg-container a { text-decoration: none; }
 .vg-legend {
@@ -1260,7 +1371,7 @@ body.collage-done .collage-more { margin-top: -96px; padding-top: 0; }
 .vg-thumb-original .vg-ext-label { font-weight: 800; }
 
 /* the eight dimensions: a heading, an underlined "Show explanations", a plain list */
-.transform-legend { margin: 0 0 12px; padding: 0 32px; }
+.transform-legend { margin: 0 0 12px; padding: 0 32px 0 var(--gutter-l); }
 .transform-legend-collapsible { display: block; }
 .transform-legend-collapsible > summary {
   display: flex;
@@ -1450,6 +1561,8 @@ body.collage-done .collage-more { margin-top: -96px; padding-top: 0; }
   transition: opacity .4s;
 }
 .loader.done { opacity: 0; pointer-events: none; }
+/* the ontology view reads its own small file, so it never waits behind the meme data */
+body:has(#page-ontology:not(.hidden)) .loader { display: none; }
 .loader-spinner {
   width: 38px;
   height: 38px;
@@ -1757,7 +1870,7 @@ body.collage-done .collage-more { margin-top: -96px; padding-top: 0; }
 .onto-graph svg {
   display: block;
   width: 100%;
-  height: min(640px, 70vh);
+  height: clamp(560px, calc(100vh - 180px), 820px);   /* tall enough to show the whole ontology at full size */
   background: var(--surface);
   touch-action: pan-y;
   cursor: grab;

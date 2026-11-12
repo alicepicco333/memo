@@ -70,7 +70,7 @@
         <button type="button" data-sort="colour" aria-pressed="false">Colour</button>
         <button type="button" data-sort="format" aria-pressed="false">Format A&ndash;Z</button>
       </div>
-      <p class="collage-sort-note" id="collage-sort-note" aria-live="polite">A random mix of memes and their variants. Hover a tile to read its RDF.</p>
+      <p class="collage-sort-note" id="collage-sort-note" aria-live="polite">A random mix of memes and their variants. Hover a tile to see its properties.</p>
       <div id="hero-images" class="hero-images"></div>
       <div id="hero-collage-sentinel" class="home-collage-sentinel"></div>
     </section>
@@ -83,10 +83,6 @@
       var heroContainer = document.getElementById('hero-images');
       var sentinel = document.getElementById('hero-collage-sentinel');
       var desktopHover = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-      var turtleTip = null;
-      var mousePos = { x: 0, y: 0 };
-      var hasMousePos = false;
-      var currentTile = null;
       var queue = [];
       var cursor = 0;
       var BATCH = 120;
@@ -107,6 +103,14 @@
       var lastGroupLabel = null;
       var colours = null;
       var sentinelObs = null;
+      var itemsByKey = {};
+      var SVG_NS = 'http://www.w3.org/2000/svg';
+      var TIP_W = 296;
+      var tip = null;            // the hover graph's card, made on first use
+      var tipBody = null;        // the group inside its one SVG, redrawn for each tile
+      var tipTile = null;        // the tile it shows
+      var tipMode = null;        // 'pointer' (follows it) or 'focus' (beside the focused tile)
+      var dismissedTile = null;  // after Escape the card stays away until another tile is reached
 
       function toMemoLocal(str) {
         return String(str || '')
@@ -134,93 +138,151 @@
         return s.slice(0, Math.max(0, maxLen - 1)) + '…';
       }
 
-      function buildMemeSnippet(item) {
-        var local = toMemoLocal(item.memoLocal || item.slug);
-        var label = shortText(item.label || item.slug || 'Meme', 60);
-        return [
-          'memo:' + local + ' a owl:NamedIndividual, memo:MemeConcept ;',
-          '  rdfs:label "' + label.replace(/"/g, '\\"') + '" .'
-        ].join('\n');
+      function tileKey(item) {
+        return item.type + ':' + (item.photoId || item.slug);
       }
 
-      function buildVariantSnippet(item) {
-        var local = toMemoLocal(item.memoLocal || ('variant_' + (item.photoId || 'x')));
-        var parent = toMemoLocal(item.parentLocal || item.slug || 'meme');
-        var title = shortText(item.label || item.slug || 'Variant', 52);
-        return [
-          'memo:' + local + ' a owl:NamedIndividual, memo:VariantInstance ;',
-          '  memo:variantTitle "' + title.replace(/"/g, '\\"') + '" ;',
-          '  wdp:P361 memo:' + parent + ' .'
-        ].join('\n');
+      /* ── Hover graph: a tile's meme as one node with a few of its properties, drawn like the
+         Knowledge-graph walk on the visualizations page, but static and small ── */
+      function shortCount(n) {
+        if (n >= 999500) return (n / 1e6).toFixed(n >= 9950000 ? 0 : 1).replace(/\.0$/, '') + 'M';
+        if (n >= 1000) return Math.round(n / 1000) + 'k';
+        return String(n);
       }
 
-      function ensureTooltip() {
-        if (!desktopHover || turtleTip) return;
-        turtleTip = document.createElement('div');
-        turtleTip.className = 'home-ttl-tooltip';
-        document.body.appendChild(turtleTip);
-      }
-
-      function showTooltip(text, e) {
-        if (!desktopHover) return;
-        ensureTooltip();
-        if (!turtleTip) return;
-        turtleTip.textContent = text;
-        turtleTip.style.display = 'block';
-        moveTooltip(e || { clientX: mousePos.x, clientY: mousePos.y });
-      }
-
-      function moveTooltip(e) {
-        if (!desktopHover || !turtleTip || turtleTip.style.display !== 'block') return;
-        var pad = 12;
-        var x = e.clientX + 16;
-        var y = e.clientY + 16;
-        var maxX = window.innerWidth - turtleTip.offsetWidth - pad;
-        var maxY = window.innerHeight - turtleTip.offsetHeight - pad;
-        turtleTip.style.left = Math.max(pad, Math.min(x, maxX)) + 'px';
-        turtleTip.style.top = Math.max(pad, Math.min(y, maxY)) + 'px';
-      }
-
-      function hideTooltip() {
-        if (turtleTip) turtleTip.style.display = 'none';
-      }
-
-      function refreshHoverAtMouse() {
-        if (!desktopHover) return;
-        if (!hasMousePos) return;
-
-        moveTooltip({ clientX: mousePos.x, clientY: mousePos.y });
-
-        var node = document.elementFromPoint(mousePos.x, mousePos.y);
-        var tile = node ? node.closest('.home-tile') : null;
-
-        if (!tile || !heroContainer.contains(tile)) {
-          currentTile = null;
-          hideTooltip();
-          return;
+      // the edges it draws, named as in the ontology (meme_ontology.ttl)
+      function triplesOf(item) {
+        var rows = [];
+        if (item.type === 'variant') {
+          if (item.parentName) rows.push(['isVariantOf', item.parentName]);
+          if (item.title) rows.push(['variantTitle', item.title]);
+          if (item.uploader) rows.push(['variantUploader', item.uploader]);
+        } else {
+          if (item.format) rows.push(['hasFormat', item.format]);
+          if (item.year) rows.push(['created', item.year]);
+          if (item.imageType) rows.push(['hasImageType', item.imageType]);
+          if (item.views > 0) rows.push(['views', shortCount(item.views)]);
         }
+        return rows;
+      }
 
-        if (currentTile !== tile) {
-          currentTile = tile;
-          showTooltip(tile.dataset.ttlSnippet || '', { clientX: mousePos.x, clientY: mousePos.y });
-          return;
+      function svgEl(tag, attrs, parent) {
+        var el = document.createElementNS(SVG_NS, tag);
+        Object.keys(attrs).forEach(function(k) { el.setAttribute(k, attrs[k]); });
+        if (parent) parent.appendChild(el);
+        return el;
+      }
+
+      // a value cut with an ellipsis to fit its pill
+      function fitText(el, text, maxW) {
+        var s = shortText(text, 40);
+        el.textContent = s;
+        while (el.getComputedTextLength() > maxW && s.length > 1) {
+          s = s.slice(0, -1).trim();
+          el.textContent = s + '…';
         }
+      }
 
-        // Same tile, keep tooltip content in sync in case data changed during lazy append.
-        if (turtleTip && turtleTip.style.display === 'block') {
-          var nextText = tile.dataset.ttlSnippet || '';
-          if (turtleTip.textContent !== nextText) {
-            turtleTip.textContent = nextText;
+      function ensureTip() {
+        if (tip) return;
+        tip = document.createElement('div');
+        tip.className = 'home-graph-tip';
+        tip.setAttribute('aria-hidden', 'true');   // the tile's link already carries the meme's name
+        var svg = svgEl('svg', { width: TIP_W, height: 100, viewBox: '0 0 ' + TIP_W + ' 100' });
+        var clip = svgEl('clipPath', { id: 'home-graph-clip', clipPathUnits: 'objectBoundingBox' }, svgEl('defs', {}, svg));
+        svgEl('circle', { cx: .5, cy: .5, r: .5 }, clip);
+        tipBody = svgEl('g', {}, svg);
+        tip.appendChild(svg);
+        document.body.appendChild(tip);
+      }
+
+      // the meme's round image on the left; an edge from it to each value pill on the right,
+      // with the property's name above the end of the edge
+      function drawTip(item, img) {
+        var rows = triplesOf(item);
+        var PAD = 12, R = 38, PITCH = 40, PX = 124;   // PX: where the edges end and the pills start
+        var block = rows.length ? 24 + PITCH * (rows.length - 1) + 10 : 0;   // first name's top to last pill's foot
+        var H = Math.max(2 * (R + PAD), block + 2 * PAD);
+        var cx = PAD + R, cy = H / 2, top = (H - block) / 2 + 24;
+        var svg = tipBody.ownerSVGElement;
+        svg.setAttribute('height', H);
+        svg.setAttribute('viewBox', '0 0 ' + TIP_W + ' ' + H);
+        tipBody.textContent = '';
+        rows.forEach(function(row, i) {
+          var y = top + i * PITCH, a = Math.atan2(y - cy, PX - cx);
+          svgEl('line', { 'class': 'hg-edge', x1: cx + R * Math.cos(a), y1: cy + R * Math.sin(a), x2: PX, y2: y }, tipBody);
+          svgEl('text', { 'class': 'hg-prop', x: PX + 2, y: y - 15 }, tipBody).textContent = row[0];
+          var pill = svgEl('rect', { 'class': 'hg-pill', x: PX, y: y - 10, height: 20, rx: 10 }, tipBody);
+          var value = svgEl('text', { 'class': 'hg-value', x: PX + 8, y: y + 4 }, tipBody);
+          fitText(value, row[1], TIP_W - PAD - PX - 16);
+          pill.setAttribute('width', value.getComputedTextLength() + 16);
+        });
+        svgEl('circle', { 'class': 'hg-node', cx: cx, cy: cy, r: R }, tipBody);
+        svgEl('image', {
+          href: img.currentSrc || img.src, x: cx - R + 3, y: cy - R + 3, width: 2 * R - 6, height: 2 * R - 6,
+          preserveAspectRatio: 'xMidYMid slice', 'clip-path': 'url(#home-graph-clip)'
+        }, tipBody);
+      }
+
+      // pointer: below and right of it, flipped near the edges; focus: beside the tile, or under it on phones
+      function placeTip(e) {
+        var pad = 12, w = tip.offsetWidth, h = tip.offsetHeight, x, y;
+        var minY = document.getElementById('topnav').getBoundingClientRect().bottom + pad;
+        if (tipMode === 'pointer') {
+          x = e.clientX + 16;
+          y = e.clientY + 16;
+          if (x + w > window.innerWidth - pad) x = e.clientX - 16 - w;
+          if (y + h > window.innerHeight - pad) y = e.clientY - 16 - h;
+        } else {
+          // the page may still be scrolling the focused tile into view: wait for it
+          var r = tipTile.getBoundingClientRect();
+          var inView = r.bottom > minY && r.top < window.innerHeight;
+          tip.classList.toggle('show', inView);
+          if (!inView) return;
+          x = r.right + pad;
+          y = r.top + (r.height - h) / 2;
+          if (x + w > window.innerWidth - pad) x = r.left - pad - w;
+          if (x < pad) {
+            x = r.left + (r.width - w) / 2;
+            y = r.bottom + pad;
+            if (y + h > window.innerHeight - pad) y = r.top - pad - h;
           }
         }
+        tip.style.left = Math.max(pad, Math.min(x, window.innerWidth - w - pad)) + 'px';
+        tip.style.top = Math.max(minY, Math.min(y, window.innerHeight - h - pad)) + 'px';
       }
 
-      function updateHoverFromPointer(e) {
-        if (!desktopHover) return;
-        mousePos.x = e.clientX;
-        mousePos.y = e.clientY;
-        hasMousePos = true;
-        refreshHoverAtMouse();
+      function showTip(tile, mode, e) {
+        var item = itemsByKey[tile.dataset.key];
+        var img = tile.querySelector('img');
+        if (!item || !img) return;
+        ensureTip();
+        if (tile !== tipTile) drawTip(item, img);
+        tipTile = tile;
+        tipMode = mode;
+        tip.classList.add('show');
+        placeTip(e);
+      }
+
+      function hideTip() {
+        if (tip) tip.classList.remove('show');
+        tipTile = null;
+        tipMode = null;
+      }
+
+      function onPointerMove(e) {
+        var tile = e.target.closest ? e.target.closest('.home-tile') : null;
+        if (tile && !heroContainer.contains(tile)) tile = null;
+        if (tile !== dismissedTile) dismissedTile = null;
+        if (!tile || dismissedTile) {
+          if (tipMode === 'pointer') hideTip();
+          return;
+        }
+        showTip(tile, 'pointer', e);
+      }
+
+      function keyboardFocus(el) {
+        try { return el.matches(':focus-visible'); } catch (err) { return true; }
       }
 
       function shuffle(arr) {
@@ -278,15 +340,8 @@
             img.src = item.imageURL;
           }
 
-          if (desktopHover) {
-            var snippet = item.type === 'variant'
-              ? buildVariantSnippet(item)
-              : buildMemeSnippet(item);
-            a.dataset.ttlSnippet = snippet;
-          }
-
           a.appendChild(img);
-          a.dataset.key = item.type + ':' + (item.photoId || item.slug);
+          a.dataset.key = tileKey(item);
 
           var group = sortMode === 'year' ? (item.year || null)
             : sortMode === 'format' ? (item.format || null) : null;
@@ -312,7 +367,8 @@
         isLoading = false;
       }
 
-      // memes_lite.json (built by build_memes_lite.py): s slug, i image path on the CDN, y year, f main format
+      // memes_lite.json (built by build_memes_lite.py): s slug, i image path on the CDN, y year,
+      // f main format, v views, t image type
       function buildQueue(memeRows, variantData) {
         var memes = Array.isArray(memeRows) ? memeRows : [];
         var memeEntries = memes
@@ -322,9 +378,10 @@
               type: 'meme',
               slug: m.s,
               label: slugLabel(m.s),
-              memoLocal: m.s,
               year: /^\d{4}$/.test(String(m.y || '')) ? String(m.y) : null,
               format: m.f || null,
+              imageType: m.t && m.t !== 'Unknown' ? m.t : null,
+              views: Number(m.v) || 0,
               thumb: thumbName('meme', m.s),
               imageURL: /^https?:/.test(m.i) ? m.i : CDN + m.i
             };
@@ -338,8 +395,9 @@
               slug: v.folder || toMemoLocal(v.meme_name),
               photoId: v.photo_id,
               label: v.title || v.meme_name || ('Variant ' + (v.photo_id || '')),
-              memoLocal: 'variant_' + (v.photo_id || ''),
-              parentLocal: v.folder || toMemoLocal(v.meme_name),
+              parentName: v.meme_name || null,
+              title: v.title || null,
+              uploader: v.author || null,
               thumb: v.photo_id ? thumbName('variant', v.photo_id) : null,
               imageURL: v.image_url || ''
             };
@@ -352,16 +410,25 @@
         }));
       }
 
-      /* Hero graph: faint dashed edges from the title to each character, labelled with a real property */
+      /* Hero graph: faint dashed edges from the title to each character, labelled with a real property.
+         The label (the triple) shows while its character is hovered; the line and its dots stay. */
+      var heroChars = document.querySelectorAll('.hero-char[data-edge]');
+      heroChars.forEach(function(c, i) {
+        function light(on) {
+          var g = document.querySelector('#hero-graph [data-char="' + i + '"]');
+          if (g) g.classList.toggle('on', on);
+        }
+        c.addEventListener('mouseenter', function() { light(true); });
+        c.addEventListener('mouseleave', function() { light(false); });
+      });
       function drawHeroGraph() {
         var svg = document.getElementById('hero-graph');
         var title = document.querySelector('.home-hero .hero-title');
         if (!svg || !title || !svg.getBoundingClientRect().width) return;
         var box = svg.getBoundingClientRect(), t = title.getBoundingClientRect();
-        var NS = 'http://www.w3.org/2000/svg', out = '';
-        var chars = document.querySelectorAll('.hero-char[data-edge]');
+        var out = '';
         var sides = { left: [], right: [] };
-        chars.forEach(function(c) { if (getComputedStyle(c).display !== 'none') sides[c.dataset.side].push(c); });
+        heroChars.forEach(function(c) { if (getComputedStyle(c).display !== 'none') sides[c.dataset.side].push(c); });
         ['left', 'right'].forEach(function(side) {
           // order by the angle from the title edge, so outer characters take higher anchors and edges never cross
           var edgeX = side === 'left' ? t.left : t.right, midY = t.top + t.height / 2;
@@ -377,10 +444,11 @@
             var ty = t.top + t.height * (0.28 + 0.44 * (list.length > 1 ? i / (list.length - 1) : .5)) - box.top;
             var sx = side === 'left' ? cx + r.width * 0.42 : cx - r.width * 0.42;
             var mx = (sx + tx) / 2, my = (cy + ty) / 2 - 18;
+            out += '<g data-char="' + Array.prototype.indexOf.call(heroChars, c) + '">';
             out += '<path d="M' + sx + ',' + cy + ' Q' + mx + ',' + my + ' ' + tx + ',' + ty + '"/>';
             out += '<circle cx="' + tx + '" cy="' + ty + '" r="3"/><circle cx="' + sx + '" cy="' + cy + '" r="3"/>';
             var k = 0.64, lx = (1-k)*(1-k)*sx + 2*k*(1-k)*mx + k*k*tx, ly = (1-k)*(1-k)*cy + 2*k*(1-k)*my + k*k*ty - 7;
-            var gapX = 14, anchor = 'middle'; if (side === 'left' && lx + 70 > t.left - box.left - gapX) { lx = t.left - box.left - gapX; anchor = 'end'; } if (side === 'right' && lx - 70 < t.right - box.left + gapX) { lx = t.right - box.left + gapX; anchor = 'start'; } out += '<text x="' + lx + '" y="' + ly + '" text-anchor="' + anchor + '">' + c.dataset.edge + '</text>';
+            var gapX = 14, anchor = 'middle'; if (side === 'left' && lx + 70 > t.left - box.left - gapX) { lx = t.left - box.left - gapX; anchor = 'end'; } if (side === 'right' && lx - 70 < t.right - box.left + gapX) { lx = t.right - box.left + gapX; anchor = 'start'; } out += '<text x="' + lx + '" y="' + ly + '" text-anchor="' + anchor + '">' + c.dataset.edge + '</text></g>';
           });
         });
         svg.innerHTML = out;
@@ -399,6 +467,7 @@
 
         queue = shuffledQueue;
         allItems = shuffledQueue.slice();
+        allItems.forEach(function(item) { itemsByKey[tileKey(item)] = item; });
 
         appendBatch();
         appendBatch();
@@ -452,6 +521,7 @@
           var r = t.getBoundingClientRect();
           if (r.top < window.innerHeight * 2) first[t.dataset.key] = r;
         });
+        hideTip();
         sortMode = mode;
         lastGroupLabel = null;
         queue = sortedItems(mode);
@@ -492,7 +562,7 @@
         btn.addEventListener('click', function() {
           var mode = btn.dataset.sort;
           var NOTES = {
-            shuffle: 'A random mix of memes and their variants. Hover a tile to read its RDF.',
+            shuffle: 'A random mix of memes and their variants. Hover a tile to see its properties.',
             year: 'Oldest to newest, by the year each meme appeared. A label marks where each year starts. Variants follow at the end.',
             colour: 'By average colour, from red through yellow, green and blue to purple, then greys and black and white. The strip on each tile is its colour.',
             format: 'Grouped by main format, A to Z. A label marks where each format starts. Variants follow at the end.'
@@ -535,21 +605,33 @@
           heroContainer.innerHTML = '<p style="grid-column:1 / -1; color:#666; font-size:.85rem; padding: 20px;">Unable to load collage data.</p>';
         });
 
+      // the hover graph: on hover (pointer devices) and on keyboard focus; Escape, scroll and leaving hide it
       if (desktopHover) {
-        document.addEventListener('mousemove', updateHoverFromPointer);
-        window.addEventListener('scroll', refreshHoverAtMouse, { passive: true });
-        window.addEventListener('resize', refreshHoverAtMouse, { passive: true });
-        document.addEventListener('mouseleave', function() {
-          currentTile = null;
-          hasMousePos = false;
-          hideTooltip();
-        });
-        window.addEventListener('blur', function() {
-          currentTile = null;
-          hasMousePos = false;
-          hideTooltip();
-        });
+        document.addEventListener('mousemove', onPointerMove);
+        document.addEventListener('mouseleave', hideTip);
       }
+      heroContainer.addEventListener('focusin', function(e) {
+        var tile = e.target.closest('.home-tile');
+        if (!tile || !keyboardFocus(tile)) return;
+        dismissedTile = null;
+        showTip(tile, 'focus');
+      });
+      heroContainer.addEventListener('focusout', function() {
+        if (tipMode === 'focus') hideTip();
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && tipTile) {
+          dismissedTile = tipTile;
+          hideTip();
+        }
+      });
+      // a focused tile keeps its card while the page scrolls to it; the pointer's card goes
+      window.addEventListener('scroll', function() {
+        if (tipMode === 'focus') placeTip();
+        else if (tipMode) hideTip();
+      }, { passive: true });
+      window.addEventListener('resize', hideTip);
+      window.addEventListener('blur', hideTip);
     })();
   </script>
   <script src="memo_meme.js" defer></script>

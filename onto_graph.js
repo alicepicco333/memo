@@ -54,22 +54,30 @@
     tools.innerHTML = '<button type="button" data-z="in" aria-label="Zoom in">+</button>' +
       '<button type="button" data-z="out" aria-label="Zoom out">\u2212</button>' +
       '<button type="button" data-z="reset">Reset</button>' +
-      '<span>Ctrl/\u2318 + scroll to zoom \u00b7 drag to pan</span>';
+      '<span>Ctrl/\u2318 + scroll to zoom. Drag to pan.</span>';
+    var home = d3.zoomIdentity;   // the fitted view, set once the layout is done
     tools.addEventListener('click', function (e) {
       var z = e.target.getAttribute('data-z'); if (!z) return;
       var t = svg.transition().duration(300);
-      if (z === 'in') zoom.scaleBy(t, 1.5); else if (z === 'out') zoom.scaleBy(t, 1 / 1.5); else zoom.transform(t, d3.zoomIdentity);
+      if (z === 'in') zoom.scaleBy(t, 1.5); else if (z === 'out') zoom.scaleBy(t, 1 / 1.5); else zoom.transform(t, home);
     });
     svgEl.parentNode.insertBefore(tools, svgEl);
 
+    // the layout is worked out before anything is drawn (stopped simulation, ticked by hand), so the graph
+    // appears once, still and fitted to its box; it only moves again when someone drags a node
+    // spacing follows the box (measured against the 1312 x 720 box of a 1440 x 900 window); labels keep their size
+    var s = Math.max(0.7, Math.min(1.15, Math.sqrt((W * H) / (1312 * 720))));
     var sim = d3.forceSimulation(nodes)
       .force('link', d3.forceLink(links).id(function (d) { return d.id; })
-        .distance(function (l) { return l.type === 'sub' ? 60 : l.type === 'inst' ? 34 : 130; })
+        .distance(function (l) { return (l.type === 'sub' ? 60 : l.type === 'inst' ? 34 : 130) * s; })
         .strength(function (l) { return l.type === 'sub' ? 0.9 : l.type === 'inst' ? 1 : 0.25; }))
-      .force('charge', d3.forceManyBody().strength(function (d) { return d.kind === 'individual' ? -24 : -520; }))
+      .force('charge', d3.forceManyBody().strength(function (d) { return (d.kind === 'individual' ? -24 : -400) * s; }))
       .force('collide', d3.forceCollide().radius(function (d) { return d.kind === 'individual' ? 7 : 10 + d.label.length * 3.4; }))
-      .force('x', d3.forceX(W / 2).strength(0.04))
-      .force('y', d3.forceY(H / 2).strength(0.06));
+      // pulled harder up and down than sideways, so the layout spreads into the wide box
+      .force('x', d3.forceX(W / 2).strength(0.045))
+      .force('y', d3.forceY(H / 2).strength(0.075))
+      .stop();
+    for (var i = 0, n = Math.ceil(Math.log(sim.alphaMin()) / Math.log(1 - sim.alphaDecay())); i < n; i++) sim.tick();
 
     var link = root.append('g').selectAll('path').data(links).join('path')
       .attr('class', function (l) { return 'og-link ' + l.type; })
@@ -117,8 +125,7 @@
       .on('mouseleave blur', function () { focus(null); })
       .on('click', function (e, d) { focus(d); });
 
-    sim.on('tick', function () {
-      nodes.forEach(function (d) { d.x = Math.max(20, Math.min(W - 140, d.x)); d.y = Math.max(20, Math.min(H - 20, d.y)); });
+    function render() {
       link.attr('d', function (l) {
         var sx = l.source.x, sy = l.source.y, tx = l.target.x, ty = l.target.y;
         if (l.type === 'sub') return 'M' + sx + ',' + sy + 'L' + tx + ',' + ty;
@@ -129,7 +136,23 @@
       plabel.attr('x', function (l) { return (l.source.x + l.target.x) / 2 - (l.target.y - l.source.y) * 0.06; })
         .attr('y', function (l) { return (l.source.y + l.target.y) / 2 + (l.target.x - l.source.x) * 0.06; });
       node.attr('transform', function (d) { return 'translate(' + d.x + ',' + d.y + ')'; });
-    });
+    }
+    render();
+    sim.on('tick', render);   // only runs while a node is dragged
+
+    // fit the finished drawing (labels included) into the box, centred, never enlarged; Reset returns here.
+    // On a phone the whole ontology cannot be read at once: start at a readable size around MemeConcept
+    // and let people drag to pan
+    var bb = root.node().getBBox(), pad = 24;
+    var k = Math.min(1, (W - pad * 2) / bb.width, (H - pad * 2) / bb.height);
+    var cx = bb.x + bb.width / 2, cy = bb.y + bb.height / 2;
+    if (k < 0.6) {
+      k = 0.6;
+      if (byId['memo:MemeConcept']) { cx = byId['memo:MemeConcept'].x + 40; cy = byId['memo:MemeConcept'].y; }
+    }
+    home = d3.zoomIdentity.translate(W / 2 - k * cx, H / 2 - k * cy).scale(k);
+    svg.call(zoom.transform, home);
+    svgEl.dataset.fit = k.toFixed(2);
   }
 
   // the ontology page is hidden until opened; draw once it is visible

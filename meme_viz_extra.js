@@ -416,11 +416,16 @@
       return;
     }
     if (!spectrum.items) {
+      // the squares sit on the page paper: the ones too close to it (contrast under 1.35:1) get a faint outline
+      const lum = c => { const { r, g, b } = d3.rgb(c); return [r, g, b].map(v => { v /= 255; return v <= .03928 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4; })
+        .reduce((sum, v, i) => sum + v * [.2126, .7152, .0722][i], 0); };
+      const paper = lum(getComputedStyle(document.documentElement).getPropertyValue('--bg').trim() || '#f7f5f0');
       spectrum.items = Object.keys(memes()).filter(s => COLOR_DATA[s]).map(slug => {
         const m = memes()[slug];
         const c = COLOR_DATA[slug];
+        const fill = `hsl(${c.h},${c.s}%,${c.l}%)`, L = lum(fill);
         return { slug, m, h: +c.h || 0, s: +c.s || 0, l: +c.l || 0, year: yearOf(m),
-                 fill: `hsl(${c.h},${c.s}%,${c.l}%)`, x: 0, y: 0, size: 0 };
+                 fill, pale: (Math.max(L, paper) + .05) / (Math.min(L, paper) + .05) < 1.35, x: 0, y: 0, size: 0 };
       });
     }
     const items = spectrum.items;
@@ -518,7 +523,11 @@
   function layoutSpectrum(animate) {
     const { W, H, items } = spectrum;
     if (!spectrum.ctx) return;
-    const pad = { l: 44, r: 16, t: 16, b: 30 };
+    // the widest left label (a year, 300°, L100) starts on the box's left edge, the title edge; the count
+    // of memes sits above the squares
+    spectrum.ctx.font = `${TICK_PX}px ${chartFont()}`;
+    const labelW = d3.max(['0000', '300°', 'L100', 'n/a'], s => spectrum.ctx.measureText(s).width);
+    const pad = { l: Math.ceil(labelW) + 6, r: 16, t: 28, b: 30 };
     const iw = W - pad.l - pad.r, ih = H - pad.t - pad.b;
     const known = y => y && y >= 1990;
     items.forEach(d => { d.px = d.x; d.py = d.y; d.psize = d.size; });
@@ -606,21 +615,25 @@
   function drawSpectrum() {
     const { ctx, W, H, items, upTo } = spectrum;
     if (!ctx) return;
-    ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = '#0d0d0d';
-    ctx.fillRect(0, 0, W, H);
+    ctx.clearRect(0, 0, W, H);   // drawn on the page paper
     let shown = 0;
+    ctx.strokeStyle = 'rgba(103,98,90,.45)';
+    ctx.lineWidth = 1;
     items.forEach(d => {
       const visible = !d.year || d.year < 1990 || d.year <= upTo;
       if (visible) shown++;
-      ctx.globalAlpha = visible ? 1 : 0.07;
+      ctx.globalAlpha = visible ? 1 : 0.1;
       ctx.fillStyle = d.fill;
       const s = d.csize;
       if (s < 0.3) return;
       ctx.fillRect(d.cx - s / 2, d.cy - s / 2, s, s);
+      if (d.pale && visible) {
+        if (s >= 4) ctx.strokeRect(d.cx - s / 2 + .5, d.cy - s / 2 + .5, s - 1, s - 1);
+        else ctx.strokeRect(d.cx - s / 2, d.cy - s / 2, s, s);
+      }
     });
     ctx.globalAlpha = 1;
-    ctx.fillStyle = 'rgba(255,255,255,.72)';
+    ctx.fillStyle = MUTED_INK;
     ctx.font = `${TICK_PX}px ${chartFont()}`;
     ctx.textBaseline = 'middle';
     spectrum.labels.forEach(l => {
@@ -628,7 +641,7 @@
       ctx.fillText(l.text, l.x, l.y);
     });
     ctx.textAlign = 'right';
-    ctx.fillStyle = 'rgba(255,255,255,.8)';
+    ctx.fillStyle = '#141414';
     ctx.font = `${LABEL_PX}px ${chartFont()}`;
     ctx.fillText(`${shown.toLocaleString()} memes`, W - 12, 12);
   }

@@ -67,6 +67,7 @@
     btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'rm-btn';
+    btn.setAttribute('aria-label', 'Random meme');   // the label is hidden on narrow screens, the name stays
     btn.setAttribute('aria-expanded', 'false');
     btn.setAttribute('aria-controls', 'rm-card');
     btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/>' +
