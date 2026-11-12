@@ -42,6 +42,22 @@
   [headers.values]
     Cache-Control = "public, max-age=86400"
 
+# Self-hosted meme thumbnails (build_wall_thumbs.py, img/findings): a week in the browser cache
+[[headers]]
+  for = "/img/wall/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/img/findings/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/memes_lite.json"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
 [[headers]]
   for = "/documentation.html"
   [headers.values]

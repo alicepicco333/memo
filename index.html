@@ -26,8 +26,6 @@
     </div>
   </nav>
 
-  <div class="home-ticker" aria-hidden="true"><div class="home-ticker-track" id="home-ticker"></div></div>
-
   <main class="home-main">
     <section class="viz-section hero-section home-hero" id="sec-hero">
       <div class="hero-content">
@@ -72,7 +70,7 @@
         <button type="button" data-sort="colour" aria-pressed="false">Colour</button>
         <button type="button" data-sort="format" aria-pressed="false">Format A&ndash;Z</button>
       </div>
-      <p class="collage-sort-note" id="collage-sort-note" aria-live="polite">A random mix of memes and their variants &middot; hover a tile to read its RDF</p>
+      <p class="collage-sort-note" id="collage-sort-note" aria-live="polite">A random mix of memes and their variants. Hover a tile to read its RDF.</p>
       <div id="hero-images" class="hero-images"></div>
       <div id="hero-collage-sentinel" class="home-collage-sentinel"></div>
     </section>
@@ -92,7 +90,16 @@
       var queue = [];
       var cursor = 0;
       var BATCH = 120;
-      var HOME_LIMIT = 360; // a few screens of memes, then the footer
+      // A few screens of memes, then the footer. Both counts end the wall on a full row, in Shuffle
+      // (two sizes) and in the arranged orders, given the grid's dense packing and the last 13 tiles
+      // staying single (meme_viz.css): 360 fill 87 rows of 6 (60 arranged); on phones (3 columns,
+      // tile 7n+1 large) 162 fill 76 rows (54 arranged). Change the phone count by multiples of 3.
+      var phoneQuery = window.matchMedia('(max-width: 640px)');
+      var HOME_LIMIT = phoneQuery.matches ? 162 : 360;
+      var EAGER = 12;              // the first tiles load at once and first in line
+      var CDN = 'https://i.kym-cdn.com/';
+      var THUMBS = 'img/wall/';    // 420 px WebP copies, made by build_wall_thumbs.py
+      var missing = { gone: {}, failed: {} };
       var isLoading = false;
       var exhausted = false;
       var allItems = [];
@@ -107,6 +114,18 @@
           .replace(/[^a-z0-9_-]+/g, '-')
           .replace(/-+/g, '-')
           .replace(/^-+|-+$/g, '') || 'memo_entry';
+      }
+
+      // the thumbnail's file name, as build_wall_thumbs.py writes it
+      function thumbName(type, key) {
+        return (type === 'variant' ? 'v-' : 'm-') + String(key).toLowerCase().replace(/[^a-z0-9_-]/g, '_');
+      }
+
+      // slugs keep emoji and accents percent-encoded; decode them for the tile's name
+      function slugLabel(slug) {
+        var s = String(slug || '');
+        try { s = decodeURIComponent(s); } catch (e) {}
+        return s.replace(/[-_]+/g, ' ').trim();
       }
 
       function shortText(str, maxLen) {
@@ -223,7 +242,7 @@
         if (isLoading || exhausted) return;
         isLoading = true;
 
-        var limit = Math.min(cursor + BATCH, queue.length);
+        var limit = Math.min(cursor + BATCH, queue.length, HOME_LIMIT);
         for (var i = cursor; i < limit; i++) {
           var item = queue[i];
           var a = document.createElement('a');
@@ -235,17 +254,28 @@
           }
 
           var img = document.createElement('img');
-          img.src = item.imageURL || ('images_flat/' + item.imageFilename);
           img.alt = item.label || item.slug || '';
-          img.loading = 'lazy';
-
-          if (item.imageURL && item.imageFilename) {
+          img.width = 420;
+          img.height = 420;
+          img.style.backgroundColor = '#ecebe6'; // placeholder while the image loads
+          if (i < EAGER) {
+            img.loading = 'eager';
+            img.setAttribute('fetchpriority', 'high');
+          } else {
+            img.loading = 'lazy';
+            img.decoding = 'async';
+          }
+          // the local thumbnail; Know Your Meme's full image if it is missing or fails
+          if (item.thumb && !missing.failed[item.thumb]) {
+            img.dataset.fallback = item.imageURL;
             img.addEventListener('error', function() {
               if (this.dataset.fallbackTried) return;
               this.dataset.fallbackTried = '1';
-              this.src = 'images_flat/' + this.dataset.fallbackFilename;
+              this.src = this.dataset.fallback;
             });
-            img.dataset.fallbackFilename = item.imageFilename;
+            img.src = THUMBS + item.thumb + '.webp';
+          } else {
+            img.src = item.imageURL;
           }
 
           if (desktopHover) {
@@ -282,24 +312,23 @@
         isLoading = false;
       }
 
-      function buildQueue(memeData, variantData) {
-        var memes = memeData && memeData.memes ? memeData.memes : {};
-        var slugs = Object.keys(memes);
-        var memeEntries = slugs
-          .map(function(slug) {
-            var m = memes[slug] || {};
+      // memes_lite.json (built by build_memes_lite.py): s slug, i image path on the CDN, y year, f main format
+      function buildQueue(memeRows, variantData) {
+        var memes = Array.isArray(memeRows) ? memeRows : [];
+        var memeEntries = memes
+          .filter(function(m) { return m && m.s && m.i; })
+          .map(function(m) {
             return {
               type: 'meme',
-              slug: slug,
-              label: slug.replace(/[-_]+/g, ' '),
-              memoLocal: slug,
-              year: /^\d{4}$/.test(String(m.year || '')) ? String(m.year) : null,
-              format: (m.hasFormat || []).filter(function(f) { return f && f !== 'Unknown'; })[0] || null,
-              imageFilename: m.imageFilename,
-              imageURL: m.imageURL
+              slug: m.s,
+              label: slugLabel(m.s),
+              memoLocal: m.s,
+              year: /^\d{4}$/.test(String(m.y || '')) ? String(m.y) : null,
+              format: m.f || null,
+              thumb: thumbName('meme', m.s),
+              imageURL: /^https?:/.test(m.i) ? m.i : CDN + m.i
             };
-          })
-          .filter(function(m) { return !!m.imageFilename; });
+          });
 
         var variants = Array.isArray(variantData) ? variantData : [];
         var variantEntries = variants
@@ -311,29 +340,16 @@
               label: v.title || v.meme_name || ('Variant ' + (v.photo_id || '')),
               memoLocal: 'variant_' + (v.photo_id || ''),
               parentLocal: v.folder || toMemoLocal(v.meme_name),
-              imageFilename: null,
+              thumb: v.photo_id ? thumbName('variant', v.photo_id) : null,
               imageURL: v.image_url || ''
             };
           })
           .filter(function(v) { return !!v.imageURL; });
 
-        return shuffle(memeEntries.concat(variantEntries));
-      }
-
-      /* Ticker: every meme format with its entry count, straight from the data */
-      function buildTicker(memeData) {
-        var el = document.getElementById('home-ticker');
-        if (!el || !memeData || !memeData.memes) return;
-        var counts = {};
-        Object.keys(memeData.memes).forEach(function(slug) {
-          (memeData.memes[slug].hasFormat || []).forEach(function(f) {
-            if (f && f !== 'Unknown') counts[f] = (counts[f] || 0) + 1;
-          });
-        });
-        var run = Object.keys(counts).sort(function(a, b) { return counts[b] - counts[a]; })
-          .map(function(f) { return '<span>' + f.toUpperCase() + ' <i>' + counts[f].toLocaleString() + '</i></span>✦'; })
-          .join('');
-        el.innerHTML = '<div class="ticker-run">' + run + '</div><div class="ticker-run" aria-hidden="true">' + run + '</div>';
+        // images Know Your Meme no longer serves stay off the wall
+        return shuffle(memeEntries.concat(variantEntries).filter(function(item) {
+          return !missing.gone[item.thumb];
+        }));
       }
 
       /* Hero graph: faint dashed edges from the title to each character, labelled with a real property */
@@ -374,12 +390,14 @@
       if (document.fonts && document.fonts.ready) document.fonts.ready.then(drawHeroGraph);
 
       function boot(allData) {
-        var memeData = allData && allData[0] ? allData[0] : {};
+        var memeRows = allData && allData[0] ? allData[0] : [];
         var variantData = allData && allData[1] ? allData[1] : [];
-        var shuffledQueue = buildQueue(memeData, variantData);
+        var gaps = allData && allData[2] ? allData[2] : {};
+        (gaps.gone || []).forEach(function(name) { missing.gone[name] = true; });
+        (gaps.failed || []).forEach(function(name) { missing.failed[name] = true; });
+        var shuffledQueue = buildQueue(memeRows, variantData);
 
         queue = shuffledQueue;
-        buildTicker(memeData);
         allItems = shuffledQueue.slice();
 
         appendBatch();
@@ -394,6 +412,17 @@
           });
         }, { rootMargin: '1100px 0px 1100px 0px' });
         sentinelObs.observe(sentinel);
+
+        // a phone turned sideways (or a window widened past 640 px) gets the full wall; it never shrinks
+        if (phoneQuery.addEventListener) phoneQuery.addEventListener('change', function(e) {
+          if (e.matches || HOME_LIMIT >= 360) return;
+          HOME_LIMIT = 360;
+          exhausted = cursor >= queue.length;
+          if (exhausted) return;
+          document.body.classList.remove('collage-done');
+          sentinelObs.disconnect();
+          sentinelObs.observe(sentinel);
+        });
       }
 
       /* ── Arrange: re-sort the collage with a FLIP animation ── */
@@ -428,6 +457,7 @@
         queue = sortedItems(mode);
         cursor = 0;
         exhausted = false;
+        document.body.classList.remove('collage-done'); // set again once the last tile is back in
         heroContainer.style.minHeight = heroContainer.offsetHeight + 'px';
         heroContainer.innerHTML = '';
         appendBatch();
@@ -462,12 +492,12 @@
         btn.addEventListener('click', function() {
           var mode = btn.dataset.sort;
           var NOTES = {
-            shuffle: 'A random mix of memes and their variants &middot; hover a tile to read its RDF',
-            year: 'Oldest to newest by the year the meme appeared &middot; a label marks where each year starts; variants follow at the end',
-            colour: 'By average colour: reds &rarr; yellows &rarr; greens &rarr; blues &rarr; purples, then greys and black &amp; white &middot; the strip on each tile is its colour',
-            format: 'Grouped by main format, A to Z &middot; a label marks where each format starts; variants follow at the end'
+            shuffle: 'A random mix of memes and their variants. Hover a tile to read its RDF.',
+            year: 'Oldest to newest, by the year each meme appeared. A label marks where each year starts. Variants follow at the end.',
+            colour: 'By average colour, from red through yellow, green and blue to purple, then greys and black and white. The strip on each tile is its colour.',
+            format: 'Grouped by main format, A to Z. A label marks where each format starts. Variants follow at the end.'
           };
-          document.getElementById('collage-sort-note').innerHTML = NOTES[mode];
+          document.getElementById('collage-sort-note').textContent = NOTES[mode];
           document.querySelectorAll('.collage-sort button').forEach(function(b) {
             var on = b === btn;
             b.classList.toggle('active', on);
@@ -485,8 +515,8 @@
       });
 
       Promise.all([
-        fetch('meme_data.json').then(function(r) {
-          if (!r.ok) throw new Error('HTTP ' + r.status + ' for meme_data.json');
+        fetch('memes_lite.json').then(function(r) {
+          if (!r.ok) throw new Error('HTTP ' + r.status + ' for memes_lite.json');
           return r.json();
         }),
         fetch('variants_metadata.json')
@@ -494,7 +524,11 @@
             if (!r.ok) return [];
             return r.json();
           })
-          .catch(function() { return []; })
+          .catch(function() { return []; }),
+        // which images have no thumbnail (see build_wall_thumbs.py)
+        fetch(THUMBS + 'missing.json')
+          .then(function(r) { return r.ok ? r.json() : {}; })
+          .catch(function() { return {}; })
       ])
         .then(boot)
         .catch(function() {
