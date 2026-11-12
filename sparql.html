@@ -10,8 +10,10 @@
   <link rel="stylesheet" href="meme_viz.css"/>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23111%22/%3E%3Ctext x=%2216%22 y=%2223%22 font-family=%22Impact,sans-serif%22 font-size=%2220%22 text-anchor=%22middle%22 fill=%22%23fff%22%3EM%3C/text%3E%3C/svg%3E"/>
   <style>
-    /* ── SPARQL page layout ─────────────────────────────────────────────── */
-    /* the workspace fills the first screen; the footer follows below it */
+    /* ── SPARQL explorer ─────────────────────────────────────────────────
+       The workspace fills the first screen; the footer follows below it.
+       No frames or rules: the editor is a light field with one underline, and
+       only the results table keeps its rules, because there they carry the rows. */
     .sparql-page {
       position: relative;
       margin-top: var(--nav-h);
@@ -20,32 +22,19 @@
       background: var(--bg);
     }
 
-    /* ── Left sidebar ─────────────────────────────────────────────────────── */
+    /* ── Sidebar ──────────────────────────────────────────────────────────── */
     .sparql-sidebar {
-      width: 260px;
+      width: 300px;
       flex-shrink: 0;
-      border-right: 1px solid var(--border);
-      background: var(--surface);
       display: flex;
       flex-direction: column;
       overflow-y: auto;
     }
+    @media (min-width: 1200px) { .sparql-sidebar { width: 340px; } }   /* room for most prefixes on one line */
+    .sidebar-section { padding: 24px 20px 4px 24px; }
+    .sidebar-label { margin-bottom: 10px; font-size: var(--label); font-weight: 600; color: var(--ink); }
 
-    .sidebar-section {
-      padding: 20px 16px 12px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .sidebar-label {
-      font-size: .6rem;
-      font-weight: 700;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 10px;
-    }
-
-    /* Ontology status badge */
+    /* Ontology status */
     .owl-status {
       display: flex;
       align-items: center;
@@ -56,7 +45,6 @@
     .owl-dot {
       width: 8px;
       height: 8px;
-      border-radius: 50%;
       background: var(--border);
       flex-shrink: 0;
       transition: background .3s;
@@ -68,110 +56,90 @@
       0%, 100% { opacity: 1; }
       50%       { opacity: .3; }
     }
+    .owl-stats { margin-top: 8px; font-size: .72rem; color: var(--muted); line-height: 1.6; }
 
-    /* Triple/prefixes info */
-    .owl-stats {
-      margin-top: 8px;
-      font-size: .72rem;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    /* Namespace reference */
+    /* Prefixes: a list; a long IRI wraps and hangs under its prefix */
     .ns-pill {
-      display: inline-block;
+      display: block;
+      margin-bottom: 7px;
+      padding: 0 0 0 2ch;
+      text-indent: -2ch;
+      font-family: var(--mono);
       font-size: .68rem;
-      font-family: 'Consolas', monospace;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      padding: 2px 6px;
-      margin-bottom: 4px;
-      word-break: break-all;
       line-height: 1.5;
+      word-break: break-all;
     }
 
-    /* Example query buttons */
+    /* Example queries: an ordered list of choices, highlighted on hover */
+    .example-list { margin: 0; padding: 0; list-style: none; }
     .example-btn {
       display: block;
-      width: 100%;
-      text-align: left;
+      width: calc(100% + 12px);
+      margin: 0 0 2px -12px;
+      padding: 10px 12px;
+      border: 0;
       background: none;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 8px 10px;
-      margin-bottom: 6px;
       font-size: .75rem;
-      color: var(--text);
-      cursor: pointer;
-      transition: background .12s, border-color .12s;
       line-height: 1.4;
+      color: var(--text);
+      text-align: left;
+      cursor: pointer;
     }
-    .example-btn:hover {
-      background: var(--bg);
-      border-color: var(--accent);
-    }
-    .example-btn .ex-title {
-      font-weight: 600;
-      display: block;
-      color: var(--accent2);
-      margin-bottom: 2px;
-    }
-    .example-btn .ex-desc {
-      color: var(--muted);
-      font-size: .7rem;
-    }
+    .example-btn:hover { background: var(--hover); }
+    .ex-title { display: block; margin-bottom: 2px; font-size: .86rem; font-weight: 600; color: var(--ink); }
+    .ex-desc { font-size: .78rem; color: var(--muted); }
 
-    /* ── Editor area ──────────────────────────────────────────────────────── */
+    /* ── Editor ───────────────────────────────────────────────────────────── */
     .sparql-editor-area {
       flex: 1;
       min-width: 0;
       display: flex;
       flex-direction: column;
-      padding: 20px 24px;
       gap: 12px;
+      padding: 24px 32px;
       overflow: hidden;
     }
-
     .editor-topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
       flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: space-between;
+      gap: 8px;
     }
-
+    /* the title and its memes on the editor's edge (caption banner built by memo_meme.js) */
+    .editor-topbar .meme-banner { gap: 10px; margin: 0; padding: 0 0 10px; }
+    .editor-topbar .meme-banner-strip { grid-auto-rows: 44px; }
     .editor-title {
-      font-size: 1rem;
-      font-weight: 900;
-      letter-spacing: .06em;
-      color: var(--accent2);
+      margin: 0;
+      font-family: var(--impact);
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 400;
+      line-height: 1.02;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      color: var(--ink);
     }
+    .editor-subtitle { font-size: .9rem; color: var(--muted); }
 
-    .editor-subtitle {
-      font-size: .75rem;
-      color: var(--muted);
-    }
-
+    /* the editor is still clearly the field: a light ground and one underline (3.4:1) */
     .sparql-textarea {
       flex-shrink: 0;
       width: 100%;
       height: 200px;
-      font-family: 'Consolas', 'Cascadia Code', monospace;
+      padding: 16px 18px;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      background: #efebe3;
+      color: var(--text);
+      font-family: var(--mono);
       font-size: .82rem;
       line-height: 1.6;
-      padding: 12px 14px;
-      background: var(--surface);
-      color: var(--text);
-      border: 1px solid var(--border);
-      border-radius: 4px;
       resize: vertical;
       tab-size: 2;
-      outline: none;
       transition: border-color .15s;
     }
-    .sparql-textarea:focus {
-      border-color: var(--accent);
-    }
+    .sparql-textarea:focus { border-bottom-color: var(--ink); }
 
     .query-controls {
       display: flex;
@@ -179,182 +147,123 @@
       gap: 12px;
       flex-shrink: 0;
     }
-
+    /* the one primary action */
     .run-btn {
-      padding: 8px 22px;
-      background: var(--accent2);
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      font-size: .8rem;
-      font-weight: 700;
-      letter-spacing: .06em;
+      min-height: 44px;
+      padding: 0 22px;
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: var(--bg);
+      font-size: .95rem;
+      font-weight: 600;
       cursor: pointer;
       transition: opacity .15s;
     }
-    .run-btn:hover  { opacity: .82; }
     .run-btn:disabled { opacity: .4; cursor: not-allowed; }
-
     .clear-btn {
+      min-height: 44px;
       padding: 8px 14px;
+      border: 1px solid transparent;
       background: none;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      font-size: .78rem;
+      color: var(--ink);
+      font-size: .9rem;
+      text-decoration: underline;
+      text-underline-offset: 4px;
       cursor: pointer;
       transition: color .12s, border-color .12s;
     }
-    .clear-btn:hover { color: var(--accent2); border-color: var(--accent); }
-
-    .query-status {
-      font-size: .75rem;
-      color: var(--muted);
-      flex: 1;
-    }
+    .clear-btn:hover { background: var(--hover); }
+    .query-status { flex: 1; font-size: .75rem; color: var(--muted); }
     .query-status.error { color: #c0392b; }
-    .query-status.ok    { color: #2e8b57; }
+    .query-status.ok    { color: #24734a; }   /* 5.3:1 on paper */
 
-    /* ── Results area ─────────────────────────────────────────────────────── */
-    .sparql-results {
-      flex: 1;
-      min-height: 0;
-      overflow-y: auto;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      background: var(--surface);
-    }
-
+    /* ── Results ──────────────────────────────────────────────────────────── */
+    .sparql-results { flex: 1; min-height: 0; overflow-y: auto; }
     .results-empty {
       display: flex;
-      align-items: center;
-      justify-content: center;
+      align-items: flex-start;
+      justify-content: flex-start;
       height: 100%;
+      padding-top: 6px;
       color: var(--muted);
-      font-size: .82rem;
+      font-size: .9rem;
     }
 
-    /* Results table */
-    .results-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: .78rem;
-    }
+    /* Results table: the variable names as written, rules between the rows */
+    .results-table { width: 100%; border-collapse: collapse; font-size: .78rem; }
     .results-table th {
       position: sticky;
       top: 0;
-      background: var(--bg);
-      border-bottom: 2px solid var(--border);
-      padding: 8px 12px;
-      text-align: left;
-      font-weight: 700;
-      font-size: .7rem;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--muted);
-      white-space: nowrap;
       z-index: 1;
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--rule);
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: .78rem;
+      font-weight: 500;
+      text-align: left;
+      white-space: nowrap;
     }
     .results-table td {
+      max-width: 400px;
       padding: 7px 12px;
       border-bottom: 1px solid var(--border);
-      max-width: 400px;
       word-break: break-word;
     }
     .results-table tr:last-child td { border-bottom: none; }
     .results-table tr:hover td { background: var(--bg); }
-
-    .td-uri   { color: #1a5b96; font-family: 'Consolas', monospace; font-size: .73rem; }
+    .td-uri   { font-family: var(--mono); font-size: .73rem; color: var(--ink); }
     .td-lit   { color: var(--text); }
     .td-blank { color: var(--muted); font-style: italic; font-size: .73rem; }
     .td-null  { color: var(--muted); font-style: italic; }
-
-    /* Row count badge */
-    .results-count {
-      padding: 8px 12px;
-      font-size: .72rem;
-      color: var(--muted);
-      border-bottom: 1px solid var(--border);
-      background: var(--bg);
-    }
+    .results-count { padding: 8px 12px 8px 0; font-size: .72rem; color: var(--muted); }
 
     /* ASK result */
     .ask-result {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 48px;
       gap: 16px;
+      padding: 48px;
       font-size: 1.4rem;
       font-weight: 700;
     }
     .ask-true  { color: #2e8b57; }
     .ask-false { color: #c0392b; }
 
-    /* CONSTRUCT/DESCRIBE → Turtle pre */
+    /* CONSTRUCT/DESCRIBE as Turtle */
     .results-turtle {
       padding: 16px;
-      font-family: 'Consolas', monospace;
+      font-family: var(--mono);
       font-size: .76rem;
       line-height: 1.7;
       white-space: pre-wrap;
       word-break: break-all;
       color: var(--text);
     }
-
-    /* Error box */
     .results-error {
       padding: 20px;
       color: #c0392b;
+      font-family: var(--mono);
       font-size: .8rem;
       line-height: 1.6;
-      font-family: 'Consolas', monospace;
       white-space: pre-wrap;
     }
 
-    /* ── Mobile: stack editor above the sidebar and let the page scroll ─── */
+    /* ── Phones: the editor above the sidebar, and the page scrolls ───────── */
     @media (max-width: 768px) {
       body { overflow: auto; }
       .sparql-page {
         position: static;
         flex-direction: column;
-        padding-top: var(--nav-h);
         min-height: 100vh;
       }
-      .sparql-editor-area {
-        order: -1;
-        overflow: visible;
-        padding: 20px 16px;
-      }
-      .sparql-sidebar {
-        width: auto;
-        border-right: none;
-        border-top: 1px solid var(--border);
-        overflow: visible;
-      }
+      .sparql-editor-area { order: -1; overflow: visible; padding: 32px 16px 20px; }
+      .sparql-sidebar { width: auto; overflow: visible; }
+      .sidebar-section { padding: 20px 16px 4px; }
       .sparql-results { min-height: 260px; }
     }
-
-    /* ── Identity ─────────────────────────────────────────────────────── */
-    .sparql-sidebar { border-right: 1px solid var(--border); background: var(--bg); }
-    .sidebar-section { border-bottom: 1px solid var(--border); }
-    .sidebar-label { font-size: .62rem; color: var(--c); }
-    .editor-title { font-family: var(--serif); font-weight: 500; font-size: 1.9rem; letter-spacing: -.01em; }
-    .editor-subtitle { font-family: var(--mono); font-size: .68rem; }
-    .sparql-textarea { font-family: var(--mono); border: 1px solid var(--rule); border-radius: 0; background: var(--surface); }
-    .sparql-results { border: 1px solid var(--border); border-radius: 0; background: var(--surface); }
-    .sparql-textarea:focus { border-color: var(--c); }
-    .run-btn { background: var(--ink); color: var(--bg); border: 1px solid var(--ink); border-radius: 2px;
-      font-family: var(--mono); font-weight: 500; font-size: .74rem; letter-spacing: .1em; text-transform: uppercase; }
-    .run-btn:hover { opacity: 1; background: var(--c); border-color: var(--c); }
-    .clear-btn { border: 1px solid #b9b1a2; border-radius: 2px; color: var(--ink); background: var(--surface); }
-    .clear-btn:hover { border-color: var(--ink); color: var(--ink); }
-    .example-btn { border: 1px solid var(--border); border-left: 2px solid var(--border); border-radius: 0; background: var(--surface); transition: border-color .15s; }
-    .example-btn:hover { background: var(--c-soft); border-color: var(--border); border-left-color: var(--c); }
-    .ex-title { font-family: var(--ui); font-weight: 600; font-size: .86rem; }
-    .ns-pill { font-family: var(--mono); border: 1px solid var(--border); border-radius: 0; background: var(--surface); }
-    .results-table th { font-family: var(--mono); font-weight: 500; letter-spacing: .06em; background: var(--bg); color: var(--ink); border-bottom: 1px solid var(--rule); }
-    .td-uri { font-family: var(--mono); color: var(--up); }
   </style>
 </head>
 <body>
@@ -398,58 +307,50 @@
         <div class="ns-pill">xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;</div>
       </div>
 
-      <div class="sidebar-section" style="flex:1; border-bottom:none;">
-        <div class="sidebar-label">Example Queries</div>
-
-        <button class="example-btn" data-example="japan-imagemacro">
-          <span class="ex-title">1. Japan + ImageMacro</span>
-          <span class="ex-desc">Provenance crossed with iconographical format</span>
-        </button>
-
-        <button class="example-btn" data-example="publicfigure-twitter">
-          <span class="ex-title">2. PublicFigure references on Twitter</span>
-          <span class="ex-desc">Platform provenance + iconological layer</span>
-        </button>
-
-        <button class="example-btn" data-example="mediumshift">
-          <span class="ex-title">3. Detect MediumShift computationally</span>
-          <span class="ex-desc">Canonical vs variant ImageType mismatch</span>
-        </button>
-
-        <button class="example-btn" data-example="imagetype-distribution">
-          <span class="ex-title">4. ImageType distribution</span>
-          <span class="ex-desc">Corpus-level type percentages</span>
-        </button>
-
-        <button class="example-btn" data-example="frbr-work-expression">
-          <span class="ex-title">5. FRBR Work to Expression traversal</span>
-          <span class="ex-desc">MemeIdea linked MemeConcept templates</span>
-        </button>
-
-        <button class="example-btn" data-example="top-originworks">
-          <span class="ex-title">6. Most productive source works</span>
-          <span class="ex-desc">Origin works generating most meme templates</span>
-        </button>
-
-        <button class="example-btn" data-example="pre2010-monochrome-text">
-          <span class="ex-title">7. Text + monochrome + pre-2010</span>
-          <span class="ex-desc">Boolean literal filters and temporal filter</span>
-        </button>
-
-        <button class="example-btn" data-example="variants-dim-extent">
-          <span class="ex-title">8. Variants with dimensions and extents</span>
-          <span class="ex-desc">Full Manifestation-level transformation query</span>
-        </button>
-
-        <button class="example-btn" data-example="shared-cultural-refs">
-          <span class="ex-title">9. Shared CulturalReferences</span>
-          <span class="ex-desc">References linked to more than one meme</span>
-        </button>
-
-        <button class="example-btn" data-example="wikidata-federation-population">
-          <span class="ex-title">10. Wikidata federation by population</span>
-          <span class="ex-desc">SERVICE join on countries over 100M population</span>
-        </button>
+      <div class="sidebar-section" style="flex:1">
+        <div class="sidebar-label" id="examples-label">Example queries</div>
+        <ol class="example-list" role="list" aria-labelledby="examples-label">
+          <li><button class="example-btn" data-example="japan-imagemacro">
+            <span class="ex-title">Japan + ImageMacro</span>
+            <span class="ex-desc">Provenance crossed with iconographical format</span>
+          </button></li>
+          <li><button class="example-btn" data-example="publicfigure-twitter">
+            <span class="ex-title">PublicFigure references on Twitter</span>
+            <span class="ex-desc">Platform provenance + iconological layer</span>
+          </button></li>
+          <li><button class="example-btn" data-example="mediumshift">
+            <span class="ex-title">Detect MediumShift computationally</span>
+            <span class="ex-desc">Canonical vs variant ImageType mismatch</span>
+          </button></li>
+          <li><button class="example-btn" data-example="imagetype-distribution">
+            <span class="ex-title">ImageType distribution</span>
+            <span class="ex-desc">Corpus-level type percentages</span>
+          </button></li>
+          <li><button class="example-btn" data-example="frbr-work-expression">
+            <span class="ex-title">FRBR Work to Expression traversal</span>
+            <span class="ex-desc">MemeIdea linked MemeConcept templates</span>
+          </button></li>
+          <li><button class="example-btn" data-example="top-originworks">
+            <span class="ex-title">Most productive source works</span>
+            <span class="ex-desc">Origin works generating most meme templates</span>
+          </button></li>
+          <li><button class="example-btn" data-example="pre2010-monochrome-text">
+            <span class="ex-title">Text + monochrome + pre-2010</span>
+            <span class="ex-desc">Boolean literal filters and temporal filter</span>
+          </button></li>
+          <li><button class="example-btn" data-example="variants-dim-extent">
+            <span class="ex-title">Variants with dimensions and extents</span>
+            <span class="ex-desc">Full Manifestation-level transformation query</span>
+          </button></li>
+          <li><button class="example-btn" data-example="shared-cultural-refs">
+            <span class="ex-title">Shared CulturalReferences</span>
+            <span class="ex-desc">References linked to more than one meme</span>
+          </button></li>
+          <li><button class="example-btn" data-example="wikidata-federation-population">
+            <span class="ex-title">Wikidata federation by population</span>
+            <span class="ex-desc">SERVICE join on countries over 100M population</span>
+          </button></li>
+        </ol>
       </div>
 
     </aside><div class="sparql-editor-area">
@@ -457,7 +358,7 @@
       <div class="editor-topbar">
         <div>
           <div class="editor-title">SPARQL Explorer</div>
-          <div class="editor-subtitle">Query the meme ontology — Local Document Stream · SPARQL 1.1</div>
+          <div class="editor-subtitle">Query the meme ontology with SPARQL 1.1 (local document stream).</div>
         </div>
       </div>
 
@@ -481,7 +382,7 @@ GROUP BY ?format
 ORDER BY DESC(?count)</textarea>
 
       <div class="query-controls">
-        <button class="run-btn" id="run-btn" disabled>Run Query</button>
+        <button class="run-btn" id="run-btn" disabled>Run query</button>
         <button class="clear-btn" id="clear-btn">Clear</button>
         <span class="query-status" id="query-status">Loading ontology…</span>
       </div>
@@ -775,8 +676,8 @@ ORDER BY DESC(?count)</textarea>
           owlStats.textContent  = parsed.store.size.toLocaleString() + ' triples indexed (' + parsed.source + ')' + (parsed.safeMode ? ' (safe mode)' : '');
           runBtn.disabled = false;
           queryStatus.textContent = parsed.safeMode
-            ? 'Ontology loaded in safe mode — ready to parse queries'
-            : 'Ontology loaded — ready to parse queries';
+            ? 'Ontology loaded in safe mode, ready to parse queries'
+            : 'Ontology loaded, ready to parse queries';
           queryStatus.className   = 'query-status ok';
           if (initialQuery && initialQuery.trim()) runQuery(initialQuery.trim());
         })
