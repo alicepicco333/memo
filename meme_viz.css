@@ -884,17 +884,16 @@ body:has(.page:not(.hidden)) > .site-footer { display: none; }
 .home-tile-swatch { position: absolute; left: 0; right: 0; bottom: 0; height: 8px; }
 .home-collage-sentinel { width: 100%; height: 1px; margin: 0; }
 
-/* the hover graph on the wall (drawTip in index.html): the tile's meme as a round node with edges to
-   a few property values, like the Knowledge-graph walk but static; white card, thin black stroke,
-   in greys and ink so it stays calm over the colourful wall */
+/* the hover graph on the wall (drawTip in index.html): a small piece of the ontology graph, the meme's
+   name as a caption, the meme as a round node, dashed edges to its values written as triples. A paper card
+   lifted by its shadow alone (like the random meme card), so it stays calm over the colourful wall */
 .home-graph-tip {
   position: fixed;
   top: 0;
   left: 0;
   z-index: 250;
-  border: 1px solid var(--ink);
-  background: #fff;
-  box-shadow: 0 6px 18px -8px rgba(0, 0, 0, .25);
+  background: var(--bg);
+  box-shadow: 0 2px 6px rgba(20, 20, 20, .08), 0 18px 40px -14px rgba(20, 20, 20, .38);
   pointer-events: none;
   opacity: 0;
   visibility: hidden;
@@ -902,11 +901,13 @@ body:has(.page:not(.hidden)) > .site-footer { display: none; }
 }
 .home-graph-tip.show { opacity: 1; visibility: visible; transition: opacity .12s ease; }
 .home-graph-tip svg { display: block; }
-.home-graph-tip .hg-edge { stroke: #8a8378; stroke-width: 1.2; }
-.home-graph-tip .hg-node { fill: var(--surface); stroke: var(--ink); stroke-width: 1.5; }
+.home-graph-tip .hg-cap { font-family: var(--impact); font-size: 19px; letter-spacing: .04em; fill: var(--ink); }
+.home-graph-tip .hg-edge { fill: none; stroke: #8a8378; stroke-width: 1; stroke-dasharray: 3 4; }   /* the site's graph edge */
+.home-graph-tip .hg-node { fill: #ecebe6; }
+.home-graph-tip .hg-ring { fill: none; stroke: var(--ink); stroke-width: 1.5; }
+.home-graph-tip .hg-dot { fill: #8a8378; }
 .home-graph-tip .hg-prop { font-family: var(--mono); font-size: 12px; fill: var(--muted); }
-.home-graph-tip .hg-pill { fill: var(--border); }
-.home-graph-tip .hg-value { font-family: var(--ui); font-size: 12px; font-weight: 600; fill: var(--ink); }
+.home-graph-tip .hg-value { font-family: var(--ui); font-size: 13px; font-weight: 600; fill: var(--ink); }
 
 /* the end of the wall fades out and the link sits in the fade (until every tile is in, it stays below) */
 body.collage-done .home-hero .hero-images {

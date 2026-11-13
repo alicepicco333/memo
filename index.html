@@ -105,7 +105,7 @@
       var sentinelObs = null;
       var itemsByKey = {};
       var SVG_NS = 'http://www.w3.org/2000/svg';
-      var TIP_W = 296;
+      var TIP_W = 340;
       var tip = null;            // the hover graph's card, made on first use
       var tipBody = null;        // the group inside its one SVG, redrawn for each tile
       var tipTile = null;        // the tile it shows
@@ -156,7 +156,7 @@
         if (item.type === 'variant') {
           if (item.parentName) rows.push(['isVariantOf', item.parentName]);
           if (item.title) rows.push(['variantTitle', item.title]);
-          if (item.uploader) rows.push(['variantUploader', item.uploader]);
+          // the uploader's handle stays in the data, not on the home page
         } else {
           if (item.format) rows.push(['hasFormat', item.format]);
           if (item.year) rows.push(['created', item.year]);
@@ -196,32 +196,42 @@
         document.body.appendChild(tip);
       }
 
-      // the meme's round image on the left; an edge from it to each value pill on the right,
-      // with the property's name above the end of the edge
+      // A small piece of the ontology graph, in the same language as the hero, the trail and the
+      // ontology view: the meme's name as a caption, the meme as a round node, the site's dashed edge to
+      // a dot for each value (coloured like the Knowledge-graph walk where the walk has the property),
+      // and each value written as a triple, "property · value"
+      var TIP_DOT = { hasFormat: '#c8742a', hasImageType: '#8e5cc9' };
       function drawTip(item, img) {
         var rows = triplesOf(item);
-        var PAD = 12, R = 38, PITCH = 40, PX = 124;   // PX: where the edges end and the pills start
-        var block = rows.length ? 24 + PITCH * (rows.length - 1) + 10 : 0;   // first name's top to last pill's foot
-        var H = Math.max(2 * (R + PAD), block + 2 * PAD);
-        var cx = PAD + R, cy = H / 2, top = (H - block) / 2 + 24;
+        var PAD = 16, R = 30, PITCH = 28, CAP = 40;          // CAP: the caption's band
+        var block = rows.length ? PITCH * (rows.length - 1) : 0;
+        var gh = Math.max(2 * R + 8, block + 20);            // the graph's band
+        var H = CAP + gh + PAD - 4;
+        var cx = PAD + R + 2, cy = CAP + gh / 2, DX = cx + R + 40;   // DX: where the dots sit
         var svg = tipBody.ownerSVGElement;
         svg.setAttribute('height', H);
         svg.setAttribute('viewBox', '0 0 ' + TIP_W + ' ' + H);
         tipBody.textContent = '';
+        var cap = svgEl('text', { 'class': 'hg-cap', x: PAD, y: PAD + 15 }, tipBody);
+        fitText(cap, String(item.type === 'variant' ? (item.parentName || item.label) : item.label).toUpperCase(), TIP_W - 2 * PAD);
         rows.forEach(function(row, i) {
-          var y = top + i * PITCH, a = Math.atan2(y - cy, PX - cx);
-          svgEl('line', { 'class': 'hg-edge', x1: cx + R * Math.cos(a), y1: cy + R * Math.sin(a), x2: PX, y2: y }, tipBody);
-          svgEl('text', { 'class': 'hg-prop', x: PX + 2, y: y - 15 }, tipBody).textContent = row[0];
-          var pill = svgEl('rect', { 'class': 'hg-pill', x: PX, y: y - 10, height: 20, rx: 10 }, tipBody);
-          var value = svgEl('text', { 'class': 'hg-value', x: PX + 8, y: y + 4 }, tipBody);
-          fitText(value, row[1], TIP_W - PAD - PX - 16);
-          pill.setAttribute('width', value.getComputedTextLength() + 16);
+          var y = cy - block / 2 + i * PITCH, a = Math.atan2(y - cy, DX - cx);
+          var sx = cx + (R + 3) * Math.cos(a), sy = cy + (R + 3) * Math.sin(a);
+          svgEl('path', { 'class': 'hg-edge', d: 'M' + sx + ',' + sy + 'Q' + ((sx + DX) / 2) + ',' + y + ' ' + (DX - 6) + ',' + y }, tipBody);
+          var dot = svgEl('circle', { 'class': 'hg-dot', cx: DX, cy: y, r: 4 }, tipBody);
+          if (TIP_DOT[row[0]]) dot.style.fill = TIP_DOT[row[0]];
+          var line = svgEl('text', { 'class': 'hg-triple', x: DX + 11, y: y + 4 }, tipBody);
+          var prop = svgEl('tspan', { 'class': 'hg-prop' }, line);
+          prop.textContent = row[0] + ' · ';
+          var value = svgEl('tspan', { 'class': 'hg-value' }, line);
+          fitText(value, row[1], TIP_W - PAD - (DX + 11) - prop.getComputedTextLength());
         });
         svgEl('circle', { 'class': 'hg-node', cx: cx, cy: cy, r: R }, tipBody);
         svgEl('image', {
-          href: img.currentSrc || img.src, x: cx - R + 3, y: cy - R + 3, width: 2 * R - 6, height: 2 * R - 6,
+          href: img.currentSrc || img.src, x: cx - R, y: cy - R, width: 2 * R, height: 2 * R,
           preserveAspectRatio: 'xMidYMid slice', 'clip-path': 'url(#home-graph-clip)'
         }, tipBody);
+        svgEl('circle', { 'class': 'hg-ring', cx: cx, cy: cy, r: R }, tipBody);
       }
 
       // pointer: below and right of it, flipped near the edges; focus: beside the tile, or under it on phones
