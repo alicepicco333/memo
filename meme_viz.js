@@ -1380,11 +1380,14 @@ function buildVariantGallery() {
     var canonColor = CANON_COLOR[originalType] || CANON_COLOR[g.canonical] || '#888';
     var originalHref = d0Entry ? ('#d0/' + encodeURIComponent(String(d0Entry.id))) : ('#meme/' + encodeURIComponent(slug));
 
+    // the original spans two columns and two rows; the variants fill the rest of those two rows exactly
+    // (10 variants: 7 columns, 5 beside the original on each row), so no row ends half empty
+    var vgCols = Math.min(9, Math.ceil(uniqueVariants.length / 2) + 2);
     html += '<div class="vg-row">';
     html += '<div class="vg-label">';
     html += '<span class="vg-meme-name">' + escHtml(memeName) + '</span>';
     html += '</div>';
-    html += '<div class="vg-thumbs">';
+    html += '<div class="vg-thumbs" style="--vg-cols:' + vgCols + '">';
 
     // Add original/template image first, next to the variants.
     var originalMeme = DATA && DATA.memes ? DATA.memes[slug] : null;

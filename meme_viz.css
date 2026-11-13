@@ -177,41 +177,6 @@ a { text-underline-offset: 3px; }
   color: var(--ink);
 }
 
-.topnav-dropdown { position: relative; }
-.topnav-dropdown-trigger::after {
-  content: '▾';
-  display: inline-block;
-  margin-left: 4px;
-  font-size: .6rem;
-  vertical-align: middle;
-}
-.topnav-dropdown-menu {
-  display: none;
-  position: absolute;
-  top: calc(100% + 4px);
-  right: 0;
-  z-index: 400;
-  min-width: 180px;
-  padding: 8px 0;
-  background: var(--surface);
-  box-shadow: 0 14px 36px rgba(0, 0, 0, .14);
-}
-.topnav-dropdown:hover .topnav-dropdown-menu,
-.topnav-dropdown:focus-within .topnav-dropdown-menu { display: block; }
-.topnav-dropdown-item {
-  display: flex;
-  align-items: center;
-  min-height: 44px;
-  padding: 9px 16px;
-  font-size: .78rem;
-  font-weight: 500;
-  color: var(--muted);
-  text-decoration: none;
-  transition: color .12s, background .12s;
-}
-.topnav-dropdown-item:hover { color: var(--ink); background: var(--bg); }
-/* the first item of each group: space above it instead of a rule */
-.topnav-dropdown-divider { margin-top: 10px; color: var(--ink); font-weight: 600; }
 
 /* Random meme: an icon and a label, no frame (button and card built by memo_meme.js) */
 .rm-btn {
@@ -306,10 +271,6 @@ a { text-underline-offset: 3px; }
   }
   .topnav-links::-webkit-scrollbar { display: none; }
   .topnav-link { flex-shrink: 0; justify-content: center; white-space: nowrap; }
-  /* the scrolling row would clip the dropdown; the sections are one scroll away on phones */
-  .topnav-dropdown-trigger::after { content: none; }
-  .topnav-dropdown:hover .topnav-dropdown-menu,
-  .topnav-dropdown:focus-within .topnav-dropdown-menu { display: none; }
   .rm-btn { position: absolute; top: 2px; right: 4px; width: 44px; height: 44px; margin: 0; padding: 0; justify-content: center; }
   .rm-btn span { display: none; }
   .rm-card { left: 12px; right: 12px; width: auto; }
@@ -1325,15 +1286,9 @@ body.collage-done .collage-more { margin-top: -96px; padding-top: 0; }
 .vg-legend-title { font-size: var(--label); font-weight: 600; color: var(--muted); }
 .vg-legend-item { display: flex; align-items: center; gap: 5px; font-size: .74rem; color: var(--muted); }
 .vg-legend-dot { flex-shrink: 0; width: 9px; height: 9px; }
-.vg-row { display: flex; align-items: stretch; gap: 20px; padding: 28px 0; }
-.vg-label {
-  flex-shrink: 0;
-  width: 150px;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  padding-top: 2px;
-}
+/* one meme per row: its name above, then the original large and its variants in full rows beside it */
+.vg-row { display: flex; flex-direction: column; gap: 12px; padding: 28px 0; }
+.vg-label { display: flex; align-items: baseline; gap: 8px; }
 .vg-meme-name {
   font-family: var(--impact);
   font-size: 1.15rem;
@@ -1343,15 +1298,17 @@ body.collage-done .collage-more { margin-top: -96px; padding-top: 0; }
   text-transform: uppercase;
   color: var(--text);
 }
-/* tiles wrap into readable 150 px columns */
+/* the column count comes from the script (--vg-cols), so the variants fill whole rows */
 .vg-thumbs {
-  flex: 1;
   min-width: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-template-columns: repeat(var(--vg-cols, 7), minmax(0, 1fr));
+  grid-auto-flow: row dense;
+  align-items: start;
   gap: 12px;
 }
 .vg-thumb { position: relative; text-decoration: none; }
+.vg-thumb-original { grid-column: span 2; grid-row: span 2; }
 .vg-thumb img, .vg-thumb-missing {
   display: block;
   width: 100%;
@@ -1586,11 +1543,6 @@ body:has(#page-ontology:not(.hidden)) .loader { display: none; }
   :root { --dot-nav-w: 0; --panel-w: 320px; }
   .legend-grid { grid-template-columns: repeat(2, 1fr); }
 }
-@media (max-width: 900px) {
-  .vg-row { flex-direction: column; }
-  .vg-label { width: auto; }
-  .vg-thumbs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-}
 @media (max-width: 768px) {
   :root {
     --dot-nav-w: 0;
@@ -1626,7 +1578,9 @@ body:has(#page-ontology:not(.hidden)) .loader { display: none; }
   .viz-hscroll > .graph-wrap { width: 640px; }
   #graph-variant-gallery { padding: 0 0 12px; }
 
-  .vg-label { flex-direction: row; align-items: baseline; gap: 8px; }
+  /* phones: the original across both columns, the variants in full rows of two */
+  .vg-thumbs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .vg-thumb-original { grid-row: auto; }
   .vg-legend { gap: 6px 14px; }
   .transform-legend { padding: 0; }
   .legend-grid { grid-template-columns: 1fr; }
